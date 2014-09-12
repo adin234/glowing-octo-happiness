@@ -44,6 +44,8 @@ $(document).ready(function(){
     }
   })
 
+  getPhoto(news_data.config.channel, $('.videoHeading > img'));
+
   news_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });
@@ -116,7 +118,7 @@ var filterAction = function(action) {
 
 var getPlaylist = function(playlistId) {
   active_playlist = playlistId;
-  $('playlistItem').removeClass('current');
+  $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   $.getJSON(server+'news',
     { playlist: playlistId },
@@ -126,10 +128,11 @@ var getPlaylist = function(playlistId) {
 };
 
 var showVideo = function(videoId) {
-  $('videoItem').removeClass('current');
+  $('.videoHeading h3').html(getVideo(videoId).snippet.title);
+  $('.videoItem').removeClass('current');
   $('#video-'+videoId).addClass('current');
   $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist 
-    ? '/?list='+active_playlist : '')+'&autoplay=true&enablejsapi=1');
+    ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1');
   setTimeout(function() {
     player = new YT.Player('ytplayer', {
       events: {
@@ -143,6 +146,31 @@ var showVideo = function(videoId) {
 
 var filter = function(id) {
   return false;
+};
+
+var getPhoto = function(id, context) {
+  $.getJSON('http://gdata.youtube.com/feeds/api/users/'+id.substr(2)+
+    '?fields=yt:username,media:thumbnail,title&alt=json',
+    {},
+    function(e) {
+      console.log(context, e['entry']['media$thumbnail']['url']);
+      $(context).attr('src',e['entry']['media$thumbnail']['url']);
+    }
+  );
+};
+
+var getVideo = function(videoId, list) {
+  if(!list) {
+    list = news_data.videos;
+  }
+
+  for(var i=0; i<list.length; i++) {
+    if(list[i].snippet.resourceId.videoId == videoId) {
+      return list[i];
+    }
+  }
+
+  return null;
 };
 
 var showPlaylist = function(playlist, next) {
