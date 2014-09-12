@@ -113,6 +113,7 @@ var filterAction = function(action) {
       break;
     case 'video':
       showVideo(hash.shift());
+      updatePrevNext();
   }
 };
 
@@ -131,7 +132,7 @@ var showVideo = function(videoId) {
   $('.videoHeading h3').html(getVideo(videoId).snippet.title);
   $('.videoItem').removeClass('current');
   $('#video-'+videoId).addClass('current');
-  $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist 
+  $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
     ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1');
   setTimeout(function() {
     player = new YT.Player('ytplayer', {
@@ -177,4 +178,13 @@ var showPlaylist = function(playlist, next) {
   update_videos(playlist.items);
   $('#videosToggle').click();
   filterAction(next);
+};
+
+
+var updatePrevNext = function() {
+  var current = $('.videoItem.current');
+  var prevLink = current.prev().children('a').first().attr('href');
+  var nextLink = current.next().children('a').first().attr('href');
+  $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;')
+  $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;')
 };
