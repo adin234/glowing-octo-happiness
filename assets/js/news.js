@@ -1,4 +1,5 @@
 news_data = $.parseJSON(news_data);
+data_cache = { playlist:{}, video:{} };
 var html = [];
 var active_playlist;
 var hash;
@@ -109,43 +110,45 @@ var update_playlists = function (playlists) {
 var filterAction = function(action) {
   switch (action) {
     case 'playlist':
-      getPlaylist(hash.shift());
+      showPlaylist(hash.shift(), hash.shift());
       break;
     case 'video':
       showVideo(hash.shift());
-      showSocialButtons();
-      updatePrevNext();
   }
-};
-
-var getPlaylist = function(playlistId) {
-  active_playlist = playlistId;
-  $('.playlistItem').removeClass('current');
-  $('#playlist-'+playlistId).addClass('current');
-  $.getJSON(server+'news',
-    { playlist: playlistId },
-    function(e) {
-      showPlaylist(e, hash.shift());
-    });
 };
 
 var showVideo = function(videoId) {
   var video = getVideo(videoId);
-  $('.videoHeading h3').html(video.snippet.title);
-  $('#tab-1').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
-  $('.videoItem').removeClass('current');
-  $('#video-'+videoId).addClass('current');
-  $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
-    ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1');
-  setTimeout(function() {
-    player = new YT.Player('ytplayer', {
-      events: {
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }, 500);
+  if(video) {
+    $('.videoHeading h3').html(video.snippet.title);
+    $('#tab-1').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
+    $('.videoItem').removeClass('current');
+    $('#video-'+videoId).addClass('current');
+    $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
+      ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1');
+    setTimeout(function() {
+      player = new YT.Player('ytplayer', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }, 500);
 
-  console.log('started a new player');
+    showSocialButtons();
+    updatePrevNext();
+  }
+};
+
+var showPlaylist = function(playlistId, next) {
+  $('.playlistItem').removeClass('current');
+  $('#playlist-'+playlistId).addClass('current');
+  var playlist = getPlaylist(playlistId);
+  update_videos(playlist.items);
+  $('#videosToggle').click();
+  if(!next) {
+    return showVideo(playlist.items[0].snippet.resourceId.videoId);
+  }
+  filterAction(next);
 };
 
 var filter = function(id) {
@@ -163,6 +166,24 @@ var getPhoto = function(id, context) {
   );
 };
 
+var getPlaylist = function(playlistId) {
+  active_playlist = playlistId;
+
+  if(!data_cache.playlist[playlistId]) {
+    $.ajax({
+      url: server+'news',
+      dataType: 'json',
+      async: false,
+      data: { playlist: playlistId },
+      success: function(e) {
+        data_cache.playlist[playlistId] = e
+      }
+    });
+  }
+
+  return data_cache.playlist[playlistId];
+};
+
 var getVideo = function(videoId, list) {
   if(!list) {
     list = news_data.videos;
@@ -174,20 +195,34 @@ var getVideo = function(videoId, list) {
     }
   }
 
-  return null;
+  list = data_cache.playlist;
+  indices = Object.keys(list);
+  for(var i=0; i<indices.length; i++) {
+    list = data_cache.playlist[indices[i]].items
+    for(var ii=0; ii<list.length; ii++) {
+      if(list[ii].snippet.resourceId.videoId == videoId) {
+        return list[ii];
+      }
+    }
+  }
+
+  return cacheVideo(videoId);
 };
 
-var showPlaylist = function(playlist, next) {
-  update_videos(playlist.items);
-  $('#videosToggle').click();
-  filterAction(next);
+var cachePlaylist = function(playlistId) {
+
 };
 
+var cacheVideo = function(videoId) {
+
+};
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
   var prevLink = current.prev().children('a').first().attr('href');
   var nextLink = current.next().children('a').first().attr('href');
-  $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;')
-  $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;')
+  $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
+  $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
+
+  console.log(current);
 };

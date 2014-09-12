@@ -14,6 +14,7 @@ var showSocialButtons = function () {
     $('#social-buttons').html('');
 
     var html = '<div id="social-buttons">'
+            + '<div id="fb-container"></div>'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size="standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+link+'" data-text="">Tweet</a>'
             + '<div id="fb-root"></div>'

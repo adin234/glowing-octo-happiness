@@ -2710,17 +2710,9 @@ x3 #streamView header, .muti #streamView header {
         -webkit-transition: opacity 1000ms ease;
 }
 
-.fb-like,
 .g-plusone-frame {
-    margin: 10px 0 10px 3px;
-}
-
-.g-plusone-frame {
-    display: inline;
-}
-
-.twitter-share-button {
-    margin: 10px 0;
+  display: inline-block;
+  width: 70px;
 }
 
 .fade {
