@@ -1360,7 +1360,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .main .streaming #streamers li {
   cursor: pointer;
-} 
+}
 .main aside {
   min-height: 966px;
 }
@@ -2700,4 +2700,29 @@ x3 #streamView header, .muti #streamView header {
 }
 .lang_zh_tw #streamView header select {
   margin-left: 22px;
+}
+
+#social-buttons {
+    transition:             opacity 1000ms ease;
+        -moz-transition:    opacity 1000ms ease;
+        -ms-transition:     opacity 1000ms ease;
+        -o-transition:      opacity 1000ms ease;
+        -webkit-transition: opacity 1000ms ease;
+}
+
+.fb-like,
+.g-plusone-frame {
+    margin: 10px 0 10px 3px;
+}
+
+.g-plusone-frame {
+    display: inline;
+}
+
+.twitter-share-button {
+    margin: 10px 0;
+}
+
+.fade {
+    opacity: 0 !important;
 }

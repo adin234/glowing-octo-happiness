@@ -110,9 +110,11 @@ var filterAction = function(action) {
   switch (action) {
     case 'playlist':
       getPlaylist(hash.shift());
+      showSocialButtons();
       break;
     case 'video':
       showVideo(hash.shift());
+      showSocialButtons();
       updatePrevNext();
   }
 };
