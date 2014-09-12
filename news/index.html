@@ -23,41 +23,9 @@
 <link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="/assets/js/hoverIntent.js"></script>
-<script src="/assets/js/superfish.js"></script>
-<script src="/assets/js/function.js"></script>
-<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/jquery.tabslet.min.js"></script>
-<script type="text/javascript">
-	$(window).load(function(){
-		$(".playList, .videoRelated [id^='tab-'], .recommend ul").mCustomScrollbar({
-			theme:"inset-2",
-		});
-	});
-	$(document).ready(function(){
-		$(".sf-menu").superfish();
-		$(".tabs").tabslet({
-			animation: true,
-			active: 3,
-		});
-		$(".zoom a").click(function(){
-			$("body").toggleClass("zoom2x");
-			$(".zoom").toggleClass("zoomOut");
-		});
-	});
-</script>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript" src="/assets/js/config.js"></script>
+<script type="text/javascript" src="/assets/js/get.news.data.js"></script>
 </head>
-
 <body class="lang_zh_tw">
 <div id="wrapper">
   <div id="outContainer">
@@ -106,7 +74,7 @@
       <div id="content" class="clearFix">
         <div class="heading">
           <h2>新聞</h2>
-          <ul class="channel">
+          <ul class="channel" id="categories">
             <li class="current"><a href="youtuber_en.html" title="Youtuber">Youtuber</a></li>
             <li><a href="javascript:;" title="Freedom">Freedom</a></li>
           </ul>
@@ -120,8 +88,8 @@
             </div>
             <div class="videoList">
               <ul class="listSwitch clearFix">
-                <li class="current"><a href="javascript:;">播放清單</a></li>
-                <li><a href="javascript:;" title="影片">影片</a></li>
+                <li id="playlistsToggle" class="current"><a href="javascript:;">播放清單</a></li>
+                <li id="videosToggle" ><a href="javascript:;" title="影片">影片</a></li>
               </ul>
               <ul class="playFunctionBtn clearFix">
                 <li><a href="javascript:;" title="上一個影片">上一個影片</a></li>
@@ -130,7 +98,9 @@
                 <li><a href="javascript:;" title="自動撥放">自動撥放</a></li>
                 <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li>
               </ul>
-              <ul class="playList">
+              <ul class="playList toggleList" id="videos">
+              </ul>
+              <ul class="playList toggleList current" id="playlists">
                 <li class="current"><a href="javascript:;" title="{影片名稱}" class="clearFix"><img src="images/video_thumb.jpg" alt="{影片名稱}" width="79" height="52">
                   <h3>Animated musical</h3>
                   <p>This is Photoshop's version of Lorem Ipsum.</p>
@@ -449,5 +419,47 @@
     </div>
   </div>
 </div>
+<script type="text/html" id="categoriesTpl">
+  <li><a href="#" onclick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+</script>
+<script type="text/html" id="playlistTpl">
+  <li class="playlistItem" id="{{ID}}">
+    <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
+      <h3>{{TITLE}}</h3>
+      <p>{{DESC}}</p>
+    </a>
+  </li>
+</script>
+<script type="text/html" id="videosTpl">
+  <li class="ytVideo videoItem" id="{{ID}}">
+    <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
+      <h3>{{TITLE}}</h3>
+      <p>{{DESC}}</p>
+    </a>
+  </li>
+</script>
+<script type="text/html" id="categoriesTpl">
+  <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="/assets/js/hoverIntent.js"></script>
+<script src="/assets/js/superfish.js"></script>
+<script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/assets/js/jquery.tabslet.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/news.js"></script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </body>
 </html>

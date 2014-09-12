@@ -1,2 +1,2 @@
-var server 				= 'http://54.255.176.250/';
+var server 				= 'http://localhost:3000/';
 var attachments_server 	= 'http://community.gamers.tm/zh/' 
