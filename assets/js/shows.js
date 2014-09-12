@@ -1,4 +1,4 @@
-news_data = $.parseJSON(news_data);
+shows_data = $.parseJSON(shows_data);
 var html = [];
 var active_playlist;
 var hash;
@@ -40,18 +40,18 @@ $(document).ready(function(){
       $(".playList.toggleList").toggleClass('current');
     } else if($(this).attr('id') == 'videosToggle' && !hash.length) {
       active_playlist = null;
-      update_videos(news_data.videos);
+      update_videos(shows_data.videos);
     }
   })
 
-  news_data.categories.forEach(function(item, i){
+  shows_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });
   $('#categories').html(html.join(''));
 
 
-  update_videos(news_data.videos);
-  update_playlists(news_data.playlists);
+  update_videos(shows_data.videos);
+  update_playlists(shows_data.playlists);
 
   $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
