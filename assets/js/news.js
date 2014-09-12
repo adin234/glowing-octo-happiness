@@ -131,7 +131,7 @@ var getPlaylist = function(playlistId) {
 var showVideo = function(videoId) {
   var video = getVideo(videoId);
   $('.videoHeading h3').html(video.snippet.title);
-  $('#tab-1').html(video.snippet.description);
+  $('#tab-1').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
   $('.videoItem').removeClass('current');
   $('#video-'+videoId).addClass('current');
   $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
