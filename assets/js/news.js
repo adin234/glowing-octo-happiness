@@ -113,6 +113,7 @@ var filterAction = function(action) {
       break;
     case 'video':
       showVideo(hash.shift());
+      showSocialButtons();
       updatePrevNext();
   }
 };

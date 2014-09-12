@@ -13,8 +13,10 @@ var showSocialButtons = function () {
     $('#fb-root').html('');
     $('#social-buttons').html('');
 
-    var html = '<div id="social-buttons" class="fadeable fade">'
-            + '<div class="fb-like" data-href="'+link+'" data-layout="button_count" data-width="50" ></div>'
+
+
+
+    var html = '<div id="social-buttons">'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size="standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+link+'" data-text="">Tweet</a>'
             + '<div id="fb-root"></div>'
@@ -22,10 +24,18 @@ var showSocialButtons = function () {
 
     document.getElementById( 'viewport' ).insertAdjacentHTML( 'beforeEnd', html );
 
-    var script = document.createElement( 'script' );
-    script.async = true;
-    script.src = document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1&appId=267603823260704';
-    document.getElementById( 'fb-root' ).appendChild( script );
+    if(typeof FB === 'undefined') {
+        var fb =  '<div id="fb-like" class="fb-like" data-href="'+link+'" data-layout="button_count" data-width="50" ></div>';
+        $('#fb-container').html(fb);
+
+        var script = document.createElement( 'script' );
+        script.async = true;
+        script.src = document.location.protocol + '//connect.facebook.net/en_US/all.js#xfbml=1&appId=267603823260704';
+        document.getElementById( 'fb-root' ).appendChild( script );
+    } else {
+        $('#fb-like').data('data-href', link);
+        FB.XFBML.parse();
+    }
 
     script = document.createElement( 'script' );
     script.async = true;
@@ -36,11 +46,5 @@ var showSocialButtons = function () {
     script.async = true;
     script.src = document.location.protocol + '//apis.google.com/js/plusone.js';
     document.getElementById( 'social-buttons' ).appendChild( script );
-
-    window.setTimeout( function () {
-
-        document.getElementById( 'social-buttons' ).removeAttribute( 'class' );
-
-    }, 4000 );
 
 };
