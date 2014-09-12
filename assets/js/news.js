@@ -129,7 +129,9 @@ var getPlaylist = function(playlistId) {
 };
 
 var showVideo = function(videoId) {
-  $('.videoHeading h3').html(getVideo(videoId).snippet.title);
+  var video = getVideo(videoId);
+  $('.videoHeading h3').html(video.snippet.title);
+  $('#tab-1').html(video.snippet.description);
   $('.videoItem').removeClass('current');
   $('#video-'+videoId).addClass('current');
   $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
