@@ -37,6 +37,7 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
+    render_popular_members(filterString);
     $(".bxslider.videos").bxSlider();
 };
 
@@ -122,8 +123,47 @@ var render_new_members = function(filter) {
     $('#container-new-member').html(html.join(''));
 };
 
-render_new_members();
 
+var render_popular_members = function(filter) {
+    var html = [];
+    var items = [];
+    var ids = [];
+    var tplVideo = $('#videoTpl').html();
+    var tplVideoContainer = $('#videoContainerTpl').html();
+    filter =  new RegExp(filter, 'i');
+
+    page_data.popular_youtubers.forEach(function (item, i) {
+        if(typeof item.video == 'undefined') return;
+        if(item.video.snippet.title.search(filter) == -1
+           && item.video.snippet.channelTitle.search(filter) == -1) return;
+        item.title = item.video.snippet.title;
+        item.thumb = item.video.snippet.thumbnails.medium.url;
+        item.view = item.video.snippet.meta.statistics.viewCount;
+        item.comment = item.video.snippet.meta.statistics.commentCount;
+        item.channelid = item.youtube_id;
+        item.live = '';
+
+        item.provider = attachments_server;
+        item.videoid = item.video.snippet.resourceId.videoId;
+        item.bust = new Date();
+
+        items.push(template(tplVideo, item));
+        ids.push(item.youtube_id);
+        if(items.length == 9) {
+            html.push(template(tplVideoContainer, {'items' : items.join('')}));
+            items = [];
+        }
+    });
+
+    if(items.length != 0) {
+        html.push(template(tplVideoContainer, {'items' : items.join('')}));
+    }
+
+    $('#container-popular-member').html(html.join(''));
+};
+
+render_new_members();
+render_popular_members();
 
 render_games();
 render_featured_games();
