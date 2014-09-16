@@ -70,9 +70,6 @@ var render_games = function(filter) {
 
     page_data.games.forEach(function(item, i){
         if(item.name.search(filter) == -1) return;
-
-        item.imgsrc = item.image;
-        item.game = item.name;
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
