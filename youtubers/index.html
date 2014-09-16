@@ -171,8 +171,11 @@
 <script type="text/html" id="videoTpl">
     <li class="{{LIVE}}">
       <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-      <h3>{{TITLE}}</h3>
-      <img src="/assets/images/photo.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}"></a>
+      </a>
+      <h3>
+        <a href="http://www.youtube.com/watch?v={{VIDEOID}}" title="{{TITLE}}">{{TITLE}}</a>
+      </h3>
+      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}"></a>
       <ul>
         <li><em>Viewers: </em>{{VIEW}}</li>
         <li><a href="javascript:;" title="Replies"><em>Replies: </em> {{COMMENT}} </a></li>

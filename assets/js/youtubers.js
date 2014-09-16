@@ -7,15 +7,15 @@ $(function() {
 page_data = $.parseJSON(page_data);
 
 
-var getPhoto = function(id) {
-  $.getJSON('http://gdata.youtube.com/feeds/api/users/'+id+
-    '?fields=yt:username,media:thumbnail,title&alt=json',
-    {},
-    function(e) {
-      $('.photo-'+id).attr('src',e['entry']['media$thumbnail']['url']);
-    }
-  );
-};
+// var getPhoto = function(id) {
+//   $.getJSON('http://gdata.youtube.com/feeds/api/users/'+id+
+//     '?fields=yt:username,media:thumbnail,title&alt=json',
+//     {},
+//     function(e) {
+//       $('.photo-'+id).attr('src',e['entry']['media$thumbnail']['url']);
+//     }
+//   );
+// };
 
 $('#txtbox-search-games').on('keydown', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
@@ -105,6 +105,10 @@ var render_new_members = function(filter) {
         item.comment = item.video.snippet.meta.statistics.commentCount;
         item.channelid = item.youtube_id;
         item.live = '';
+
+        item.provider = attachments_server;
+        item.videoid = item.video.snippet.resourceId.videoId;
+        item.bust = new Date();
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);

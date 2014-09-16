@@ -23,7 +23,7 @@ var showSocialButtons = function () {
     document.getElementById( 'viewport' ).insertAdjacentHTML( 'beforeEnd', html );
 
     if(typeof FB === 'undefined') {
-        var fb =  '<div id="fb-like" class="fb-like" data-href="'+link+'" data-layout="button_count" data-width="50" ></div>';
+        var fb =  '<div id="fb-like" class="fb-like" data-share="true" data-href="'+link+'" data-layout="button_count" data-width="50" ></div>';
         $('#fb-container').html(fb);
 
         var script = document.createElement( 'script' );
