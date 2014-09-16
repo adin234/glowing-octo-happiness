@@ -103,6 +103,7 @@ var showVideo = function(videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
+  console.log(playlistId);
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
