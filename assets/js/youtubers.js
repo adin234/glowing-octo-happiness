@@ -123,9 +123,6 @@ var render_new_members = function(filter) {
     }
 
     $('#container-new-member').html(html.join(''));
-    ids.forEach(function(id, i) {
-        getPhoto(id);
-    });
 };
 
 render_new_members();
