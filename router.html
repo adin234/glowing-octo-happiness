@@ -1,0 +1,28 @@
+<script type="text/javascript" src="/assets/js/config.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+	var page = location.pathname.split('/')[1];
+	var xhReq = new XMLHttpRequest();
+	xhReq.open("GET", origin+page, false);
+	xhReq.send(null);
+	var data = xhReq.responseText;
+	var stripAndExecuteScript = function (text) {
+	    var scripts = '';
+	    var matches = text.match(/<script[^>]* src="(.+)"/gi);
+	    if(matches) {
+		    matches.map(function(item) {
+		    	var scriptsrc = item.replace(
+		    		new RegExp('<script (type="text/javascript")?( )*(async="false")?( )*src="'), '').replace('"', '');
+		    	var head = document.getElementsByTagName('head')[0];
+		        var scriptElement = document.createElement('script');
+		        scriptElement.setAttribute('type', 'text/javascript');
+		        scriptElement.setAttribute('src', scriptsrc)
+		        head.appendChild(scriptElement);
+		        head.removeChild(scriptElement);
+		    });
+		}
+	};
+
+	stripAndExecuteScript(data);
+	document.getElementsByTagName('html')[0].innerHTML = data;
+</script>
