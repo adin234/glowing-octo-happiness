@@ -91,7 +91,7 @@ var render_videos = function(filter) {
         item.bust = +new Date();
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
-        item.link = 'http://www.youtube.com/watch?v='+item.snippet.resourceId.videoId;
+        item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -116,6 +116,14 @@ var render_game_videos = function(game) {
     });
 };
 
+var filter_category = function(console) {
+    $.getJSON(server+'gamesdata?console='+console, function(results) {
+        page_data = results;
+        render_page();
+    });
+
+};
+
 $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
 
@@ -125,12 +133,20 @@ $(window).on('hashchange', function(){
     });
 
     if(hash.length) {
-        render_game_videos(hash.shift());
+        var id = hash.shift();
+        $('#game-title').html($('[data-id='+id+']').attr('data-name'));
+        render_game_videos(id);
+    } else {
+        render_videos();
     }
 });
 
-$(window).trigger('hashchange');
 
-render_games();
-render_featured_games();
-render_videos();
+var render_page = function() {
+    $(window).trigger('hashchange');
+
+    render_games();
+    render_featured_games();
+};
+
+render_page();
