@@ -5,10 +5,7 @@ $(function() {
     $(".sf-menu").superfish();
     slider.featured_games = $("#container-featured-games").bxSlider();
     slider.latest_games = $("#container-latest-games").bxSlider();
-    slider.container_videos = $("#container-videos").bxSlider({
-      onSlideAfter: load_game_videos_next_page
-    });
-    slider.multiview = $("#container-multiview").bxSlider();
+    slider.container_videos = $("#container-videos").bxSlider();
     $(".tabs").tabslet({ animation: true });
 });
 
@@ -92,6 +89,7 @@ var render_videos = function() {
             item.title = item.twitch.channel.status;
             item.bust = +new Date();
             item.views = item.twitch.viewers;
+            item.twitchid = item.field_value[item.field_value.length-1];
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -108,64 +106,9 @@ var render_videos = function() {
     $('#container-videos').html(html.join(''));
 };
 
-var get_hash = function() {
-    var hash = window.location.hash.replace('#!/', '');
-    hash = hash.split('/');
-    return hash;
-};
-
 var get_game = function() {
-    var game = get_hash()[0];
+    var game = utilHash.getHashArr()[0];
      return game == '' ? 'all' : game;
-}
-
-var render_game_videos = function(game, page) {
-    page = typeof page !== 'undefined' ? '&page='+page : ''
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+page, function(result) {
-        page_data.videos = result;
-        render_videos();
-        slider.container_videos.reloadSlider();
-    });
-};
-
-var load_game_videos_next_page = function() {
-    var html = [];
-    var items = [];
-    var page = Math.floor(slider.container_videos.getSlideCount()/2);
-    var nextPage = page+1;
-    var tplVideo = $('#videoTpl').html();
-    var tplVideoContainer = $('#videoContainerTpl').html();
-    var game = get_game();
-    var filter = $('#txtbox-search-videos').val();
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
-        page_data.streamers.concat(result);
-            result.forEach(function (item, i) {
-                item.live = 'live';
-                item.provider = attachments_server;
-                item.thumb = item.twitch.channel.video_banner;
-                item.title = item.twitch.channel.status;
-                item.bust = +new Date();
-                item.views = item.twitch.viewers;
-                items.push(template(tplVideo, item));
-
-                if(items.length == 9) {
-                    html.push(template(tplVideoContainer, {'items' : items.join('')}));
-                    items = [];
-                }
-            });
-
-        if(items.length != 0) {
-           html.push(template(tplVideoContainer, {'items' : items.join('')}));
-        }
-
-        $("#container-videos").append(html.join(''));
-        var currentSlide = slider.container_videos.getCurrentSlide();
-
-        slider.container_videos.reloadSlider({
-            startSlide: currentSlide,
-            onSlideAfter: load_game_videos_next_page
-        });
-    });
 }
 
 var filter_category = function(console) {
@@ -178,6 +121,8 @@ var filter_category = function(console) {
 
 var add_to_multiview = function() {
     var id = $(this).attr('data-id');
+    $(this).parent('li').hide();
+    var tplVideo = $('#videoMultiTpl').html();
     var streamer = page_data.streamers.filter(function (item) {
         return item.user_id == id;
     })[0];
@@ -189,9 +134,27 @@ var add_to_multiview = function() {
     item.bust = +new Date();
     item.views = streamer.twitch.viewers;
 
-    template(tplVideoContainer, {'items' : items.join('')});
-}
+    var multiview_item = template(tplVideo, item);
+    $('#container-multiview ul.list').append(multiview_item);
+    update_watch_multiview();
+};
 
+var get_active_for_multiview = function() {
+    var videos = $('#container-multiview ul.list > li');
+    var ids = [];
+
+    videos.each(function(i, item) {
+        ids.push($(item).attr('data-id'));
+    });
+
+    return ids;
+};
+
+var update_watch_multiview = function() {
+    var ids = get_active_for_multiview();
+    var stream_link = '/game_stream/';
+    $('#watch-now-link').attr('href', stream_link+utilHash.buildHash(ids));
+};
 
 $('#txtbox-search-games').on('keydown', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
@@ -203,21 +166,13 @@ $('#txtbox-search-videos').on('keydown', function(e) {
 
 $('#container-videos').on('click', '.addToMultiview', add_to_multiview);
 
+$('#container-multiview').on('click', '.remove-multiview', function() {
+    var $this = $(this);
+    var id = $this.parent('li').attr('data-id');
+    $('#container-videos a.addToMultiview[data-twitch='+id+']').parent('li').show();
 
-$(window).on('hashchange', function(){
-    hash = get_hash();
-
-    hash = hash.filter(function(item) {
-        return item != "";
-    });
-
-    if(hash.length) {
-        var id = hash.shift();
-        $('#game-title').html($('[data-id='+id+']').attr('data-name'));
-        render_game_videos(id);
-    } else {
-        render_videos();
-    }
+    $this.parent('li').remove();
+    update_watch_multiview();
 });
 
 var render_page = function() {
@@ -225,6 +180,7 @@ var render_page = function() {
 
     render_games();
     render_featured_games();
+    render_videos();
 };
 
 render_page();

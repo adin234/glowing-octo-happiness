@@ -46,3 +46,38 @@ var showSocialButtons = function () {
     document.getElementById( 'social-buttons' ).appendChild( script );
 
 };
+
+var utilHash = {
+    'getHash' : function() {
+        return window.location.hash;
+    },
+    'getHashArr' : function() {
+        var hash = window.location.hash.replace('#!/', '');
+        hash = hash.split('/');
+        return hash;
+    },
+    'addHash' : function(string, apply) {
+        apply = typeof apply == 'undefined' ? true : false;
+
+        var hash = window.location.hash;
+
+        if(hash.substr(1) != '!') {
+            hash = hash.replace('#', '#!');
+        }
+
+        hash = hash.substr(-1) == '/' ? hash : hash+'/';
+
+        var hash_string = hash + string;
+
+        if(apply) {
+             window.location.hash = hash_string;
+        }
+
+       return hash_string;
+    },
+    'buildHash' : function(hashArr) {
+        hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
+
+        return '#!/' + hashArr.join('/');
+    }
+};

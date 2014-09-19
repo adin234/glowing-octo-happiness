@@ -128,10 +128,10 @@
                 </div>
               </div>
               <div id="tab-2-2">
-               <a href="gamer_stream_tw.html" title="Watch Now" class="watchNow">現在觀看</a>
+               <a href="#" id="watch-now-link" title="Watch Now" class="watchNow">現在觀看</a>
                 <div class="collection">
                   <div class="bxslider videos" id="container-multiview">
-
+                    <ul class="list clearFix"></ul>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@
 </script>
 <script type="text/html" id="videoTpl">
 <li class="{{LIVE}}">
-    <a href="javascript:;" title="Add to multiview" data-id="{{USER_ID}}" class="addToMultiview addTo switch">Add to multiview</a>
+    <a href="javascript:;" title="Add to multiview" data-id="{{USER_ID}}" data-twitch="{{TWITCHID}}" class="addToMultiview addTo switch">Add to multiview</a>
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
@@ -187,7 +187,7 @@
 </li>
 </script>
 <script type="text/html" id="videoMultiTpl">
-<li class="{{LIVE}}">
+<li class="{{LIVE}}" data-id="{{TWITCHID}}">
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
@@ -197,7 +197,7 @@
             <a href="javascript:;" title="Replies"><em>回覆：</em> 30</a>
         </li>
     </ul>
-    <a href="javascript:;" class="close" title="Close">Close</a>
+    <a href="javascript:;" class="close remove-multiview" title="Close">Close</a>
 </li>
 </script>
 <script type="text/html" id="videoContainerTpl">
