@@ -90,6 +90,7 @@ var render_videos = function(filter, game) {
         if(~activeMultiView.indexOf(item.twitchid)) return;
         if(filterGame != 'all' && ~item.twitch.game.trim().search(filterGameRegExp)) return;
         item.live = 'live';
+        item.link = '/gamer_stream/#!/'+item.twitchid;
         item.provider = attachments_server;
         item.thumb = item.twitch.channel.video_banner;
         item.title = item.twitch.channel.status;
@@ -135,6 +136,7 @@ var add_to_multiview = function() {
     })[0];
     item = streamer;
     item.live = 'live';
+    item.link = '/gamer_stream/#!/'+item.twitchid;
     item.provider = attachments_server;
     item.thumb = streamer.twitch.channel.video_banner;
     item.title = streamer.twitch.channel.status;
@@ -159,7 +161,7 @@ var get_active_for_multiview = function() {
 
 var update_watch_multiview = function() {
     var ids = get_active_for_multiview();
-    var stream_link = '/game_stream/';
+    var stream_link = '/gamer_stream/';
     $('#watch-now-link').attr('href', stream_link+utilHash.buildHash(ids));
 };
 
