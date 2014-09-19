@@ -54,6 +54,7 @@ var showSocialButtons = function () {
 
 };
 
+<<<<<<< HEAD
 var setCookie = function (cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -119,4 +120,39 @@ var forceLogin = function (message) {
 
 var removeLogin = function () {
     document.getElementById('loginMenu').remove();
+};
+
+var utilHash = {
+    'getHash' : function() {
+        return window.location.hash;
+    },
+    'getHashArr' : function() {
+        var hash = window.location.hash.replace('#!/', '');
+        hash = hash.split('/');
+        return hash;
+    },
+    'addHash' : function(string, apply) {
+        apply = typeof apply == 'undefined' ? true : false;
+
+        var hash = window.location.hash;
+
+        if(hash.substr(1) != '!') {
+            hash = hash.replace('#', '#!');
+        }
+
+        hash = hash.substr(-1) == '/' ? hash : hash+'/';
+
+        var hash_string = hash + string;
+
+        if(apply) {
+             window.location.hash = hash_string;
+        }
+
+       return hash_string;
+    },
+    'buildHash' : function(hashArr) {
+        hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
+
+        return '#!/' + hashArr.join('/');
+    }
 };
