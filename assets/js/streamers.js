@@ -22,14 +22,10 @@ var filter_game = function(input) {
 };
 
 var filter_videos = function(input) {
-    var $this = $(input);
+    var $this = $('#txtbox-search-videos');
     var filterString = $this.val();
     var game = get_game();
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString, function(result) {
-        page_data.videos = result;
-        render_videos();
-        slider.container_videos.reloadSlider();
-    });
+    render_videos(filterString, game);
 };
 
 var render_featured_games = function (filter) {
@@ -76,20 +72,29 @@ var render_games = function(filter) {
     $('#container-latest-games').html(html.join(''));
 };
 
-var render_videos = function() {
+var render_videos = function(filter, game) {
     var html = [];
     var items = [];
     var ids = [];
     var tplVideo = $('#videoTpl').html();
     var tplVideoContainer = $('#videoContainerTpl').html();
+    var activeMultiView = get_active_for_multiview();
+    var filterRegExp = new RegExp(filter, 'i');
+    var filterGame = (typeof game == 'undefined' || game == '' || game == 'all') ? 'all' : $('a.game[data-id='+game+']').first().attr('data-name');
+    var filterGameRegExp = new RegExp(filterGame, 'i');
+
     page_data.streamers.forEach(function (item, i) {
-            item.live = 'live';
-            item.provider = attachments_server;
-            item.thumb = item.twitch.channel.video_banner;
-            item.title = item.twitch.channel.status;
-            item.bust = +new Date();
-            item.views = item.twitch.viewers;
-            item.twitchid = item.field_value[item.field_value.length-1];
+        if(typeof filter != 'undefined' && !~item.twitch.channel.status.search(filterRegExp)) return;
+        item.twitchid = item.field_value[item.field_value.length-1];
+        // dont render if already active
+        if(~activeMultiView.indexOf(item.twitchid)) return;
+        if(filterGame != 'all' && ~item.twitch.game.trim().search(filterGameRegExp)) return;
+        item.live = 'live';
+        item.provider = attachments_server;
+        item.thumb = item.twitch.channel.video_banner;
+        item.title = item.twitch.channel.status;
+        item.bust = +new Date();
+        item.views = item.twitch.viewers;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -104,11 +109,13 @@ var render_videos = function() {
     }
 
     $('#container-videos').html(html.join(''));
+    slider.container_videos.reloadSlider();
 };
 
 var get_game = function() {
     var game = utilHash.getHashArr()[0];
-     return game == '' ? 'all' : game;
+
+    return game == '' ? 'all' : game;
 }
 
 var filter_category = function(console) {
@@ -121,7 +128,7 @@ var filter_category = function(console) {
 
 var add_to_multiview = function() {
     var id = $(this).attr('data-id');
-    $(this).parent('li').hide();
+    $('#container-videos a[data-id='+id+']').parent('li').hide();
     var tplVideo = $('#videoMultiTpl').html();
     var streamer = page_data.streamers.filter(function (item) {
         return item.user_id == id;
@@ -175,12 +182,16 @@ $('#container-multiview').on('click', '.remove-multiview', function() {
     update_watch_multiview();
 });
 
+$(window).on('hashChange', function() {
+    filter_videos();
+});
+
 var render_page = function() {
     $(window).trigger('hashchange');
 
     render_games();
     render_featured_games();
-    render_videos();
+    filter_videos();
 };
 
 render_page();
