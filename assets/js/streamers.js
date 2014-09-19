@@ -8,19 +8,12 @@ $(function() {
     slider.container_videos = $("#container-videos").bxSlider({
       onSlideAfter: load_game_videos_next_page
     });
+    slider.multiview = $("#container-multiview").bxSlider();
     $(".tabs").tabslet({ animation: true });
 });
 
 page_data = $.parseJSON(page_data);
 var hash;
-
-$('#txtbox-search-games').on('keydown', function(e) {
-    if (e.keyCode == 13) { filter_game(this); }
-});
-
-$('#txtbox-search-videos').on('keydown', function(e) {
-    if (e.keyCode == 13) { filter_videos(this); }
-});
 
 var filter_game = function(input) {
     var $this = $(input);
@@ -92,14 +85,13 @@ var render_videos = function() {
     var ids = [];
     var tplVideo = $('#videoTpl').html();
     var tplVideoContainer = $('#videoContainerTpl').html();
-    page_data.videos.forEach(function (item, i) {
-        item.provider = attachments_server;
-        item.thumb = item.snippet.thumbnails.medium.url;
-        item.title = item.snippet.title;
-        item.bust = +new Date();
-        item.comments = item.snippet.meta.statistics.commentCount;
-        item.views = item.snippet.meta.statistics.viewCount;
-        item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+    page_data.streamers.forEach(function (item, i) {
+            item.live = 'live';
+            item.provider = attachments_server;
+            item.thumb = item.twitch.channel.video_banner;
+            item.title = item.twitch.channel.status;
+            item.bust = +new Date();
+            item.views = item.twitch.viewers;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -146,23 +138,21 @@ var load_game_videos_next_page = function() {
     var game = get_game();
     var filter = $('#txtbox-search-videos').val();
     $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
-        page_data.videos.concat(result);
-        result.forEach(function (item, i) {
-            item.provider = attachments_server;
-            item.thumb = item.snippet.thumbnails.medium.url;
-            item.title = item.snippet.title;
-            item.bust = +new Date();
-            item.comments = item.snippet.meta.statistics.commentCount;
-            item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+        page_data.streamers.concat(result);
+            result.forEach(function (item, i) {
+                item.live = 'live';
+                item.provider = attachments_server;
+                item.thumb = item.twitch.channel.video_banner;
+                item.title = item.twitch.channel.status;
+                item.bust = +new Date();
+                item.views = item.twitch.viewers;
+                items.push(template(tplVideo, item));
 
-            items.push(template(tplVideo, item));
-
-            if(items.length == 9) {
-                html.push(template(tplVideoContainer, {'items' : items.join('')}));
-                items = [];
-            }
-        });
+                if(items.length == 9) {
+                    html.push(template(tplVideoContainer, {'items' : items.join('')}));
+                    items = [];
+                }
+            });
 
         if(items.length != 0) {
            html.push(template(tplVideoContainer, {'items' : items.join('')}));
@@ -185,6 +175,33 @@ var filter_category = function(console) {
         render_page();
     });
 };
+
+var add_to_multiview = function() {
+    var id = $(this).attr('data-id');
+    var streamer = page_data.streamers.filter(function (item) {
+        return item.user_id == id;
+    })[0];
+    item = streamer;
+    item.live = 'live';
+    item.provider = attachments_server;
+    item.thumb = streamer.twitch.channel.video_banner;
+    item.title = streamer.twitch.channel.status;
+    item.bust = +new Date();
+    item.views = streamer.twitch.viewers;
+
+    template(tplVideoContainer, {'items' : items.join('')});
+}
+
+
+$('#txtbox-search-games').on('keydown', function(e) {
+    if (e.keyCode == 13) { filter_game(this); }
+});
+
+$('#txtbox-search-videos').on('keydown', function(e) {
+    if (e.keyCode == 13) { filter_videos(this); }
+});
+
+$('#container-videos').on('click', '.addToMultiview', add_to_multiview);
 
 
 $(window).on('hashchange', function(){
