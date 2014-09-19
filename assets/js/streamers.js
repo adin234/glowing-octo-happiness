@@ -161,7 +161,7 @@ var get_active_for_multiview = function() {
 
 var update_watch_multiview = function() {
     var ids = get_active_for_multiview();
-    var stream_link = '/gamer_stream/';
+    var stream_link = '/gamer_stream_multi/';
     $('#watch-now-link').attr('href', stream_link+utilHash.buildHash(ids));
 };
 
