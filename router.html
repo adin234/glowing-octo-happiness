@@ -3,6 +3,10 @@
 <script type="text/javascript">
 	var page = location.pathname.split('/')[1];
 	var xhReq = new XMLHttpRequest();
+	var notCached = [
+		'/assets/js/media.js',
+		'/assets/js/youtuber.js',
+	];
 	xhReq.open("GET", origin+page, false);
 	xhReq.send(null);
 	var data = xhReq.responseText;
@@ -15,10 +19,17 @@
 		    		new RegExp('<script (type="text/javascript")?( )*(async="false")?( )*src="'), '').replace('"', '');
 		    	var head = document.getElementsByTagName('head')[0];
 		        var scriptElement = document.createElement('script');
-		        scriptElement.setAttribute('type', 'text/javascript');
-		        scriptElement.setAttribute('src', scriptsrc);
 		        scriptElement.setAttribute('async', false);
-		        console.log('loading '+scriptsrc);
+		        scriptElement.setAttribute('type', 'text/javascript');
+		        //if(~notCached.indexOf(scriptsrc)) {
+		        //	console.log('here');
+		        	scriptsrc = scriptsrc+'?'+(+new Date);
+		        //};
+		        scriptElement.setAttribute('src', scriptsrc);
+		        console.log('loading '+scriptsrc, scriptElement);
+		        scriptElement.onload = function() {
+		        	//console.log('loaded '+scriptsrc);
+		        };
 		        head.appendChild(scriptElement);
 		        head.removeChild(scriptElement);
 		    });

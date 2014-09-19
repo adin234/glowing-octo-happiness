@@ -231,4 +231,83 @@ $(document).ready(function(){
     hash = hash.split('/');
     filterAction(hash.shift());
   });
+
+
+
+  $('body').on('click', '#commentArea', function(){
+    if(!getCookie('token')) {
+      forceLogin();
+    }
+  });
+
+  //****** must remove ************
+  var commentsHTML = comments.map(function(item) {
+    return template($('#commentItemTpl').html(), item);
+  }).join('');
+
+
+  $('#tab-2').html(template($('#commentsTpl').html(), {comments: commentsHTML}));
 });
+
+
+var comments = [{
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment',
+  date: 'Yesterday'
+}, {
+  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
+  userprofile: 'http://www.google.com',
+  username: 'adinpogi',
+  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
+  date: 'Yesterday'
+}];

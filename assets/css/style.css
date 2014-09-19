@@ -107,7 +107,7 @@ body {
   font-size: 1em;
 }
 .lang_en .live:before {
-  background: url("../images/icon.png") no-repeat 0 0;
+  background: url("/assets/images/icon.png") no-repeat 0 0;
 }
 .lang_en .video .list li {
   font-size: 1.07692em;
@@ -209,7 +209,7 @@ body {
   font-size: 1em;
 }
 .lang_zh_tw .live:before {
-  background: url("../images/icon.png") no-repeat 0 -104px;
+  background: url("/assets/images/icon.png") no-repeat 0 -104px;
 }
 .lang_zh_tw footer small, .lang_zh_tw footer span {
   font-size: 0.85714em;
@@ -291,7 +291,7 @@ body {
 }
 
 .video, .games, .forum, .heading, .main #content > div, .main .viewer ul li + li, .videoRelated, .userAction {
-  background: url("../images/divider_h.png") repeat-x left top;
+  background: url("/assets/images/divider_h.png") repeat-x left top;
 }
 
 a {
@@ -303,7 +303,7 @@ a:hover, a:focus, a:active {
 }
 
 #wrapper {
-  background: url("../images/background.jpg") no-repeat fixed center top;
+  background: url("/assets/images/background.jpg") no-repeat fixed center top;
   background-size: 100% auto;
   min-width: 1148px;
 }
@@ -315,7 +315,7 @@ a:hover, a:focus, a:active {
   width: 1148px;
 }
 #outContainer #container {
-  background: #c8c8c8 url("../images/wrapper_bg.jpg");
+  background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
   margin-top: 56px;
   padding-top: 20px;
@@ -339,14 +339,14 @@ a:hover, a:focus, a:active {
   z-index: 1000;
 }
 #outContainer header h1 .en {
-  background: url("../images/logo_en.png") no-repeat 0 0;
+  background: url("/assets/images/logo_en.png") no-repeat 0 0;
   height: 69px;
   width: 124px;
   left: 50px;
   top: 25px;
 }
 #outContainer header h1 .zh_tw {
-  background: url("../images/logo_tw.png") no-repeat 0 0;
+  background: url("/assets/images/logo_tw.png") no-repeat 0 0;
   height: 78px;
   width: 176px;
   left: 50px;
@@ -371,7 +371,7 @@ a:hover, a:focus, a:active {
   padding-left: 16px;
 }
 #outContainer header .species li:nth-child(1) a {
-  background: url("../images/sprite.png") no-repeat 1px -149px;
+  background: url("/assets/images/sprite.png") no-repeat 1px -149px;
   height: 42px;
   width: 20px;
 }
@@ -382,7 +382,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -491px;
 }
 #outContainer header .species li:nth-child(2) a {
-  background: url("../images/sprite.png") no-repeat 1px -191px;
+  background: url("/assets/images/sprite.png") no-repeat 1px -191px;
   width: 72px;
 }
 #outContainer header .species li:nth-child(2) a:hover, #outContainer header .species li:nth-child(2) a:focus, #outContainer header .species li:nth-child(2) a:active {
@@ -392,7 +392,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -491px;
 }
 #outContainer header .species li:nth-child(3) a {
-  background: url("../images/sprite.png") no-repeat 1px -234px;
+  background: url("/assets/images/sprite.png") no-repeat 1px -234px;
   width: 77px;
 }
 #outContainer header .species li:nth-child(3) a:hover, #outContainer header .species li:nth-child(3) a:focus, #outContainer header .species li:nth-child(3) a:active {
@@ -402,7 +402,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -576px;
 }
 #outContainer header .species li:nth-child(4) a {
-  background: url("../images/sprite.png") no-repeat 0 -277px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -277px;
   width: 30px;
 }
 #outContainer header .species li:nth-child(4) a:hover, #outContainer header .species li:nth-child(4) a:focus, #outContainer header .species li:nth-child(4) a:active {
@@ -412,7 +412,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -619px;
 }
 #outContainer header .species li:nth-child(5) a {
-  background: url("../images/sprite.png") no-repeat 0 -320px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -320px;
   width: 30px;
 }
 #outContainer header .species li:nth-child(5) a:hover, #outContainer header .species li:nth-child(5) a:focus, #outContainer header .species li:nth-child(5) a:active {
@@ -422,7 +422,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -662px;
 }
 #outContainer header .species li:nth-child(6) a {
-  background: url("../images/sprite.png") no-repeat 0 -362px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -362px;
   width: 21px;
 }
 #outContainer header .species li:nth-child(6) a:hover, #outContainer header .species li:nth-child(6) a:focus, #outContainer header .species li:nth-child(6) a:active {
@@ -432,7 +432,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -704px;
 }
 #outContainer header .species li:nth-child(7) a {
-  background: url("../images/sprite.png") no-repeat 0 -405px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -405px;
   width: 54px;
 }
 #outContainer header .species li:nth-child(7) a:hover, #outContainer header .species li:nth-child(7) a:focus, #outContainer header .species li:nth-child(7) a:active {
@@ -442,7 +442,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -746px;
 }
 #outContainer header .species li:nth-child(8) a {
-  background: url("../images/sprite.png") no-repeat 1px -448px;
+  background: url("/assets/images/sprite.png") no-repeat 1px -448px;
   width: 99px;
 }
 #outContainer header .species li:nth-child(8) a:hover, #outContainer header .species li:nth-child(8) a:focus, #outContainer header .species li:nth-child(8) a:active {
@@ -475,88 +475,88 @@ a:hover, a:focus, a:active {
   margin-left: 20px;
 }
 #outContainer header .site > ul > li:nth-child(1) {
-  background: url("../images/sprite.png") no-repeat 0 -1004px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1004px;
 }
 #outContainer header .site > ul > li:nth-child(1):hover, #outContainer header .site > ul > li:nth-child(1):focus, #outContainer header .site > ul > li:nth-child(1):active {
-  background: url("../images/sprite.png") no-repeat 0 -1325px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
 }
 #outContainer header .site > ul > li:nth-child(1) > a {
   padding-left: 23px;
 }
 #outContainer header .site > ul > li:nth-child(1).current {
-  background: url("../images/sprite.png") no-repeat 0 -1325px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
 }
 #outContainer header .site > ul > li:nth-child(2) {
-  background: url("../images/sprite.png") no-repeat 0 -1050px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1050px;
 }
 #outContainer header .site > ul > li:nth-child(2):hover, #outContainer header .site > ul > li:nth-child(2):focus, #outContainer header .site > ul > li:nth-child(2):active {
-  background: url("../images/sprite.png") no-repeat 0 -1371px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
 }
 #outContainer header .site > ul > li:nth-child(2) > a {
   padding-left: 24px;
 }
 #outContainer header .site > ul > li:nth-child(2).current {
-  background: url("../images/sprite.png") no-repeat 0 -1371px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
 }
 #outContainer header .site > ul > li:nth-child(3) {
-  background: url("../images/sprite.png") no-repeat 0 -1096px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1096px;
 }
 #outContainer header .site > ul > li:nth-child(3):hover, #outContainer header .site > ul > li:nth-child(3):focus, #outContainer header .site > ul > li:nth-child(3):active {
-  background: url("../images/sprite.png") no-repeat 0 -1417px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1417px;
 }
 #outContainer header .site > ul > li:nth-child(3) > a {
   padding-left: 24px;
 }
 #outContainer header .site > ul > li:nth-child(3).current {
-  background: url("../images/sprite.png") no-repeat 0 -1418px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1418px;
 }
 #outContainer header .site > ul > li:nth-child(4) {
-  background: url("../images/sprite.png") no-repeat 0 -1141px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1141px;
 }
 #outContainer header .site > ul > li:nth-child(4):hover, #outContainer header .site > ul > li:nth-child(4):focus, #outContainer header .site > ul > li:nth-child(4):active {
-  background: url("../images/sprite.png") no-repeat 0 -1462px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
 }
 #outContainer header .site > ul > li:nth-child(4) > a {
   padding-left: 25px;
 }
 #outContainer header .site > ul > li:nth-child(4).current {
-  background: url("../images/sprite.png") no-repeat 0 -1462px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
 }
 #outContainer header .site > ul > li:nth-child(5) {
-  background: url("../images/sprite.png") no-repeat 0 -1191px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1191px;
 }
 #outContainer header .site > ul > li:nth-child(5):hover, #outContainer header .site > ul > li:nth-child(5):focus, #outContainer header .site > ul > li:nth-child(5):active {
-  background: url("../images/sprite.png") no-repeat 0 -1512px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
 }
 #outContainer header .site > ul > li:nth-child(5) > a {
   padding-left: 26px;
 }
 #outContainer header .site > ul > li:nth-child(5).current {
-  background: url("../images/sprite.png") no-repeat 0 -1512px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
 }
 #outContainer header .site > ul > li:nth-child(6) {
-  background: url("../images/sprite.png") no-repeat 0 -1235px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1235px;
 }
 #outContainer header .site > ul > li:nth-child(6):hover, #outContainer header .site > ul > li:nth-child(6):focus, #outContainer header .site > ul > li:nth-child(6):active {
-  background: url("../images/sprite.png") no-repeat 0 -1556px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
 }
 #outContainer header .site > ul > li:nth-child(6) > a {
   padding-left: 21px;
 }
 #outContainer header .site > ul > li:nth-child(6).current {
-  background: url("../images/sprite.png") no-repeat 0 -1556px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
 }
 #outContainer header .site > ul > li:nth-child(7) {
-  background: url("../images/sprite.png") no-repeat 0 -1279px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
 }
 #outContainer header .site > ul > li:nth-child(7):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
-  background: url("../images/sprite.png") no-repeat 0 -1600px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
 }
 #outContainer header .site > ul > li:nth-child(7) > a {
   padding-left: 26px;
 }
 #outContainer header .site > ul > li:nth-child(7).current {
-  background: url("../images/sprite.png") no-repeat 0 -1600px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
 }
 #outContainer header .site > ul > li:nth-child(8) {
   margin-left: 45px;
@@ -670,7 +670,7 @@ a:hover, a:focus, a:active {
   color: #616161;
 }
 #outContainer header .site input[type="text"] {
-  background: #bebebe url("../images/sprite.png") no-repeat 11px -1642px;
+  background: #bebebe url("/assets/images/sprite.png") no-repeat 11px -1642px;
   /*@extend %IEPie */
   -moz-border-radius: 9px;
   -webkit-border-radius: 9px;
@@ -685,7 +685,7 @@ a:hover, a:focus, a:active {
   top: 0;
 }
 #outContainer header .member li:nth-child(1) {
-  background: url("../images/sprite.png") no-repeat 0 -847px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -847px;
 }
 #outContainer header .member li:nth-child(1) a {
   display: block;
@@ -695,10 +695,10 @@ a:hover, a:focus, a:active {
   width: 92px;
 }
 #outContainer header .member li:nth-child(1) .en {
-  background: url("../images/sprite.png") no-repeat 16px -914px;
+  background: url("/assets/images/sprite.png") no-repeat 16px -914px;
 }
 #outContainer header .member li:nth-child(1) .zh_tw {
-  background: url("../images/sprite.png") no-repeat 16px -958px;
+  background: url("/assets/images/sprite.png") no-repeat 16px -958px;
 }
 #outContainer header .member li:nth-child(2) {
   border-left: 1px solid #cd614f;
@@ -730,13 +730,13 @@ a:hover, a:focus, a:active {
   z-index: 9999;
 }
 #outContainer .fixedMenuLogo.en {
-  background: url("../images/logo_en.png") no-repeat 0 -99px;
+  background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
   height: 36px;
   top: 3px;
   width: 162px;
 }
 #outContainer .fixedMenuLogo.zh_tw {
-  background: url("../images/logo_tw.png") no-repeat 0 -108px;
+  background: url("/assets/images/logo_tw.png") no-repeat 0 -108px;
   height: 31px;
   width: 88px;
   height: 42px;
@@ -790,11 +790,11 @@ footer nav ul li + li:before {
   width: 2px;
 }
 footer nav .en {
-  background: url("../images/logo_en.png") no-repeat 0 -165px;
+  background: url("/assets/images/logo_en.png") no-repeat 0 -165px;
   padding-left: 187px;
 }
 footer nav .zh_tw {
-  background: url("../images/logo_tw.png") no-repeat 0 -173px;
+  background: url("/assets/images/logo_tw.png") no-repeat 0 -173px;
   padding-left: 128px;
 }
 footer > ul {
@@ -815,25 +815,25 @@ footer > ul li + li {
   margin-left: 10px;
 }
 footer > ul li:nth-child(1) a {
-  background: url("../images/sprite.png") no-repeat 7px -2025px;
+  background: url("/assets/images/sprite.png") no-repeat 7px -2025px;
 }
 footer > ul li:nth-child(1) a:hover, footer > ul li:nth-child(1) a:focus, footer > ul li:nth-child(1) a:active {
   background-position: 7px -2214px;
 }
 footer > ul li:nth-child(2) a {
-  background: url("../images/sprite.png") no-repeat 0 -2072px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -2072px;
 }
 footer > ul li:nth-child(2) a:hover, footer > ul li:nth-child(2) a:focus, footer > ul li:nth-child(2) a:active {
   background-position: 0 -2261px;
 }
 footer > ul li:nth-child(3) a {
-  background: url("../images/sprite.png") no-repeat 0 -2120px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -2120px;
 }
 footer > ul li:nth-child(3) a:hover, footer > ul li:nth-child(3) a:focus, footer > ul li:nth-child(3) a:active {
   background-position: 0 -2309px;
 }
 footer > ul li:nth-child(4) a {
-  background: url("../images/sprite.png") no-repeat 0 -2168px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -2168px;
 }
 footer > ul li:nth-child(4) a:hover, footer > ul li:nth-child(4) a:focus, footer > ul li:nth-child(4) a:active {
   background-position: 0 -2357px;
@@ -930,7 +930,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-left: 25px;
 }
 .video .list > li li + li a {
-  background: url("../images/sprite.png") no-repeat 0 -1893px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1893px;
   color: #646464;
   height: 16px;
   width: 15px;
@@ -1042,7 +1042,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   -ms-input-placeholder-color: #9c9c9c;
 }
 .search div:empty {
-  background: url("../images/sprite.png") no-repeat 0 -1649px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
   height: 16px;
   width: 16px;
   right: 135px;
@@ -1138,7 +1138,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   padding-left: 40px;
 }
 .member .edit {
-  background: url("../images/sprite.png") no-repeat 0 -2525px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -2525px;
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -1165,7 +1165,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .video + *, .videoRelated .tabs + * {
   float: left;
   padding-top: 3px;
-  background: url("../images/divider_v.png") repeat-y left top;
+  background: url("/assets/images/divider_v.png") repeat-y left top;
 }
 
 .main .bx-wrapper {
@@ -1198,7 +1198,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   box-sizing: border-box;
 }
 .main .bxslider .play {
-  background: url("../images/icon.png") no-repeat 0 -208px;
+  background: url("/assets/images/icon.png") no-repeat 0 -208px;
   margin-top: -28px;
   position: absolute;
   right: 23px;
@@ -1266,14 +1266,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-top: -1px;
 }
 .main .bx-prev {
-  background: #790000 url("../images/sprite.png") no-repeat 46px -1671px;
+  background: #790000 url("/assets/images/sprite.png") no-repeat 46px -1671px;
   left: -67px;
 }
 .main .bx-prev:hover, .main .bx-prev:focus, .main .bx-prev:active {
   background-position: 46px -1770px;
 }
 .main .bx-next {
-  background: #790000 url("../images/sprite.png") no-repeat 10px -1720px;
+  background: #790000 url("/assets/images/sprite.png") no-repeat 10px -1720px;
   right: -67px;
 }
 .main .bx-next:hover, .main .bx-next:focus, .main .bx-next:active {
@@ -1314,49 +1314,49 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 30px;
 }
 .main .viewer li:nth-child(1):before, .main .streaming li:nth-child(1):before {
-  background: url("../images/icon.png") no-repeat 10px -283px;
+  background: url("/assets/images/icon.png") no-repeat 10px -283px;
 }
 .main .viewer li:nth-child(2):before, .main .streaming li:nth-child(2):before {
-  background: url("../images/icon.png") no-repeat 10px -333px;
+  background: url("/assets/images/icon.png") no-repeat 10px -333px;
 }
 .main .viewer li:nth-child(3):before, .main .streaming li:nth-child(3):before {
-  background: url("../images/icon.png") no-repeat 10px -383px;
+  background: url("/assets/images/icon.png") no-repeat 10px -383px;
 }
 .main .viewer li:nth-child(4):before, .main .streaming li:nth-child(4):before {
-  background: url("../images/icon.png") no-repeat 9px -436px;
+  background: url("/assets/images/icon.png") no-repeat 9px -436px;
 }
 .main .viewer li:nth-child(5):before, .main .streaming li:nth-child(5):before {
-  background: url("../images/icon.png") no-repeat 10px -487px;
+  background: url("/assets/images/icon.png") no-repeat 10px -487px;
 }
 .main .viewer li:nth-child(6):before, .main .streaming li:nth-child(6):before {
-  background: url("../images/icon.png") no-repeat 10px -538px;
+  background: url("/assets/images/icon.png") no-repeat 10px -538px;
 }
 .main .viewer li:nth-child(7):before, .main .streaming li:nth-child(7):before {
-  background: url("../images/icon.png") no-repeat 10px -590px;
+  background: url("/assets/images/icon.png") no-repeat 10px -590px;
 }
 .main .viewer li:nth-child(8):before, .main .streaming li:nth-child(8):before {
-  background: url("../images/icon.png") no-repeat 10px -642px;
+  background: url("/assets/images/icon.png") no-repeat 10px -642px;
 }
 .main .viewer li:nth-child(9):before, .main .streaming li:nth-child(9):before {
-  background: url("../images/icon.png") no-repeat 10px -694px;
+  background: url("/assets/images/icon.png") no-repeat 10px -694px;
 }
 .main .viewer li:nth-child(10):before, .main .streaming li:nth-child(10):before {
-  background: url("../images/icon.png") no-repeat 0 -745px;
+  background: url("/assets/images/icon.png") no-repeat 0 -745px;
 }
 .main .viewer li:nth-child(11):before, .main .streaming li:nth-child(11):before {
-  background: url("../images/icon.png") no-repeat 0 -796px;
+  background: url("/assets/images/icon.png") no-repeat 0 -796px;
 }
 .main .viewer li:nth-child(12):before, .main .streaming li:nth-child(12):before {
-  background: url("../images/icon.png") no-repeat 0 -848px;
+  background: url("/assets/images/icon.png") no-repeat 0 -848px;
 }
 .main .viewer li:nth-child(13):before, .main .streaming li:nth-child(13):before {
-  background: url("../images/icon.png") no-repeat 0 -899px;
+  background: url("/assets/images/icon.png") no-repeat 0 -899px;
 }
 .main .viewer li:nth-child(14):before, .main .streaming li:nth-child(14):before {
-  background: url("../images/icon.png") no-repeat 0 -952px;
+  background: url("/assets/images/icon.png") no-repeat 0 -952px;
 }
 .main .viewer li:nth-child(15):before, .main .streaming li:nth-child(15):before {
-  background: url("../images/icon.png") no-repeat 0 -1002px;
+  background: url("/assets/images/icon.png") no-repeat 0 -1002px;
 }
 .main .streaming #streamers li {
   cursor: pointer;
@@ -1403,7 +1403,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   z-index: 10;
 }
 .main .viewer .list .listBg {
-  background: url("../images/youtuber_bg.jpg") no-repeat 0 0;
+  background: url("/assets/images/youtuber_bg.jpg") no-repeat 0 0;
   /*@extend %IEPie */
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1433,7 +1433,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 234px;
 }
 .main .streaming .dynamic:before {
-  background: url("../images/Sprite.png") no-repeat 0 -1985px;
+  background: url("/assets/images/Sprite.png") no-repeat 0 -1985px;
   content: "\00A0";
   left: -5px;
   position: absolute;
@@ -1473,7 +1473,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-top: 80px;
 }
 .about ol {
-  background: url("../images/divider_h.png") repeat-x left bottom;
+  background: url("/assets/images/divider_h.png") repeat-x left bottom;
   margin-top: 2em;
   padding-bottom: 50px;
 }
@@ -1499,7 +1499,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 .about ul li h3:before {
-  background: url("../images/symbol.png") no-repeat center 0;
+  background: url("/assets/images/symbol.png") no-repeat center 0;
   content: "\00A0";
   display: block;
   height: 77px;
@@ -1602,11 +1602,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .zoom a {
   display: block;
   height: 27px;
-  background: url("../images/player_ui.png") no-repeat 0 1px;
+  background: url("/assets/images/player_ui.png") no-repeat 0 1px;
 }
 
 .zoomOut a {
-  background: url("../images/player_ui.png") no-repeat 0 -54px;
+  background: url("/assets/images/player_ui.png") no-repeat 0 -54px;
 }
 
 .playArea, .videoList {
@@ -1672,19 +1672,19 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   float: left;
 }
 .playFunctionBtn li:nth-child(1) a {
-  background: url("../images/player_ui.png") no-repeat 10px -100px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -100px;
 }
 .playFunctionBtn li:nth-child(2) a {
-  background: url("../images/player_ui.png") no-repeat 10px -139px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -139px;
 }
 .playFunctionBtn li:nth-child(3) a {
-  background: url("../images/player_ui.png") no-repeat 10px -180px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
 }
 .playFunctionBtn li:nth-child(4) a {
-  background: url("../images/player_ui.png") no-repeat 10px -222px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -222px;
 }
 .playFunctionBtn li:last-child a {
-  background: url("../images/player_ui.png") no-repeat 10px -264px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -264px;
   float: right;
 }
 .playList {
@@ -1780,7 +1780,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-left: 78px;
 }
 .videoRelated .yourDiscussion > div .angle {
-  background: url("../images/player_ui.png") no-repeat 0 -315px;
+  background: url("/assets/images/player_ui.png") no-repeat 0 -315px;
   left: -8px;
   position: absolute;
   top: 21px;
@@ -1853,7 +1853,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 .videoRelated .discussions article .replyBtn {
-  background: url("../images/player_ui.png") no-repeat 0 -396px;
+  background: url("/assets/images/player_ui.png") no-repeat 0 -396px;
   bottom: 0;
   color: #181818;
   display: block;
@@ -2001,12 +2001,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 50%;
 }
 .video .bx-prev, .games .bx-prev {
-  background: url("../images/sprite.png") no-repeat 23px -2403px;
+  background: url("/assets/images/sprite.png") no-repeat 23px -2403px;
   left: -23px;
   padding-right: 2px;
 }
 .video .bx-next, .games .bx-next {
-  background: url("../images/sprite.png") no-repeat -23px -2464px;
+  background: url("/assets/images/sprite.png") no-repeat -23px -2464px;
   right: -23px;
   padding-left: 2px;
 }
@@ -2035,7 +2035,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 .silderList .video [id^="tab-"]:before, .silderList .video [id^="tab-"]:after {
-  background: url("../images/divider_v.png") repeat-y 0 0;
+  background: url("/assets/images/divider_v.png") repeat-y 0 0;
   content: "\00A0";
   height: 826px;
   position: absolute;
@@ -2049,7 +2049,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   right: 0;
 }
 .silderList .games [id^="tab-"] {
-  background: url("../images/divider_v.png") repeat-y left, url("../images/divider_v.png") repeat-y right;
+  background: url("/assets/images/divider_v.png") repeat-y left, url("/assets/images/divider_v.png") repeat-y right;
   height: 201px;
 }
 .silderList .games .bx-viewport {
@@ -2081,7 +2081,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 1048px;
 }
 .profile div {
-  background: url("../images/profile_bg.jpg") no-repeat 0 0;
+  background: url("/assets/images/profile_bg.jpg") no-repeat 0 0;
   left: 0;
   height: 73px;
   position: absolute;
@@ -2130,7 +2130,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 
 .change li:nth-child(1) a {
-  background: rgba(19, 13, 18, 0.5) url("../images/sprite.png") no-repeat 9px -2613px;
+  background: rgba(19, 13, 18, 0.5) url("/assets/images/sprite.png") no-repeat 9px -2613px;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   bottom: 0;
@@ -2141,7 +2141,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-color: rgba(85, 79, 84, 0.5);
 }
 .change li:nth-child(2) a {
-  background: #fcfcfc url("../images/sprite.png") no-repeat 10px -2664px;
+  background: #fcfcfc url("/assets/images/sprite.png") no-repeat 10px -2664px;
   border: 1px solid rgba(0, 0, 0, 0.35);
   /*@extend %IEPie */
   -moz-border-radius: 3px;
@@ -2184,7 +2184,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 334px;
 }
 .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
-  background: white url("../images/sprite.png") no-repeat 3px -2706px;
+  background: white url("/assets/images/sprite.png") no-repeat 3px -2706px;
   /*@extend %IEPie */
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -2242,7 +2242,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   color: #f32a2a;
 }
 .stream .close {
-  background: #010202 url(../images/sprite.png) no-repeat 6px -2744px;
+  background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
   border: 2px solid white;
   /*@extend %IEPie */
   -moz-border-radius: 50%;
@@ -2339,7 +2339,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-top: 12px;
 }
 #streamView header > a {
-  background: url("../images/sprite.png") no-repeat -12px -2796px;
+  background: url("/assets/images/sprite.png") no-repeat -12px -2796px;
   padding-left: 12px;
   position: relative;
   text-decoration: none;
@@ -2465,7 +2465,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   display: none;
 }
 #streamView .watchList .bx-prev, #streamView .watchList .bx-next {
-  background: url("../images/stream_control.png") no-repeat 0 0;
+  background: url("/assets/images/stream_control.png") no-repeat 0 0;
   height: 107px;
   position: absolute;
   top: 0;
@@ -2573,7 +2573,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-transform: uppercase;
 }
 #streamView .information [id^="tab-"] ul ul li:before {
-  background: url("../images/sprite.png") no-repeat 0 -2866px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
   content: "\00A0";
   left: -7px;
   position: absolute;
@@ -2659,7 +2659,7 @@ x3 #streamView header, .muti #streamView header {
   z-index: 2;
 }
 .muti #streamView h1 {
-  background: url("../images/logo_en.png") no-repeat 0 -50px;
+  background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
 }
 .muti #streamView #functionBar {
   height: 874px;
@@ -2688,18 +2688,18 @@ x3 #streamView header, .muti #streamView header {
 }
 
 .lang_en #streamView header h1 {
-  background: url("../images/logo_en.png") no-repeat 0 -50px;
+  background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
   background-size: 98px auto;
 }
 .lang_en #streamView header > a:before {
-  background: url("../images/sprite.png") no-repeat 27px -905px;
+  background: url("/assets/images/sprite.png") no-repeat 27px -905px;
 }
 
 .lang_zh_tw #streamView header h1 {
-  background: url("../images/logo_tw.png") no-repeat 16px -232px;
+  background: url("/assets/images/logo_tw.png") no-repeat 16px -232px;
 }
 .lang_zh_tw #streamView header > a:before {
-  background: url("../images/sprite.png") no-repeat 27px -949px;
+  background: url("/assets/images/sprite.png") no-repeat 27px -949px;
 }
 .lang_zh_tw #streamView header select {
   margin-left: 22px;
@@ -2720,4 +2720,120 @@ x3 #streamView header, .muti #streamView header {
 
 .fade {
     opacity: 0 !important;
+}
+
+.reply {
+  margin-right:10px;
+}
+
+.img-container {
+  width: 50px;
+  float: left;
+}
+
+.img-container img {
+  max-width: 100%;
+}
+
+.user-comment {
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+small.date {
+  color: #8A8A8A;
+  margin-top: -10px;
+  font-size: 10px;
+}
+
+.comment-item.clearfix:after {
+  background: url("/assets/images/divider_h.png") repeat-x left top;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: ' ';
+  margin-bottom: 5px;
+}
+
+.comment-item.clearfix:last-child:after {
+  background: transparent;
+}
+
+.comment-area {
+  border-radius: 5px;
+  border: 1px solid #999999;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 5px;
+  line-height: 1;
+  background: #DBDBDB;
+}
+
+.comment-submit-container {
+  margin-top: -10px;
+  text-align: right;
+}
+
+.comment-submit-container > button {
+  cursor: pointer;
+}
+
+#loginMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.85);
+}
+
+#loginMenu .login-container {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+};
+
+#loginMenu .login-container .username {
+
+}
+
+#loginMenu .login-container .password-field,
+#loginMenu .login-container .username-field {
+  display: inline-block;
+  border-radius: 5px;
+  width: 200px;
+  height: 20px;
+  padding: 5px!important;
+  border: 0;
+  margin: 10px!important;
+  resize: none;
+}
+
+#loginMenu .login-label {
+  width: 440px;
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  background: #AF3C3C;
+  border-radius: 5px;
+  color: #ffffff;
+  border: 2px solid rgb(78, 8, 8);
+}
+
+#loginMenu .login-button {
+  width: 450px;
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #8BD658;
+  border-radius: 5px;
+  color: #ffffff;
+  border: 2px solid rgb(19, 94, 12);
 }
