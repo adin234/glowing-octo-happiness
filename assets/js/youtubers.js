@@ -97,6 +97,7 @@ var render_new_members = function(filter) {
         if(typeof item.video == 'undefined') return;
         if(item.video.snippet.title.search(filter) == -1
            && item.video.snippet.channelTitle.search(filter) == -1) return;
+        item.user_id = item.userId;
         item.title = item.video.snippet.title;
         item.thumb = item.video.snippet.thumbnails.medium.url;
         item.view = item.video.snippet.meta.statistics.viewCount;
@@ -136,6 +137,7 @@ var render_popular_members = function(filter) {
         if(typeof item.video == 'undefined') return;
         if(item.video.snippet.title.search(filter) == -1
            && item.video.snippet.channelTitle.search(filter) == -1) return;
+        item.user_id = item.userId;
         item.title = item.video.snippet.title;
         item.thumb = item.video.snippet.thumbnails.medium.url;
         item.view = item.video.snippet.meta.statistics.viewCount;
