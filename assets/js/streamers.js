@@ -90,7 +90,7 @@ var render_videos = function(filter, game) {
         if(~activeMultiView.indexOf(item.twitchid)) return;
         if(filterGame != 'all' && ~item.twitch.game.trim().search(filterGameRegExp)) return;
         item.live = 'live';
-        item.link = '/gamer_stream/#!/'+item.twitchid;
+        item.link = '/gamer_stream/'+item.user_id+'/'+item.twitchid;
         item.provider = attachments_server;
         item.thumb = item.twitch.channel.video_banner;
         item.title = item.twitch.channel.status;

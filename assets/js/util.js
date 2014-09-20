@@ -54,71 +54,101 @@ var showSocialButtons = function () {
 
 };
 
-var setCookie = function (cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-};
+utilLogin = {
+    show : function (message) {
+        var msg = message || 'You need to login to perform this action';
+        var loginMenu = document.createElement('div');
+        loginMenu.classname = 'full-overlay';
+        loginMenu.id = 'loginMenu';
+        loginMenu.addEventListener('click', function(e){
+            console.log(e.target.classname);
+            switch(e.target.classname) {
+                case 'login-container'  :
+                case 'full-overlay'     :
+                    removeLogin();
+                    break;
+            }
+        }, false);
+        var loginDiv = document.createElement('div');
+        loginDiv.className = 'login-container';
+        var username = $('<input/>', {
+            type:'text',
+            class: 'username-field',
+            name: 'username',
+            placeholder: 'Username' 
+        });
+        var password = $('<input/>', {
+            type: 'password',
+            class: 'password-field',
+            name: 'password',
+            placeholder: 'Password'
+        });
+        var label = $('<span/>', {
+            class: 'login-label',
+            text: msg
+        });
+        var loginBtn = $('<button/>', {
+            class: 'login-button',
+            text: 'Login'
+        });
 
-var getCookie = function (cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        loginBtn[0].addEventListener('click', function(e) {
+            $.post(server+'login',{
+                username: $('input[name=username]').val(),
+                password: $('input[name=password]').val()
+            },function(e) {
+                utilCookie.set('user', JSON.stringify(e), 1/24);
+                $('img.userImg').attr('src', utilUser.get().links.avatar);
+                utilLogin.hide();
+            })
+            .fail(function(e) {
+                $('.login-label').html(e.responseJSON.message);
+            });
+        }, false);
+        loginDiv.appendChild(label[0]);
+        loginDiv.appendChild(username[0]);
+        loginDiv.appendChild(password[0]);
+        loginDiv.appendChild(loginBtn[0]);
+        loginMenu.appendChild(loginDiv);
+
+        document.body.appendChild(loginMenu);
+    },
+    hide : function () {
+        document.getElementById('loginMenu').remove();
     }
-    return "";
 };
 
-var forceLogin = function (message) {
-    var msg = message || 'You need to login to perform this action';
-    var loginMenu = document.createElement('div');
-    loginMenu.classname = 'full-overlay';
-    loginMenu.id = 'loginMenu';
-    loginMenu.addEventListener('click', function(e){
-        console.log(e.target.classname);
-        switch(e.target.classname) {
-            case 'login-container'  :
-            case 'full-overlay'     :
-                removeLogin();
-                break;
+var getTwitch = function(data) {
+    return data.split(',').map(function(item) {
+        return item.trim();
+    })[0];
+}
+
+var utilCookie = {
+    set : function (cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    },
+    get : function (cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
         }
-    }, false);
-    var loginDiv = document.createElement('div');
-    loginDiv.className = 'login-container';
-    var username = $('<input/>', {
-        type:'text',
-        class: 'username-field',
-        name: 'username',
-        placeholder: 'Username' 
-    });
-    var password = $('<input/>', {
-        type: 'password',
-        class: 'password-field',
-        name: 'password',
-        placeholder: 'Password'
-    });
-    var label = $('<span/>', {
-        class: 'login-label',
-        text: msg
-    });
-    var loginBtn = $('<button/>', {
-        class: 'login-button',
-        text: 'Login'
-    });
-    loginDiv.appendChild(label[0]);
-    loginDiv.appendChild(username[0]);
-    loginDiv.appendChild(password[0]);
-    loginDiv.appendChild(loginBtn[0]);
-    loginMenu.appendChild(loginDiv);
-
-    document.body.appendChild(loginMenu);
+        return "";
+    }
 };
 
-var removeLogin = function () {
-    document.getElementById('loginMenu').remove();
+var utilUser = {
+    'get' : function() {
+        return utilCookie.get('user') 
+            ? $.parseJSON(utilCookie.get('user'))
+            : null;
+    }
 };
 
 var utilHash = {

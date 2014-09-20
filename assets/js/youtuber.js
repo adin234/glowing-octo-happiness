@@ -1,4 +1,5 @@
 html = [];
+console.log(page_data);
 page_data.games_cast.forEach(function(item){
 	html.push(template($('#gamesCastTpl').html(), item));
 });

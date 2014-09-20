@@ -179,9 +179,9 @@
               <li>
                 <h2><a href="#tab-2">評論</a></h2>
               </li>
-              <li>
+              <!--<li>
                 <h2><a href="#tab-3">討論</a></h2>
-              </li>
+              </li>-->
             </ul>
             <div id="tab-1"></div>
             <div id="tab-2"></div>
@@ -440,7 +440,38 @@
 <script type="text/html" id="categoriesTpl">
   <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
 </script>
-
+<script type="text/html" id="commentItemTpl"> 
+  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
+    <cite>{{USERNAME}}</cite><span>．
+    <date datetime="{{DATE}}">{{DATE}}</date>
+    </span>
+    <div class="replyContent">
+      <p>{{COMMENT}}</p>
+    </div>
+  </article>
+</script>
+<script type="text/html" id="commentsTpl">
+  <div class="comments-list">
+    <a href="javascript:;">所有留言 (30)</a>
+    <div class="yourDiscussion"> <img class="userImg"src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+      <div>
+        <div class="angle"></div>
+        <textarea id="commentArea" placeholder="分享您的想法"></textarea>
+      </div>
+      <button id="postComment" data-video='{{VIDEO}}'>Post</button>
+    </div>
+    <div class="type clearFix"><span>類型：</span>
+      <ul>
+        <li class="current"><a href="javascript:;">最新留言</a></li>
+        <li><a href="javascript:;">由新到舊</a></li>
+        <li><a href="javascript:;">熱門留言</a></li>
+      </ul>
+    </div>
+    <div class="discussions">
+    {{COMMENTS}}
+    </div>
+  </div>
+</script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>

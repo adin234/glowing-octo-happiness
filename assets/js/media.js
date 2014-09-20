@@ -97,9 +97,39 @@ var showVideo = function(videoId) {
       });
     }, 500);
 
+    getComments(videoId);
     showSocialButtons();
     updatePrevNext();
   }
+};
+
+var getComments = function (videoId) {
+  $.getJSON(server+'youtubers/videos/'+videoId+'/comment', function(e) {
+    var comments = e.map(function(item) {
+      return {
+        userimage: attachments_server+'data/avatars/l/0/'
+          +item.user_id+'.jpg',
+        userprofile: community+'index.php?members/'+item.username
+          +'.'+item.user_id+'/',
+        username: item.username,
+        comment: item.message,
+        date: item.date
+      }
+    });
+
+    console.log(comments);
+
+    var commentsHTML = comments.map(function(item) {
+      return template($('#commentItemTpl').html(), item);
+    }).join('');
+
+    $('#tab-2').html(template(
+      $('#commentsTpl').html(),
+      {video: videoId, comments: commentsHTML})
+    ).promise().done(function() {
+      $('img.userImg').attr('src', utilUser.get().links.avatar);
+    });
+  });
 };
 
 var showPlaylist = function(playlistId, next) {
@@ -234,80 +264,37 @@ $(document).ready(function(){
 
 
 
-  $('body').on('click', '#commentArea', function(){
-    if(!getCookie('token')) {
-      forceLogin();
+  $('body').on('focus', '#commentArea', function()  {
+    if(!utilCookie.get('user')) {
+      utilLogin.show();
     }
   });
 
-  //****** must remove ************
-  var commentsHTML = comments.map(function(item) {
-    return template($('#commentItemTpl').html(), item);
-  }).join('');
+  $('body').on('click', '#postComment', function() {
+    var data = {
+      access_token: utilUser.get().access_code,
+      user_id:      utilUser.get().user_id,
+      username:     utilUser.get().username,
+      message:      $('#commentArea').val()
+    };
 
-
-  $('#tab-2').html(template($('#commentsTpl').html(), {comments: commentsHTML}));
+    $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
+      data, function(e) {
+        $('#tab-2 .discussions')
+          .prepend(template(
+            template($('#commentItemTpl').html(), {
+              userimage: attachments_server+'data/avatars/l/0/'
+                +data.user_id+'.jpg',
+              userprofile: community+'index.php?members/'+data.username
+                +'.'+data.user_id+'/',
+              username: data.username,
+              comment: data.message,
+              date: +new Date
+            })
+          ));
+      }).fail(function(e) {
+        utilLogin.show('An error occured, please login to continue');
+        utilCookie.set('user', '', 0);
+      });
+  });
 });
-
-
-var comments = [{
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment',
-  date: 'Yesterday'
-}, {
-  userimage: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c0.2.100.100/p100x100/10559690_10152612907362929_476071010295922247_n.jpg?oh=73a8611e6fc6d885101dcdbca25184a6&oe=5495D3F9&__gda__=1418969790_bc909eb4df12a106f31ece09c62778cc',
-  userprofile: 'http://www.google.com',
-  username: 'adinpogi',
-  comment: 'this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice commentthis is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment this is a really nice comment',
-  date: 'Yesterday'
-}];

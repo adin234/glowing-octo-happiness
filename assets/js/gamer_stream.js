@@ -1,5 +1,15 @@
+page_data = $.parseJSON(page_data);
 $(function() {
-    var twitchid = utilHash.getHashArr()[0];
-    $('#twitchStream').html(template($('#twitch-stream-tpl').html(),{twitchid: twitchid}));
-    $('#twitchTalk').html(template($('#twitch-chat-tpl').html(),{twitchid: twitchid}));
+    $(".bxslider").bxSlider({
+		infiniteLoop: false,
+		hideControlOnEnd: true,
+		minSlides: 4,
+		maxSlides: 4,
+		slideWidth: 298,
+	});
+	$(".tabs").tabslet({
+		animation: true,
+	});
+    $('#twitchStream').html(template($('#twitch-stream-tpl').html(),{twitchid: twitch}));
+    $('#twitchTalk').html(template($('#twitch-chat-tpl').html(),{twitchid: twitch}));
 });
