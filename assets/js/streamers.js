@@ -124,7 +124,7 @@ var get_game = function() {
 
 var filter_category = function(console) {
     con = console;
-    $.getJSON(server+'gamesdata?console='+console, function(results) {
+    $.getJSON(server+'streamersdata?console='+console, function(results) {
         page_data = results;
         render_page();
     });
