@@ -139,7 +139,7 @@ var add_to_multiview = function() {
     })[0];
     item = streamer;
     item.live = 'live';
-    item.link = '/gamer_stream/#!/'+item.twitchid;
+    item.link = '/gamer_stream/'+item.user_id+'/'+item.twitchid;
     item.provider = attachments_server;
     item.thumb = streamer.twitch.channel.video_banner;
     item.title = streamer.twitch.channel.status;
