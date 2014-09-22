@@ -127,7 +127,9 @@ var getComments = function (videoId) {
       $('#commentsTpl').html(),
       {video: videoId, comments: commentsHTML})
     ).promise().done(function() {
-      $('img.userImg').attr('src', utilUser.get().links.avatar);
+      if(utilUser.get()) {
+        $('img.userImg').attr('src', utilUser.get().links.avatar);
+      }
     });
   });
 };

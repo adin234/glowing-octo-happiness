@@ -14,26 +14,25 @@
 	    var scripts = '';
 	    var matches = text.match(/<script[^>]* src="(.+)"/gi);
 	    if(matches) {
+	    	$.ajaxSetup({
+	    		async: false,
+	    		defer: 'defer'
+	    	});
 		    matches.map(function(item) {
 		    	var scriptsrc = item.replace(
 		    		new RegExp('<script (type="text/javascript")?( )*(async="false")?( )*src="'), '').replace('"', '');
-		    	var head = document.getElementsByTagName('head')[0];
-		        var scriptElement = document.createElement('script');
-		        scriptElement.setAttribute('async', 'false');
-		        scriptElement.setAttribute('type', 'text/javascript');
-		        scriptElement.setAttribute('defer', 'defer');
-		        //if(~notCached.indexOf(scriptsrc)) {
-		        //	console.log('here');
-		        	scriptsrc = scriptsrc+'?'+(+new Date);
-		        //};
-		        scriptElement.setAttribute('src', scriptsrc);
-		        console.log('loading '+scriptsrc, scriptElement);
-		        scriptElement.onload = function() {
-		        	//console.log('loaded '+scriptsrc);
-		        };
-		        head.appendChild(scriptElement);
-		        head.removeChild(scriptElement);
+		    	console.log('queue '+scriptsrc);
+		    	$.getScript(scriptsrc+'?'+(+new Date), function() {
+		    		console.log('loaded '+scriptsrc);
+		    	}).fail(function(e,a,b){
+		    		console.log('didnt load'+scriptsrc);
+		    		console.dir(e,a,b);
+		    	})
 		    });
+		    $.ajaxSetup({
+	    		async: true,
+	    		defer: 'false'
+	    	});
 		}
 	};
 
