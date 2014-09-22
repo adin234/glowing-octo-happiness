@@ -149,6 +149,9 @@ var add_to_multiview = function() {
     var multiview_item = template(tplVideo, item);
     $('#container-multiview ul.list').append(multiview_item);
     update_watch_multiview();
+    if(!$('#container-videos li.live:visible').length) {
+        $('.video.stream a[href=#tab-2-2]').trigger('click');
+    };
 };
 
 var get_active_for_multiview = function() {
