@@ -58,7 +58,7 @@
             <li><a href="/shows" title="Shows">Shows</a></li>
             <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
             <li class="current"><a href="/youtubers" title="實況咖">實況咖</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup>3</sup></li>
+            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <li>
               <form>
                 <input type="text" placeholder="搜尋">
@@ -225,7 +225,7 @@
             </div>
             <div id="tab-4">
               <ul class="gamesList clearFix" id="gamesCast">
-                
+
               </ul>
             </div>
             <div id="tab-5"> </div>
@@ -399,7 +399,7 @@
     </a>
   </li>
 </script>
-<script type="text/html" id="commentItemTpl"> 
+<script type="text/html" id="commentItemTpl">
   <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
     <cite>{{USERNAME}}</cite><span>．
     <date datetime="{{DATE}}">{{DATE}}</date>

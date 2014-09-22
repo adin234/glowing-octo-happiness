@@ -61,6 +61,7 @@ var render_featured_games = function (filter) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Game Available'); }
     $('#container-featured-games').html(html.join(''));
 }
 
@@ -82,6 +83,7 @@ var render_games = function(filter) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Game Available'); }
     $('#container-latest-games').html(html.join(''));
 };
 
@@ -121,6 +123,7 @@ var render_new_members = function(filter) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Member Available'); }
     $('#container-new-member').html(html.join(''));
 };
 
@@ -161,6 +164,7 @@ var render_popular_members = function(filter) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Member Available'); }
     $('#container-popular-member').html(html.join(''));
 };
 

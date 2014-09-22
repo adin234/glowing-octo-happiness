@@ -46,6 +46,7 @@ var update_videos = function (videos) {
     }
   });
   $(".playList").mCustomScrollbar('destroy').promise().done(function(){
+    if(!html.length) { html.push('No Video Available'); }
     $('#videos').html(html.join(''));
     setTimeout(function(){
       $(".playList").mCustomScrollbar({
@@ -67,6 +68,7 @@ var update_playlists = function (playlists) {
     }
     html.push(template($('#playlistTpl').html(), tempdata));
   });
+  if(!html.length) { html.push('No Playlist Available'); }
   $('#playlists').html(html.join(''));
 };
 
@@ -247,6 +249,7 @@ $(document).ready(function(){
   page_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });
+  if(!html.length) { html.push('No Category Available'); }
   $('#categories').html(html.join(''));
 
 

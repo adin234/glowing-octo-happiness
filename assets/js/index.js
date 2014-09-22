@@ -22,6 +22,7 @@ $(document).ready(function() {
 			item.streamlink = item.twitch.channel.url;
 			html.push(template($('#streamersTpl').html(), item));
 		});
+		if(!html.length) { html.push('No Streamer Available'); }
 		$('#streamers').html(html.join(''));
 	});
 
@@ -69,6 +70,7 @@ var update_index = function(index_data) {
 		item.link = 'http://www.youtube.com/watch?v='+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
+	if(!html.length) { html.push('No Video Available'); }
 	$('#featuredVideos').html(html.join(''));
 	html = [];
 	index_data.latest_videos.forEach(function(item, i){
@@ -81,6 +83,7 @@ var update_index = function(index_data) {
 		item.link = 'http://www.youtube.com/watch?v='+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
+	if(!html.length) { html.push('No Video Available'); }
 	$('#latestVideos').html(html.join(''));
 	html = [];
 	index_data.games.forEach(function(item, i){
@@ -88,6 +91,7 @@ var update_index = function(index_data) {
 		item.game = item.name;
 		html.push(template($('#gameTpl').html(), item));
 	});
+	if(!html.length) { html.push('No Game Available'); }
 	$('#latestGames').html(html.join(''));
 	html = [];
 	index_data.featured_games.forEach(function(item, i){
@@ -95,12 +99,14 @@ var update_index = function(index_data) {
 		item.game = item.name;
 		html.push(template($('#gameTpl').html(), item));
 	});
+	if(!html.length) { html.push('No Game Available'); }
 	$('#featuredGames').html(html.join(''));
 	html = [];
 	index_data.featured_users.forEach(function(item, i){
 		item.provider = attachments_server;
 		html.push(template($('#featuredUsersTpl').html(), item));
 	});
+	if(!html.length) { html.push('No User Available'); }
 	$('#featuredUsers').html(html.join(''));
 	html = [];
 
