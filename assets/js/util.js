@@ -65,7 +65,7 @@ utilLogin = {
             switch(e.target.classname) {
                 case 'login-container'  :
                 case 'full-overlay'     :
-                    removeLogin();
+                    utilLogin.hide();
                     break;
             }
         }, false);
@@ -97,7 +97,16 @@ utilLogin = {
                 username: $('input[name=username]').val(),
                 password: $('input[name=password]').val()
             },function(e) {
-                utilCookie.set('user', JSON.stringify(e), 1/24);
+                var user = {
+                    user_id: e.user_id,
+                    username: e.username,
+                    links: {
+                        avatar: e.links.avatar,
+                        detail: e.links.detail
+                    },
+                    access_code: e.access_code
+                };
+                utilCookie.set('user', JSON.stringify(user), 1/24);
                 $('img.userImg').attr('src', utilUser.get().links.avatar);
                 utilLogin.hide();
             })
