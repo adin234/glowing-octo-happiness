@@ -61,7 +61,7 @@ var render_featured_games = function (filter) {
     if(items.length != 0) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
-
+    if(!html.length) { html.push('No Game Available'); }
     $('#container-featured-games').html(html.join(''));
 }
 
@@ -83,6 +83,7 @@ var render_games = function(filter) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Game Available'); }
     $('#container-latest-games').html(html.join(''));
 };
 
@@ -113,6 +114,7 @@ var render_videos = function() {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
+    if(!html.length) { html.push('No Video Available'); }
     $('#container-videos').html(html.join(''));
 };
 
