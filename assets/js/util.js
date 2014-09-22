@@ -75,7 +75,7 @@ utilLogin = {
             type:'text',
             class: 'username-field',
             name: 'username',
-            placeholder: 'Username' 
+            placeholder: 'Username'
         });
         var password = $('<input/>', {
             type: 'password',
@@ -145,7 +145,7 @@ var utilCookie = {
 
 var utilUser = {
     'get' : function() {
-        return utilCookie.get('user') 
+        return utilCookie.get('user')
             ? $.parseJSON(utilCookie.get('user'))
             : null;
     }
@@ -185,3 +185,12 @@ var utilHash = {
         return '#!/' + hashArr.join('/');
     }
 };
+
+$(function() {
+    var streamerCount = $('#number-of-streamers');
+    if(streamerCount) {
+       $.getJSON(server+'streamers', function(result) {
+            streamerCount.html(result.streamers.length);
+        });
+    }
+});
