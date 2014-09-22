@@ -2841,3 +2841,8 @@ small.date {
 #postComment {
   float: right;
 }
+
+.information.tabs #tab-2 .panel {
+  width: 320px;
+  margin: 10px 0;
+}

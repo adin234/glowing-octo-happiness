@@ -239,7 +239,12 @@
   </object>
 </div>
 </script>
-
+<script type="text/html" id="panelTpl">
+<div class="panel">
+  <a href="{{LINK}}"><img src="{{IMAGE}}" alt="{{DESCRIPTION}}" /></a>
+  <div class="desc">{{HTML}}</div>
+</div>
+</script>
 <script type="text/html" id="twitch-chat-tpl">
 <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
 </iframe>
@@ -253,6 +258,7 @@
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
+<script src="/assets/js/masonry.min.js"></script>
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/util.js"></script>
 <script type="text/javascript" src="/assets/js/gamer_stream.js"></script>
