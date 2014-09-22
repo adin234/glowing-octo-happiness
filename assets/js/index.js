@@ -67,7 +67,7 @@ var update_index = function(index_data) {
 		item.bust = +new Date();
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
-		item.link = 'http://www.youtube.com/watch?v='+item.snippet.resourceId.videoId;
+		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
 	if(!html.length) { html.push('No Video Available'); }
@@ -80,7 +80,7 @@ var update_index = function(index_data) {
 		item.bust = +new Date();
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
-		item.link = 'http://www.youtube.com/watch?v='+item.snippet.resourceId.videoId;
+		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
 	if(!html.length) { html.push('No Video Available'); }
