@@ -174,7 +174,8 @@
 </script>
 <script type="text/html" id="videoTpl">
 <li class="{{LIVE}}">
-    <a href="javascript:;" title="Add to multiview" data-id="{{USER_ID}}" data-twitch="{{TWITCHID}}" class="addToMultiview addTo switch">Add to multiview</a>
+    <a href="javascript:;" title="Add to multiview" data-userid="{{USER_ID}}" data-streamid="{{ID}}"
+    data-streamidraw="{{IDRAW}}" class="addToMultiview addTo switch">Add to multiview</a>
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
@@ -187,7 +188,7 @@
 </li>
 </script>
 <script type="text/html" id="videoMultiTpl">
-<li class="{{LIVE}}" data-id="{{TWITCHID}}">
+<li class="{{LIVE}}" data-streamid="{{ID}}" data-streamidraw="{{IDRAW}}">
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
