@@ -124,7 +124,7 @@ var get_game = function() {
 
 var filter_category = function(console) {
     con = console;
-    $.getJSON(server+'gamesdata?console='+console, function(results) {
+    $.getJSON(server+'streamersdata?console='+console, function(results) {
         page_data = results;
         render_page();
     });
@@ -139,7 +139,7 @@ var add_to_multiview = function() {
     })[0];
     item = streamer;
     item.live = 'live';
-    item.link = '/gamer_stream/#!/'+item.twitchid;
+    item.link = '/gamer_stream/'+item.user_id+'/'+item.twitchid;
     item.provider = attachments_server;
     item.thumb = streamer.twitch.channel.video_banner;
     item.title = streamer.twitch.channel.status;
@@ -149,6 +149,9 @@ var add_to_multiview = function() {
     var multiview_item = template(tplVideo, item);
     $('#container-multiview ul.list').append(multiview_item);
     update_watch_multiview();
+    if(!$('#container-videos li.live:visible').length) {
+        $('.video.stream a[href=#tab-2-2]').trigger('click');
+    };
 };
 
 var get_active_for_multiview = function() {
