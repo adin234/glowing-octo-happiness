@@ -195,11 +195,26 @@ var utilHash = {
     }
 };
 
-$(function() {
+var updateTwitch = function() {
     var streamerCount = $('#number-of-streamers');
     if(streamerCount) {
        $.getJSON(server+'streamers', function(result) {
             streamerCount.html(result.streamers.length);
+            if(typeof page_data.streamers != 'undefined') {
+                var ids = [];
+                var streamers = page_data.streamers;
+                streamers.forEach(function(item) {
+                    ids.push(item.user_id);
+                });
+
+                result.streamers.forEach(function(item) {
+                    if(!~ids.indexOf(item.user_id)) {
+                        page_data.streamers.push(item);
+                    }
+                });
+            }
         });
     }
-});
+};
+
+
