@@ -19,6 +19,7 @@ $(document).ready(function() {
 		data.streamers.forEach(function(item, i) {
 			item.provider = attachments_server;
 			item.game = item.twitch.game;
+			item.twitchname = item.twitch.channel.name;
 			item.streamlink = item.twitch.channel.url;
 			html.push(template($('#streamersTpl').html(), item));
 		});
