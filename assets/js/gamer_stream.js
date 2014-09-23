@@ -9,11 +9,28 @@ $(function() {
 	});
 	$(".tabs").tabslet({
 		animation: true,
+	}).on('_after', function(e) {
+		if(e.target.id == 'tab-2') {
+			var msnry = new Masonry( '#tab-2', {
+			  columnWidth: 350,
+			  itemSelector: '.panel'
+			});
+		}
 	});
     $('#twitchStream').html(template($('#twitch-stream-tpl')
     	.html(),{twitchid: twitch}));
     $('#twitchTalk').html(template($('#twitch-chat-tpl')
     	.html(),{twitchid: twitch}));
+
+    $.getJSON(server+'scrape/'+twitch, function(e) {
+    	e.forEach(function(item) {
+    		item.data.html = item.html_description;
+    		$('#tab-2').append(template($('#panelTpl').html(), item.data));
+    	});
+    	setTimeout(function(){
+	   		$('img[src=""]').hide();
+	   	},100);
+    });
 
     $('#monSched').html($('<p/>', { 
     	text: page_data.custom_fields.mondaySchedule 
