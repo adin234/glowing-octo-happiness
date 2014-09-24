@@ -2846,3 +2846,11 @@ small.date {
   width: 320px;
   margin: 10px 0;
 }
+
+.muti .x3 #wrapper {
+  min-width: 1870px;
+}
+
+.muti  .x2 #wrapper {
+  min-width: 1745px;
+}

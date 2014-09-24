@@ -23,10 +23,7 @@ $(function() {
     });
       $('body').on('change', '#view-resize', function(e) {
         var size = $(this).val();
-        $('body').removeClass('x1');
-        $('body').removeClass('x2');
-        $('body').removeClass('x3');
-        $('body').addClass(size);
+        $('body').removeClass('x1 x2 x3').addClass(size);
     });
 });
 
