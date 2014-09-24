@@ -146,11 +146,14 @@ var get_game = function() {
     return game == '' ? 'all' : game;
 }
 
-var filter_category = function(console) {
+var filter_category = function(console, context) {
     con = console;
     $.getJSON(server+'streamersdata?console='+console, function(results) {
         page_data = results;
         render_page();
+    }).done(function() {
+        $(context).parent().siblings().removeClass('current');
+        $(context).parent().addClass('current');
     });
 };
 

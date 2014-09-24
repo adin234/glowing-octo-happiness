@@ -6,17 +6,6 @@ $(function() {
 
 page_data = $.parseJSON(page_data);
 
-
-// var getPhoto = function(id) {
-//   $.getJSON('http://gdata.youtube.com/feeds/api/users/'+id+
-//     '?fields=yt:username,media:thumbnail,title&alt=json',
-//     {},
-//     function(e) {
-//       $('.photo-'+id).attr('src',e['entry']['media$thumbnail']['url']);
-//     }
-//   );
-// };
-
 $('#txtbox-search-games').on('keydown', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
 });

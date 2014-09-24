@@ -180,14 +180,16 @@ var load_game_videos_next_page = function() {
     });
 }
 
-var filter_category = function(console) {
+var filter_category = function(console, context) {
     con = console;
     $.getJSON(server+'gamesdata?console='+console, function(results) {
         page_data = results;
         render_page();
+    }).done(function() {
+        $(context).parent().siblings().removeClass('current');
+        $(context).parent().addClass('current');
     });
 };
-
 
 $(window).on('hashchange', function(){
     hash = get_hash();
