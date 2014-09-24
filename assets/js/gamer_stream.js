@@ -18,6 +18,14 @@ $(function() {
 		}
 	});
 
+     $('body').on('change', '#view-resize', function(e) {
+        var size = $(this).val();
+        $('body').removeClass('x1');
+        $('body').removeClass('x2');
+        $('body').removeClass('x3');
+        $('body').addClass(size);
+    });
+
     var streamType = twitch.substr(0,2);
     var streamId = twitch.substr(2);
 

@@ -21,4 +21,12 @@ $(function() {
     $(".tabs").tabslet({
         animation: true,
     });
+      $('body').on('change', '#view-resize', function(e) {
+        var size = $(this).val();
+        $('body').removeClass('x1');
+        $('body').removeClass('x2');
+        $('body').removeClass('x3');
+        $('body').addClass(size);
+    });
 });
+
