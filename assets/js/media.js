@@ -4,6 +4,9 @@ var html = [];
 var active_playlist;
 var hash;
 var player;
+var filterTags = false;
+var playlistIds = [];
+
 
 /* YOUTUBE SHIZZ */
 var tag = document.createElement('script');
@@ -33,7 +36,16 @@ var update_videos = function (videos) {
     link+='playlist/'+active_playlist+'/';
   }
 
+  playListIds = [];
+
   videos.forEach(function(item, i){
+    if(filterTags
+    && (typeof item.snippet.meta == 'undefined'
+       || typeof item.snippet.meta.tags == 'undefined'
+       || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+
+    playlistIds.push(item.snippet.playlistId);
+
     if(item.snippet.thumbnails) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
@@ -59,6 +71,7 @@ var update_videos = function (videos) {
 var update_playlists = function (playlists) {
   html = [];
   playlists.forEach(function(item, i){
+    if(filterTags && !~playlistIds.indexOf(item.id)) return;
     tempdata = {
       id: 'playlist-'+item.id,
       link: '#!/playlist/'+item.id,
@@ -137,7 +150,6 @@ var getComments = function (videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
-  console.log(playlistId);
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
@@ -149,8 +161,15 @@ var showPlaylist = function(playlistId, next) {
   filterAction(next);
 };
 
-var filter = function(id) {
-  return false;
+var filter = function(value) {
+  var filterObj = page_data.categories.filter(function(item) {
+      return item.id == value;
+  });
+  if(typeof filterObj[0] != 'undefined') {
+    filterTags = $.map(filterObj[0].tags.split(','), $.trim);
+  }
+  update_videos(page_data.videos);
+  update_playlists(page_data.playlists);
 };
 
 var getPhoto = function(id, context) {
