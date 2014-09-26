@@ -71,7 +71,7 @@ var update_videos = function (videos) {
 var update_playlists = function (playlists) {
   html = [];
   playlists.forEach(function(item, i){
-    if(filterTags && !~playlistIds.indexOf(item.id)) return;
+    // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
     tempdata = {
       id: 'playlist-'+item.id,
       link: '#!/playlist/'+item.id,
@@ -169,7 +169,7 @@ var filter = function(value) {
     filterTags = $.map(filterObj[0].tags.split(','), $.trim);
   }
   update_videos(page_data.videos);
-  update_playlists(page_data.playlists);
+  // update_playlists(page_data.playlists);
 };
 
 var getPhoto = function(id, context) {
