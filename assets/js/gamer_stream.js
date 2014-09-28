@@ -42,6 +42,10 @@ $(function() {
             },100);
         });
 
+        $('#about-streamer').html(page_data.about);
+
+        $('.streamer .streamer-name').html(page_data.custom_title);
+
         $('#monSched').html($('<p/>', {
             text: page_data.custom_fields.mondaySchedule
         })).promise().done(function(e){

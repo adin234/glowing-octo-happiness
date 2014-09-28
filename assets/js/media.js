@@ -58,7 +58,7 @@ var update_videos = function (videos) {
     }
   });
   $(".playList").mCustomScrollbar('destroy').promise().done(function(){
-    if(!html.length) { html.push('No Video Available'); }
+    if(!html.length) { html.push('目前沒有影片'); }
     $('#videos').html(html.join(''));
     setTimeout(function(){
       $(".playList").mCustomScrollbar({

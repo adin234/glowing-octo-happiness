@@ -17,13 +17,41 @@ $(document).ready(function() {
 	}).done(function (data) {
 		var html = [];
 		data.streamers.forEach(function(item, i) {
-			item.provider = attachments_server;
-			item.game = item.twitch.game;
-			item.twitchname = item.twitch.channel.name;
-			item.streamlink = item.twitch.channel.url;
-			html.push(template($('#streamersTpl').html(), item));
+			// item.provider = attachments_server;
+			// item.game = item.twitch.game;
+			// item.twitchname = item.twitch.channel.name;
+			// item.streamlink = item.twitch.channel.url;
+			// html.push(template($('#streamersTpl').html(), item));
+
+			if(typeof item.twitch != 'undefined') {
+	            item.twitchid = item.field_value[item.field_value.length-1];
+	            item.id = 'TW'+item.twitchid;
+	            item.idraw = item.twitchid;
+	            item.live = 'live';
+	            item.game = item.twitch.game;
+	            item.link = 'gamer_stream/'+item.user_id+'/'+item.id;
+	            item.provider = attachments_server;
+	            item.thumb = item.twitch.preview.large;
+	            item.title = item.twitch.channel.status;
+	            item.bust = +new Date();
+	            item.views = item.twitch.viewers;
+	        } else {
+	            item.id = 'YT'+item.youtube.id;
+	            item.idraw= item.youtube.id;
+	            item.live = 'live';
+	            item.game = 'YT';
+	            item.link = 'gamer_stream/'+item.user_id+'/'+item.id;
+	            item.provider = attachments_server;
+	            item.thumb = item.youtube.snippet.thumbnails.high.url;
+	            item.title = item.youtube.snippet.title;
+	            item.bust = +new Date();
+	            item.views = '0';
+	        }
+
+	        html.push(template($('#streamersTpl').html(), item));
+
 		});
-		if(!html.length) { html.push('No Streamer Available'); }
+		if(!html.length) { html.push('目前沒有直播'); }
 		$('#streamers').html(html.join(''));
 	});
 
@@ -71,7 +99,7 @@ var update_index = function(index_data) {
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
-	if(!html.length) { html.push('No Video Available'); }
+	if(!html.length) { html.push('目前沒有影片'); }
 	$('#featuredVideos').html(html.join(''));
 	html = [];
 	index_data.latest_videos.forEach(function(item, i){
@@ -84,7 +112,7 @@ var update_index = function(index_data) {
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
-	if(!html.length) { html.push('No Video Available'); }
+	if(!html.length) { html.push('目前沒有影片'); }
 	$('#latestVideos').html(html.join(''));
 	html = [];
 	index_data.most_viewed.forEach(function(item, i){
@@ -105,7 +133,7 @@ var update_index = function(index_data) {
 		item.game = item.name;
 		html.push(template($('#gameTpl').html(), item));
 	});
-	if(!html.length) { html.push('No Game Available'); }
+	if(!html.length) { html.push('目前沒有遊戲'); }
 	$('#latestGames').html(html.join(''));
 	html = [];
 	index_data.featured_games.forEach(function(item, i){
@@ -113,7 +141,7 @@ var update_index = function(index_data) {
 		item.game = item.name;
 		html.push(template($('#gameTpl').html(), item));
 	});
-	if(!html.length) { html.push('No Game Available'); }
+	if(!html.length) { html.push('目前沒有遊戲'); }
 	$('#featuredGames').html(html.join(''));
 	html = [];
 	index_data.featured_users.forEach(function(item, i){
