@@ -28,10 +28,78 @@ mark {
   zoom: 1;
 }
 
-#outContainer header h1 a, #outContainer header .species li:nth-child(1) a, #outContainer header .species li:nth-child(2) a, #outContainer header .species li:nth-child(3) a, #outContainer header .species li:nth-child(4) a, #outContainer header .species li:nth-child(5) a, #outContainer header .species li:nth-child(6) a, #outContainer header .species li:nth-child(7) a, #outContainer header .species li:nth-child(8) a, #outContainer header .member li:nth-child(1) a, footer > ul li a, .video .list > li li + li em, .member .edit, .main .bxslider .play, .main .bx-controls-direction a, .main .bx-pager-link, .zoom a, .playFunctionBtn li, .video .bx-prev, .video .bx-next, .games .bx-prev, .games .bx-next, .change li:nth-child(1) a, .stream .close, #streamView header h1, #streamView header > a, #streamView .watchList .bx-prev, #streamView .watchList .bx-next, .muti #streamView h1 {
+#outContainer header h1 a,
+/*#outContainer header .species li:nth-child(1) a,
+#outContainer header .species li:nth-child(2) a,
+#outContainer header .species li:nth-child(3) a,
+#outContainer header .species li:nth-child(4) a,
+#outContainer header .species li:nth-child(5) a,
+#outContainer header .species li:nth-child(6) a,
+#outContainer header .species li:nth-child(7) a,
+#outContainer header .species li:nth-child(8) a,*/
+#outContainer header .member li:nth-child(1) a,
+footer > ul li a,
+.video .list > li li + li em, .member .edit,
+.main .bxslider .play,
+.main .bx-controls-direction a,
+.main .bx-pager-link, .zoom a,
+.playFunctionBtn li,
+.video .bx-prev,
+.video .bx-next,
+ .games .bx-prev,
+ .games .bx-next,
+ .change li:nth-child(1) a,
+ .stream .close,
+ #streamView header h1,
+ #streamView header > a,
+ #streamView .watchList .bx-prev,
+ #streamView .watchList .bx-next,
+ .muti #streamView h1 {
   overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
+}
+
+#outContainer header .species > ul li {
+  line-height: 42px;
+}
+
+#outContainer header .species li.nav-switch-item:nth-child(2) > ul {
+  display: none;
+}
+
+#outContainer header .species li.nav-switch-item:nth-child(1) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1317px;
+  padding-left: 23px;
+}
+
+#outContainer header .species li.nav-switch-item:nth-child(2) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1363px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(3) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1409px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(4) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1454px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(5) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1504px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(6) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1548px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(7) a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1592px;
+  padding-left: 23px;
+}
+
+#outContainer header .species a:hover{
+  font-weight: 700;
 }
 
 /*%IEPie
@@ -368,8 +436,9 @@ a:hover, a:focus, a:active {
   padding-left: 322px;
 }
 #outContainer header .species li + li {
-  padding-left: 16px;
+  padding-left: 12px;
 }
+/*
 #outContainer header .species li:nth-child(1) a {
   background: url("/assets/images/sprite.png") no-repeat 1px -149px;
   height: 42px;
@@ -389,7 +458,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -533px;
 }
 #outContainer header .species li:nth-child(2).current a {
-  background-position: 0 -491px;
+  background-position: 0 -533px;
 }
 #outContainer header .species li:nth-child(3) a {
   background: url("/assets/images/sprite.png") no-repeat 1px -234px;
@@ -450,7 +519,7 @@ a:hover, a:focus, a:active {
 }
 #outContainer header .species li:nth-child(8).current a {
   background-position: 0 -789px;
-}
+}*/
 #outContainer header .species a {
   color: #ebd7d7;
   display: inline-block;
@@ -1167,7 +1236,6 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   padding-top: 3px;
   background: url("/assets/images/divider_v.png") repeat-y left top;
 }
-
 .main .bx-wrapper {
   margin: 0 auto 40px;
   position: relative;
@@ -1176,7 +1244,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .main .bx-wrapper img {
   display: block;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+#imageSlider li {
+  height: 547px;
 }
 .main .bx-wrapper:hover .bx-prev, .main .bx-wrapper:focus .bx-prev, .main .bx-wrapper:active .bx-prev {
   left: -39px;
@@ -2603,10 +2675,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   overflow: hidden;
 }
 
-x3 #streamView, .muti #streamView {
+.x3 #streamView, .muti #streamView {
   padding: 0;
 }
-x3 #streamView header, .muti #streamView header {
+
+.x3 #streamView header, .muti #streamView header {
   right: 0;
   top: 0;
 }
@@ -2679,9 +2752,19 @@ x3 #streamView header, .muti #streamView header {
   margin: 0 0 6px 12px;
   width: 48.5%;
 }
+
 .muti #streamView #twitchStream > div, .muti #streamView #twitchStream object {
+  height: 60%;
+}
+
+.muti body.x2 #streamView #twitchStream > div, .muti body.x2  #streamView #twitchStream object {
   height: 50%;
 }
+
+.muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
+  height: 40%;
+}
+
 .muti #streamView .watchList {
   margin: 60px 12px;
   width: 1394px;
@@ -2854,4 +2937,9 @@ small.date {
 
 .muti  .x2 #wrapper {
   min-width: 1745px;
+}
+
+a.link-white {
+  color: #fff;
+  text-decoration: none;
 }
