@@ -87,6 +87,19 @@ var update_index = function(index_data) {
 	if(!html.length) { html.push('No Video Available'); }
 	$('#latestVideos').html(html.join(''));
 	html = [];
+	index_data.most_viewed.forEach(function(item, i){
+		item.provider = attachments_server;
+		item.thumb = item.snippet.thumbnails.medium.url;
+		item.title = item.snippet.title;
+		item.bust = +new Date();
+		item.comments = item.snippet.meta.statistics.commentCount;
+		item.views = item.snippet.meta.statistics.viewCount;
+		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+		html.push(template($('#latestVideosTpl').html(), item));
+	});
+	if(!html.length) { html.push('No Video Available'); }
+	$('#mostViewed').html(html.join(''));
+	html = [];
 	index_data.games.forEach(function(item, i){
 		item.imgsrc = item.image;
 		item.game = item.name;
