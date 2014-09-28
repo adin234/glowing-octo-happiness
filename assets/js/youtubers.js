@@ -50,7 +50,7 @@ var render_featured_games = function (filter) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('No Game Available'); }
+    if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-featured-games').html(html.join(''));
 }
 
@@ -72,7 +72,7 @@ var render_games = function(filter) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('No Game Available'); }
+    if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-latest-games').html(html.join(''));
 };
 
