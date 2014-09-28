@@ -1245,6 +1245,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .bx-wrapper img {
   display: block;
   width: 100%;
+  height: 100%;
+}
+#imageSlider li {
+  height: 547px;
 }
 .main .bx-wrapper:hover .bx-prev, .main .bx-wrapper:focus .bx-prev, .main .bx-wrapper:active .bx-prev {
   left: -39px;
@@ -2671,10 +2675,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   overflow: hidden;
 }
 
-x3 #streamView, .muti #streamView {
+.x3 #streamView, .muti #streamView {
   padding: 0;
 }
-x3 #streamView header, .muti #streamView header {
+
+.x3 #streamView header, .muti #streamView header {
   right: 0;
   top: 0;
 }
@@ -2747,9 +2752,19 @@ x3 #streamView header, .muti #streamView header {
   margin: 0 0 6px 12px;
   width: 48.5%;
 }
+
 .muti #streamView #twitchStream > div, .muti #streamView #twitchStream object {
+  height: 60%;
+}
+
+.muti body.x2 #streamView #twitchStream > div, .muti body.x2  #streamView #twitchStream object {
   height: 50%;
 }
+
+.muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
+  height: 40%;
+}
+
 .muti #streamView .watchList {
   margin: 60px 12px;
   width: 1394px;
