@@ -10,4 +10,5 @@ $(window).load(function(){
 		+page_data.user.username+'.'+page_data.user.user_id);
 	$('#banner > img').attr('src', attachments_server+'data/avatars/l/0/'
 		+page_data.user.user_id+'.jpg');
+	utilLoader.hide();
 });

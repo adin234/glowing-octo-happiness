@@ -1,3 +1,4 @@
+utilLoader.show();
 var xhReq = new XMLHttpRequest();
 var user = window.location.pathname
 	.split('/').filter(function(e){return e;})[1]

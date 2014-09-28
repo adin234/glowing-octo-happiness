@@ -119,8 +119,6 @@ var getComments = function (videoId) {
       }
     });
 
-    console.log(comments);
-
     var commentsHTML = comments.map(function(item) {
       return template($('#commentItemTpl').html(), item);
     }).join('');
