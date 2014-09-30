@@ -1,5 +1,6 @@
 var index_data;
 var slider_loaded = 0;
+var streamersList = [];
 $.ajax({
 	async: false,
 	type: "GET",
@@ -15,15 +16,28 @@ $(document).ready(function() {
 		dataType: "json",
 		url: server+"streamers"
 	}).done(function (data) {
-		var html = [];
-		data.streamers.forEach(function(item, i) {
-			// item.provider = attachments_server;
-			// item.game = item.twitch.game;
-			// item.twitchname = item.twitch.channel.name;
-			// item.streamlink = item.twitch.channel.url;
-			// html.push(template($('#streamersTpl').html(), item));
+		$.merge(streamersList, data.streamers);
+		index_show_streamers(streamersList);
+	});
 
-			if(typeof item.twitch != 'undefined') {
+	$.ajax({
+		type: "GET",
+		dataType: "json",
+		url: server+"streamers/youtube"
+	}).done(function (data) {
+		$.merge(streamersList, data.streamers);
+		index_show_streamers(streamersList);
+	});
+
+
+	slider_loaded = 1;
+});
+
+var index_show_streamers = function(streamersList) {
+	var html = [];
+
+	streamersList.forEach(function(item) {
+		if(typeof item.twitch != 'undefined') {
 	            item.twitchid = item.field_value[item.field_value.length-1];
 	            item.id = 'TW'+item.twitchid;
 	            item.idraw = item.twitchid;
@@ -51,13 +65,13 @@ $(document).ready(function() {
 	        html.push(template($('#streamersTpl').html(), item));
 
 		});
-		if(!html.length) { html.push('目前沒有直播'); }
+
+		if(!html.length) { html.push('目前沒有直播'); };
 		$('#streamers').html(html.join(''));
-	});
+
 
 	update_index(index_data);
-	slider_loaded = 1;
-});
+};
 
 var filter_category = function (cnsl, context) {
 	$.ajax({
