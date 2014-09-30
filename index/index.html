@@ -144,6 +144,8 @@
         </div>
         <div class="heading">
           <h2>熱門論壇</h2>
+          <div id="forumSection">
+          </div>
         </div>
       </div>
       <footer class="clearFix">
@@ -182,7 +184,7 @@
   <li>
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
+    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">
     <ul>
       <li><em>觀看次數：</em>{{VIEWS}}</li>
       <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
@@ -196,7 +198,7 @@
   <li>
     <div class="list">
       <a href="/youtuber/{{USER_ID}}" class="link-white">
-      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="44" height="43" alt="Viewer">
+      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
       <h3>{{USERNAME}}</h3>
       <div class="listBg"></div>
       </a>
@@ -206,7 +208,30 @@
 <script type="text/html" id="streamersTpl">
   <li onClick="window.location.href = origin+'{{LINK}}'">
     <div class="dynamic"><!-- <b>4PM</b> -->{{GAME}}</div>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer">
+    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
+  </li>
+</script>
+<script type="text/html" id="recentForumTpl">
+  <div class="recent-forums">
+    <h3 class="forum-header">{{RECENTFORUM}}</h3>
+    <ul class="thread-list">
+    {{THREADS}}
+    </ul>
+  </div>
+</script>
+<script type="text/html" id="recentForumItemTpl">
+  <li class="thread">
+    <span class="icon"><img src="{{POSTERIMAGE}}" width="50" height="50" class="safeloading" onError="fixErrorImg(this);"/></span>
+    <span class="title">{{TITLE}}</span>
+    <div class="stats">
+      <dl>
+        <dt class="replies">Replies</dt>
+        <dd class="replies">{{REPLIES}}</dd>
+        <dt class="views">Views<dt>
+        <dd class="views">{{VIEWS}}<dd>
+        </dl>
+    </div>
+    <span class="last-message">
   </li>
 </script>
 <script src="/assets/js/util.js"></script>
