@@ -166,7 +166,8 @@ var update_index = function(index_data) {
 				+item.creator_user_id+'.jpg?'+(+new Date),
 			title: item.thread_title,
 			replies: item.thread_post_count,
-			views: item.thread_view_count
+			views: item.thread_view_count,
+			link: item.links.permalink,
 		}
 		html.push(template($('#recentForumItemTpl').html(), data));
 	});

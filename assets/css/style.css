@@ -2979,3 +2979,42 @@ a.link-white {
   color: #fff;
   text-decoration: none;
 }
+
+li.thread {
+  margin: 10px 0;
+  border-bottom: 1px solid #969696;
+  padding: 0 10px 10px 10px;
+}
+
+li.thread:nth-of-type(1) {
+  padding-top: 10px;
+  border-top: 1px solid #969696;
+}
+
+li.thread > * {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+li.thread span.icon {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+li.thread a.title {
+  color: rgb(83, 83, 83);
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 80%;
+  padding-left: 25px;
+}
+
+li.thread .stats > dl > * {
+  display: inline-block;
+}
+
+li.thread  .stats > dl > dt {
+  font-weight: bold;
+}

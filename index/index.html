@@ -213,7 +213,7 @@
 </script>
 <script type="text/html" id="recentForumTpl">
   <div class="recent-forums">
-    <h3 class="forum-header">{{RECENTFORUM}}</h3>
+    <h3 class="forum-header"></h3>
     <ul class="thread-list">
     {{THREADS}}
     </ul>
@@ -221,14 +221,16 @@
 </script>
 <script type="text/html" id="recentForumItemTpl">
   <li class="thread">
-    <span class="icon"><img src="{{POSTERIMAGE}}" width="50" height="50" class="safeloading" onError="fixErrorImg(this);"/></span>
-    <span class="title">{{TITLE}}</span>
+    <span class="icon" href="{{USERLINK}}">
+      <img src="{{POSTERIMAGE}}" width="50" height="50" class="safeloading" onError="fixErrorImg(this);"/>
+    </span>
+    <a class="title" href='{{LINK}}'>{{TITLE}}</a>
     <div class="stats">
       <dl>
         <dt class="replies">Replies</dt>
-        <dd class="replies">{{REPLIES}}</dd>
-        <dt class="views">Views<dt>
-        <dd class="views">{{VIEWS}}<dd>
+        <dd class="replies">{{REPLIES}}</dd><br/>
+        <dt class="views">Views</dt>
+        <dd class="views">{{VIEWS}}</dd>
         </dl>
     </div>
     <span class="last-message"></span>
