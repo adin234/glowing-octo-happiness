@@ -39,7 +39,7 @@ $(document).ready(function() {
 	            item.id = 'YT'+item.youtube.id;
 	            item.idraw= item.youtube.id;
 	            item.live = 'live';
-	            item.game = 'YT';
+	            item.game = 'Unlisted';
 	            item.link = 'gamer_stream/'+item.user_id+'/'+item.id;
 	            item.provider = attachments_server;
 	            item.thumb = item.youtube.snippet.thumbnails.high.url;
