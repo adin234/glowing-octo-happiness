@@ -207,7 +207,7 @@
 </script>
 <script type="text/html" id="streamersTpl">
   <li onClick="window.location.href = origin+'{{LINK}}'">
-    <div class="dynamic"><!-- <b>4PM</b> -->{{GAME}}</div>
+    <div class="dynamic">{{GAME}} / {{IDRAW}}</div>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
   </li>
 </script>
@@ -231,7 +231,7 @@
         <dd class="views">{{VIEWS}}<dd>
         </dl>
     </div>
-    <span class="last-message">
+    <span class="last-message"></span>
   </li>
 </script>
 <script src="/assets/js/util.js"></script>
