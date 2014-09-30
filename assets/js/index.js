@@ -102,7 +102,29 @@ var update_index = function(index_data) {
 	if(!html.length) { html.push('目前沒有影片'); }
 	$('#featuredVideos').html(html.join(''));
 	html = [];
+	var flag = {};
 	index_data.latest_videos.forEach(function(item, i){
+		var date = item.snippet.publishedAt.substr(0,10);
+		if(!flag[date]) {
+			flag[date] = [];
+		}
+		if(!~flag[date].indexOf(item.user_id)) {
+			item.provider = attachments_server;
+			item.thumb = item.snippet.thumbnails.medium.url;
+			item.title = item.snippet.title;
+			item.bust = +new Date();
+			item.comments = item.snippet.meta.statistics.commentCount;
+			item.views = item.snippet.meta.statistics.viewCount;
+			item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+			html.push(template($('#latestVideosTpl').html(), item));
+			flag[date].push(item.user_id);
+		}
+	});
+	console.log(flag);
+	if(!html.length) { html.push('目前沒有影片'); }
+	$('#latestVideos').html(html.join(''));
+	html = [];
+	index_data.most_viewed.forEach(function(item, i){
 		item.provider = attachments_server;
 		item.thumb = item.snippet.thumbnails.medium.url;
 		item.title = item.snippet.title;
@@ -112,8 +134,8 @@ var update_index = function(index_data) {
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
-	if(!html.length) { html.push('目前沒有影片'); }
-	$('#latestVideos').html(html.join(''));
+	if(!html.length) { html.push('No Video Available'); }
+	$('#mostViewed').html(html.join(''));
 	html = [];
 	index_data.games.forEach(function(item, i){
 		item.imgsrc = item.image;

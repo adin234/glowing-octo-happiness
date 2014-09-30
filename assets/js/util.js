@@ -55,7 +55,7 @@ var showSocialButtons = function () {
 
 };
 
-utilLogin = {
+var utilLogin = {
     show : function (message) {
         var msg = message || 'You need to login to perform this action';
         var loginMenu = document.createElement('div');
