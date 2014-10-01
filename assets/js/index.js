@@ -174,6 +174,23 @@ var update_index = function(index_data) {
 	if(!html.length) { html.push('No User Available'); }
 	$('#featuredUsers').html(html.join(''));
 	html = [];
+	index_data.recent_threads.forEach(function(item, i){
+		var data = {
+			posterimage: attachments_server+'data/avatars/l/0/'
+				+item.creator_user_id+'.jpg?'+(+new Date),
+			title: item.thread_title,
+			replies: item.thread_post_count,
+			views: item.thread_view_count,
+			link: item.links.permalink,
+		}
+		html.push(template($('#recentForumItemTpl').html(), data));
+	});
+	if(!html.length) { html.push('No Recent Forum'); }
+	var data = {
+		threads: html.join('')
+	}
+	html = template($('#recentForumTpl').html(), data);
+	$('#forumSection').html(html);
 
     $(".video [id^='tab-'], .games [id^='tab-'], .viewer ul, .streaming ul").mCustomScrollbar({
       theme:"inset-2",

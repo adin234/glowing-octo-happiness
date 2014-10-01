@@ -238,3 +238,18 @@ var utilArray = {
       return result;
     }
 };
+
+var fixErrorImg = function(item) {
+    item.onerror = "";
+    item.src = 'http://community.gamers.tm/zh/styles/default/xenforo/avatars/avatar_male_l.png';
+    return true;
+};
+
+// $('body').on('error', 'img.safeloading', function(e) {
+//     console.log(e);
+//     $(this).attr(
+//         'src',
+//         'http://community.gamers.tm/zh/styles/default/xenforo/'
+//             +'avatars/avatar_male_l.png'
+//         )
+// });
