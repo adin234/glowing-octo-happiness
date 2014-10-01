@@ -6,7 +6,13 @@ $(".sf-menu").superfish();
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
-$(".tabs").tabslet({ animation: true });
+$(".tabs").tabslet({ animation: true })
+.on('_before', function(e) {
+    $('.tooltip').tooltipster('destroy');
+})
+.on('_after', function(e) {
+    $('.tooltip').tooltipster({contentAsHTML: true});
+});
 
 
 page_data = $.parseJSON(page_data);
@@ -249,6 +255,8 @@ var render_page = function() {
     get_youtube_streams();
     render_games();
     render_featured_games();
+    $('.tooltip').tooltipster({contentAsHTML: true});
+
     $(window).trigger('hashchange');
 };
 

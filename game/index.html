@@ -15,6 +15,7 @@
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -156,7 +157,7 @@
   </div>
 </div>
 <script type="text/html" id="gameTpl">
-<li><a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"></a></li>
+<li><a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}"></a></li>
 </script>
 <script type="text/html" id="gameContainerTpl">
   <ul class="game clearFix"> {{ITEMS}} </ul>
@@ -185,6 +186,7 @@
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
+<script src="/assets/js/jquery.tooltipster.min.js"></script>
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/util.js"></script>
 <script type="text/javascript" src="/assets/js/games.js"></script>

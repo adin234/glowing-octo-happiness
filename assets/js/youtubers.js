@@ -12,7 +12,13 @@ $(function() {
         infiniteLoop: false,
         hideControlOnEnd: true
     });
-    $(".tabs").tabslet({ animation: true });
+    $(".tabs").tabslet({ animation: true })
+    .on('_before', function(e) {
+        $('.tooltip').tooltipster('destroy');
+    })
+    .on('_after', function(e) {
+        $('.tooltip').tooltipster({contentAsHTML: true});
+    });
 });
 
 page_data = $.parseJSON(page_data);
@@ -174,3 +180,4 @@ render_popular_members();
 
 render_games();
 render_featured_games();
+$('.tooltip').tooltipster({contentAsHTML: true});
