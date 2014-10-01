@@ -148,7 +148,7 @@ var update_index = function(index_data) {
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 		html.push(template($('#latestVideosTpl').html(), item));
 	});
-	if(!html.length) { html.push('No Video Available'); }
+	if(!html.length) { html.push('目前沒有影片'); }
 	$('#mostViewed').html(html.join(''));
 	html = [];
 	index_data.games.forEach(function(item, i){

@@ -2780,7 +2780,7 @@ div.streamer {
   height: 40%;
 }
 
-#twitchStream:hover .remove-stream {
+#twitchStream #twitchStream:hover .remove-stream {
   display: block;
 }
 

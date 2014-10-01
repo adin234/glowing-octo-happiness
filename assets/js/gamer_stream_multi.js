@@ -25,5 +25,10 @@ $(function() {
         var size = $(this).val();
         $('body').removeClass('x1 x2 x3').addClass(size);
     });
+
+      $('body').on('click', '.remove-stream', function(e) {
+            console.log($(this).parent('.stream-item'));
+            $(this).parent('.stream-item').remove();
+      });
 });
 
