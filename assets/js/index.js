@@ -28,9 +28,6 @@ $(document).ready(function() {
 		$.merge(streamersList, data.streamers);
 		index_show_streamers(streamersList);
 	});
-
-
-	slider_loaded = 1;
 });
 
 var index_show_streamers = function(streamersList) {
@@ -69,7 +66,6 @@ var index_show_streamers = function(streamersList) {
 		if(!html.length) { html.push('目前沒有直播'); };
 		$('#streamers').html(html.join(''));
 
-
 	update_index(index_data);
 };
 
@@ -84,6 +80,7 @@ var filter_category = function (cnsl, context) {
 		$(context).parent().addClass('current');
 		console.log(context);
 		index_data = data;
+
 		update_index(data);
 	});
 
@@ -92,6 +89,7 @@ var filter_category = function (cnsl, context) {
 
 var update_index = function(index_data) {
 	var html = [];
+
 	if(!slider_loaded) {
 		index_data.slider.forEach(function(item, i){
 			item.provider = attachments_server;
@@ -101,6 +99,7 @@ var update_index = function(index_data) {
 		$(".bxslider").bxSlider({
 			captions: true,
 	    });
+	    slider_loaded = 1;
 	}
 	html = [];
 	index_data.featured_videos.forEach(function(item, i){
@@ -134,7 +133,7 @@ var update_index = function(index_data) {
 			flag[date].push(item.user_id);
 		}
 	});
-	console.log(flag);
+
 	if(!html.length) { html.push('目前沒有影片'); }
 	$('#latestVideos').html(html.join(''));
 	html = [];

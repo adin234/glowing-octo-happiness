@@ -32,7 +32,7 @@
   <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
-        <h1><a href="index_tw.html" title="Home" class="zh_tw">Gamers</a></h1>
+        <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
             <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
@@ -56,7 +56,7 @@
               </ul>
             </li>
             <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shows</a></li>
+            <li><a href="/shows" title="Shows">Shosws</a></li>
             <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
             <li class="current"><a href="/youtubers" title="實況咖">實況咖</a></li>
             <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
@@ -94,12 +94,12 @@
               <li  id="playlistsToggle" class="current"><a href="javascript:;">播放清單</a></li>
               <li  id="videosToggle" ><a href="javascript:;" title="影片">影片</a></li>
             </ul>
-            <ul class="playFunctionBtn clearFix">
-              <li><a href="javascript:;" title="上一個影片">上一個影片</a></li>
-              <li><a href="javascript:;" title="下一個影片">下一個影片</a></li>
-              <li></li><li></li>
-              <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li>
-            </ul>
+             <ul class="playFunctionBtn clearFix">
+                <li><a href="javascript:;" title="上一個影片" id="btn-prev">上一個影片</a></li>
+                <li><a href="javascript:;" title="下一個影片" id="btn-next">下一個影片</a></li>
+                <li></li><li></li>
+                <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li>
+              </ul>
             <ul class="playList toggleList current" id="playlists">
             </ul>
             <ul class="playList toggleList" id="videos">
@@ -436,7 +436,6 @@
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/media.js"></script>
-<script src="/assets/js/youtuber.js"></script>
 <script src="/assets/js/youtuber.js"></script>
 </body>
 </html>

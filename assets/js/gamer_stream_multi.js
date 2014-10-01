@@ -2,6 +2,14 @@ $(window).load(function(){
     $("#streamArea").mCustomScrollbar({
         theme:"inset-2",
     });
+
+    $(".bxslider").bxSlider({
+        infiniteLoop: false,
+        hideControlOnEnd: true,
+        minSlides: 4,
+        maxSlides: 4,
+        slideWidth: 329.5,
+    });
 });
 
 $(function() {

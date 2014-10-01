@@ -23,10 +23,7 @@
 <link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="/assets/js/jquery.bxslider.min.js"></script>
-<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/jquery.tabslet.min.js"></script>
+
 <style>
 #twitchTalk .tab > li a {
   padding: 2px;
@@ -80,106 +77,30 @@
       <div id="twitchStream" class="clearFix">
 
       </div>
-      <!--
+
       <div class="watchList">
         <h2>Streams</h2>
         <ul class="bxslider clearFix">
-          <li><a href="javascript:;" title="{stream title}" class="current"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <dl>
-              <h3>Destroy</h3>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
+
         </ul>
       </div>
-      -->
+
     </div>
   </div>
 </div>
+<script type="text/html" id="streamlist-item-tpl">
+<li>
+  <a href="javascript:;" title="{stream title}" class="current"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
+  <h3>Protect</h3>
+  <dl>
+    <dt>Posted: </dt>
+    <dd>10/ 9/ 08</dd>
+    <dt>Runtime: </dt>
+    <dd>1:23</dd>
+  </dl>
+  </a>
+</li>
+</script>
 <script type="text/html" id="twitch-stream-tpl">
 <div id="twitchStream" class="stream-item">
   <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
@@ -211,6 +132,10 @@
   </iframe>
 </div>
 </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="/assets/js/jquery.bxslider.min.js"></script>
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/assets/js/jquery.tabslet.min.js"></script>
 <script type="text/javascript" src="/assets/js/util.js"></script>
 <script type="text/javascript" src="/assets/js/gamer_stream_multi.js"></script>
 </body>

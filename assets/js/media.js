@@ -238,8 +238,6 @@ var updatePrevNext = function() {
   var nextLink = current.next().children('a').first().attr('href');
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
-
-  console.log(current);
 };
 
 

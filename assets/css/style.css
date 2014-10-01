@@ -2494,7 +2494,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   padding: 6px 9px;
   text-decoration: none;
 }
-#streamView .watchList li a.current {
+#streamView .watchList li a.current,
+#streamView .watchList li a:hover {
   background-image: -moz-linear-gradient(top, #787676, #3f3f3f);
   background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
   background-image: linear-gradient(to bottom, #787676, #3f3f3f);
@@ -2504,7 +2505,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   border-radius: 5px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) inset;
 }
-#streamView .watchList li a.current:hover, #streamView .watchList li a.current:active, #streamView .watchList li a.current:focus {
+
+#streamView .watchList li a.current:hover,
+#streamView .watchList li a.current:active,
+#streamView .watchList li a.current:focus {
   background-image: -moz-linear-gradient(top, #3f3f3f, #787676);
   background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
   background-image: linear-gradient(to bottom, #3f3f3f, #787676);
