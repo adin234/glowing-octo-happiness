@@ -28,6 +28,8 @@ $(document).ready(function() {
 		$.merge(streamersList, data.streamers);
 		index_show_streamers(streamersList);
 	});
+
+	showSocialButtons();
 });
 
 var index_show_streamers = function(streamersList) {
@@ -195,3 +197,4 @@ var update_index = function(index_data) {
       theme:"inset-2",
     });
 };
+

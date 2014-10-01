@@ -3026,3 +3026,7 @@ li.thread  .stats > dl > dt {
 .bx-controls-direction .disabled {
   display: none;
 }
+
+.social-links #viewport {
+  padding: 20px;
+}
