@@ -6,7 +6,9 @@ $(function() {
     slider.featured_games = $("#container-featured-games").bxSlider();
     slider.latest_games = $("#container-latest-games").bxSlider();
     slider.container_videos = $("#container-videos").bxSlider({
-      onSlideAfter: load_game_videos_next_page
+      onSlideAfter: load_game_videos_next_page,
+      infiniteLoop: false,
+      hideControlOnEnd: true
     });
     $(".tabs").tabslet({ animation: true });
 });

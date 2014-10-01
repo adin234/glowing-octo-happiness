@@ -3022,3 +3022,7 @@ li.thread .stats > dl > * {
 li.thread  .stats > dl > dt {
   font-weight: bold;
 }
+
+.bx-controls-direction .disabled {
+  display: none;
+}
