@@ -196,5 +196,7 @@ var update_index = function(index_data) {
     $(".video [id^='tab-'], .games [id^='tab-'], .viewer ul, .streaming ul").mCustomScrollbar({
       theme:"inset-2",
     });
+
+    $('.tooltip').tooltipster({contentAsHTML: true});
 };
 

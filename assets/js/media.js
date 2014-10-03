@@ -245,7 +245,7 @@ $(document).ready(function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
     animation: true,
-    active: 3,
+    active: 1,
   });
   $(".zoom a").click(function(){
     $("body").toggleClass("zoom2x");

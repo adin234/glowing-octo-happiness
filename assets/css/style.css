@@ -2145,6 +2145,18 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   border-radius: 7px;
 }
 
+.live-button {
+  content: "\00a0";
+  position: absolute;
+  height: 74px;
+  width: 73px;
+  right: -2px;
+  display: none;
+  top: -4px;
+  z-index: 50;
+  background: url("/assets/images/icon.png") no-repeat 0 -104px;
+}
+
 .profile {
   background-color: black;
   height: 73px;

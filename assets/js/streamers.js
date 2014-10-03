@@ -6,13 +6,7 @@ $(".sf-menu").superfish();
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
-$(".tabs").tabslet({ animation: true })
-.on('_before', function(e) {
-    $('.tooltip').tooltipster('destroy');
-})
-.on('_after', function(e) {
-    $('.tooltip').tooltipster({contentAsHTML: true});
-});
+$(".tabs").tabslet({ animation: true });
 
 
 page_data = $.parseJSON(page_data);
