@@ -438,6 +438,10 @@ a:hover, a:focus, a:active {
 #outContainer header .species li + li {
   padding-left: 12px;
 }
+
+#outContainer header .species li.current a {
+  font-weight: bold;
+}
 /*
 #outContainer header .species li:nth-child(1) a {
   background: url("/assets/images/sprite.png") no-repeat 1px -149px;

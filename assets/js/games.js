@@ -1,55 +1,27 @@
+page_data = $.parseJSON(page_data);
+
 var slider = {};
 var con = 'all';
 var currentPage = 1;
+var hash;
 
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
-
-$(function() {
-    $(".sf-menu").superfish();
-    slider.container_videos = $("#container-videos").bxSlider({
-      onSlideAfter: load_game_videos_next_page,
-      infiniteLoop: false,
-      hideControlOnEnd: true
-    });
-    $(".tabs").tabslet({ animation: true });
-});
-
-page_data = $.parseJSON(page_data);
-var hash;
-
-$('#txtbox-search-games').on('keydown', function(e) {
-    if (e.keyCode == 13) { filter_game(this); }
-});
-
-$('#txtbox-search-videos').on('keydown', function(e) {
-    if (e.keyCode == 13) { filter_videos(this); }
-});
-
-var filter_game = function(input) {
-    var $this = $(input);
-    var filterString = $this.val();
-    render_featured_games(filterString);
-    render_games(filterString);
-};
-
-var filter_videos = function(input) {
-    var $this = $(input);
-    var filterString = $this.val();
-    var game = get_game();
-    console.log(game);
-    console.log(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString);
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString, function(result) {
-        page_data.videos = result;
-        render_videos();
-
-        slider.container_videos.reloadSlider({
-            onSlideAfter: load_game_videos_next_page,
+slider.container_videos = $("#container-videos").bxSlider({
             infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-    });
+            hideControlOnEnd: true});
+
+
+var get_hash = function() {
+    var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
+    hash = hash.split('/');
+    return hash;
 };
+
+var get_game = function() {
+    var game = get_hash()[0];
+     return game == '' ? 'all' : game;
+}
 
 var render_featured_games = function (filter) {
     var html = [];
@@ -73,10 +45,14 @@ var render_featured_games = function (filter) {
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-featured-games').html(html.join(''));
 
-    slider.featured_games.reloadSlider({activeSlider: 0});
+    slider.featured_games.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
 }
 
-var render_games = function(filter) {
+var render_latest_games = function(filter) {
     var html = [];
     var items = [];
     filter =  new RegExp(filter, 'i');
@@ -97,7 +73,30 @@ var render_games = function(filter) {
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-latest-games').html(html.join(''));
 
-    slider.latest_games.reloadSlider({activeSlider: 0});
+    slider.latest_games.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
+};
+
+var filter_game = function(input) {
+    var $this = $(input);
+    var filterString = $this.val();
+    render_featured_games(filterString);
+    render_latest_games(filterString);
+};
+
+var filter_videos = function(input) {
+    var $this = $(input);
+    var filterString = $this.val();
+    var game = get_game();
+    console.log(game);
+    console.log(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString);
+    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString, function(result) {
+        page_data.videos = result;
+        render_videos();
+    });
 };
 
 var render_videos = function() {
@@ -106,6 +105,7 @@ var render_videos = function() {
     var ids = [];
     var tplVideo = $('#videoTpl').html();
     var tplVideoContainer = $('#videoContainerTpl').html();
+
     page_data.videos.forEach(function (item, i) {
         item.provider = attachments_server;
         item.thumb = item.snippet.thumbnails.medium.url;
@@ -128,26 +128,16 @@ var render_videos = function() {
     }
 
     if(!html.length) { html.push('目前沒有影片'); }
+
     $('#container-videos').html(html.join(''));
-};
-
-var get_hash = function() {
-    var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
-    hash = hash.split('/');
-    return hash;
-};
-
-var get_game = function() {
-    var game = get_hash()[0];
-     return game == '' ? 'all' : game;
-}
-
-var render_game_videos = function(game, page) {
-    page = typeof page !== 'undefined' ? '&page='+page : ''
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+page, function(result) {
-        page_data.videos = result;
-        render_videos();
-        slider.container_videos.reloadSlider();
+    $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
+            $(this).removeClass('disabled');
+        });
+    var currentSlide = slider.container_videos.getCurrentSlide();
+    slider.container_videos.reloadSlider({
+        onSlideAfter: load_game_videos_next_page,
+        infiniteLoop: false,
+        hideControlOnEnd: true
     });
 };
 
@@ -156,7 +146,7 @@ var load_game_videos_next_page = function() {
     var items = [];
     var page = Math.floor(slider.container_videos.getSlideCount()/2);
     var nextPage = page+1;
-    if(nextPage <= currentPage) return;
+    if(nextPage <= currentPage) { console.log('end'); return; }
     currentPage = nextPage;
     var tplVideo = $('#videoTpl').html();
     var tplVideoContainer = $('#videoContainerTpl').html();
@@ -186,20 +176,34 @@ var load_game_videos_next_page = function() {
         }
 
         $("#container-videos").append(html.join(''));
-        var currentSlide = slider.container_videos.getCurrentSlide();
 
+        var currentSlide = slider.container_videos.getCurrentSlide();
+        if(currentSlide != slider.container_videos.getSlideCount() - 1) {
+            $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
+                $(this).removeClass('disabled');
+            });
+        }
         slider.container_videos.reloadSlider({
             startSlide: currentSlide,
             onSlideAfter: load_game_videos_next_page,
             infiniteLoop: false,
             hideControlOnEnd: true
         });
+
     });
 }
 
-var filter_category = function(console, context) {
-    con = console;
-    $.getJSON(server+'gamesdata?console='+console, function(results) {
+var render_game_videos = function(game, page) {
+    page = typeof page !== 'undefined' ? '&page='+page : ''
+    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+page, function(result) {
+        page_data.videos = result;
+        render_videos();
+    });
+};
+
+var filter_category = function(cons, context) {
+    con = cons;
+    $.getJSON(server+'gamesdata?console='+cons, function(results) {
         page_data = results;
         render_page();
     }).done(function() {
@@ -208,9 +212,16 @@ var filter_category = function(console, context) {
     });
 };
 
+
+var render_page = function() {
+    $(window).trigger('hashchange');
+    render_latest_games();
+    render_featured_games();
+    $('.tooltip').tooltipster({contentAsHTML: true});
+};
+
 $(window).on('hashchange', function(){
     hash = get_hash();
-
     hash = hash.filter(function(item) {
         return item != "";
     });
@@ -224,14 +235,17 @@ $(window).on('hashchange', function(){
     }
 });
 
-var render_page = function() {
-    $(window).trigger('hashchange');
+$(function() {
+    $(".sf-menu").superfish();
+    $(".tabs").tabslet({ animation: true });
+});
 
-    render_games();
-    render_featured_games();
+$('#txtbox-search-games').on('keydown', function(e) {
+    if (e.keyCode == 13) { filter_game(this); }
+});
 
-    $('.tooltip').tooltipster({contentAsHTML: true});
-};
-
+$('#txtbox-search-videos').on('keydown', function(e) {
+    if (e.keyCode == 13) { filter_videos(this); }
+});
 
 render_page();
