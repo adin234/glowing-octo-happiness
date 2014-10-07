@@ -1,5 +1,6 @@
 var slider = {};
 var con = 'all';
+var currentPage = 1;
 
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
@@ -30,18 +31,23 @@ var filter_game = function(input) {
     var filterString = $this.val();
     render_featured_games(filterString);
     render_games(filterString);
-    slider.latest_games.reloadSlider({activeSlider: 0});
-    slider.featured_games.reloadSlider({activeSlider: 0});
 };
 
 var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     var game = get_game();
+    console.log(game);
+    console.log(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString);
     $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString, function(result) {
         page_data.videos = result;
         render_videos();
-        slider.container_videos.reloadSlider();
+
+        slider.container_videos.reloadSlider({
+            onSlideAfter: load_game_videos_next_page,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
     });
 };
 
@@ -66,6 +72,7 @@ var render_featured_games = function (filter) {
     }
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-featured-games').html(html.join(''));
+
     slider.featured_games.reloadSlider({activeSlider: 0});
 }
 
@@ -89,6 +96,7 @@ var render_games = function(filter) {
 
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-latest-games').html(html.join(''));
+
     slider.latest_games.reloadSlider({activeSlider: 0});
 };
 
@@ -124,7 +132,7 @@ var render_videos = function() {
 };
 
 var get_hash = function() {
-    var hash = window.location.hash.replace('#!/', '');
+    var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
     hash = hash.split('/');
     return hash;
 };
@@ -148,6 +156,8 @@ var load_game_videos_next_page = function() {
     var items = [];
     var page = Math.floor(slider.container_videos.getSlideCount()/2);
     var nextPage = page+1;
+    if(nextPage <= currentPage) return;
+    currentPage = nextPage;
     var tplVideo = $('#videoTpl').html();
     var tplVideoContainer = $('#videoContainerTpl').html();
     var game = get_game();
@@ -180,7 +190,9 @@ var load_game_videos_next_page = function() {
 
         slider.container_videos.reloadSlider({
             startSlide: currentSlide,
-            onSlideAfter: load_game_videos_next_page
+            onSlideAfter: load_game_videos_next_page,
+            infiniteLoop: false,
+            hideControlOnEnd: true
         });
     });
 }
