@@ -433,10 +433,17 @@ a:hover, a:focus, a:active {
   color: #ebd7d7;
 }
 #outContainer header .species ul {
-  padding-left: 322px;
+  padding-left: 262px;
+}
+#outContainer .fixedMenu header .species ul {
+  padding-left: 262px;
 }
 #outContainer header .species li + li {
   padding-left: 12px;
+}
+
+#outContainer header .species li.current a {
+  font-weight: bold;
 }
 /*
 #outContainer header .species li:nth-child(1) a {
@@ -1371,7 +1378,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .main .viewer ul, .main .streaming ul {
   height: 100%;
-  margin-top: 30px;
+  /*margin-top: 30px;*/
   overflow-x: hidden;
 }
 .main .viewer li, .main .streaming li {
@@ -1439,9 +1446,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .viewer {
   padding-left: 15px;
 }
-.main .viewer ul {
+.main .viewer div.scroll {
+  margin-top: 30px;
   height: 354px;
 }
+
 .main .viewer ul li {
   padding-bottom: 6px;
   width: 232px;
@@ -3042,3 +3051,24 @@ li.thread  .stats > dl > dt {
 .social-links #viewport {
   padding: 20px;
 }
+
+.game-item {
+  height: 94px;
+  width: 160px;
+}
+
+.game-item a > img {
+  height:100%;
+  width:100%;
+}
+
+.game-item.active {
+  border:5px solid #e00;
+  height:84px;
+  width:150px;
+}
+
+#streamArea {
+  padding-right: 20px;
+}
+

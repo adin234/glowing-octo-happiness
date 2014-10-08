@@ -9,7 +9,7 @@ $(document).ready(function(){
     $('li.nav-switch-item').each(function(i, item) {
         links.push($(item)[0].outerHTML);
     });
-    console.log(links, origLinks);
+
     $(window).scroll(function(){
         if($(this).scrollTop() > 80){
             nav.addClass("fixedMenu");

@@ -13,8 +13,9 @@ $(window).load(function(){
 });
 
 $(function() {
-    var twitch_ids = utilHash.getHashArr();
-    twitch_ids.forEach(function(item) {
+    var stream_ids = utilHash.getHashArr();
+
+    stream_ids.forEach(function(item) {
         var streamType = item.substr(0,2);
         var streamId = item.substr(2);
         if(streamType == 'TW') {

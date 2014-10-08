@@ -100,6 +100,7 @@ var update_index = function(index_data) {
 		$('#imageSlider').html(html.join(''));
 		$(".bxslider").bxSlider({
 			captions: true,
+			auto: true
 	    });
 	    slider_loaded = 1;
 	}
@@ -193,7 +194,7 @@ var update_index = function(index_data) {
 	html = template($('#recentForumTpl').html(), data);
 	$('#forumSection').html(html);
 
-    $(".video [id^='tab-'], .games [id^='tab-'], .viewer ul, .streaming ul").mCustomScrollbar({
+    $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
       theme:"inset-2",
     });
 

@@ -111,15 +111,19 @@
           <aside>
             <div class="viewer">
               <h2>精選實況咖</h2>
-              <ul class="clearFix" id="featuredUsers">
+              <div class="scroll">
+                <ul class="clearFix" id="featuredUsers">
 
-              </ul>
+                </ul>
+              </div>
             </div>
             <div class="streaming">
               <h2>正在直播</h2>
-              <ul id="streamers">
+              <div class="scroll">
+                <ul id="streamers">
 
-              </ul>
+                </ul>
+              </div>
             </div>
             <div class="social-links">
               <div id="viewport"></div>
@@ -196,7 +200,7 @@
   </li>
 </script>
 <script type="text/html" id="gameTpl">
-  <li><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{GAME}}"></li>
+<li><a href="/games/#!/{{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{GAME}}"></a></li>
 </script>
 <script type="text/html" id="featuredUsersTpl">
   <li>
