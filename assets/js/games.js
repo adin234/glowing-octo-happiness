@@ -178,17 +178,19 @@ var load_game_videos_next_page = function() {
         $("#container-videos").append(html.join(''));
 
         var currentSlide = slider.container_videos.getCurrentSlide();
-        if(currentSlide != slider.container_videos.getSlideCount() - 1) {
-            $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
-                $(this).removeClass('disabled');
-            });
-        }
+
         slider.container_videos.reloadSlider({
             startSlide: currentSlide,
             onSlideAfter: load_game_videos_next_page,
             infiniteLoop: false,
             hideControlOnEnd: true
         });
+
+        if(currentSlide != slider.container_videos.getSlideCount() - 1) {
+            $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
+                $(this).removeClass('disabled');
+            });
+        }
 
     });
 }
