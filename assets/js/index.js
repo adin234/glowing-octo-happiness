@@ -100,6 +100,7 @@ var update_index = function(index_data) {
 		$('#imageSlider').html(html.join(''));
 		$(".bxslider").bxSlider({
 			captions: true,
+			auto: true
 	    });
 	    slider_loaded = 1;
 	}

@@ -3065,3 +3065,8 @@ li.thread  .stats > dl > dt {
   height:84px;
   width:150px;
 }
+
+#streamArea {
+  padding-right: 20px;
+}
+
