@@ -212,11 +212,10 @@ var filter_category = function(cons, context) {
     });
 };
 
-
 var render_page = function() {
-    $(window).trigger('hashchange');
     render_latest_games();
     render_featured_games();
+    $(window).trigger('hashchange');
     $('.tooltip').tooltipster({contentAsHTML: true});
 };
 
@@ -225,9 +224,14 @@ $(window).on('hashchange', function(){
     hash = hash.filter(function(item) {
         return item != "";
     });
+    console.log(hash);
 
     if(hash.length) {
         var id = hash.shift();
+        $('.game-item').each(function(i, item) {
+            $(item).removeClass('active');
+        });
+        $('[data-id='+id+']').parent().addClass('active');
         $('#game-title').html($('[data-id='+id+']').attr('data-name'));
         render_game_videos(id);
     } else {

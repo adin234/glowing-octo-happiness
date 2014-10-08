@@ -433,7 +433,10 @@ a:hover, a:focus, a:active {
   color: #ebd7d7;
 }
 #outContainer header .species ul {
-  padding-left: 322px;
+  padding-left: 262px;
+}
+#outContainer .fixedMenu header .species ul {
+  padding-left: 262px;
 }
 #outContainer header .species li + li {
   padding-left: 12px;
@@ -3045,4 +3048,20 @@ li.thread  .stats > dl > dt {
 
 .social-links #viewport {
   padding: 20px;
+}
+
+.game-item {
+  height: 94px;
+  width: 160px;
+}
+
+.game-item a > img {
+  height:100%;
+  width:100%;
+}
+
+.game-item.active {
+  border:5px solid #e00;
+  height:84px;
+  width:150px;
 }
