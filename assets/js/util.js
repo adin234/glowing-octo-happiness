@@ -10,11 +10,17 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
+    var hash = document.location.hash;
+    if(document.location.pathname.indexOf('/youtuber/')) {
+        var id = window.location.pathname
+            .split('/').filter(function(e){return e;})[1];
+
+    }
 
     $('#viewport').html('');
     $('#fb-root').html('');
     $('#social-buttons').html('');
-    
+
     var html = '<div id="social-buttons">'
             + '<div id="fb-container"></div>'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
