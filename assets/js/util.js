@@ -11,7 +11,8 @@ var template = function (templateHTML, data) {
 var showSocialButtons = function () {
     var link = document.location.href;
 
-    // fix for youtubers 404 page
+    // fix for youtubers 404 page2
+    +3
     if(~document.location.pathname.indexOf('/youtuber/')) {
         var id = window.location.pathname
             .split('/').filter(function(e){return e;})[1];
