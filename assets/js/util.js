@@ -10,11 +10,16 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
-    var hash = document.location.hash;
-    if(document.location.pathname.indexOf('/youtuber/')) {
+
+    // fix for youtubers 404 page
+    if(~document.location.pathname.indexOf('/youtuber/')) {
         var id = window.location.pathname
             .split('/').filter(function(e){return e;})[1];
 
+        var hash = document.location.hash;
+        hash = hash.replace('#!/', '#!/'+id+'/');
+
+        link = origin+'youtuber/share/'+hash;
     }
 
     $('#viewport').html('');
