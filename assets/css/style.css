@@ -1379,7 +1379,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .viewer ul, .main .streaming ul {
   height: 100%;
   /*margin-top: 30px;*/
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 .main .viewer li, .main .streaming li {
   padding-left: 34px;
@@ -1446,7 +1446,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .viewer {
   padding-left: 15px;
 }
-.main .viewer div.scroll {
+.main .viewer div.scroll, .main .streaming div.scroll {
   margin-top: 30px;
   height: 354px;
 }
@@ -1499,9 +1499,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-top: 135px;
   padding-left: 15px;
 }
-.main .streaming ul {
-  height: 242px;
-}
+
 .main .streaming .dynamic {
   background-color: #eeeeee;
   border: 1px solid #9e9e9e;
