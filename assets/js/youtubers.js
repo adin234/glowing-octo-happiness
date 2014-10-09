@@ -79,13 +79,17 @@ var render_featured_games = function (filter) {
     if(items.length != 0) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
-
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-featured-games').html(html.join(''));
-    slider.featured_games.reloadSlider({startSlide: 0});
+
+    slider.featured_games.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
 }
 
-var render_games = function(filter) {
+var render_latest_games = function(filter) {
     var html = [];
     var items = [];
     filter =  new RegExp(filter, 'i');
@@ -105,7 +109,12 @@ var render_games = function(filter) {
 
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#container-latest-games').html(html.join(''));
-    slider.latest_games.reloadSlider({startSlide: 0});
+
+    slider.latest_games.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
 };
 
 var render_new_members = function(filter) {
@@ -191,7 +200,7 @@ var render_popular_members = function(filter) {
 var render_page = function() {
     render_new_members();
     render_popular_members();
-    render_games();
+    render_latest_games();
     render_featured_games();
     $('.tooltip').tooltipster({contentAsHTML: true});
 };
