@@ -183,9 +183,10 @@
   </div>
 </div>
 <script type="text/html" id="sliderTpl">
-  <li>
-    <img src="{{PROVIDER}}?attachments/slide-jpg.{{ATTACHMENT_ID}}/" alt="{{TITLE}}" title="{{TITLE}}">
-      <a href="{{HEADER_LOCATION}}" class="play">Play</a>
+  <li class="slider-item">
+    <img src="{{PROVIDER}}?attachments/slide-jpg.{{ATTACHMENT_ID}}/" alt="{{TITLE}}" title="{{TITLE}}" 
+      onclick="{{ONCLICK}}">
+      <a href="#" class="play" data-vid="{{YOUTUBE_LINK}}">Play</a>
     </li>
 </script>
 <script type="text/html" id="latestVideosTpl">
@@ -243,6 +244,12 @@
     </div>
     <span class="last-message"></span>
   </li>
+</script>
+<script type="text/html" id="playerTpl">
+  <div class="video-player" style="position: absolute;top: 0;bottom: 0;left: 0;height: 100%;width: 100%;background-color: rgba(0,0,0,.4);z-index: 999;">
+    <iframe height="100%" src="{{VIDEO}}" frameborder="0" allowfullscreen="" style="width:80%; margin-left: 10%"></iframe>
+    <a href="javascript:;" class="close remove-multiview" title="Close"></a>
+  </div>
 </script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>

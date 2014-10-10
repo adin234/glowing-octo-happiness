@@ -2334,7 +2334,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   border-color: white;
   color: #f32a2a;
 }
-.stream .close {
+.stream .close, .bx-wrapper .close {
   background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
   border: 2px solid white;
   /*@extend %IEPie */
@@ -2349,7 +2349,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: -14px;
   width: 26px;
 }
-.stream .close:hover, .stream .close:active, .stream .close:focus {
+.bx-wrapper .close {
+  margin-right: 10%;
+}
+.stream .close:hover, .stream .close:active, .stream .close:focus,
+.bx-wrapper .close:hover, .bx-wrapper .close:active, .bx-wrapper .close:focus {
   box-shadow: none;
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.65);
   -webkit-transition: all 0.5s ease;

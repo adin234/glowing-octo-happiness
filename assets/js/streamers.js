@@ -8,7 +8,6 @@ slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
 $(".tabs").tabslet({ animation: true });
 
-
 page_data = $.parseJSON(page_data);
 var hash;
 
@@ -128,6 +127,16 @@ var render_videos = function(filter, game) {
 
     if(!html.length) { html.push('目前沒有影片'); }
     $('#container-videos').html(html.join(''));
+
+    $('#container-videos .uploader > img').on('load', function(e) {
+        if($(this).width() > $(this).height()) {
+            $(this).height('100%');
+            $(this).css('margin-left', -(($(this).width()-68)/2));
+        } else {
+            $(this).width('100%');
+            $(this).css('margin-top', -(($(this).height()-68)/2));
+        }
+    });
     slider.container_videos.reloadSlider();
 };
 

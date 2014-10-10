@@ -1,5 +1,6 @@
-var server              = 'http://127.0.0.1:3000/';
-var origin              = 'http://beta.gamers.tm/';
+//var server              = 'http://127.0.0.1:3000/';
+var server              = 'http://localhost:3000/';
+var origin              = 'http://localhost:8000/';
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';
 
