@@ -34,7 +34,7 @@ $(function() {
     var streamId = twitch.substr(2);
 
     if(streamType == 'TW') {
-        $('#twitchStream').html(template($('#twitch-stream-tpl')
+        $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
         .html(),{twitchid: streamId}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{twitchid: streamId}));
@@ -112,7 +112,7 @@ $(function() {
         });
     }
     if(streamType == 'YT') {
-        $('#twitchStream').html(template($('#youtube-stream-tpl')
+        $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
         .html(),{youtubeid: streamId}));
     }
 

@@ -2458,6 +2458,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 42px;
   right: 0;
   bottom: 0;
+  background: #F2F2F2;
 }
 
 #streamView #functionBar .ad {
@@ -2767,24 +2768,24 @@ div.streamer {
   height: 784px;
 }
 */
-.muti #streamView {
+/*.muti #streamView {
   min-width: 1470px;
   width: 100%;
   position: relative;
-}
-.muti #streamView header {
+}*/
+/*.muti #streamView header {
   z-index: 2;
-}
+}*/
 .muti #streamView h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
 }
-.muti #streamView #functionBar {
+/*.muti #streamView #functionBar {
   height: 874px;
   position: absolute;
   right: 0;
   top: 0;
-}
-.muti #streamView #streamArea {
+}*/
+/*.muti #streamView #streamArea {
   margin-right: 470px;
 }
 .muti #streamView #twitchStream {
@@ -2807,7 +2808,7 @@ div.streamer {
 
 .muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
   height: 40%;
-}
+}*/
 
 #twitchStream #twitchStream:hover .remove-stream {
   display: block;
@@ -2830,11 +2831,11 @@ div.streamer {
   font-size: 0;
 }
 
-.muti #streamView .watchList {
+/*.muti #streamView .watchList {
   margin: 60px 12px;
   width: 1394px;
 }
-
+*/
 .lang_en #streamView header h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
   background-size: 98px auto;
@@ -3453,6 +3454,15 @@ body:nth-child(3) {
 #main-container .information [id^="tab-"] ul em {
   font-weight: bold;
 }
+
+.muti #twitchStream {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  width: 50%;
+}
+
 div.streamer {
   padding: 10px
 }
@@ -3469,3 +3479,14 @@ div.streamer {
   display: none;
 }
 
+#twitchStreamContainer {
+  width: 100%;
+}
+
+div[id^=tab-chat-] {
+  height: 95%;
+}
+
+div[id^=tab-chat-] iframe {
+  height: 95%;
+}
