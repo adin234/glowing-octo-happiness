@@ -14,6 +14,7 @@
 <title>關於我們 | 實況咖</title>
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
+<link href="/assets/css/media.css" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <link href="/assets/css/nivo-slider.css" rel="stylesheet">
@@ -29,18 +30,31 @@
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/function.js"></script>
+<script src="/assets/js/sidr/jquery.sidr.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css">
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		$(".sf-menu").superfish();
 	});
 </script>
+
+
 </head>
 
 <body class="lang_zh_tw">
+
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
+        <div class="mobile_menu">
+          <a id="responsive-menu-button" href="#sidr-main"><i class='fa fa-bars fa-2x'></i></a>
+          <a href="#"><img class="logo_g" src="/assets/images/logo_en_crop.png" /></a>
+          <i class='fa fa-search fa-2x'></i>
+        </div>
+
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
@@ -56,6 +70,18 @@
           </ul>
         </nav>
         <nav class="site sf-menu">
+          <ul class="clearFix" id="mobilenav">
+            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('mobile', this); return false;" title="Mobile Game">Mobile Game</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
+          </ul>
+
           <ul class="clearFix">
             <li class="current"><a href="/index" title="首頁">首頁</a></li>
             <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
@@ -86,7 +112,8 @@
       <div id="content" class="clearFix">
         <div class="heading">
           <article class="about">
-            <h2>關於我們</h2>
+            <h2 class="lang_en">About Us</h2>
+            <h2 class="lang_zh">關於我們</h2>
             <p>Gamers 是一個集結和給予創作音樂人各個利益的 YouTube 社群網!在這裡，每位音樂人都有機會享受我們所提供的服務，包括：免費取得廠商音樂、硬體設備，協助擴大您的頻道，與實況主交流結合，參與遊戲相關活動…等等。 要如何正式成為實況咖一員呢? </p>
             <ol>
               <li>在 YouTube 上有自已所製作的影片及個人頻道。</li>
@@ -181,5 +208,50 @@
     </div>
   </div>
 </div>
+  
+      <div id="navigation" >
+        <div class="profile_div">
+          <a href="edit_prof" class="asf"><i class="fa fa-pencil fa-lg"></i></a>
+          <a href="#" id="prof_pic_a" >
+            <div id="prof_pic">
+              <img id="prof_photo" src="/assets/images/photo.jpg" />
+              <p id="prof_name">Xenia Wang</p>
+            </div>
+          </a>
+          <a href="settings"><i class="fa fa-gear fa-lg"></i></a>
+        </div>
+          <nav class="nav">
+              <ul>
+                  <li><a href="#Home">Home</a></li>
+                  <li><a href="#Forum">Forum</a></li>
+                  <li><a href="#News">News</a></li>
+                  <li><a href="#Shows">Shows</a></li>
+                  <li><a href="#Games">Games</a></li>
+                  <li><a href="#Youtubers">Youtubers</a></li>
+                  <li><a href="#Streams">Streams</a></li>
+                  <li><a href="#About">About Us</a></li>
+                  <li><a href="#Join">Join Us</a></li>
+                  <li><a href="#PC">PC</a>&middot;<a href="#Mobile">Mobile</a></li>
+              </ul>
+          </nav>
+        <div class="slider_footer">
+          <ul>
+                  <li><a href="#facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
+                  <li><a href="#twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
+                  <li><a href="#googleplus"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                  <li><a href="#youtube"><i class="fa fa-youtube-play fa-lg"></i></a></li>
+                  <li>&copy; 2014 freedom!</li>
+          </ul>
+        </div>
+      </div>
+
+  <script>
+      $('#responsive-menu-button').sidr({
+        name: 'sidr-main',
+        source: '#navigation',
+        renaming: false
+      });
+  </script>
+
 </body>
 </html>

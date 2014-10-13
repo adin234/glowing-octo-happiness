@@ -3456,3 +3456,16 @@ body:nth-child(3) {
 div.streamer {
   padding: 10px
 }
+
+.mobile_menu {
+  display: none;
+}
+
+.lang_en {
+  display: none !important;
+}
+
+#mobilenav {
+  display: none;
+}
+
