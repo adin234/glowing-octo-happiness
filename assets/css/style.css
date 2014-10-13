@@ -3070,3 +3070,15 @@ li.thread  .stats > dl > dt {
   padding-right: 20px;
 }
 
+.mobile_menu {
+  display: none;
+}
+
+.lang_en {
+  display: none !important;
+}
+
+#mobilenav {
+  display: none;
+}
+
