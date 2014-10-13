@@ -27,135 +27,22 @@
 <script type="text/javascript" src="/assets/js/config.js"></script>
 <script type="text/javascript" src="/assets/js/get.gamer_stream.data.js"></script>
 </head>
-<body class="lang_zh_tw">
-<div id="wrapper">
-  <div id="streamView">
-    <header>
-      <nav>
-        <h1><a href="/index">實況咖</a></h1>
-        <ul>
-          <li><a href="/index" title="回首頁" target="_blank">回首頁</a></li>
-          <li><a href="http://community.gamers.tm/zh/index.php" title="論壇" target="_blank">論壇</a></li>
-          <li><a href="/shows" title="影片" target="_blank">影片</a></li>
-          <li><a href="/streamers" title="直播" target="_blank">直播</a></li>
-        </ul>
-      </nav>
-       <select id="view-resize">
-        <option value="x1">X1</option>
-        <option value="x2">X2</option>
-        <option value="x3">X3</option>
-      </select>
-      <a href="http://zh.freedom.tm" title="加入我們" target="_blank">加入我們</a></header>
-    <div id="functionBar">
-      <div id="twitchTalk"></div>
-      <div class="ad"></div>
-    </div>
+<body class="lang_zh_tw streams">
+
+<div id="stream-container">
+  <div id="main-container">
     <div id="streamArea">
       <div id="twitchStream">
-        <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-          <param name="allowFullScreen" value="true" />
-          <param name="allowScriptAccess" value="always" />
-          <param name="allowNetworking" value="all" />
-          <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-          <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
-        </object>
+        <div class="videoWrapper">
+          <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
+            <param name="allowFullScreen" value="true" />
+            <param name="allowScriptAccess" value="always" />
+            <param name="allowNetworking" value="all" />
+            <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+            <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
+          </object>
+        </div>
       </div>
-      <!--
-      <div class="watchList">
-        <h2>Streams</h2>
-        <ul class="bxslider clearFix">
-          <li><a href="javascript:;" title="{stream title}" class="current"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Destroy</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <h3>Protect</h3>
-            <dl>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-          <li><a href="javascript:;" title="{stream title}"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-            <dl>
-              <h3>Destroy</h3>
-              <dt>Posted: </dt>
-              <dd>10/ 9/ 08</dd>
-              <dt>Runtime: </dt>
-              <dd>1:23</dd>
-            </dl>
-            </a></li>
-        </ul>
-      </div> -->
       <aside class="clearFix">
         <div class="streamer">
           <h2>About <span class="streamer-name"></span></h2>
@@ -170,75 +57,98 @@
               <h2><a href="#tab-2">實況咖活動</a></h2>
             </li>
           </ul>
+
           <div id="tab-1">
             <ul>
               <li class="clearFix">
                 <h3>MON</h3>
                 <ul>
-                  <li id="monSched" class="clearFix">
-                  </li>
+                  <li id="monSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>TUE</h3>
                 <ul>
-                  <li id="tueSched" class="clearFix">
-                  </li>
+                  <li id="tueSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>WED</h3>
                 <ul>
-                  <li id="wedSched" class="clearFix">
-                  </li>
+                  <li id="wedSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>THU</h3>
                 <ul>
-                  <li id="thuSched" class="clearFix">
-                  </li>
+                  <li id="thuSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>FRI</h3>
                 <ul>
-                  <li id="friSched" class="clearFix">
-                  </li>
+                  <li id="friSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>SAT</h3>
                 <ul>
-                  <li id="satSched" class="clearFix">
-                  </li>
+                  <li id="satSched" class="clearFix"></li>
                 </ul>
               </li>
               <li class="clearFix">
                 <h3>SUN</h3>
                 <ul>
-                  <li id="sunSched" class="clearFix">
-                  </li>
+                  <li id="sunSched" class="clearFix"></li>
                 </ul>
               </li>
-            </ul>
-          </div>
-          <div id="tab-2"></div>
+          </ul>
         </div>
+        <div id="tab-2"></div>
       </aside>
+    </div>
+  </div>
+
+  <div id="side-container">
+    <div id="streamView">
+      <div id="functionBar">
+        <header>
+        <nav>
+          <h1><a href="/index">實況咖</a></h1>
+          <ul>
+            <li><a href="/index" title="回首頁" target="_blank">回首頁</a></li>
+            <li><a href="http://community.gamers.tm/zh/index.php" title="論壇" target="_blank">論壇</a></li>
+            <li><a href="/shows" title="影片" target="_blank">影片</a></li>
+            <li><a href="/streamers" title="直播" target="_blank">直播</a></li>
+          </ul>
+        </nav>
+        <select id="view-resize">
+          <option value="x1">X1</option>
+          <option value="x2">X2</option>
+          <option value="x3">X3</option>
+        </select>
+        <a href="http://zh.freedom.tm" title="加入我們" target="_blank">加入我們</a>
+      </header>
+        <div id="twitchTalk"></div>
+        <div class="ad"></div>
+      </div>
     </div>
   </div>
 </div>
 
+</body>
+
 <script type="text/html" id="twitch-stream-tpl">
 <div id="twitchStream">
-  <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-    <param name="allowFullScreen" value="true" />
-    <param name="allowScriptAccess" value="always" />
-    <param name="allowNetworking" value="all" />
-    <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-    <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
-  </object>
+  <div class="videoWrapper">
+    <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
+      <param name="allowFullScreen" value="true" />
+      <param name="allowScriptAccess" value="always" />
+      <param name="allowNetworking" value="all" />
+      <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+      <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
+    </object>
+  </div>
 </div>
 </script>
 <script type="text/html" id="youtube-stream-tpl">
@@ -253,7 +163,7 @@
 </div>
 </script>
 <script type="text/html" id="twitch-chat-tpl">
-<iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
+<iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="100%">
 </iframe>
 </script>
 
@@ -270,5 +180,5 @@
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/util.js"></script>
 <script type="text/javascript" src="/assets/js/gamer_stream.js"></script>
-</body>
+
 </html>

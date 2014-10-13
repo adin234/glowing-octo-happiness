@@ -1,4 +1,13 @@
 $(function() {
+    var information_masonry = function() {
+        $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
+
+        var msnry = new Masonry( '#tab-2', {
+          columnWidth: 350,
+          itemSelector: '.panel'
+        });
+    }
+
     page_data = $.parseJSON(page_data);
     $(".bxslider").bxSlider({
 		infiniteLoop: false,
@@ -7,14 +16,12 @@ $(function() {
 		maxSlides: 4,
 		slideWidth: 298,
 	});
+
 	$(".tabs").tabslet({
 		animation: true,
 	}).on('_after', function(e) {
 		if(e.target.id == 'tab-2') {
-			var msnry = new Masonry( '#tab-2', {
-			  columnWidth: 350,
-			  itemSelector: '.panel'
-			});
+            information_masonry();
 		}
 	});
 
@@ -108,5 +115,9 @@ $(function() {
         $('#twitchStream').html(template($('#youtube-stream-tpl')
         .html(),{youtubeid: streamId}));
     }
+
+    $('#streamArea').mCustomScrollbar({
+      theme:"inset-2",
+    });
 
 });
