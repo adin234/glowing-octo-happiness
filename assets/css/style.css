@@ -2810,7 +2810,7 @@ div.streamer {
   height: 40%;
 }*/
 
-#twitchStream #twitchStream:hover .remove-stream {
+#twitchStream:hover .remove-stream {
   display: block;
 }
 
@@ -3108,6 +3108,7 @@ body.streams #streamArea {
   left:0;
   right:0;
   margin: 10px 0 15px 15px;
+  overflow: hidden;
 }
 
 body.streams #side-container {
@@ -3257,9 +3258,9 @@ body:nth-child(3) {
   position: relative;
 }
 #main-container .watchList h2:before, #main-container .watchList h2:after {
-  background-image: -moz-linear-gradient(left, transparent, #2a7998, transparent);
-  background-image: -webkit-linear-gradient(left, transparent, #2a7998 50%, transparent);
-  background-image: linear-gradient(to right, transparent, #2a7998, transparent);
+  /*background-image: -moz-linear-gradient(left, transparent, #2a7998, transparent);*/
+  /*background-image: -webkit-linear-gradient(left, transparent, #2a7998 50%, transparent);*/
+  /*background-image: linear-gradient(to right, transparent, #2a7998, transparent);*/
   content: "\00A0";
   display: block;
   position: absolute;
@@ -3274,15 +3275,17 @@ body:nth-child(3) {
   bottom: -1px;
 }
 #main-container .watchList li {
-  height: 107px;
+  height: 110px;
+  width:100px;
 }
 #main-container .watchList li a {
   box-sizing: border-box;
   display: block;
-  height: 74px;
-  margin: 16.5px 28.75px 0;
+  height: 77px;
+  margin: 16.5px 15.75px 0;
   padding: 6px 9px;
   text-decoration: none;
+  /*width: 129px;*/
 }
 #main-container .watchList li a.current,
 #main-container .watchList li a:hover {
@@ -3318,7 +3321,9 @@ body:nth-child(3) {
   -o-transform: scale(1);
 }
 #main-container .watchList li h3 {
-  padding-top: 5px;
+  float: left;
+  font-size: 12px;
+  width: 135px;
 }
 #main-container .watchList li dt {
   float: left;
@@ -3340,9 +3345,14 @@ body:nth-child(3) {
 #main-container .watchList .bx-prev:before, #main-container .watchList .bx-next:before {
   background-color: #212121;
   content: "\00A0";
-  height: 107px;
+  height: 106px;
   position: absolute;
   width: 1px;
+}
+#main-container .watchList .bx-prev,
+#main-container .watchList .bx-next {
+  text-indent: -9999px;
+  height: 106px;
 }
 #main-container .watchList .bx-prev {
   background-position: -67px 40px;
@@ -3364,7 +3374,7 @@ body:nth-child(3) {
   left: 0;
 }
 #main-container .watchList .bx-next.disabled {
-  background-position: -26px 40px;
+  background-position: -26px 54px;
 }
 #main-container .watchList .disabled {
   cursor: default;

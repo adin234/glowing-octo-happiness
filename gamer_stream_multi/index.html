@@ -16,6 +16,7 @@
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+<script src="/assets/js/config.js"></script>
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -49,6 +50,17 @@
   <div id="main-container">
     <div id="streamArea">
       <div id="twitchStreamContainer" class="clearFix"></div>
+      <div class="watchList" style="visibility:hidden">
+        <h2>Streams</h2>
+        <ul class="bxslider clearFix" id="streamContainer">
+         <!--  <li>
+            <a href="javascript:;" title="{stream title}" data-id="TWqksniper">
+              <img src="images/stream_thumb.png" width="110" height="62" al t="{stream title}">
+              <h3>Protect</h3>
+            </a>
+          </li> -->
+        </ul>
+     </div>
     </div>
   </div>
 
@@ -91,17 +103,13 @@
 
 <script type="text/html" id="streamlist-item-tpl">
 <li>
-  <a href="javascript:;" title="{stream title}" class="current"><img src="images/stream_thumb.png" width="110" height="62" alt="{stream title}">
-  <h3>Protect</h3>
-  <dl>
-    <dt>Posted: </dt>
-    <dd>10/ 9/ 08</dd>
-    <dt>Runtime: </dt>
-    <dd>1:23</dd>
-  </dl>
+  <a href="javascript:;" class="{{class}}" title="{{TITLE}}" data-id="{{ID}}">
+    <img src="{{THUMB}}" width="110" height="62" al t="{{TITLE}}">
+    <h3>{{TITLE}}</h3>
   </a>
 </li>
 </script>
+
 <script type="text/html" id="twitch-stream-tpl">
 <div id="twitchStream" class="stream-item">
   <div class="videoWrapper">
@@ -112,7 +120,7 @@
       <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
       <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
     </object>
-    <a href="javascript:;" class="close remove-stream" title="Close">Close</a>
+    <a href="javascript:;" class="close remove-stream" data-id="TW{{TWITCHID}}" title="Close">Close</a>
   </div>
 </div>
 </script>
@@ -120,7 +128,7 @@
 <div id="twitchStream" class="stream-item">
   <div class="videoWrapper">
     <object height="100%" width="100%" id="live_embed_player_flash"><param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="50%" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-    <a href="javascript:;" class="close remove-stream" title="Close">Close</a>
+    <a href="javascript:;" class="close remove-stream" data-id="YT{{YOUTUBEID}}" title="Close">Close</a>
   </div>
 </div>
 </script>

@@ -186,8 +186,8 @@ var utilHash = {
         apply = typeof apply == 'undefined' ? true : false;
 
         var hash = window.location.hash;
-
-        if(hash.substr(1) != '!') {
+        console.log(hash,hash[1] != '!');
+        if(hash[1] != '!') {
             hash = hash.replace('#', '#!');
         }
 
@@ -200,6 +200,20 @@ var utilHash = {
         }
 
        return hash_string;
+    },
+    'removeHash': function(string, apply) {
+         apply = typeof apply == 'undefined' ? true : false;
+
+         var hash = window.location.hash;
+
+         var hash_string = hash.replace('/'+string, '');
+         console.log(apply);
+         if(apply) {
+            console.log(123);
+              window.location.hash = hash_string;
+         }
+
+        return hash_string;
     },
     'buildHash' : function(hashArr) {
         hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
