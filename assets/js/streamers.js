@@ -8,7 +8,6 @@ slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
 $(".tabs").tabslet({ animation: true });
 
-
 page_data = $.parseJSON(page_data);
 var hash;
 
@@ -38,7 +37,9 @@ var render_featured_games = function (filter) {
     if(items.length != 0) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
+
     if(!html.length) { html.push('目前沒有遊戲'); }
+
     $('#container-featured-games').html(html.join(''));
 
     slider.featured_games.reloadSlider({
@@ -139,9 +140,11 @@ var render_videos = function(filter, game, data) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('目前沒有影片'); }
+    if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有影片'); }
 
-    if(!data) {
+    if(!data
+    || ($('#container-videos').html().trim().length !== 0
+        && $('#container-videos').children().length == 0)) {
         $('#container-videos').html(html.join(''));
     } else {
         $('#container-videos').append(html.join(''));
@@ -151,6 +154,16 @@ var render_videos = function(filter, game, data) {
 
     slider.container_videos.reloadSlider({
         activeSlide: currentSlide
+    });
+
+    $('#container-videos .uploader > img').on('load', function(e) {
+        if($(this).width() > $(this).height()) {
+            $(this).height('100%');
+            $(this).css('margin-left', -(($(this).width()-68)/2));
+        } else {
+            $(this).width('100%');
+            $(this).css('margin-top', -(($(this).height()-68)/2));
+        }
     });
 };
 
@@ -271,6 +284,7 @@ $(window).on('hashChange', function() {
 var render_page = function() {
     render_latest_games();
     render_featured_games();
+    render_videos();
     $('.tooltip').tooltipster({contentAsHTML: true});
     $(window).trigger('hashchange');
     get_youtube_streams();

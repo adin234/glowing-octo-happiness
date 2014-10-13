@@ -29,8 +29,21 @@ $(document).ready(function() {
 		index_show_streamers(streamersList);
 	});
 
+	$(document).on('click', '.slider-item .play', function(e) {
+		var vid = $(this).attr('data-vid');
+		if(vid.trim().length) {
+			vid = vid.split('?')[1].split('=');
+			vid = vid[vid.indexOf('v')+1].split('#')[0];
+			var html = template($('#playerTpl').html(), { video: '//www.youtube.com/embed/'+vid+'?autoplay=1' });
+			$('#container .bx-wrapper').prepend(html);
+		}
+	});
+	$(document).on('click', '.bx-wrapper .close', function(e) {
+		$('#container .bx-wrapper .video-player').remove();
+	});
 	showSocialButtons();
 });
+
 
 var index_show_streamers = function(streamersList) {
 	var html = [];
@@ -94,6 +107,7 @@ var update_index = function(index_data) {
 
 	if(!slider_loaded) {
 		index_data.slider.forEach(function(item, i){
+			item.onclick = item.header_location ? "window.location='"+item.header_location+"'" : '';
 			item.provider = attachments_server;
 			html.push(template($('#sliderTpl').html(), item));
 		});

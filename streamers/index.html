@@ -141,10 +141,10 @@
           </div>
         </div>
       </div>
-      <footer class="clearFix">
+     <footer class="clearFix">
         <nav>
           <ul class="en">
-            <li><a href="/index">首頁</a></li>
+            <li><a href="/index"></a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
@@ -168,7 +168,7 @@
   </div>
 </div>
 <script type="text/html" id="gameTpl">
-<li><a href="#!/{{ID}}" data-id="{{ID}}" class="game" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}"></a></li>
+<li><a href="#!/{{ID}}" data-id="{{ID}}" class="game" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 
 </script>
 <script type="text/html" id="gameContainerTpl">
@@ -180,7 +180,9 @@
     data-streamidraw="{{IDRAW}}" class="addToMultiview addTo switch">Add to multiview</a>
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
+    <div style="width:68px;height:67px;overflow:hidden;position:absolute" class="uploader">
+      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" alt="Uploaded by" class="">
+    </div>
     <ul>
         <li><em>觀看次數：</em>{{VIEWS}}</li>
         <li>
@@ -193,7 +195,9 @@
 <li class="{{LIVE}}" data-streamid="{{ID}}" data-streamidraw="{{IDRAW}}">
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
+    <div style="width:68px;height:67px;overflow:hidden;position:absolute" class="uploader">
+      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" alt="Uploaded by" class="">
+    </div>
     <ul>
         <li><em>觀看次數：</em>{{VIEWS}}</li>
         <li>

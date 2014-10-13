@@ -11,10 +11,22 @@ var template = function (templateHTML, data) {
 var showSocialButtons = function () {
     var link = document.location.href;
 
+    // fix for youtubers 404 page2
+    +3
+    if(~document.location.pathname.indexOf('/youtuber/')) {
+        var id = window.location.pathname
+            .split('/').filter(function(e){return e;})[1];
+
+        var hash = document.location.hash;
+        hash = hash.replace('#!/', '#!/'+id+'/');
+
+        link = origin+'youtuber/share/'+hash;
+    }
+
     $('#viewport').html('');
     $('#fb-root').html('');
     $('#social-buttons').html('');
-    
+
     var html = '<div id="social-buttons">'
             + '<div id="fb-container"></div>'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
@@ -139,7 +151,7 @@ var utilCookie = {
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
         var expires = "expires="+d.toUTCString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
+        document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
     },
     get : function (cname) {
         var name = cname + "=";
