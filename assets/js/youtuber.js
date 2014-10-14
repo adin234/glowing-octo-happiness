@@ -29,5 +29,4 @@ $(window).load(function(){
 			$('.live-button').attr('href', liveStreamLink).show();
 		}
 	});
-	utilLoader.hide();
 });

@@ -115,6 +115,7 @@ var showVideo = function(videoId) {
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
+    utilLoader.hide();
   }
 };
 

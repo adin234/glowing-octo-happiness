@@ -27,7 +27,7 @@ $(function() {
     var streamId = twitch.substr(2);
 
     if(streamType == 'TW') {
-        $('#twitchStream').html(template($('#twitch-stream-tpl')
+        $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
         .html(),{twitchid: streamId}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{twitchid: streamId}));
@@ -41,8 +41,14 @@ $(function() {
                 $('img[src=""]').hide();
             },100);
         });
+    }
 
-        $('#about-streamer').html(page_data.about);
+    if(streamType == 'YT') {
+        $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
+        .html(),{youtubeid: streamId}));
+    }
+
+    $('#about-streamer').html(page_data.about);
 
         $('.streamer .streamer-name').html(page_data.custom_title);
 
@@ -103,10 +109,4 @@ $(function() {
                 $(this).parent().parent().hide();
             }
         });
-    }
-    if(streamType == 'YT') {
-        $('#twitchStream').html(template($('#youtube-stream-tpl')
-        .html(),{youtubeid: streamId}));
-    }
-
 });

@@ -208,6 +208,25 @@ var update_index = function(index_data) {
 	html = template($('#recentForumTpl').html(), data);
 	$('#forumSection').html(html);
 
+	html = [];
+	index_data.threads.forEach(function(item, i){
+		var data = {
+			posterimage: attachments_server+'data/avatars/l/0/'
+				+item.last_post_user_id+'.jpg?'+(+new Date),
+			title: item.title,
+			replies: item.reply_count,
+			views: item.view_count,
+			link: community+'index.php?threads/'+item.title+'.'+item.thread_id+'/',
+		}
+		html.push(template($('#recentForumItemTpl').html(), data));
+	});
+	if(!html.length) { html.push('No Recent Forum'); }
+	var data = {
+		threads: html.join('')
+	}
+	html = template($('#recentForumTpl').html(), data);
+	$('#hotForumSection').html(html);
+
     $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
       theme:"inset-2",
     });
