@@ -112,14 +112,14 @@
           </div>
           <div method="post" class="search">
             <div></div>
-            <input type="text" width="" placeholder="收尋 Streamer" id="txtbox-search-videos">
+            <input type="text" width="" placeholder="搜尋 Streamer" id="txtbox-search-videos">
             <div class="video stream tabs">
               <ul class="tab clearFix">
                 <li>
                   <h2><a href="#tab-2-1" id="game-title">直播</a></h2>
                 </li>
                 <li>
-                  <h2><a href="#tab-2-2" id="game-title">Multiview</a></h2>
+                  <h2><a href="#tab-2-2" id="game-title">Multiview <small id="multiview-count">0</small></a></h2>
                 </li>
               </ul>
               <div id="tab-2-1">
@@ -130,7 +130,7 @@
                 </div>
               </div>
               <div id="tab-2-2">
-               <a href="#" id="watch-now-link" title="Watch Now" class="watchNow">現在觀看</a>
+               <a href="#" id="watch-now-link" title="Watch Now" class="watchNow disabled">現在觀看</a>
                 <div class="collection">
                   <div class="bxslider videos" id="container-multiview">
                     <ul class="list clearFix"></ul>
@@ -168,7 +168,7 @@
   </div>
 </div>
 <script type="text/html" id="gameTpl">
-<li><a href="#!/{{ID}}" data-id="{{ID}}" class="game" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}"></a></li>
+<li><a href="#!/{{ID}}" data-id="{{ID}}" class="game" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 
 </script>
 <script type="text/html" id="gameContainerTpl">

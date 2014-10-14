@@ -37,7 +37,9 @@ var render_featured_games = function (filter) {
     if(items.length != 0) {
         html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
     }
+
     if(!html.length) { html.push('目前沒有遊戲'); }
+
     $('#container-featured-games').html(html.join(''));
 
     slider.featured_games.reloadSlider({
@@ -82,7 +84,7 @@ var filter_game = function(input) {
     render_latest_games(filterString);
 };
 
-var render_videos = function(filter, game, data) {
+var render_videos = function(filter, game) {
     var html = [];
     var items = [];
     var ids = [];
@@ -93,16 +95,13 @@ var render_videos = function(filter, game, data) {
     var filterGame = (typeof game == 'undefined' || game == '' || game == 'all') ? 'all' : $('a.game[data-id='+game+']').first().attr('data-name');
     var filterGameRegExp = new RegExp(filterGame, 'i');
 
-    if(!data) {
-        data = page_data.streamers;
-    }
+    var itemToComplete = 9;
 
-    data.forEach(function (item, i) {
+    page_data.streamers.forEach(function (item, i) {
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined' && !~item.twitch.channel.status.search(filterRegExp)) return;
             item.twitchid = item.field_value[item.field_value.length-1];
             // dont render if already active
-            if(~activeMultiView.indexOf(item.twitchid)) return;
             if(filterGame != 'all' && ~item.twitch.game.trim().search(filterGameRegExp)) return;
             item.id = 'TW'+item.twitchid;
             item.idraw = item.twitchid;
@@ -114,7 +113,6 @@ var render_videos = function(filter, game, data) {
             item.bust = +new Date();
             item.views = item.twitch.viewers;
         } else {
-            if(~activeMultiView.indexOf(item.youtube.id)) return;
             item.id = 'YT'+item.youtube.id;
             item.idraw= item.youtube.id;
             item.live = 'live';
@@ -125,6 +123,8 @@ var render_videos = function(filter, game, data) {
             item.bust = +new Date();
             item.views = '0';
         }
+
+        if(~activeMultiView.indexOf(item.id)) return;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -138,13 +138,9 @@ var render_videos = function(filter, game, data) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('目前沒有影片'); }
+    if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有影片'); }
 
-    if(!data) {
-        $('#container-videos').html(html.join(''));
-    } else {
-        $('#container-videos').append(html.join(''));
-    }
+    $('#container-videos').html(html.join(''));
 
     var currentSlide = slider.container_videos.getCurrentSlide();
 
@@ -168,7 +164,7 @@ var get_youtube_streams = function(filter, game, fetch) {
         result.streamers.forEach(function(item) {
             page_data.streamers.push(item);
         });
-        render_videos(filter, game, result.streamers);
+        render_videos();
     });
 }
 
@@ -251,7 +247,18 @@ var get_active_for_multiview = function() {
 var update_watch_multiview = function() {
     var ids = get_active_for_multiview();
     var stream_link = '/gamer_stream_multi/';
-    $('#watch-now-link').attr('href', stream_link+utilHash.buildHash(ids));
+    var watch_now_button = $('#watch-now-link');
+    var videos = $('#container-multiview ul.list > li');
+
+    if(videos.length) {
+        watch_now_button.removeClass('disabled');
+    } else {
+        watch_now_button.addClass('disabled');
+    }
+
+    $('#multiview-count').html(videos.length);
+
+    watch_now_button.attr('href', stream_link+utilHash.buildHash(ids));
 };
 
 $('#txtbox-search-games').on('keydown', function(e) {
@@ -267,10 +274,13 @@ $('#container-videos').on('click', '.addToMultiview', add_to_multiview);
 $('#container-multiview').on('click', '.remove-multiview', function() {
     var $this = $(this);
     var id = $this.parent('li').attr('data-id');
+
     $('#container-videos a.addToMultiview[data-twitch='+id+']').parent('li').show();
 
     $this.parent('li').remove();
+
     update_watch_multiview();
+    render_videos();
 });
 
 $(window).on('hashChange', function() {
