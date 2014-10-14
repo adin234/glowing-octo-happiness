@@ -2346,6 +2346,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   right: -5px;
   top: -14px;
   width: 26px;
+  z-index: 5000;
 }
 .bx-wrapper .close {
   margin-right: 10%;
@@ -3499,4 +3500,15 @@ div[id^=tab-chat-] {
 
 div[id^=tab-chat-] iframe {
   height: 95%;
+}
+
+.stream .watchNow.disabled {
+  border: 3px solid #fff;
+}
+
+.tab > li a small {
+  font-size: 16px;
+  color: #e00;
+  vertical-align: super;
+  font-weight: bold;
 }
