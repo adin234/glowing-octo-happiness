@@ -150,14 +150,22 @@
             </ul>
           </div>
         </div>
-        <div class="heading">
-          <h2>熱門論壇</h2>
-          <div id="forumSection">
+        <div class="tabs">
+          <ul class="tab clearFix">
+            <li>
+              <h2><a href="#tab-3-1">熱門論壇</a></h2>
+            </li>
+            <li>
+              <h2><a href="#tab-3-2">Hottest Threads</a></h2>
+            </li>
+          </ul>
+          <div id="tab-3-1">
+            <div id="forumSection">
+            </div>
           </div>
-        </div>
-        <div class="heading">
-          <h2>Hottest Threads</h2>
-          <div id="hotForumSection">
+          <div id="tab-3-2">
+            <div id="hotForumSection">
+            </div>
           </div>
         </div>
       </div>
@@ -221,8 +229,8 @@
 </script>
 <script type="text/html" id="streamersTpl">
   <li onClick="window.location.href = origin+'{{LINK}}'">
-    <div class="dynamic">{{GAME}} / {{IDRAW}}</div>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
+    <div class="dynamic">{{GAME}} / {{USERNAME}}</div>
+    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="{{GAME}} / {{USERNAME}}" class="safeloading" onError="fixErrorImg(this);">
   </li>
 </script>
 <script type="text/html" id="recentForumTpl">

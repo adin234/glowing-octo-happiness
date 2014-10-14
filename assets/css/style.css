@@ -3436,11 +3436,11 @@ body:nth-child(3) {
   background-color: #464646;
   border: 1px solid #898989;
   float: left;
-  height: 30px;
   line-height: 30px;
   padding: 0 14px;
   position: relative;
   text-transform: uppercase;
+  max-width: 216px;
 }
 #main-container .information [id^="tab-"] ul ul li:before {
   background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
