@@ -50,7 +50,9 @@ var format_stream_item = function(item) {
         item.views = '0';
     }
 
-    if($.inArray(item.id, active_streams)) {
+    console.log(active_streams, item.id, $.inArray(item.id, active_streams));
+
+    if($.inArray(item.id, active_streams) + 1) {
         item.class='current'
     }
 
