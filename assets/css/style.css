@@ -100,6 +100,7 @@ footer > ul li a,
 
 #outContainer header .species a:hover{
   font-weight: 700;
+  color: #fff;
 }
 
 /*%IEPie
@@ -444,6 +445,7 @@ a:hover, a:focus, a:active {
 
 #outContainer header .species li.current a {
   font-weight: bold;
+  color: #fff;
 }
 /*
 #outContainer header .species li:nth-child(1) a {
@@ -528,7 +530,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -789px;
 }*/
 #outContainer header .species a {
-  color: #ebd7d7;
+  color: #000;
   display: inline-block;
 }
 #outContainer header .site {
