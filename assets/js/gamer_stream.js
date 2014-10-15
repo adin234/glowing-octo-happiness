@@ -37,7 +37,12 @@ $(function() {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
         .html(),{twitchid: streamId}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
-            .html(),{twitchid: streamId, advert: page_data.custom_fields.advertisement}));
+            .html(),{
+                twitchid: streamId,
+                advert: page_data.custom_fields 
+                    && page_data.custom_fields.advertisement
+            }
+        ));
 
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
@@ -123,22 +128,25 @@ $(function() {
 });
 
 var resizeChat = function(size) {
-    if(size === 'full') {
-        $('#advertisement-container')
-            .css('overflow', 'auto')
-            .css('height', '')
-            .show();
-        $('#twitch-container').height(
-            $('#twitch-container').parent().height()
-            -$('#advertisement-container').height()
-        );
-    } else {
-        $('#twitch-container').height(
-            $('#twitch-container').parent().height()
-            -100
-        );
-        $('#advertisement-container')
-            .css('overflow', 'hidden')
-            .css('height', '100');
+    if(page_data.custom_fields 
+        && page_data.custom_fields.advertisement) {
+        if(size === 'full') {
+            $('#advertisement-container')
+                .css('overflow', 'auto')
+                .css('height', '')
+                .show();
+            $('#twitch-container').height(
+                $('#twitch-container').parent().height()
+                -$('#advertisement-container').height()
+            );
+        } else {
+            $('#twitch-container').height(
+                $('#twitch-container').parent().height()
+                -100
+            );
+            $('#advertisement-container')
+                .css('overflow', 'hidden')
+                .css('height', '100');
+        }
     }
 }
