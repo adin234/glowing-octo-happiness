@@ -122,23 +122,36 @@ $(function() {
     });
 });
 
-var resizeChat = function(size) {
-    if(size === 'full') {
-        $('#advertisement-container')
+var toggleChat = function() {
+    var advertisementContainer = $('#advertisement-container');
+    var twitchContainer = $('#twitch-container');
+    var size = advertisementContainer.attr('data-status');
+    var toggleButton = advertisementContainer.children('.minify-advert');
+
+    if(size !== 'full') {
+        advertisementContainer
             .css('overflow', 'auto')
             .css('height', '')
-            .show();
-        $('#twitch-container').height(
-            $('#twitch-container').parent().height()
-            -$('#advertisement-container').height()
+            .show()
+            .attr('data-status', 'full');
+
+        twitchContainer.height(
+            twitchContainer.parent().height()
+            -advertisementContainer.height()
         );
+
+        toggleButton.html('MINIFY');
+
     } else {
-        $('#twitch-container').height(
-            $('#twitch-container').parent().height()
+        twitchContainer.height(
+            twitchContainer.parent().height()
             -100
         );
-        $('#advertisement-container')
+        advertisementContainer
             .css('overflow', 'hidden')
-            .css('height', '100');
+            .css('height', '100')
+            .attr('data-status', 'minified');
+
+        toggleButton.html('EXPAND');
     }
 }
