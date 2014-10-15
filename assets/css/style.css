@@ -3519,3 +3519,8 @@ div[id^=tab-chat-] iframe {
   vertical-align: super;
   font-weight: bold;
 }
+
+#advertisement-container {
+  text-align: center;
+  display: none;
+}
