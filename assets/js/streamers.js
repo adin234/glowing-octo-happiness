@@ -3,8 +3,8 @@ var con = 'all';
 
 
 $(".sf-menu").superfish();
-slider.featured_games = $("#container-featured-games").bxSlider();
-slider.latest_games = $("#container-latest-games").bxSlider();
+// slider.featured_games = $("#container-featured-games").bxSlider();
+// slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
 $(".tabs").tabslet({ animation: true });
 
@@ -288,8 +288,8 @@ $(window).on('hashChange', function() {
 });
 
 var render_page = function() {
-    render_latest_games();
-    render_featured_games();
+    // render_latest_games();
+    // render_featured_games();
     render_videos();
     $('.tooltip').tooltipster({contentAsHTML: true});
     $(window).trigger('hashchange');
