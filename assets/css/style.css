@@ -3327,6 +3327,11 @@ body:nth-child(3) {
   float: left;
   font-size: 12px;
   width: 135px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 #main-container .watchList li dt {
   float: left;

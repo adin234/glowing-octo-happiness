@@ -85,6 +85,9 @@ var render_stream_video = function(item) {
         $('#twitchStreamContainer').append(template($('#twitch-stream-tpl').html(),{twitchid: streamId}));
         $('#twitch-chat-frame-container').append(template($('#twitch-chat-tpl').html(),{twitchid: streamId}));
         $('#twitch-chat-tab-container').append(template($('#twitch-chat-tab-tpl').html(),{twitchid: streamId}));
+        $(".tabs").tabslet({
+            animation: true,
+        });
     }
     if(streamType == 'YT') {
         $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(),{youtubeid: streamId}));
