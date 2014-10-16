@@ -1835,8 +1835,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .videoRelated [id^="tab-"] {
   margin: 30px 0 0 15px;
   overflow: hidden;
-  height: 615px;
-  overflow-y: scroll;
+  height: 590px;
   border-bottom: 1px solid #9c9c9c;
 }
 .videoRelated [id^="tab-"]:nth-of-type(3) {

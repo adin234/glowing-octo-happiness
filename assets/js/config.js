@@ -22,6 +22,9 @@ var utilLoader = {
         document.body.appendChild(loaderDiv);
     },
     hide: function() {
-        document.getElementById('loaderIcn').remove();
+        var loaderIcn = document.getElementById('loaderIcn');
+        if(typeof loaderIcn != 'undefined') {
+            loaderIcn.remove();
+        }
     }
 };

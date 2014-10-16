@@ -7,6 +7,8 @@ var player;
 var filterTags = false;
 var playlistIds = [];
 
+$('#tab-1').mCustomScrollbar({theme: 'inset-2'});
+$('#tab-2').mCustomScrollbar({theme: 'inset-2'});
 
 /* YOUTUBE SHIZZ */
 var tag = document.createElement('script');
@@ -99,7 +101,7 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     $('.videoHeading h3').html(video.snippet.title);
-    $('#tab-1').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
+    $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
     $('.videoItem').removeClass('current');
     $('#video-'+videoId).addClass('current');
     $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
@@ -120,6 +122,7 @@ var showVideo = function(videoId) {
     updatePrevNext();
     utilLoader.hide();
   }
+
 };
 
 var getComments = function (videoId) {
@@ -140,7 +143,7 @@ var getComments = function (videoId) {
       return template($('#commentItemTpl').html(), item);
     }).join('');
 
-    $('#tab-2').html(template(
+    $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
       {video: videoId, comments: commentsHTML})
     ).promise().done(function() {
@@ -314,8 +317,6 @@ $(document).ready(function(){
     filterAction(hash.shift());
   });
 
-
-
   $('body').on('focus', '#commentArea', function()  {
     if(!utilCookie.get('user')) {
       utilLogin.show();
@@ -350,3 +351,4 @@ $(document).ready(function(){
       });
   });
 });
+
