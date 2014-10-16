@@ -1982,7 +1982,6 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .videoRelated .recommend > ul {
   height: 618px;
-  margin-top: 30px;
   overflow: hidden;
 }
 .videoRelated .recommend .list {
@@ -2173,7 +2172,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
   width: 1048px;
 }
-.profile div {
+.profile div.clearFix {
   background: url("/assets/images/profile_bg.jpg") no-repeat 0 0;
   left: 0;
   height: 73px;
@@ -2184,7 +2183,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .profile img, .profile cite, .profile a {
   line-height: 1;
-  position: absolute;
+  display: inline-block!important;
+  vertical-align: middle;
   z-index: 10;
 }
 .profile img {
@@ -2199,8 +2199,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   font-weight: bold;
   left: 90px;
   top: 36px;
+  margin-top:38px;
 }
-.profile > a {
+
+.profile .info {
+  position: relative;
+  z-index: 15;
+}
+.profile .info > a {
   background-color: gainsboro;
   border: 3px solid rgba(0, 0, 0, 0.15);
   /*@extend %IEPie */
@@ -2217,8 +2223,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-decoration: none;
   top: 32px;
   width: 76px;
+  margin-top:38px;
 }
-.profile > a:hover, .profile > a:focus, .profile > a:active {
+.profile .info > a:hover, .profile .info > a:focus, .profile .info > a:active {
   background-color: #bfbfbf;
 }
 

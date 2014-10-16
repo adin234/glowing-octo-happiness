@@ -112,6 +112,9 @@ var showVideo = function(videoId) {
       });
     }, 500);
 
+    $.get(server+'vid_suggestions', { search: video.engtitle },
+      updateSuggestions);
+
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
@@ -232,6 +235,34 @@ var cachePlaylist = function(playlistId) {
 var cacheVideo = function(videoId) {
 
 };
+
+var updateSuggestions = function(suggestions) {
+  html=[];
+  suggestions.forEach(function(item, i){
+    if(filterTags
+    && (typeof item.snippet.meta == 'undefined'
+       || typeof item.snippet.meta.tags == 'undefined'
+       || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+
+    if(item.snippet.thumbnails) {
+      tempdata = {
+        id: 'video-'+item.snippet.resourceId.videoId,
+        link: '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
+        title: item.snippet.title,
+        thumb: item.snippet.thumbnails.default.url,
+        desc: item.snippet.description,
+        username: item.username,
+        views: item.snippet.meta.statistics.viewCount
+      }
+      html.push(template($('#recommendedTpl').html(), tempdata));
+    }
+  });
+  $('aside.recommend > ul').html(html.join('')).promise().done(function(e) {
+    $('aside.recommend > ul').mCustomScrollbar({
+        theme:"inset-2"
+      });
+  });
+}
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');

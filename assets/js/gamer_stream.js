@@ -37,7 +37,12 @@ $(function() {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
         .html(),{twitchid: streamId}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
-            .html(),{twitchid: streamId, advert: page_data.custom_fields.advertisement}));
+            .html(),{
+                twitchid: streamId,
+                advert: page_data.custom_fields
+                    && page_data.custom_fields.advertisement
+            }
+        ));
 
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
@@ -153,5 +158,6 @@ var toggleChat = function() {
             .attr('data-status', 'minified');
 
         toggleButton.html('EXPAND');
+
     }
 }
