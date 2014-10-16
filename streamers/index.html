@@ -137,7 +137,7 @@
       </div>
      <footer class="clearFix">
         <nav>
-          <ul class="en">
+          <ul class="zh_tw">
             <li><a href="/index"></a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
@@ -172,8 +172,8 @@
 <li class="{{LIVE}}">
     <a href="javascript:;" title="Add to multiview" data-userid="{{USER_ID}}" data-streamid="{{ID}}"
     data-streamidraw="{{IDRAW}}" class="addToMultiview addTo switch">Add to multiview</a>
-    <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-    <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
+    <img onClick="window.location.href = '{{LINK}}';" class="pointer" src="{{THUMB}}" width="334" height="246" alt="screenshot">
+    <h3><a href="{{LINK}};" title="{{TITLE}}">{{TITLE}}</a></h3>
     <div style="width:68px;height:67px;overflow:hidden;position:absolute" class="uploader">
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" alt="Uploaded by" class="">
     </div>
@@ -187,7 +187,7 @@
 </script>
 <script type="text/html" id="videoMultiTpl">
 <li class="{{LIVE}}" data-streamid="{{ID}}" data-streamidraw="{{IDRAW}}">
-    <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
+    <img src="{{THUMB}}"  onClick="window.location.href = '{{LINK}}';" class="pointer" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <div style="width:68px;height:67px;overflow:hidden;position:absolute" class="uploader">
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" alt="Uploaded by" class="">

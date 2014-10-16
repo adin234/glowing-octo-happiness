@@ -203,9 +203,9 @@
     </li>
 </script>
 <script type="text/html" id="latestVideosTpl">
-  <li>
+  <li class="pointer" onClick="window.location.href = '{{LINK}}';">
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-    <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
+    <h3><a href="javascript:void(0);" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">
     <ul>
       <li><em>觀看次數：</em>{{VIEWS}}</li>

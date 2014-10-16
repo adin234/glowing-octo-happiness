@@ -3544,3 +3544,7 @@ div[id^=tab-chat-] iframe {
 #advertisement-container .minify-advert:hover {
   font-weight: bold;
 }
+
+.pointer {
+  cursor: pointer;
+}

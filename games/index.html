@@ -132,8 +132,8 @@
       </div>
       <footer class="clearFix">
         <nav>
-          <ul class="en">
-<li><a href="/index">首頁</a></li>
+          <ul class="zh_tw">
+            <li><a href="/index">首頁</a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
@@ -164,15 +164,15 @@
   <ul class="game clearFix"> {{ITEMS}} </ul>
 </script>
 <script type="text/html" id="videoTpl">
-    <li>
-    <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-    <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
-    <ul>
-      <li><em>觀看次數：</em>{{VIEWS}}</li>
-      <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
-    </ul>
-  </li>
+<li class="pointer" onClick="window.location.href = '{{LINK}}';">
+  <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
+  <h3><a href="javascript:void();" title="{{TITLE}}">{{TITLE}}</a></h3>
+  <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
+  <ul>
+    <li><em>觀看次數：</em>{{VIEWS}}</li>
+    <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
+  </ul>
+</li>
 </script>
 <script type="text/html" id="videoContainerTpl">
 <ul class="list clearFix">

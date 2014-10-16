@@ -142,7 +142,7 @@
       </div>
       <footer class="clearFix">
         <nav>
-          <ul class="en">
+          <ul class="zh_tw">
 <li><a href="/index">首頁</a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
@@ -174,11 +174,11 @@
   <ul class="game clearFix"> {{ITEMS}} </ul>
 </script>
 <script type="text/html" id="videoTpl">
-    <li class="{{LIVE}}">
+    <li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/{{USER_ID}}';">
       <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="334" height="246" alt="screenshot">
       </a>
       <h3>
-        <a href="/youtuber/{{USER_ID}}" title="{{TITLE}}">{{TITLE}}</a>
+        <a href="javascript:void(0);" title="{{TITLE}}">{{TITLE}}</a>
       </h3>
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}"></a>
       <ul>
