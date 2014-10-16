@@ -24,6 +24,14 @@ var showSocialButtons = function () {
         hash = hash.replace('#!/', '#!/'+id+'/');
 
         link = origin+'youtuber/share/'+hash;
+    } else if(~document.location.pathname.indexOf('/game/')) {
+        var id = window.location.pathname
+            .split('/').filter(function(e){return e;})[1];
+
+        var hash = document.location.hash;
+        hash = hash.replace('#!/', '#!/'+id+'/');
+
+        link = origin+'game/share/'+hash;
     }
 
     $('#viewport').html('');

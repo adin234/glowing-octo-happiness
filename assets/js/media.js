@@ -114,8 +114,12 @@ var showVideo = function(videoId) {
       });
     }, 500);
 
-    $.get(server+'vid_suggestions', { search: video.engtitle },
+    $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
       updateSuggestions);
+
+    if(!page_data.config.channel) {
+      getPhoto(video.snippet.channelId, $('.videoHeading > img'));
+    }
 
     getComments(videoId);
     showSocialButtons();
@@ -296,8 +300,9 @@ $(document).ready(function(){
     }
   })
 
-  getPhoto(page_data.config.channel, $('.videoHeading > img'));
-
+  if(page_data.config && page_data.config.channel) {
+    getPhoto(page_data.config.channel, $('.videoHeading > img'));
+  }
   page_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });

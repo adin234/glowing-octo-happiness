@@ -1,6 +1,6 @@
 var xhReq = new XMLHttpRequest();
-var console = window.location.pathname
+var game = window.location.pathname
     .split('/').filter(function(e){return e;})[1]
-xhReq.open("GET", server+"gamesdata?console="+console, false);
+xhReq.open("GET", server+"game/"+game, false);
 xhReq.send(null);
 var page_data = xhReq.responseText;
