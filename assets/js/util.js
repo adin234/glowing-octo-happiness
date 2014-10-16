@@ -34,7 +34,7 @@ var showSocialButtons = function () {
     }
 
     $('#viewport').html('');
-    $('#fb-root').html('');
+    // $('#fb-root').html('');
     $('#social-buttons').html('');
 
     var html = '<div id="social-buttons">'
@@ -64,6 +64,7 @@ var showSocialButtons = function () {
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     } else {
+        console.log(link);
         $('#fb-like').attr('data-href', link);
         FB.XFBML.parse();
     }
