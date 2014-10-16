@@ -1,8 +1,11 @@
 var template = function (templateHTML, data) {
     for(var x in data) {
-        templateHTML = templateHTML
-            .replace(new RegExp('{{'+x+'}}', 'gi'),
-                data[x] == null ? '' : data[x]);
+        var torep = new RegExp('{{'+x+'}}', 'gi');
+        if(torep) {
+            templateHTML = templateHTML
+                .replace(torep,
+                    data[x] == null ? '' : data[x]);
+        }
     }
 
     return templateHTML;

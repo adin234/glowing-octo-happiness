@@ -78,10 +78,12 @@
       <div id="content" class="clearFix">
         <div style="position: relative">
           <div class="profile" id="banner">
+            <div class="info">
+              <img src="" width="73" height="73" id="userAvatar" alt="{使用者帳號}"/>
+              <cite></cite>
+              <a href="" title="個人資料" target="_blank">個人資料</a>
+            </div>
             <div class="clearFix"></div>
-            <img src="" width="73" height="73" id="userAvatar" alt="{使用者帳號}"/>
-            <cite></cite>
-            <a href="" title="個人資料" target="_blank">個人資料</a>
           </div>
           <a href="" class="live-button"></a>
         </div>
@@ -257,6 +259,16 @@
     {{COMMENTS}}
     </div>
   </div>
+</script>
+<script type="text/html" id="recommendedTpl">
+   <li class="list clearFix">
+    <a href="javascript:;" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
+    <h3>{{TITLE}}</h3>
+    <ul>
+      <li>by <cite>{{USERNAME}}</cite></li>
+      <li>{{VIEWS}} Views</li>
+    </ul>
+    </a></li>
 </script>
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
