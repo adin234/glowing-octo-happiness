@@ -1,11 +1,11 @@
 var liveStreamLink = false;
 $(window).load(function(){
 	html = [];
-	console.log('youtuber.js', page_data);
 	page_data.games_cast.forEach(function(item){
 		html.push(template($('#gamesCastTpl').html(), item));
 	});
-	$('#gamesCast').html(html.join(''));
+	$('#gamesCast').mCustomScrollbar({theme: 'inset-2'});
+	$('#gamesCast .mCSB_container').html(html.join(''));
 	$('#banner .info > cite').html(page_data.user.username);
 	$('#banner .info > a').attr('href', community+'index.php?members/'
 		+page_data.user.username+'.'+page_data.user.user_id);
