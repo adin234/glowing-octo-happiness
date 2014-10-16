@@ -39,7 +39,7 @@ $(function() {
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{
                 twitchid: streamId,
-                advert: page_data.custom_fields 
+                advert: page_data.custom_fields
                     && page_data.custom_fields.advertisement
             }
         ));
@@ -127,26 +127,37 @@ $(function() {
     });
 });
 
-var resizeChat = function(size) {
-    if(page_data.custom_fields 
-        && page_data.custom_fields.advertisement) {
-        if(size === 'full') {
-            $('#advertisement-container')
-                .css('overflow', 'auto')
-                .css('height', '')
-                .show();
-            $('#twitch-container').height(
-                $('#twitch-container').parent().height()
-                -$('#advertisement-container').height()
-            );
-        } else {
-            $('#twitch-container').height(
-                $('#twitch-container').parent().height()
-                -100
-            );
-            $('#advertisement-container')
-                .css('overflow', 'hidden')
-                .css('height', '100');
-        }
+var toggleChat = function() {
+    var advertisementContainer = $('#advertisement-container');
+    var twitchContainer = $('#twitch-container');
+    var size = advertisementContainer.attr('data-status');
+    var toggleButton = advertisementContainer.children('.minify-advert');
+
+    if(size !== 'full') {
+        advertisementContainer
+            .css('overflow', 'auto')
+            .css('height', '')
+            .show()
+            .attr('data-status', 'full');
+
+        twitchContainer.height(
+            twitchContainer.parent().height()
+            -advertisementContainer.height()
+        );
+
+        toggleButton.html('MINIFY');
+
+    } else {
+        twitchContainer.height(
+            twitchContainer.parent().height()
+            -100
+        );
+        advertisementContainer
+            .css('overflow', 'hidden')
+            .css('height', '100')
+            .attr('data-status', 'minified');
+
+        toggleButton.html('EXPAND');
+
     }
 }
