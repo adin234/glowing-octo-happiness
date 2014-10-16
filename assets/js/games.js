@@ -4,6 +4,8 @@ var slider = {};
 var con = 'all';
 var currentPage = 1;
 var hash;
+var filterConsole = '';
+var filterGame = '';
 
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
@@ -20,7 +22,8 @@ var get_hash = function() {
 
 var get_game = function() {
     var game = get_hash()[0];
-     return game == '' ? 'all' : game;
+
+    return game == '' ? 'all' : game;
 }
 
 var render_featured_games = function (filter) {
@@ -85,6 +88,7 @@ var filter_game = function(input) {
     var filterString = $this.val();
     render_featured_games(filterString);
     render_latest_games(filterString);
+    $('.tooltip').tooltipster({contentAsHTML: true});
 };
 
 var filter_videos = function(input) {
@@ -197,16 +201,40 @@ var load_game_videos_next_page = function() {
 }
 
 var render_game_videos = function(game, page) {
-    page = typeof page !== 'undefined' ? '&page='+page : ''
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+page, function(result) {
+    var parameters = {
+        limit: 18
+    };
+
+    filterGame = game;
+
+    if(filterConsole.length) {
+        parameters.console = filterConsole;
+    }
+    if(filterGame.length) {
+        parameters.game = filterGame;
+    }
+
+    page = typeof page !== 'undefined' ? '&page='+page : '';
+
+    $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
         page_data.videos = result;
         render_videos();
     });
 };
 
 var filter_category = function(cons, context) {
-    con = cons;
-    $.getJSON(server+'gamesdata?console='+cons, function(results) {
+    var parameters = {};
+
+    filterConsole = cons;
+
+    if(filterConsole.length) {
+        parameters.console = filterConsole;
+    }
+    if(filterGame.length) {
+        parameters.game = filterGame;
+    }
+
+    $.getJSON(server+'gamesdata?'+$.param(parameters), function(results) {
         page_data = results;
         render_page();
     }).done(function() {
@@ -230,6 +258,7 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
+        filterGame = id;
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
