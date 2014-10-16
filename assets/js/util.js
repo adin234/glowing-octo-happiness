@@ -15,7 +15,6 @@ var showSocialButtons = function () {
     var link = document.location.href;
 
     // fix for youtubers 404 page2
-    +3
     if(~document.location.pathname.indexOf('/youtuber/')) {
         var id = window.location.pathname
             .split('/').filter(function(e){return e;})[1];
@@ -39,13 +38,12 @@ var showSocialButtons = function () {
     $('#social-buttons').html('');
 
     var html = '<div id="social-buttons">'
-            + '<div id="fb-container"></div>'
+            // + '<div id="fb-container"></div>'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
             + '"standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" '
             + 'class="twitter-share-button" data-url="'+link+'" data-text="">'
             + 'Tweet</a>'
-            + '<div id="fb-root"></div>'
             + '</div>';
 
     document.getElementById('viewport').insertAdjacentHTML( 'beforeEnd', html );
@@ -54,13 +52,17 @@ var showSocialButtons = function () {
         var fb =  '<div id="fb-like" class="fb-like" data-share="true" '
         +'data-href="'+link+'" data-layout="button_count" data-width="50">'
         +'</div>';
+        $('#viewport').before('<div id="fb-container"></div>');
+        $('#viewport').before('<div id="fb-root"></div>');
         $('#fb-container').html(fb);
 
-        var script = document.createElement( 'script' );
-        script.async = true;
-        script.src = document.location.protocol +
-            '//connect.facebook.net/en_US/all.js#xfbml=1&appId=267603823260704';
-        document.getElementById( 'fb-root' ).appendChild( script );
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=305385862975541&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     } else {
         $('#fb-like').data('data-href', link);
         FB.XFBML.parse();
