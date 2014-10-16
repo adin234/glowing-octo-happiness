@@ -64,7 +64,7 @@ var showSocialButtons = function () {
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     } else {
-        $('#fb-like').data('data-href', link);
+        $('#fb-like').attr('data-href', link);
         FB.XFBML.parse();
     }
 
