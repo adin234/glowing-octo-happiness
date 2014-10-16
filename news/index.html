@@ -362,22 +362,13 @@
 </script>
 <script type="text/html" id="recommendedTpl">
    <li class="list clearFix">
-    <a href="javascript:;" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
+    <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
     <h3>{{TITLE}}</h3>
     <ul>
       <li>by <cite>{{USERNAME}}</cite></li>
       <li>{{VIEWS}} Views</li>
     </ul>
     </a></li>
-</script>
-<script type="text/html" id="playlistTpl">
-  <li class="playlistItem" id="{{ID}}">
-    <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
-      <h3>{{TITLE}}</h3>
-      <p>{{DESC}}</p>
-    </a>
-  </li>
 </script>
 <script type="text/html" id="videosTpl">
   <li class="ytVideo videoItem" id="{{ID}}">
