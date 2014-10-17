@@ -261,6 +261,7 @@ var updateSuggestions = function(suggestions) {
         username: item.username,
         views: item.snippet.meta.statistics.viewCount
       }
+
       html.push(template($('#recommendedTpl').html(), tempdata));
     }
   });
