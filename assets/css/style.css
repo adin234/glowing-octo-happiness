@@ -100,7 +100,7 @@ footer > ul li a,
 
 #outContainer header .species a:hover{
   font-weight: 700;
-  color: #fff;
+  color: #b7b7b7;
 }
 
 /*%IEPie
@@ -445,7 +445,7 @@ a:hover, a:focus, a:active {
 
 #outContainer header .species li.current a {
   font-weight: bold;
-  color: #fff;
+  color: #b7b7b7;
 }
 /*
 #outContainer header .species li:nth-child(1) a {
@@ -530,7 +530,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -789px;
 }*/
 #outContainer header .species a {
-  color: #000;
+  color: #fff;
   display: inline-block;
 }
 #outContainer header .site {
@@ -3547,4 +3547,27 @@ div[id^=tab-chat-] iframe {
 
 .pointer {
   cursor: pointer;
+}
+
+.game_page .listSwitch li:last-child {
+  border: 3px;
+}
+
+.game_page .listSwitch li {
+  width:100%;
+}
+
+.game_page .profile .info {
+  line-height: 73px;
+  font-size: 24px;
+  padding-left: 24px;
+  color: #fff;
+}
+
+.switch-menu #outContainer header .species ul li a {
+  visibility: hidden;
+}
+
+.switch-menu #outContainer .fixedMenu  header .species ul li a {
+  visibility: visible;
 }

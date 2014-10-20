@@ -28,7 +28,7 @@
 <script type="text/javascript" src="/assets/js/get.game.data.js"></script>
 </head>
 
-<body class="lang_zh_tw">
+<body class="lang_zh_tw game_page">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -79,9 +79,7 @@
         <div style="position: relative">
           <div class="profile" id="banner">
             <div class="info">
-              <img src="" width="73" height="73" id="userAvatar" alt="{使用者帳號}"/>
-              <cite></cite>
-              <a href="" title="個人資料" target="_blank">個人資料</a>
+              <h1 id="game_name"></h1>
             </div>
             <div class="clearFix"></div>
           </div>
@@ -97,7 +95,6 @@
           </div>
           <div class="videoList">
             <ul class="listSwitch clearFix">
-              <li  id="playlistsToggle" class="current"><a href="javascript:;">播放清單</a></li>
               <li  id="videosToggle" ><a href="javascript:;" title="影片">影片</a></li>
             </ul>
              <ul class="playFunctionBtn clearFix">
@@ -106,8 +103,6 @@
                 <li></li><li></li>
                 <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li>
               </ul>
-            <ul class="playList toggleList current" id="playlists">
-            </ul>
             <ul class="playList toggleList" id="videos">
             </ul>
           </div>

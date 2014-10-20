@@ -301,6 +301,10 @@ $(document).ready(function(){
     }
   })
 
+  if($('body').hasClass('game_page')) {
+    $('.profile .info h1').html('12321312');
+  }
+
   if(page_data.config && page_data.config.channel) {
     getPhoto(page_data.config.channel, $('.videoHeading > img'));
   }
