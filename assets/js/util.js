@@ -57,6 +57,13 @@ var showSocialButtons = function () {
         $('#viewport').before('<div id="fb-root"></div>');
         $('#fb-container').html(fb);
 
+        window.fbAsyncInit = function() {
+
+          FB.Event.subscribe('xfbml.render', function(response) {
+            $('#fb-like').detach().prependTo($('#viewport'));
+          });
+        };
+
         (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
@@ -67,7 +74,9 @@ var showSocialButtons = function () {
     } else {
         console.log(link);
         $('#fb-like').attr('data-href', link);
-        FB.XFBML.parse();
+        FB.XFBML.parse(document.getElementById('fb-container'), function() {
+            console.log('rendered');
+        });
     }
 
     script = document.createElement( 'script' );
