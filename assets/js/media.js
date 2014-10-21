@@ -302,7 +302,7 @@ $(document).ready(function(){
   })
 
   if($('body').hasClass('game_page')) {
-    $('.profile .info h1').html('12321312');
+    $('.profile .info h1').html(page_data.game_name.name);
   }
 
   if(page_data.config && page_data.config.channel) {
