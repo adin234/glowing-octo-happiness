@@ -3156,6 +3156,12 @@ body:nth-child(3) {
   height: 100%;
 }
 
+.single.streams.x3 .videoWrapper {
+  height: 100%;
+  padding: 0;
+  padding: 0;
+}
+
 #side-container #streamView {
     height: 100%;
     display: block;
