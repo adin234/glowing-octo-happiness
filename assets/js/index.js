@@ -35,7 +35,10 @@ $(document).ready(function() {
 			vid = vid.split('?')[1].split('=');
 			vid = vid[vid.indexOf('v')+1].split('#')[0];
 			var html = template($('#playerTpl').html(), { video: '//www.youtube.com/embed/'+vid+'?autoplay=1' });
-			$('#container .bx-wrapper').prepend(html);
+			$('#container .bx-wrapper').prepend(html).promise().done(function() {
+				$('.bx-wrapper .video-player iframe').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2);
+				$('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2)
+			});
 		}
 	});
 	$(document).on('click', '.bx-wrapper .close', function(e) {
