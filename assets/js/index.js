@@ -45,6 +45,26 @@ $(document).ready(function() {
 		$('#container .bx-wrapper .video-player').remove();
 	});
 	showSocialButtons();
+
+	$(window).scroll(function() {
+		if($(window).scrollTop() - $('body').height() + 50 >= $(window).height()) {
+			$('#arrow').removeClass('down').addClass('up');
+		} else {
+			$('#arrow').removeClass('up').addClass('down');
+		}
+	});
+
+	$('body').on('click', '#arrow.down', function() {
+		$('html, body').animate({
+			scrollTop: $(document).height()
+		});
+	});
+
+	$('body').on('click', '#arrow.up', function() {
+		$('html, body').animate({
+			scrollTop: 0
+		});
+	});
 });
 
 

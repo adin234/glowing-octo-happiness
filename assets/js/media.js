@@ -9,6 +9,8 @@ var playlistIds = [];
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
+$(".playList").mCustomScrollbar({theme: 'inset-2'});
+$('aside.recommend > ul').mCustomScrollbar({theme:'inset-2' });
 
 /* YOUTUBE SHIZZ */
 var tag = document.createElement('script');
@@ -59,15 +61,8 @@ var update_videos = function (videos) {
       html.push(template($('#videosTpl').html(), tempdata));
     }
   });
-  $(".playList").mCustomScrollbar('destroy').promise().done(function(){
-    if(!html.length) { html.push('目前沒有影片'); }
-    $('#videos').html(html.join(''));
-    setTimeout(function(){
-      $(".playList").mCustomScrollbar({
-        theme:"inset-2"
-      });
-  }, 500)
-  });
+
+  $('#videos .mCSB_container').html(html.join(''));
 };
 
 var update_playlists = function (playlists) {
@@ -84,7 +79,7 @@ var update_playlists = function (playlists) {
     html.push(template($('#playlistTpl').html(), tempdata));
   });
   if(!html.length) { html.push('No Playlist Available'); }
-  $('#playlists').html(html.join(''));
+  $('#playlists .mCSB_container').html(html.join(''));
 };
 
 var filterAction = function(action) {
@@ -265,11 +260,7 @@ var updateSuggestions = function(suggestions) {
       html.push(template($('#recommendedTpl').html(), tempdata));
     }
   });
-  $('aside.recommend > ul').html(html.join('')).promise().done(function(e) {
-    $('aside.recommend > ul').mCustomScrollbar({
-        theme:"inset-2"
-      });
-  });
+  $('aside.recommend > ul .mCSB_container').html(html.join(''));
 }
 
 var updatePrevNext = function() {
