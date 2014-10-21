@@ -159,7 +159,7 @@ var toggleChat = function() {
             -250
         );
 
-        toggleButton.html('MINIFY');
+        toggleButton.html('增大');
 
     } else {
         advertisementContainer
@@ -172,7 +172,7 @@ var toggleChat = function() {
             -100
         );
 
-        toggleButton.html('EXPAND');
+        toggleButton.html('縮小');
 
     }
 }
