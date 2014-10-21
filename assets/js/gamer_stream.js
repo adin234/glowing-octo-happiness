@@ -35,7 +35,7 @@ $(function() {
 
     if(streamType == 'TW') {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
-        .html(),{twitchid: streamId}));
+        .html(),{twitchid: streamId, number: viewers}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{
                 twitchid: streamId,
@@ -125,6 +125,15 @@ $(function() {
     $('#streamArea').mCustomScrollbar({
       theme:"inset-2",
     });
+});
+
+var viewers;
+
+$.getJSON(server+'get_views/'+twitch.substr(2), function(e) {
+    if(e && e.stream && e.stream.viewers) {
+        viewers = e.stream.viewers;
+        $('#twitchStream .views').html(e.stream.viewers);
+    }
 });
 
 var toggleChat = function() {
