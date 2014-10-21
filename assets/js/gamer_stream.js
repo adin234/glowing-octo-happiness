@@ -134,6 +134,11 @@ var toggleChat = function() {
     var toggleButton = advertisementContainer.children('.minify-advert');
 
     if(size !== 'full') {
+        twitchContainer.height(
+            twitchContainer.parent().height()
+            -250
+        );
+
         advertisementContainer
             .css('overflow', 'auto')
             .css('height', '')
@@ -142,20 +147,21 @@ var toggleChat = function() {
 
         twitchContainer.height(
             twitchContainer.parent().height()
-            -advertisementContainer.height()
+            -250
         );
 
         toggleButton.html('MINIFY');
 
     } else {
-        twitchContainer.height(
-            twitchContainer.parent().height()
-            -100
-        );
         advertisementContainer
             .css('overflow', 'hidden')
             .css('height', '100')
             .attr('data-status', 'minified');
+
+        twitchContainer.height(
+            twitchContainer.parent().height()
+            -100
+        );
 
         toggleButton.html('EXPAND');
 
