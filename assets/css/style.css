@@ -2402,10 +2402,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 0 auto;
   padding: 12px;
+  padding-left: 0px;
   position: relative;
 }
 #streamView header, #streamView #functionBar {
-  width: 470px;
+  width: 416px;
 }
 #streamView header {
   background-color: black;
@@ -2423,8 +2424,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   height: 42px;
 }
 #streamView header h1 {
-  margin: 0 10px 0 8px;
-  width: 98px;
+  /* margin: 0 10px 0 8px; */
+  width: 80px;
 }
 #streamView header select, #streamView header li {
   margin-left: 10px;
@@ -2854,7 +2855,7 @@ div.streamer {
 }
 
 .lang_zh_tw #streamView header h1 {
-  background: url("/assets/images/logo_tw.png") no-repeat 16px -232px;
+  background: url("/assets/images/logo_tw.png") no-repeat 15px -232px;
 }
 .lang_zh_tw #streamView header > a:before {
   background: url("/assets/images/sprite.png") no-repeat 27px -949px;
@@ -3122,7 +3123,7 @@ body.streams #streamArea {
 
 body.streams #side-container {
   display: table-cell;
-  width: 480px;
+  width: 416px;
   vertical-align: top;
 }
 
@@ -3570,4 +3571,8 @@ div[id^=tab-chat-] iframe {
 
 .switch-menu #outContainer .fixedMenu  header .species ul li a {
   visibility: visible;
+}
+
+.mCSB_inside > .mCSB_container {
+  margin-right: 15px!important;
 }
