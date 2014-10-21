@@ -61,7 +61,9 @@ var update_videos = function (videos) {
       html.push(template($('#videosTpl').html(), tempdata));
     }
   });
-
+  if(!html.length) {
+    html.push('No Video Available');
+  }
   $('#videos .mCSB_container').html(html.join(''));
 };
 
@@ -78,7 +80,14 @@ var update_playlists = function (playlists) {
     }
     html.push(template($('#playlistTpl').html(), tempdata));
   });
-  if(!html.length) { html.push('No Playlist Available'); }
+  if(!html.length) {
+    html.push('No Playlist Available');
+    $('.game_page .listSwitch').addClass('no-playlist');
+    $('#videosToggle').trigger('click');
+  } else {
+    $('.game_page .listSwitch').removeClass('no-playlist');
+  }
+
   $('#playlists .mCSB_container').html(html.join(''));
 };
 
@@ -293,7 +302,8 @@ $(document).ready(function(){
   })
 
   if($('body').hasClass('game_page')) {
-    $('.profile .info h1').html(page_data.game_name.name);
+    var name = page_data.game_name.name ? page_data.game_name.name : '';
+    $('.profile .info h1').html(name);
   }
 
   if(page_data.config && page_data.config.channel) {
@@ -311,7 +321,8 @@ $(document).ready(function(){
 
   $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
-    if(!hash) {
+
+    if(!hash && page_data.playlists.length) {
       return window.location.hash = '#!/playlist/'+page_data.config.playlist;
     }
     hash = hash.split('/');
