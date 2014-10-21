@@ -3583,3 +3583,23 @@ div[id^=tab-chat-] iframe {
 .mCSB_inside > .mCSB_container {
   margin-right: 15px!important;
 }
+
+#arrow {
+  position: fixed;
+  right: 20px;
+  /* padding: 10px; */
+  border: 5px solid rgba(0,0,0,-0.5);
+  bottom: 20px;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
+  width: 30px;
+  height: 30px;
+}
+
+#arrow.down {
+  background: rgba(0,0,0,.5) url('/assets/images/down_arrow.svg');
+}
+
+#arrow.up {
+  background: rgba(0,0,0,.5) url('/assets/images/up_arrow.svg');
+}
