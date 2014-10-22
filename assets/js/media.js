@@ -33,7 +33,7 @@ $(window).load(function(){
 });
 
 
-var update_videos = function (videos) {
+var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
   if(active_playlist) {
@@ -57,14 +57,19 @@ var update_videos = function (videos) {
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description
-      }
+      };
       html.push(template($('#videosTpl').html(), tempdata));
     }
   });
   if(!html.length) {
     html.push('No Video Available');
   }
-  $('#videos .mCSB_container').html(html.join(''));
+
+  if(append) {
+    $('#videos .mCSB_container').append(html.join(''));
+  } else {
+    $('#videos .mCSB_container').html(html.join(''));
+  }
 };
 
 var update_playlists = function (playlists) {
@@ -167,6 +172,14 @@ var showPlaylist = function(playlistId, next) {
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
   update_videos(playlist.items);
+  if(playlist.nextPageToken) {
+    $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
+      function(e) {
+        playlist.nextPageToken = e.nextPageToken;
+        playlist.items.concat(e.items);
+        update_videos(e.items, true);
+      });
+  }
   $('#videosToggle').click();
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);

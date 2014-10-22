@@ -60,7 +60,10 @@ var showSocialButtons = function () {
         window.fbAsyncInit = function() {
 
           FB.Event.subscribe('xfbml.render', function(response) {
-            $('#fb-like').detach().prependTo($('#viewport'));
+            if($('#index-page').length){
+                console.log('detach');
+                $('#fb-like').detach().prependTo($('#viewport'));
+            }
           });
         };
 

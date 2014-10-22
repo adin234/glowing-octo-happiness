@@ -35,7 +35,7 @@ $(function() {
 
     if(streamType == 'TW') {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
-        .html(),{twitchid: streamId}));
+        .html(),{twitchid: streamId, number: viewers}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{
                 twitchid: streamId,
@@ -127,6 +127,15 @@ $(function() {
     });
 });
 
+var viewers;
+
+$.getJSON(server+'get_views/'+twitch.substr(2), function(e) {
+    if(e && e.stream && e.stream.viewers) {
+        viewers = e.stream.viewers;
+        $('#twitchStream .views').html(e.stream.viewers);
+    }
+});
+
 var toggleChat = function() {
     var advertisementContainer = $('#advertisement-container');
     var twitchContainer = $('#twitch-container');
@@ -150,7 +159,7 @@ var toggleChat = function() {
             -250
         );
 
-        toggleButton.html('MINIFY');
+        toggleButton.html('增大');
 
     } else {
         advertisementContainer
@@ -163,7 +172,7 @@ var toggleChat = function() {
             -100
         );
 
-        toggleButton.html('EXPAND');
+        toggleButton.html('縮小');
 
     }
 }
