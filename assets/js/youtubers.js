@@ -109,7 +109,7 @@ var render_featured_games = function (filter) {
     filter =  new RegExp(filter, 'i');
 
     page_data.featured_games.forEach(function(item, i){
-        if(item.name.search(filter) == -1) return;
+        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         item.game = item.name;
         items.push(template($('#gameTpl').html(), item));
@@ -138,7 +138,8 @@ var render_latest_games = function(filter) {
     filter =  new RegExp(filter, 'i');
 
     page_data.games.forEach(function(item, i){
-        if(item.name.search(filter) == -1) return;
+        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
