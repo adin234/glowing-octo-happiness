@@ -62,6 +62,25 @@ footer > ul li a,
 
 #outContainer header .species > ul li {
   line-height: 42px;
+  padding: 0;
+}
+
+#outContainer header .species > ul li a {
+  padding: 0 8px;
+}
+
+#outContainer header .species > ul li a {
+  background-color: transparent;
+}
+
+#outContainer header .species > ul li a:hover,
+#outContainer header .species > ul li.current a {
+  background-color: #000;
+}
+
+
+#outContainer header .species > ul li.current {
+  background-color: #000;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) > ul {
@@ -69,32 +88,32 @@ footer > ul li a,
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(1) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1317px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1317px;
   padding-left: 23px;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1363px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1363px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1409px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1409px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1454px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1454px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1504px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1504px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1548px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1548px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1592px;
+  background: url("/assets/images/sprite.png") no-repeat 4px -1592px;
   padding-left: 23px;
 }
 
@@ -438,9 +457,6 @@ a:hover, a:focus, a:active {
 }
 #outContainer .fixedMenu header .species ul {
   padding-left: 262px;
-}
-#outContainer header .species li + li {
-  padding-left: 12px;
 }
 
 #outContainer header .species li.current a {

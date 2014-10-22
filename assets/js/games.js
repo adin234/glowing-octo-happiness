@@ -263,7 +263,7 @@ $(window).on('hashchange', function(){
             $(item).removeClass('active');
         });
         $('[data-id='+id+']').parent().addClass('active');
-        $('#game-title').html($('[data-id='+id+']').attr('data-name'));
+        $('#game-title').html($('[data-id='+id+']').attr('data-chi'));
         render_game_videos(id);
     } else {
         render_videos();

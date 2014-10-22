@@ -196,7 +196,7 @@ var render_new_members = function(filter) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('No Member Available'); }
+    if(!html.length) { html.push('沒有此實況主'); }
     $('#container-new-member').html(html.join(''));
 };
 
@@ -236,7 +236,7 @@ var render_popular_members = function(filter) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length) { html.push('No Member Available'); }
+    if(!html.length) { html.push('沒有此實況主'); }
     $('#container-popular-member').html(html.join(''));
 };
 
