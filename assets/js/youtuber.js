@@ -6,7 +6,7 @@ $(window).load(function(){
 	});
 	$('#gamesCast').mCustomScrollbar({theme: 'inset-2'});
 	$('#gamesCast .mCSB_container').html(html.join(''));
-
+	$('.tooltip').tooltipster({contentAsHTML: true});
 	$('#banner .info > cite').html(page_data.user.username);
 	$('#banner .info > a').attr('href', community+'index.php?members/'
 		+page_data.user.username+'.'+page_data.user.user_id);
@@ -30,5 +30,9 @@ $(window).load(function(){
 			$('.live-button').attr('href', liveStreamLink).show();
 		}
 	});
+	var secondBody = $('body')[1];
+	if(typeof secondBody != 'undefined') {
+		secondBody.remove();
+	}
 
 });

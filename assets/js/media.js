@@ -294,6 +294,35 @@ var updatePrevNext = function() {
 };
 
 
+  var filterGame = function(filterString) {
+     $('.game-item').each(function(i, item) {
+            $(item).removeClass('active');
+      });
+      $('[data-id='+filterString+']').parent().addClass('active');
+
+      var videos = [];
+      page_data.playlists.forEach(function(item) {
+        if(typeof item.snippet.meta != 'undefined'
+        && (~item.snippet.meta.tags.indexOf('anytv_'+filterString)
+            || ~item.snippet.meta.tags.indexOf(filterString))) {
+          playlists.push(item);
+        }
+      });
+      update_playlists(videos);
+
+      var videos = [];
+      page_data.videos.forEach(function(item) {
+        if(typeof item.snippet.meta != 'undefined'
+        && (~item.snippet.meta.tags.indexOf('anytv_'+filterString)
+            || ~item.snippet.meta.tags.indexOf(filterString))) {
+          videos.push(item);
+        }
+      });
+      update_videos(videos);
+
+  };
+
+
 $(document).ready(function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
@@ -375,5 +404,6 @@ $(document).ready(function(){
         utilCookie.set('user', '', 0);
       });
   });
+
 });
 
