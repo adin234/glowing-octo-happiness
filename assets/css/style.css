@@ -75,12 +75,12 @@ footer > ul li a,
 
 #outContainer header .species > ul li a:hover,
 #outContainer header .species > ul li.current a {
-  background-color: #000;
+  /*background-color: #000;*/
 }
 
 
 #outContainer header .species > ul li.current {
-  background-color: #000;
+  /*background-color: #000;*/
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) > ul {
@@ -88,33 +88,68 @@ footer > ul li a,
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(1) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1317px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1317px;
   padding-left: 23px;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1363px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1363px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1409px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1409px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1454px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1454px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1504px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1504px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1548px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1548px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a {
-  background: url("/assets/images/sprite.png") no-repeat 4px -1592px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1592px;
   padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(1).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -996px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(2) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(2).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1042px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(3) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(3).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1087px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(4) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(4).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1132px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(5) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(5).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1182px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(6) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(6).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1226px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(7) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(7).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1269px;
+  color: #000;
 }
 
 #outContainer header .species a:hover{
@@ -461,7 +496,7 @@ a:hover, a:focus, a:active {
 
 #outContainer header .species li.current a {
   font-weight: bold;
-  color: #b7b7b7;
+  color: #000;
 }
 /*
 #outContainer header .species li:nth-child(1) a {
@@ -667,7 +702,7 @@ a:hover, a:focus, a:active {
   color: #b7b7b7;
 }
 #outContainer header .site > ul > li a:hover, #outContainer header .site > ul > li a:focus, #outContainer header .site > ul > li a:active {
-  color: white;
+  color: #e00;
 }
 #outContainer header .site > ul .sf-with-ul {
   padding-right: 14px;
@@ -752,7 +787,7 @@ a:hover, a:focus, a:active {
   border: 1px solid #a6a6a6;
 }
 #outContainer header .site .current > a {
-  color: white;
+  color: #e00;
 }
 #outContainer header .site ::-webkit-input-placeholder {
   color: #616161;
