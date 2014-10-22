@@ -28,7 +28,7 @@
 <script type="text/javascript" src="/assets/js/get.game.data.js"></script>
 </head>
 
-<body class="lang_zh_tw game_page">
+<body class="lang_zh_tw game_page switch-menu">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -36,7 +36,7 @@
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
@@ -49,18 +49,18 @@
         </nav>
         <nav class="site sf-menu">
           <ul class="clearFix">
-            <li><a href="/index" title="首頁">首頁</a></li>
-            <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
+            <li class="nav-switch-item"><a href="/index" title="首頁">首頁</a></li>
+            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇">論壇</a>
               <ul>
                 <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
                 <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
               </ul>
             </li>
-            <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shosws</a></li>
-            <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
+            <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
+            <li class="nav-switch-item current"><a href="/games" title="遊戲分類">遊戲分類</a></li>
+            <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
+            <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <li>
               <form>
                 <input type="text" placeholder="搜尋">
@@ -220,11 +220,11 @@
   <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
 </script>
 <script type="text/html" id="gamesCastTpl">
-  <li>
-    <a href="#" onClick="filterGame('{{ID}}'); return false;" title="{{NAME}}">
-      <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}">
-    </a>
-  </li>
+ <li class="game-item">
+  <a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" title="{{NAME}}">
+    <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}">
+  </a>
+</li>
 </script>
 <script type="text/html" id="commentItemTpl">
   <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
