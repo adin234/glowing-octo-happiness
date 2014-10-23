@@ -3714,40 +3714,40 @@ span.views {
   min-height: 900px;
   padding: 40px 40px 80px 40px;
 }
-#container_lanparty .lanparty_type1{
+.lanparty-nav .lanparty_type1{
   float: left;
 }
-#container_lanparty .lanparty_type2{
+.lanparty-nav .lanparty_type2{
   float: right;
 }
 
-#container_lanparty .lanparty_type2 > li > a:hover{
+.lanparty-nav .lanparty_type2 > li > a:hover{
   color: #eee;
   text-decoration: none;
 }
-#container_lanparty .lanparty_type2 > li:nth-child(1) {
+.lanparty-nav .lanparty_type2 > li:nth-child(1) {
   background: url("../images/sprite.png") no-repeat 0 -1279px;
 }
-#container_lanparty .lanparty_type2 > li:nth-child(2) {
+.lanparty-nav .lanparty_type2 > li:nth-child(2) {
   margin-left: 20px;
   background: url("../images/icon_fire_grey.png") no-repeat;
   position: relative;
   top: 1px;
   vertical-align: middle;
 }
-#container_lanparty .lanparty_menu{
+.lanparty-nav .lanparty_menu {
   border-top: 1px solid #434343;
   padding: 10px;
 }
-#container_lanparty .lanparty_menu li{
+.lanparty-nav li{
   display: inline-block;
   padding: 0px 20px;
   vertical-align: middle;
 }
-#container_lanparty .lanparty_menu li:not(:last-child){
+.lanparty-nav li:not(:last-child){
   border-right: 1px solid #434343;
 }
-#container_lanparty .lanparty_menu li > a{
+.lanparty-nav li > a{
   color: #868686;
   text-decoration: none;
   /*outline: 1px solid red;*/
@@ -3756,8 +3756,14 @@ span.views {
   top: -1px;
 }
 
-#container_lanparty .lanparty_type1 li.current > a,
-#container_lanparty .lanparty_type1 li:hover > a{
+#container .lanparty-nav {
+  background: #000 url('../images/lanparty_bg.png');
+  margin: -34px -50px 25px;
+  padding: 20px 50px;
+}
+
+.lanparty-nav .lanparty_type1 li.active > a,
+.lanparty-nav .lanparty_type1 li:hover > a{
   color: #00b8e6;
   border-top: 2px solid #00b8e6;
 }
@@ -3788,13 +3794,20 @@ span.views {
 }
 #container_lanparty .hour_time{
   display: inline-block;
-  width: 150px;
+  width: 155px;
   color: #0a8bac;
   padding-top: 60px;
 }
 #container_lanparty .hour_time li{
   margin: 5px 5px 0px 40px;
 }
+
+.lanparty-nav > hr.line {
+  height: 1px;
+  border-top: 1px solid #434343;
+  margin-bottom: 9px;
+}
+
 .envet{
   display: inline-block;
   width: 720px;
@@ -3822,7 +3835,7 @@ span.views {
   font-size: 30px;
   font-weight: bold;
   padding-left: 12px;
-  z-index: 100000;
+  z-index: 2000;
 }
 .envet1 .envet_title, .envet2 .envet_title, .envet3 .envet_title{
   position: relative;
