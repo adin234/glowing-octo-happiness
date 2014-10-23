@@ -123,47 +123,64 @@ footer > ul li a,
 #outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(1).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -996px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(2) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(2).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1042px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(3).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1087px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(4).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1132px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(5).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1182px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(6).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1226px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(7).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1269px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(8) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(8).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1715px;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 
 #outContainer header .species a:hover{
-  font-weight: 700;
-  color: #000;
+  font-weight: bold;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 
 /*%IEPie
@@ -505,7 +522,8 @@ a:hover, a:focus, a:active {
 
 #outContainer header .species li.current a {
   font-weight: bold;
-  color: #000;
+  color: #FFF50E;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 /*
 #outContainer header .species li:nth-child(1) a {
