@@ -30,6 +30,7 @@
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.autocomplete.min.js"></script>
 <script src="/assets/js/sidr/jquery.sidr.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css">
@@ -95,9 +96,9 @@
             <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <li>
-              <form>
-                <input type="text" placeholder="搜尋">
-              </form>
+              <div>
+                <input type="text" placeholder="搜尋" id="query">
+              </div>
             </li>
           </ul>
         </nav>

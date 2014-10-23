@@ -687,6 +687,9 @@ a:hover, a:focus, a:active {
 #outContainer header .site > ul > li:nth-child(7) > a {
   padding-left: 25px;
 }
+#outContainer header .site > ul > li:nth-child(7).current {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
+}
 #outContainer header .site > ul > li:nth-child(7) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
 }
@@ -696,10 +699,13 @@ a:hover, a:focus, a:active {
 #outContainer header .site > ul > li:nth-child(8) > a {
   padding-left: 25px;
 }
-#outContainer header .site > ul > li:nth-child(8) {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1689px
+#outContainer header .site > ul > li:nth-child(8).current {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
 }
-#outContainer header .site > ul > li:nth-child(8):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
+#outContainer header .site > ul > li:nth-child(8) {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1762px;
+}
+#outContainer header .site > ul > li:nth-child(8):hover, #outContainer header .site > ul > li:nth-child(8):focus, #outContainer header .site > ul > li:nth-child(8):active {
   background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
 }
 #outContainer header .site > ul > li:nth-child(9) {
@@ -3823,4 +3829,19 @@ span.views {
   top: 450px;
   height: 60px;
   padding-top: 10px;
+}
+
+.autocomplete-suggestions{ margin-top: 5px; }
+.autocomplete-suggestions div { padding:2px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete-suggestions strong { font-weight:normal; color:#e00; }
+.autocomplete-suggestions {
+  background: rgba(0, 0, 0, .9);
+  border: 1px solid #434343;
+  padding: 0 5px;
+  color: #fff;
+}
+
+.autocomplete-suggestions:hover. .autocomplete-suggestions .selected {
+  background: rgba(255, 255, 255, .9);
+  color: #e00;
 }
