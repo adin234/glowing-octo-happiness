@@ -697,7 +697,7 @@ a:hover, a:focus, a:active {
   padding-left: 25px;
 }
 #outContainer header .site > ul > li:nth-child(8) {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1761px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1689px
 }
 #outContainer header .site > ul > li:nth-child(8):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
   background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
