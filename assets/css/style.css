@@ -116,6 +116,10 @@ footer > ul li a,
   background: url("/assets/images/sprite.png") no-repeat -127px -1592px;
   padding-left: 23px;
 }
+#outContainer header .species li.nav-switch-item:nth-child(8) a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1789px;
+  padding-left: 23px;
+}
 #outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(1).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -996px;
@@ -149,6 +153,11 @@ footer > ul li a,
 #outContainer header .species li.nav-switch-item:nth-child(7) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(7).current a {
   background: url("/assets/images/sprite.png") no-repeat -127px -1269px;
+  color: #000;
+}
+#outContainer header .species li.nav-switch-item:nth-child(8) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(8).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1715px;
   color: #000;
 }
 
@@ -304,7 +313,7 @@ body {
 .lang_zh_tw .site {
   font-size: 1.14286em;
   line-height: 1.5;
-  padding-left: 260px;
+  padding-left: 225px;
 }
 .lang_zh_tw .member {
   font-size: 1.07143em;
@@ -472,7 +481,7 @@ a:hover, a:focus, a:active {
   background: url("/assets/images/logo_tw.png") no-repeat 0 0;
   height: 78px;
   width: 176px;
-  left: 50px;
+  left: 25px;
   top: 42px;
 }
 #outContainer header nav a {
@@ -491,7 +500,7 @@ a:hover, a:focus, a:active {
   padding-left: 262px;
 }
 #outContainer .fixedMenu header .species ul {
-  padding-left: 262px;
+  padding-left: 210px;
 }
 
 #outContainer header .species li.current a {
@@ -601,7 +610,7 @@ a:hover, a:focus, a:active {
   position: relative;
 }
 #outContainer header .site > ul > li + li {
-  margin-left: 20px;
+  margin-left: 14px;
 }
 #outContainer header .site > ul > li:nth-child(1) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1004px;
@@ -675,19 +684,25 @@ a:hover, a:focus, a:active {
 #outContainer header .site > ul > li:nth-child(6).current {
   background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
 }
+#outContainer header .site > ul > li:nth-child(7) > a {
+  padding-left: 25px;
+}
 #outContainer header .site > ul > li:nth-child(7) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
 }
 #outContainer header .site > ul > li:nth-child(7):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
 }
-#outContainer header .site > ul > li:nth-child(7) > a {
-  padding-left: 26px;
-}
-#outContainer header .site > ul > li:nth-child(7).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
+#outContainer header .site > ul > li:nth-child(8) > a {
+  padding-left: 25px;
 }
 #outContainer header .site > ul > li:nth-child(8) {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1761px;
+}
+#outContainer header .site > ul > li:nth-child(8):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
+}
+#outContainer header .site > ul > li:nth-child(9) {
   margin-left: 45px;
   margin-top: 0;
 }
@@ -799,14 +814,14 @@ a:hover, a:focus, a:active {
   color: #616161;
 }
 #outContainer header .site input[type="text"] {
-  background: #bebebe url("/assets/images/sprite.png") no-repeat 11px -1642px;
-  /*@extend %IEPie */
+  background: #151515 url("../images/sprite.png") no-repeat 11px -1642px;
   -moz-border-radius: 9px;
   -webkit-border-radius: 9px;
   border-radius: 9px;
   color: #616161;
-  padding: 9px 11px 9px 50px;
-  width: 188px;
+  padding: 9px 11px 9px 40px;
+  width: 168px;
+  border: 1px solid #434343;
 }
 #outContainer header .member {
   position: absolute;
@@ -3665,4 +3680,147 @@ span.views {
   font-weight: bold;
   top: 5px;
   font-size: 21px;
+}
+
+
+#container_lanparty {
+  background: url("../images/lanparty_bg.png");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  min-height: 900px;
+  padding: 40px 40px 80px 40px;
+}
+#container_lanparty .lanparty_type1{
+  float: left;
+}
+#container_lanparty .lanparty_type2{
+  float: right;
+}
+
+#container_lanparty .lanparty_type2 > li > a:hover{
+  color: #eee;
+  text-decoration: none;
+}
+#container_lanparty .lanparty_type2 > li:nth-child(1) {
+  background: url("../images/sprite.png") no-repeat 0 -1279px;
+}
+#container_lanparty .lanparty_type2 > li:nth-child(2) {
+  margin-left: 20px;
+  background: url("../images/icon_fire_grey.png") no-repeat;
+  position: relative;
+  top: 1px;
+  vertical-align: middle;
+}
+#container_lanparty .lanparty_menu{
+  border-top: 1px solid #434343;
+  padding: 10px;
+}
+#container_lanparty .lanparty_menu li{
+  display: inline-block;
+  padding: 0px 20px;
+  vertical-align: middle;
+}
+#container_lanparty .lanparty_menu li:not(:last-child){
+  border-right: 1px solid #434343;
+}
+#container_lanparty .lanparty_menu li > a{
+  color: #868686;
+  text-decoration: none;
+  /*outline: 1px solid red;*/
+  padding: 15px 10px;
+  position: relative;
+  top: -1px;
+}
+
+#container_lanparty .lanparty_type1 li.current > a,
+#container_lanparty .lanparty_type1 li:hover > a{
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+#container_lanparty .lanparty_title{
+  display: inline-block;
+  margin: 100px 80px 0px;
+}
+#container_lanparty .lanparty_content{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 80px auto;
+}
+#container_lanparty .lanparty_timetable{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 51px auto 80px;
+  background: url(../images/lanparty_grid_bg.png);
+  min-width: 940px;
+  min-height: 829px;
+  padding-top: 40px;
+}
+
+#container_lanparty .lanparty_content p{
+  margin: 20px 0px;
+  line-height: 1.75;
+}
+#container_lanparty .hour_time{
+  display: inline-block;
+  width: 150px;
+  color: #0a8bac;
+  padding-top: 60px;
+}
+#container_lanparty .hour_time li{
+  margin: 5px 5px 0px 40px;
+}
+.envet{
+  display: inline-block;
+  width: 720px;
+  vertical-align: top;
+  margin-left: 30px;
+  margin-top: -30px;
+  padding-top: 30px;
+}
+.envet1,.envet2,.envet3{
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  width: 210px;
+  height: 800px;
+  border-right: 1px dotted #0a8bac;
+}
+.envet_date{
+  position: absolute;
+  top: 0px;
+  width: 178px;
+  height: 165px;
+  background: url(../images/month_bg.png) no-repeat;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 12px;
+  z-index: 100000;
+}
+.envet1 .envet_title, .envet2 .envet_title, .envet3 .envet_title{
+  position: relative;
+  border-top: 1px dotted #0a8bac;
+  border-bottom: 1px dotted #0a8bac;
+  font-size: 18px;
+  color: #eee;
+  text-align: center;
+}
+.envet1 .envet_title{
+  padding-top: 100px;
+  top: 160px;
+  height: 200px;
+
+}
+.envet2 .envet_title{
+  top: 450px;
+  height: 80px;
+  padding-top: 10px;
+}
+.envet3 .envet_title{
+  top: 450px;
+  height: 60px;
+  padding-top: 10px;
 }
