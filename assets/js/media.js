@@ -62,7 +62,7 @@ var update_videos = function (videos, append) {
     }
   });
   if(!html.length) {
-    html.push('No Video Available');
+    html.push('目前沒有影片');
   }
 
   if(append) {
