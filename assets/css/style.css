@@ -3766,6 +3766,11 @@ span.views {
 
 #outContainer #container.lanparty {
   background: #000 url('../images/lanparty_bg.png') no-repeat;
+  color: #ebebeb;
+}
+
+#outContainer #container.lanparty a {
+  color: #999;
 }
 
 .lanparty-nav .lanparty_type1 li.active > a,
