@@ -7,6 +7,15 @@ var hash;
 var filterConsole = '';
 var filterGame = '';
 
+var gameNames = [];
+page_data.games.forEach(function(item) {
+    gamesAutocompleteArray.push({value: item.name, data: item});
+    gameNames.push(item.name);
+    if(!~gameNames.indexOf(item.chinese)) {
+        gamesAutocompleteArray.push({value: item.chinese, data: item});
+    }
+});
+
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider({

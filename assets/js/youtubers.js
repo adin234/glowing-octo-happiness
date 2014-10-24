@@ -19,6 +19,15 @@ newSlider = $(".bxslider.videos.new").bxSlider({
     hideControlOnEnd: true
 });
 
+var gameNames = [];
+page_data.games.forEach(function(item) {
+    gamesAutocompleteArray.push({value: item.name, data: item});
+    gameNames.push(item.name);
+    if(!~gameNames.indexOf(item.chinese)) {
+        gamesAutocompleteArray.push({value: item.chinese, data: item});
+    }
+});
+
 var get_hash = function() {
     var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
     hash = hash.split('/');
@@ -44,6 +53,12 @@ var filter_category = function(con, context) {
 
     $.getJSON(server+'youtubers?'+$.param(parameters), function(results) {
         page_data = results;
+        if(con == 'vlogs') {
+            $('.game-container').css('display', 'none');
+        } else {
+            $('.game-container').css('display', 'block');
+        }
+
         render_page();
     }).done(function() {
         $(context).parent().siblings().removeClass('current');
@@ -86,11 +101,11 @@ $(window).on('hashchange', function(){
     }
 });
 
-$('#txtbox-search-games').on('keydown', function(e) {
+$('body').on('keydown', '#txtbox-search-games', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
 });
 
-$('#txtbox-search-videos').on('keydown', function(e) {
+$('body').on('keydown', '#txtbox-search-videos', function(e) {
     if (e.keyCode == 13) { filter_videos(this); }
 });
 
@@ -98,7 +113,7 @@ var filter_game = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_featured_games(filterString);
-    render_games(filterString);
+    render_latest_games(filterString);
     slider.featured_games.reloadSlider({startSlide: 0});
     slider.latest_games.reloadSlider({startSlide: 0});
 };
