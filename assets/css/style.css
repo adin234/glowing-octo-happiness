@@ -1883,6 +1883,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .playList li + li a {
   border-top: 1px solid silver;
 }
+.playList li div.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+}
 .playList .current {
   background-color: #d6d6d6;
 }
@@ -3752,9 +3760,12 @@ span.views {
 }
 
 #container .lanparty-nav {
-  background: #000 url('../images/lanparty_bg.png');
   margin: -34px -50px 25px;
   padding: 20px 50px;
+}
+
+#outContainer #container.lanparty {
+  background: #000 url('../images/lanparty_bg.png') no-repeat;
 }
 
 .lanparty-nav .lanparty_type1 li.active > a,

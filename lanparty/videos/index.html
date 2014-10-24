@@ -25,9 +25,10 @@
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
 <script type="text/javascript" src="/assets/js/config.js"></script>
+<script type="text/javascript" src="/assets/js/get.youtuber.data.js"></script>
 </head>
 
-<body class="lang_zh_tw">
+<body class="lang_zh_tw switch-menu">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -35,7 +36,7 @@
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
@@ -48,19 +49,19 @@
         </nav>
         <nav class="site sf-menu">
           <ul class="clearFix">
-            <li><a href="/index" title="首頁">首頁</a></li>
-            <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
-              <ul>
+            <li class="nav-switch-item"><a href="/index" title="首頁">首頁</a></li>
+            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇" class="sf-with-ul">論壇</a>
+              <ul style="display: none;">
                 <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
-                <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
+                <li><a href="http://community.gamers.tm/zh/index.php?search/&amp;type=post" title="搜尋論壇">搜尋論壇</a></li>
               </ul>
             </li>
-            <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shosws</a></li>
-            <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <li><a href='/lanparty' title="Lan Party">Lan Party</a></li>
+            <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
+            <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
+            <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
+            <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
+            <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li class="nav-switch-item current"><a href='/lanparty' title="Lan Party">Lan Party</a></li>
             <li>
               <div>
                 <input type="text" placeholder="搜尋" id="query">
@@ -74,7 +75,7 @@
         </ul>
       </header>
     </div>
-    <div id="container">
+    <div id="container" class="lanparty">
       <div id="content" class="clearFix">
         <div class="lanparty-nav clearFix">
           <hr class="line">
@@ -272,6 +273,7 @@
     </ul>
     </a></li>
 </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/function.js"></script>
