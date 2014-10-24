@@ -335,5 +335,16 @@ function searchBoxInit() {
         });
     }
 }
+var gamesAutocompleteArray = [];
 
-$(function() { searchBoxInit(); });
+function searchGamesBoxInit() {
+    if(!gamesAutocompleteArray.length) return;
+
+    optionGames = {
+        lookup : gamesAutocompleteArray
+    }
+
+    $('#txtbox-search-games').autocomplete(optionGames);
+}
+
+$(function() { searchBoxInit(); searchGamesBoxInit(); });

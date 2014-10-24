@@ -1,12 +1,35 @@
 var liveStreamLink = false;
-$(window).load(function(){
+var filterConsole = 'all';
+
+
+function filter_category(gameConsole, context) {
+	$(context).parent().siblings().removeClass('current');
+	$(context).parent().addClass('current');
+
+	filterConsole = gameConsole;
+	renderGame();
+}
+
+function renderGame() {
 	html = [];
 	page_data.games_cast.forEach(function(item){
+		if(!~item.consoles.indexOf(filterConsole)) return;
 		html.push(template($('#gamesCastTpl').html(), item));
 	});
 	$('#gamesCast').mCustomScrollbar({theme: 'inset-2'});
+
+	if(!html.length) {
+		html.push('目前沒有遊戲');
+	}
+
 	$('#gamesCast .mCSB_container').html(html.join(''));
 	$('.tooltip').tooltipster({contentAsHTML: true});
+}
+
+$(window).load(function(){
+
+	renderGame();
+
 	$('#banner .info > cite').html(page_data.user.username);
 	$('#banner .info > a').attr('href', community+'index.php?members/'
 		+page_data.user.username+'.'+page_data.user.user_id);
