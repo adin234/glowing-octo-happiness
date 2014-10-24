@@ -58,6 +58,15 @@ $(function() {
     if(streamType == 'YT') {
         $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
         .html(),{youtubeid: streamId}));
+
+        $.getJSON(server+'streamers/youtube', function(e) {
+            e.streamers.forEach(function(item) {
+                console.log(item.youtube.id, streamId)
+                if(item.youtube.id == streamId) {
+                    $('.streamer #about-streamer').html(item.youtube.snippet.description);
+                }
+            })
+        });
     }
 
     $('#about-streamer').html(page_data.about);
@@ -129,7 +138,7 @@ $(function() {
 
 var viewers;
 
-$.getJSON(server+'get_views/'+twitch.substr(2), function(e) {
+$.getJSON(server+'get_views/'+twitch, function(e) {
     if(e && e.stream && e.stream.viewers) {
         viewers = e.stream.viewers;
         $('#twitchStream .views').html(e.stream.viewers);
