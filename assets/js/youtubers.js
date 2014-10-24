@@ -18,6 +18,10 @@ newSlider = $(".bxslider.videos.new").bxSlider({
     infiniteLoop: false,
     hideControlOnEnd: true
 });
+allSlider = $(".bxslider.videos.all").bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
 
 var gameNames = [];
 page_data.games.forEach(function(item) {
@@ -93,10 +97,12 @@ $(window).on('hashchange', function(){
         $.getJSON(server+'youtubers?'+$.param(parameters), function(result) {
             page_data = result;
             render_new_members();
+            render_all_members();
             render_popular_members();
         });
     } else {
         render_new_members();
+        render_all_members();
         render_popular_members();
     }
 });
@@ -122,8 +128,10 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
+    render_all_members(filterString);
     render_popular_members(filterString);
     newSlider.reloadSlider();
+    allSlider.reloadSlider();
     popularSlider.reloadSlider();
 };
 
@@ -185,7 +193,7 @@ var render_latest_games = function(filter) {
     });
 };
 
-var render_new_members = function(filter) {
+var render_all_members = function(filter) {
     var html = [];
     var items = [];
     var ids = [];
@@ -222,8 +230,49 @@ var render_new_members = function(filter) {
     }
 
     if(!html.length) { html.push('沒有此實況主'); }
+    $('#container-all-member').html(html.join(''));
+    allSlider.reloadSlider();
+};
+
+var render_new_members = function(filter) {
+    var html = [];
+    var items = [];
+    var ids = [];
+    var tplVideo = $('#videoTpl').html();
+    var tplVideoContainer = $('#videoContainerTpl').html();
+    filter =  new RegExp(filter, 'i');
+
+    page_data.new_youtubers.forEach(function (item, i) {
+        if(typeof item.video == 'undefined') return;
+        if(item.video.snippet.title.search(filter) == -1
+           && item.video.snippet.channelTitle.search(filter) == -1) return;
+        item.user_id = item.userId;
+        item.title = item.video.snippet.title;
+        item.thumb = item.video.snippet.thumbnails.medium.url;
+        item.view = item.video.snippet.meta.statistics.viewCount;
+        item.comment = item.video.snippet.meta.statistics.commentCount;
+        item.channelid = item.youtube_id;
+        item.live = '';
+
+        item.provider = attachments_server;
+        item.videoid = item.video.snippet.resourceId.videoId;
+        item.bust = new Date();
+
+        items.push(template(tplVideo, item));
+        ids.push(item.youtube_id);
+        if(items.length == 9) {
+            html.push(template(tplVideoContainer, {'items' : items.join('')}));
+            items = [];
+        }
+    });
+
+    if(items.length != 0) {
+        html.push(template(tplVideoContainer, {'items' : items.join('')}));
+    }
+
+    if(!html.length) { html.push('沒有此實況主'); }
     $('#container-new-member').html(html.join(''));
-    newSlider.reloadSlider();
+    allSlider.reloadSlider();
 };
 
 var render_popular_members = function(filter) {
