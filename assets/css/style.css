@@ -630,102 +630,97 @@ a:hover, a:focus, a:active {
 #outContainer header .site > ul > li + li {
   margin-left: 14px;
 }
-#outContainer header .site > ul > li:nth-child(1) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1004px;
-}
-#outContainer header .site > ul > li:nth-child(1):hover, #outContainer header .site > ul > li:nth-child(1):focus, #outContainer header .site > ul > li:nth-child(1):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
-}
+
+
 #outContainer header .site > ul > li:nth-child(1) > a {
   padding-left: 23px;
-}
-#outContainer header .site > ul > li:nth-child(1).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
-}
-#outContainer header .site > ul > li:nth-child(2) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1050px;
-}
-#outContainer header .site > ul > li:nth-child(2):hover, #outContainer header .site > ul > li:nth-child(2):focus, #outContainer header .site > ul > li:nth-child(2):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1007px;
 }
 #outContainer header .site > ul > li:nth-child(2) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1053px;
   padding-left: 24px;
-}
-#outContainer header .site > ul > li:nth-child(2).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
-}
-#outContainer header .site > ul > li:nth-child(3) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1096px;
-}
-#outContainer header .site > ul > li:nth-child(3):hover, #outContainer header .site > ul > li:nth-child(3):focus, #outContainer header .site > ul > li:nth-child(3):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1417px;
 }
 #outContainer header .site > ul > li:nth-child(3) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1099px;
   padding-left: 24px;
 }
-#outContainer header .site > ul > li:nth-child(3).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1418px;
-}
-#outContainer header .site > ul > li:nth-child(4) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1141px;
-}
-#outContainer header .site > ul > li:nth-child(4):hover, #outContainer header .site > ul > li:nth-child(4):focus, #outContainer header .site > ul > li:nth-child(4):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
-}
 #outContainer header .site > ul > li:nth-child(4) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1144px;
   padding-left: 25px;
-}
-#outContainer header .site > ul > li:nth-child(4).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
-}
-#outContainer header .site > ul > li:nth-child(5) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1191px;
-}
-#outContainer header .site > ul > li:nth-child(5):hover, #outContainer header .site > ul > li:nth-child(5):focus, #outContainer header .site > ul > li:nth-child(5):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
 }
 #outContainer header .site > ul > li:nth-child(5) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1194px;
   padding-left: 26px;
 }
-#outContainer header .site > ul > li:nth-child(5).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
-}
-#outContainer header .site > ul > li:nth-child(6) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1235px;
-}
-#outContainer header .site > ul > li:nth-child(6):hover, #outContainer header .site > ul > li:nth-child(6):focus, #outContainer header .site > ul > li:nth-child(6):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
-}
 #outContainer header .site > ul > li:nth-child(6) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1238px;
   padding-left: 21px;
 }
-#outContainer header .site > ul > li:nth-child(6).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
-}
 #outContainer header .site > ul > li:nth-child(7) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1282px;
   padding-left: 25px;
-}
-#outContainer header .site > ul > li:nth-child(7).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
-}
-#outContainer header .site > ul > li:nth-child(7) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
-}
-#outContainer header .site > ul > li:nth-child(7):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
 }
 #outContainer header .site > ul > li:nth-child(8) > a {
+   background: url("/assets/images/sprite.png") no-repeat -127px -1763px;
   padding-left: 25px;
 }
-#outContainer header .site > ul > li:nth-child(8).current {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
+/*-----------------*/
+#outContainer header .site > ul > li:nth-child(1).current > a,
+#outContainer header .site > ul > li:nth-child(1) > a:hover,
+#outContainer header .site > ul > li:nth-child(1) > a:focus,
+#outContainer header .site > ul > li:nth-child(1) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1328px;
 }
-#outContainer header .site > ul > li:nth-child(8) {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1762px;
+
+#outContainer header .site > ul > li:nth-child(2).current > a,
+#outContainer header .site > ul > li:nth-child(2) > a:hover,
+#outContainer header .site > ul > li:nth-child(2) > a:focus,
+#outContainer header .site > ul > li:nth-child(2) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1374px;
 }
-#outContainer header .site > ul > li:nth-child(8):hover, #outContainer header .site > ul > li:nth-child(8):focus, #outContainer header .site > ul > li:nth-child(8):active {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1689px;
+
+#outContainer header .site > ul > li:nth-child(3).current > a,
+#outContainer header .site > ul > li:nth-child(3) > a:hover,
+#outContainer header .site > ul > li:nth-child(3) > a:focus,
+#outContainer header .site > ul > li:nth-child(3) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1421px;
 }
+
+#outContainer header .site > ul > li:nth-child(4) > a.current,
+#outContainer header .site > ul > li:nth-child(4) > a:hover,
+#outContainer header .site > ul > li:nth-child(4) > a:focus,
+#outContainer header .site > ul > li:nth-child(4) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1465px;
+}
+
+#outContainer header .site > ul > li:nth-child(5) > a.current,
+#outContainer header .site > ul > li:nth-child(5) > a:hover,
+#outContainer header .site > ul > li:nth-child(5) > a:focus,
+#outContainer header .site > ul > li:nth-child(5) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1515px;
+}
+
+#outContainer header .site > ul > li:nth-child(6) > a.current,
+#outContainer header .site > ul > li:nth-child(6) > a:hover,
+#outContainer header .site > ul > li:nth-child(6) > a:focus,
+#outContainer header .site > ul > li:nth-child(6) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1559px;
+}
+
+#outContainer header .site > ul > li:nth-child(7) > a.current,
+#outContainer header .site > ul > li:nth-child(7) > a:hover,
+#outContainer header .site > ul > li:nth-child(7) > a:focus,
+#outContainer header .site > ul > li:nth-child(7) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1603px;
+}
+
+#outContainer header .site > ul > li:nth-child(8) > a.current,
+#outContainer header .site > ul > li:nth-child(8) > a:hover,
+#outContainer header .site > ul > li:nth-child(8) > a:focus,
+#outContainer header .site > ul > li:nth-child(8) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1691px;
+}
+
 #outContainer header .site > ul > li:nth-child(9) {
   margin-left: 45px;
   margin-top: 0;
@@ -2190,7 +2185,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-position: 2px -2464px;
 }
 .video .collection, .games .collection {
-  width: 1056px;
+  width: 1040px;
 }
 .video .collection div, .games .collection div {
   margin: 0 auto;
@@ -3876,3 +3871,4 @@ span.views {
   background: rgba(255, 255, 255, .9);
   color: #e00;
 }
+
