@@ -686,35 +686,35 @@ a:hover, a:focus, a:active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1421px;
 }
 
-#outContainer header .site > ul > li:nth-child(4) > a.current,
+#outContainer header .site > ul > li:nth-child(4).current > a,
 #outContainer header .site > ul > li:nth-child(4) > a:hover,
 #outContainer header .site > ul > li:nth-child(4) > a:focus,
 #outContainer header .site > ul > li:nth-child(4) > a:active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1465px;
 }
 
-#outContainer header .site > ul > li:nth-child(5) > a.current,
+#outContainer header .site > ul > li:nth-child(5).current > a,
 #outContainer header .site > ul > li:nth-child(5) > a:hover,
 #outContainer header .site > ul > li:nth-child(5) > a:focus,
 #outContainer header .site > ul > li:nth-child(5) > a:active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1515px;
 }
 
-#outContainer header .site > ul > li:nth-child(6) > a.current,
+#outContainer header .site > ul > li:nth-child(6).current > a,
 #outContainer header .site > ul > li:nth-child(6) > a:hover,
 #outContainer header .site > ul > li:nth-child(6) > a:focus,
 #outContainer header .site > ul > li:nth-child(6) > a:active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1559px;
 }
 
-#outContainer header .site > ul > li:nth-child(7) > a.current,
+#outContainer header .site > ul > li:nth-child(7).current > a,
 #outContainer header .site > ul > li:nth-child(7) > a:hover,
 #outContainer header .site > ul > li:nth-child(7) > a:focus,
 #outContainer header .site > ul > li:nth-child(7) > a:active {
   background: url("/assets/images/sprite.png") no-repeat 0 -1603px;
 }
 
-#outContainer header .site > ul > li:nth-child(8) > a.current,
+#outContainer header .site > ul > li:nth-child(8).current > a,
 #outContainer header .site > ul > li:nth-child(8) > a:hover,
 #outContainer header .site > ul > li:nth-child(8) > a:focus,
 #outContainer header .site > ul > li:nth-child(8) > a:active {
