@@ -10,6 +10,15 @@ page_data = $.parseJSON(page_data);
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 
+popularSlider = $(".bxslider.videos.popular").bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
+newSlider = $(".bxslider.videos.new").bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
+
 var get_hash = function() {
     var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
     hash = hash.split('/');
@@ -199,6 +208,7 @@ var render_new_members = function(filter) {
 
     if(!html.length) { html.push('沒有此實況主'); }
     $('#container-new-member').html(html.join(''));
+    newSlider.reloadSlider();
 };
 
 var render_popular_members = function(filter) {
@@ -239,19 +249,13 @@ var render_popular_members = function(filter) {
 
     if(!html.length) { html.push('沒有此實況主'); }
     $('#container-popular-member').html(html.join(''));
+
+    popularSlider.reloadSlider();
 };
 
 
 $(function() {
     $(".sf-menu").superfish();
-    popularSlider = $(".bxslider.videos.popular").bxSlider({
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
-    newSlider = $(".bxslider.videos.new").bxSlider({
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
     $(".tabs").tabslet({ animation: true });
 });
 

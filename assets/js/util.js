@@ -306,3 +306,34 @@ var fixErrorImg = function(item) {
 //             +'avatars/avatar_male_l.png'
 //         )
 // });
+var searchId = false;
+var searchBox = '';
+function redirect_to_youtuber(id)  {
+    window.location.href = origin+'youtuber/'+id
+}
+
+function searchBoxInit() {
+    options = {
+      serviceUrl: server+'youtubers/search',
+      // minChars: 3,
+      zIndex: 9999,
+      onSelect: function(value) {
+        redirect_to_youtuber(value.data.user_id);
+      }
+    };
+    var searchDom = $('#query');
+    if(searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                if(typeof searchBox.data().suggestions[0] != 'undefined') {
+                    redirect_to_youtuber(searchBox.data().suggestions[0].data.user_id);
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
+}
+
+$(function() { searchBoxInit(); });
