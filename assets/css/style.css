@@ -1205,7 +1205,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
   -ms-input-placeholder-color: #9c9c9c;
 }
-.search div:empty:not(.bx-pager) {
+.search div:empty:not(.bx-pager):not(.bx-loading) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
   height: 16px;
   width: 16px;
@@ -3923,4 +3923,9 @@ span.views {
   height: 246px;
   width: 334px;
   position: relative;
+}
+
+.gritter-item .link {
+  color: #fff;
+  font-size: 14px;
 }
