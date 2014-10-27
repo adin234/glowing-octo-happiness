@@ -7,7 +7,12 @@ function filter_category(gameConsole, context) {
 	$(context).parent().addClass('current');
 
 	filterConsole = gameConsole;
-	renderGame();
+
+	if(gameConsole != 'vlogs') {
+		renderGame();
+	} else {
+		filter_vlogs();
+	}
 }
 
 function renderGame() {

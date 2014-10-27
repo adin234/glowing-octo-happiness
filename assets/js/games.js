@@ -105,7 +105,7 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     var game = get_game();
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='
+    $.getJSON(server+'games/'+game+'/videos?limit=32&console='
         +con+'&search='+filterString, function(result) {
         page_data.videos = result;
         render_videos();
@@ -131,7 +131,7 @@ var render_videos = function() {
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
-        if(items.length == 9) {
+        if(items.length == 16) {
             html.push(template(tplVideoContainer, {'items' : items.join('')}));
             items = [];
         }
@@ -166,9 +166,10 @@ var load_game_videos_next_page = function() {
     var tplVideoContainer = $('#videoContainerTpl').html();
     var game = get_game();
     var filter = $('#txtbox-search-videos').val();
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
+    $.getJSON(server+'games/'+game+'/videos?limit=32&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
         page_data.videos.concat(result);
         result.forEach(function (item, i) {
+            item.anytv_comments = item.anytv_comment || 0;
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
             item.title = item.snippet.title;
@@ -179,7 +180,7 @@ var load_game_videos_next_page = function() {
 
             items.push(template(tplVideo, item));
 
-            if(items.length == 9) {
+            if(items.length == 16) {
                 html.push(template(tplVideoContainer, {'items' : items.join('')}));
                 items = [];
             }
@@ -214,7 +215,7 @@ var load_game_videos_next_page = function() {
 
 var render_game_videos = function(game, page) {
     var parameters = {
-        limit: 18
+        limit: 32
     };
 
     filterGame = game;

@@ -142,6 +142,9 @@ var update_index = function(index_data) {
 		index_data.slider.forEach(function(item, i){
 			item.onclick = item.header_location ? "window.location='"+item.header_location+"'" : '';
 			item.provider = attachments_server;
+			item.style = item.youtube_link ? '' : 'display:none';
+			item.youtube_link = item.youtube_link ? item.youtube_link : '';
+			item.thumb = 'https://i.ytimg.com/vi/'+item.youtube_link.replace('https://www.youtube.com/watch?v=','')+'/mqdefault.jpg';
 			html.push(template($('#sliderTpl').html(), item));
 		});
 		$('#imageSlider').html(html.join(''));
@@ -264,9 +267,12 @@ var update_index = function(index_data) {
 	$('#hotForumSection').html(html);
 
     $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
-      theme:"inset-2",
+      theme:"inset-2"
     });
 
-    $('.tooltip').tooltipster({contentAsHTML: true});
+    $('.tooltip').tooltipster({
+    	contentAsHTML: true,
+    	position: 'top'
+	});
 };
 
