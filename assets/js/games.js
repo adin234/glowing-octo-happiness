@@ -105,7 +105,8 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     var game = get_game();
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+'&search='+filterString, function(result) {
+    $.getJSON(server+'games/'+game+'/videos?limit=18&console='
+        +con+'&search='+filterString, function(result) {
         page_data.videos = result;
         render_videos();
     });
@@ -119,6 +120,7 @@ var render_videos = function() {
     var tplVideoContainer = $('#videoContainerTpl').html();
 
     page_data.videos.forEach(function (item, i) {
+        item.anytv_comments = item.anytv_comment || 0;
         item.provider = attachments_server;
         item.thumb = item.snippet.thumbnails.medium.url;
         item.title = item.snippet.title;

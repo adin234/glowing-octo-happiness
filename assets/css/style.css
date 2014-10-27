@@ -256,7 +256,7 @@ body {
   font-size: 1em;
 }
 .lang_en .live:before {
-  background: url("/assets/images/icon.png") no-repeat 0 0;
+  background: url("/assets/images/icon-live.png") no-repeat 0 0;
 }
 .lang_en .video .list li {
   font-size: 1.07692em;
@@ -358,7 +358,7 @@ body {
   font-size: 1em;
 }
 .lang_zh_tw .live:before {
-  background: url("/assets/images/icon.png") no-repeat 0 -104px;
+  background: url("/assets/images/icon-live.png") no-repeat;
 }
 .lang_zh_tw footer small, .lang_zh_tw footer span {
   font-size: 0.85714em;
@@ -380,7 +380,6 @@ body {
 }
 .lang_zh_tw .playList h3 {
   font-size: 1.07143em;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -1047,9 +1046,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .live:before {
   content: "\00a0";
   position: absolute;
-  height: 74px;
-  width: 73px;
-  right: -3px;
+  height: 33px;
+  width: 93px;
+  right: 5px;
   top: -4px;
   z-index: 50;
 }
@@ -1068,8 +1067,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .video .list > li {
   float: left;
-  height: 246px;
-  width: 334px;
+  height: 175px;
+  width: 223px;
   position: relative;
 }
 .video .list > li a:nth-child(2) {
@@ -1126,7 +1125,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-color: rgba(131, 7, 7, 0.75);
   bottom: 0;
   color: white;
-  font-size: 1.61538em;
+  font-size: -0.38462em;
   line-height: 1.1;
   width: 100%;
 }
@@ -1155,10 +1154,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   left: 50%;
-  top: 98px;
+  top: 25px;
   margin-left: -34px;
 }
-
+#tab-2-2 .list .uploader {
+  top: 95px;
+}
 .games [id^="tab-"] {
   overflow: hidden;
 }
@@ -1888,6 +1889,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  height: 2.3em;
   line-height: 1.2em;
   text-overflow: ellipsis;
 }
@@ -1899,8 +1901,13 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-right: 15px;
 }
 .playList h3 {
-  line-height: 1.25;
-  margin-top: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.3em;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
 }
 .playList p {
   color: #7e7e7e;
@@ -2248,13 +2255,13 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .live-button {
   content: "\00a0";
   position: absolute;
-  height: 74px;
-  width: 73px;
-  right: -2px;
+  height: 33px;
+  width: 93px;
+  right: 5px;
   display: none;
-  top: -4px;
+  top: 5px;
   z-index: 50;
-  background: url("/assets/images/icon.png") no-repeat 0 -104px;
+  background: url("/assets/images/icon-live.png") no-repeat;
 }
 
 .profile {
@@ -2394,7 +2401,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   transition: top 0.25s ease;
 }
 .stream [id^="tab-"]:nth-of-type(1) .list li.live:before {
-  top: 32px;
+  top: 40px;
 }
 .stream [id^="tab-"]:nth-of-type(1) .list .uploader {
   top: 134px;
@@ -3889,3 +3896,24 @@ span.views {
   color: #e00;
 }
 
+
+
+#youtubers .list.clearFix, #games .list.clearFix {
+    margin-left: 50px;
+}
+
+#streamers .video .list h3 {
+  background-color: rgba(131, 7, 7, 0.75);
+  bottom: 0;
+  color: white;
+  font-size: 1.61538em;
+  line-height: 1.1;
+  width: 100%;
+}
+
+#streamers .video .list > li {
+  float: left;
+  height: 246px;
+  width: 334px;
+  position: relative;
+}

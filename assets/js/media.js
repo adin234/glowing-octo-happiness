@@ -6,6 +6,7 @@ var hash;
 var player;
 var filterTags = false;
 var playlistIds = [];
+var active_comments = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -103,6 +104,12 @@ var filterAction = function(action) {
       break;
     case 'video':
       showVideo(hash.shift());
+      break;
+    case 'comments':
+      $('a[href="#tab-2"]').click();
+      active_comments = true;
+      filterAction(hash.shift());
+      break;
   }
 };
 
@@ -134,6 +141,8 @@ var showVideo = function(videoId) {
     showSocialButtons();
     updatePrevNext();
     utilLoader.hide();
+
+    filterAction(hash.shift());    
   }
 
 };
@@ -158,7 +167,7 @@ var getComments = function (videoId) {
 
     $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
-      {video: videoId, comments: commentsHTML})
+      { count: e.length, video: videoId, comments: commentsHTML})
     ).promise().done(function() {
       if(utilUser.get()) {
         $('img.userImg').attr('src', utilUser.get().links.avatar);
@@ -328,6 +337,11 @@ $(document).ready(function(){
   $(".tabs").tabslet({
     animation: true,
     active: 1,
+  }).promise().done(function(e) {
+    console.log('must open comments');
+    if(active_comments) {
+      $('#tab-2').click();
+    }
   });
   $(".zoom a").click(function(){
     $("body").toggleClass("zoom2x");

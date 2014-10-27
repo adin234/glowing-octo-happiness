@@ -13,6 +13,7 @@ function filter_category(gameConsole, context) {
 function renderGame() {
 	html = [];
 	page_data.games_cast.forEach(function(item){
+		item.consoles = item.consoles || [];
 		if(!~item.consoles.indexOf(filterConsole)) return;
 		html.push(template($('#gamesCastTpl').html(), item));
 	});

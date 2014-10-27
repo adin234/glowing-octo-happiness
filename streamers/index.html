@@ -28,7 +28,7 @@
 <script type="text/javascript" src="/assets/js/get.streamers.data.js"></script>
 
 </head>
-<body class="lang_zh_tw">
+<body class="lang_zh_tw" id="streamers">
 <div id="wrapper">
   <div id="outContainer">
     <div id="outContainer">
@@ -185,7 +185,7 @@
 </script>
 <script type="text/html" id="videoMultiTpl">
 <li class="{{LIVE}}" data-streamid="{{ID}}" data-streamidraw="{{IDRAW}}">
-    <img src="{{THUMB}}"  onClick="window.location.href = '{{LINK}}';" class="pointer" width="334" height="246" alt="screenshot">
+    <img src="{{THUMB}}"  onClick="window.location.href = '{{LINK}}';" class="pointer" width="100%" height="100%" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
     <div style="width:68px;height:67px;overflow:hidden;position:absolute" class="uploader">
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" alt="Uploaded by" class="">

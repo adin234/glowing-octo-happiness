@@ -28,7 +28,7 @@
 <script type="text/javascript" src="/assets/js/get.games.data.js"></script>
 
 </head>
-<body class="lang_zh_tw">
+<body class="lang_zh_tw" id="games">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -164,13 +164,13 @@
   <ul class="game clearFix"> {{ITEMS}} </ul>
 </script>
 <script type="text/html" id="videoTpl">
-<li class="pointer" onClick="window.location.href = '{{LINK}}';">
-  <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-  <h3><a href="javascript:void();" title="{{TITLE}}">{{TITLE}}</a></h3>
+<li class="pointer">
+  <a href="{{LINK}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot"></a>
+  <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
   <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader">
   <ul>
     <li><em>觀看次數：</em>{{VIEWS}}</li>
-    <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
+    <li><a href="{{LINK}}/comments"><em>Replies: </em> {{ANYTV_COMMENTS}}</a></li>
   </ul>
 </li>
 </script>

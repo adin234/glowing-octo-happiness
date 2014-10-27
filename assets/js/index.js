@@ -47,7 +47,7 @@ $(document).ready(function() {
 	showSocialButtons();
 
 	$(window).scroll(function() {
-		if($(window).scrollTop() - $('body').height() + 50 >= $(window).height()) {
+		if($(window).scrollTop() - $(document).height() + 50 >= $(window).height()) {
 			$('#arrow').removeClass('down').addClass('up');
 		} else {
 			$('#arrow').removeClass('up').addClass('down');
@@ -229,11 +229,11 @@ var update_index = function(index_data) {
 	index_data.recent_threads.forEach(function(item, i){
 		var data = {
 			posterimage: attachments_server+'data/avatars/l/0/'
-				+item.creator_user_id+'.jpg?'+(+new Date),
-			title: item.thread_title,
-			replies: item.thread_post_count,
-			views: item.thread_view_count,
-			link: item.links.permalink,
+				+item.last_post_user_id+'.jpg?'+(+new Date),
+			title: item.title,
+			replies: item.reply_count,
+			views: item.view_count,
+			link: community+'index.php?threads/'+item.title+'.'+item.thread_id+'/',
 		}
 		html.push(template($('#recentForumItemTpl').html(), data));
 	});
