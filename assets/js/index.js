@@ -47,7 +47,7 @@ $(document).ready(function() {
 	showSocialButtons();
 
 	$(window).scroll(function() {
-		if($(window).scrollTop() - $(document).height() + 50 >= $(window).height()) {
+		if($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
 			$('#arrow').removeClass('down').addClass('up');
 		} else {
 			$('#arrow').removeClass('up').addClass('down');

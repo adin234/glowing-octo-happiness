@@ -50,13 +50,23 @@ $(window).load(function(){
 
 	$.get(server+'streamers/youtube?user='+page_data.user.user_id, function(result) {
 		if(!liveStreamLink) {
-			liveStreamLink = '/gamer_stream/'+page_data.user.user_id+'/'+'YT'+result.streamers[0].youtube.id;
-			$('.live-button').attr('href', liveStreamLink).show();
+			// liveStreamLink = '/gamer_stream/'+page_data.user.user_id+'/'+'YT'+result.streamers[0].youtube.id;
+			// $('.live-button').attr('href', liveStreamLink).show();
 		}
 	});
-	var secondBody = $('body')[1];
-	if(typeof secondBody != 'undefined') {
-		secondBody.remove();
-	}
+
+	utilLoader.hide();
+
+      $('#responsive-menu-button').sidr({
+        name: 'sidr-main',
+        source: '#navigation',
+        renaming: false
+      });
+    if ($(window).width() < 1024) {
+      $(".videoHeading").insertBefore($(".videoList"));
+      $(".channel").insertBefore($(".playFunctionBtn"));
+    }
+
+
 
 });

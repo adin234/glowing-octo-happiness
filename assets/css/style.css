@@ -890,6 +890,8 @@ a:hover, a:focus, a:active {
   position: fixed;
   top: 0;
   z-index: 9999;
+  width: 100%;
+  
 }
 #outContainer .fixedMenuLogo.en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
@@ -3232,6 +3234,11 @@ body:nth-child(3) {
   display: none;
 }
 
+
+#navigation {
+  display: none;
+}
+
 /* Video Ratio */
 
 .videoWrapper {
@@ -3895,7 +3902,6 @@ span.views {
   background: rgba(255, 255, 255, .9);
   color: #e00;
 }
-
 
 
 #youtubers .list.clearFix, #games .list.clearFix {

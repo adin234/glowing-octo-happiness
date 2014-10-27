@@ -14,6 +14,9 @@
 <title>新聞 | 實況咖</title>
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
+<link href="/assets/css/media.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
@@ -27,6 +30,80 @@
 <script type="text/javascript" src="/assets/js/config.js"></script>
 <script type="text/javascript" src="/assets/js/get.streamers.data.js"></script>
 
+
+
+<style type="text/css">
+  @media (max-width: 1023px){
+        #container-videos .live a:nth-child(1) {
+          display: block;
+        }
+
+        #container-videos > ul > .live > img {
+          width: 55%;
+          height: 100%;
+          display: block;
+          float: left;
+          position: relative !important;
+        }
+  }
+  @media (max-width: 413px){
+    .silderList .games .bx-viewport {width: 95% !important;}
+    .video .collection, .bx-wrapper {width: 100%;}
+    #container-videos > ul > li {
+      padding: 0 15px 40px !important;
+    }
+    .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
+      top: 108px;
+      width: 50%;
+      font-size: 12px;
+    }
+    .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
+      right: 8%;
+    }
+
+    .stream [id^="tab-"]:nth-of-type(1) .list li.live:before {
+      top: -2px;
+      left: 110px;
+    }
+  }
+
+  @media (min-width: 414px) and (max-width: 767px) {
+    #container-videos > ul > li {
+      padding: 0 15px 40px !important;
+    }
+    .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
+      top: 108px;
+      width: 50%;
+      font-size: 12px;
+    }
+    .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
+      right: 8%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .bx-wrapper {
+      width: 100% !important;
+    }
+    .video .list {
+      width: 1030px !important;
+    }
+    #container-videos > ul > li {
+      padding: 0 15px 55px !important;
+    }
+    #content [id^="tab-"] {
+      overflow-x: hidden; 
+    }
+    #container-videos > ul > li {
+      width: 40% !important;
+    }
+    #container-videos .live:before {
+      right: 197px !important;
+    }
+  }
+
+</style>
+
 </head>
 <body class="lang_zh_tw" id="streamers">
 <div id="wrapper">
@@ -34,6 +111,15 @@
     <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
+
+        <nav class="species">
+          <div class="mobile_menu">
+            <a id="responsive-menu-button" href="#sidr-main"><i class='fa fa-bars fa-2x'></i></a>
+            <a href="#"><img class="logo_g" src="/assets/images/logo_en_crop.png" /></a>
+            <i class='fa fa-search fa-2x'></i>
+          </div>
+        </nav>
+
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
@@ -49,6 +135,21 @@
           </ul>
         </nav>
         <nav class="site sf-menu">
+
+          <!--MOBILE NAVIGATOR start-->
+        <ul class="clearFix" id="mobilenav">
+            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('mobile', this); return false;" title="Mobile Game">Mobile Game</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
+        </ul>
+          <!--MOBILE NAVIGATOR end-->
+          
           <ul class="clearFix">
             <li><a href="/index" title="首頁">首頁</a></li>
             <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
@@ -171,7 +272,7 @@
 </script>
 <script type="text/html" id="videoTpl">
 <li class="{{LIVE}}">
-    <a href="javascript:;" title="Add to multiview" data-userid="{{USER_ID}}" data-streamid="{{ID}}"
+    <a href="javascript:;" title="Add to multiview" data-username="{{USERNAME}}" data-userid="{{USER_ID}}" data-streamid="{{ID}}"
     data-streamidraw="{{IDRAW}}" class="addToMultiview addTo switch">Add to multiview</a>
     <img onClick="window.location.href = '{{LINK}}'" class="pointer" src="{{THUMB}}" width="334" height="246" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
@@ -184,6 +285,7 @@
 </li>
 </script>
 <script type="text/html" id="videoMultiTpl">
+
 <li class="{{LIVE}}" data-streamid="{{ID}}" data-streamidraw="{{IDRAW}}">
     <img src="{{THUMB}}"  onClick="window.location.href = '{{LINK}}';" class="pointer" width="100%" height="100%" alt="screenshot">
     <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
@@ -215,5 +317,65 @@
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/util.js"></script>
 <script type="text/javascript" src="/assets/js/streamers.js"></script>
+<script src="/assets/js/sidr/jquery.sidr.min.js"></script>
+
+  <!--MENU SLIDER-->
+
+      <div id="navigation" >
+        <div class="profile_div">
+          <a href="#edit_prof" class="edit_prof"></a>
+          <a href="#" id="prof_pic_a" >
+            <div id="prof_pic">
+              <img id="prof_photo" src="/assets/images/photo.jpg" />
+              <p id="prof_name">Xenia Wang</p>
+            </div>
+          </a>
+          <a href="/settings" class="settings"><i class="fa fa-gear fa-lg"></i></a>
+        </div>
+          <nav class="nav">
+              <ul>
+                  <li><a href="/index">首頁</a></li>
+                  <li><a href="http://community.gamers.tm/">論壇</a></li>
+                  <li><a href="/news">新聞</a></li>
+                  <li><a href="/shows">Shows</a></li>
+                  <li><a href="/games">遊戲分類</a></li>
+                  <li><a href="/youtubers">實況咖</a></li>
+                  <li><a href="/streamers">直播</a></li>
+                  <li><a href="/about">關於我們</a></li>
+                  <li><a href="http://zh.freedom.tm/">加入我們</a></li>
+                  <li><a href="#PC">PC</a>&middot;<a href="#Mobile">Mobile</a></li>
+              </ul>
+          </nav>
+        <div class="slider_footer">
+          <ul>
+                  <li><a href="#facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
+                  <li><a href="#twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
+                  <li><a href="#googleplus"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                  <li><a href="#youtube"><i class="fa fa-youtube-play fa-lg"></i></a></li>
+                  <li>&copy; 2014 freedom!</li>
+          </ul>
+        </div>
+      </div>
+
+
+  <script>
+      $('#responsive-menu-button').sidr({
+        name: 'sidr-main',
+        source: '#navigation',
+        renaming: false
+      });
+  </script>
+
+
+  <script type="text/javascript">
+    if ($(window).width() < 1024) {
+      $("#container-videos > ul > li > img:nth-child(2)").css({
+          "position": "relative","float": "left",
+          "width": "55%","height": "100%"});
+      $("#container-videos").css("width", "500%");
+    };
+  </script>
+
+
 </body>
 </html>

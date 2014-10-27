@@ -1,0 +1,552 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"di",
+				"display"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"str",
+				"stream"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"border-c",
+				"border-color"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"set",
+				"set-div"
+			],
+			[
+				"a",
+				"article	Tag"
+			],
+			[
+				"vide",
+				"videoHeading"
+			],
+			[
+				"in",
+				"inherit"
+			],
+			[
+				"s",
+				"style	Tag"
+			],
+			[
+				"con",
+				"container-featured-games"
+			],
+			[
+				"gam",
+				"game-item"
+			],
+			[
+				"ma",
+				"max-width"
+			],
+			[
+				"hover",
+				"hover"
+			],
+			[
+				"containe",
+				"container-videos"
+			],
+			[
+				"head",
+				"heading"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"mo",
+				"mostViewed"
+			],
+			[
+				"f",
+				"float"
+			],
+			[
+				"hea",
+				"heading"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"tab",
+				"tab-1-2"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"i",
+				"important"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"d",
+				"display"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"na",
+				"nav-container"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "assets/css/media.css",
+			"settings":
+			{
+				"buffer_size": 26094,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index/index.html",
+			"settings":
+			{
+				"buffer_size": 16102,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "youtubers/index.html",
+			"settings":
+			{
+				"buffer_size": 13661,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/js/youtuber.js",
+			"settings":
+			{
+				"buffer_size": 1596,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "youtuber/index.html",
+			"settings":
+			{
+				"buffer_size": 15702,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/js/media.js",
+			"settings":
+			{
+				"buffer_size": 8958,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/youtuber/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/js/youtuber.js",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/youtubers/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/streamers/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/shows/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/news/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/index/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/games/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/about/index.html",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/game/index.html",
+		"/C/Users/Kei/Downloads/index.html",
+		"/C/Users/Kei/Desktop/shows youtube page code",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/js/config.js",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/css/style.css",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/js/streamers.js",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/js/index.js",
+		"/C/Users/Kei/Documents/Projects/gamers-frontend/assets/js/jquery.fixed.menu.js",
+		"/C/Users/Kei/Documents/asd",
+		"/C/Users/Kei/Desktop/Kei/mediaquery codes",
+		"/C/Users/Kei/Desktop/New folder/mediaquery codes"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Users\\Kei\\Documents\\Projects\\gamers-frontend",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"body",
+			"$(\".playList\").mCustomScrollbar('destroy')",
+			"$",
+			"jquery",
+			"sidr",
+			"youtuber.js",
+			"data-twttr-rendered",
+			"prof_pic_a",
+			"body",
+			"responsive-menu-button",
+			"ajax",
+			"    }",
+			"#container-videos",
+			".addToMultiview",
+			".heading h2",
+			"}\n",
+			"$(\".bx-wrapper > .bx-controls\").css(\"display\", \"none\");",
+			"sliderList",
+			".bxslider",
+			".bxslider.games",
+			".bxslider .games",
+			".bxslider games",
+			"bxslider games",
+			"bx-wrapper:hover",
+			"#latestVideos > li > h3 > a",
+			"fixedMenu",
+			"wrapper",
+			"8000"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "assets/css/media.css",
+					"settings":
+					{
+						"buffer_size": 26094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19119,
+								19148
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index/index.html",
+					"settings":
+					{
+						"buffer_size": 16102,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11719,
+								11719
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5687.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "youtubers/index.html",
+					"settings":
+					{
+						"buffer_size": 13661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11843,
+								11843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5330.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assets/js/youtuber.js",
+					"settings":
+					{
+						"buffer_size": 1596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1591,
+								1591
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "youtuber/index.html",
+					"settings":
+					{
+						"buffer_size": 15702,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15684,
+								15684
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7344.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "assets/js/media.js",
+					"settings":
+					{
+						"buffer_size": 8958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3161,
+								3161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3960.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 216.0,
+	"status_bar_visible": true
+}
