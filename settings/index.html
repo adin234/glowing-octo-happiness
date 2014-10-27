@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-tw">
 <head prefix="og: http://ogp.me/ns#">
 <meta charset="utf-8">
 <!--<meta name="description" content="">-->
@@ -10,12 +10,14 @@
 <!--<meta property="og:image" content="">-->
 <meta property="og:site_name" content="Freedom Asia">
 <!--<meta property="og:description" content="">-->
-<title>實況咖</title>
+<meta name="robots" content="none">
+<title>關於我們 | 實況咖</title>
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/media.css" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+<link href="/assets/css/nivo-slider.css" rel="stylesheet">
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -24,35 +26,39 @@
 <link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/config.js"></script>
-<script type="text/javascript" src="/assets/js/index.js"></script>
+<script src="/assets/js/hoverIntent.js"></script>
+<script src="/assets/js/superfish.js"></script>
+<script src="/assets/js/function.js"></script>
 <script src="/assets/js/sidr/jquery.sidr.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css">
 
+
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+  <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+<!-- 
+  <script src="/assets/js/jquery.mobile.custom.min.js"></script>
+<link rel="stylesheet" href="/assets/css/jquery.mobile.custom.structure.min.css">
+<link rel="stylesheet" href="/assets/css/jquery.mobile.custom.theme.min.css"> -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sf-menu").superfish();
+  });
+</script>
+
 <style type="text/css">
-  @media (max-width: 1023px){
-    .bx-controls {display: none;}
-    #outContainer #container{
-      background: none !important;
+  @media (max-width: 1023px) {
+    #outContainer #container {
       box-shadow: none;
     }
-    .video.tabs {
-      background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
-      padding: 10px !important;
+
+    .heading h2 {
+      display: block !important;
     }
-    .stream {
-      background: #c8c8c8 url("/assets/images/wrapper_bg.jpg") !important;
-      margin-top: 10px;
-    }
-    .video.tabs > ul {
-      border-bottom: 1px inset #999;
-      box-shadow: 0px 1px 0px 0px #ddd;
-    }
-    #content {
-      margin: 0 10px 10px 10px !important;
+
+    nav.site {
+      display: none;
     }
   }
 </style>
@@ -73,6 +79,7 @@
         </nav>
 
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
+
         <nav class="species">
           <ul class="clearFix">
             <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
@@ -87,9 +94,8 @@
           </ul>
         </nav>
         <nav class="site sf-menu">
-
-        <!--MOBILE NAVIGATOR start-->
-        <ul class="clearFix" id="mobilenav">
+          <!--MOBILE NAVIGATOR start-->
+          <ul class="clearFix" id="mobilenav">
             <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
@@ -99,9 +105,8 @@
             <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('mobile', this); return false;" title="Mobile Game">Mobile Game</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-        </ul>
-        <!--MOBILE NAVIGATOR end-->
-
+          </ul>
+          <!--MOBILE NAVIGATOR end-->
           <ul class="clearFix">
             <li class="current"><a href="/index" title="首頁">首頁</a></li>
             <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
@@ -118,7 +123,7 @@
             <li>
               <form>
                 <input type="text" placeholder="搜尋">
-              </form>
+              </form>+
             </li>
           </ul>
         </nav>
@@ -128,93 +133,58 @@
         </ul>
       </header>
     </div>
-    <div id="container" class="main">
-      <ul class="bxslider" id="imageSlider">
-      </ul>
-      <div id="content" class="clearFix">
-        <div class="clearFix">
-          <div class="video tabs">
-            <ul class="tab clearFix">
-              <li>
-                <h2><a href="#tab-1-1">最新影片</a></h2>
-              </li>
-              <li>
-                <h2><a href="#tab-1-2">精選影片</a></h2>
-              </li>
-              <li>
-                <h2><a href="#tab-1-3">最多觀賞</a></h2>
-              </li>
-            </ul>
-            <div id="tab-1-1">
-              <ul class="list clearFix" id="latestVideos">
+    <div id="container" style="padding-top:0; background:none;">
 
-              </ul>
+            <div class="set-div" id="settings-container">
+          
+                <h2 class="set-title">Settings</h2>
+                <hr class="set-hr">
+                <p>Language</p>
+
+
+                <select name="select-choice-0" id="select-choice-0" data-native-menu="false">
+                  <option value="english">English</option>
+                  <option value="chinese">Chinese</option>
+                </select>
+
+                <hr style="border-top: 1px inset #eee;">
+                <p>Safety mode</p>
+                <input type="checkbox" id="checkbox-based-flipswitch" data-role="flipswitch">
+            
             </div>
+            
+            <div class="set-div" id ="connect-container">
+              
+                <h2 class="set-title">Connect your accounts</h2>
+                <hr class="set-hr">
+                <p><img class="set-social-icons" src="/assets/images/set-fb-icon.png">
+                  Facebook</p>
+                <button class="set-connect-btn" data-role="none">Connect</button>
+                <hr style="border-top: 1px inset #eee;">
+                <p><img class="set-social-icons" src="/assets/images/set-twit-icon.png">
+                  Twitter</p>
+                <button class="set-connect-btn" data-role="none">Connect</button>
+                <hr style="border-top: 1px inset #eee;">
+                <p><img class="set-social-icons" src="/assets/images/set-yt-icon.png">
+                  Youtube</p>
+                <button class="set-connect-btn" data-role="none">Connect</button>
+            
+            </div>        
 
-            <div id="tab-1-2">
-              <ul class="list clearFix" id="featuredVideos">
+            <div class="set-div" id ="share-container">
+          
+                <h2 class="set-title">Share your public activity to connected accounts</h2>
+                <hr class="set-hr">
+                <input class="set-checkbox" type="checkbox" data-role="none"><p class="set-checkbox" >Add video to playlist</p>
+                <hr style="border-top: 1px inset #eee;">
+                <input class="set-checkbox" type="checkbox" data-role="none"><p class="set-checkbox" >Like a video or a playlist</p>
+            
+            </div>  
 
-              </ul>
-            </div>
-            <div id="tab-1-3">
-              <ul class="list clearFix" id="mostViewed">
-
-              </ul>
-            </div>
-          </div>
-          <div class="stream"></div>
-          <aside>
-            <div class="viewer">
-              <h2>精選實況咖</h2>
-              <div class="scroll">
-                <ul class="clearFix" id="featuredUsers">
-
-                </ul>
-              </div>
-            </div>
-            <div class="streaming">
-              <h2>正在直播</h2>
-              <div class="scroll">
-                <ul id="streamers">
-
-                </ul>
-              </div>
-            </div>
-            <div class="social-links">
-              <div id="viewport"></div>
-            </div>
-          </aside>
-        </div>
-        <div class="games tabs">
-          <ul class="tab clearFix">
-            <li>
-              <h2><a href="#tab-2-1">精選遊戲</a></h2>
-            </li>
-            <li>
-              <h2><a href="#tab-2-2">最新遊戲</a></h2>
-            </li>
-          </ul>
-          <div id="tab-2-1">
-            <ul class="game clearFix" id="featuredGames">
-
-            </ul>
-          </div>
-          <div id="tab-2-2">
-            <ul class="game clearFix" id="latestGames">
-
-            </ul>
-          </div>
-        </div>
-        <div class="heading">
-          <h2>熱門論壇</h2>
-          <div id="forumSection">
-          </div>
-        </div>
-      </div>
       <footer class="clearFix">
         <nav>
-          <ul class="zh_tw">
-            <li><a href="/index">首頁</a></li>
+          <ul class="en">
+            <li><a href="/index"></a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
@@ -228,104 +198,16 @@
           <li><a href="https://plus.google.com/u/0/b/110692434160149822943/110692434160149822943">Google+</a></li>
           <li><a href="https://www.youtube.com/user/mcnFreedomTW">Youtube</a></li>
         </ul>
-        <small>© 2014 <strong>freedom!</strong>. All Rights Reserved.</small><span>Language: <a href="javascript:;" class="language">繁體中文</a>
+        <small>© 2014 <strong>freedom!</strong>. All Rights Reserved.</small><span>Language: <a href="javascript:;" class="language">English</a>
         <ul class="selectLanguage">
-          <li><a href="javascript:;">English</a></li>
-          <li><a href="javascript:;">繁體中文</a></li>
+          <li><a href="index_en.html">English</a></li>
+          <li><a href="index_tw.html">繁體中文</a></li>
         </ul>
         </span></footer>
     </div>
   </div>
 </div>
-<script type="text/html" id="sliderTpl">
-  <li class="slider-item">
-    <img src="{{PROVIDER}}?attachments/slide-jpg.{{ATTACHMENT_ID}}/" alt="{{TITLE}}" title="{{TITLE}}"
-      onclick="{{ONCLICK}}">
-      <a href="#" class="play" data-vid="{{YOUTUBE_LINK}}">Play</a>
-    </li>
-</script>
-<script type="text/html" id="latestVideosTpl">
-  <li>
-    <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-    <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">
-    <ul>
-      <li>{{USERNAME}}</li>
-      <li><em>觀看次數：</em>{{VIEWS}}</li>
-      <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
-    </ul>
-  </li>
-</script>
-<script type="text/html" id="gameTpl">
-<li><a href="/games/#!/{{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
-</script>
-<script type="text/html" id="featuredUsersTpl">
-  <li>
-    <div class="list">
-      <a href="/youtuber/{{USER_ID}}" class="link-white">
-      <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
-      <h3>{{USERNAME}}</h3>
-      <div class="listBg"></div>
-      </a>
-    </div>
-  </li>
-</script>
-<script type="text/html" id="streamersTpl">
-  <li onClick="window.location.href = origin+'{{LINK}}'">
-    <div class="dynamic">{{GAME}} / {{IDRAW}}</div>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
-  </li>
-</script>
-<script type="text/html" id="recentForumTpl">
-  <div class="recent-forums">
-    <h3 class="forum-header"></h3>
-    <ul class="thread-list">
-    {{THREADS}}
-    </ul>
-  </div>
-</script>
-<script type="text/html" id="recentForumItemTpl">
-  <li class="thread">
-    <span class="icon" href="{{USERLINK}}">
-      <img src="{{POSTERIMAGE}}" width="50" height="50" class="safeloading" onError="fixErrorImg(this);"/>
-    </span>
-    <a class="title" href='{{LINK}}'>{{TITLE}}</a>
-    <div class="stats">
-      <dl>
-        <dt class="replies">Replies</dt>
-        <dd class="replies">{{REPLIES}}</dd><br/>
-        <dt class="views">Views</dt>
-        <dd class="views">{{VIEWS}}</dd>
-        </dl>
-    </div>
-    <span class="last-message"></span>
-  </li>
-</script>
-<script type="text/html" id="playerTpl">
-  <div class="video-player" style="position: absolute;top: 0;bottom: 0;left: 0;height: 100%;width: 100%;background-color: rgba(0,0,0,.4);z-index: 999;">
-    <iframe height="100%" src="{{VIDEO}}" frameborder="0" allowfullscreen="" style="width:80%; margin-left: 10%"></iframe>
-    <a href="javascript:;" class="close remove-multiview" title="Close"></a>
-  </div>
-</script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/hoverIntent.js"></script>
-<script src="/assets/js/superfish.js"></script>
-<script src="/assets/js/jquery.fixed.menu.js"></script>
-<script src="/assets/js/function.js"></script>
-<script src="/assets/js/jquery.bxslider.min.js"></script>
-<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/jquery.tabslet.min.js"></script>
-<script src="/assets/js/jquery.tooltipster.min.js"></script>
-<script type="text/javascript" src="/assets/js/streamers.js"></script>
-<script type="text/javascript">;
-  $(document).ready(function(){
-    $(".sf-menu").superfish();
-    $(".tabs").tabslet({
-      animation: true,
-    });
-  });
-</script>
-
+  
   <!--MENU SLIDER-->
 
       <div id="navigation" >
@@ -370,15 +252,6 @@
         source: '#navigation',
         renaming: false
       });
-  </script>
-
-  <script type="text/javascript">
-    if ($(window).width() < 1024) {
-      $(".bxslider").css("display", "none");
-      $(".games").css("display", "none");
-      $(".heading h2").css("display", "none");
-      $( ".stream" ).load( "/streamers/index.html .video.stream.tabs" );
-    };
   </script>
 </body>
 </html>

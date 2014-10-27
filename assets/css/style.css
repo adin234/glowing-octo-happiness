@@ -804,6 +804,8 @@ a:hover, a:focus, a:active {
   position: fixed;
   top: 0;
   z-index: 9999;
+  width: 100%;
+  
 }
 #outContainer .fixedMenuLogo.en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
@@ -3086,3 +3088,6 @@ li.thread  .stats > dl > dt {
   display: none;
 }
 
+#navigation {
+  display: none;
+}
