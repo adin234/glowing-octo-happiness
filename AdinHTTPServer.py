@@ -210,6 +210,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         mimetypes.init() # try to read system mime.types
     extensions_map = mimetypes.types_map.copy()
     extensions_map.update({
+        '.svg': 'image/svg+xml', # Default
         '': 'application/octet-stream', # Default
         '.py': 'text/plain',
         '.c': 'text/plain',

@@ -35,13 +35,36 @@ $(document).ready(function() {
 			vid = vid.split('?')[1].split('=');
 			vid = vid[vid.indexOf('v')+1].split('#')[0];
 			var html = template($('#playerTpl').html(), { video: '//www.youtube.com/embed/'+vid+'?autoplay=1' });
-			$('#container .bx-wrapper').prepend(html);
+			$('#container .bx-wrapper').prepend(html).promise().done(function() {
+				$('.bx-wrapper .video-player iframe').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2);
+				$('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2)
+			});
 		}
 	});
 	$(document).on('click', '.bx-wrapper .close', function(e) {
 		$('#container .bx-wrapper .video-player').remove();
 	});
 	showSocialButtons();
+
+	$(window).scroll(function() {
+		if($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
+			$('#arrow').removeClass('down').addClass('up');
+		} else {
+			$('#arrow').removeClass('up').addClass('down');
+		}
+	});
+
+	$('body').on('click', '#arrow.down', function() {
+		$('html, body').animate({
+			scrollTop: $(document).height()
+		});
+	});
+
+	$('body').on('click', '#arrow.up', function() {
+		$('html, body').animate({
+			scrollTop: 0
+		});
+	});
 });
 
 
@@ -72,6 +95,16 @@ var index_show_streamers = function(streamersList) {
 	            item.title = item.youtube.snippet.title;
 	            item.bust = +new Date();
 	            item.views = '0';
+	        }
+
+	        item.game = item.game == null ? 'Unlisted' : item.game;
+
+	        if(item.game.length > 10) {
+	        	item.game = item.game.substr(0,10) + '&#133;';
+	        }
+
+	        if(item.username != null && item.username.length > 10) {
+	        	item.title = item.username.substr(0, 10) + '&#133;';
 	        }
 
 	        html.push(template($('#streamersTpl').html(), item));
@@ -124,6 +157,7 @@ var update_index = function(index_data) {
 		item.thumb = item.snippet.thumbnails.medium.url;
 		item.title = item.snippet.title;
 		item.bust = +new Date();
+		item.anytv_comment = item.anytv_comment || 0;
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
@@ -143,6 +177,7 @@ var update_index = function(index_data) {
 			item.thumb = item.snippet.thumbnails.medium.url;
 			item.title = item.snippet.title;
 			item.bust = +new Date();
+			item.anytv_comment = item.anytv_comment || 0;
 			item.comments = item.snippet.meta.statistics.commentCount;
 			item.views = item.snippet.meta.statistics.viewCount;
 			item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
@@ -159,6 +194,7 @@ var update_index = function(index_data) {
 		item.thumb = item.snippet.thumbnails.medium.url;
 		item.title = item.snippet.title;
 		item.bust = +new Date();
+		item.anytv_comment = item.anytv_comment || 0;
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
 		item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
@@ -207,6 +243,25 @@ var update_index = function(index_data) {
 	}
 	html = template($('#recentForumTpl').html(), data);
 	$('#forumSection').html(html);
+
+	html = [];
+	index_data.threads.forEach(function(item, i){
+		var data = {
+			posterimage: attachments_server+'data/avatars/l/0/'
+				+item.last_post_user_id+'.jpg?'+(+new Date),
+			title: item.title,
+			replies: item.reply_count,
+			views: item.view_count,
+			link: community+'index.php?threads/'+item.title+'.'+item.thread_id+'/',
+		}
+		html.push(template($('#recentForumItemTpl').html(), data));
+	});
+	if(!html.length) { html.push('No Recent Forum'); }
+	var data = {
+		threads: html.join('')
+	}
+	html = template($('#recentForumTpl').html(), data);
+	$('#hotForumSection').html(html);
 
     $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
       theme:"inset-2",

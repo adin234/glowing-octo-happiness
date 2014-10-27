@@ -30,11 +30,11 @@
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.autocomplete.min.js"></script>
 <script src="/assets/js/sidr/jquery.sidr.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css">
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		$(".sf-menu").superfish();
 	});
@@ -103,12 +103,12 @@
             <li><a href="/news" title="新聞">新聞</a></li>
             <li><a href="/shows" title="Shows">Shows</a></li>
             <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <li>
-              <form>
-                <input type="text" placeholder="搜尋">
-              </form>
+              <div>
+                <input type="text" placeholder="搜尋" id="query">
+              </div>
             </li>
           </ul>
         </nav>
@@ -194,12 +194,12 @@
       </div>
       <footer class="clearFix">
         <nav>
-          <ul class="en">
-            <li><a href="/index"></a></li>
+          <ul class="zh_tw">
+            <li><a href="/index">首頁</a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
-            <li><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="http://zh.freedom.tm/">加入我們</a></li>
           </ul>
         </nav>
@@ -218,8 +218,10 @@
     </div>
   </div>
 </div>
+
   
   <!--MENU SLIDER-->
+
 
       <div id="navigation" >
         <div class="profile_div">

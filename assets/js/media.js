@@ -7,6 +7,10 @@ var player;
 var filterTags = false;
 var playlistIds = [];
 
+$('#tab-1').mCustomScrollbar({theme: 'inset-2'});
+$('#tab-2').mCustomScrollbar({theme: 'inset-2'});
+$(".playList").mCustomScrollbar({theme: 'inset-2'});
+$('aside.recommend > ul').mCustomScrollbar({theme:'inset-2' });
 
 /* YOUTUBE SHIZZ */
 var tag = document.createElement('script');
@@ -29,7 +33,7 @@ $(window).load(function(){
 });
 
 
-var update_videos = function (videos) {
+var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
   if(active_playlist) {
@@ -53,19 +57,19 @@ var update_videos = function (videos) {
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description
-      }
+      };
       html.push(template($('#videosTpl').html(), tempdata));
     }
   });
-  $(".playList").mCustomScrollbar('destroy').promise().done(function(){
-    if(!html.length) { html.push('目前沒有影片'); }
-    $('#videos').html(html.join(''));
-    setTimeout(function(){
-      $(".playList").mCustomScrollbar({
-        theme:"inset-2"
-      });
-  }, 500)
-  });
+  if(!html.length) {
+    html.push('目前沒有影片');
+  }
+
+  if(append) {
+    $('#videos .mCSB_container').append(html.join(''));
+  } else {
+    $('#videos .mCSB_container').html(html.join(''));
+  }
 };
 
 var update_playlists = function (playlists) {
@@ -81,8 +85,15 @@ var update_playlists = function (playlists) {
     }
     html.push(template($('#playlistTpl').html(), tempdata));
   });
-  if(!html.length) { html.push('No Playlist Available'); }
-  $('#playlists').html(html.join(''));
+  if(!html.length) {
+    html.push('No Playlist Available');
+    $('.game_page .listSwitch').addClass('no-playlist');
+    $('#videosToggle').trigger('click');
+  } else {
+    $('.game_page .listSwitch').removeClass('no-playlist');
+  }
+
+  $('#playlists .mCSB_container').html(html.join(''));
 };
 
 var filterAction = function(action) {
@@ -99,7 +110,7 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     $('.videoHeading h3').html(video.snippet.title);
-    $('#tab-1').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
+    $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
     $('.videoItem').removeClass('current');
     $('#video-'+videoId).addClass('current');
     $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
@@ -112,10 +123,19 @@ var showVideo = function(videoId) {
       });
     }, 500);
 
+    $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
+      updateSuggestions);
+
+    if(!page_data.config.channel) {
+      getPhoto(video.snippet.channelId, $('.videoHeading > img'));
+    }
+
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
+    utilLoader.hide();
   }
+
 };
 
 var getComments = function (videoId) {
@@ -136,7 +156,7 @@ var getComments = function (videoId) {
       return template($('#commentItemTpl').html(), item);
     }).join('');
 
-    $('#tab-2').html(template(
+    $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
       {video: videoId, comments: commentsHTML})
     ).promise().done(function() {
@@ -152,6 +172,14 @@ var showPlaylist = function(playlistId, next) {
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
   update_videos(playlist.items);
+  if(playlist.nextPageToken) {
+    $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
+      function(e) {
+        playlist.nextPageToken = e.nextPageToken;
+        playlist.items.concat(e.items);
+        update_videos(e.items, true);
+      });
+  }
   $('#videosToggle').click();
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);
@@ -232,6 +260,31 @@ var cacheVideo = function(videoId) {
 
 };
 
+var updateSuggestions = function(suggestions) {
+  html=[];
+  suggestions.forEach(function(item, i){
+    if(filterTags
+    && (typeof item.snippet.meta == 'undefined'
+       || typeof item.snippet.meta.tags == 'undefined'
+       || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+
+    if(item.snippet.thumbnails) {
+      tempdata = {
+        id: 'video-'+item.snippet.resourceId.videoId,
+        link: '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
+        title: item.snippet.title,
+        thumb: item.snippet.thumbnails.default.url,
+        desc: item.snippet.description,
+        username: item.username,
+        views: item.snippet.meta.statistics.viewCount
+      }
+
+      html.push(template($('#recommendedTpl').html(), tempdata));
+    }
+  });
+  $('aside.recommend > ul .mCSB_container').html(html.join(''));
+}
+
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
   var prevLink = current.prev().children('a').first().attr('href');
@@ -239,6 +292,35 @@ var updatePrevNext = function() {
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
 };
+
+
+  var filterGame = function(filterString) {
+     $('.game-item').each(function(i, item) {
+            $(item).removeClass('active');
+      });
+      $('[data-id='+filterString+']').parent().addClass('active');
+
+      var videos = [];
+      page_data.playlists.forEach(function(item) {
+        if(typeof item.snippet.meta != 'undefined'
+        && (~item.snippet.meta.tags.indexOf('anytv_'+filterString)
+            || ~item.snippet.meta.tags.indexOf(filterString))) {
+          playlists.push(item);
+        }
+      });
+      update_playlists(videos);
+
+      var videos = [];
+      page_data.videos.forEach(function(item) {
+        if(typeof item.snippet.meta != 'undefined'
+        && (~item.snippet.meta.tags.indexOf('anytv_'+filterString)
+            || ~item.snippet.meta.tags.indexOf(filterString))) {
+          videos.push(item);
+        }
+      });
+      update_videos(videos);
+
+  };
 
 
 $(document).ready(function(){
@@ -261,8 +343,14 @@ $(document).ready(function(){
     }
   })
 
-  getPhoto(page_data.config.channel, $('.videoHeading > img'));
+  if($('body').hasClass('game_page')) {
+    var name = page_data.game_name.name ? page_data.game_name.name : '';
+    $('.profile .info h1').html(name);
+  }
 
+  if(page_data.config && page_data.config.channel) {
+    getPhoto(page_data.config.channel, $('.videoHeading > img'));
+  }
   page_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });
@@ -275,14 +363,13 @@ $(document).ready(function(){
 
   $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
-    if(!hash) {
+
+    if(!hash && page_data.playlists.length) {
       return window.location.hash = '#!/playlist/'+page_data.config.playlist;
     }
     hash = hash.split('/');
     filterAction(hash.shift());
   });
-
-
 
   $('body').on('focus', '#commentArea', function()  {
     if(!utilCookie.get('user')) {
@@ -317,4 +404,6 @@ $(document).ready(function(){
         utilCookie.set('user', '', 0);
       });
   });
+
 });
+

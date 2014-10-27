@@ -1,3 +1,7 @@
+#outContainer .fixedMenu {
+	width: inherit !important;
+}
+
 @media (max-width: 1023px) {
 	.mobile_menu { 
 		display: block; 
@@ -49,6 +53,15 @@
 		#mobilenav { 
 			display: block !important; 
 		}
+
+		#mobilenav > li.current > a {
+			background: none !important;
+		}
+
+		#mobilenav > li > a {
+			background: none !important;
+		}
+
 		.species ul { 
 			display: none;
 		}
@@ -187,12 +200,7 @@
 			display: none !important;
 		}
 
-		#container-multiview .uploader,
-		#container-popular-member .uploader,
-		#container-new-member .uploader,
-		#latestVideos .uploader,
-		#featuredVideos .uploader,
-		#mostViewed .uploader { 
+		.videos .uploader { 
 			display: none; 
 		}
 		.video { 
@@ -205,6 +213,7 @@
 		#mostViewed { 
 			width: 100% !important;
 		}
+			#container-all-member > ul > li,
 			#container-multiview > ul > li,
 			#container-popular-member > ul > li, 
 			#container-new-member > ul > li, 
@@ -212,9 +221,12 @@
 			#featuredVideos > li, 
 			#mostViewed > li  {
 				margin: 0 !important;
-				padding: 0 15px 20px !important; height: auto;
-				display: inline-block; float: none !important;
+				padding: 0 15px 20px !important; 
+				height: auto;
+				display: inline-block; 
+				float: none !important;
 			}
+			#container-all-member > ul > li > a >img:nth-child(1),
 			#container-multiview > ul > li > img:nth-child(1),
 			#container-popular-member > ul > li > a > img:nth-child(1), 
 			#container-new-member > ul > li > a > img:nth-child(1), 
@@ -224,17 +236,23 @@
 					position: relative !important; float: left;
 					width: 55%; height: 100%;
 			}
+			#container-all-member > ul > li > h3,
 			#container-multiview > ul > li > h3,
 			#container-popular-member > ul > li > h3, 
 			#container-new-member > ul > li > h3, 
 			#latestVideos > li > h3, 
 			#featuredVideos > li > h3, 
 			#mostViewed > li > h3 {
-					position: relative !important; float: right;
-					background: none !important; width: 40% !important;
-					color: #000 !important; font-size: 100% !important;
-					padding-left: 10px; white-space: nowrap;
+					position: relative !important; 
+					float: right;
+					background: none !important; 
+					width: 40% !important;
+					color: #000 !important; 
+					font-size: 100% !important;
+					padding-left: 10px; 
+					white-space: nowrap;
 			}
+				#container-all-member > ul > li > h3 > a,
 				#container-multiview > ul > li > h3 > a,
 				#container-popular-member > ul > li > h3 > a, 
 				#container-new-member > ul > li > h3 > a, 
@@ -244,6 +262,7 @@
 						text-align: left; padding: 10px 0 0 0 !important;
 						height: auto !important; 
 				}
+					#container-all-member > ul > li > ul,
 					#container-multiview > ul > li > ul,
 					#container-popular-member > ul > li > ul, 
 					#container-new-member > ul > li > ul, 
@@ -253,6 +272,7 @@
 						position: relative !important; bottom: 0 !important; width: 40%;
 						float: right; padding-left: 0; text-align: left;  height: 45px;
 					}
+						#container-all-member > ul > li > ul > li:nth-child(1),
 						#container-multiview > ul > li > ul > li:nth-child(1),
 						#container-popular-member > ul > li > ul > li:nth-child(1), 
 						#container-new-member > ul > li > ul > li:nth-child(1), 
@@ -261,6 +281,7 @@
 						#mostViewed > li > ul > li:nth-child(1) {
 							width: 140px; text-transform: none;
 						}
+						#container-all-member > ul > li > ul > li:nth-child(2),
 						#container-multiview > ul > li > ul > li:nth-child(2),
 						#container-popular-member > ul > li > ul > li:nth-child(2), 
 						#container-new-member > ul > li > ul > li:nth-child(2), 
@@ -269,6 +290,7 @@
 						#mostViewed > li > ul > li:nth-child(2) {
 							margin-left: 0 !important; width: 140px;
 						}
+						#container-all-member > ul > li > ul > li:nth-child(2) > em,
 						#container-multiview > ul > li > ul > li:nth-child(2) > em,
 						#container-popular-member > ul > li > ul > li:nth-child(2) > em, 
 						#container-new-member > ul > li > ul > li:nth-child(2) > em, 
@@ -277,6 +299,7 @@
 						#mostViewed > li > ul > li:nth-child(2) > em {
 							width: 70px !important; text-indent: 0 !important;
 						}
+						#container-all-member > ul > li > ul > li:nth-child(3),
 						#container-multiview > ul > li > ul > li:nth-child(3),
 						#container-popular-member > ul > li > ul > li:nth-child(3), 
 						#container-new-member > ul > li > ul > li:nth-child(3), 
@@ -785,6 +808,7 @@
 			.bx-wrapper {width: 93% !important;}
 			#container-latest-games {width: 1650% !important;}
 				.games .game {width: 704px !important;}
+				#tab-1-1 .game { width: 880px !important; }
 		/*games-list-end*/
 
 		/*container-videos-start*/		
@@ -889,13 +913,13 @@
 			font-weight: bold;
 			line-height: 40px !important;
 		}
-		.sidr ul li:nth-child(1) { background-position: center -1317px; }
-		.sidr ul li:nth-child(2) { background-position: center -1364px; }
-		.sidr ul li:nth-child(3) { background-position: center -1409px; }
-		.sidr ul li:nth-child(4) { background-position: center -1454px; }
-		.sidr ul li:nth-child(5) { background-position: center -1505px; }
-		.sidr ul li:nth-child(6) { background-position: center -1547px; }
-		.sidr ul li:nth-child(7) { background-position: center -1592px; }
+		.sidr ul li:nth-child(1) { background-position: -68px -1317px; }
+		.sidr ul li:nth-child(2) { background-position: -68px -1364px; }
+		.sidr ul li:nth-child(3) { background-position: -68px -1409px; }
+		.sidr ul li:nth-child(4) { background-position: -68px -1454px; }
+		.sidr ul li:nth-child(5) { background-position: -68px -1505px; }
+		.sidr ul li:nth-child(6) { background-position: -68px -1547px; }
+		.sidr ul li:nth-child(7) { background-position: -68px -1592px; }
 		.sidr ul li:nth-child(8) {background: url('/assets/images/freedom_abt2.png')  no-repeat; background-size: 10%;
 			background-position: 53px;}
 		.sidr ul li:nth-child(9) {background: url('/assets/images/join.png')  no-repeat; background-size: 17%;

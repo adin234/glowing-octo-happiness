@@ -62,6 +62,25 @@ footer > ul li a,
 
 #outContainer header .species > ul li {
   line-height: 42px;
+  padding: 0;
+}
+
+#outContainer header .species > ul li a {
+  padding: 0 8px;
+}
+
+#outContainer header .species > ul li a {
+  background-color: transparent;
+}
+
+#outContainer header .species > ul li a:hover,
+#outContainer header .species > ul li.current a {
+  /*background-color: #000;*/
+}
+
+
+#outContainer header .species > ul li.current {
+  /*background-color: #000;*/
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) > ul {
@@ -69,37 +88,99 @@ footer > ul li a,
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(1) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1317px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1317px;
   padding-left: 23px;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1363px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1363px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1409px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1409px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1454px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1454px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1504px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1504px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1548px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1548px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1592px;
+  background: url("/assets/images/sprite.png") no-repeat -127px -1592px;
   padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(8) a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1789px;
+  padding-left: 23px;
+}
+#outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(1).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -996px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(2) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(2).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1042px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(3) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(3).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1087px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(4) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(4).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1132px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(5) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(5).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1182px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(6) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(6).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1226px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(7) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(7).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1269px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
+}
+#outContainer header .species li.nav-switch-item:nth-child(8) a:hover,
+#outContainer header .species li.nav-switch-item:nth-child(8).current a {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1715px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 
 #outContainer header .species a:hover{
-  font-weight: 700;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 
 /*%IEPie
@@ -249,7 +330,7 @@ body {
 .lang_zh_tw .site {
   font-size: 1.14286em;
   line-height: 1.5;
-  padding-left: 260px;
+  padding-left: 225px;
 }
 .lang_zh_tw .member {
   font-size: 1.07143em;
@@ -417,7 +498,7 @@ a:hover, a:focus, a:active {
   background: url("/assets/images/logo_tw.png") no-repeat 0 0;
   height: 78px;
   width: 176px;
-  left: 50px;
+  left: 25px;
   top: 42px;
 }
 #outContainer header nav a {
@@ -436,14 +517,13 @@ a:hover, a:focus, a:active {
   padding-left: 262px;
 }
 #outContainer .fixedMenu header .species ul {
-  padding-left: 262px;
-}
-#outContainer header .species li + li {
-  padding-left: 12px;
+  padding-left: 210px;
 }
 
 #outContainer header .species li.current a {
   font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 /*
 #outContainer header .species li:nth-child(1) a {
@@ -528,7 +608,7 @@ a:hover, a:focus, a:active {
   background-position: 0 -789px;
 }*/
 #outContainer header .species a {
-  color: #ebd7d7;
+  color: #fff;
   display: inline-block;
 }
 #outContainer header .site {
@@ -548,93 +628,100 @@ a:hover, a:focus, a:active {
   position: relative;
 }
 #outContainer header .site > ul > li + li {
-  margin-left: 20px;
+  margin-left: 14px;
 }
-#outContainer header .site > ul > li:nth-child(1) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1004px;
-}
-#outContainer header .site > ul > li:nth-child(1):hover, #outContainer header .site > ul > li:nth-child(1):focus, #outContainer header .site > ul > li:nth-child(1):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
-}
+
+
 #outContainer header .site > ul > li:nth-child(1) > a {
   padding-left: 23px;
-}
-#outContainer header .site > ul > li:nth-child(1).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1325px;
-}
-#outContainer header .site > ul > li:nth-child(2) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1050px;
-}
-#outContainer header .site > ul > li:nth-child(2):hover, #outContainer header .site > ul > li:nth-child(2):focus, #outContainer header .site > ul > li:nth-child(2):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1007px;
 }
 #outContainer header .site > ul > li:nth-child(2) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1053px;
   padding-left: 24px;
-}
-#outContainer header .site > ul > li:nth-child(2).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1371px;
-}
-#outContainer header .site > ul > li:nth-child(3) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1096px;
-}
-#outContainer header .site > ul > li:nth-child(3):hover, #outContainer header .site > ul > li:nth-child(3):focus, #outContainer header .site > ul > li:nth-child(3):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1417px;
 }
 #outContainer header .site > ul > li:nth-child(3) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1099px;
   padding-left: 24px;
 }
-#outContainer header .site > ul > li:nth-child(3).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1418px;
-}
-#outContainer header .site > ul > li:nth-child(4) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1141px;
-}
-#outContainer header .site > ul > li:nth-child(4):hover, #outContainer header .site > ul > li:nth-child(4):focus, #outContainer header .site > ul > li:nth-child(4):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
-}
 #outContainer header .site > ul > li:nth-child(4) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1144px;
   padding-left: 25px;
 }
-#outContainer header .site > ul > li:nth-child(4).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1462px;
-}
-#outContainer header .site > ul > li:nth-child(5) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1191px;
-}
-#outContainer header .site > ul > li:nth-child(5):hover, #outContainer header .site > ul > li:nth-child(5):focus, #outContainer header .site > ul > li:nth-child(5):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
-}
 #outContainer header .site > ul > li:nth-child(5) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1194px;
   padding-left: 26px;
-}
-#outContainer header .site > ul > li:nth-child(5).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1512px;
-}
-#outContainer header .site > ul > li:nth-child(6) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1235px;
-}
-#outContainer header .site > ul > li:nth-child(6):hover, #outContainer header .site > ul > li:nth-child(6):focus, #outContainer header .site > ul > li:nth-child(6):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
 }
 #outContainer header .site > ul > li:nth-child(6) > a {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1238px;
   padding-left: 21px;
 }
-#outContainer header .site > ul > li:nth-child(6).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1556px;
-}
-#outContainer header .site > ul > li:nth-child(7) {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
-}
-#outContainer header .site > ul > li:nth-child(7):hover, #outContainer header .site > ul > li:nth-child(7):focus, #outContainer header .site > ul > li:nth-child(7):active {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
-}
 #outContainer header .site > ul > li:nth-child(7) > a {
-  padding-left: 26px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1282px;
+  padding-left: 25px;
 }
-#outContainer header .site > ul > li:nth-child(7).current {
-  background: url("/assets/images/sprite.png") no-repeat 0 -1600px;
+#outContainer header .site > ul > li:nth-child(8) > a {
+   background: url("/assets/images/sprite.png") no-repeat -127px -1763px;
+  padding-left: 25px;
 }
-#outContainer header .site > ul > li:nth-child(8) {
+/*-----------------*/
+#outContainer header .site > ul > li:nth-child(1).current > a,
+#outContainer header .site > ul > li:nth-child(1) > a:hover,
+#outContainer header .site > ul > li:nth-child(1) > a:focus,
+#outContainer header .site > ul > li:nth-child(1) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1328px;
+}
+
+#outContainer header .site > ul > li:nth-child(2).current > a,
+#outContainer header .site > ul > li:nth-child(2) > a:hover,
+#outContainer header .site > ul > li:nth-child(2) > a:focus,
+#outContainer header .site > ul > li:nth-child(2) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1374px;
+}
+
+#outContainer header .site > ul > li:nth-child(3).current > a,
+#outContainer header .site > ul > li:nth-child(3) > a:hover,
+#outContainer header .site > ul > li:nth-child(3) > a:focus,
+#outContainer header .site > ul > li:nth-child(3) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1421px;
+}
+
+#outContainer header .site > ul > li:nth-child(4).current > a,
+#outContainer header .site > ul > li:nth-child(4) > a:hover,
+#outContainer header .site > ul > li:nth-child(4) > a:focus,
+#outContainer header .site > ul > li:nth-child(4) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1465px;
+}
+
+#outContainer header .site > ul > li:nth-child(5).current > a,
+#outContainer header .site > ul > li:nth-child(5) > a:hover,
+#outContainer header .site > ul > li:nth-child(5) > a:focus,
+#outContainer header .site > ul > li:nth-child(5) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1515px;
+}
+
+#outContainer header .site > ul > li:nth-child(6).current > a,
+#outContainer header .site > ul > li:nth-child(6) > a:hover,
+#outContainer header .site > ul > li:nth-child(6) > a:focus,
+#outContainer header .site > ul > li:nth-child(6) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1559px;
+}
+
+#outContainer header .site > ul > li:nth-child(7).current > a,
+#outContainer header .site > ul > li:nth-child(7) > a:hover,
+#outContainer header .site > ul > li:nth-child(7) > a:focus,
+#outContainer header .site > ul > li:nth-child(7) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1603px;
+}
+
+#outContainer header .site > ul > li:nth-child(8).current > a,
+#outContainer header .site > ul > li:nth-child(8) > a:hover,
+#outContainer header .site > ul > li:nth-child(8) > a:focus,
+#outContainer header .site > ul > li:nth-child(8) > a:active {
+  background: url("/assets/images/sprite.png") no-repeat -127px -1691px;
+}
+
+#outContainer header .site > ul > li:nth-child(9) {
   margin-left: 45px;
   margin-top: 0;
 }
@@ -649,7 +736,7 @@ a:hover, a:focus, a:active {
   color: #b7b7b7;
 }
 #outContainer header .site > ul > li a:hover, #outContainer header .site > ul > li a:focus, #outContainer header .site > ul > li a:active {
-  color: white;
+  color: #e00;
 }
 #outContainer header .site > ul .sf-with-ul {
   padding-right: 14px;
@@ -734,7 +821,7 @@ a:hover, a:focus, a:active {
   border: 1px solid #a6a6a6;
 }
 #outContainer header .site .current > a {
-  color: white;
+  color: #e00;
 }
 #outContainer header .site ::-webkit-input-placeholder {
   color: #616161;
@@ -746,14 +833,14 @@ a:hover, a:focus, a:active {
   color: #616161;
 }
 #outContainer header .site input[type="text"] {
-  background: #bebebe url("/assets/images/sprite.png") no-repeat 11px -1642px;
-  /*@extend %IEPie */
+  background: #151515 url("../images/sprite.png") no-repeat 11px -1642px;
   -moz-border-radius: 9px;
   -webkit-border-radius: 9px;
   border-radius: 9px;
   color: #616161;
-  padding: 9px 11px 9px 50px;
-  width: 188px;
+  padding: 9px 11px 9px 40px;
+  width: 168px;
+  border: 1px solid #434343;
 }
 #outContainer header .member {
   position: absolute;
@@ -1119,7 +1206,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
   -ms-input-placeholder-color: #9c9c9c;
 }
-.search div:empty {
+.search div:empty:not(.bx-pager) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
   height: 16px;
   width: 16px;
@@ -1798,6 +1885,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .playList li + li a {
   border-top: 1px solid silver;
 }
+.playList li div.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+}
 .playList .current {
   background-color: #d6d6d6;
 }
@@ -1835,8 +1930,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .videoRelated [id^="tab-"] {
   margin: 30px 0 0 15px;
   overflow: hidden;
-  height: 615px;
-  overflow-y: scroll;
+  height: 590px;
   border-bottom: 1px solid #9c9c9c;
 }
 .videoRelated [id^="tab-"]:nth-of-type(3) {
@@ -1982,7 +2076,6 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .videoRelated .recommend > ul {
   height: 618px;
-  margin-top: 30px;
   overflow: hidden;
 }
 .videoRelated .recommend .list {
@@ -2102,7 +2195,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-position: 2px -2464px;
 }
 .video .collection, .games .collection {
-  width: 1056px;
+  width: 1040px;
 }
 .video .collection div, .games .collection div {
   margin: 0 auto;
@@ -2173,7 +2266,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
   width: 1048px;
 }
-.profile div {
+.profile div.clearFix {
   background: url("/assets/images/profile_bg.jpg") no-repeat 0 0;
   left: 0;
   height: 73px;
@@ -2184,7 +2277,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .profile img, .profile cite, .profile a {
   line-height: 1;
-  position: absolute;
+  display: inline-block!important;
+  vertical-align: middle;
   z-index: 10;
 }
 .profile img {
@@ -2199,8 +2293,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   font-weight: bold;
   left: 90px;
   top: 36px;
+  margin-top:38px;
 }
-.profile > a {
+
+.profile .info {
+  position: relative;
+  z-index: 15;
+}
+.profile .info > a {
   background-color: gainsboro;
   border: 3px solid rgba(0, 0, 0, 0.15);
   /*@extend %IEPie */
@@ -2217,8 +2317,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-decoration: none;
   top: 32px;
   width: 76px;
+  margin-top:38px;
 }
-.profile > a:hover, .profile > a:focus, .profile > a:active {
+.profile .info > a:hover, .profile .info > a:focus, .profile .info > a:active {
   background-color: #bfbfbf;
 }
 
@@ -2348,6 +2449,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   right: -5px;
   top: -14px;
   width: 26px;
+  z-index: 5000;
 }
 .bx-wrapper .close {
   margin-right: 10%;
@@ -2395,17 +2497,17 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 0 auto;
   padding: 12px;
+  padding-left: 0px;
   position: relative;
-  width: 1470px;
 }
 #streamView header, #streamView #functionBar {
-  width: 470px;
+  width: 416px;
 }
 #streamView header {
   background-color: black;
   color: white;
   height: 42px;
-  position: absolute;
+  /*position: absolute;*/
   right: 12px;
   top: 12px;
 }
@@ -2417,8 +2519,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   height: 42px;
 }
 #streamView header h1 {
-  margin: 0 10px 0 8px;
-  width: 98px;
+  /* margin: 0 10px 0 8px; */
+  width: 80px;
 }
 #streamView header select, #streamView header li {
   margin-left: 10px;
@@ -2453,13 +2555,17 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 #streamView #functionBar {
   background-color: white;
   float: right;
-  height: 644px;
-  padding-top: 46px;
 }
+
 #streamView #functionBar #twitchTalk {
-  height: 424px;
-  margin-bottom: 10px;
+  position: absolute;
+  left: 0;
+  top: 42px;
+  right: 0;
+  bottom: 0;
+  background: #F2F2F2;
 }
+
 #streamView #functionBar .ad {
   height: 210px;
 }
@@ -2711,7 +2817,7 @@ div.streamer {
   font-size: 1.2rem;
   font-weight: bold;
 }
-
+/*
 .x2 .mCSB_inside > .mCSB_container, .x3 .mCSB_inside > .mCSB_container {
   margin-right: 20px;
 }
@@ -2766,25 +2872,25 @@ div.streamer {
 .x3 #streamView #twitchTalk {
   height: 784px;
 }
-
-.muti #streamView {
+*/
+/*.muti #streamView {
   min-width: 1470px;
   width: 100%;
   position: relative;
-}
-.muti #streamView header {
+}*/
+/*.muti #streamView header {
   z-index: 2;
-}
+}*/
 .muti #streamView h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
 }
-.muti #streamView #functionBar {
+/*.muti #streamView #functionBar {
   height: 874px;
   position: absolute;
   right: 0;
   top: 0;
-}
-.muti #streamView #streamArea {
+}*/
+/*.muti #streamView #streamArea {
   margin-right: 470px;
 }
 .muti #streamView #twitchStream {
@@ -2807,9 +2913,9 @@ div.streamer {
 
 .muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
   height: 40%;
-}
+}*/
 
-#twitchStream #twitchStream:hover .remove-stream {
+#twitchStream:hover .remove-stream {
   display: block;
 }
 
@@ -2830,11 +2936,11 @@ div.streamer {
   font-size: 0;
 }
 
-.muti #streamView .watchList {
+/*.muti #streamView .watchList {
   margin: 60px 12px;
   width: 1394px;
 }
-
+*/
 .lang_en #streamView header h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
   background-size: 98px auto;
@@ -2844,7 +2950,7 @@ div.streamer {
 }
 
 .lang_zh_tw #streamView header h1 {
-  background: url("/assets/images/logo_tw.png") no-repeat 16px -232px;
+  background: url("/assets/images/logo_tw.png") no-repeat 15px -232px;
 }
 .lang_zh_tw #streamView header > a:before {
   background: url("/assets/images/sprite.png") no-repeat 27px -949px;
@@ -2995,14 +3101,14 @@ small.date {
   width: 320px;
   margin: 10px 0;
 }
-
+/*
 .muti .x3 #wrapper {
   min-width: 1870px;
 }
 
 .muti  .x2 #wrapper {
   min-width: 1745px;
-}
+}*/
 
 a.link-white {
   color: #fff;
@@ -3054,6 +3160,7 @@ li.thread  .stats > dl > dt {
 
 .social-links #viewport {
   padding: 20px;
+  width: 258px;
 }
 
 .game-item {
@@ -3072,8 +3179,424 @@ li.thread  .stats > dl > dt {
   width:150px;
 }
 
-#streamArea {
-  padding-right: 20px;
+/* Streams */
+body.streams {
+  background: url("/assets/images/background.jpg") no-repeat fixed center top;
+  background-size: cover;
+}
+
+body.streams #stream-container {
+  display: table;
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+body.streams.x2 #stream-container {
+  width: 90%;
+}
+
+body.streams.x3 #stream-container {
+  width: 100%;
+}
+
+body.streams #main-container {
+  display: table-cell;
+  height: 100%;
+  overflow-y: auto;
+  position:relative;
+}
+
+body.streams #streamArea {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin: 10px 0 15px 15px;
+  overflow: hidden;
+}
+
+body.streams #side-container {
+  display: table-cell;
+  width: 416px;
+  vertical-align: top;
+}
+
+body:nth-child(3) {
+  display: none;
+}
+
+
+#navigation {
+  display: none;
+}
+
+/* Video Ratio */
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.videoWrapper object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.single.streams.x3 .videoWrapper {
+  height: 100%;
+  padding: 0;
+  padding: 0;
+}
+
+#side-container #streamView {
+    height: 100%;
+    display: block;
+}
+
+#streamView #functionBar{
+    height: 100%;
+    position: relative;
+}
+
+#main-container, #main-container a {
+  color: white;
+}
+
+#main-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0 auto;
+  padding: 12px;
+  position: relative;
+}
+#main-container header, #main-container #functionBar {
+  width: 470px;
+}
+#main-container header {
+  background-color: black;
+  color: white;
+  height: 42px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+#main-container header h1, #main-container header li, #main-container header select, #main-container header > a {
+  float: left;
+}
+#main-container header h1, #main-container header a {
+  display: block;
+  height: 42px;
+}
+#main-container header h1 {
+  margin: 0 10px 0 8px;
+  width: 98px;
+}
+#main-container header select, #main-container header li {
+  margin-left: 10px;
+}
+#main-container header li {
+  line-height: 42px;
+}
+#main-container header select {
+  background: #ececec;
+  /*@extend %IEPie */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  height: 16px;
+  margin-top: 12px;
+}
+#main-container header > a {
+  background: url("/assets/images/sprite.png") no-repeat -12px -2796px;
+  padding-left: 12px;
+  position: relative;
+  text-decoration: none;
+  width: 101px;
+}
+#main-container header > a:before {
+  content: "\00A0";
+  height: 42px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 113px;
+}
+#main-container #functionBar {
+  background-color: white;
+  float: right;
+  height: 644px;
+  padding-top: 46px;
+}
+#main-container #functionBar #twitchTalk {
+  height: 424px;
+  margin-bottom: 10px;
+}
+#main-container #functionBar .ad {
+  height: 210px;
+}
+#main-container aside, #main-container .watchList {
+}
+#main-container aside {
+  margin: 0 auto;
+  padding: 30px 0;
+}
+#main-container .watchList {
+  background-color: #353535;
+  background-image: -moz-linear-gradient(top, #3e3e3e 37px, #2f2f2f);
+  background-image: -webkit-linear-gradient(top, #3e3e3e 37px, #2f2f2f);
+  background-image: linear-gradient(to bottom, #3e3e3e 37px, #2f2f2f);
+  /*@extend %IEPie */
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: 144px;
+  margin: 60px auto;
+}
+#main-container .watchList h2 {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(77, 77, 77, 0.5);
+  color: #b3b3b3;
+  height: 35px;
+  line-height: 35px;
+  padding-left: 12px;
+  position: relative;
+}
+#main-container .watchList h2:before, #main-container .watchList h2:after {
+  /*background-image: -moz-linear-gradient(left, transparent, #2a7998, transparent);*/
+  /*background-image: -webkit-linear-gradient(left, transparent, #2a7998 50%, transparent);*/
+  /*background-image: linear-gradient(to right, transparent, #2a7998, transparent);*/
+  content: "\00A0";
+  display: block;
+  position: absolute;
+  height: 1px;
+  left: 0;
+  width: 1264px;
+}
+#main-container .watchList h2:before {
+  top: -1px;
+}
+#main-container .watchList h2:after {
+  bottom: -1px;
+}
+#main-container .watchList li {
+  height: 110px;
+  width:100px;
+}
+#main-container .watchList li a {
+  box-sizing: border-box;
+  display: block;
+  height: 77px;
+  margin: 16.5px 15.75px 0;
+  padding: 6px 9px;
+  text-decoration: none;
+  /*width: 129px;*/
+}
+#main-container .watchList li a.current,
+#main-container .watchList li a:hover {
+  background-image: -moz-linear-gradient(top, #787676, #3f3f3f);
+  background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
+  background-image: linear-gradient(to bottom, #787676, #3f3f3f);
+  /*@extend %IEPie */
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) inset;
+}
+
+#main-container .watchList li a.current:hover,
+#main-container .watchList li a.current:active,
+#main-container .watchList li a.current:focus {
+  background-image: -moz-linear-gradient(top, #3f3f3f, #787676);
+  background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
+  background-image: linear-gradient(to bottom, #3f3f3f, #787676);
+  /*@extend %IEPie */
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2) inset;
+}
+#main-container .watchList li img {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.75);
+  float: left;
+  margin-right: 14px;
+}
+#main-container .watchList li h3, #main-container .watchList li dl {
+  -webkit-transform: scale(0.8334);
+  -o-transform: scale(1);
+}
+#main-container .watchList li h3 {
+  float: left;
+  font-size: 12px;
+  width: 135px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+#main-container .watchList li dt {
+  float: left;
+}
+#main-container .watchList .bx-wrapper {
+  padding: 0 37px;
+  position: relative;
+}
+#main-container .watchList .bx-pager-item {
+  display: none;
+}
+#main-container .watchList .bx-prev, #main-container .watchList .bx-next {
+  background: url("/assets/images/stream_control.png") no-repeat 0 0;
+  height: 107px;
+  position: absolute;
+  top: 0;
+  width: 37px;
+}
+#main-container .watchList .bx-prev:before, #main-container .watchList .bx-next:before {
+  background-color: #212121;
+  content: "\00A0";
+  height: 106px;
+  position: absolute;
+  width: 1px;
+}
+#main-container .watchList .bx-prev,
+#main-container .watchList .bx-next {
+  text-indent: -9999px;
+  height: 106px;
+}
+#main-container .watchList .bx-prev {
+  background-position: -67px 40px;
+  border-right: 1px solid #434343;
+  left: 0;
+}
+#main-container .watchList .bx-prev:before {
+  right: 0;
+}
+#main-container .watchList .bx-prev.disabled {
+  background-position: 13px 40px;
+}
+#main-container .watchList .bx-next {
+  background-position: -106px 40px;
+  border-left: 1px solid #434343;
+  right: 0;
+}
+#main-container .watchList .bx-next:before {
+  left: 0;
+}
+#main-container .watchList .bx-next.disabled {
+  background-position: -26px 54px;
+}
+#main-container .watchList .disabled {
+  cursor: default;
+}
+#main-container .streamer {
+  background-color: white;
+  float: left;
+  height: 700px;
+  margin-right: 20px;
+  width: 288px;
+}
+#main-container .information {
+  float: left;
+  position: relative;
+}
+#main-container .information:before {
+  content: "\00A0";
+  border-top: 1px solid #8a8a8a;
+  height: 1px;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 898px;
+}
+#main-container .information .tab {
+  position: relative;
+  z-index: 10;
+}
+#main-container .information .tab li a {
+  color: #8f8f8f;
+}
+#main-container .information .tab li.active a {
+  color: inherit;
+}
+
+#main-container .information [id^="tab-"] ul li + li {
+  margin-top: 12px;
+}
+#main-container .information [id^="tab-"] ul h3 {
+  border: 3px dotted #898989;
+  /*@extend %IEPie */
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  box-sizing: border-box;
+  color: #b4b4b4;
+  float: left;
+  height: 50px;
+  line-height: 44px;
+  text-align: center;
+  width: 50px;
+}
+#main-container .information [id^="tab-"] ul ul {
+  position: relative;
+  padding: 9px 0 0 64px;
+}
+#main-container .information [id^="tab-"] ul ul li {
+  background-color: #464646;
+  border: 1px solid #898989;
+  float: left;
+  line-height: 30px;
+  padding: 0 14px;
+  position: relative;
+  text-transform: uppercase;
+  max-width: 216px;
+}
+#main-container .information [id^="tab-"] ul ul li:before {
+  background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
+  content: "\00A0";
+  left: -7px;
+  position: absolute;
+  top: 11px;
+  height: 8px;
+  width: 7px;
+}
+#main-container .information [id^="tab-"] ul ul li + li {
+  clear: left;
+  margin-top: 0;
+}
+#main-container .information [id^="tab-"] ul p {
+  float: left;
+}
+#main-container .information [id^="tab-"] ul p + p:before {
+  content: "\007C";
+  padding: 0 8px;
+}
+#main-container .information [id^="tab-"] ul em {
+  font-weight: bold;
+}
+
+.muti #twitchStream {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+div.streamer {
+  padding: 10px
 }
 
 .mobile_menu {
@@ -3088,6 +3611,289 @@ li.thread  .stats > dl > dt {
   display: none;
 }
 
-#navigation {
+#twitchStreamContainer {
+  width: 100%;
+}
+
+div[id^=tab-chat-] {
+  height: 95%;
+}
+
+div[id^=tab-chat-] iframe {
+  height: 95%;
+}
+
+.stream .watchNow.disabled {
+  border: 3px solid #fff;
+}
+
+.tab > li a small {
+  font-size: 16px;
+  color: #e00;
+  vertical-align: super;
+  font-weight: bold;
+}
+
+#advertisement-container {
+  text-align: center;
   display: none;
 }
+
+#advertisement-container .minify-advert {
+  position: absolute;
+  right: 10px;
+  background: #333;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 2px 5px;
+  text-decoration: none;
+}
+
+#advertisement-container .minify-advert:hover {
+  font-weight: bold;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.game_page .listSwitch.no-playlist li:first-child {
+  display: none;
+}
+
+.game_page .listSwitch.no-playlist li:last-child {
+  border: 3px;
+}
+
+.game_page .listSwitch.no-playlist li {
+  width:100%;
+}
+
+.game_page .profile .info {
+  line-height: 73px;
+  font-size: 24px;
+  padding-left: 24px;
+  color: #fff;
+}
+
+.switch-menu #outContainer header .species ul li a {
+  visibility: hidden;
+}
+
+.switch-menu #outContainer .fixedMenu  header .species ul li a {
+  visibility: visible;
+}
+
+.mCSB_inside > .mCSB_container {
+  margin-right: 15px!important;
+}
+
+#arrow {
+  position: fixed;
+  right: 20px;
+  /* padding: 10px; */
+  border: 5px solid rgba(0,0,0,-0.5);
+  bottom: 20px;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
+  width: 30px;
+  height: 30px;
+}
+
+#arrow.down {
+  background: rgba(0,0,0,.5) url('/assets/images/down_arrow.svg');
+}
+
+#arrow.up {
+  background: rgba(0,0,0,.5) url('/assets/images/up_arrow.svg');
+}
+
+span.views {
+  position: absolute;
+  left: 5px;
+  font-weight: bold;
+  top: 5px;
+  font-size: 21px;
+}
+
+
+#container_lanparty {
+  background: url("../images/lanparty_bg.png");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  min-height: 900px;
+  padding: 40px 40px 80px 40px;
+}
+.lanparty-nav .lanparty_type1{
+  float: left;
+}
+.lanparty-nav .lanparty_type2{
+  float: right;
+}
+
+.lanparty-nav .lanparty_type2 > li > a:hover{
+  color: #eee;
+  text-decoration: none;
+}
+.lanparty-nav .lanparty_type2 > li:nth-child(1) {
+  background: url("../images/sprite.png") no-repeat 0 -1279px;
+}
+.lanparty-nav .lanparty_type2 > li:nth-child(2) {
+  margin-left: 20px;
+  background: url("../images/icon_fire_grey.png") no-repeat;
+  position: relative;
+  top: 1px;
+  vertical-align: middle;
+}
+.lanparty-nav .lanparty_menu {
+  border-top: 1px solid #434343;
+  padding: 10px;
+}
+.lanparty-nav li{
+  display: inline-block;
+  padding: 0px 20px;
+  vertical-align: middle;
+}
+.lanparty-nav li:not(:last-child){
+  border-right: 1px solid #434343;
+}
+.lanparty-nav li > a{
+  color: #868686;
+  text-decoration: none;
+  /*outline: 1px solid red;*/
+  padding: 15px 10px;
+  position: relative;
+  top: -1px;
+}
+
+#container .lanparty-nav {
+  margin: -34px -50px 25px;
+  padding: 20px 50px;
+}
+
+#outContainer #container.lanparty {
+  background: #000 url('../images/lanparty_bg.png') no-repeat;
+  color: #ebebeb;
+}
+
+#outContainer #container.lanparty a {
+  color: #999;
+}
+
+.lanparty-nav .lanparty_type1 li.active > a,
+.lanparty-nav .lanparty_type1 li:hover > a{
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+#container_lanparty .lanparty_title{
+  display: inline-block;
+  margin: 100px 80px 0px;
+}
+#container_lanparty .lanparty_content{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 80px auto;
+}
+#container_lanparty .lanparty_timetable{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 51px auto 80px;
+  background: url(../images/lanparty_grid_bg.png);
+  min-width: 940px;
+  min-height: 829px;
+  padding-top: 40px;
+}
+
+#container_lanparty .lanparty_content p{
+  margin: 20px 0px;
+  line-height: 1.75;
+}
+#container_lanparty .hour_time{
+  display: inline-block;
+  width: 155px;
+  color: #0a8bac;
+  padding-top: 60px;
+}
+#container_lanparty .hour_time li{
+  margin: 5px 5px 0px 40px;
+}
+
+.lanparty-nav > hr.line {
+  height: 1px;
+  border-top: 1px solid #434343;
+  margin-bottom: 9px;
+}
+
+.envet{
+  display: inline-block;
+  width: 720px;
+  vertical-align: top;
+  margin-left: 30px;
+  margin-top: -30px;
+  padding-top: 30px;
+}
+.envet1,.envet2,.envet3{
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  width: 210px;
+  height: 800px;
+  border-right: 1px dotted #0a8bac;
+}
+.envet_date{
+  position: absolute;
+  top: 0px;
+  width: 178px;
+  height: 165px;
+  background: url(../images/month_bg.png) no-repeat;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 12px;
+  z-index: 2000;
+}
+.envet1 .envet_title, .envet2 .envet_title, .envet3 .envet_title{
+  position: relative;
+  border-top: 1px dotted #0a8bac;
+  border-bottom: 1px dotted #0a8bac;
+  font-size: 18px;
+  color: #eee;
+  text-align: center;
+}
+.envet1 .envet_title{
+  padding-top: 100px;
+  top: 160px;
+  height: 200px;
+
+}
+.envet2 .envet_title{
+  top: 450px;
+  height: 80px;
+  padding-top: 10px;
+}
+.envet3 .envet_title{
+  top: 450px;
+  height: 60px;
+  padding-top: 10px;
+}
+
+.autocomplete-suggestions{ margin-top: 5px; }
+.autocomplete-suggestions div { padding:2px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete-suggestions strong { font-weight:normal; color:#e00; }
+.autocomplete-suggestions {
+  background: rgba(0, 0, 0, .9);
+  border: 1px solid #434343;
+  padding: 0 5px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.autocomplete-suggestions:hover. .autocomplete-suggestions .selected {
+  background: rgba(255, 255, 255, .9);
+  color: #e00;
+}
+
+

@@ -4,6 +4,17 @@ var slider = {};
 var con = 'all';
 var currentPage = 1;
 var hash;
+var filterConsole = '';
+var filterGame = '';
+
+var gameNames = [];
+page_data.games.forEach(function(item) {
+    gamesAutocompleteArray.push({value: item.name, data: item});
+    gameNames.push(item.name);
+    if(!~gameNames.indexOf(item.chinese)) {
+        gamesAutocompleteArray.push({value: item.chinese, data: item});
+    }
+});
 
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
@@ -20,7 +31,8 @@ var get_hash = function() {
 
 var get_game = function() {
     var game = get_hash()[0];
-     return game == '' ? 'all' : game;
+
+    return game == '' ? 'all' : game;
 }
 
 var render_featured_games = function (filter) {
@@ -29,7 +41,7 @@ var render_featured_games = function (filter) {
     filter =  new RegExp(filter, 'i');
 
     page_data.featured_games.forEach(function(item, i){
-        if(item.name.search(filter) == -1) return;
+        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         item.game = item.name;
         items.push(template($('#gameTpl').html(), item));
@@ -58,7 +70,8 @@ var render_latest_games = function(filter) {
     filter =  new RegExp(filter, 'i');
 
     page_data.games.forEach(function(item, i){
-        if(item.name.search(filter) == -1) return;
+        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
@@ -85,6 +98,7 @@ var filter_game = function(input) {
     var filterString = $this.val();
     render_featured_games(filterString);
     render_latest_games(filterString);
+    $('.tooltip').tooltipster({contentAsHTML: true});
 };
 
 var filter_videos = function(input) {
@@ -197,16 +211,40 @@ var load_game_videos_next_page = function() {
 }
 
 var render_game_videos = function(game, page) {
-    page = typeof page !== 'undefined' ? '&page='+page : ''
-    $.getJSON(server+'games/'+game+'/videos?limit=18&console='+con+page, function(result) {
+    var parameters = {
+        limit: 18
+    };
+
+    filterGame = game;
+
+    if(filterConsole.length) {
+        parameters.console = filterConsole;
+    }
+    if(filterGame.length) {
+        parameters.game = filterGame;
+    }
+
+    page = typeof page !== 'undefined' ? '&page='+page : '';
+
+    $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
         page_data.videos = result;
         render_videos();
     });
 };
 
 var filter_category = function(cons, context) {
-    con = cons;
-    $.getJSON(server+'gamesdata?console='+cons, function(results) {
+    var parameters = {};
+
+    filterConsole = cons;
+
+    if(filterConsole.length) {
+        parameters.console = filterConsole;
+    }
+    if(filterGame.length) {
+        parameters.game = filterGame;
+    }
+
+    $.getJSON(server+'gamesdata?'+$.param(parameters), function(results) {
         page_data = results;
         render_page();
     }).done(function() {
@@ -230,11 +268,12 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
+        filterGame = id;
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
         $('[data-id='+id+']').parent().addClass('active');
-        $('#game-title').html($('[data-id='+id+']').attr('data-name'));
+        $('#game-title').html($('[data-id='+id+']').attr('data-chi'));
         render_game_videos(id);
     } else {
         render_videos();

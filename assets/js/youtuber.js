@@ -1,15 +1,39 @@
 var liveStreamLink = false;
-$(window).load(function(){
+var filterConsole = 'all';
+
+
+function filter_category(gameConsole, context) {
+	$(context).parent().siblings().removeClass('current');
+	$(context).parent().addClass('current');
+
+	filterConsole = gameConsole;
+	renderGame();
+}
+
+function renderGame() {
 	html = [];
-	console.log('youtuber.js', page_data);
 	page_data.games_cast.forEach(function(item){
+		if(!~item.consoles.indexOf(filterConsole)) return;
 		html.push(template($('#gamesCastTpl').html(), item));
 	});
-	$('#gamesCast').html(html.join(''));
-	$('#banner > cite').html(page_data.user.username);
-	$('#banner > a').attr('href', community+'index.php?members/'
+	$('#gamesCast').mCustomScrollbar({theme: 'inset-2'});
+
+	if(!html.length) {
+		html.push('目前沒有遊戲');
+	}
+
+	$('#gamesCast .mCSB_container').html(html.join(''));
+	$('.tooltip').tooltipster({contentAsHTML: true});
+}
+
+$(window).load(function(){
+
+	renderGame();
+
+	$('#banner .info > cite').html(page_data.user.username);
+	$('#banner .info > a').attr('href', community+'index.php?members/'
 		+page_data.user.username+'.'+page_data.user.user_id);
-	$('#banner > img').attr('src', attachments_server+'data/avatars/l/0/'
+	$('#banner .info > img').attr('src', attachments_server+'data/avatars/l/0/'
 		+page_data.user.user_id+'.jpg');
 	twitchId = page_data.user.custom_fields.twitchStreams || null;
 	youtubeId = page_data.user.custom_fields.youtube_id || null;
@@ -29,6 +53,7 @@ $(window).load(function(){
 			// $('.live-button').attr('href', liveStreamLink).show();
 		}
 	});
+
 	utilLoader.hide();
 
       $('#responsive-menu-button').sidr({
@@ -42,5 +67,5 @@ $(window).load(function(){
     }
 
 
-    // $($('body')[1]).remove();
+
 });

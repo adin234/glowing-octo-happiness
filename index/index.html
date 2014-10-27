@@ -43,10 +43,6 @@
       background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
       padding: 10px !important;
     }
-    .stream {
-      background: #c8c8c8 url("/assets/images/wrapper_bg.jpg") !important;
-      margin-top: 10px;
-    }
     .video.tabs > ul {
       border-bottom: 1px inset #999;
       box-shadow: 0px 1px 0px 0px #ddd;
@@ -54,11 +50,16 @@
     #content {
       margin: 0 10px 10px 10px !important;
     }
+
+    .bxslider, .games, .heading h2, #content > .tabs {
+      display: none;
+    } 
+
   }
 </style>
 </head>
 
-<body class="lang_zh_tw">
+<body id="index-page" class="lang_zh_tw">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -113,12 +114,13 @@
             <li><a href="/news" title="新聞">新聞</a></li>
             <li><a href="/shows" title="Shows">Shows</a></li>
             <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li><a href='/lanparty' title="Lan Party">Lan Party</a></li>
             <li>
-              <form>
-                <input type="text" placeholder="搜尋">
-              </form>
+              <div>
+                <input type="text" placeholder="搜尋" id="query">
+              </div>
             </li>
           </ul>
         </nav>
@@ -205,9 +207,22 @@
             </ul>
           </div>
         </div>
-        <div class="heading">
-          <h2>熱門論壇</h2>
-          <div id="forumSection">
+        <div class="tabs">
+          <ul class="tab clearFix">
+            <li>
+              <h2><a href="#tab-3-1">最新討論</a></h2>
+            </li>
+            <li>
+              <h2><a href="#tab-3-2">熱門論壇</a></h2>
+            </li>
+          </ul>
+          <div id="tab-3-1">
+            <div id="forumSection">
+            </div>
+          </div>
+          <div id="tab-3-2">
+            <div id="hotForumSection">
+            </div>
           </div>
         </div>
       </div>
@@ -218,7 +233,7 @@
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
-            <li><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="http://zh.freedom.tm/">加入我們</a></li>
           </ul>
         </nav>
@@ -237,6 +252,7 @@
     </div>
   </div>
 </div>
+<div id="arrow" class="down"></div>
 <script type="text/html" id="sliderTpl">
   <li class="slider-item">
     <img src="{{PROVIDER}}?attachments/slide-jpg.{{ATTACHMENT_ID}}/" alt="{{TITLE}}" title="{{TITLE}}"
@@ -245,19 +261,19 @@
     </li>
 </script>
 <script type="text/html" id="latestVideosTpl">
-  <li>
+  <li class="pointer" onClick="window.location.href = '{{LINK}}';">
     <img src="{{THUMB}}" width="334" height="246" alt="screenshot">
-    <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
+    <h3><a href="javascript:void(0);" title="{{TITLE}}">{{TITLE}}</a></h3>
     <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">
     <ul>
       <li>{{USERNAME}}</li>
       <li><em>觀看次數：</em>{{VIEWS}}</li>
-      <li><a href="javascript:;"><em>Replies: </em> {{COMMENTS}}</a></li>
+      <li><a href="javascript:;"><em>Replies: </em> {{ANYTV_COMMENT}}</a></li>
     </ul>
   </li>
 </script>
 <script type="text/html" id="gameTpl">
-<li><a href="/games/#!/{{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
+<li><a href="/game/{{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 </script>
 <script type="text/html" id="featuredUsersTpl">
   <li>
@@ -272,8 +288,8 @@
 </script>
 <script type="text/html" id="streamersTpl">
   <li onClick="window.location.href = origin+'{{LINK}}'">
-    <div class="dynamic">{{GAME}} / {{IDRAW}}</div>
-    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
+    <div class="dynamic">{{GAME}} / {{USERNAME}}</div>
+    <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="32" height="30" alt="{{GAME}} / {{USERNAME}}" class="safeloading" onError="fixErrorImg(this);">
   </li>
 </script>
 <script type="text/html" id="recentForumTpl">
@@ -302,9 +318,9 @@
   </li>
 </script>
 <script type="text/html" id="playerTpl">
-  <div class="video-player" style="position: absolute;top: 0;bottom: 0;left: 0;height: 100%;width: 100%;background-color: rgba(0,0,0,.4);z-index: 999;">
-    <iframe height="100%" src="{{VIDEO}}" frameborder="0" allowfullscreen="" style="width:80%; margin-left: 10%"></iframe>
-    <a href="javascript:;" class="close remove-multiview" title="Close"></a>
+  <div class="video-player" style="position: fixed;top: 0;bottom: 0;left: 0;height: 100%;width: 100%;background-color: rgba(0,0,0,.4);z-index: 999;">
+    <iframe src="{{VIDEO}}" frameborder="0" allowfullscreen="" style="width:80%; margin-left: 10%; height:90%; margin-top:5%"></iframe>
+    <a href="javascript:;" class="close remove-multiview" title="Close" style="margin-top:5%"></a>
   </div>
 </script>
 <script src="/assets/js/util.js"></script>
@@ -312,6 +328,7 @@
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/jquery.fixed.menu.js"></script>
 <script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.autocomplete.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
@@ -372,13 +389,6 @@
       });
   </script>
 
-  <script type="text/javascript">
-    if ($(window).width() < 1024) {
-      $(".bxslider").css("display", "none");
-      $(".games").css("display", "none");
-      $(".heading h2").css("display", "none");
-      $( ".stream" ).load( "/streamers/index.html .video.stream.tabs" );
-    };
-  </script>
+
 </body>
 </html>

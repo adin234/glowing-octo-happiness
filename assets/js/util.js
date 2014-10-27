@@ -1,8 +1,12 @@
 var template = function (templateHTML, data) {
+
     for(var x in data) {
-        templateHTML = templateHTML
-            .replace(new RegExp('{{'+x+'}}', 'gi'),
-                data[x] == null ? '' : data[x]);
+        var torep = new RegExp('{{'+x+'}}', 'gi');
+        if(torep) {
+            templateHTML = templateHTML
+                .replace(torep,
+                    data[x] == null ? '' : data[x]);
+        }
     }
 
     return templateHTML;
@@ -12,7 +16,6 @@ var showSocialButtons = function () {
     var link = document.location.href;
 
     // fix for youtubers 404 page2
-    +3
     if(~document.location.pathname.indexOf('/youtuber/')) {
         var id = window.location.pathname
             .split('/').filter(function(e){return e;})[1];
@@ -21,20 +24,27 @@ var showSocialButtons = function () {
         hash = hash.replace('#!/', '#!/'+id+'/');
 
         link = origin+'youtuber/share/'+hash;
+    } else if(~document.location.pathname.indexOf('/game/')) {
+        var id = window.location.pathname
+            .split('/').filter(function(e){return e;})[1];
+
+        var hash = document.location.hash;
+        hash = hash.replace('#!/', '#!/'+id+'/');
+
+        link = origin+'game/share/'+hash;
     }
 
     $('#viewport').html('');
-    $('#fb-root').html('');
+    // $('#fb-root').html('');
     $('#social-buttons').html('');
 
     var html = '<div id="social-buttons">'
-            + '<div id="fb-container"></div>'
+            // + '<div id="fb-container"></div>'
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
             + '"standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" '
             + 'class="twitter-share-button" data-url="'+link+'" data-text="">'
             + 'Tweet</a>'
-            + '<div id="fb-root"></div>'
             + '</div>';
 
     document.getElementById('viewport').insertAdjacentHTML( 'beforeEnd', html );
@@ -43,16 +53,33 @@ var showSocialButtons = function () {
         var fb =  '<div id="fb-like" class="fb-like" data-share="true" '
         +'data-href="'+link+'" data-layout="button_count" data-width="50">'
         +'</div>';
+        $('#viewport').before('<div id="fb-container"></div>');
+        $('#viewport').before('<div id="fb-root"></div>');
         $('#fb-container').html(fb);
 
-        var script = document.createElement( 'script' );
-        script.async = true;
-        script.src = document.location.protocol +
-            '//connect.facebook.net/en_US/all.js#xfbml=1&appId=267603823260704';
-        document.getElementById( 'fb-root' ).appendChild( script );
+        window.fbAsyncInit = function() {
+
+          FB.Event.subscribe('xfbml.render', function(response) {
+            if($('#index-page').length){
+                console.log('detach');
+                $('#fb-like').detach().prependTo($('#viewport'));
+            }
+          });
+        };
+
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=305385862975541&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     } else {
-        $('#fb-like').data('data-href', link);
-        FB.XFBML.parse();
+        console.log(link);
+        $('#fb-like').attr('data-href', link);
+        FB.XFBML.parse(document.getElementById('fb-container'), function() {
+            console.log('rendered');
+        });
     }
 
     script = document.createElement( 'script' );
@@ -186,8 +213,8 @@ var utilHash = {
         apply = typeof apply == 'undefined' ? true : false;
 
         var hash = window.location.hash;
-
-        if(hash.substr(1) != '!') {
+        console.log(hash,hash[1] != '!');
+        if(hash[1] != '!') {
             hash = hash.replace('#', '#!');
         }
 
@@ -200,6 +227,20 @@ var utilHash = {
         }
 
        return hash_string;
+    },
+    'removeHash': function(string, apply) {
+         apply = typeof apply == 'undefined' ? true : false;
+
+         var hash = window.location.hash;
+
+         var hash_string = hash.replace('/'+string, '');
+         console.log(apply);
+         if(apply) {
+            console.log(123);
+              window.location.hash = hash_string;
+         }
+
+        return hash_string;
     },
     'buildHash' : function(hashArr) {
         hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
@@ -265,3 +306,45 @@ var fixErrorImg = function(item) {
 //             +'avatars/avatar_male_l.png'
 //         )
 // });
+var searchId = false;
+var searchBox = '';
+function redirect_to_youtuber(id)  {
+    window.location.href = origin+'youtuber/'+id
+}
+
+function searchBoxInit() {
+    options = {
+      serviceUrl: server+'youtubers/search',
+      // minChars: 3,
+      zIndex: 9999,
+      onSelect: function(value) {
+        redirect_to_youtuber(value.data.user_id);
+      }
+    };
+    var searchDom = $('#query');
+    if(searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                if(typeof searchBox.data().suggestions[0] != 'undefined') {
+                    redirect_to_youtuber(searchBox.data().suggestions[0].data.user_id);
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
+}
+var gamesAutocompleteArray = [];
+
+function searchGamesBoxInit() {
+    if(!gamesAutocompleteArray.length) return;
+
+    optionGames = {
+        lookup : gamesAutocompleteArray
+    }
+
+    $('#txtbox-search-games').autocomplete(optionGames);
+}
+
+$(function() { searchBoxInit(); searchGamesBoxInit(); });

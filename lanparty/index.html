@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-tw">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<!--<meta name="description" content="">-->
+<meta name="author" content="E.H.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Freedom Asia">
+<meta property="og:type" content="website">
+<!--<meta property="og:image" content="">-->
+<meta property="og:site_name" content="Freedom Asia">
+<!--<meta property="og:description" content="">-->
+<meta name="robots" content="none">
+<title>新聞 | 實況咖</title>
+<link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
+<link href="/assets/css/style.css?v=1" rel="stylesheet">
+<link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+<!--<link href="favicon.ico" rel="icon" type="image/x-icon">
+<link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
+<link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+<link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+<link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+<link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
+<script type="text/javascript" src="/assets/js/config.js"></script>
+<script type="text/javascript" src="/assets/js/get.lanparty.data.js"></script>
+</head>
+
+<body class="lang_zh_tw switch-menu">
+<div id="wrapper">
+  <div id="outContainer">
+    <div class="nav-container">
+      <header class="zh_tw">
+        <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
+        <nav class="species">
+          <ul class="clearFix">
+            <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('mobile', this); return false;" title="Mobile Game">Mobile Game</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
+          </ul>
+        </nav>
+        <nav class="site sf-menu">
+          <ul class="clearFix">
+            <li class="nav-switch-item"><a href="/index" title="首頁">首頁</a></li>
+            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇" class="sf-with-ul">論壇</a>
+              <ul style="display: none;">
+                <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
+                <li><a href="http://community.gamers.tm/zh/index.php?search/&amp;type=post" title="搜尋論壇">搜尋論壇</a></li>
+              </ul>
+            </li>
+            <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
+            <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
+            <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
+            <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
+            <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li class="nav-switch-item current"><a href='/lanparty' title="Lan Party">Lan Party</a></li>
+            <li>
+              <div>
+                <input type="text" placeholder="搜尋" id="query">
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <ul class="member">
+          <li><a href="http://zh.freedom.tm" title="加入我們" class="zh_tw">加入我們</a></li>
+          <li class="login"><a href="http://community.gamers.tm/zh/index.php?login" title="登入">登入</a>/<a href="http://community.gamers.tm/zh/index.php?register" title="註冊">註冊</a></li>
+        </ul>
+      </header>
+    </div>
+    <div id="container_lanparty" class="tabs lanparty-nav">
+      <hr class="line">
+      <ul class="lanparty_type1">
+        <li class="current"><a href="#tab-4-1">什麼是Lan party</a></li>
+        <li><a href="#tab-4-2">Lan party時刻表</a></li>
+        <li><a href="#tab-4-3">活動內容</a></li>
+      </ul>
+      <ul class="lanparty_type2">
+        <li><a href="#">直播</a></li>
+        <li><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
+      </ul>
+
+    <div id="tab-4-1">
+      <div class="lanparty_title">
+        <img src="/assets/images/font_lanparty1.png" alt="">
+      </div>
+      <div class="lanparty_content" id="lanparty_content">
+
+      </div>
+    </div>
+
+    <div id="tab-4-2">
+      <div class="lanparty_title">
+        <img src="/assets/images/font_lanparty2.png" alt="">
+      </div>
+      <div class="lanparty_timetable">
+        <ul class="hour_time">
+          <li>1000-1100</li>
+          <li>1100-1200</li>
+          <li>1200-1300</li>
+          <li>1300-1400</li>
+          <li>1400-1500</li>
+          <li>1500-1600</li>
+          <li>1600-1700</li>
+          <li>1700-1800</li>
+          <li>1800-1900</li>
+          <li>1900-2000</li>
+          <li>2000-2100</li>
+          <li>2100-2200</li>
+          <li>2200-2300</li>
+          <li>2300-0000</li>
+          <li>0000-0100</li>
+          <li>0100-0200</li>
+          <li>0200-0300</li>
+          <li>0300-0400</li>
+          <li>0400-0500</li>
+          <li>0500-0600</li>
+          <li>0600-0700</li>
+          <li>0700-0800</li>
+          <li>0800-0900</li>
+          <li>0900-1000</li>
+        </ul>
+        <div class="envet" id="lanparty_envet">
+          <div class="envet1">
+            <h3 class="envet_date">10/20 Mon.</h3>
+            <div class="envet_title">英雄聯盟大專聯賽 <br>冠亞軍賽</div>
+          </div><div class="envet2">
+            <h3 class="envet_date">10/25 Mon.</h3>
+            <div class="envet_title">英雄聯盟大專聯賽 <br>冠亞軍賽</div>
+            <div class="envet_title">英雄聯盟大專聯賽<br> 冠亞軍賽</div>
+          </div><div class="envet3">
+            <h3 class="envet_date">10/26 Mon.</h3>
+            <div class="envet_title">英雄聯盟大專聯賽<br> 冠亞軍賽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-4-3">
+      <div class="lanparty_title">
+        <img src="/assets/images/font_lanparty3.png" alt="">
+      </div>
+      <div class="lanparty_content" id="lanparty_activities">
+
+      </div>
+    </div>
+
+    <div id="tab-4-5">
+
+
+    </div>
+
+
+    </div>
+    </div>
+    <footer class="clearFix">
+        <nav>
+          <ul class="zh_tw">
+            <li><a href="/index">首頁</a></li>
+            <li><a href="/about">關於我們</a></li>
+            <li><a href="/news">新聞</a></li>
+            <li><a href="/shows">Shows</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
+            <li><a href="http://zh.freedom.tm/">加入我們</a></li>
+          </ul>
+        </nav>
+        <ul>
+          <li><a href="https://www.facebook.com/mcnFreedomAsia">Facebook</a></li>
+          <li><a href="https://twitter.com/mcnFreedomASIA">Twitter</a></li>
+          <li><a href="https://plus.google.com/u/0/b/110692434160149822943/110692434160149822943">Google+</a></li>
+          <li><a href="https://www.youtube.com/user/mcnFreedomTW">Youtube</a></li>
+        </ul>
+        <small>© 2014 <strong>freedom!</strong>. All Rights Reserved.</small><span>Language: <a href="javascript:;" class="language">English</a>
+        <ul class="selectLanguage">
+          <li><a href="index_en.html">English</a></li>
+          <li><a href="index_tw.html">繁體中文</a></li>
+        </ul>
+        </span></footer>
+      </div>
+  </div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="/assets/js/hoverIntent.js"></script>
+<script src="/assets/js/superfish.js"></script>
+<script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.autocomplete.min.js"></script>
+<script src="/assets/js/jquery.fixed.menu.js"></script>
+<script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/assets/js/jquery.bxslider.min.js"></script>
+<script src="/assets/js/jquery.tabslet.min.js"></script>
+<script src="/assets/js/jquery.tooltipster.min.js"></script>
+<script src="/assets/js/jquery.tooltipster.min.js"></script>
+<script src="/assets/js/autolinker.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/lanparty.js"></script>
+<script>
+$('.tabs').tabslet();
+var tab = utilHash.getHash();
+if(tab !== '') {
+  $('[href='+tab+']').trigger('click');
+}
+</script>
+</body>
+</html>

@@ -60,7 +60,6 @@
 <body class="lang_zh_tw">
 <div id="wrapper">
   <div id="outContainer">
-    <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
 
@@ -113,12 +112,13 @@
             <li><a href="/news" title="新聞">新聞</a></li>
             <li><a href="/shows" title="Shows">Shows</a></li>
             <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="current"><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li><a href='/lanparty' title="Lan Party">Lan Party</a></li>
             <li>
-              <form>
-                <input type="text" placeholder="搜尋">
-              </form>
+              <div>
+                <input type="text" placeholder="搜尋" id="query">
+              </div>
             </li>
           </ul>
         </nav>
@@ -131,21 +131,21 @@
     <div id="container">
       <div id="content" class="clearFix">
         <div class="silderList clearFix">
-          <div method="post" class="search">
+          <div method="post" class="search game-container">
             <div></div>
             <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
             <div class="games tabs">
               <ul class="tab clearFix">
                 <li>
-                  <h2><a href="#tab-1-1">精選遊戲</a></h2>
+                  <h2><a href="#tab-1-1">最新遊戲</a></h2>
                 </li>
                 <li>
-                  <h2><a href="#tab-1-2">最新遊戲</a></h2>
+                  <h2><a href="#tab-1-2">精選遊戲</a></h2>
                 </li>
               </ul>
               <div id="tab-1-1">
                 <div class="collection">
-                  <div class="bxslider games" id="container-featured-games">
+                  <div class="bxslider games" id="container-latest-games">
                       <!-- START -->
 
                       <!-- END -->
@@ -154,7 +154,7 @@
               </div>
               <div id="tab-1-2">
                 <div class="collection">
-                  <div class="bxslider games" id="container-latest-games">
+                  <div class="bxslider games" id="container-featured-games">
                       <!-- START -->
 
                       <!-- END -->
@@ -165,26 +165,36 @@
           </div>
           <div method="post" class="search">
             <div></div>
-            <input type="text" placeholder="收尋 YouTuber" id="txtbox-search-videos">
+            <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
             <div class="video tabs">
               <ul class="tab clearFix">
                 <li>
-                  <h2><a href="#tab-2-1">新實況咖成員</a></h2>
+                  <h2><a href="#tab-2-1">熱門YouTuber</a></h2>
                 </li>
                 <li>
-                  <h2><a href="#tab-2-2">熱門實況咖</a></h2>
+                  <h2><a href="#tab-2-2">新實況咖成員</a></h2>
+                </li>
+                <li>
+                  <h2><a href="#tab-2-3">All</a></h2>
                 </li>
               </ul>
               <div id="tab-2-1">
                 <div class="collection">
-                  <div class="bxslider videos new" id="container-new-member">
+                  <div class="bxslider videos popular" id="container-popular-member">
 
                   </div>
                 </div>
               </div>
               <div id="tab-2-2">
                 <div class="collection">
-                  <div class="bxslider videos popular" id="container-popular-member">
+                  <div class="bxslider videos new" id="container-new-member">
+
+                  </div>
+                </div>
+              </div>
+              <div id="tab-2-3">
+                <div class="collection">
+                  <div class="bxslider videos all" id="container-all-member">
 
                   </div>
                 </div>
@@ -195,12 +205,12 @@
       </div>
       <footer class="clearFix">
         <nav>
-          <ul class="en">
-<li><a href="/index">首頁</a></li>
+          <ul class="zh_tw">
+            <li><a href="/index">首頁</a></li>
             <li><a href="/about">關於我們</a></li>
             <li><a href="/news">新聞</a></li>
             <li><a href="/shows">Shows</a></li>
-            <li><a href="/youtubers" title="實況咖">實況咖</a></li>
+            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li><a href="http://zh.freedom.tm/">加入我們</a></li>
           </ul>
         </nav>
@@ -220,17 +230,17 @@
   </div>
 </div>
 <script type="text/html" id="gameTpl">
-  <li><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></li>
+  <li class="game-item"><a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 </script>
 <script type="text/html" id="gameContainerTpl">
   <ul class="game clearFix"> {{ITEMS}} </ul>
 </script>
 <script type="text/html" id="videoTpl">
-    <li class="{{LIVE}}">
+    <li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/{{USER_ID}}';">
       <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="334" height="246" alt="screenshot">
       </a>
       <h3>
-        <a href="/youtuber/{{USER_ID}}" title="{{TITLE}}">{{TITLE}}</a>
+        <a href="javascript:void(0);" title="{{TITLE}}">{{TITLE}}</a>
       </h3>
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}"></a>
       <ul>
@@ -249,6 +259,7 @@
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
 <script src="/assets/js/function.js"></script>
+<script src="/assets/js/jquery.autocomplete.min.js"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
 <script src="/assets/js/jquery.fixed.menu.js"></script>
