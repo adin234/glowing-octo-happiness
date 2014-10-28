@@ -369,7 +369,7 @@ $(document).ready(function(){
     html.push(template($('#categoriesTpl').html(), item));
   });
   if(!html.length) { html.push('No Category Available'); }
-  $('#categories').html(html.join(''));
+  $('#categories').html('');
 
 
   update_videos(page_data.videos);

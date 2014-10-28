@@ -80,7 +80,7 @@ footer > ul li a,
 
 
 #outContainer header .species > ul li.current {
-  /*background-color: #000;*/
+  background-color: #C54646;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) > ul {
@@ -1657,7 +1657,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .about ul li {
   display: block;
   float: left;
-  height: 190px;
+  height: 215px;
   margin: 40px 40px 0 0;
   width: 258px;
 }
