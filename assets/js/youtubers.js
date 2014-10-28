@@ -119,8 +119,8 @@ var filter_game = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_featured_games(filterString);
-    render_latest_games(filterString);
     slider.featured_games.reloadSlider({startSlide: 0});
+    render_latest_games(filterString);
     slider.latest_games.reloadSlider({startSlide: 0});
 };
 
@@ -128,10 +128,10 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
-    render_all_members(filterString);
-    render_popular_members(filterString);
     newSlider.reloadSlider();
+    render_all_members(filterString);
     allSlider.reloadSlider();
+    render_popular_members(filterString);
     popularSlider.reloadSlider();
 };
 
