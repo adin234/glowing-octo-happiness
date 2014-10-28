@@ -890,8 +890,6 @@ a:hover, a:focus, a:active {
   position: fixed;
   top: 0;
   z-index: 9999;
-  width: 100%;
-  
 }
 #outContainer .fixedMenuLogo.en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
@@ -1207,7 +1205,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
   -ms-input-placeholder-color: #9c9c9c;
 }
-.search div:empty:not(.bx-pager) {
+.search div:empty:not(.bx-pager):not(.bx-loading) {
   background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
   height: 16px;
   width: 16px;
@@ -3761,7 +3759,7 @@ span.views {
   padding: 0px 20px;
   vertical-align: middle;
 }
-.lanparty-nav li:not(:last-child){
+.lanparty-nav > ul li:not(:last-child){
   border-right: 1px solid #434343;
 }
 .lanparty-nav li > a{
@@ -3823,8 +3821,16 @@ span.views {
   color: #0a8bac;
   padding-top: 60px;
 }
+
 #container_lanparty .hour_time li{
-  margin: 5px 5px 0px 40px;
+  border-top: 1px dotted #0a8bac;
+  margin: 0px 5px 0px 40px;
+  height: 36px;
+}
+
+#container_lanparty .hour_time li:last-child {
+  border-bottom: 1px dotted #0a8bac;
+  margin-bottom: 20px;
 }
 
 .lanparty-nav > hr.line {
@@ -3833,7 +3839,7 @@ span.views {
   margin-bottom: 9px;
 }
 
-.envet{
+.event{
   display: inline-block;
   width: 720px;
   vertical-align: top;
@@ -3841,20 +3847,21 @@ span.views {
   margin-top: -30px;
   padding-top: 30px;
 }
-.envet1,.envet2,.envet3{
+
+.event-item {
   vertical-align: top;
   position: relative;
   display: inline-block;
   margin-left: 20px;
   width: 210px;
-  height: 800px;
+  height: 990px;
   border-right: 1px dotted #0a8bac;
 }
-.envet_date{
+.event_date{
   position: absolute;
   top: 0px;
   width: 178px;
-  height: 165px;
+  height: 65px;
   background: url(../images/month_bg.png) no-repeat;
   color: #fff;
   font-size: 30px;
@@ -3862,29 +3869,23 @@ span.views {
   padding-left: 12px;
   z-index: 2000;
 }
-.envet1 .envet_title, .envet2 .envet_title, .envet3 .envet_title{
-  position: relative;
+
+.event-item .event_title{
+  position: absolute;
+  display: table;
+  vertical-align: middle;
   border-top: 1px dotted #0a8bac;
   border-bottom: 1px dotted #0a8bac;
   font-size: 18px;
   color: #eee;
   text-align: center;
+  width: 100%;
 }
-.envet1 .envet_title{
-  padding-top: 100px;
-  top: 160px;
-  height: 200px;
 
-}
-.envet2 .envet_title{
-  top: 450px;
-  height: 80px;
-  padding-top: 10px;
-}
-.envet3 .envet_title{
-  top: 450px;
-  height: 60px;
-  padding-top: 10px;
+.event-item .event_title p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .autocomplete-suggestions{ margin-top: 5px; }
@@ -3922,4 +3923,9 @@ span.views {
   height: 246px;
   width: 334px;
   position: relative;
+}
+
+.gritter-item .link {
+  color: #fff;
+  font-size: 14px;
 }

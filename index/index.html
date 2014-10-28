@@ -14,6 +14,7 @@
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/media.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
@@ -53,7 +54,7 @@
 
     .bxslider, .games, .heading h2, #content > .tabs {
       display: none;
-    } 
+    }
 
   }
 </style>
@@ -257,7 +258,7 @@
   <li class="slider-item">
     <img src="{{PROVIDER}}?attachments/slide-jpg.{{ATTACHMENT_ID}}/" alt="{{TITLE}}" title="{{TITLE}}"
       onclick="{{ONCLICK}}">
-      <a href="#" class="play" data-vid="{{YOUTUBE_LINK}}">Play</a>
+      <a href="#" class="play tooltip" data-vid="{{YOUTUBE_LINK}}" style="{{STYLE}}" title="&lt;img src='{{THUMB}}'&gt;">Play</a>
     </li>
 </script>
 <script type="text/html" id="latestVideosTpl">
@@ -323,6 +324,7 @@
     <a href="javascript:;" class="close remove-multiview" title="Close" style="margin-top:5%"></a>
   </div>
 </script>
+<script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
@@ -333,7 +335,6 @@
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
 <script src="/assets/js/jquery.tooltipster.min.js"></script>
-<script type="text/javascript" src="/assets/js/streamers.js"></script>
 <script type="text/javascript">;
   $(document).ready(function(){
     $(".sf-menu").superfish();
@@ -388,7 +389,6 @@
         renaming: false
       });
   </script>
-
 
 </body>
 </html>

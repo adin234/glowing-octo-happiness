@@ -15,6 +15,7 @@
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
@@ -28,7 +29,7 @@
 <script type="text/javascript" src="/assets/js/get.lanparty.data.js"></script>
 </head>
 
-<body class="lang_zh_tw switch-menu">
+<body class="lang_zh_tw switch-menu stream-gritter">
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
@@ -102,43 +103,34 @@
       </div>
       <div class="lanparty_timetable">
         <ul class="hour_time">
-          <li>1000-1100</li>
-          <li>1100-1200</li>
-          <li>1200-1300</li>
-          <li>1300-1400</li>
-          <li>1400-1500</li>
-          <li>1500-1600</li>
-          <li>1600-1700</li>
-          <li>1700-1800</li>
-          <li>1800-1900</li>
-          <li>1900-2000</li>
-          <li>2000-2100</li>
-          <li>2100-2200</li>
-          <li>2200-2300</li>
-          <li>2300-0000</li>
-          <li>0000-0100</li>
-          <li>0100-0200</li>
-          <li>0200-0300</li>
-          <li>0300-0400</li>
-          <li>0400-0500</li>
-          <li>0500-0600</li>
-          <li>0600-0700</li>
-          <li>0700-0800</li>
-          <li>0800-0900</li>
-          <li>0900-1000</li>
+          <li>0000</li>
+          <li>0100</li>
+          <li>0200</li>
+          <li>0300</li>
+          <li>0400</li>
+          <li>0500</li>
+          <li>0600</li>
+          <li>0700</li>
+          <li>0800</li>
+          <li>0900</li>
+          <li>1000</li>
+          <li>1100</li>
+          <li>1200</li>
+          <li>1300</li>
+          <li>1400</li>
+          <li>1500</li>
+          <li>1600</li>
+          <li>1700</li>
+          <li>1800</li>
+          <li>1900</li>
+          <li>2000</li>
+          <li>2100</li>
+          <li>2200</li>
+          <li>2300</li>
+          <li>2400</li>
         </ul>
-        <div class="envet" id="lanparty_envet">
-          <div class="envet1">
-            <h3 class="envet_date">10/20 Mon.</h3>
-            <div class="envet_title">英雄聯盟大專聯賽 <br>冠亞軍賽</div>
-          </div><div class="envet2">
-            <h3 class="envet_date">10/25 Mon.</h3>
-            <div class="envet_title">英雄聯盟大專聯賽 <br>冠亞軍賽</div>
-            <div class="envet_title">英雄聯盟大專聯賽<br> 冠亞軍賽</div>
-          </div><div class="envet3">
-            <h3 class="envet_date">10/26 Mon.</h3>
-            <div class="envet_title">英雄聯盟大專聯賽<br> 冠亞軍賽</div>
-          </div>
+        <div class="event" id="event-container">
+          <div id="lanparty_event"></div>
         </div>
       </div>
     </div>
@@ -187,6 +179,16 @@
   </div>
 </div>
 
+<script type="text/html" id="eventItemTpl">
+  <div class="event-item">
+    <h3 class="event_date">{{DATE}}</h3>
+    {{TIME}}
+  </div>
+</script>
+
+<script type="text/html" id="eventItemTime">
+  <div class="event_title" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}"><p>{{TITLE}}</p></div>
+</script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>
@@ -200,6 +202,7 @@
 <script src="/assets/js/jquery.tooltipster.min.js"></script>
 <script src="/assets/js/jquery.tooltipster.min.js"></script>
 <script src="/assets/js/autolinker.js"></script>
+<script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/lanparty.js"></script>
 <script>
