@@ -15,6 +15,7 @@
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/media.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <link href="/assets/css/nivo-slider.css" rel="stylesheet">
@@ -49,13 +50,13 @@
 </style>
 </head>
 
-<body class="lang_zh_tw">
+<body class="lang_zh_tw switch-menu steam-gritter">
 
 <div id="wrapper">
   <div id="outContainer">
     <div class="nav-container">
-      <header class="zh_tw">
-        
+       <header class="zh_tw">
+
         <nav class="species">
           <div class="mobile_menu">
             <a id="responsive-menu-button" href="#sidr-main"><i class='fa fa-bars fa-2x'></i></a>
@@ -67,7 +68,7 @@
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
@@ -79,8 +80,9 @@
           </ul>
         </nav>
         <nav class="site sf-menu">
+
           <!--MOBILE NAVIGATOR start-->
-          <ul class="clearFix" id="mobilenav">
+        <ul class="clearFix" id="mobilenav">
             <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox', this); return false;" title="Xbox One">Xbox One</a></li>
@@ -90,21 +92,23 @@
             <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('mobile', this); return false;" title="Mobile Game">Mobile Game</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-          </ul>
+        </ul>
           <!--MOBILE NAVIGATOR end-->
+
           <ul class="clearFix">
-            <li class="current"><a href="/index" title="首頁">首頁</a></li>
-            <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
+            <li class="nav-switch-item"><a href="/index" title="首頁">首頁</a></li>
+            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇">論壇</a>
               <ul>
                 <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
                 <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
               </ul>
-            </li>
-            <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shows</a></li>
-            <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            </li class="nav-switch-item">
+            <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
+            <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
+            <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
+            <li class="nav-switch-item"><a href="/youtubers" alt="實況主" title="實況主">YouTubers</a></li>
+            <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+            <li class="nav-switch-item"><a href='/lanparty' title="Lan Party">Lan Party</a></li>
             <li>
               <div>
                 <input type="text" placeholder="搜尋" id="query">
@@ -124,69 +128,65 @@
           <article class="about">
             <h2 class="lang_en">About Us</h2>
             <h2 class="lang_zh">關於我們</h2>
-            <p>Gamers 是一個集結和給予創作音樂人各個利益的 YouTube 社群網!在這裡，每位音樂人都有機會享受我們所提供的服務，包括：免費取得廠商音樂、硬體設備，協助擴大您的頻道，與實況主交流結合，參與遊戲相關活動…等等。 要如何正式成為實況咖一員呢? </p>
+            <p>關於我們的內容: 實況咖是一個集結和給予玩家各個利益的YouTube社群網! 在這裡，每位實況咖的玩家都有機會享受我們所提供的服務，包括: 免費取得廠商遊戲、硬體設備，協助擴大您的頻道，與實況主交流結合，參與遊戲相關活動…等等。 要如何正式成為實況咖一員呢?</p>
             <ol>
-              <li>在 YouTube 上有自已所製作的影片及個人頻道。</li>
-              <li>將個人頻道申請加入 Freedom! 聯播網並成為合作夥伴，請按加入我們。</li>
+              <li>在YouTube上有自已所製作的影片及個人頻道 。</li>
+              <li>將個人頻道申請加入Freedom!聯播網並成為合作夥伴，請按"<a href="http://zh.freedom.tm">加入我們。</a>"</li>
               <li>核準成為 Freedom! 合作夥伴後，即為Freedom!家族的一份子。</li>
-              <li>為了讓您可以與更多音樂人互動，並彼此分享自己的觀眾／群網，我們獨家打造了一個專屬音樂的音樂網站「Beat」
-                。此外為了維持一定的收視水準與娛樂效果，希望您用申請的方式另外加入Beat網站，只要透過面試的音樂人。可以
-                進而成為這頂尖音樂界的成員。</li>
+              <li>為了讓您可以與更多實況主互動，並彼此分享自己的觀眾／群網，我們獨家打造了一個專屬實況主的實況網站「實況咖」。此外為了維持一定的收視水準與娛樂效果，希望您用申請的方式另外加入實況咖網站，只要透過面試的實況主可以進而成為這頂尖實況界的成員。</li>
             </ol>
             <ul class="clearFix">
               <li>
                 <h3>直接與 Youtube 合作</h3>
-                <p>我們是直接和 Google 簽合約的</p>
+                <p>我們是直接和Google簽約的。</p>
               </li>
               <li>
                 <h3>終身不須被綁約</h3>
-                <p>隨時加入和離開，您自己決定。<br>
-                  （只要在 30 天前通知一聲。）</p>
+                <p>隨時加入和離開，由您自行決定 <br/>
+                (只要在30天前通知一聲)</p>
               </li>
               <li>
                 <h3>透明公開化</h3>
-                <p>我們開啟您在 Youtube 頻道上的收益分析，完全不隱藏任何東西。</p>
+                <p>除了開啟您在YouTube頻道上的收益分析，所有的合作制度也是完全公開。決無任何隱瞞!</p>
               </li>
               <li>
                 <h3>收入分額</h3>
-                <p>首先以 Youtube 毛利 100% 的 60% 利益開始賺取，並可逐漸增加。（絕對不是 Youtube 80% 的 60% 或其他誇張數目。）</p>
+                <p>首先以YouTube毛利100%的60%利益開始賺取 (不像其它聯播網所宣稱的80%之60%或任何跨張數目)，之後可逐建增加分額部份，甚至可取得110%!</p>
               </li>
               <li>
                 <h3>沒有最低的付費額度</h3>
-                <p>您賺一元，我們就付您一元。</p>
+                <p>您賺一元，我們就付您一元</p>
               </li>
               <li>
                 <h3>所有權</h3>
-                <p>您擁有您的頻道和影片內容，<br>
-                  我們則是您的技術支援夥伴。</p>
+                <p>您擁有您的頻道和影片內容，我們則是您的技術支援和YouTube管理員。 <br/>
+                讓您專心享受成為YouTube影片創作者</p>
               </li>
               <li>
                 <h3>內容識別（Content-ID）</h3>
-                <p>我們可以在 Youtube 上找出您所有原版影片以外的盜版，並依您決定的盈利或移除該盜版。<br>
-                  （如果您是音樂家，這是指我們可以向所有在 Youtube 上使用您正版音樂的複製收取費用。）</p>
+                <p>我們可以在YouTube上找出您所有原版影片以外的盜版，並依您決定盈利或移除該盜版 <br/>(如果您是音樂家，這是指我們可以向所有在YouTube上使用您正版音樂的復製收取費用)</p>
               </li>
               <li>
-                <h3>音樂</h3>
-                <p>請看 www.youtube.com/musiconanytv 和頻道右邊的 Featured Video，我們的合作夥伴將有機會使用這些音樂及其他持續與我們簽的音樂！</p>
+                <h3>音頻管理糸統</h3>
+                <p>幫助音樂創作者以"只有"音頻的管理糸統來盈利和取得盜版，並提供我們的合作夥伴使用這些專業的音樂以同時幫忙推廣!! </p>
               </li>
               <li>
-                <h3>唱片公司</h3>
-                <p>有許多的唱片公司與我們簽約，<br>
-                  因此我們能幫您協議使用這些專業的音樂。　</p>
+                <h3>唱片公司和專業電影音樂</h3>
+                <p>有許多的唱片公司和歌手與我們簽約，因此我們能幫您在免於得到版權警告下，<br/>
+                協議使用這些專業的音樂! 同時我們也提供上千首的專業原聲特效電影音樂! </p>
               </li>
               <li>
-                <h3>遊戲伺服:來和我們一起玩！</h3>
-                <p>在 minecraft.tw 加入我們 Minecraft Freedom! 的伺服器。<br>
-                  （那不是網站唷，請將他們打在 Minecraft 內。）</p>
+                <h3>Freedom!完善服務</h3>
+                <p>提供獨家YouTube外加功能和不斷更新的資訊主頁、幫助我們的合作夥伴交流結合、擴大您的YouTube頻道、取得多家廠商贊助、給予網路技術支援(論譠、網站…)等所有YouTubers的所需!</p>
               </li>
               <li>
                 <h3>沒有預扣所得稅</h3>
-                <p>您將賺取 100% 您所有的錢。<br>
-                  在 Freedom! 是不需填任何稅收表單的，而且沒有預扣所得稅。就是這麼簡單！</p>
+                <p>您將賺取100%所有的收益。在Freedom!是不需填寫任何稅收表單的，而且沒有預扣所得稅。<br/>
+                就是這麼簡單!</p>
               </li>
               <li>
                 <h3>我們將贊助群網</h3>
-                <p>請提供我們您的計劃書和為什麼您要成為群網。只要被接受，我們將成為您的技術支援夥伴並由您主導一切。</p>
+                <p>請提供您的群網計劃書和為什麼您要成為群網。只要被接受，我們將成為您的技術支援夥伴並由您主導一切。</p>
               </li>
             </ul>
           </article>
@@ -219,7 +219,7 @@
   </div>
 </div>
 
-  
+
   <!--MENU SLIDER-->
 
 
@@ -266,6 +266,6 @@
         renaming: false
       });
   </script>
-
+  <script src="/assets/js/jquery.fixed.menu.js"></script>
 </body>
 </html>

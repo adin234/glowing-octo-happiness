@@ -348,3 +348,63 @@ function searchGamesBoxInit() {
 }
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
+
+var streaming = [];
+var streamTimeout = 60000;
+
+function get_streamers(first) {
+    $.get(server+'streamers', function(result) {
+        result.streamers.forEach(function(item) {
+            if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
+            if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
+            notify_stream({
+                streamer: item.username,
+                link: origin+'gamer_stream/'+item.user_id+'/'+'TW'+item.twitch.channel.name
+            });
+            streaming.push('TW'+item.twitch.channel.name);
+        });
+    }).always(function() {
+        setTimeout(function() {
+            get_streamers();
+        }, streamTimeout);
+    });
+}
+
+function get_youtube_streamers(first) {
+    $.get(server+'streamers/youtube', function(result) {
+        result.streamers.forEach(function(item) {
+            if(first) { streaming.push('YT'+item.youtube.id); return; }
+            if(~streaming.indexOf('YT'+item.youtube.id)) return;
+            notify_stream({
+                streamer: item.username,
+                link: origin+'gamer_stream/'+item.user_id+'/'+'YT'+item.youtube.id
+            });
+            streaming.push('YT'+item.youtube.id);
+        });
+    }).always(function() {
+        setTimeout(function() {
+            get_youtube_streamers();
+        }, streamTimeout);
+    });
+}
+
+$.extend($.gritter.options, {
+    position: 'bottom-right',
+    fade_in_speed: 'medium',
+    fade_out_speed: 2000,
+    time: 5000
+});
+
+var notify_stream = function(data) {
+    $.gritter.add({
+        title: 'Streaming...',
+        text: '<a class="link" href="'+data.link+'">'+data.streamer+'</a>'
+    });
+}
+
+$(function() {
+    if($('body').hasClass('stream-gritter')) {
+        get_streamers(true);
+        get_youtube_streamers(true);
+    }
+});

@@ -142,7 +142,7 @@ var showVideo = function(videoId) {
     updatePrevNext();
     utilLoader.hide();
 
-    filterAction(hash.shift());    
+    filterAction(hash.shift());
   }
 
 };
@@ -206,6 +206,12 @@ var filter = function(value) {
   update_videos(page_data.videos);
   // update_playlists(page_data.playlists);
 };
+
+
+var filter_vlogs = function() {
+  var videos = page_data.videos.filter(function(e) { return !!~e.snippet.meta.tags.indexOf('anytv_console_vlogs')});
+  update_videos(videos);
+}
 
 var getPhoto = function(id, context) {
   $.getJSON('http://gdata.youtube.com/feeds/api/users/'+id.substr(2)+
@@ -369,7 +375,7 @@ $(document).ready(function(){
     html.push(template($('#categoriesTpl').html(), item));
   });
   if(!html.length) { html.push('No Category Available'); }
-  $('#categories').html(html.join(''));
+  $('#categories').html('');
 
 
   update_videos(page_data.videos);

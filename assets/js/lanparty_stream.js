@@ -14,11 +14,11 @@ var stream_slider = $(".bxslider").bxSlider({
 $(".watchList").css('visibility', 'visible');
 
 var get_streamers = function() {
-    $.get(server+'streamers', function(result) {
+    $.get(server+'streamers?lanparty=1', function(result) {
         streamers_list.twitch = result.streamers;
         render_streamers();
     });
-    $.get(server+'streamers/youtube', function(result) {
+    $.get(server+'streamers/youtube?lanparty=1', function(result) {
         streamers_list.youtube = result.streamers;
         render_streamers();
     });
