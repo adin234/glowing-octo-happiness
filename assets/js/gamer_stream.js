@@ -67,6 +67,8 @@ $(function() {
                 }
             })
         });
+
+        $('#tab-2').append(page_data.custom_fields.youtube_activity);
     }
 
     $('#about-streamer').html(page_data.about);
