@@ -3909,6 +3909,10 @@ span.views {
     margin-left: 50px;
 }
 
+#youtubers #tab-2-2 .list .uploader {
+  top: 25px;
+}
+
 #streamers .video .list h3 {
   background-color: rgba(131, 7, 7, 0.75);
   bottom: 0;
