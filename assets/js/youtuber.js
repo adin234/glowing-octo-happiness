@@ -1,7 +1,6 @@
 var liveStreamLink = false;
 var filterConsole = 'all';
 
-
 function filter_category(gameConsole, context) {
 	$(context).parent().siblings().removeClass('current');
 	$(context).parent().addClass('current');
@@ -30,9 +29,10 @@ function renderGame() {
 
 	$('#gamesCast .mCSB_container').html(html.join(''));
 	$('.tooltip').tooltipster({contentAsHTML: true});
+
 }
 
-$(window).load(function(){
+$(document).ready(function(){
 
 	renderGame();
 
@@ -60,18 +60,14 @@ $(window).load(function(){
 		}
 	});
 
-	utilLoader.hide();
+	$('#responsive-menu-button').sidr({
+		name: 'sidr-main',
+		source: '#navigation',
+		renaming: false
+	});
 
-      $('#responsive-menu-button').sidr({
-        name: 'sidr-main',
-        source: '#navigation',
-        renaming: false
-      });
     if ($(window).width() < 1024) {
       $(".videoHeading").insertBefore($(".videoList"));
       $(".channel").insertBefore($(".playFunctionBtn"));
     }
-
-
-
 });
