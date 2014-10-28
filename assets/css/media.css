@@ -200,7 +200,7 @@
 			display: none !important;
 		}
 
-		.videos .uploader { 
+		.videos .uploader, .list .uploader { 
 			display: none; 
 		}
 		.video { 
@@ -226,13 +226,13 @@
 				display: inline-block; 
 				float: none !important;
 			}
-			#container-all-member > ul > li > a >img:nth-child(1),
+			#container-all-member > ul > li > a > img:nth-child(1),
 			#container-multiview > ul > li > img:nth-child(1),
 			#container-popular-member > ul > li > a > img:nth-child(1), 
 			#container-new-member > ul > li > a > img:nth-child(1), 
-			#latestVideos > li > img:nth-child(1), 
-			#featuredVideos > li > img:nth-child(1), 
-			#mostViewed > li > img:nth-child(1) { 
+			#latestVideos > li > a > img:nth-child(1), 
+			#featuredVideos > li > a > img:nth-child(1), 
+			#mostViewed > li > a > img:nth-child(1) { 
 					position: relative !important; float: left;
 					width: 55%; height: 100%;
 			}
@@ -349,11 +349,12 @@
 						position: relative !important; float: right;
 						background: none !important; width: 40% !important;
 						color: #000 !important; font-size: 100% !important;
-						padding-left: 10px;
+						padding-left: 10px; height: 3.5em;
+						overflow: hidden;
 					}
 						#container-videos > ul > li > h3 > a  { 
 							text-align: left; padding: 10px 0 0 0 !important;
-							height: auto !important; white-space: nowrap;
+							height: auto !important;/* white-space: nowrap;*/
 						}
 						#container-videos > ul > li > ul {
 							position: relative !important; bottom: 0 !important; width: 40%;
@@ -570,6 +571,16 @@
 			background-color: #38c !important;
 		}
 	/*settings-end*/
+
+
+	/*youtubers-start*/
+		#container-all-member ul {
+			margin-left: 0 !important;
+		}
+
+		#container-all-member ul li {
+			width: 35%;
+		}
 }
 
 
@@ -772,13 +783,15 @@
 				#featuredVideos > li > h3, 
 				#mostViewed > li > h3 {
 					white-space: normal;
+					height: 3.5em;
+					overflow: hidden;
 				}
 					#container-popular-member > ul > li > h3 > a, 
 					#container-new-member > ul > li > h3 > a, 
 					#latestVideos > li > h3 > a, 
 					#featuredVideos > li > h3 > a, 
 					#mostViewed > li > h3 > a  { 
-						white-space: nowrap;
+						/*white-space: nowrap;*/
 					}
 				#container-popular-member > ul > li > ul, 
 				#container-new-member > ul > li > ul, 
