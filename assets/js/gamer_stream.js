@@ -162,7 +162,6 @@ var toggleChat = function() {
         advertisementContainer
             .css('overflow', 'auto')
             .css('height', '')
-            .show()
             .attr('data-status', 'full');
 
         twitchContainer.height(
@@ -184,6 +183,7 @@ var toggleChat = function() {
         );
 
         toggleButton.html('縮小');
-
     }
+
+    advertisementContainer.show();
 }

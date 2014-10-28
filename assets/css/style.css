@@ -62,11 +62,12 @@ footer > ul li a,
 
 #outContainer header .species > ul li {
   line-height: 42px;
-  padding: 0;
+  padding: 0 1px;
+  margin: 0 2px;
 }
 
 #outContainer header .species > ul li a {
-  padding: 0 8px;
+  padding: 0 4px;
 }
 
 #outContainer header .species > ul li a {
@@ -88,90 +89,90 @@ footer > ul li a,
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(1) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1317px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1315px;
   padding-left: 23px;
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1363px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1363px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1409px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1409px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1454px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1454px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1504px;
-  padding-left: 23px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1504px;
+  padding-left: 26px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1548px;
-  padding-left: 23px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1548px;
+  padding-left: 20px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1592px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1592px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(8) a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1789px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1789px;
   padding-left: 23px;
 }
 #outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(1).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -996px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -993px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(2) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(2).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1042px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1041px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(3) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(3).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1087px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1087px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(4) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(4).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1132px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1132px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(5) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(5).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1182px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1182px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(6) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(6).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1226px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1226px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(7) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(7).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1269px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1270px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
 #outContainer header .species li.nav-switch-item:nth-child(8) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(8).current a {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1715px;
+  background: url("/assets/images/sprite.png") no-repeat -125px -1716px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
@@ -513,9 +514,12 @@ a:hover, a:focus, a:active {
   color: #ebd7d7;
 }
 #outContainer header .species ul {
-  padding-left: 262px;
+  padding-left: 330px;
 }
 #outContainer .fixedMenu header .species ul {
+  padding-left: 265px;
+}
+#outContainer .fixedMenu.switchMenu header .species ul {
   padding-left: 210px;
 }
 
@@ -1081,7 +1085,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .video .list > li ul {
   bottom: -24px;
   position: absolute;
-  right: 0;
+  right: 5px;
   text-transform: lowercase;
 }
 .video .list > li li {
@@ -2510,7 +2514,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 #streamView header, #streamView #functionBar {
-  width: 416px;
+  width: 394px;
 }
 #streamView header {
   background-color: black;
@@ -2529,7 +2533,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 #streamView header h1 {
   /* margin: 0 10px 0 8px; */
-  width: 80px;
+  width: 69px;
 }
 #streamView header select, #streamView header li {
   margin-left: 10px;
@@ -2959,13 +2963,13 @@ div.streamer {
 }
 
 .lang_zh_tw #streamView header h1 {
-  background: url("/assets/images/logo_tw.png") no-repeat 15px -232px;
+  background: url("/assets/images/logo_tw.png") no-repeat 7px -232px;
 }
 .lang_zh_tw #streamView header > a:before {
   background: url("/assets/images/sprite.png") no-repeat 27px -949px;
 }
 .lang_zh_tw #streamView header select {
-  margin-left: 22px;
+  margin-left: 11px;
 }
 
 #social-buttons {
@@ -3232,7 +3236,7 @@ body.streams #streamArea {
 
 body.streams #side-container {
   display: table-cell;
-  width: 416px;
+  width: 400px;
   vertical-align: top;
 }
 

@@ -144,7 +144,7 @@ var update_index = function(index_data) {
 			item.provider = attachments_server;
 			item.style = item.youtube_link ? '' : 'display:none';
 			item.youtube_link = item.youtube_link ? item.youtube_link : '';
-			item.thumb = 'https://i.ytimg.com/vi/'+item.youtube_link.replace('https://www.youtube.com/watch?v=','')+'/mqdefault.jpg';
+			item.thumb = 'https://i.ytimg.com/vi/'+item.youtube_link.replace('https://www.youtube.com/watch?v=','')+'/default.jpg';
 			html.push(template($('#sliderTpl').html(), item));
 		});
 		$('#imageSlider').html(html.join(''));

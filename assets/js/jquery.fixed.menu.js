@@ -18,6 +18,7 @@ $(document).ready(function(){
 			$(".nav-container h1 a").addClass("fixedMenuLogo");
             if($("body").hasClass('switch-menu')) {
                 $('nav.species > ul').html(links.join(''));
+                nav.addClass("switchMenu");
             }
         }else{
             nav.removeClass("fixedMenu");
@@ -26,6 +27,7 @@ $(document).ready(function(){
 			$(".nav-container h1 a").removeClass("fixedMenuLogo");
             if($("body").hasClass('switch-menu')) {
                 $('nav.species > ul').html(origLinks.join(''));
+                nav.removeClass("switchMenu");
             }
         }
     });
