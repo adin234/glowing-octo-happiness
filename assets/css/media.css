@@ -231,7 +231,6 @@
 				float: none !important;
 			}
 			#container-all-member > ul > li > a > img:nth-child(1),
-			#container-multiview > ul > li > img:nth-child(1),
 			#container-popular-member > ul > li > a > img:nth-child(1), 
 			#container-new-member > ul > li > a > img:nth-child(1), 
 			#latestVideos > li > a > img:nth-child(1), 
@@ -254,7 +253,8 @@
 					color: #000 !important;
 					font-size: 100% !important;
 					padding-left: 10px;
-					white-space: nowrap;
+					height: 3.5em;
+					overflow: hidden;
 			}
 				#container-all-member > ul > li > h3 > a,
 				#container-multiview > ul > li > h3 > a,
@@ -584,6 +584,10 @@
 
 		#container-all-member ul li {
 			width: 35%;
+		}
+		#youtubers .list.clearFix:nth-child(1),
+		#games .list.clearFix:nth-child(1) {
+			margin-left: 0;
 		}
 }
 

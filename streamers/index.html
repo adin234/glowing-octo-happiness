@@ -38,6 +38,7 @@
   @media (max-width: 1023px){
         #container-videos .live a:nth-child(1) {
           display: block;
+          z-index: 9;
         }
 
         #container-videos > ul > .live > img {
@@ -46,6 +47,20 @@
           display: block;
           float: left;
           position: relative !important;
+        }
+        #container-multiview > ul > li > img:nth-child(1){
+          height: 65%;
+        }
+        #container-multiview .live:before {
+          right: 165px;
+          top: 0px;
+        }
+        .stream .watchNow {
+          top: -45px;
+          right: 0;
+        }
+        .stream .close {
+          left:5px;
         }
   }
   @media (max-width: 413px){
@@ -65,8 +80,10 @@
 
     .stream [id^="tab-"]:nth-of-type(1) .list li.live:before {
       top: -2px;
-      left: 110px;
+      left: 89px;
     }
+
+
   }
 
   @media (min-width: 414px) and (max-width: 767px) {
@@ -80,6 +97,9 @@
     }
     .stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
       right: 8%;
+    }
+    #container-videos > ul > .live > img {
+          height: 55%;
     }
   }
 
