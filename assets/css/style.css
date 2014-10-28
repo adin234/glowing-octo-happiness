@@ -1909,6 +1909,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   line-height: 1.2em;
   text-overflow: ellipsis;
 }
+.playList h4 {
+  font-size: 12px;
+  margin: 4px;
+}
 .playList p {
   color: #7e7e7e;
 }

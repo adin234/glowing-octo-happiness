@@ -52,9 +52,12 @@ var update_videos = function (videos, append) {
     playlistIds.push(item.snippet.playlistId);
 
     if(item.snippet.thumbnails) {
+      item = getVideo(item.snippet.resourceId.videoId) || item;
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
         link: link+'video/'+item.snippet.resourceId.videoId,
+        link_user: '/youtuber/'+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+        user: item.username || '',
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description
@@ -129,6 +132,8 @@ var showVideo = function(videoId) {
         }
       });
     }, 500);
+    
+    utilLoader.hide();
 
     $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
       updateSuggestions);

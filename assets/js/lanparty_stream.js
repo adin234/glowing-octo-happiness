@@ -18,7 +18,7 @@ var get_streamers = function() {
         streamers_list.twitch = result.streamers;
         render_streamers();
     });
-    $.get(server+'streamers/youtube?lanparty=1', function(result) {
+    $.get(server+'streamers/youtube?lanparty=1&checker=lan', function(result) {
         streamers_list.youtube = result.streamers;
         render_streamers();
     });
