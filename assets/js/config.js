@@ -23,7 +23,7 @@ var utilLoader = {
     },
     hide: function() {
         var loaderIcn = document.getElementById('loaderIcn');
-        if(typeof loaderIcn != 'undefined') {
+        if(loaderIcn && typeof loaderIcn != 'undefined') {
             loaderIcn.remove();
         }
     }

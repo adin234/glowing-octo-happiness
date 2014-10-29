@@ -3722,11 +3722,11 @@ div[id^=tab-chat-] iframe {
 }
 
 #arrow.down {
-  background: rgba(255, 255, 255,.2) url('/assets/images/down_arrow.svg');
+  background: url('/assets/images/down_arrow.svg');
 }
 
 #arrow.up {
-  background: rgba(255, 255, 255,.2) url('/assets/images/up_arrow.svg');
+  background: url('/assets/images/up_arrow.svg');
 }
 
 span.views {
