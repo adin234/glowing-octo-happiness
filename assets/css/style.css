@@ -3922,7 +3922,8 @@ span.views {
 
 
 #youtubers .list.clearFix, #games .list.clearFix {
-    margin-left: 50px;
+    padding-left: 50px;
+    box-sizing: border-box;
 }
 
 #youtubers #tab-2-2 .list .uploader {
