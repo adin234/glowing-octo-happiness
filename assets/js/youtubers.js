@@ -128,11 +128,11 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
-    newSlider.reloadSlider();
+    newSlider.reloadSlider({startSlide: 0});
     render_all_members(filterString);
-    allSlider.reloadSlider();
+    allSlider.reloadSlider({startSlide: 0});
     render_popular_members(filterString);
-    popularSlider.reloadSlider();
+    popularSlider.reloadSlider({startSlide: 0});
 };
 
 var render_featured_games = function (filter) {
