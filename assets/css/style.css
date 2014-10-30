@@ -2988,7 +2988,7 @@ div.streamer {
 
 .g-plusone-frame {
   display: inline-block;
-  width: 70px;
+  /*width: 70px;*/
 }
 
 .fade {
