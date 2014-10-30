@@ -8,7 +8,7 @@ var stream_slider = $(".bxslider").bxSlider({
     hideControlOnEnd: true,
     minSlides: 2,
     maxSlides: 4,
-    slideWidth: 329.5,
+    slideWidth: 329,
 });
 
 $(".watchList").css('visibility', 'visible');
