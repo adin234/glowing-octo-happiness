@@ -382,8 +382,28 @@ $(document).ready(function(){
   if(!html.length) { html.push('No Category Available'); }
   $('#categories').html('');
 
-
   update_videos(page_data.videos);
+  var thumbs = page_data.videos 
+        ? page_data.videos[0].snippet.thumbnails 
+        : page_data.playlists[0].snippet.thumbnails;
+  console.log({
+    id: page_data.config.playlist,
+    snippet: {
+      title: 'Uploads',
+      channelId: page_data.config.channel,
+      description: 'User Uploads',
+      thumbnails: thumbs
+    }
+  });
+  page_data.playlists.splice(0,0,{
+    id: page_data.config.playlist,
+    snippet: {
+      title: 'Uploads',
+      channelId: page_data.config.channel,
+      description: 'User Uploads',
+      thumbnails: thumbs
+    }
+  });
   update_playlists(page_data.playlists);
 
   $(window).on('hashchange', function(){
