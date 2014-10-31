@@ -93,6 +93,8 @@ var update_playlists = function (playlists) {
     html.push('No Playlist Available');
     $('.game_page .listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
+    var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
+    window.location.hash = link;
   } else {
     $('.game_page .listSwitch').removeClass('no-playlist');
   }
@@ -132,13 +134,13 @@ var showVideo = function(videoId) {
         }
       });
     }, 500);
-    
+
     utilLoader.hide();
 
     $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
       updateSuggestions);
 
-    if(!page_data.config.channel) {
+    if(!page_data.config || !page_data.config.channel) {
       getPhoto(video.snippet.channelId, $('.videoHeading > img'));
     }
 
@@ -149,7 +151,6 @@ var showVideo = function(videoId) {
 
     filterAction(hash.shift());
   }
-
 };
 
 var getComments = function (videoId) {
@@ -307,8 +308,12 @@ var updateSuggestions = function(suggestions) {
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
+  console.log(current);
   var prevLink = current.prev().children('a').first().attr('href');
+  console.log(prevLink);
   var nextLink = current.next().children('a').first().attr('href');
+  console.log(nextLink);
+
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
 };
