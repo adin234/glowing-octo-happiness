@@ -2371,22 +2371,29 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 137px;
 }
 
-.stream [id^="tab-"]:nth-of-type(1) {
+.stream [id^="tab-"]:nth-of-type(1),
+.stream [id^="tab-"]:nth-of-type(2) {
   height: 966px;
   margin-top: 0;
 }
-.stream [id^="tab-"]:nth-of-type(1):before, .stream [id^="tab-"]:nth-of-type(1):after {
+.stream [id^="tab-"]:nth-of-type(1):before,
+.stream [id^="tab-"]:nth-of-type(1):after,
+.stream [id^="tab-"]:nth-of-type(2):before,
+.stream [id^="tab-"]:nth-of-type(2):after {
   height: 890px;
   top: 36px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .bx-viewport {
+.stream [id^="tab-"]:nth-of-type(1) .bx-viewport,
+.stream [id^="tab-"]:nth-of-type(2) .bx-viewport {
   height: 966px !important;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li {
+.stream [id^="tab-"]:nth-of-type(1) .list > li, 
+.stream [id^="tab-"]:nth-of-type(2) .list > li {
   margin-top: 0;
   padding-top: 36px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
+.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo,
+.stream [id^="tab-"]:nth-of-type(2) .list > li .addTo {
   background-color: #a40000;
   color: white;
   font-weight: bold;
@@ -2396,7 +2403,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 36px;
   width: 334px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
+.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after,
+.stream [id^="tab-"]:nth-of-type(2) .list > li .addTo:after {
   background: white url("/assets/images/sprite.png") no-repeat 3px -2706px;
   /*@extend %IEPie */
   -moz-border-radius: 50%;
@@ -2409,29 +2417,33 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 10px;
   width: 17px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li:hover .addTo, .stream [id^="tab-"]:nth-of-type(1) .list > li:active .addTo, .stream [id^="tab-"]:nth-of-type(1) .list > li:focus .addTo {
+.stream [id^="tab-"]:nth-of-type(1) .list > li:hover .addTo,
+.stream [id^="tab-"]:nth-of-type(1) .list > li:active .addTo,
+.stream [id^="tab-"]:nth-of-type(1) .list > li:focus .addTo {
   top: 0;
   -webkit-transition: top 0.25s ease;
   transition: top 0.25s ease;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list li.live:before {
+.stream [id^="tab-"]:nth-of-type(1) .list li.live:before,
+.stream [id^="tab-"]:nth-of-type(2) .list li.live:before {
   top: 40px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list .uploader {
+.stream [id^="tab-"]:nth-of-type(1) .list .uploader,
+.stream [id^="tab-"]:nth-of-type(2) .list .uploader {
   top: 134px;
 }
 .stream [id^="tab-"] {
   height: 864px;
 }
-.stream [id^="tab-"]:nth-of-type(2) {
+.stream [id^="tab-"]:nth-of-type(3) {
   height: 870px;
   overflow: inherit;
 }
-.stream [id^="tab-"]:nth-of-type(2):before, .stream [id^="tab-"]:nth-of-type(2):after {
+.stream [id^="tab-"]:nth-of-type(3):before, .stream [id^="tab-"]:nth-of-type(3):after {
   height: 826px;
   top: 14px;
 }
-.stream [id^="tab-"]:nth-of-type(2) .bx-viewport {
+.stream [id^="tab-"]:nth-of-type(3) .bx-viewport {
   height: 888px !important;
   padding-top: 10px;
 }
