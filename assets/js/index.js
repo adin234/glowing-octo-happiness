@@ -222,12 +222,21 @@ var update_index = function(index_data) {
 	if(!html.length) { html.push('目前沒有遊戲'); }
 	$('#featuredGames').html(html.join(''));
 	html = [];
-	index_data.featured_users.forEach(function(item, i){
-		item.provider = attachments_server;
-		html.push(template($('#featuredUsersTpl').html(), item));
-	});
-	if(!html.length) { html.push('No User Available'); }
-	$('#featuredUsers').html(html.join(''));
+	if(index_data.feature_list.feature_list_active ==='1') {
+		$('.viewer > h2').html(index_data.feature_list.feature_list_header);
+		index_data.feature_list.feature_list_items.forEach(function(item, i) {
+			html.push(template($('#featureTpl').html(), item));
+		});
+		if(!html.length) { html.push('No feature available.') }
+		$('#featuredUsers').html(html.join(''));
+	} else {
+		index_data.featured_users.forEach(function(item, i){
+			item.provider = attachments_server;
+			html.push(template($('#featuredUsersTpl').html(), item));
+		});
+		if(!html.length) { html.push('No User Available'); }
+		$('#featuredUsers').html(html.join(''));
+	}
 	html = [];
 	index_data.recent_threads.forEach(function(item, i){
 		var data = {

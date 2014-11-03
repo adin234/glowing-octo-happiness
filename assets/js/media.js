@@ -10,7 +10,11 @@ var active_comments = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
-$(".playList").mCustomScrollbar({theme: 'inset-2'});
+$(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
+  onScroll: function() {
+    console.log(this.mcs.topPct);
+  }
+}});
 $('aside.recommend > ul').mCustomScrollbar({theme:'inset-2' });
 
 /* YOUTUBE SHIZZ */
@@ -178,9 +182,12 @@ var showPlaylist = function(playlistId, next) {
   if(playlist.nextPageToken) {
     $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
       function(e) {
-        playlist.nextPageToken = e.nextPageToken;
-        playlist.items.concat(e.items);
-        update_videos(e.items, true);
+        if(e.items[0].snippet.playlistId == active_playlist) {
+          playlist.nextPageToken = e.nextPageToken;
+          playlist.items.concat(e.items);
+          update_videos(e.items, true);
+          showPlaylist(playlistId, 'continue');
+        }
       });
   }
   $('#videosToggle').click();
