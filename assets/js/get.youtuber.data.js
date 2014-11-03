@@ -1,4 +1,10 @@
-// utilLoader.show();
+var loader = {};
+// loader = setInterval(function() {
+// 	if(document.body) {
+// 		utilLoader.show();
+// 		clearInterval(loader);
+// 	}
+// }, 5);
 // var hash = window.location.hash;
 // var id = hash.split('/')[1];
 

@@ -2,7 +2,7 @@ page_data = $.parseJSON(page_data);
 data_cache = { playlist:{}, video:{} };
 var html = [];
 var active_playlist;
-var hash;
+var hash = [];
 var player;
 var filterTags = false;
 var playlistIds = [];
@@ -122,13 +122,6 @@ var showVideo = function(videoId) {
     $('#video-'+videoId).addClass('current');
     $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
       ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1&origin='+origin);
-    setTimeout(function() {
-      player = new YT.Player('ytplayer', {
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }, 500);
 
     utilLoader.hide();
 
@@ -360,7 +353,6 @@ $(document).ready(function(){
   });
 
   $(".listSwitch li").click(function(){
-    hash = utilHash.getHash();
     if(!$(this).hasClass('current')) {
       $(".listSwitch li").toggleClass('current');
       $(".playList.toggleList").toggleClass('current');
