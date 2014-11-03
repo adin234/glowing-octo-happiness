@@ -2848,104 +2848,10 @@ div.streamer {
   font-size: 1.2rem;
   font-weight: bold;
 }
-/*
-.x2 .mCSB_inside > .mCSB_container, .x3 .mCSB_inside > .mCSB_container {
-  margin-right: 20px;
-}
-.x2 #streamArea, .x3 #streamArea {
-  overflow: hidden;
-}
 
-.x3 #streamView, .muti #streamView {
-  padding: 0;
-}
-
-.x3 #streamView header, .muti #streamView header {
-  right: 0;
-  top: 0;
-}
-
-.x2 #streamView {
-  width: 1750px;
-}
-.x2 #streamView #functionBar {
-  height: 844px;
-}
-.x2 #streamView #functionBar #twitchTalk {
-  height: 624px;
-}
-.x2 #streamView .watchList {
-  width: 1258px;
-}
-.x2 #streamView #streamArea {
-  height: 890px;
-  width: 1276px;
-}
-.x2 #streamView #twitchStream {
-  height: 890px;
-  width: 1256px;
-}
-
-.x3 #streamView {
-  width: 1880px;
-}
-.x3 #streamView #streamArea {
-  height: 1050px;
-  width: 1405px;
-}
-.x3 #streamView #twitchStream {
-  height: 1050px;
-  width: 1390px;
-}
-.x3 #streamView #functionBar {
-  height: 1004px;
-}
-.x3 #streamView #twitchTalk {
-  height: 784px;
-}
-*/
-/*.muti #streamView {
-  min-width: 1470px;
-  width: 100%;
-  position: relative;
-}*/
-/*.muti #streamView header {
-  z-index: 2;
-}*/
 .muti #streamView h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
 }
-/*.muti #streamView #functionBar {
-  height: 874px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}*/
-/*.muti #streamView #streamArea {
-  margin-right: 470px;
-}
-.muti #streamView #twitchStream {
-  height: 100%;
-  width: 100%;
-}
-.muti #streamView #twitchStream > div {
-  float: left;
-  margin: 0 0 6px 12px;
-  width: 48.5%;
-}
-
-.muti #streamView #twitchStream > div, .muti #streamView #twitchStream object {
-  height: 60%;
-}
-
-.muti body.x2 #streamView #twitchStream > div, .muti body.x2  #streamView #twitchStream object {
-  height: 50%;
-}
-
-.muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
-  height: 40%;
-}*/
-
 #twitchStream:hover .remove-stream {
   display: block;
 }
@@ -2967,11 +2873,6 @@ div.streamer {
   font-size: 0;
 }
 
-/*.muti #streamView .watchList {
-  margin: 60px 12px;
-  width: 1394px;
-}
-*/
 .lang_en #streamView header h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
   background-size: 98px auto;
@@ -3132,14 +3033,6 @@ small.date {
   width: 320px;
   margin: 10px 0;
 }
-/*
-.muti .x3 #wrapper {
-  min-width: 1870px;
-}
-
-.muti  .x2 #wrapper {
-  min-width: 1745px;
-}*/
 
 a.link-white {
   color: #fff;
@@ -3275,7 +3168,8 @@ body:nth-child(3) {
   padding-top: 25px;
   height: 0;
 }
-.videoWrapper iframe {
+
+body:not(.x3) .videoWrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -3283,7 +3177,7 @@ body:nth-child(3) {
   height: 100%;
 }
 
-.videoWrapper object {
+body:not(.x3) .videoWrapper object {
   position: absolute;
   top: 0;
   left: 0;
@@ -3293,8 +3187,8 @@ body:nth-child(3) {
 
 .single.streams.x3 .videoWrapper {
   height: 100%;
-  padding: 0;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 #side-container #streamView {

@@ -15,24 +15,24 @@ var template = function (templateHTML, data) {
 var showSocialButtons = function () {
     var link = document.location.href;
 
-    // fix for youtubers 404 page2
-    if(~document.location.pathname.indexOf('/youtuber/')) {
-        var id = window.location.pathname
-            .split('/').filter(function(e){return e;})[1];
+    // // fix for youtubers 404 page2
+    // if(~document.location.pathname.indexOf('/youtuber/')) {
+    //     var id = window.location.pathname
+    //         .split('/').filter(function(e){return e;})[1];
 
-        var hash = document.location.hash;
-        hash = hash.replace('#!/', '#!/'+id+'/');
+    //     var hash = document.location.hash;
+    //     hash = hash.replace('#!/', '#!/'+id+'/');
 
-        link = origin+'youtuber/share/'+hash;
-    } else if(~document.location.pathname.indexOf('/game/')) {
-        var id = window.location.pathname
-            .split('/').filter(function(e){return e;})[1];
+    //     link = origin+'youtuber/share/'+hash;
+    // } else if(~document.location.pathname.indexOf('/game/')) {
+    //     var id = window.location.pathname
+    //         .split('/').filter(function(e){return e;})[1];
 
-        var hash = document.location.hash;
-        hash = hash.replace('#!/', '#!/'+id+'/');
+    //     var hash = document.location.hash;
+    //     hash = hash.replace('#!/', '#!/'+id+'/');
 
-        link = origin+'game/share/'+hash;
-    }
+    //     link = origin+'game/share/'+hash;
+    // }
 
     $('#viewport').html('');
     // $('#fb-root').html('');

@@ -29,11 +29,6 @@ var onPlayerStateChange = function() {
 };
 /* END YOUTUBE SHIZZ */
 
-$(window).load(function(){
-  $(window).trigger('hashchange');
-});
-
-
 var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
@@ -56,7 +51,7 @@ var update_videos = function (videos, append) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
         link: link+'video/'+item.snippet.resourceId.videoId,
-        link_user: '/youtuber/'+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+        link_user: '/youtuber?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
         user: item.username || '',
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
@@ -292,7 +287,7 @@ var updateSuggestions = function(suggestions) {
     if(item.snippet.thumbnails) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
-        link: '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
+        link: '/youtuber?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description,
@@ -363,7 +358,9 @@ $(document).ready(function(){
     $("body").toggleClass("zoom2x");
     $(".zoom").toggleClass("zoomOut");
   });
+
   $(".listSwitch li").click(function(){
+    hash = utilHash.getHash();
     if(!$(this).hasClass('current')) {
       $(".listSwitch li").toggleClass('current');
       $(".playList.toggleList").toggleClass('current');
@@ -371,7 +368,7 @@ $(document).ready(function(){
       active_playlist = null;
       update_videos(page_data.videos);
     }
-  })
+  });
 
   if($('body').hasClass('game_page')) {
     var name = page_data.game_name.name ? page_data.game_name.name : '';
@@ -388,24 +385,24 @@ $(document).ready(function(){
   $('#categories').html('');
 
   update_videos(page_data.videos);
-  var thumbs = page_data.videos 
-        ? page_data.videos[0].snippet.thumbnails 
+  var thumbs = page_data.videos
+        ? page_data.videos[0].snippet.thumbnails
         : page_data.playlists[0].snippet.thumbnails;
   console.log({
     id: page_data.config.playlist,
     snippet: {
-      title: 'Uploads',
+      title: '最新影片',
       channelId: page_data.config.channel,
-      description: 'User Uploads',
+      description: '會員上傳',
       thumbnails: thumbs
     }
   });
   page_data.playlists.splice(0,0,{
     id: page_data.config.playlist,
     snippet: {
-      title: 'Uploads',
+      title: '最新影片',
       channelId: page_data.config.channel,
-      description: 'User Uploads',
+      description: '會員上傳',
       thumbnails: thumbs
     }
   });
@@ -455,5 +452,6 @@ $(document).ready(function(){
       });
   });
 
+  $(window).trigger('hashchange');
 });
 

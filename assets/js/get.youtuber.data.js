@@ -1,4 +1,4 @@
-utilLoader.show();
+// utilLoader.show();
 // var hash = window.location.hash;
 // var id = hash.split('/')[1];
 
@@ -7,9 +7,26 @@ utilLoader.show();
 
 // history.pushState(null, '', '/youtuber/'+id+'/'+hash.replace('/'+id+'/', '/'));
 
+
+function getSearchParameters() {
+      var prmstr = window.location.search.substr(1);
+      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+function transformToAssocArray( prmstr ) {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+}
+
+params = getSearchParameters();
+
 var xhReq = new XMLHttpRequest();
-var user = window.location.pathname
-	.split('/').filter(function(e){return e;})[1];
+var user = params.user.replace('/', '');
 
 xhReq.open("GET", server+"user/personal/"+user, false);
 xhReq.send(null);
