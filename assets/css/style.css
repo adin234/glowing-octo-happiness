@@ -2387,7 +2387,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .stream [id^="tab-"]:nth-of-type(2) .bx-viewport {
   height: 966px !important;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li, 
+.stream [id^="tab-"]:nth-of-type(1) .list > li,
 .stream [id^="tab-"]:nth-of-type(2) .list > li {
   margin-top: 0;
   padding-top: 36px;
@@ -3800,7 +3800,10 @@ span.views {
   position: relative;
   top: -1px;
 }
-
+.lanparty-nav li.current > a{
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
 #container .lanparty-nav {
   margin: -34px -50px 25px;
   padding: 20px 50px;
@@ -3963,4 +3966,99 @@ span.views {
 .gritter-item .link {
   color: #fff;
   font-size: 14px;
+}
+
+#container.lanparty .videoRelated [id^="tab-"] {
+  border-bottom: none;
+}
+
+#container.lanparty .videoRelated {
+  background: none;
+  border-top: 1px solid #4d4d4d;
+}
+
+#container.lanparty .main .video + *, .videoRelated .tabs + * {
+  background: none;
+  border-left: 1px solid #4d4d4d;
+}
+
+#container.lanparty .videoRelated .tabs .tab {
+  margin-top: -2px;
+}
+
+#container.lanparty .videoRelated .recommend h3 {
+  color: #fff;
+}
+
+#container.lanparty .listSwitch li {
+  background: #000;
+  border: 1px solid #00b8e6;
+}
+
+#outContainer #container.lanparty .listSwitch li.current {
+  background: #00b8e6;
+}
+
+#outContainer #container.lanparty .listSwitch li.current a {
+  color: #fff;
+}
+
+#outContainer #container.lanparty .videoList {
+  border: 1px solid #4d4d4d;
+}
+
+#outContainer #container.lanparty .playList {
+  background: #000;
+  border-top: 1px solid #30534f;
+}
+
+#outContainer #container.lanparty .playList li.current,
+#outContainer #container.lanparty .playList li:hover {
+  background: #00b8e6;
+}
+
+#outContainer #container.lanparty .playList a {
+  color: #fff;
+}
+
+#outContainer #container.lanparty .playList li + li a {
+  border-top: 1px solid #30534f;
+}
+
+#outContainer #container.lanparty .listSwitch li a {
+  color: #00b8e6;
+}
+
+#outContainer #container.lanparty .zoom a {
+  display: block;
+  height: 27px;
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 1px;
+}
+
+#outContainer #container.lanparty .resize li:first-child {
+  background: #000;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+#outContainer #container.lanparty .zoomOut a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 -54px;
+}
+
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(1) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -100px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(2) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -139px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(3) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -180px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(4) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -222px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:last-child a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -264px;
+  float: right;
 }
