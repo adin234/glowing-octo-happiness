@@ -21,13 +21,13 @@ function renderGame() {
 		if(!~item.consoles.indexOf(filterConsole)) return;
 		html.push(template($('#gamesCastTpl').html(), item));
 	});
-	$('#gamesCast').mCustomScrollbar({theme: 'inset-2'});
+	$('#tab-4').mCustomScrollbar({theme: 'inset-2'});
 
 	if(!html.length) {
 		html.push('目前沒有遊戲');
 	}
 
-	$('#gamesCast .mCSB_container').html(html.join(''));
+	$('#tab-4 .mCSB_container ul').html(html.join(''));
 	$('.tooltip').tooltipster({contentAsHTML: true});
 
 }
