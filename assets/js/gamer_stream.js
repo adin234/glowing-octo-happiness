@@ -137,15 +137,6 @@ $(function() {
       theme:"inset-2",
     });
 
-	/*  This where you put your JSON result to be able to access the chat plugin  */
-
-	if(utilCookie.get('user').length > 0){
-		var userinfo = $.parseJSON(utilCookie.get('user'));
-		var channelinfo = {"id" : twitch, "title" : "Chat Room"};
-		$('#twitchTalk').initChatBox(channelinfo, userinfo);
-	} else {
-		$('#twitchTalk').html('请登录使用聊天功能。').css('color','black');
-	}
 });
 
 var viewers;

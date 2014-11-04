@@ -116,7 +116,7 @@ var render_videos = function(filter, game, lanparty) {
             item.live = 'live';
             item.link = lanparty && typeof lanparty != 'undefined'
                 ? '/lanparty_stream_multi/#/'+item.id
-                : '/gamer_stream?user='+item.user_id+'#!/'+item.id;
+                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.twitch.preview.large;
             item.title = item.twitch.channel.status;
@@ -128,7 +128,7 @@ var render_videos = function(filter, game, lanparty) {
             item.live = 'live';
             item.link = lanparty && typeof lanparty != 'undefined'
                 ? '/lanparty_stream_multi/#/'+item.id
-                : '/gamer_stream?user='+item.user_id+'#!/'+item.id;
+                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.youtube.snippet.thumbnails.high.url;
             item.title = item.youtube.snippet.title;
