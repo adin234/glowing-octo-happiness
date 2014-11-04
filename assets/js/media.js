@@ -55,7 +55,7 @@ var update_videos = function (videos, append) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
         link: link+'video/'+item.snippet.resourceId.videoId,
-        link_user: '/youtuber?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+        link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
         user: item.username || '',
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
@@ -287,7 +287,7 @@ var updateSuggestions = function(suggestions) {
     if(item.snippet.thumbnails) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
-        link: '/youtuber?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
+        link: '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description,
@@ -387,24 +387,19 @@ $(document).ready(function(){
   var thumbs = page_data.videos
         ? page_data.videos[0].snippet.thumbnails
         : page_data.playlists[0].snippet.thumbnails;
-  console.log({
-    id: page_data.config.playlist,
-    snippet: {
-      title: '最新影片',
-      channelId: page_data.config.channel,
-      description: '會員上傳',
-      thumbnails: thumbs
-    }
-  });
-  page_data.playlists.splice(0,0,{
-    id: page_data.config.playlist,
-    snippet: {
-      title: '最新影片',
-      channelId: page_data.config.channel,
-      description: '會員上傳',
-      thumbnails: thumbs
-    }
-  });
+
+  if(page_data.playlists.length) {
+    page_data.playlists.splice(0,0,{
+      id: page_data.config.playlist,
+      snippet: {
+        title: '最新影片',
+        channelId: page_data.config.channel,
+        description: '會員上傳',
+        thumbnails: thumbs
+      }
+    });
+  }
+
   update_playlists(page_data.playlists);
 
   $(window).on('hashchange', function(){
