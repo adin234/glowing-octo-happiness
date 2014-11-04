@@ -248,7 +248,7 @@ var add_to_multiview = function() {
     $('#container-multiview ul.list').append(multiview_item);
     update_watch_multiview();
     if(!$('#container-videos li.live:visible').length) {
-        $('.video.stream a[href=#tab-2-2]').trigger('click');
+        $('.video.stream a[href=#tab-2-3]').trigger('click');
     };
 };
 
