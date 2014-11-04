@@ -180,7 +180,7 @@
 <script type="text/html" id="playlistTpl">
   <li class="playlistItem" id="{{ID}}">
     <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52" >
       <h3>{{TITLE}}</h3>
       <p>{{DESC}}</p>
     </a>
@@ -207,7 +207,7 @@
 </li>
 </script>
 <script type="text/html" id="commentItemTpl">
-  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
+  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onerror="fixErrorImg(this);">
     <cite>{{USERNAME}}</cite><span>．
     <date datetime="{{DATE}}">{{DATE}}</date>
     </span>
@@ -219,7 +219,7 @@
 <script type="text/html" id="commentsTpl">
   <div class="comments-list">
     <a href="javascript:;">所有留言 (30)</a>
-    <div class="yourDiscussion"> <img class="userImg"src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+    <div class="yourDiscussion"> <img class="userImg" src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}" onerror="fixErrorImg(this);">
       <div>
         <div class="angle"></div>
         <textarea id="commentArea" placeholder="分享您的想法"></textarea>
