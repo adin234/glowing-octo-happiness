@@ -387,9 +387,12 @@ $(document).ready(function(){
   $('#categories').html('');
 
   update_videos(page_data.videos);
-  var thumbs = page_data.videos
+
+  var thumbs = typeof page_data.videos[0] !== 'undefined'
         ? page_data.videos[0].snippet.thumbnails
-        : page_data.playlists[0].snippet.thumbnails;
+        : typeof page_data.playlists[0] !== 'undefined'
+            ? page_data.playlists[0].snippet.thumbnails
+            : '';
 
   if(page_data.playlists.length) {
     page_data.playlists.splice(0,0,{
