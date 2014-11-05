@@ -226,7 +226,7 @@ var add_to_multiview = function() {
         item.id = 'TW'+item.twitchid;
         item.idraw = item.twitchid;
         item.live = 'live';
-        item.link = '/gamer_stream?user='+item.user_id+'#!/'+item.id;
+        item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
         item.provider = attachments_server;
         item.thumb = item.twitch.preview.large;
         item.title = item.twitch.channel.status;
@@ -236,7 +236,7 @@ var add_to_multiview = function() {
         item.id = 'YT'+item.youtube.id;
         item.idraw= item.youtube.id;
         item.live = 'live';
-        item.link = '/gamer_stream?user='+item.user_id+'#!/'+item.id;
+        item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
         item.provider = attachments_server;
         item.thumb = item.youtube.snippet.thumbnails.high.url;
         item.title = item.youtube.snippet.title;
