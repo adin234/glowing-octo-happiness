@@ -126,6 +126,11 @@ var filter_category = function (cnsl, context) {
 	}).done(function (data) {
 		$(context).parent().siblings().removeClass('current');
 		$(context).parent().addClass('current');
+		if(cnsl !== 'all') {
+			$('#imageSlider').parent().parent().hide();
+		} else {
+			$('#imageSlider').parent().parent().show();
+		}
 		console.log(context);
 		index_data = data;
 

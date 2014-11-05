@@ -43,7 +43,7 @@ twitchId = page_data.user.custom_fields.twitchStreams || null;
 youtubeId = page_data.user.custom_fields.youtube_id || null;
 $.get(server+'streamers?user='+page_data.user.user_id, function(result) {
 	if(result.streamers.length) {
-		liveStreamLink = '/gamer_stream/'+page_data.user.user_id+'/'+'TW'+result.streamers[0].twitch.channel.name
+		liveStreamLink = '/gamer_stream/?user='+page_data.user.user_id+'/#!/'+'TW'+result.streamers[0].twitch.channel.name
 	}
 
 	if(liveStreamLink) {
