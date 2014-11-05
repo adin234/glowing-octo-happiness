@@ -52,16 +52,18 @@ var update_videos = function (videos, append) {
 
     if(item.snippet.thumbnails) {
       item = getVideo(item.snippet.resourceId.videoId) || item;
-      tempdata = {
-        id: 'video-'+item.snippet.resourceId.videoId,
-        link: link+'video/'+item.snippet.resourceId.videoId,
-        link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
-        user: item.username || '',
-        title: item.snippet.title,
-        thumb: item.snippet.thumbnails.default.url,
-        desc: item.snippet.description
-      };
-      html.push(template($('#videosTpl').html(), tempdata));
+      if(typeof item.snippet.thumbnails !== 'undefined') {
+        tempdata = {
+          id: 'video-'+item.snippet.resourceId.videoId,
+          link: link+'video/'+item.snippet.resourceId.videoId,
+          link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+          user: item.username || '',
+          title: item.snippet.title,
+          thumb: item.snippet.thumbnails.default.url,
+          desc: item.snippet.description
+        };
+        html.push(template($('#videosTpl').html(), tempdata));
+      }
     }
   });
   if(!html.length) {
@@ -191,6 +193,7 @@ var showPlaylist = function(playlistId, next) {
       });
   }
   $('#videosToggle').click();
+  console.log('----', next);
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);
   }
