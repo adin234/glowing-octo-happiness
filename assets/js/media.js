@@ -1,9 +1,11 @@
 page_data = $.parseJSON(page_data);
 data_cache = { playlist:{}, video:{} };
 var html = [];
+var activelist = [];
 var active_playlist;
 var hash = [];
 var player;
+var activeVideos = {};
 var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
@@ -12,7 +14,9 @@ $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
 $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
-    console.log(this.mcs.topPct);
+    if(this.mcs.topPct >=75) {
+      update_videos(activeVideos, true);
+    }
   }
 }});
 $('aside.recommend > ul').mCustomScrollbar({theme:'inset-2' });
@@ -42,7 +46,15 @@ var update_videos = function (videos, append) {
 
   playListIds = [];
 
-  videos.forEach(function(item, i){
+  var start = append ? 0 : $('li.ytVideo.videoItem').length;
+
+  if(!append) {
+    activeVideos = videos;
+  }
+
+  for(var k = start; k<start+20; k++) {
+    var item = videos[k];
+    if(!item) { break; }
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
        || typeof item.snippet.meta.tags == 'undefined'
@@ -65,7 +77,33 @@ var update_videos = function (videos, append) {
         html.push(template($('#videosTpl').html(), tempdata));
       }
     }
-  });
+  }
+
+  // videos.forEach(function(item, i){
+  //   if(filterTags
+  //   && (typeof item.snippet.meta == 'undefined'
+  //      || typeof item.snippet.meta.tags == 'undefined'
+  //      || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+
+  //   playlistIds.push(item.snippet.playlistId);
+
+  //   if(item.snippet.thumbnails) {
+  //     item = getVideo(item.snippet.resourceId.videoId) || item;
+  //     if(typeof item.snippet.thumbnails !== 'undefined') {
+  //       tempdata = {
+  //         id: 'video-'+item.snippet.resourceId.videoId,
+  //         link: link+'video/'+item.snippet.resourceId.videoId,
+  //         link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+  //         user: item.username || '',
+  //         title: item.snippet.title,
+  //         thumb: item.snippet.thumbnails.default.url,
+  //         desc: item.snippet.description
+  //       };
+  //       html.push(template($('#videosTpl').html(), tempdata));
+  //     }
+  //   }
+  // });
+  
   if(!html.length) {
     html.push('目前沒有影片');
   }
@@ -180,6 +218,8 @@ var showPlaylist = function(playlistId, next) {
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
+  $('li.ytVideo.videoItem').remove();
+  console.log(playlist);
   update_videos(playlist.items);
   if(playlist.nextPageToken) {
     $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
@@ -207,6 +247,7 @@ var filter = function(value) {
   if(typeof filterObj[0] != 'undefined') {
     filterTags = $.map(filterObj[0].tags.split(','), $.trim);
   }
+  $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
   // update_playlists(page_data.playlists);
 };
@@ -214,6 +255,7 @@ var filter = function(value) {
 
 var filter_vlogs = function() {
   var videos = page_data.videos.filter(function(e) { return !!~e.snippet.meta.tags.indexOf('anytv_console_vlogs')});
+  $('li.ytVideo.videoItem').remove();
   update_videos(videos);
 }
 
@@ -341,6 +383,7 @@ var updatePrevNext = function() {
           videos.push(item);
         }
       });
+      $('li.ytVideo.videoItem').remove();
       update_videos(videos);
 
   };
@@ -368,6 +411,7 @@ $(document).ready(function(){
       $(".playList.toggleList").toggleClass('current');
     } else if($(this).attr('id') == 'videosToggle' && !hash.length) {
       active_playlist = null;
+      $('li.ytVideo.videoItem').remove();
       update_videos(page_data.videos);
     }
   });
@@ -386,6 +430,7 @@ $(document).ready(function(){
   if(!html.length) { html.push('No Category Available'); }
   $('#categories').html('');
 
+  $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
 
   var thumbs = typeof page_data.videos[0] !== 'undefined'
