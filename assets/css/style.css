@@ -516,8 +516,11 @@ a:hover, a:focus, a:active {
 #outContainer header .species ul {
   padding-left: 330px;
 }
+body#games #outContainer header .species ul {
+  padding-left: 389px;
+}
 #outContainer .fixedMenu header .species ul {
-  padding-left: 265px;
+  padding-left: 265px !important;
 }
 #outContainer .fixedMenu.switchMenu header .species ul {
   padding-left: 210px;
@@ -3706,8 +3709,8 @@ span.views {
 }
 
 #outContainer #container.lanparty {
-  background: #000 url('../images/lanparty_bg.png') no-repeat;
-  color: #ebebeb;
+  /*background: #000 url('../images/lanparty_bg.png') no-repeat;*/
+  background: #000;
 }
 
 #outContainer #container.lanparty a {
