@@ -523,7 +523,7 @@ body#games #outContainer header .species ul {
   padding-left: 265px !important;
 }
 #outContainer .fixedMenu.switchMenu header .species ul {
-  padding-left: 210px;
+  padding-left: 210px !important;
 }
 
 #outContainer header .species li.current a {
