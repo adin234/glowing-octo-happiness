@@ -3662,6 +3662,12 @@ span.views {
   min-height: 900px;
   padding: 40px 40px 80px 40px;
 }
+.lanparty .tabs {
+color: #fff;
+}
+.lanparty .recommend > h2 {
+  color: #999;
+}
 .lanparty-nav .lanparty_type1{
   float: left;
 }
