@@ -2147,7 +2147,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 1450px;
 }
 .zoom2x #outContainer header .species ul {
-  padding-left: 458px;
+  padding-left: 458px !important;
 }
 .zoom2x #outContainer header h1 .en {
   left: 200px;
