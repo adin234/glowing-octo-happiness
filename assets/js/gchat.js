@@ -52,10 +52,11 @@ $.fn.initChatBox = function(channel, user){
         divChatBox.style.height = "100%";
         divChatBox.style.fontFamily = "Calibri";
         divChatBox.style.textAlign = "center";
+        divChatBox.style.minHeight="100%";
     
     /* Channel Name */
     var divChannel = document.createElement("DIV");
-    var divRoomName = document.createTextNode(channelname);
+    var divRoomName = document.createTextNode(channelid);
         divChannel.setAttribute("id","channel");
         divChannel.style.fontWeight = "bolder";
         divChannel.style.backgroundColor = "#F8F8F8";
@@ -180,6 +181,7 @@ $.fn.initChatBox = function(channel, user){
     });
     
     socket.on('updatechat', function(username, data){
+        alert(data);
         var msgContainer = document.getElementById('data');
         var chBox       = document.getElementById('chatbox');
         var newMsg      = document.createElement('B');

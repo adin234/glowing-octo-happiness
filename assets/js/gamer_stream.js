@@ -69,7 +69,22 @@ $(function() {
         });
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
-    }
+		
+		/*  This where you put your JSON result to be able to access the chat plugin  */
+		var userinfo = '';
+		var channelinfo = {"id":twitch, "title" : twitch};
+		
+		//alert(channelinfo.id);
+	
+		if(utilCookie.get('user').length > 0){
+			userinfo = $.parseJSON(utilCookie.get('user'));
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);		
+		} else {
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		}
+		
+		$('#twitchTalk').css('background-color','black');
+	}	
 
     $('#about-streamer').html(page_data.about);
 
@@ -78,23 +93,25 @@ $(function() {
     $('#monSched').html($('<p/>', {
         text: page_data.custom_fields.mondaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.mondaySchedule.trim().length) {
-
+        if(!page_data.custom_fields.mondaySchedule
+			|| !page_data.custom_fields.mondaySchedule.trim().length) {
+        
             $(this).parent().parent().hide();
         }
     });
     $('#tueSched').html($('<p/>', {
         text: page_data.custom_fields.tuesdaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.tuesdaySchedule.trim().length) {
-
+        if(!page_data.custom_fields.tuesdaySchedule
+			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             $(this).parent().parent().hide();
         }
     });
     $('#wedSched').html($('<p/>', {
         text: page_data.custom_fields.wednesdaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.wednesdaySchedule.trim().length) {
+        if(!page_data.custom_fields.wednesdaySchedule
+			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
@@ -102,7 +119,8 @@ $(function() {
     $('#thuSched').html($('<p/>', {
         text: page_data.custom_fields.thursdaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.thursdaySchedule.trim().length) {
+        if(!page_data.custom_fields.thursdaySchedule
+			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
@@ -110,7 +128,8 @@ $(function() {
     $('#friSched').html($('<p/>', {
         text: page_data.custom_fields.fridaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.fridaySchedule.trim().length) {
+        if(!page_data.custom_fields.fridaySchedule
+			|| !page_data.custom_fields.fridaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
@@ -118,8 +137,8 @@ $(function() {
     $('#satSched').html($('<p/>', {
         text: page_data.custom_fields.saturdaySchedule
     })).promise().done(function(e){
-        console.log(page_data.custom_fields.saturdaySchedule.trim().length);
-        if(!page_data.custom_fields.saturdaySchedule.trim().length) {
+        if(!page_data.custom_fields.saturdaySchedule
+			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
@@ -127,7 +146,8 @@ $(function() {
     $('#sunSched').html($('<p/>', {
         text: page_data.custom_fields.sundaySchedule
     })).promise().done(function(e){
-        if(!page_data.custom_fields.sundaySchedule.trim().length) {
+        if(!page_data.custom_fields.sundaySchedule
+			|| !page_data.custom_fields.sundaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
@@ -136,16 +156,6 @@ $(function() {
     $('#streamArea').mCustomScrollbar({
       theme:"inset-2",
     });
-	
-	/*  This where you put your JSON result to be able to access the chat plugin  */
-	
-	if(utilCookie.get('user').length > 0){
-		var userinfo = $.parseJSON(utilCookie.get('user'));
-		var channelinfo = {"id" : twitch, "title" : "Chat Room"};
-		$('#twitchTalk').initChatBox(channelinfo, userinfo);		
-	} else {
-		$('#twitchTalk').html('请登录使用聊天功能。').css('color','black');
-	}
 });
 
 var viewers;
