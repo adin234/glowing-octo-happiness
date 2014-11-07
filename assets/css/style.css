@@ -1926,6 +1926,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   font-size: 12px;
   margin: 4px;
 }
+.playList h4 span:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
 .playList p {
   color: #7e7e7e;
 }
