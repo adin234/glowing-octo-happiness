@@ -1,5 +1,6 @@
 page_data = $.parseJSON(page_data);
 data_cache = { playlist:{}, video:{} };
+utilLoader.show();
 var html = [];
 var activelist = [];
 var active_playlist;
@@ -167,8 +168,6 @@ var showVideo = function(videoId) {
     $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
       ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1&origin='+origin);
 
-    utilLoader.hide();
-
     $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
       updateSuggestions);
 
@@ -179,7 +178,10 @@ var showVideo = function(videoId) {
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
-    utilLoader.hide();
+
+    if(!$('#youtuberPage').length) {
+      utilLoader.hide();
+    }
 
     filterAction(hash.shift());
   }
