@@ -120,6 +120,8 @@ var update_playlists = function (playlists) {
   html = [];
   playlists.forEach(function(item, i){
     // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
+    if(!item.snippet.thumbnails) { return; }
+    console.log(item);
     tempdata = {
       id: 'playlist-'+item.id,
       link: '#!/playlist/'+item.id,
