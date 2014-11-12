@@ -1805,7 +1805,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 
 .videoList {
-  border: 1px solid #8a8a8a;
+  border: 1px solid #111;
+  background-color: #1b1b1b;
+  color: #fff;
   box-sizing: border-box;
   width: 270px;
 }
@@ -1848,7 +1850,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .listSwitch .current a {
   color: #3e3e3e;
 }
-
+.playFunctionBtn {
+  background: #000;
+}
 .playFunctionBtn li a {
   display: block;
   height: 29px;
@@ -1874,8 +1878,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   float: right;
 }
 .playList {
-  background-color: #f4f4f4;
-  border-top: 1px solid #8a8a8a;
+  background-color: #1b1b1b;
+  border-top: 1px solid #111;
+  color: #fff;
   box-sizing: border-box;
   display: none;
   height: 446px;
@@ -1892,7 +1897,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 270px;
 }
 .playList li:hover, .playList li:active, .playList li:focus {
-  background-color: #d6d6d6;
+  background-color: #3b3b3b;
+  color: #c7c7c7;
 }
 .playList li a {
   color: inherit;
@@ -1901,7 +1907,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-decoration: none;
 }
 .playList li + li a {
-  border-top: 1px solid silver;
+  border-top: 1px solid #000;
 }
 .playList li div.title {
   display: -webkit-box;
@@ -1913,7 +1919,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-overflow: ellipsis;
 }
 .playList .current {
-  background-color: #d6d6d6;
+  background-color: #3b3b3b;
+  color: #c7c7c7;
 }
 .playList img {
   float: left;
