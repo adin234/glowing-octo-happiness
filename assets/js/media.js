@@ -56,6 +56,7 @@ var update_videos = function (videos, append) {
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
     if(!item) { break; }
+
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
        || typeof item.snippet.meta.tags == 'undefined'
@@ -79,31 +80,6 @@ var update_videos = function (videos, append) {
       }
     }
   }
-
-  // videos.forEach(function(item, i){
-  //   if(filterTags
-  //   && (typeof item.snippet.meta == 'undefined'
-  //      || typeof item.snippet.meta.tags == 'undefined'
-  //      || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
-
-  //   playlistIds.push(item.snippet.playlistId);
-
-  //   if(item.snippet.thumbnails) {
-  //     item = getVideo(item.snippet.resourceId.videoId) || item;
-  //     if(typeof item.snippet.thumbnails !== 'undefined') {
-  //       tempdata = {
-  //         id: 'video-'+item.snippet.resourceId.videoId,
-  //         link: link+'video/'+item.snippet.resourceId.videoId,
-  //         link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
-  //         user: item.username || '',
-  //         title: item.snippet.title,
-  //         thumb: item.snippet.thumbnails.default.url,
-  //         desc: item.snippet.description
-  //       };
-  //       html.push(template($('#videosTpl').html(), tempdata));
-  //     }
-  //   }
-  // });
 
   if(!html.length) {
     html.push('目前沒有影片');

@@ -2,6 +2,7 @@ var liveStreamLink = false;
 var filterConsole = 'all';
 
 function filter_category(gameConsole, context) {
+	var videos = [];
 	$(context).parent().siblings().removeClass('current');
 	$(context).parent().addClass('current');
 
@@ -12,6 +13,12 @@ function filter_category(gameConsole, context) {
 	} else {
 		filter_vlogs();
 	}
+
+	videos = page_data.videos.filter(function(item) {
+		return ~(item.snippet.meta.tags.indexOf('anytv_console_'+filterConsole));
+	});
+
+	update_videos(videos);
 }
 
 function renderGame() {
