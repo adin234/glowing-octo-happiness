@@ -517,13 +517,16 @@ a:hover, a:focus, a:active {
   padding-left: 330px;
 }
 body#games #outContainer header .species ul {
-  padding-left: 389px;
+padding-left: 260px;
 }
 #outContainer .fixedMenu header .species ul {
   padding-left: 265px !important;
 }
 #outContainer .fixedMenu.switchMenu header .species ul {
   padding-left: 210px !important;
+}
+.game_page.zoom2x #outContainer .fixedMenu.switchMenu header .species ul {
+padding-left: 323px !important;
 }
 
 #outContainer header .species li.current a {
@@ -2895,7 +2898,7 @@ div.streamer {
   background: url("/assets/images/sprite.png") no-repeat 27px -949px;
 }
 .lang_zh_tw #streamView header select {
-  margin-left: 11px;
+  margin-left: 8px;
 }
 
 #social-buttons {
@@ -3122,13 +3125,14 @@ body.streams {
 
 body.streams #stream-container {
   display: table;
-  width: 1200px;
+  min-width: 1200px;
   height: 100%;
   margin: auto;
 }
 
 body.streams.x2 #stream-container {
   width: 90%;
+  min-width: 1300px;
 }
 
 body.streams.x3 #stream-container {

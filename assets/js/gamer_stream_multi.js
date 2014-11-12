@@ -91,22 +91,22 @@ var render_stream_video = function(item) {
     }
     if(streamType == 'YT') {
         $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(),{youtubeid: streamId}));
-        
+
         alert(utilCookie.get('user').length);
         if (utilCookie.get('user').length == 0) {
             $('#tab-chat-' + streamId).css('display','none');
             $('#tab-gchat-' + streamId).append('Please login to use chat');
-            //$('#tab-gchat-' + twitch).initChatBox(channelinfo,userinfo);  
+            //$('#tab-gchat-' + twitch).initChatBox(channelinfo,userinfo);
         } else {
             var userinfo = $.parseJSON(utilCookie.get('user'));
             var channelinfo = {"id" : streamId, "title" : "Chat Room"};
             $('#twitch-chat-frame-container').append(template($('#twitch-chat-tpl').html(),{twitchid: streamId}));
-            
+
         }
-        
+
       //$('#tab-chat-' + twitch).css('display','none');
         //$('#tab-gchat-' + twitch).initChatBox(channelinfo,userinfo);
-    
+
         $('#twitch-chat-tab-container').append(template($('#twitch-chat-tab-tpl').html(),{twitchid: 'Chat Room'}));
         $(".tabs").tabslet({
             animation: true,
