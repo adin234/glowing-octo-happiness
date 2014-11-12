@@ -517,16 +517,19 @@ a:hover, a:focus, a:active {
   padding-left: 330px;
 }
 body#games #outContainer header .species ul {
-padding-left: 260px;
+padding-left: 338px;
+}
+body#games #outContainer .fixedMenu header .species ul {
+padding-left: 297px !important;
 }
 #outContainer .fixedMenu header .species ul {
   padding-left: 265px !important;
 }
 #outContainer .fixedMenu.switchMenu header .species ul {
-  padding-left: 210px !important;
+  padding-left: 172px !important;
 }
 .game_page.zoom2x #outContainer .fixedMenu.switchMenu header .species ul {
-padding-left: 323px !important;
+/*padding-left: 323px !important;*/
 }
 
 #outContainer header .species li.current a {
@@ -2149,15 +2152,15 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .zoom2x #outContainer header, .zoom2x #outContainer footer {
   width: 1450px;
 }
-.zoom2x #outContainer header .species ul {
+/*.zoom2x #outContainer header .species ul {
   padding-left: 458px !important;
-}
-.zoom2x #outContainer header h1 .en {
+}*/
+/*.zoom2x #outContainer header h1 .en {
   left: 200px;
 }
 .zoom2x #outContainer header h1 .zh_tw {
   left: 170px;
-}
+}*/
 .zoom2x #outContainer #container {
   margin-top: 25px;
 }
@@ -2190,6 +2193,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .zoom2x #outContainer .videoRelated {
   margin: 0 auto;
   width: 1048px;
+}
+
+.nav-wrapper {
+  max-width: 1148px;
+  margin: auto;
+  position: relative;
 }
 
 /*Games, Youtuber, Stream */
