@@ -247,7 +247,8 @@ var add_to_multiview = function() {
     var multiview_item = template(tplVideo, item);
     $('#container-multiview ul.list').append(multiview_item);
     update_watch_multiview();
-    if(!$('#container-videos li.live:visible').length) {
+    if(!$('#container-videos li.live:visible').length
+        || !$('#container-lanparty li.live:visible').length) {
         $('.video.stream a[href=#tab-2-3]').trigger('click');
     };
 };
