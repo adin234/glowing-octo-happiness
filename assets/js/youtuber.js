@@ -17,7 +17,7 @@ function filter_category(gameConsole, context) {
 	videos = page_data.videos.filter(function(item) {
 		return ~(item.snippet.meta.tags.indexOf('anytv_console_'+filterConsole));
 	});
-
+	$('#videosToggle').trigger('click');
 	update_videos(videos);
 }
 
