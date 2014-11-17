@@ -48,6 +48,7 @@ $(function() {
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
+                item.data.link = item.data.link || '';
                 $('#tab-2').append(template($('#panelTpl').html(), item.data));
             });
             setTimeout(function(){
