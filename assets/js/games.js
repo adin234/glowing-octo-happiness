@@ -228,7 +228,10 @@ var render_game_videos = function(game, page) {
     }
 
     page = typeof page !== 'undefined' ? '&page='+page : '';
-
+    var searchString = $('#txtbox-search-videos').val();
+    if(searchString.trim()) {
+        page += '&search='+searchString;
+    }
     $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
         page_data.videos = result;
         render_videos();
