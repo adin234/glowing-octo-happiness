@@ -413,7 +413,7 @@ $(function() {
                 var link = $('<a>',{
                     text: session.username,
                     title: session.username,
-                    href: 'http://community.gamers.tm/zh/index.php?members/'+session.username+'.'+session.user_id+'/'
+                    href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
                 }).appendTo('body');
                 utilCookie.set('user', JSON.stringify(session), 1/24);
                 $('li.login').html(link);
