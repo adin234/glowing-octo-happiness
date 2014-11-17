@@ -402,6 +402,29 @@ var notify_stream = function(data) {
     });
 }
 
+// session
+$(function() {
+    $.ajax({
+        dataType:'jsonp',
+        url:server+'logged_user',
+        type: 'get',
+        success: function(session) {
+            if(typeof session.username !== 'undefined') {
+                var link = $('<a>',{
+                    text: session.username,
+                    title: session.username,
+                    href: 'http://community.gamers.tm/zh/index.php?members/'+session.username+'.'+session.user_id+'/'
+                }).appendTo('body');
+                utilCookie.set('user', JSON.stringify(session), 1/24);
+                $('li.login').html(link);
+            }
+
+            $('li.login').css('visibility', 'visible');
+        }
+    });
+
+});
+
 $(function() {
     if($('body').hasClass('stream-gritter')) {
         get_streamers(true);
