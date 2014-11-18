@@ -2872,7 +2872,7 @@ div.streamer {
 }
 
 #about-streamer a {
-  color: #A30000;
+  color: #A30000!important;
 }
 
 .streamer > h2, .streamer .streamer-name {
