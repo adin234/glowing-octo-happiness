@@ -109,6 +109,7 @@ $.fn.initChatBox = function(chl, usr)
     socket.on('allow-chat-input', function(sd){
         if(sd.allow == false){
             $('#chatinputs-'+ sd.cid).css('display','none');
+            $('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
         } 
     });
     

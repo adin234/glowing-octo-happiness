@@ -126,3 +126,7 @@ img.uavatar{border-radius: 5px 5px 5px 5px; border:1px solid gray;}
 
 p.message{font-size:14px; font-family: Calibri; text-decoration: none;}
 
+span.spandex{ display: inline-block;
+              vertical-align: middle;
+              line-height: normal;}
+
