@@ -48,6 +48,7 @@ $(function() {
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
+                item.data.link = item.data.link || '';
                 $('#tab-2').append(template($('#panelTpl').html(), item.data));
             });
             setTimeout(function(){
@@ -74,7 +75,15 @@ $(function() {
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
     }
 
-    $('#about-streamer').html(page_data.about);
+    var result = XBBCODE.process({
+        text: page_data.about,
+        removeMisalignedTags: false,
+        addInLineBreaks: false
+    });
+
+    console.log(result);
+
+    $('#about-streamer').html(result.html);
 
     $('.streamer .streamer-name').html(page_data.custom_title);
 
