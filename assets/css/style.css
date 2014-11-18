@@ -3991,3 +3991,8 @@ color: #fff;
   background: url("/assets/images/player_ui_dark.png") no-repeat 10px -264px;
   float: right;
 }
+
+li.login {
+  text-align: center !important;
+  visibility: hidden;
+}
