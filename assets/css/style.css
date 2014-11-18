@@ -2867,8 +2867,14 @@ div.streamer {
 #about-streamer {
   color: #000;
   padding: 5px;
+  word-wrap: break-word;
 
 }
+
+#about-streamer a {
+  color: #A30000;
+}
+
 .streamer > h2, .streamer .streamer-name {
   color: #000;
   font-size: 1.2rem;
