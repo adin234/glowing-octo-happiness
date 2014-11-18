@@ -17,6 +17,7 @@
 <link rel="shortcut icon" href="http://www.gamers.tm/favicon.ico?ver=7" />
 <link href="/assets/css/jquery.mCustomScrollbar.css?ver=7" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=7" />
+<link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
 <script src="/assets/js/config.js?ver=7"></script>
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
@@ -144,8 +145,49 @@
 </div>
 </script>
 
+<script type="text/html" id="gchat-tab-tpl">
+  <li class="chat-{{ChannelId}}">
+    <a href="#gchat-{{ChannelId}}">{{ChannelId}}</a>
+  </li>
+</script>
+
 <script type="text/html" id="gchat-tpl">
-  <div id="tab-gchat-{{ChannelId}}"></div>
+  <div id="gchat-{{ChannelId}}" style="display:block;"></div>
+</script>
+
+<script type="text/html" id="chatui">
+  <div id="chid-{cid}" class="chid">{cid}</div>
+  <div id="chcontainer-{cid}" class="chcontainer">
+      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
+      </table>
+  </div>
+  <div id="chatinputs-{cid}" class="chatinputs"> 
+      <input type="text" id="msgs-{cid}" class="msgs">
+      <button id="btn-{cid}" class="btnSend">SEND</button>
+  </div>	
+</script>
+<script type="text/html" id="gchatnotify">
+  <tr id="trnotify-{cid}">
+      <td>
+          <div class="notifier">
+              <p id="notifymsg-{cid}" class="message">{gchat-message}</p>
+          </div>
+      </td>
+  </tr>    
+</script>
+<script type="text/html" id="chatms">
+  <tr id="trms-{cid}">
+      <td>
+          <div id="usericon-{cid}" class="usericon">
+              <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
+          </div>
+          <div id="chat-message-{cid}" class="chat-message">
+              <label id="uname">{username}</label>
+              <p id="imsg" class="message">{message}</p>
+              <label id="timestamp-{cid}" class="timestamp">{timesent}</label>
+          </div>           
+      </td>
+  </tr>
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js?ver=7"></script>
@@ -156,6 +198,6 @@
 <script type="text/javascript" src="/assets/js/util.js?ver=7"></script>
 <!-- Chat plugin 10.30.2014-->
 <script src="/assets/js/socketio.js?ver=7"></script>
-<script type="text/javascript" src="/assets/js/gchat.js?ver=7"></script>
+<script type="text/javascript" src="/assets/js/gchatv2.js?ver=7"></script>
 <script type="text/javascript" src="/assets/js/gamer_stream_multi.js?ver=7"></script>
 </html>
