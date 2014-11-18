@@ -516,11 +516,20 @@ a:hover, a:focus, a:active {
 #outContainer header .species ul {
   padding-left: 330px;
 }
+body#games #outContainer header .species ul {
+padding-left: 338px;
+}
+body#games #outContainer .fixedMenu header .species ul {
+padding-left: 297px !important;
+}
 #outContainer .fixedMenu header .species ul {
-  padding-left: 265px;
+  padding-left: 265px !important;
 }
 #outContainer .fixedMenu.switchMenu header .species ul {
-  padding-left: 210px;
+  padding-left: 172px !important;
+}
+.game_page.zoom2x #outContainer .fixedMenu.switchMenu header .species ul {
+/*padding-left: 323px !important;*/
 }
 
 #outContainer header .species li.current a {
@@ -1796,7 +1805,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 
 .videoList {
-  border: 1px solid #8a8a8a;
+  border: 1px solid #111;
+  background-color: #1b1b1b;
+  color: #fff;
   box-sizing: border-box;
   width: 270px;
 }
@@ -1839,7 +1850,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .listSwitch .current a {
   color: #3e3e3e;
 }
-
+.playFunctionBtn {
+  background: #000;
+}
 .playFunctionBtn li a {
   display: block;
   height: 29px;
@@ -1865,8 +1878,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   float: right;
 }
 .playList {
-  background-color: #f4f4f4;
-  border-top: 1px solid #8a8a8a;
+  background-color: #1b1b1b;
+  border-top: 1px solid #111;
+  color: #fff;
   box-sizing: border-box;
   display: none;
   height: 446px;
@@ -1883,7 +1897,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 270px;
 }
 .playList li:hover, .playList li:active, .playList li:focus {
-  background-color: #d6d6d6;
+  background-color: #3b3b3b;
+  color: #c7c7c7;
 }
 .playList li a {
   color: inherit;
@@ -1892,7 +1907,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-decoration: none;
 }
 .playList li + li a {
-  border-top: 1px solid silver;
+  border-top: 1px solid #000;
 }
 .playList li div.title {
   display: -webkit-box;
@@ -1904,7 +1919,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   text-overflow: ellipsis;
 }
 .playList .current {
-  background-color: #d6d6d6;
+  background-color: #3b3b3b;
+  color: #c7c7c7;
 }
 .playList img {
   float: left;
@@ -1922,6 +1938,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .playList h4 {
   font-size: 12px;
   margin: 4px;
+}
+.playList h4 span:hover {
+  text-decoration: underline;
+  font-weight: bold;
 }
 .playList p {
   color: #7e7e7e;
@@ -2139,15 +2159,15 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .zoom2x #outContainer header, .zoom2x #outContainer footer {
   width: 1450px;
 }
-.zoom2x #outContainer header .species ul {
-  padding-left: 458px;
-}
-.zoom2x #outContainer header h1 .en {
+/*.zoom2x #outContainer header .species ul {
+  padding-left: 458px !important;
+}*/
+/*.zoom2x #outContainer header h1 .en {
   left: 200px;
 }
 .zoom2x #outContainer header h1 .zh_tw {
   left: 170px;
-}
+}*/
 .zoom2x #outContainer #container {
   margin-top: 25px;
 }
@@ -2180,6 +2200,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .zoom2x #outContainer .videoRelated {
   margin: 0 auto;
   width: 1048px;
+}
+
+.nav-wrapper {
+  max-width: 1148px;
+  margin: auto;
+  position: relative;
 }
 
 /*Games, Youtuber, Stream */
@@ -2371,22 +2397,29 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 137px;
 }
 
-.stream [id^="tab-"]:nth-of-type(1) {
+.stream [id^="tab-"]:nth-of-type(1),
+.stream [id^="tab-"]:nth-of-type(2) {
   height: 966px;
   margin-top: 0;
 }
-.stream [id^="tab-"]:nth-of-type(1):before, .stream [id^="tab-"]:nth-of-type(1):after {
+.stream [id^="tab-"]:nth-of-type(1):before,
+.stream [id^="tab-"]:nth-of-type(1):after,
+.stream [id^="tab-"]:nth-of-type(2):before,
+.stream [id^="tab-"]:nth-of-type(2):after {
   height: 890px;
   top: 36px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .bx-viewport {
+.stream [id^="tab-"]:nth-of-type(1) .bx-viewport,
+.stream [id^="tab-"]:nth-of-type(2) .bx-viewport {
   height: 966px !important;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li {
+.stream [id^="tab-"]:nth-of-type(1) .list > li,
+.stream [id^="tab-"]:nth-of-type(2) .list > li {
   margin-top: 0;
   padding-top: 36px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
+.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo,
+.stream [id^="tab-"]:nth-of-type(2) .list > li .addTo {
   background-color: #a40000;
   color: white;
   font-weight: bold;
@@ -2396,7 +2429,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 36px;
   width: 334px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
+.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after,
+.stream [id^="tab-"]:nth-of-type(2) .list > li .addTo:after {
   background: white url("/assets/images/sprite.png") no-repeat 3px -2706px;
   /*@extend %IEPie */
   -moz-border-radius: 50%;
@@ -2409,29 +2443,33 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   top: 10px;
   width: 17px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list > li:hover .addTo, .stream [id^="tab-"]:nth-of-type(1) .list > li:active .addTo, .stream [id^="tab-"]:nth-of-type(1) .list > li:focus .addTo {
+.stream [id^="tab-"]:nth-of-type(1) .list > li:hover .addTo,
+.stream [id^="tab-"]:nth-of-type(1) .list > li:active .addTo,
+.stream [id^="tab-"]:nth-of-type(1) .list > li:focus .addTo {
   top: 0;
   -webkit-transition: top 0.25s ease;
   transition: top 0.25s ease;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list li.live:before {
+.stream [id^="tab-"]:nth-of-type(1) .list li.live:before,
+.stream [id^="tab-"]:nth-of-type(2) .list li.live:before {
   top: 40px;
 }
-.stream [id^="tab-"]:nth-of-type(1) .list .uploader {
+.stream [id^="tab-"]:nth-of-type(1) .list .uploader,
+.stream [id^="tab-"]:nth-of-type(2) .list .uploader {
   top: 134px;
 }
 .stream [id^="tab-"] {
   height: 864px;
 }
-.stream [id^="tab-"]:nth-of-type(2) {
+.stream [id^="tab-"]:nth-of-type(3) {
   height: 870px;
   overflow: inherit;
 }
-.stream [id^="tab-"]:nth-of-type(2):before, .stream [id^="tab-"]:nth-of-type(2):after {
+.stream [id^="tab-"]:nth-of-type(3):before, .stream [id^="tab-"]:nth-of-type(3):after {
   height: 826px;
   top: 14px;
 }
-.stream [id^="tab-"]:nth-of-type(2) .bx-viewport {
+.stream [id^="tab-"]:nth-of-type(3) .bx-viewport {
   height: 888px !important;
   padding-top: 10px;
 }
@@ -2836,104 +2874,10 @@ div.streamer {
   font-size: 1.2rem;
   font-weight: bold;
 }
-/*
-.x2 .mCSB_inside > .mCSB_container, .x3 .mCSB_inside > .mCSB_container {
-  margin-right: 20px;
-}
-.x2 #streamArea, .x3 #streamArea {
-  overflow: hidden;
-}
 
-.x3 #streamView, .muti #streamView {
-  padding: 0;
-}
-
-.x3 #streamView header, .muti #streamView header {
-  right: 0;
-  top: 0;
-}
-
-.x2 #streamView {
-  width: 1750px;
-}
-.x2 #streamView #functionBar {
-  height: 844px;
-}
-.x2 #streamView #functionBar #twitchTalk {
-  height: 624px;
-}
-.x2 #streamView .watchList {
-  width: 1258px;
-}
-.x2 #streamView #streamArea {
-  height: 890px;
-  width: 1276px;
-}
-.x2 #streamView #twitchStream {
-  height: 890px;
-  width: 1256px;
-}
-
-.x3 #streamView {
-  width: 1880px;
-}
-.x3 #streamView #streamArea {
-  height: 1050px;
-  width: 1405px;
-}
-.x3 #streamView #twitchStream {
-  height: 1050px;
-  width: 1390px;
-}
-.x3 #streamView #functionBar {
-  height: 1004px;
-}
-.x3 #streamView #twitchTalk {
-  height: 784px;
-}
-*/
-/*.muti #streamView {
-  min-width: 1470px;
-  width: 100%;
-  position: relative;
-}*/
-/*.muti #streamView header {
-  z-index: 2;
-}*/
 .muti #streamView h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
 }
-/*.muti #streamView #functionBar {
-  height: 874px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}*/
-/*.muti #streamView #streamArea {
-  margin-right: 470px;
-}
-.muti #streamView #twitchStream {
-  height: 100%;
-  width: 100%;
-}
-.muti #streamView #twitchStream > div {
-  float: left;
-  margin: 0 0 6px 12px;
-  width: 48.5%;
-}
-
-.muti #streamView #twitchStream > div, .muti #streamView #twitchStream object {
-  height: 60%;
-}
-
-.muti body.x2 #streamView #twitchStream > div, .muti body.x2  #streamView #twitchStream object {
-  height: 50%;
-}
-
-.muti body.x3 #streamView #twitchStream > div, .muti body.x3 #streamView #twitchStream object {
-  height: 40%;
-}*/
-
 #twitchStream:hover .remove-stream {
   display: block;
 }
@@ -2955,11 +2899,6 @@ div.streamer {
   font-size: 0;
 }
 
-/*.muti #streamView .watchList {
-  margin: 60px 12px;
-  width: 1394px;
-}
-*/
 .lang_en #streamView header h1 {
   background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
   background-size: 98px auto;
@@ -2975,7 +2914,7 @@ div.streamer {
   background: url("/assets/images/sprite.png") no-repeat 27px -949px;
 }
 .lang_zh_tw #streamView header select {
-  margin-left: 11px;
+  margin-left: 8px;
 }
 
 #social-buttons {
@@ -3120,14 +3059,6 @@ small.date {
   width: 320px;
   margin: 10px 0;
 }
-/*
-.muti .x3 #wrapper {
-  min-width: 1870px;
-}
-
-.muti  .x2 #wrapper {
-  min-width: 1745px;
-}*/
 
 a.link-white {
   color: #fff;
@@ -3210,13 +3141,14 @@ body.streams {
 
 body.streams #stream-container {
   display: table;
-  width: 1200px;
+  min-width: 1200px;
   height: 100%;
   margin: auto;
 }
 
 body.streams.x2 #stream-container {
   width: 90%;
+  min-width: 1300px;
 }
 
 body.streams.x3 #stream-container {
@@ -3263,14 +3195,8 @@ body:nth-child(3) {
   padding-top: 25px;
   height: 0;
 }
-.videoWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 
+.videoWrapper iframe,
 .videoWrapper object {
   position: absolute;
   top: 0;
@@ -3281,8 +3207,13 @@ body:nth-child(3) {
 
 .single.streams.x3 .videoWrapper {
   height: 100%;
-  padding: 0;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.single.streams.x3 .videoWrapper iframe,
+.single.streams.x3 .videoWrapper object {
+  position: relative;
 }
 
 #side-container #streamView {
@@ -3618,6 +3549,10 @@ body:nth-child(3) {
   width: 50%;
 }
 
+.muti #twitchStream:only-child {
+  width: 100%;
+}
+
 div.streamer {
   padding: 10px
 }
@@ -3747,6 +3682,12 @@ span.views {
   min-height: 900px;
   padding: 40px 40px 80px 40px;
 }
+.lanparty .tabs {
+color: #fff;
+}
+.lanparty .recommend > h2 {
+  color: #999;
+}
 .lanparty-nav .lanparty_type1{
   float: left;
 }
@@ -3788,15 +3729,18 @@ span.views {
   position: relative;
   top: -1px;
 }
-
+.lanparty-nav li.current > a{
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
 #container .lanparty-nav {
   margin: -34px -50px 25px;
   padding: 20px 50px;
 }
 
 #outContainer #container.lanparty {
-  background: #000 url('../images/lanparty_bg.png') no-repeat;
-  color: #ebebeb;
+  /*background: #000 url('../images/lanparty_bg.png') no-repeat;*/
+  background: #000;
 }
 
 #outContainer #container.lanparty a {
@@ -3951,4 +3895,104 @@ span.views {
 .gritter-item .link {
   color: #fff;
   font-size: 14px;
+}
+
+#container.lanparty .videoRelated [id^="tab-"] {
+  border-bottom: none;
+}
+
+#container.lanparty .videoRelated {
+  background: none;
+  border-top: 1px solid #4d4d4d;
+}
+
+#container.lanparty .main .video + *, .videoRelated .tabs + * {
+  background: none;
+  border-left: 1px solid #4d4d4d;
+}
+
+#container.lanparty .videoRelated .tabs .tab {
+  margin-top: -2px;
+}
+
+#container.lanparty .videoRelated .recommend h3 {
+  color: #fff;
+}
+
+#container.lanparty .listSwitch li {
+  background: #000;
+  border: 1px solid #00b8e6;
+}
+
+#outContainer #container.lanparty .listSwitch li.current {
+  background: #00b8e6;
+}
+
+#outContainer #container.lanparty .listSwitch li.current a {
+  color: #fff;
+}
+
+#outContainer #container.lanparty .videoList {
+  border: 1px solid #4d4d4d;
+}
+
+#outContainer #container.lanparty .playList {
+  background: #000;
+  border-top: 1px solid #30534f;
+}
+
+#outContainer #container.lanparty .playList li.current,
+#outContainer #container.lanparty .playList li:hover {
+  background: #00b8e6;
+}
+
+#outContainer #container.lanparty .playList a {
+  color: #fff;
+}
+
+#outContainer #container.lanparty .playList li + li a {
+  border-top: 1px solid #30534f;
+}
+
+#outContainer #container.lanparty .listSwitch li a {
+  color: #00b8e6;
+}
+
+#outContainer #container.lanparty .zoom a {
+  display: block;
+  height: 27px;
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 1px;
+}
+
+#outContainer #container.lanparty .resize li:first-child {
+  background: #000;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+#outContainer #container.lanparty .zoomOut a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 -54px;
+}
+
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(1) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -100px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(2) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -139px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(3) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -180px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(4) a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -222px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:last-child a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 10px -264px;
+  float: right;
+}
+
+li.login {
+  text-align: center !important;
+  visibility: hidden;
 }

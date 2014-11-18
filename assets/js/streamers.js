@@ -6,6 +6,7 @@ $(".sf-menu").superfish();
 // slider.featured_games = $("#container-featured-games").bxSlider();
 // slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider();
+slider.container_lanparty = $("#container-lanparty").bxSlider();
 $(".tabs").tabslet({ animation: true });
 
 page_data = $.parseJSON(page_data);
@@ -84,7 +85,7 @@ var filter_game = function(input) {
     render_latest_games(filterString);
 };
 
-var render_videos = function(filter, game) {
+var render_videos = function(filter, game, lanparty) {
     var html = [];
     var items = [];
     var ids = [];
@@ -92,12 +93,19 @@ var render_videos = function(filter, game) {
     var tplVideoContainer = $('#videoContainerTpl').html();
     var activeMultiView = get_active_for_multiview();
     var filterRegExp = new RegExp(filter, 'i');
-    var filterGame = (typeof game == 'undefined' || game == '' || game == 'all') ? 'all' : $('a.game[data-id='+game+']').first().attr('data-name');
+    var filterGame = (typeof game == 'undefined' || game == '' || game == 'all')
+        ? 'all'
+        : $('a.game[data-id='+game+']').first()
+            .attr('data-name');
     var filterGameRegExp = new RegExp(filterGame, 'i');
 
     var itemToComplete = 9;
 
-    page_data.streamers.forEach(function (item, i) {
+    var source = lanparty && typeof lanparty != 'undefined'
+        ? page_data.lanparty
+        : page_data.streamers;
+
+    source.forEach(function (item, i) {
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined' && !~item.twitch.channel.status.search(filterRegExp)) return;
             item.twitchid = item.field_value[item.field_value.length-1];
@@ -106,7 +114,9 @@ var render_videos = function(filter, game) {
             item.id = 'TW'+item.twitchid;
             item.idraw = item.twitchid;
             item.live = 'live';
-            item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
+            item.link = lanparty && typeof lanparty != 'undefined'
+                ? '/lanparty_stream_multi/#/'+item.id
+                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.twitch.preview.large;
             item.title = item.twitch.channel.status;
@@ -116,15 +126,15 @@ var render_videos = function(filter, game) {
             item.id = 'YT'+item.youtube.id;
             item.idraw= item.youtube.id;
             item.live = 'live';
-            item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
+            item.link = lanparty && typeof lanparty != 'undefined'
+                ? '/lanparty_stream_multi/#/'+item.id
+                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.youtube.snippet.thumbnails.high.url;
             item.title = item.youtube.snippet.title;
             item.bust = +new Date();
             item.views = '0';
         }
-
-        if(~activeMultiView.indexOf(item.id)) return;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -140,11 +150,20 @@ var render_videos = function(filter, game) {
 
     if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有影片'); }
 
-    $('#container-videos').html(html.join(''));
+    if(!lanparty) {
+        $('#container-videos').html(html.join(''));
+    } else {
+        console.log('here', html);
+        $('#container-lanparty').html(html.join(''));
+    }
 
-    var currentSlide = slider.container_videos.getCurrentSlide();
+    var activeSlider = !lanparty
+        ? slider.container_videos
+        : slider.container_lanparty;
 
-    slider.container_videos.reloadSlider({
+    var currentSlide = activeSlider.getCurrentSlide();
+
+    activeSlider.reloadSlider({
         activeSlide: currentSlide
     });
 
@@ -207,7 +226,7 @@ var add_to_multiview = function() {
         item.id = 'TW'+item.twitchid;
         item.idraw = item.twitchid;
         item.live = 'live';
-        item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
+        item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
         item.provider = attachments_server;
         item.thumb = item.twitch.preview.large;
         item.title = item.twitch.channel.status;
@@ -217,7 +236,7 @@ var add_to_multiview = function() {
         item.id = 'YT'+item.youtube.id;
         item.idraw= item.youtube.id;
         item.live = 'live';
-        item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
+        item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
         item.provider = attachments_server;
         item.thumb = item.youtube.snippet.thumbnails.high.url;
         item.title = item.youtube.snippet.title;
@@ -228,8 +247,9 @@ var add_to_multiview = function() {
     var multiview_item = template(tplVideo, item);
     $('#container-multiview ul.list').append(multiview_item);
     update_watch_multiview();
-    if(!$('#container-videos li.live:visible').length) {
-        $('.video.stream a[href=#tab-2-2]').trigger('click');
+    if(($('#tab-2-1').css('display') === 'block' && !$('#container-videos li.live:visible').length)
+        || ($('#tab-2-2').css('display') === 'block' && !$('#container-lanparty li.live:visible').length)) {
+        $('.video.stream a[href=#tab-2-3]').trigger('click');
     };
 };
 
@@ -298,3 +318,13 @@ var render_page = function() {
 
 render_page();
 
+$.getJSON(server+'streamers?lanparty=1', function(e) {
+    page_data.lanparty = e.streamers;
+    render_videos(undefined, undefined, true);
+    $.getJSON(server+'streamers/youtube?lanparty=1', function(result) {
+        result.streamers.forEach(function(item) {
+            page_data.lanparty.push(item);
+        });
+        render_videos(undefined,undefined,1);
+    });
+});

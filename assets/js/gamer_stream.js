@@ -1,3 +1,4 @@
+utilLoader.show();
 $(function() {
     var information_masonry = function() {
         $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
@@ -35,7 +36,7 @@ $(function() {
 
     if(streamType == 'TW') {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
-        .html(),{twitchid: streamId, number: viewers}));
+        .html(),{twitchid: streamId, number: viewers}))
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{
                 twitchid: streamId,
@@ -67,6 +68,8 @@ $(function() {
                 }
             })
         });
+
+        utilLoader.hide();
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
 		
@@ -163,7 +166,8 @@ var viewers;
 $.getJSON(server+'get_views/'+twitch, function(e) {
     if(e && e.stream && e.stream.viewers) {
         viewers = e.stream.viewers;
-        $('#twitchStream .views').html(e.stream.viewers);
+        $('#twitchStream .views').html(e.stream.viewers+' Views');
+        utilLoader.hide();
     }
 });
 

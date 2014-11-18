@@ -127,7 +127,7 @@ var render_videos = function() {
         item.bust = +new Date();
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
-        item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+        item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -176,7 +176,7 @@ var load_game_videos_next_page = function() {
             item.bust = +new Date();
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+            item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
             items.push(template(tplVideo, item));
 
@@ -228,7 +228,10 @@ var render_game_videos = function(game, page) {
     }
 
     page = typeof page !== 'undefined' ? '&page='+page : '';
-
+    var searchString = $('#txtbox-search-videos').val();
+    if(searchString.trim()) {
+        page += '&search='+searchString;
+    }
     $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
         page_data.videos = result;
         render_videos();

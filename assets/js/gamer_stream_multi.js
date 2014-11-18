@@ -91,7 +91,6 @@ var render_stream_video = function(item) {
     }
     if(streamType == 'YT') {
         $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(),{youtubeid: streamId}));
-        
         $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(),{ChannelId: streamId}));
         $('#twitch-chat-tab-container').append(template($('#gchat-tab-tpl').html(),{ChannelId: streamId}));
         
