@@ -15,8 +15,6 @@ $.fn.initChatBox = function(chl, usr)
     var ud;
     var notify='';
     
-
-    
     dt          = new Date();
     
     socket      = io.connect('http://localhost:3000');

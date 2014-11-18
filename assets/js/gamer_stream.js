@@ -48,6 +48,7 @@ $(function() {
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
+                item.data.link = item.data.link || '';
                 $('#tab-2').append(template($('#panelTpl').html(), item.data));
             });
             setTimeout(function(){
@@ -72,6 +73,7 @@ $(function() {
         utilLoader.hide();
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
+<<<<<<< HEAD
 		
 		/*  This where you put your JSON result to be able to access the chat plugin  */
 		var userinfo = '';
@@ -88,8 +90,32 @@ $(function() {
 		
 		$('#twitchTalk').css('background-color','black');
 	}	
+=======
+        
+        /*  This where you put your JSON result to be able to access the chat plugin  */
+	var userinfo = '';
+	var channelinfo = {"id":twitch, "title" : twitch};
 
-    $('#about-streamer').html(page_data.about);
+	if(utilCookie.get('user').length > 0){
+		userinfo = $.parseJSON(utilCookie.get('user'));
+		$('#twitchTalk').initChatBox(channelinfo, userinfo);		
+	} else {
+		$('#twitchTalk').initChatBox(channelinfo, userinfo);
+	}
+	
+	$('#twitchTalk').css('background-color','black');
+    }
+>>>>>>> f37db8db92ddbdf855ba6336a168c77e2ecd39dc
+
+    var result = XBBCODE.process({
+        text: page_data.about,
+        removeMisalignedTags: false,
+        addInLineBreaks: false
+    });
+
+    console.log(result);
+
+    $('#about-streamer').html(result.html);
 
     $('.streamer .streamer-name').html(page_data.custom_title);
 

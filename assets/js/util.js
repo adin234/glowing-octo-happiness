@@ -407,22 +407,22 @@ $(function() {
     $.ajax({
         dataType:'jsonp',
         url:server+'logged_user',
-        type: 'get',
-        success: function(session) {
-            if(typeof session.username !== 'undefined') {
-                var link = $('<a>',{
-                    text: session.username,
-                    title: session.username,
-                    href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
-                }).appendTo('body');
-                utilCookie.set('user', JSON.stringify(session), 1/24);
-                $('li.login').html(link);
-            }
-
-            $('li.login').css('visibility', 'visible');
+        type: 'get'
+    })
+    .done(function(session) {
+        if(typeof session.username !== 'undefined') {
+            var link = $('<a>',{
+                text: session.username,
+                title: session.username,
+                href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
+            }).appendTo('body');
+            utilCookie.set('user', JSON.stringify(session), 1/24);
+            $('li.login').html(link);
         }
-    });
-
+    })
+    setTimeout(function() {
+         $('li.login').css('visibility', 'visible');
+     }, 100);
 });
 
 $(function() {
