@@ -2137,6 +2137,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   color: #1c1c1c;
   line-height: 1.15;
   margin-bottom: 5px;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.videoRelated .recommend li.list ul {
+  margin-left: 119px
 }
 .videoRelated .recommend li {
   color: #7a7a7a;

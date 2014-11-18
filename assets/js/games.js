@@ -6,8 +6,8 @@ var currentPage = 1;
 var hash;
 var filterConsole = '';
 var filterGame = '';
-
 var gameNames = [];
+
 page_data.games.forEach(function(item) {
     gamesAutocompleteArray.push({value: item.name, data: item});
     gameNames.push(item.name);
@@ -19,9 +19,9 @@ page_data.games.forEach(function(item) {
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider({
-                                infiniteLoop: false,
-                                hideControlOnEnd: true
-                            });
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
 
 var get_hash = function() {
     var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');

@@ -309,7 +309,7 @@ var fixErrorImg = function(item) {
 var searchId = false;
 var searchBox = '';
 function redirect_to_youtuber(id)  {
-    window.location.href = origin+'youtuber/'+id
+    window.location.href = origin+'youtuber/?user='+id
 }
 
 function searchBoxInit() {
