@@ -1463,8 +1463,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-top: 0;
 }
 .main .video [id^="tab-"] {
-  height: 640px;
-  overflow: hidden;
+  /*height: 640px;*/
+  /*overflow: hidden;*/
   padding: 0 2px 0 5px;
 }
 .main .video .list > li {
@@ -1474,7 +1474,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-left: 6px;
 }
 .main .games [id^="tab-"] {
-  height: 204px;
+  min-height: 204px;
   width: 1069px;
 }
 .main .viewer ul, .main .streaming ul {
@@ -1543,22 +1543,24 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .main aside {
   min-height: 640px;
+  margin-left: 750px;
 }
 .main .viewer {
   padding-left: 15px;
 }
 .main .viewer div.scroll, .main .streaming div.scroll {
   margin-top: 30px;
-  height: 300px;
+  min-height: 300px;
 }
 
 .main .streaming div.scroll {
-  height: 215px;
+  min-height: 215px;
 }
 
 .main .viewer ul li {
   padding-bottom: 6px;
   width: 232px;
+  display: none;
 }
 .main .viewer ul li + li {
   padding-top: 12px;
@@ -2258,6 +2260,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 1056px !important;
 }
 
+.index-page .games .game, .video .list {
+  width: 735px !important;
+}
+
 .silderList .video [id^="tab-"] {
   position: relative;
 }
@@ -2286,6 +2292,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .video [id^="tab-"] {
   height: 850px;
 }
+
+#index-page .video [id^="tab-"] {
+  height: 100%;
+}
+
 .video .bx-viewport {
   height: 874px !important;
 }
@@ -4009,4 +4020,26 @@ color: #fff;
 li.login {
   text-align: center !important;
   visibility: hidden;
+}
+/*load more*/
+
+#index-page .video [id^='tab-'] ul.list li.pointer,
+#index-page #featuredGames li,
+#index-page #latestGames li,
+#streamers > li {
+  display: none;
+}
+
+button.load-more {
+  background: #ececec;
+  border: 0;
+  color: #444;
+  font-size: 15px;
+  margin: auto;
+  width: 100%;
+  cursor: pointer;
+}
+
+button.load-more:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,.4);
 }

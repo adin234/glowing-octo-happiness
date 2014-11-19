@@ -10,6 +10,25 @@ $.ajax({
 	index_data = data;
 });
 
+var load_more = function(selector, page, per_page) {
+	$(selector).slice(0, page*per_page).show();
+	if($(selector).length <= page*per_page) {
+		$('.load-more[data-selector="'+selector+'"]').hide();
+	} else {
+		$('.load-more[data-selector="'+selector+'"]').show();
+	};
+	$('.load-more[data-selector="'+selector+'"]').attr('data-page',parseInt(page)+1);
+	$('.load-more[data-selector="'+selector+'"]').attr('data-per-page',per_page);
+}
+
+$('html').on('click', '.load-more', function() {
+	e = $(this);
+	var selector = e.attr('data-selector');
+	var page = e.attr('data-page');
+	var per_page = e.attr('data-per-page');
+	load_more(selector, page, per_page);
+});
+
 $(document).ready(function() {
 	$.ajax({
 		type: "GET",
@@ -108,11 +127,14 @@ var index_show_streamers = function(streamersList) {
 	        }
 
 	        html.push(template($('#streamersTpl').html(), item));
+	        html.push(template($('#streamersTpl').html(), item));
+	        html.push(template($('#streamersTpl').html(), item));
 
 		});
 
 		if(!html.length) { html.push('目前沒有直播'); };
 		$('#streamers').html(html.join(''));
+		load_more('#streamers > li', 1, 5);
 
 	update_index(index_data);
 };
@@ -173,6 +195,7 @@ var update_index = function(index_data) {
 	});
 	if(!html.length) { html.push('目前沒有影片'); }
 	$('#featuredVideos').html(html.join(''));
+	load_more('#featuredVideos li.pointer', 1, 9);
 	html = [];
 	var flag = {};
 	index_data.latest_videos.forEach(function(item, i){
@@ -196,6 +219,8 @@ var update_index = function(index_data) {
 
 	if(!html.length) { html.push('目前沒有影片'); }
 	$('#latestVideos').html(html.join(''));
+	load_more('#latestVideos li.pointer', 1, 9);
+
 	html = [];
 	index_data.most_viewed.forEach(function(item, i){
 		item.provider = attachments_server;
@@ -210,6 +235,8 @@ var update_index = function(index_data) {
 	});
 	if(!html.length) { html.push('目前沒有影片'); }
 	$('#mostViewed').html(html.join(''));
+	load_more('#mostViewed li.pointer', 1, 9);
+
 	html = [];
 	index_data.games.forEach(function(item, i){
 		item.imgsrc = item.image;
@@ -218,6 +245,8 @@ var update_index = function(index_data) {
 	});
 	if(!html.length) { html.push('目前沒有遊戲'); }
 	$('#latestGames').html(html.join(''));
+	load_more('#latestGames li', 1, 12);
+
 	html = [];
 	index_data.featured_games.forEach(function(item, i){
 		item.imgsrc = item.image;
@@ -226,6 +255,8 @@ var update_index = function(index_data) {
 	});
 	if(!html.length) { html.push('目前沒有遊戲'); }
 	$('#featuredGames').html(html.join(''));
+	load_more('#featuredGames li', 1, 12);
+
 	html = [];
 	if(index_data.feature_list.feature_list_active ==='1') {
 		$('.viewer > h2').html(index_data.feature_list.feature_list_header);
@@ -234,6 +265,7 @@ var update_index = function(index_data) {
 		});
 		if(!html.length) { html.push('No feature available.') }
 		$('#featuredUsers').html(html.join(''));
+		load_more('#featuredUsers > li', 1, 5);
 	} else {
 		index_data.featured_users.forEach(function(item, i){
 			item.provider = attachments_server;
@@ -241,6 +273,7 @@ var update_index = function(index_data) {
 		});
 		if(!html.length) { html.push('No User Available'); }
 		$('#featuredUsers').html(html.join(''));
+		load_more('#featuredUsers > li', 1, 5);
 	}
 	html = [];
 	index_data.recent_threads.forEach(function(item, i){
@@ -280,9 +313,9 @@ var update_index = function(index_data) {
 	html = template($('#recentForumTpl').html(), data);
 	$('#hotForumSection').html(html);
 
-    $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
-      theme:"inset-2"
-    });
+    // $(".video [id^='tab-'], .games [id^='tab-'], .viewer .scroll, .streaming .scroll").mCustomScrollbar({
+    //   theme:"inset-2"
+    // });
 
     $('.tooltip').tooltipster({
     	contentAsHTML: true,
