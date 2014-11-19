@@ -22,25 +22,25 @@ $.fn.initChatBox = function(channel, user){
 
     /* User Information */
     var uid, uname, avatar, detail, acode;
-    
+
     uid         = user.user_id;
     uname       = user.username;
     avatar      = user.links.avatar;
     detail      = user.links.detail;
     acode       = user.access_code;
-    
+
     /* Channel Information */
     var channelid = channel.id;
     var channelname = channel.title;
-      
-    var socket = io.connect('http://localhost:3000');
-    
+
+    var socket = io.connect('http://54.169.67.100:8000');
+
     var tokenValid = false;
     if (user.length > 0 && token.length > 0) {
         tokenValid = true;
     }
-    
-    
+
+
     /* The Chatbox */
     var divChatBox = document.createElement("DIV");
         divChatBox.setAttribute("id","chat-container");
@@ -53,7 +53,7 @@ $.fn.initChatBox = function(channel, user){
         divChatBox.style.fontFamily = "Calibri";
         divChatBox.style.textAlign = "center";
         divChatBox.style.minHeight="100%";
-    
+
     /* Channel Name */
     var divChannel = document.createElement("DIV");
     var divRoomName = document.createTextNode(channelid);
@@ -67,7 +67,7 @@ $.fn.initChatBox = function(channel, user){
         divChannel.style.color = "black";
         divChannel.style.borderRadius = "7px 7px 0px 0px";
         divChannel.appendChild(divRoomName);
-    
+
     /* Chat panel */
     var divChatPanel = document.createElement("DIV");
         divChatPanel.setAttribute("id","chatbox");
@@ -80,7 +80,7 @@ $.fn.initChatBox = function(channel, user){
         divChatPanel.style.fontSize = "14px";
         divChatPanel.style.textAlign = "left";
         divChatPanel.style.color = "black";
-        
+
     /* Chat Textbox and Send Button */
     var divChatInputs = document.createElement("DIV");
         divChatInputs.setAttribute("id","inputsender");
@@ -112,25 +112,25 @@ $.fn.initChatBox = function(channel, user){
         btnSendText.style.borderRadius = "7px 0px 7px 0px";
         btnSendText.style.border = "1px solid black";
         btnSendText.appendChild(btnText);
-        
+
     if (!acode) {
         inpChatText.setAttribute("readonly","readonly");
         btnSendText.setAttribute("disabled", "disabled");
     }
-    
+
     divChatInputs.appendChild(inpChatText);
     divChatInputs.appendChild(btnSendText);
-    
+
     divChatBox.appendChild(divChannel);
     divChatBox.appendChild(divChatPanel);
     divChatBox.appendChild(divChatInputs);
-    
+
     this.append(divChatBox);
-    
+
     var sendViaButton   = document.getElementById('datasend');
     var msgContainer    = document.getElementById('data');
     var docBody         = document.body;
-    
+
     sendViaButton.addEventListener("click",function(){
         if (msgContainer.value.length > 0) {
             socket.emit('sendchat', msgContainer.value);
@@ -143,8 +143,8 @@ $.fn.initChatBox = function(channel, user){
             var elem = document.getElementById('chatbox');
             elem.scrollTop = elem.scrollHeight;
         }, 3000);
-    }); 
-    
+    });
+
     msgContainer.addEventListener("keypress", function(e){
         if (e.which == 13 && msgContainer.value.length > 0) {
             socket.emit('sendchat', msgContainer.value);
@@ -153,7 +153,7 @@ $.fn.initChatBox = function(channel, user){
         } else {
             msgContainer.focus();
         }
-        
+
         window.setInterval(function() {
             var elem = document.getElementById('chatbox');
             elem.scrollTop = elem.scrollHeight;
@@ -163,7 +163,7 @@ $.fn.initChatBox = function(channel, user){
     socket.on('connect', function(){
         socket.emit('validateuser',{userid   : uid, accesscd : acode});
     });
-    
+
     socket.on('uservalidated', function(data){
         if (data.validated == 'true') {
             socket.emit('adduser',{userid   : uid,
@@ -173,13 +173,13 @@ $.fn.initChatBox = function(channel, user){
                                    accesscd : acode,
                                    chid     : channelid,
                                    chname   : channelname
-                                   });              
+                                   });
         } else {
             $('#data').attr('readonly','readonly');
             $('#datasend').attr('disabled','disabled');
         }
     });
-    
+
     socket.on('updatechat', function(username, data){
         alert(data);
         var msgContainer = document.getElementById('data');
