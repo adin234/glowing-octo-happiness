@@ -73,39 +73,22 @@ $(function() {
         utilLoader.hide();
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
-<<<<<<< HEAD
-		
+
 		/*  This where you put your JSON result to be able to access the chat plugin  */
 		var userinfo = '';
 		var channelinfo = {"id":twitch, "title" : twitch};
-		
+
 		//alert(channelinfo.id);
-	
+
 		if(utilCookie.get('user').length > 0){
 			userinfo = $.parseJSON(utilCookie.get('user'));
-			$('#twitchTalk').initChatBox(channelinfo, userinfo);		
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
 		} else {
 			$('#twitchTalk').initChatBox(channelinfo, userinfo);
 		}
-		
-		$('#twitchTalk').css('background-color','black');
-	}	
-=======
-        
-        /*  This where you put your JSON result to be able to access the chat plugin  */
-	var userinfo = '';
-	var channelinfo = {"id":twitch, "title" : twitch};
 
-	if(utilCookie.get('user').length > 0){
-		userinfo = $.parseJSON(utilCookie.get('user'));
-		$('#twitchTalk').initChatBox(channelinfo, userinfo);		
-	} else {
-		$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		$('#twitchTalk').css('background-color','black');
 	}
-	
-	$('#twitchTalk').css('background-color','black');
-    }
->>>>>>> f37db8db92ddbdf855ba6336a168c77e2ecd39dc
 
     var result = XBBCODE.process({
         text: page_data.about,
@@ -124,7 +107,7 @@ $(function() {
     })).promise().done(function(e){
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
-        
+
             $(this).parent().parent().hide();
         }
     });
