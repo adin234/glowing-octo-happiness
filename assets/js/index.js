@@ -127,9 +127,6 @@ var index_show_streamers = function(streamersList) {
 	        }
 
 	        html.push(template($('#streamersTpl').html(), item));
-	        html.push(template($('#streamersTpl').html(), item));
-	        html.push(template($('#streamersTpl').html(), item));
-
 		});
 
 		if(!html.length) { html.push('目前沒有直播'); };

@@ -33,7 +33,7 @@ $.fn.initChatBox = function(channel, user){
     var channelid = channel.id;
     var channelname = channel.title;
 
-    var socket = io.connect('http://54.169.67.100:8000');
+    var socket = io.connect('http://54.169.67.100:3000');
 
     var tokenValid = false;
     if (user.length > 0 && token.length > 0) {

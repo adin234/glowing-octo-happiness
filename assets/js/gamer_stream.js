@@ -65,7 +65,7 @@ $(function() {
             e.streamers.forEach(function(item) {
                 console.log(item.youtube.id, streamId)
                 if(item.youtube.id == streamId) {
-                    $('.streamer #about-streamer').html(item.youtube.snippet.description);
+                    $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                 }
             })
         });
