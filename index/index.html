@@ -29,7 +29,6 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js?ver=10"></script>
 <script type="text/javascript" src="/assets/js/config.js?ver=10"></script>
-<script type="text/javascript" src="/assets/js/index.js?ver=10"></script>
 <script src="/assets/js/sidr/jquery.sidr.min.js?ver=10"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=10" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css?ver=10">
@@ -66,7 +65,7 @@
     <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
-<div class="nav-wrapper">
+      <div class="nav-wrapper">
 
         <nav class="species">
           <div class="mobile_menu">
@@ -136,8 +135,10 @@
       </header>
     </div>
     <div id="container" class="main">
-      <ul class="bxslider" id="imageSlider">
-      </ul>
+      <div id="indexSliderContainer">
+        <ul class="bxslider mainSlider" id="imageSlider">
+        </ul>
+      </div>
       <div id="content" class="clearFix">
         <div class="clearFix">
           <div class="video tabs">
@@ -153,22 +154,19 @@
               </li>
             </ul>
             <div id="tab-1-1">
-              <ul class="list clearFix" id="mostViewed">
+              <div id="mostViewed">
 
-              </ul>
-              <button href="javascript:void()" class="load-more" data-selector='#mostViewed li.pointer'>Load More</button>
+              </div>
             </div>
             <div id="tab-1-2">
-              <ul class="list clearFix" id="featuredVideos">
+              <div id="featuredVideos">
 
-              </ul>
-              <button href="javascript:void()" class="load-more" data-selector='#featuredVideos li.pointer'>Load More</button>
+              </div>
             </div>
             <div id="tab-1-3">
-              <ul class="list clearFix" id="latestVideos">
+              <div id="latestVideos">
 
-              </ul>
-              <button href="javascript:void()" class="load-more" data-selector='#latestVideos li.pointer'>Load More</button>
+              </div>
             </div>
           </div>
           <div class="stream"></div>
@@ -176,18 +174,17 @@
             <div class="viewer">
               <h2>精選實況咖</h2>
               <div class="scroll">
-                <ul id="featuredUsers">
+                <div id="featuredUsers">
 
-                </ul>
-                <button href="javascript:void()" class="load-more" data-selector='#featuredUsers > li'>Load More</button>
+                </div>
               </div>
             </div>
             <div class="streaming">
               <h2>正在直播</h2>
               <div class="scroll">
-                <ul id="streamers">
+                <div id="streamers">
 
-                </ul>
+                </div>
                 <button href="javascript:void()" class="load-more" data-selector='#streamers > li'>Load More</button>
               </div>
             </div>
@@ -206,16 +203,14 @@
             </li>
           </ul>
           <div id="tab-2-1">
-            <ul class="game clearFix" id="featuredGames">
+            <div  id="featuredGames">
 
-            </ul>
-            <button href="javascript:void()" class="load-more" data-selector='#featuredGames li'>Load More</button>
+            </div>
           </div>
           <div id="tab-2-2">
-            <ul class="game clearFix" id="latestGames">
+            <div id="latestGames">
 
-            </ul>
-            <button href="javascript:void()" class="load-more" data-selector='#latestGames li'>Load More</button>
+            </div>
           </div>
         </div>
         <div class="tabs">
@@ -287,7 +282,7 @@
 <li><a href="/game/?game={{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 </script>
 <script type="text/html" id="featuredUsersTpl">
-  <li>
+  <li class={{COUNT}}>
     <div class="list">
       <a href="/youtuber/?user={{USER_ID}}" class="link-white">
       <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg?{{BUST}}" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
@@ -298,7 +293,7 @@
   </li>
 </script>
 <script type="text/html" id="featureTpl">
-  <li>
+  <li class="{{COUNT}}">
     <div class="list">
       <a href="{{LINK}}" class="link-white">
       <img src="{{IMAGE}}" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
@@ -356,6 +351,7 @@
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=10"></script>
 <script src="/assets/js/jquery.tabslet.min.js?ver=10"></script>
 <script src="/assets/js/jquery.tooltipster.min.js?ver=10"></script>
+<script type="text/javascript" src="/assets/js/index.js?ver=10"></script>
 <script type="text/javascript">;
   $(document).ready(function(){
     $(".sf-menu").superfish();
