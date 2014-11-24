@@ -3655,15 +3655,15 @@ div[id^=tab-chat-] iframe {
   cursor: pointer;
 }
 
-.game_page .listSwitch.no-playlist li:first-child {
+.listSwitch.no-playlist li:first-child {
   display: none;
 }
 
-.game_page .listSwitch.no-playlist li:last-child {
+.listSwitch.no-playlist li:last-child {
   border: 3px;
 }
 
-.game_page .listSwitch.no-playlist li {
+.listSwitch.no-playlist li {
   width:100%;
 }
 

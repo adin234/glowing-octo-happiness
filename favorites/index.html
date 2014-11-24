@@ -18,9 +18,9 @@
 <link href="/assets/css/media.css?ver=11" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css?ver=11" />
 <link href="/assets/css/jquery.mCustomScrollbar.css?ver=11" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=11" />
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=11" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css?ver=11">
-<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=11" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -30,31 +30,33 @@
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
 <script type="text/javascript" src="/assets/js/config.js?ver=11"></script>
-<script type="text/javascript" src="/assets/js/get.shows.data.js?ver=11"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js?ver=11"></script>
+<script type="text/javascript" src="/assets/js/get.favorites.data.js?ver=11"></script>
 
 <style type="text/css">
   @media (max-width: 1023px) {
     #outContainer #container {
       background: #000 !important;
     }
+    #container {
+      margin: 0 !important;
+      width: 100%;
+    }
     #content [id^="tab-"] {
       background: #ddd;
-    }
-    .lang_zh_tw .videoHeading h3 {
-      font-size: 19px;
     }
   }
 </style>
 
-
 </head>
-<body class="lang_zh_tw switch-menu stream-gritter">
+<body class="lang_zh_tw switch-menu stream-gritter favorites">
 <div id="wrapper">
     <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
 <div class="nav-wrapper">
 
+        <!--MOBILE NAVIGATOR start-->
         <nav class="species">
           <div class="mobile_menu">
             <a id="responsive-menu-button" href="#sidr-main"><i class='fa fa-bars fa-2x'></i></a>
@@ -63,6 +65,7 @@
           </div>
         </nav>
 
+        <!--MOBILE NAVIGATOR end-->
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
@@ -72,7 +75,7 @@
             <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
-
+            <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
           </ul>
@@ -80,21 +83,19 @@
 
 </div>
 <nav class="site sf-menu">
-
           <!--MOBILE NAVIGATOR start-->
-        <ul class="clearFix" id="mobilenav">
+          <ul class="clearFix" id="mobilenav">
             <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
-
+            <li><a href="javascript:void(0)" onClick="filter_category('psvita', this); return false;" title="PS Vita">PS Vita</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
             <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-        </ul>
+          </ul>
           <!--MOBILE NAVIGATOR end-->
-
           <ul class="clearFix">
             <li class="nav-switch-item"><a href="/index" title="首頁">首頁</a></li>
             <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇">論壇</a>
@@ -102,11 +103,11 @@
                 <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
                 <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
               </ul>
-            </li class="nav-switch-item">
-            <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
-            <li class="current nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
+            </li>
+            <li class="nav-switch-item current"><a href="/news" title="新聞">新聞</a></li>
+            <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
             <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="nav-switch-item"><a href="/youtubers" alt="實況主" title="實況主">YouTubers</a></li>
+            <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <li class="nav-switch-item"><a href='/lanparty' title="Lan Party">Lan Party</a></li>
             <li>
@@ -125,7 +126,7 @@
     <div id="container">
       <div id="content" class="clearFix">
         <div class="heading">
-          <h2>建議影片</h2>
+          <h2>新聞</h2>
           <ul class="channel" id="categories">
 
           </ul>
@@ -135,7 +136,7 @@
           </ul>
           <div class="clearFix">
             <div class="playArea">
-              <iframe id="ytplayer" type="text/html" width="100%" height="100%" src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
+              <iframe id="ytplayer" type="text/html" width="100%" height="100%" src="https://www.youtube.com/" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="videoList">
               <ul class="listSwitch clearFix">
@@ -168,16 +169,16 @@
               <li>
                 <h2><a href="#tab-2">評論</a></h2>
               </li>
-             <!--  <li>
+              <!--<li>
                 <h2><a href="#tab-3">討論</a></h2>
-              </li> -->
+              </li>-->
             </ul>
             <div id="tab-1"></div>
             <div id="tab-2"></div>
             <div id="tab-3">
               <form method="post">
                 <a href="javascript:;">所有留言 (30)</a>
-                <div class="yourDiscussion"> <img src="/assets/images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+                <div class="yourDiscussion"> <img src="" width="65" height="65" alt="{使用者帳號}">
                   <div>
                     <div class="angle"></div>
                     <textarea placeholder="分享您的想法"></textarea>
@@ -191,14 +192,14 @@
                   </ul>
                 </div>
                 <div class="discussions">
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                     <a href="javascript:;" class="allReplies">查看所有 17 則回覆</a>
-                    <article class="clearFix"> <img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                    <article class="clearFix"> <img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                       <date datetime="2014-08-29">2 天前</date>
                       </span>
                       <div class="replyContent">
@@ -206,56 +207,56 @@
                         <a href="javascript:;" title="閱讀完整內容" class="more">閱讀完整內容……</a> <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                     </article>
                   </article>
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                   </article>
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                   </article>
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                   </article>
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                   </article>
-                  <article class="clearFix"><img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                  <article class="clearFix"><img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                     <date datetime="2014-08-29">2 天前</date>
                     </span>
                     <div class="replyContent">
                       <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                       <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                     <a href="javascript:;" class="allReplies">查看所有 17 則回覆</a>
-                    <article class="clearFix"> <img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                    <article class="clearFix"> <img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                       <date datetime="2014-08-29">2 天前</date>
                       </span>
                       <div class="replyContent">
                         <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                         <a href="javascript:;" title="閱讀完整內容" class="more">閱讀完整內容……</a> <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                     </article>
-                    <article class="clearFix"> <img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                    <article class="clearFix"> <img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                       <date datetime="2014-08-29">2 天前</date>
                       </span>
                       <div class="replyContent">
                         <p>(Produced In Partnership With Activison).... Thats all I needed to know... I just saved 15 minutes of my life... BORING!</p>
                         <a href="javascript:;" title="回覆" class="replyBtn">回覆</a></div>
                     </article>
-                    <article class="clearFix"> <img src="/assets/images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
+                    <article class="clearFix"> <img src="images/uploader.jpg" width="56" height="56" alt="{使用者帳號}"><cite>Gimmy</cite><span>．
                       <date datetime="2014-08-29">2 天前</date>
                       </span>
                       <div class="replyContent">
@@ -270,105 +271,105 @@
           <aside class="recommend">
             <h2>建議影片</h2>
             <ul>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a> </li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>by <cite>Rooster Teeth</cite></li>
                   <li>2,538,396 Views</li>
                 </ul>
                 </a></li>
-              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="/assets/images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
+              <li class="list clearFix"><a href="javascript:;" title="{影片名稱}"> <img src="images/recommend.jpg" width="109" height="67" alt="{影片名稱}">
                 <h3>Let's Play Minecraft Episode 21-</h3>
                 <ul>
                   <li>By <cite>Rooster Teeth</cite></li>
@@ -405,9 +406,6 @@
     </div>
   </div>
 </div>
-<script type="text/html" id="categoriesTpl">
-  <li><a href="#" onclick="filter('{{ID}}');" title="{{NAME}}">{{NAME}}</a></li>
-</script>
 <script type="text/html" id="playlistTpl">
   <li class="playlistItem" id="{{ID}}">
     <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
@@ -416,6 +414,19 @@
       <p>{{DESC}}</p>
     </a>
   </li>
+</script>
+<script type="text/html" id="categoriesTpl">
+  <li><a href="#" onclick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+</script>
+<script type="text/html" id="recommendedTpl">
+   <li class="list clearFix">
+    <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
+    <h3>{{TITLE}}</h3>
+    <ul>
+      <li><cite>{{USERNAME}}</cite> 上傳</li>
+      <li>{{VIEWS}} Views</li>
+    </ul>
+    </a></li>
 </script>
 <script type="text/html" id="videosTpl">
   <li class="ytVideo videoItem" id="{{ID}}">
@@ -466,21 +477,20 @@
     <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
     <h3>{{TITLE}}</h3>
     <ul>
-      <li><cite>{{USERNAME}}</cite> 上傳</li>
+      <li>by <cite>{{USERNAME}}</cite></li>
       <li>{{VIEWS}} Views</li>
     </ul>
     </a></li>
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js?ver=11"></script>
 <script src="/assets/js/hoverIntent.js?ver=11"></script>
 <script src="/assets/js/superfish.js?ver=11"></script>
 <script src="/assets/js/function.js?ver=11"></script>
 <script src="/assets/js/jquery.autocomplete.min.js?ver=11"></script>
+<script src="/assets/js/jquery.fixed.menu.js?ver=11"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=11"></script>
 <script src="/assets/js/jquery.tabslet.min.js?ver=11"></script>
 <script src="/assets/js/jquery.tooltipster.min.js?ver=11"></script>
 <script src="/assets/js/autolinker.js?ver=11"></script>
-<script src="/assets/js/jquery.fixed.menu.js?ver=11"></script>
 <script src="/assets/js/jquery.gritter.min.js?ver=11"></script>
 <script src="/assets/js/util.js?ver=11"></script>
 <script src="/assets/js/media.js?ver=11"></script>

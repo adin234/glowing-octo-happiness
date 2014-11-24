@@ -1,4 +1,7 @@
-page_data = $.parseJSON(page_data);
+if(typeof page_data === 'string') {
+  page_data = $.parseJSON(page_data);
+}
+
 data_cache = { playlist:{}, video:{} };
 utilLoader.show();
 var html = [];
@@ -109,7 +112,7 @@ var update_playlists = function (playlists) {
   });
   if(!html.length) {
     html.push('No Playlist Available');
-    $('.game_page .listSwitch').addClass('no-playlist');
+    $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
     var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
     window.location.hash = link;
@@ -368,8 +371,7 @@ var updatePrevNext = function() {
 
   };
 
-
-$(document).ready(function(){
+$(document).on('load-page',function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
     animation: true,
@@ -401,7 +403,9 @@ $(document).ready(function(){
     $('.profile .info h1').html(name);
   }
 
-  if(page_data.config && page_data.config.channel) {
+  if(page_data.config
+    && page_data.config.channel
+    && typeof page_data.config.channel === 'string') {
     getPhoto(page_data.config.channel, $('.videoHeading > img'));
   }
   page_data.categories.forEach(function(item, i){
@@ -480,3 +484,8 @@ $(document).ready(function(){
   $(window).trigger('hashchange');
 });
 
+$(document).ready(function() {
+  if(!$('body').hasClass('favorites')) {
+    $(document).trigger('load-page');
+  }
+});
