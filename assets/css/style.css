@@ -1344,13 +1344,13 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   padding-top: 3px;
   background: url("/assets/images/divider_v.png") repeat-y left top;
 }
-.main .bx-wrapper {
+.main #indexSliderContainer .bx-wrapper {
   margin: 0 auto 40px;
   position: relative;
   padding: 0;
   width: 1108px;
 }
-.main .bx-wrapper img {
+.main #indexSliderContainer .bx-wrapper img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1358,17 +1358,21 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 #imageSlider li {
   height: 547px;
 }
-.main .bx-wrapper:hover .bx-prev, .main .bx-wrapper:focus .bx-prev, .main .bx-wrapper:active .bx-prev {
+.main #indexSliderContainer .bx-wrapper:hover .bx-prev,
+.main #indexSliderContainer .bx-wrapper:focus .bx-prev,
+.main #indexSliderContainer .bx-wrapper:active .bx-prev {
   left: -39px;
   -webkit-transition: left 0.25s ease;
   transition: left 0.25s ease;
 }
-.main .bx-wrapper:hover .bx-next, .main .bx-wrapper:focus .bx-next, .main .bx-wrapper:active .bx-next {
+.main #indexSliderContainer .bx-wrapper:hover .bx-next,
+.main #indexSliderContainer .bx-wrapper:focus .bx-next,
+.main #indexSliderContainer .bx-wrapper:active .bx-next {
   right: -39px;
   -webkit-transition: right 0.25s ease;
   transition: right 0.25s ease;
 }
-.main .bx-viewport {
+.main #indexSliderContainer .bx-viewport {
   border: 1px solid black;
   /*@extend %IEPie */
   -moz-border-radius: 5px;
@@ -1377,7 +1381,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   box-shadow: 0 0 10px black inset;
   box-sizing: border-box;
 }
-.main .bxslider .play {
+.main #indexSliderContainer .bxslider .play {
   background: url("/assets/images/icon.png") no-repeat 0 -208px;
   margin-top: -28px;
   position: absolute;
@@ -1388,10 +1392,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   opacity: 0.75;
   z-index: 10;
 }
-.main .bxslider .play:hover, .main .bxslider .play:focus, .main .bxslider .play:active {
+.main #indexSliderContainer .bxslider .play:hover,
+.main #indexSliderContainer .bxslider .play:focus,
+.main #indexSliderContainer .bxslider .play:active {
   opacity: 1;
 }
-.main .bx-caption {
+.main #indexSliderContainer .bx-caption {
   background-color: rgba(0, 0, 0, 0.7);
   bottom: 0;
   box-sizing: border-box;
@@ -1402,7 +1408,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: absolute;
   width: 100%;
 }
-.main .bx-controls-direction {
+.main #indexSliderContainer .bx-controls-direction {
   height: 67px;
   overflow: hidden;
   position: absolute;
@@ -1410,7 +1416,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 100%;
   z-index: 100;
 }
-.main .bx-controls-direction a {
+.main #indexSliderContainer .bx-controls-direction a {
   /*@extend %IEPie */
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -1419,18 +1425,18 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: absolute;
   width: 67px;
 }
-.main .bx-pager {
+.main #indexSliderContainer .bx-pager {
   position: absolute;
   left: 50%;
   bottom: 102px;
 }
-.main .bx-pager-item {
+.main #indexSliderContainer .bx-pager-item {
   float: left;
 }
-.main .bx-pager-item + .bx-pager-item {
+.main #indexSliderContainer .bx-pager-item + .bx-pager-item {
   margin-left: 4px;
 }
-.main .bx-pager-link {
+.main #indexSliderContainer .bx-pager-link {
   background-color: white;
   /*@extend %IEPie */
   -moz-border-radius: 50%;
@@ -1440,31 +1446,33 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   height: 6px;
   width: 6px;
 }
-.main .bx-pager-link.active {
+.main #indexSliderContainer .bx-pager-link.active {
   height: 8px;
   width: 8px;
   margin-top: -1px;
 }
-.main .bx-prev {
+.main #indexSliderContainer .bx-prev {
   background: #790000 url("/assets/images/sprite.png") no-repeat 46px -1671px;
   left: -67px;
 }
-.main .bx-prev:hover, .main .bx-prev:focus, .main .bx-prev:active {
+.main #indexSliderContainer .bx-prev:hover, .main .bx-prev:focus, .main .bx-prev:active {
   background-position: 46px -1770px;
 }
-.main .bx-next {
+.main #indexSliderContainer .bx-next {
   background: #790000 url("/assets/images/sprite.png") no-repeat 10px -1720px;
   right: -67px;
 }
-.main .bx-next:hover, .main .bx-next:focus, .main .bx-next:active {
+.main #indexSliderContainer.bx-next:hover,
+.main #indexSliderContainer .bx-next:focus,
+.main #indexSliderContainer .bx-next:active {
   background-position: 10px -1820px;
 }
 .main .video {
   margin-top: 0;
 }
 .main .video [id^="tab-"] {
-  height: 640px;
-  overflow: hidden;
+  /*height: 640px;*/
+  /*overflow: hidden;*/
   padding: 0 2px 0 5px;
 }
 .main .video .list > li {
@@ -1474,7 +1482,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   margin-left: 6px;
 }
 .main .games [id^="tab-"] {
-  height: 204px;
+  min-height: 204px;
   width: 1069px;
 }
 .main .viewer ul, .main .streaming ul {
@@ -1543,6 +1551,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .main aside {
   min-height: 640px;
+  margin-left: 750px;
 }
 .main .viewer {
   padding-left: 15px;
@@ -1550,10 +1559,12 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .viewer div.scroll, .main .streaming div.scroll {
   margin-top: 30px;
   height: 300px;
+  overflow: hidden;
 }
 
 .main .streaming div.scroll {
   height: 215px;
+  overflow: hidden;
 }
 
 .main .viewer ul li {
@@ -2137,6 +2148,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   color: #1c1c1c;
   line-height: 1.15;
   margin-bottom: 5px;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.videoRelated .recommend li.list ul {
+  margin-left: 119px
 }
 .videoRelated .recommend li {
   color: #7a7a7a;
@@ -2250,9 +2269,19 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 1056px !important;
 }
 
+#index-page .video .list {
+  width: 735px !important;
+}
+
+
+#index-page .games .game {
+  width: 1069px !important;
+}
+
 .silderList .video [id^="tab-"] {
   position: relative;
 }
+
 .silderList .video [id^="tab-"]:before, .silderList .video [id^="tab-"]:after {
   background: url("/assets/images/divider_v.png") repeat-y 0 0;
   content: "\00A0";
@@ -2278,6 +2307,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .video [id^="tab-"] {
   height: 850px;
 }
+
+#index-page .video [id^="tab-"] {
+  height: 100%;
+}
+
 .video .bx-viewport {
   height: 874px !important;
 }
@@ -2872,7 +2906,7 @@ div.streamer {
 }
 
 #about-streamer a {
-  color: #A30000;
+  color: #A30000!important;
 }
 
 .streamer > h2, .streamer .streamer-name {
@@ -4001,4 +4035,39 @@ color: #fff;
 li.login {
   text-align: center !important;
   visibility: hidden;
+}
+/*load more*/
+
+/*#index-page .video [id^='tab-'] ul.list li.pointer,
+#index-page #featuredGames li,
+#index-page #latestGames li,
+#streamers > li {
+  display: none;
+}
+
+button.load-more {
+  background: #ececec;
+  border: 0;
+  color: #444;
+  font-size: 15px;
+  margin: auto;
+  width: 100%;
+  cursor: pointer;
+}
+
+button.load-more:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,.4);
+}*/
+
+#index-page ul.list {
+  overflow: hidden;
+}
+
+#index-page .bx-viewport {
+  height: 100% !important;
+}
+
+#index-page .games.tabs .bx-viewport {
+  width: 1041px !important;
+  height: 214px !important;
 }
