@@ -413,13 +413,19 @@ $(function() {
     })
     .done(function(session) {
         if(typeof session.username !== 'undefined') {
+            var links = '<ul class="user-links">'+
+                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">Personal Details</a></li>'+
+                '<li><a href="/favorites" title="">Favorites</a></li>'+
+                '</ul>';
             var link = $('<a>',{
                 text: session.username,
                 title: session.username,
                 href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
-            }).appendTo('body');
+            });
+
             utilCookie.set('user', JSON.stringify(session), 1/24);
-            $('li.login').html(link);
+            $('li.login').html(link).append(links);
+            // $('li.login').html(link);
         }
     });
     setTimeout(function() {

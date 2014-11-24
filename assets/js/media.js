@@ -130,8 +130,12 @@ var update_playlists = function (playlists) {
     html.push('No Playlist Available');
     $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
-    var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-    window.location.hash = link;
+    if($('#videos li.videoItem > a').length) {
+        var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
+        window.location.hash = link;
+    } else {
+      utilLoader.hide();
+    }
   } else {
     $('.game_page .listSwitch').removeClass('no-playlist');
   }

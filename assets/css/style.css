@@ -37,7 +37,7 @@ mark {
 #outContainer header .species li:nth-child(6) a,
 #outContainer header .species li:nth-child(7) a,
 #outContainer header .species li:nth-child(8) a,*/
-#outContainer header .member li:nth-child(1) a,
+#outContainer header .member > li:nth-child(1) a,
 footer > ul li a,
 .video .list > li li + li em, .member .edit,
 .main .bxslider .play,
@@ -208,7 +208,7 @@ input[type="text"]:focus, textarea:focus, select:focus {
 }
 
 ::selection {
-  background-color: #c10000;
+  background-color: transparent;
   color: white;
 }
 
@@ -507,7 +507,7 @@ a:hover, a:focus, a:active {
 #outContainer header nav a:hover, #outContainer header nav a:focus, #outContainer header nav a:active {
   text-decoration: none;
 }
-#outContainer header .species li, #outContainer header .member li {
+#outContainer header .species li, #outContainer header .member > li {
   height: 42px;
 }
 #outContainer header .species {
@@ -859,23 +859,23 @@ padding-left: 297px !important;
   right: 32px;
   top: 0;
 }
-#outContainer header .member li:nth-child(1) {
+#outContainer header .member > li:nth-child(1) {
   background: url("/assets/images/sprite.png") no-repeat 0 -847px;
 }
-#outContainer header .member li:nth-child(1) a {
+#outContainer header .member > li:nth-child(1) a {
   display: block;
   box-sizing: border-box;
   height: 26px;
   margin: 10px 27px 6px;
   width: 92px;
 }
-#outContainer header .member li:nth-child(1) .en {
+#outContainer header .member > li:nth-child(1) .en {
   background: url("/assets/images/sprite.png") no-repeat 16px -914px;
 }
-#outContainer header .member li:nth-child(1) .zh_tw {
+#outContainer header .member > li:nth-child(1) .zh_tw {
   background: url("/assets/images/sprite.png") no-repeat 16px -958px;
 }
-#outContainer header .member li:nth-child(2) {
+#outContainer header .member > li:nth-child(2) {
   border-left: 1px solid #cd614f;
   box-sizing: border-box;
   width: 125px;
@@ -893,8 +893,9 @@ padding-left: 297px !important;
   line-height: 42px;
   text-decoration: none;
 }
-#outContainer header .member .login a:nth-child(1) {
+#outContainer header .member > .login a:nth-child(1) {
   padding-right: 6px;
+  display: inline-block;
 }
 #outContainer header .member .login a:nth-child(2) {
   padding-left: 6px;
@@ -4073,6 +4074,10 @@ button.load-more:hover {
   height: 214px !important;
 }
 
+#index-page .video .bx-next {
+  right: -12px !important;
+}
+
 button#like.like {
   background: url('/assets/images/heart.svg') no-repeat;
   height: 20px;
@@ -4087,3 +4092,40 @@ button#like.like.active {
   background: url('/assets/images/heart-active.svg') no-repeat;
   background-size: contain;
 }
+
+.user-links {
+  margin-top: -10px;
+  margin-left: -20px;
+  width: 140px;
+  text-align: left;
+  background: #cecece;
+  height: 100%;
+  display: none;
+  border-top: 2px solid #f00;
+}
+
+li:hover .user-links {
+  display: block;
+}
+
+#outContainer header .member > .login .user-links a:nth-child(1) {
+  display: block;
+}
+
+.user-links li {
+  height: 1.2em !important;
+}
+
+.user-links li a {
+  line-height: 1.2em !important;
+  padding: 3px 5px;
+  background: #cecece;
+  color: #333 !important;
+  display: block;
+  margin: 0;
+}
+
+.user-links li a:hover {
+  background: #cecece;
+  color: #f00 !important;
+};
