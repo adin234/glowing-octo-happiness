@@ -2,6 +2,20 @@ if(typeof page_data === 'string') {
   page_data = $.parseJSON(page_data);
 }
 
+// get favorites
+if(typeof utilUser !== 'undefined') {
+  $.ajax({
+      dataType:'jsonp',
+      url: server+'favorite-ids',
+      crossDomain: true,
+      type: 'get'
+  })
+  .always(function(result) {
+    page_data.favorites = result;
+    $(window).trigger('hashchange');
+  });
+}
+
 data_cache = { playlist:{}, video:{} };
 utilLoader.show();
 var html = [];
@@ -139,10 +153,40 @@ var filterAction = function(action) {
   }
 };
 
+$('body').on('click', 'button#like', function(item, x) {
+  var $elem = $('button#like');
+  var isActive = $elem.hasClass('active');
+  var videoId = $elem.attr('data-id');
+  var url = server+'fav/'+videoId;
+  if(isActive) {
+    url = server+'unfav/'+videoId;
+    page_data.favorites = page_data.favorites.filter(function(item) {
+      return item != videoId;
+    });
+  } else {
+    page_data.favorites.push(videoId);
+  }
+
+$.ajax({
+      dataType:'jsonp',
+      url: url,
+      crossDomain: true,
+      type: 'get'
+  })
+  .always(function(result) {
+    $elem.toggleClass('active');
+  });
+});
+
 var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
-    $('.videoHeading h3').html(video.snippet.title);
+    var likeButton = '';
+    if(typeof page_data.favorites !== 'undefined') {
+      var active = ~page_data.favorites.indexOf(videoId) ? 'active' : '';
+      likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'"></button>';
+    }
+    $('.videoHeading h3').html(video.snippet.title+likeButton);
     $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
     $('.videoItem').removeClass('current');
     $('#video-'+videoId).addClass('current');

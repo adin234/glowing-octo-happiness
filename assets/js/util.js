@@ -421,7 +421,7 @@ $(function() {
             utilCookie.set('user', JSON.stringify(session), 1/24);
             $('li.login').html(link);
         }
-    })
+    });
     setTimeout(function() {
          $('li.login').css('visibility', 'visible');
      }, 100);
