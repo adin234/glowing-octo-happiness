@@ -3,7 +3,9 @@ if(typeof page_data === 'string') {
 }
 
 // get favorites
-if(typeof utilUser !== 'undefined') {
+if(typeof utilUser !== 'undefined'
+  && !$('body').hasClass('news')
+  && !$('body').hasClass('shows')) {
   $.ajax({
       dataType:'jsonp',
       url: server+'favorite-ids',
