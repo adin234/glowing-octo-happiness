@@ -186,7 +186,7 @@ var showVideo = function(videoId) {
     var likeButton = '';
     if(typeof page_data.favorites !== 'undefined') {
       var active = ~page_data.favorites.indexOf(videoId) ? 'active' : '';
-      likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'"></button>';
+      likeButton = '<button id="like" class="like title="Favorite the video" '+active+'" alt="like" data-id="'+videoId+'"></button>';
     }
     $('.videoHeading h3').html(video.snippet.title+likeButton);
     $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
