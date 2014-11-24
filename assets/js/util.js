@@ -404,6 +404,7 @@ var notify_stream = function(data) {
 
 // session
 $(function() {
+    if($('body').hasClass('streams')) return;
     $.ajax({
         dataType:'jsonp',
         url:server+'logged_user',

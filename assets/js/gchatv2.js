@@ -38,7 +38,7 @@ $.fn.initChatBox = function(chl, usr)
     chatUI      = $('#chatui').html().replace(/{cid}/ig,chid);
     msgNotify   = $('#gchatnotify').html().replace(/{cid}/ig,chid);
     msgChat     = $('#chatms').html().replace(/{cid}/ig,chid);
-    
+
     if (usr.user_id && usr.access_code) {
         uid         = usr.user_id;
         uname       = usr.username;
@@ -115,7 +115,7 @@ $.fn.initChatBox = function(chl, usr)
         } else {
             $('#chatinputs-'+ sd.cid).css('display','block');
             $('#notifylogin-'+sd.cid).remove();
-        }               
+        }
     });
 
     socket.on('update-ui', function(sd){
