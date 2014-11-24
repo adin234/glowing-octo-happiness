@@ -183,16 +183,16 @@
 
 <script type="text/html" id="chatui">
   <div id="chid-{cid}" class="chid">{cid}</div>
-  <div id="chcontainer-{cid}" class="chcontainer">
+  <div id="chcontainer-{cid}" class="chcontainer_single">
       <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
       </table>
   </div>
-  <div id="chatinputs-{cid}" class="chatinputs">
+  <div id="chatinputs-{cid}" class="chatinputs_single">
       <input type="text" id="msgs-{cid}" class="msgs">
       <button id="btn-{cid}" class="btnSend">SEND</button>
   </div>
-  <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
-    <span class="spandex">Start Chat? Please Login. </span>
+  <div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">
+    <span class="spandex">Start Chat? Please <a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >Login</a>. </span>
   </div>
 </script>
 <script type="text/html" id="gchatnotify">
