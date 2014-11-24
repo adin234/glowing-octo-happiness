@@ -1,25 +1,28 @@
-body{font-family: Calibri; font-size: 14px;}
+body{font-family: Arial; font-size: 12px;}
 
 div.chid{
     height: 25px;
-    border: 2px solid gray;
+    /*border: 1px solid gray;*/
     text-align: center;
     padding-top: 7px;
-    border-radius: 7px 7px 0px 0px;
+    /*border-radius: 7px 7px 0px 0px;*/
     border-bottom: 0px none transparent;
-    background-color: #F8F8F8;
-    font-weight: bolder;
-    color:gray;
+    background-color: #F0F0F0;
+    color:black;
 }
 
 div.chcontainer{
-    height: 91%;
-    border:2px solid gray;
-    overflow-style: scroll;
-    overflow-y: scroll;
+    width: 99%;
+    border:0px none transparent;
+    border-top: 1px solid gray;
+    overflow-y: auto;
     padding-top:7px;
-    background-color: #F8F8F8;
+    padding-left: 1px;
+    background-color: #F0F0F0;
     color:black;
+    position: absolute;
+    top: 66px;
+    bottom: 66px;
 }
 
 #uname{
@@ -31,7 +34,7 @@ div.chcontainer{
 
 div.usericon{
     border: 0px solid gray;
-    border-radius: 7px 7px 7px 7px;
+    /*border-radius: 7px 7px 7px 7px;*/
     height: 48px;
     width: 48px;
     float: left;
@@ -40,11 +43,11 @@ div.usericon{
 }
 div.chat-message{
     border: 1px solid gray;
-    border-radius: 7px 7px 7px 7px;
+    /*border-radius: 7px 7px 7px 7px;*/
     height: auto;
     width: 75%;
     float: left;
-    font-family: Calibri;
+    font-family: Arial;
     font-size: 12px;
     margin-bottom: 3px;
 }
@@ -66,7 +69,7 @@ div.notifier{
     margin-bottom: 3px;
     white-space: normal;
     line-height: normal;
-    font-size: 14px;
+    font-size: 12px;
 }
 label.timestamp{
     text-align: right;
@@ -94,11 +97,18 @@ button{
 td{vertical-align: top; min-width: 350px;}
 
 div.chatinputs{
+    clear: both;
+    bottom:0;
+    position: absolute;
     height: 60px;
-    border: 2px solid gray;
-    border-top: 0px none transparent;
+    width: 99%;
+    border: 0px solid gray;
+    border-top: 1px solid gray;
+    padding-left:2px;
     padding-top: 2px;
-    background-color: #F8F8F8;
+    padding-right: 2px;
+    float:left;
+    background-color: #F0F0F0 ;
 }
 
 #tblchatmsgs{
@@ -109,7 +119,7 @@ div.chatinputs{
 button.btnSend{
     border-radius: 7px 0px 7px 0px;
     border : 1px solid gray;
-    background-color: #F8F8F8;
+    background-color: #F0F0F0;
     text-decoration: none;
     font-family: Calibri;
     font-size: 1.2em;
@@ -124,9 +134,9 @@ input[type=text].msgs{
 }
 img.uavatar{border-radius: 5px 5px 5px 5px; border:1px solid gray;}
 
-p.message{font-size:14px; font-family: Calibri; text-decoration: none;}
+p.message{font-size:12px; font-family: Arial; text-decoration: none;}
 
 span.spandex{ display: inline-block;
               vertical-align: middle;
-              line-height: normal;}
-
+              line-height: normal;
+              background-color: #F0F0F0;}

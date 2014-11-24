@@ -96,7 +96,7 @@ var render_stream_video = function(item) {
         
         var userinfo    = '';
         var channelinfo = {"id" : streamId, "title" : streamId};
-        var parentHt    = $('#main-container').css('height');
+        var parentHt    = $('#side-container').css('height');
 
         if (utilCookie.get('user').length > 0) {
             userinfo    = $.parseJSON(utilCookie.get('user'));
@@ -153,4 +153,5 @@ $(function() {
 
     get_streamers();
 });
+
 

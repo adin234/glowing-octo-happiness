@@ -56,6 +56,14 @@ $.fn.initChatBox = function(chl, usr)
     gchatdiv        = '#'+this.attr('id');
     btnname         = '#btn-'+chid;
     txtname         = '#msgs-'+chid;
+    
+    $(window).resize(function(){
+        $( gchatdiv ).css('height','100% !important');
+    });
+    
+    $(window).on('user_logged_in', function(){
+        location.reload(5);
+    });
 
     $(gchatdiv).on("click", btnname, function(){
         console.log('Sending a message to server');

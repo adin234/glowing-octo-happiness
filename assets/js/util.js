@@ -148,6 +148,7 @@ var utilLogin = {
                 };
                 utilCookie.set('user', JSON.stringify(user), 1/24);
                 $('img.userImg').attr('src', utilUser.get().links.avatar);
+                $(window).trigger('user_logged_in');
                 utilLogin.hide();
             })
             .fail(function(e) {
