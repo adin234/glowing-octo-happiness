@@ -3088,6 +3088,7 @@ small.date {
   background: #8BD658;
   border-radius: 5px;
   color: #ffffff;
+  float: none;
   border: 2px solid rgb(19, 94, 12);
 }
 
