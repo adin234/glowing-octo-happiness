@@ -94,11 +94,20 @@ var render_stream_video = function(item) {
         $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(),{ChannelId: streamId}));
         $('#twitch-chat-tab-container').append(template($('#gchat-tab-tpl').html(),{ChannelId: streamId}));
         
-        var userinfo    = utilCookie.get('user');
+        var userinfo    = '';
         var channelinfo = {"id" : streamId, "title" : streamId};
         var parentHt    = $('#main-container').css('height');
-        $('#gchat-'+streamId).css('height',parentHt);
-        $('#gchat-'+streamId).initChatBox(channelinfo,userinfo);
+
+        if (utilCookie.get('user').length > 0) {
+            userinfo    = $.parseJSON(utilCookie.get('user'));
+            console.log(userinfo);
+            $('#gchat-'+streamId).css('height',parentHt);
+            $('#gchat-'+streamId).initChatBox(channelinfo,userinfo);
+        } else {
+            console.log(userinfo);
+            $('#gchat-'+streamId).css('height',parentHt);
+            $('#gchat-'+streamId).initChatBox(channelinfo,userinfo);
+        }
         
         $(".tabs").tabslet({
             animation: false,

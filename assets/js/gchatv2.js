@@ -18,6 +18,7 @@ $.fn.initChatBox = function(chl, usr)
     dt          = new Date();
 
     socket      = io.connect('http://54.169.67.100:3000');
+    //socket      = io.connect('http://localhost:3000');
 
     /* Checking if templates are properly loaded
         alert(chatUI);
@@ -37,7 +38,7 @@ $.fn.initChatBox = function(chl, usr)
     chatUI      = $('#chatui').html().replace(/{cid}/ig,chid);
     msgNotify   = $('#gchatnotify').html().replace(/{cid}/ig,chid);
     msgChat     = $('#chatms').html().replace(/{cid}/ig,chid);
-
+    
     if (usr.user_id && usr.access_code) {
         uid         = usr.user_id;
         uname       = usr.username;
@@ -57,6 +58,7 @@ $.fn.initChatBox = function(chl, usr)
     txtname         = '#msgs-'+chid;
 
     $(gchatdiv).on("click", btnname, function(){
+        console.log('Sending a message to server');
         txtctrl = '#msgs-'+chid;
         ud = {
             userid        : uid,
@@ -109,12 +111,11 @@ $.fn.initChatBox = function(chl, usr)
     socket.on('allow-chat-input', function(sd){
         if(sd.allow == false){
             $('#chatinputs-'+ sd.cid).css('display','none');
-<<<<<<< HEAD
             $('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
-        } 
-=======
-        }
->>>>>>> origin/master
+        } else {
+            $('#chatinputs-'+ sd.cid).css('display','block');
+            $('#notifylogin-'+sd.cid).remove();
+        }               
     });
 
     socket.on('update-ui', function(sd){
