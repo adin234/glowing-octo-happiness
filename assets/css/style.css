@@ -4134,3 +4134,7 @@ li:hover .user-links {
 .bx-wrapper .bx-wrapper .bx-controls {
   display: none !important;
 }
+
+.game-item {
+  background-color: #000;
+}

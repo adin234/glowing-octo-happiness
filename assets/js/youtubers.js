@@ -80,10 +80,19 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
-        filterGame = id;
+        filterGame = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
+        if(id.trim() === '' || id.trim() === '#!') {
+            filterGame = '';
+            $.getJSON(server+'games/all/videos', function(result) {
+                page_data.videos = result;
+                render_videos();
+            });
+            return;
+        }
+
         $('[data-id='+id+']').parent().addClass('active');
         $('#game-title').html($('[data-id='+id+']').attr('data-name'));
 
@@ -144,6 +153,7 @@ var render_featured_games = function (filter) {
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         item.game = item.name;
+        item.id = item.id.trim();
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
@@ -171,6 +181,7 @@ var render_latest_games = function(filter) {
 
     page_data.games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+        item.id = item.id.trim();
 
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
@@ -322,6 +333,9 @@ var render_popular_members = function(filter) {
 $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
+    $(".games .tabs .tab li a").on('click', function() {
+        window.location.hash = '#!';
+    });
 });
 
 var render_page = function() {

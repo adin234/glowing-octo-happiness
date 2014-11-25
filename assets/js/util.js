@@ -342,10 +342,37 @@ function searchGamesBoxInit() {
     if(!gamesAutocompleteArray.length) return;
 
     optionGames = {
-        lookup : gamesAutocompleteArray
+        lookup : gamesAutocompleteArray,
+        onSelect: function(suggestion) {
+            filter_game(this);
+        }
     }
 
     $('#txtbox-search-games').autocomplete(optionGames);
+}
+
+function youtuberSearch() {
+    options = {
+      serviceUrl: server+'youtubers/search',
+      // minChars: 3,
+      zIndex: 9999,
+      onSelect: function(value) {
+        redirect_to_youtuber(value.data.user_id);
+      }
+    };
+    var searchDom = $('#query');
+    if(searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                if(typeof searchBox.data().suggestions[0] != 'undefined') {
+                    redirect_to_youtuber(searchBox.data().suggestions[0].data.user_id);
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
 }
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
