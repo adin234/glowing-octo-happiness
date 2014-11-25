@@ -1479,8 +1479,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .main .video .list > li {
   margin-bottom: 40px;
 }
-.main .video .list > li:nth-child(even) {
-  margin-left: 6px;
+#index-page .main .video .list > li {
+  margin-left: 9px;
+  margin-right: 9px;
 }
 .main .games [id^="tab-"] {
   min-height: 204px;
@@ -4128,4 +4129,8 @@ li:hover .user-links {
 .user-links li a:hover {
   background: #cecece;
   color: #f00 !important;
-};
+}
+
+.bx-wrapper .bx-wrapper .bx-controls {
+  display: none !important;
+}
