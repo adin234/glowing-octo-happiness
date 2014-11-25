@@ -113,10 +113,15 @@ var update_videos = function (videos, append) {
 
 var update_playlists = function (playlists) {
   html = [];
+  var ids = [];
   playlists.forEach(function(item, i){
+    if(~ids.indexOf(item.id)) {
+      return;
+    }
+    ids.push(item.id);
     // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
     if(!item.snippet.thumbnails) { return; }
-    console.log(item);
+
     tempdata = {
       id: 'playlist-'+item.id,
       link: '#!/playlist/'+item.id,
