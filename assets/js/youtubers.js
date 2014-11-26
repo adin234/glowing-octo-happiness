@@ -333,7 +333,7 @@ var render_popular_members = function(filter) {
 $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
-    $(".games .tabs .tab li a").on('click', function() {
+    $(".games .tab li a").on('click', function() {
         window.location.hash = '#!';
     });
 });
