@@ -19,6 +19,7 @@ function filter_category(gameConsole, context) {
 	});
 
 	$('#videosToggle').trigger('click');
+
 	update_videos(videos);
 }
 

@@ -54,12 +54,14 @@ var update_videos = function (videos, append) {
 
   var start = append ? 0 : $('li.ytVideo.videoItem').length;
 
-  if(!append) {
+  if(!append || typeof append === 'undefined') {
     activeVideos = videos;
+    start = 0;
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
+
     if(!item) { break; }
 
     if(filterTags
@@ -81,6 +83,7 @@ var update_videos = function (videos, append) {
           thumb: item.snippet.thumbnails.default.url,
           desc: item.snippet.description
         };
+
         html.push(template($('#videosTpl').html(), tempdata));
       }
     }
