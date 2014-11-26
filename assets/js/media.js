@@ -2,21 +2,7 @@ if(typeof page_data === 'string') {
   page_data = $.parseJSON(page_data);
 }
 
-// get favorites
-if(typeof utilUser !== 'undefined'
-  && !$('body').hasClass('news')
-  && !$('body').hasClass('shows')) {
-  $.ajax({
-      dataType:'jsonp',
-      url: server+'favorite-ids',
-      crossDomain: true,
-      type: 'get'
-  })
-  .always(function(result) {
-    page_data.favorites = result;
-    $(window).trigger('hashchange');
-  });
-}
+
 
 data_cache = { playlist:{}, video:{} };
 utilLoader.show();
@@ -193,9 +179,14 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     var likeButton = '';
+    var text = '加入至最愛';
+    var active = '';
     if(typeof page_data.favorites !== 'undefined') {
-      var active = ~page_data.favorites.indexOf(videoId) ? 'active' : '';
-      likeButton = '<button id="like" class="like title="Favorite the video" '+active+'" alt="like" data-id="'+videoId+'"></button>';
+      if(~page_data.favorites.indexOf(videoId)) {
+        text = '從最愛移除';
+        active = 'active';
+      }
+      likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';
     }
     $('.videoHeading h3').html(video.snippet.title+likeButton);
     $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
@@ -542,5 +533,20 @@ $(document).on('load-page',function(){
 $(document).ready(function() {
   if(!$('body').hasClass('favorites')) {
     $(document).trigger('load-page');
+  }
+  // get favorites
+  if(typeof utilUser !== 'undefined'
+    && !$('body').hasClass('news')
+    && !$('body').hasClass('shows')) {
+    $.ajax({
+        dataType:'jsonp',
+        url: server+'favorite-ids',
+        crossDomain: true,
+        type: 'get'
+    })
+    .always(function(result) {
+      page_data.favorites = result;
+      $(window).trigger('hashchange');
+    });
   }
 });

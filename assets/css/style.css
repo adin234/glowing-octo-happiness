@@ -3250,7 +3250,7 @@ body:nth-child(3) {
   right: 0;
 }
 
-.single.streams.x3 .videoWrapper {
+/*.single.streams.x3 .videoWrapper {
   height: 100%;
   padding-top: 0;
   padding-bottom: 0;
@@ -3263,7 +3263,7 @@ body:nth-child(3) {
 .single.streams.x3 .videoWrapper iframe,
 .single.streams.x3 .videoWrapper object {
   position: relative;
-}
+}*/
 
 #side-container #streamView {
     height: 100%;
@@ -4086,17 +4086,27 @@ button.load-more:hover {
 }
 
 button#like.like {
-  background: url('/assets/images/heart.svg') no-repeat;
-  height: 20px;
-  width: 20px;
+  background: #ec0000 url('/assets/images/heart.svg') no-repeat;
+  height: 11px;
   background-size: contain;
   border: 0;
   cursor: pointer;
   margin-left: 10px;
+  border: 3px solid #ec0000;
+  padding-left: 23px;
+  color: #fff;
+  font-weight: bold;
+  box-sizing: content-box;
+  vertical-align: middle;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 
 button#like.like.active {
-  background: url('/assets/images/heart-active.svg') no-repeat;
+  background: #ffffff url('/assets/images/heart-active.svg') no-repeat;
+  border: 3px solid #ffffff;
+  color: #ec0000;
   background-size: contain;
 }
 
