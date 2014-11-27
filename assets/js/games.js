@@ -303,6 +303,7 @@ $(function() {
     $(".tabs").tabslet({ animation: true });
     $(".games .tab li a").on('click', function() {
         window.location.hash = '#!';
+        $('.video ul li h2 a').html('遊戲分類');
     });
 });
 

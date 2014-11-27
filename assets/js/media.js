@@ -141,6 +141,7 @@ var filterAction = function(action) {
   switch (action) {
     case 'playlist':
       showPlaylist(hash.shift(), hash.shift());
+      $('#videosToggle a').trigger('click');
       break;
     case 'video':
       showVideo(hash.shift());
