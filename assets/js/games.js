@@ -6,8 +6,8 @@ var currentPage = 1;
 var hash;
 var filterConsole = '';
 var filterGame = '';
-
 var gameNames = [];
+
 page_data.games.forEach(function(item) {
     gamesAutocompleteArray.push({value: item.name, data: item});
     gameNames.push(item.name);
@@ -19,9 +19,9 @@ page_data.games.forEach(function(item) {
 slider.featured_games = $("#container-featured-games").bxSlider();
 slider.latest_games = $("#container-latest-games").bxSlider();
 slider.container_videos = $("#container-videos").bxSlider({
-                                infiniteLoop: false,
-                                hideControlOnEnd: true
-                            });
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
 
 var get_hash = function() {
     var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
@@ -44,6 +44,7 @@ var render_featured_games = function (filter) {
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         item.game = item.name;
+         item.id = item.id.trim();
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
@@ -73,6 +74,7 @@ var render_latest_games = function(filter) {
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         items.push(template($('#gameTpl').html(), item));
+         item.id = item.id.trim();
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
             items = []
@@ -127,7 +129,7 @@ var render_videos = function() {
         item.bust = +new Date();
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
-        item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+        item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -176,7 +178,7 @@ var load_game_videos_next_page = function() {
             item.bust = +new Date();
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+            item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
             items.push(template(tplVideo, item));
 
@@ -228,7 +230,10 @@ var render_game_videos = function(game, page) {
     }
 
     page = typeof page !== 'undefined' ? '&page='+page : '';
-
+    var searchString = $('#txtbox-search-videos').val();
+    if(searchString.trim()) {
+        page += '&search='+searchString;
+    }
     $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
         page_data.videos = result;
         render_videos();
@@ -271,10 +276,20 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
-        filterGame = id;
+        filterGame = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
+
+        if(id.trim() === '' || id.trim() === '#!') {
+            filterGame = '';
+            $.getJSON(server+'games/all/videos', function(result) {
+                page_data.videos = result;
+                render_videos();
+            });
+            return;
+        }
+
         $('[data-id='+id+']').parent().addClass('active');
         $('#game-title').html($('[data-id='+id+']').attr('data-chi'));
         render_game_videos(id);
@@ -286,6 +301,10 @@ $(window).on('hashchange', function(){
 $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
+    $(".games .tab li a").on('click', function() {
+        window.location.hash = '#!';
+        $('.video ul li h2 a').html('遊戲分類');
+    });
 });
 
 $('#txtbox-search-games').on('keydown', function(e) {

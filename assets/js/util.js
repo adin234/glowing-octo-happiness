@@ -15,24 +15,24 @@ var template = function (templateHTML, data) {
 var showSocialButtons = function () {
     var link = document.location.href;
 
-    // fix for youtubers 404 page2
-    if(~document.location.pathname.indexOf('/youtuber/')) {
-        var id = window.location.pathname
-            .split('/').filter(function(e){return e;})[1];
+    // // fix for youtubers 404 page2
+    // if(~document.location.pathname.indexOf('/youtuber/')) {
+    //     var id = window.location.pathname
+    //         .split('/').filter(function(e){return e;})[1];
 
-        var hash = document.location.hash;
-        hash = hash.replace('#!/', '#!/'+id+'/');
+    //     var hash = document.location.hash;
+    //     hash = hash.replace('#!/', '#!/'+id+'/');
 
-        link = origin+'youtuber/share/'+hash;
-    } else if(~document.location.pathname.indexOf('/game/')) {
-        var id = window.location.pathname
-            .split('/').filter(function(e){return e;})[1];
+    //     link = origin+'youtuber/share/'+hash;
+    // } else if(~document.location.pathname.indexOf('/game/')) {
+    //     var id = window.location.pathname
+    //         .split('/').filter(function(e){return e;})[1];
 
-        var hash = document.location.hash;
-        hash = hash.replace('#!/', '#!/'+id+'/');
+    //     var hash = document.location.hash;
+    //     hash = hash.replace('#!/', '#!/'+id+'/');
 
-        link = origin+'game/share/'+hash;
-    }
+    //     link = origin+'game/share/'+hash;
+    // }
 
     $('#viewport').html('');
     // $('#fb-root').html('');
@@ -148,6 +148,7 @@ var utilLogin = {
                 };
                 utilCookie.set('user', JSON.stringify(user), 1/24);
                 $('img.userImg').attr('src', utilUser.get().links.avatar);
+                $(window).trigger('user_logged_in');
                 utilLogin.hide();
             })
             .fail(function(e) {
@@ -309,7 +310,7 @@ var fixErrorImg = function(item) {
 var searchId = false;
 var searchBox = '';
 function redirect_to_youtuber(id)  {
-    window.location.href = origin+'youtuber/'+id
+    window.location.href = origin+'youtuber/?user='+id
 }
 
 function searchBoxInit() {
@@ -341,10 +342,37 @@ function searchGamesBoxInit() {
     if(!gamesAutocompleteArray.length) return;
 
     optionGames = {
-        lookup : gamesAutocompleteArray
+        lookup : gamesAutocompleteArray,
+        onSelect: function(suggestion) {
+            filter_game(this);
+        }
     }
 
     $('#txtbox-search-games').autocomplete(optionGames);
+}
+
+function youtuberSearch() {
+    options = {
+      serviceUrl: server+'youtubers/search',
+      // minChars: 3,
+      zIndex: 9999,
+      onSelect: function(value) {
+        redirect_to_youtuber(value.data.user_id);
+      }
+    };
+    var searchDom = $('#query');
+    if(searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                if(typeof searchBox.data().suggestions[0] != 'undefined') {
+                    redirect_to_youtuber(searchBox.data().suggestions[0].data.user_id);
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
 }
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
@@ -402,9 +430,48 @@ var notify_stream = function(data) {
     });
 }
 
+// session
+$(function() {
+    if($('body').hasClass('streams')) return;
+    $.ajax({
+        dataType:'jsonp',
+        url:server+'logged_user',
+        type: 'get'
+    })
+    .done(function(session) {
+        if(typeof session.username !== 'undefined') {
+            var links = '<ul class="user-links">'+
+                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">Personal Details</a></li>'+
+                '<li><a href="/favorites" title="">Favorites</a></li>'+
+                '</ul>';
+            var link = $('<a>',{
+                text: session.username,
+                title: session.username,
+                href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
+            });
+
+            utilCookie.set('user', JSON.stringify(session), 1/24);
+            $('li.login').html(link).append(links);
+            // $('li.login').html(link);
+        }
+    });
+    setTimeout(function() {
+         $('li.login').css('visibility', 'visible');
+     }, 100);
+});
+
 $(function() {
     if($('body').hasClass('stream-gritter')) {
         get_streamers(true);
         get_youtube_streamers(true);
     }
 });
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-46773919-11', 'auto');
+ga('send', 'pageview');

@@ -16,6 +16,7 @@
 <link href="/assets/css/style.css?v=1" rel="stylesheet">
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
 <script src="/assets/js/config.js"></script>
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
@@ -80,7 +81,7 @@
         <select id="view-resize">
           <option value="x1">X1</option>
           <option value="x2">X2</option>
-          <option value="x3" selected>X3</option>
+          <option value="x3" selected>FIT</option>
         </select>
         <a href="http://zh.freedom.tm" title="加入我們" target="newtab">加入我們</a>
       </header>
@@ -145,12 +146,63 @@
   </iframe>
 </div>
 </script>
+
+<script type="text/html" id="gchat-tab-tpl">
+  <li class="chat-{{ChannelId}}">
+    <a href="#gchat-{{ChannelId}}">{{ChannelId}}</a>
+  </li>
+</script>
+
+<script type="text/html" id="gchat-tpl">
+  <div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>
+</script>
+
+<script type="text/html" id="chatui">
+  <div id="chid-{cid}" class="chid">{cid}</div>
+  <div id="chcontainer-{cid}" class="chcontainer">
+      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
+      </table>
+  </div>
+  <div id="chatinputs-{cid}" class="chatinputs">
+      <input type="text" id="msgs-{cid}" class="msgs">
+      <button id="btn-{cid}" class="btnSend">SEND</button>
+  </div>
+  <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
+    <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
+  </div>
+</script>
+<script type="text/html" id="gchatnotify">
+  <tr id="trnotify-{cid}">
+      <td>
+          <div class="notifier">
+              <p id="notifymsg-{cid}" class="message">{gchat-message}</p>
+          </div>
+      </td>
+  </tr>
+</script>
+<script type="text/html" id="chatms">
+  <tr id="trms-{cid}">
+      <td>
+          <div id="usericon-{cid}" class="usericon">
+              <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
+          </div>
+          <div id="chat-message-{cid}" class="chat-message">
+              <label id="uname">{username}</label>
+              <p id="imsg" class="message">{message}</p>
+              <label id="timestamp-{cid}" class="timestamp">{timesent}</label>
+          </div>
+      </td>
+  </tr>
+</script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
 <script src="/assets/js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="/assets/js/util.js"></script>
+<!-- Chat plugin 10.30.2014-->
+<script src="/assets/js/socketio.js"></script>
+<script type="text/javascript" src="/assets/js/gchatv2.js"></script>
 <script type="text/javascript" src="/assets/js/gamer_stream_multi.js"></script>
-
 </html>

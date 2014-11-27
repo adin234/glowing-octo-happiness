@@ -1,5 +1,5 @@
-var server              = 'http://54.255.176.250/';
-var origin              = 'http://www.gamers.tm/';
+var server              = 'http://api.gamers.tm/';
+var origin              = 'http://beta.gamers.tm/';
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';
 
@@ -23,8 +23,10 @@ var utilLoader = {
     },
     hide: function() {
         var loaderIcn = document.getElementById('loaderIcn');
-        if(typeof loaderIcn != 'undefined') {
+        if(loaderIcn && typeof loaderIcn != 'undefined') {
             loaderIcn.remove();
         }
     }
 };
+
+

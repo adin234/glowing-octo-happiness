@@ -1,16 +1,30 @@
-page_data = $.parseJSON(page_data);
+if(typeof page_data === 'string') {
+  page_data = $.parseJSON(page_data);
+}
+
+
+
 data_cache = { playlist:{}, video:{} };
+utilLoader.show();
 var html = [];
+var activelist = [];
 var active_playlist;
-var hash;
+var hash = [];
 var player;
+var activeVideos = {};
 var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
-$(".playList").mCustomScrollbar({theme: 'inset-2'});
+$(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
+  onScroll: function() {
+    if(this.mcs.topPct >=75) {
+      update_videos(activeVideos, true);
+    }
+  }
+}});
 $('aside.recommend > ul').mCustomScrollbar({theme:'inset-2' });
 
 /* YOUTUBE SHIZZ */
@@ -29,11 +43,6 @@ var onPlayerStateChange = function() {
 };
 /* END YOUTUBE SHIZZ */
 
-$(window).load(function(){
-  $(window).trigger('hashchange');
-});
-
-
 var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
@@ -43,7 +52,18 @@ var update_videos = function (videos, append) {
 
   playListIds = [];
 
-  videos.forEach(function(item, i){
+  var start = append ? 0 : $('li.ytVideo.videoItem').length;
+
+  if(!append || typeof append === 'undefined') {
+    activeVideos = videos;
+    start = 0;
+  }
+
+  for(var k = start; k<start+20; k++) {
+    var item = videos[k];
+
+    if(!item) { break; }
+
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
        || typeof item.snippet.meta.tags == 'undefined'
@@ -52,16 +72,23 @@ var update_videos = function (videos, append) {
     playlistIds.push(item.snippet.playlistId);
 
     if(item.snippet.thumbnails) {
-      tempdata = {
-        id: 'video-'+item.snippet.resourceId.videoId,
-        link: link+'video/'+item.snippet.resourceId.videoId,
-        title: item.snippet.title,
-        thumb: item.snippet.thumbnails.default.url,
-        desc: item.snippet.description
-      };
-      html.push(template($('#videosTpl').html(), tempdata));
+      item = getVideo(item.snippet.resourceId.videoId) || item;
+      if(typeof item.snippet.thumbnails !== 'undefined') {
+        tempdata = {
+          id: 'video-'+item.snippet.resourceId.videoId,
+          link: link+'video/'+item.snippet.resourceId.videoId,
+          link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+          user: item.username || '',
+          title: item.snippet.title,
+          thumb: item.snippet.thumbnails.default.url,
+          desc: item.snippet.description
+        };
+
+        html.push(template($('#videosTpl').html(), tempdata));
+      }
     }
-  });
+  }
+
   if(!html.length) {
     html.push('目前沒有影片');
   }
@@ -75,8 +102,15 @@ var update_videos = function (videos, append) {
 
 var update_playlists = function (playlists) {
   html = [];
+  var ids = [];
   playlists.forEach(function(item, i){
+    if(~ids.indexOf(item.id)) {
+      return;
+    }
+    ids.push(item.id);
     // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
+    if(!item.snippet.thumbnails) { return; }
+
     tempdata = {
       id: 'playlist-'+item.id,
       link: '#!/playlist/'+item.id,
@@ -88,8 +122,14 @@ var update_playlists = function (playlists) {
   });
   if(!html.length) {
     html.push('No Playlist Available');
-    $('.game_page .listSwitch').addClass('no-playlist');
+    $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
+    if($('#videos li.videoItem > a').length) {
+        var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
+        window.location.hash = link;
+    } else {
+      utilLoader.hide();
+    }
   } else {
     $('.game_page .listSwitch').removeClass('no-playlist');
   }
@@ -101,6 +141,7 @@ var filterAction = function(action) {
   switch (action) {
     case 'playlist':
       showPlaylist(hash.shift(), hash.shift());
+      $('#videosToggle a').trigger('click');
       break;
     case 'video':
       showVideo(hash.shift());
@@ -113,38 +154,68 @@ var filterAction = function(action) {
   }
 };
 
+$('body').on('click', 'button#like', function(item, x) {
+  var $elem = $('button#like');
+  var isActive = $elem.hasClass('active');
+  var videoId = $elem.attr('data-id');
+  var url = server+'fav/'+videoId;
+  if(isActive) {
+    url = server+'unfav/'+videoId;
+    page_data.favorites = page_data.favorites.filter(function(item) {
+      return item != videoId;
+    });
+  } else {
+    page_data.favorites.push(videoId);
+  }
+
+$.ajax({
+      dataType:'jsonp',
+      url: url,
+      crossDomain: true,
+      type: 'get'
+  })
+  .always(function(result) {
+    $elem.toggleClass('active');
+  });
+});
+
 var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
-    $('.videoHeading h3').html(video.snippet.title);
+    var likeButton = '';
+    var text = '加入至最愛';
+    var active = '';
+    if(typeof page_data.favorites !== 'undefined') {
+      if(~page_data.favorites.indexOf(videoId)) {
+        text = '從最愛移除';
+        active = 'active';
+      }
+      likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';
+    }
+    $('.videoHeading h3').html(video.snippet.title+likeButton);
     $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')));
     $('.videoItem').removeClass('current');
     $('#video-'+videoId).addClass('current');
     $('#ytplayer').attr('src', 'https://www.youtube.com/embed/'+videoId+(active_playlist
       ? '/?list='+active_playlist+'&' : '?')+'autoplay=true&enablejsapi=1&origin='+origin);
-    setTimeout(function() {
-      player = new YT.Player('ytplayer', {
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }, 500);
 
     $.get(server+'vid_suggestions', { search: video.engtitle || video.snippet.title },
       updateSuggestions);
 
-    if(!page_data.config.channel) {
+    if(!page_data.config || !page_data.config.channel) {
       getPhoto(video.snippet.channelId, $('.videoHeading > img'));
     }
 
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
-    utilLoader.hide();
+
+    if(!$('#youtuberPage').length) {
+      utilLoader.hide();
+    }
 
     filterAction(hash.shift());
   }
-
 };
 
 var getComments = function (videoId) {
@@ -180,16 +251,22 @@ var showPlaylist = function(playlistId, next) {
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
+  $('li.ytVideo.videoItem').remove();
+  console.log(playlist);
   update_videos(playlist.items);
   if(playlist.nextPageToken) {
     $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
       function(e) {
-        playlist.nextPageToken = e.nextPageToken;
-        playlist.items.concat(e.items);
-        update_videos(e.items, true);
+        if(e.items[0].snippet.playlistId == active_playlist) {
+          playlist.nextPageToken = e.nextPageToken;
+          playlist.items.concat(e.items);
+          update_videos(e.items, true);
+          showPlaylist(playlistId, 'continue');
+        }
       });
   }
-  $('#videosToggle').click();
+  // $('#videosToggle').click();
+  console.log('----', next);
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);
   }
@@ -203,6 +280,7 @@ var filter = function(value) {
   if(typeof filterObj[0] != 'undefined') {
     filterTags = $.map(filterObj[0].tags.split(','), $.trim);
   }
+  $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
   // update_playlists(page_data.playlists);
 };
@@ -210,6 +288,7 @@ var filter = function(value) {
 
 var filter_vlogs = function() {
   var videos = page_data.videos.filter(function(e) { return !!~e.snippet.meta.tags.indexOf('anytv_console_vlogs')});
+  $('li.ytVideo.videoItem').remove();
   update_videos(videos);
 }
 
@@ -286,7 +365,7 @@ var updateSuggestions = function(suggestions) {
     if(item.snippet.thumbnails) {
       tempdata = {
         id: 'video-'+item.snippet.resourceId.videoId,
-        link: '/youtuber/'+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
+        link: '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId,
         title: item.snippet.title,
         thumb: item.snippet.thumbnails.default.url,
         desc: item.snippet.description,
@@ -302,8 +381,12 @@ var updateSuggestions = function(suggestions) {
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
+  console.log(current);
   var prevLink = current.prev().children('a').first().attr('href');
+  console.log(prevLink);
   var nextLink = current.next().children('a').first().attr('href');
+  console.log(nextLink);
+
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
 };
@@ -333,12 +416,12 @@ var updatePrevNext = function() {
           videos.push(item);
         }
       });
+      $('li.ytVideo.videoItem').remove();
       update_videos(videos);
 
   };
 
-
-$(document).ready(function(){
+$(document).on('load-page',function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
     animation: true,
@@ -353,22 +436,26 @@ $(document).ready(function(){
     $("body").toggleClass("zoom2x");
     $(".zoom").toggleClass("zoomOut");
   });
+
   $(".listSwitch li").click(function(){
     if(!$(this).hasClass('current')) {
       $(".listSwitch li").toggleClass('current');
       $(".playList.toggleList").toggleClass('current');
     } else if($(this).attr('id') == 'videosToggle' && !hash.length) {
       active_playlist = null;
+      $('li.ytVideo.videoItem').remove();
       update_videos(page_data.videos);
     }
-  })
+  });
 
   if($('body').hasClass('game_page')) {
     var name = page_data.game_name.name ? page_data.game_name.name : '';
     $('.profile .info h1').html(name);
   }
 
-  if(page_data.config && page_data.config.channel) {
+  if(page_data.config
+    && page_data.config.channel
+    && typeof page_data.config.channel === 'string') {
     getPhoto(page_data.config.channel, $('.videoHeading > img'));
   }
   page_data.categories.forEach(function(item, i){
@@ -377,8 +464,27 @@ $(document).ready(function(){
   if(!html.length) { html.push('No Category Available'); }
   $('#categories').html('');
 
-
+  $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
+
+  var thumbs = typeof page_data.videos[0] !== 'undefined'
+        ? page_data.videos[0].snippet.thumbnails
+        : typeof page_data.playlists[0] !== 'undefined'
+            ? page_data.playlists[0].snippet.thumbnails
+            : '';
+
+  if(page_data.playlists.length) {
+    page_data.playlists.splice(0,0,{
+      id: page_data.config.playlist,
+      snippet: {
+        title: '最新影片',
+        channelId: page_data.config.channel,
+        description: '會員上傳',
+        thumbnails: thumbs
+      }
+    });
+  }
+
   update_playlists(page_data.playlists);
 
   $(window).on('hashchange', function(){
@@ -425,5 +531,26 @@ $(document).ready(function(){
       });
   });
 
+  $(window).trigger('hashchange');
 });
 
+$(document).ready(function() {
+  if(!$('body').hasClass('favorites')) {
+    $(document).trigger('load-page');
+  }
+  // get favorites
+  if(typeof utilUser !== 'undefined'
+    && !$('body').hasClass('news')
+    && !$('body').hasClass('shows')) {
+    $.ajax({
+        dataType:'jsonp',
+        url: server+'favorite-ids',
+        crossDomain: true,
+        type: 'get'
+    })
+    .always(function(result) {
+      page_data.favorites = result;
+      $(window).trigger('hashchange');
+    });
+  }
+});

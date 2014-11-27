@@ -80,10 +80,19 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
-        filterGame = id;
+        filterGame = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
+        if(id.trim() === '' || id.trim() === '#!') {
+            filterGame = '';
+            $.getJSON(server+'games/all/videos', function(result) {
+                page_data.videos = result;
+                render_videos();
+            });
+            return;
+        }
+
         $('[data-id='+id+']').parent().addClass('active');
         $('#game-title').html($('[data-id='+id+']').attr('data-name'));
 
@@ -119,8 +128,8 @@ var filter_game = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_featured_games(filterString);
-    render_latest_games(filterString);
     slider.featured_games.reloadSlider({startSlide: 0});
+    render_latest_games(filterString);
     slider.latest_games.reloadSlider({startSlide: 0});
 };
 
@@ -128,11 +137,11 @@ var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
+    newSlider.reloadSlider({startSlide: 0});
     render_all_members(filterString);
+    allSlider.reloadSlider({startSlide: 0});
     render_popular_members(filterString);
-    newSlider.reloadSlider();
-    allSlider.reloadSlider();
-    popularSlider.reloadSlider();
+    popularSlider.reloadSlider({startSlide: 0});
 };
 
 var render_featured_games = function (filter) {
@@ -144,6 +153,7 @@ var render_featured_games = function (filter) {
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
 
         item.game = item.name;
+        item.id = item.id.trim();
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
             html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
@@ -171,6 +181,7 @@ var render_latest_games = function(filter) {
 
     page_data.games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+        item.id = item.id.trim();
 
         items.push(template($('#gameTpl').html(), item));
         if(items.length == 12) {
@@ -286,7 +297,8 @@ var render_popular_members = function(filter) {
     page_data.popular_youtubers.forEach(function (item, i) {
         if(typeof item.video == 'undefined') return;
         if(item.video.snippet.title.search(filter) == -1
-           && item.video.snippet.channelTitle.search(filter) == -1) return;
+           && item.video.snippet.channelTitle.search(filter) == -1
+           && item.video.username.search(filter) == -1) return;
         item.user_id = item.userId;
         item.title = item.video.snippet.title;
         item.thumb = item.video.snippet.thumbnails.medium.url;
@@ -321,6 +333,9 @@ var render_popular_members = function(filter) {
 $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
+    $(".games .tab li a").on('click', function() {
+        window.location.hash = '#!';
+    });
 });
 
 var render_page = function() {

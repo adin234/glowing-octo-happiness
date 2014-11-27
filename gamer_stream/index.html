@@ -12,10 +12,13 @@
 <!--<meta property="og:description" content="">-->
 <meta name="robots" content="none">
 <title>新聞 | 實況咖</title>
-<link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
-<link href="/assets/css/style.css?v=1" rel="stylesheet">
-<link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+<link href="/assets/css/html5-doctor-reset-stylesheet.min.css?ver=17" rel="stylesheet">
+<link href="/assets/css/style.css?ver=17" rel="stylesheet">
+<link rel="shortcut icon" href="http://www.gamers.tm/favicon.ico?ver=17" />
+<link href="/assets/css/jquery.mCustomScrollbar.css?ver=17" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=17" />
+<link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css?ver=17" />
+<link rel="stylesheet" type="text/css" href="/assets/css/xbbcode.css?ver=17" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -113,7 +116,7 @@
       <div id="functionBar">
         <header>
         <nav>
-          <h1><a href="/index">實況咖</a></h1>
+          <h1><a href="/index" target="newtab">實況咖</a></h1>
           <ul>
             <li><a href="/index" title="回首頁" target="newtab">首頁</a></li>
             <li><a href="http://community.gamers.tm/zh/index.php" title="論壇" target="newtab">論壇</a></li>
@@ -124,7 +127,7 @@
         <select id="view-resize">
           <option value="x1">X1</option>
           <option value="x2">X2</option>
-          <option value="x3" selected>X3</option>
+          <option value="x3" selected>FIT</option>
         </select>
         <a href="http://zh.freedom.tm" title="加入我們" target="newtab">加入我們</a>
       </header>
@@ -135,7 +138,7 @@
   </div>
 </div>
 
-</body>
+
 
 <script type="text/html" id="twitch-stream-tpl">
 <div id="twitchStream">
@@ -171,13 +174,51 @@
   <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" onload="toggleChat()" width="100%" height="100%">
   </iframe>
 </div>
-<div class="advert" id="advertisement-container" data-size="minified">
+<div class="advert" id="advertisement-container" data-size="minified" data-status="full">
   {{ADVERT}}
   <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert">MINIFY</a>
 </div>
 </script>
 
-
+<script type="text/html" id="chatui">
+  <div id="chid-{cid}" class="chid">{cid}</div>
+  <div id="chcontainer-{cid}" class="chcontainer_single">
+      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
+      </table>
+  </div>
+  <div id="chatinputs-{cid}" class="chatinputs_single">
+      <input type="text" id="msgs-{cid}" class="msgs">
+      <button id="btn-{cid}" class="btnSend">SEND</button>
+  </div>
+  <div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">
+    <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
+  </div>
+</script>
+<script type="text/html" id="gchatnotify">
+  <tr id="trnotify-{cid}">
+      <td>
+          <div class="notifier">
+              <p id="notifymsg-{cid}" class="message">{gchat-message}</p>
+          </div>
+      </td>
+  </tr>
+</script>
+<script type="text/html" id="chatms">
+  <tr id="trms-{cid}">
+      <td>
+          <div id="usericon-{cid}" class="usericon">
+              <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
+          </div>
+          <div id="chat-message-{cid}" class="chat-message">
+              <label id="uname">{username}</label>
+              <p id="imsg" class="message">
+                  {message}
+              </p>
+              <label id="timestamp-{cid}" class="timestamp">{timesent}</label>
+          </div>
+      </td>
+  </tr>
+</script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="/assets/js/hoverIntent.js"></script>
 <script src="/assets/js/superfish.js"></script>
@@ -191,6 +232,14 @@
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/util.js"></script>
-<script type="text/javascript" src="/assets/js/gamer_stream.js"></script>
+<!-- Chat plugin 10.28.2014-->
+<script src="/assets/js/socketio.js?ver=17"></script>
+<script type="text/javascript" src="/assets/js/gchatv2.js?ver=17"></script>
+<script type="text/javascript" src="/assets/js/xbbcode.js?ver=17"></script>
+<script type="text/javascript" src="/assets/js/gamer_stream.js?ver=17"></script>
+<style id="forceStyle">
 
+</style>
+
+</body>
 </html>
