@@ -11,7 +11,7 @@ var activelist = [];
 var active_playlist;
 var hash = [];
 var player;
-var activeVideos = {};
+var activeVideos = [];
 var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
@@ -23,6 +23,7 @@ $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
     if(this.mcs.topPct >=75) {
       update_videos(activeVideos, true);
+      console.log(1);
     }
   }
 }});
@@ -52,14 +53,15 @@ var update_videos = function (videos, append) {
 
   playListIds = [];
 
-  var start = append ? 0 : $('li.ytVideo.videoItem').length;
+  var start = $('li.ytVideo.videoItem').length;
 
   if(!append || typeof append === 'undefined') {
+    console.log(-1);
     // activeVideos = videos;
     start = 0;
     videoIds = [];
   }
-
+  console.log('start',start);
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
 
@@ -261,17 +263,12 @@ var showPlaylist = function(playlistId, next) {
   var playlist = getPlaylist(playlistId);
   $('li.ytVideo.videoItem').remove();
 
-  update_videos(playlist.items);
+  if(next !== 'continue') {
+    update_videos(playlist.items);
+  }
+
   if(playlist.nextPageToken) {
-    $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
-      function(e) {
-        if(e.items[0].snippet.playlistId == active_playlist) {
-          playlist.nextPageToken = e.nextPageToken;
-          playlist.items.concat(e.items);
-          update_videos(e.items, true);
-          showPlaylist(playlistId, 'continue');
-        }
-      });
+    getPlaylistNext(playlist);
   }
   // $('#videosToggle').click();
   if(!next) {
@@ -279,6 +276,20 @@ var showPlaylist = function(playlistId, next) {
   }
   filterAction(next);
 };
+
+var getPlaylistNext = function(playlist) {
+  $.get(server+'news', { playlist: active_playlist, pageToken: playlist.nextPageToken },
+    function(e) {
+      if(e.items[0].snippet.playlistId == active_playlist) {
+        playlist.nextPageToken = e.nextPageToken;
+        activeVideos = activeVideos.concat(e.items);
+        // update_videos(e.items, true);
+        if(e.nextPageToken) {
+          getPlaylistNext(e);
+        }
+      }
+    });
+}
 
 var filter = function(value) {
   var filterObj = page_data.categories.filter(function(item) {
@@ -289,7 +300,6 @@ var filter = function(value) {
   }
   $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
-  // update_playlists(page_data.playlists);
 };
 
 
