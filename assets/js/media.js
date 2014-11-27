@@ -5,7 +5,7 @@ if(typeof page_data === 'string') {
 
 
 data_cache = { playlist:{}, video:{} };
-utilLoader.show();
+
 var html = [];
 var activelist = [];
 var active_playlist;
@@ -137,7 +137,7 @@ var update_playlists = function (playlists) {
         var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
         window.location.hash = link;
     } else {
-      utilLoader.hide();
+
     }
   } else {
     $('.game_page .listSwitch').removeClass('no-playlist');
@@ -454,9 +454,9 @@ $(document).on('load-page',function(){
       $(".listSwitch li").toggleClass('current');
       $(".playList.toggleList").toggleClass('current');
     } else if($(this).attr('id') == 'videosToggle' && !hash.length) {
-      active_playlist = null;
-      $('li.ytVideo.videoItem').remove();
-      update_videos(page_data.videos);
+      // active_playlist = null;
+      // $('li.ytVideo.videoItem').remove();
+      // update_videos(page_data.videos);
     }
   });
 

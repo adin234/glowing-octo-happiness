@@ -1,4 +1,4 @@
-utilLoader.show();
+
 $(function() {
     var information_masonry = function() {
         $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
@@ -52,7 +52,7 @@ $(function() {
             }
         ));
 
-        utilLoader.hide();
+        // utilLoader.hide();
         // $('object').height($('#streamView').height());
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
@@ -78,7 +78,7 @@ $(function() {
             })
         });
 
-        utilLoader.hide();
+        // utilLoader.hide();
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
 				/*  This where you put your JSON result to be able to access the chat plugin  */
