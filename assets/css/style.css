@@ -1811,6 +1811,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .playArea, .videoList {
   float: left;
   height: 510px;
+  background: #000;
 }
 
 .playArea {
