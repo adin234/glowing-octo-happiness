@@ -15,6 +15,7 @@ var activeVideos = {};
 var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
+var videoIds = [];
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -38,7 +39,6 @@ var onPlayerStateChange = function() {
     var index = event.target.getPlaylistIndex();
     var context = $('img[data-index='+index+']');
 
-    console.log('change'+videoId);
   }
 };
 /* END YOUTUBE SHIZZ */
@@ -46,23 +46,30 @@ var onPlayerStateChange = function() {
 var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
-  if(active_playlist) {
-    link+='playlist/'+active_playlist+'/';
-  }
+  // if(active_playlist) {
+  //   link+='playlist/'+active_playlist+'/';
+  // }
 
   playListIds = [];
 
   var start = append ? 0 : $('li.ytVideo.videoItem').length;
 
   if(!append || typeof append === 'undefined') {
-    activeVideos = videos;
+    // activeVideos = videos;
     start = 0;
+    videoIds = [];
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
 
-    if(!item) { break; }
+    if(!item) { continue; }
+
+    if(!~videoIds.indexOf(item.snippet.resourceId.videoId)) {
+      videoIds.push(item.snippet.resourceId.videoId);
+    } else {
+      continue;
+    }
 
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
@@ -89,7 +96,7 @@ var update_videos = function (videos, append) {
     }
   }
 
-  if(!html.length) {
+  if(!html.length && !append) {
     html.push('目前沒有影片');
   }
 
@@ -248,11 +255,12 @@ var getComments = function (videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
+
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
   $('li.ytVideo.videoItem').remove();
-  console.log(playlist);
+
   update_videos(playlist.items);
   if(playlist.nextPageToken) {
     $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
@@ -266,7 +274,6 @@ var showPlaylist = function(playlistId, next) {
       });
   }
   // $('#videosToggle').click();
-  console.log('----', next);
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);
   }
@@ -297,7 +304,6 @@ var getPhoto = function(id, context) {
     '?fields=yt:username,media:thumbnail,title&alt=json',
     {},
     function(e) {
-      console.log(context, e['entry']['media$thumbnail']['url']);
       $(context).attr('src',e['entry']['media$thumbnail']['url']);
     }
   );
@@ -381,11 +387,8 @@ var updateSuggestions = function(suggestions) {
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
-  console.log(current);
   var prevLink = current.prev().children('a').first().attr('href');
-  console.log(prevLink);
   var nextLink = current.next().children('a').first().attr('href');
-  console.log(nextLink);
 
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
@@ -427,7 +430,6 @@ $(document).on('load-page',function(){
     animation: true,
     active: 1,
   }).promise().done(function(e) {
-    console.log('must open comments');
     if(active_comments) {
       $('#tab-2').click();
     }

@@ -8,9 +8,6 @@ var loader = {};
 // var hash = window.location.hash;
 // var id = hash.split('/')[1];
 
-// console.log(id);
-// console.log('/youtuber/'+id+hash.replace('/'+id+'/', '/'));
-
 // history.pushState(null, '', '/youtuber/'+id+'/'+hash.replace('/'+id+'/', '/'));
 
 

@@ -71,7 +71,6 @@ $(function() {
         .html(),{youtubeid: streamId}));
         $.getJSON(server+'streamers/youtube', function(e) {
             e.streamers.forEach(function(item) {
-                console.log(item.youtube.id, streamId)
                 if(item.youtube.id == streamId) {
                     $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                     // $('embed').height($('#streamView').height());
@@ -101,8 +100,6 @@ $(function() {
         removeMisalignedTags: false,
         addInLineBreaks: false
     });
-
-    console.log(result);
 
     $('#about-streamer').html(result.html);
 
