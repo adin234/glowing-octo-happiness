@@ -173,13 +173,16 @@ $('body').on('click', 'button#like', function(item, x) {
   var $elem = $('button#like');
   var isActive = $elem.hasClass('active');
   var videoId = $elem.attr('data-id');
+
   var url = server+'fav/'+videoId;
   if(isActive) {
+    $elem.html('加入至我的最愛');
     url = server+'unfav/'+videoId;
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
     });
   } else {
+    $elem.html('從我的最愛移除');
     page_data.favorites.push(videoId);
   }
 

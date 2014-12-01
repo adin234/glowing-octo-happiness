@@ -418,7 +418,7 @@ $.extend($.gritter.options, {
 
 var notify_stream = function(data) {
     $.gritter.add({
-        title: 'Streaming...',
+        title: '直播中',
         text: '<a class="link" href="'+data.link+'">'+data.streamer+'</a>'
     });
 }
