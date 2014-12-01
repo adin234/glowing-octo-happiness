@@ -302,6 +302,9 @@ $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
     $(".games .tab li a").on('click', function() {
+        var search = $('#txtbox-search-games');
+        search.val('');
+        filter_game(search);
         window.location.hash = '#!';
         $('.video ul li h2 a').html('遊戲分類');
     });

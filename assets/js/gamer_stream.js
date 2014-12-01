@@ -29,13 +29,13 @@ $(function() {
      $('body').on('change', '#view-resize', function(e) {
         var size = $(this).val();
         $('body').removeClass('x1 x2 x3').addClass(size);
-        // if(size == 'x3') {
-        //     $('embed').height($('#streamView').height());
-        //     $('object').height($('#streamView').height());
-        // } else {
-        //     $('embed').height('100%');
-        //     $('object').height('100%');
-        // }
+        if(size == 'x3') {
+            $('embed').height($('#streamView').height());
+            $('object').height($('#streamView').height());
+        } else {
+            $('embed').height('100%');
+            $('object').height('100%');
+        }
     });
 
     var streamType = twitch.substr(0,2);
@@ -53,7 +53,7 @@ $(function() {
         ));
 
         // utilLoader.hide();
-        // $('object').height($('#streamView').height());
+        $('object').height($('#streamView').height());
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
@@ -73,7 +73,7 @@ $(function() {
             e.streamers.forEach(function(item) {
                 if(item.youtube.id == streamId) {
                     $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-                    // $('embed').height($('#streamView').height());
+                    $('embed').height($('#streamView').height());
                 }
             })
         });

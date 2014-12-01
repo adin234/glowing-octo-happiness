@@ -88,7 +88,9 @@ $(window).on('hashchange', function(){
             filterGame = '';
             $.getJSON(server+'games/all/videos', function(result) {
                 page_data.videos = result;
-                render_videos();
+                render_new_members();
+                render_all_members();
+                render_popular_members();
             });
             return;
         }
@@ -334,6 +336,9 @@ $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
     $(".games .tab li a").on('click', function() {
+        var search = $('#txtbox-search-games');
+        search.val('');
+        filter_game(search);
         window.location.hash = '#!';
     });
 });

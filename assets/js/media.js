@@ -198,11 +198,11 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     var likeButton = '';
-    var text = '加入至最愛';
+    var text = '加入至我的最愛';
     var active = '';
     if(typeof page_data.favorites !== 'undefined') {
       if(~page_data.favorites.indexOf(videoId)) {
-        text = '從最愛移除';
+        text = '從我的最愛移除';
         active = 'active';
       }
       likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';

@@ -434,8 +434,8 @@ $(function() {
     .done(function(session) {
         if(typeof session.username !== 'undefined') {
             var links = '<ul class="user-links">'+
-                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">Personal Details</a></li>'+
-                '<li><a href="/favorites" title="">Favorites</a></li>'+
+                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>'+
+                '<li><a href="/favorites" title="">我的最愛</a></li>'+
                 '</ul>';
             var link = $('<a>',{
                 text: session.username,
