@@ -2,8 +2,6 @@ if(typeof page_data === 'string') {
   page_data = $.parseJSON(page_data);
 }
 
-
-
 data_cache = { playlist:{}, video:{} };
 
 var html = [];
@@ -16,6 +14,7 @@ var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
 var videoIds = [];
+var isPlayling = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -109,6 +108,11 @@ var update_videos = function (videos, append) {
   }
 };
 
+var willPlay = function() {
+  console.log('checked if will play '+~window.location.hash.indexOf('video/'));
+  return ~window.location.hash.indexOf('video/');
+};
+
 var update_playlists = function (playlists) {
   html = [];
   var ids = [];
@@ -135,7 +139,8 @@ var update_playlists = function (playlists) {
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
         var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-        window.location.hash = link;
+        if(!isPlayling && !willPlay())
+          window.location.hash = link;
     } else {
 
     }
@@ -153,6 +158,7 @@ var filterAction = function(action) {
       $('#videosToggle a').trigger('click');
       break;
     case 'video':
+      isPlayling = true;
       showVideo(hash.shift());
       break;
     case 'comments':
