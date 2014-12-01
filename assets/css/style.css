@@ -4122,12 +4122,12 @@ button#like.like.active {
 
 .user-links {
   margin-top: -10px;
-  margin-left: -20px;
-  width: 140px;
+  margin-left: 1px;
+  width: 80px;
   text-align: left;
   background: #cecece;
   height: 100%;
-  display: none;
+   display: none;
   border-top: 3px solid #f00;
   position: relative;
   border-radius: 3px;
@@ -4143,6 +4143,10 @@ li:hover .user-links {
 
 .user-links li {
   height: 1.2em !important;
+  list-style-type: circle;
+  list-style-position: inside;
+  color: #555;
+  font-size: 13px;
 }
 
 .user-links li a {
