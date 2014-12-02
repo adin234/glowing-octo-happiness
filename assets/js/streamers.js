@@ -5,8 +5,14 @@ var con = 'all';
 $(".sf-menu").superfish();
 // slider.featured_games = $("#container-featured-games").bxSlider();
 // slider.latest_games = $("#container-latest-games").bxSlider();
-slider.container_videos = $("#container-videos").bxSlider();
-slider.container_lanparty = $("#container-lanparty").bxSlider();
+slider.container_videos = $("#container-videos").bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
+slider.container_lanparty = $("#container-lanparty").bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
 $(".tabs").tabslet({ animation: true });
 
 page_data = $.parseJSON(page_data);
@@ -169,7 +175,9 @@ var render_videos = function(filter, game, lanparty) {
     var currentSlide = activeSlider.getCurrentSlide();
 
     activeSlider.reloadSlider({
-        activeSlide: currentSlide
+        activeSlide: currentSlide,
+        infiniteLoop: false,
+        hideControlOnEnd: true
     });
 
     $('#container-videos .uploader > img').on('load', function(e) {
