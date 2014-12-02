@@ -2,19 +2,19 @@ if(typeof page_data === 'string') {
   page_data = $.parseJSON(page_data);
 }
 
-
-
 data_cache = { playlist:{}, video:{} };
-utilLoader.show();
+
 var html = [];
 var activelist = [];
 var active_playlist;
 var hash = [];
 var player;
-var activeVideos = {};
+var activeVideos = [];
 var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
+var videoIds = [];
+var isPlayling = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -22,6 +22,7 @@ $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
     if(this.mcs.topPct >=75) {
       update_videos(activeVideos, true);
+      console.log(1);
     }
   }
 }});
@@ -38,39 +39,44 @@ var onPlayerStateChange = function() {
     var index = event.target.getPlaylistIndex();
     var context = $('img[data-index='+index+']');
 
-    console.log('change'+videoId);
   }
 };
 /* END YOUTUBE SHIZZ */
 
 var update_videos = function (videos, append) {
+  console.log(videos);
   html = [];
   var link = '#!/';
-  if(active_playlist) {
-    link+='playlist/'+active_playlist+'/';
-  }
+  // if(active_playlist) {
+  //   link+='playlist/'+active_playlist+'/';
+  // }
 
   playListIds = [];
 
-  var start = append ? 0 : $('li.ytVideo.videoItem').length;
+  var start = $('li.ytVideo.videoItem').length;
 
   if(!append || typeof append === 'undefined') {
-    activeVideos = videos;
+    // activeVideos = videos;
     start = 0;
+    videoIds = [];
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
 
-    if(!item) { break; }
+    if(!item) { continue; }
 
+    if(!~videoIds.indexOf(item.snippet.resourceId.videoId)) {
+      videoIds.push(item.snippet.resourceId.videoId);
+    } else {
+      continue;
+    }
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
        || typeof item.snippet.meta.tags == 'undefined'
        || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
 
     playlistIds.push(item.snippet.playlistId);
-
     if(item.snippet.thumbnails) {
       item = getVideo(item.snippet.resourceId.videoId) || item;
       if(typeof item.snippet.thumbnails !== 'undefined') {
@@ -89,7 +95,7 @@ var update_videos = function (videos, append) {
     }
   }
 
-  if(!html.length) {
+  if(!html.length && !append) {
     html.push('目前沒有影片');
   }
 
@@ -98,6 +104,11 @@ var update_videos = function (videos, append) {
   } else {
     $('#videos .mCSB_container').html(html.join(''));
   }
+};
+
+var willPlay = function() {
+  console.log('checked if will play '+~window.location.hash.indexOf('video/'));
+  return ~window.location.hash.indexOf('video/');
 };
 
 var update_playlists = function (playlists) {
@@ -126,9 +137,10 @@ var update_playlists = function (playlists) {
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
         var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-        window.location.hash = link;
+        if(!isPlayling && !willPlay())
+          window.location.hash = link;
     } else {
-      utilLoader.hide();
+
     }
   } else {
     $('.game_page .listSwitch').removeClass('no-playlist');
@@ -144,6 +156,7 @@ var filterAction = function(action) {
       $('#videosToggle a').trigger('click');
       break;
     case 'video':
+      isPlayling = true;
       showVideo(hash.shift());
       break;
     case 'comments':
@@ -158,13 +171,16 @@ $('body').on('click', 'button#like', function(item, x) {
   var $elem = $('button#like');
   var isActive = $elem.hasClass('active');
   var videoId = $elem.attr('data-id');
+
   var url = server+'fav/'+videoId;
   if(isActive) {
+    $elem.html('加入至我的最愛');
     url = server+'unfav/'+videoId;
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
     });
   } else {
+    $elem.html('從我的最愛移除');
     page_data.favorites.push(videoId);
   }
 
@@ -183,11 +199,11 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     var likeButton = '';
-    var text = '加入至最愛';
+    var text = '加入至我的最愛';
     var active = '';
     if(typeof page_data.favorites !== 'undefined') {
       if(~page_data.favorites.indexOf(videoId)) {
-        text = '從最愛移除';
+        text = '從我的最愛移除';
         active = 'active';
       }
       likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';
@@ -248,30 +264,39 @@ var getComments = function (videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
+
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
   $('li.ytVideo.videoItem').remove();
-  console.log(playlist);
-  update_videos(playlist.items);
+
+  if(next !== 'continue') {
+    update_videos(playlist.items);
+  }
+
   if(playlist.nextPageToken) {
-    $.get(server+'news', { playlist: playlistId, pageToken: playlist.nextPageToken },
-      function(e) {
-        if(e.items[0].snippet.playlistId == active_playlist) {
-          playlist.nextPageToken = e.nextPageToken;
-          playlist.items.concat(e.items);
-          update_videos(e.items, true);
-          showPlaylist(playlistId, 'continue');
-        }
-      });
+    getPlaylistNext(playlist);
   }
   // $('#videosToggle').click();
-  console.log('----', next);
   if(!next) {
     return showVideo(playlist.items[0].snippet.resourceId.videoId);
   }
   filterAction(next);
 };
+
+var getPlaylistNext = function(playlist) {
+  $.get(server+'news', { playlist: active_playlist, pageToken: playlist.nextPageToken },
+    function(e) {
+      if(e.items[0].snippet.playlistId == active_playlist) {
+        playlist.nextPageToken = e.nextPageToken;
+        activeVideos = activeVideos.concat(e.items);
+        // update_videos(e.items, true);
+        if(e.nextPageToken) {
+          getPlaylistNext(e);
+        }
+      }
+    });
+}
 
 var filter = function(value) {
   var filterObj = page_data.categories.filter(function(item) {
@@ -282,7 +307,6 @@ var filter = function(value) {
   }
   $('li.ytVideo.videoItem').remove();
   update_videos(page_data.videos);
-  // update_playlists(page_data.playlists);
 };
 
 
@@ -297,7 +321,6 @@ var getPhoto = function(id, context) {
     '?fields=yt:username,media:thumbnail,title&alt=json',
     {},
     function(e) {
-      console.log(context, e['entry']['media$thumbnail']['url']);
       $(context).attr('src',e['entry']['media$thumbnail']['url']);
     }
   );
@@ -381,11 +404,8 @@ var updateSuggestions = function(suggestions) {
 
 var updatePrevNext = function() {
   var current = $('.videoItem.current');
-  console.log(current);
   var prevLink = current.prev().children('a').first().attr('href');
-  console.log(prevLink);
   var nextLink = current.next().children('a').first().attr('href');
-  console.log(nextLink);
 
   $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
   $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
@@ -427,7 +447,6 @@ $(document).on('load-page',function(){
     animation: true,
     active: 1,
   }).promise().done(function(e) {
-    console.log('must open comments');
     if(active_comments) {
       $('#tab-2').click();
     }
@@ -442,9 +461,9 @@ $(document).on('load-page',function(){
       $(".listSwitch li").toggleClass('current');
       $(".playList.toggleList").toggleClass('current');
     } else if($(this).attr('id') == 'videosToggle' && !hash.length) {
-      active_playlist = null;
-      $('li.ytVideo.videoItem').remove();
-      update_videos(page_data.videos);
+      // active_playlist = null;
+      // $('li.ytVideo.videoItem').remove();
+      // update_videos(page_data.videos);
     }
   });
 
@@ -540,8 +559,8 @@ $(document).ready(function() {
   }
   // get favorites
   if(typeof utilUser !== 'undefined'
-    && !$('body').hasClass('news')
-    && !$('body').hasClass('shows')) {
+    /*&& !$('body').hasClass('news')
+    && !$('body').hasClass('shows')*/) {
     $.ajax({
         dataType:'jsonp',
         url: server+'favorite-ids',

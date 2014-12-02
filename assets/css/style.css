@@ -1816,6 +1816,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .playArea, .videoList {
   float: left;
   height: 510px;
+  background: #000;
 }
 
 .playArea {
@@ -3257,7 +3258,7 @@ body:nth-child(3) {
   right: 0;
 }
 
-/*.single.streams.x3 .videoWrapper {
+.single.streams.x3 .videoWrapper {
   height: 100%;
   padding-top: 0;
   padding-bottom: 0;
@@ -3270,7 +3271,7 @@ body:nth-child(3) {
 .single.streams.x3 .videoWrapper iframe,
 .single.streams.x3 .videoWrapper object {
   position: relative;
-}*/
+}
 
 #side-container #streamView {
     height: 100%;
@@ -3635,6 +3636,15 @@ div[id^=tab-chat-] {
 
 div[id^=tab-chat-] iframe {
   height: 95%;
+}
+
+.muti div[id^=tab-chat-] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 27px;
+  height: 100%;
 }
 
 .stream .watchNow.disabled {
@@ -4119,13 +4129,15 @@ button#like.like.active {
 
 .user-links {
   margin-top: -10px;
-  margin-left: -20px;
-  width: 140px;
+  margin-left: 1px;
+  width: 80px;
   text-align: left;
   background: #cecece;
   height: 100%;
-  display: none;
-  border-top: 2px solid #f00;
+   display: none;
+  border-top: 3px solid #f00;
+  position: relative;
+  border-radius: 3px;
 }
 
 li:hover .user-links {
@@ -4138,6 +4150,10 @@ li:hover .user-links {
 
 .user-links li {
   height: 1.2em !important;
+  list-style-type: circle;
+  list-style-position: inside;
+  color: #555;
+  font-size: 13px;
 }
 
 .user-links li a {
@@ -4160,4 +4176,16 @@ li:hover .user-links {
 
 .game-item {
   background-color: #000;
+}
+
+ul.user-links:before {
+  border-style: solid;
+  border-width: 0 4px 4px 4px;
+  border-color: transparent transparent #f00 transparent;
+  content: "\00A0";
+  height: 0;
+  left: 45%;
+  position: absolute;
+  top: -7px;
+  width: 0;
 }

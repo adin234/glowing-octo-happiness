@@ -106,8 +106,11 @@ var render_videos = function(filter, game, lanparty) {
         : page_data.streamers;
 
     source.forEach(function (item, i) {
+        console.log(item);
         if(typeof item.twitch != 'undefined') {
-            if(typeof filter != 'undefined' && !~item.twitch.channel.status.search(filterRegExp)) return;
+            if(typeof filter != 'undefined'
+            && !~item.twitch.channel.status.search(filterRegExp)
+            && !~item.username.search(filterRegExp)) return;
             item.twitchid = item.field_value[item.field_value.length-1];
             // dont render if already active
             if(filterGame != 'all' && ~item.twitch.game.trim().search(filterGameRegExp)) return;
@@ -123,6 +126,8 @@ var render_videos = function(filter, game, lanparty) {
             item.bust = +new Date();
             item.views = item.twitch.viewers;
         } else {
+            if(typeof filter != 'undefined'
+            && !~item.username.search(filterRegExp)) return;
             item.id = 'YT'+item.youtube.id;
             item.idraw= item.youtube.id;
             item.live = 'live';

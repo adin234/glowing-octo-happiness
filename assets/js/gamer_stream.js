@@ -1,4 +1,4 @@
-utilLoader.show();
+
 $(function() {
     var information_masonry = function() {
         $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
@@ -29,13 +29,13 @@ $(function() {
      $('body').on('change', '#view-resize', function(e) {
         var size = $(this).val();
         $('body').removeClass('x1 x2 x3').addClass(size);
-        // if(size == 'x3') {
-        //     $('embed').height($('#streamView').height());
-        //     $('object').height($('#streamView').height());
-        // } else {
-        //     $('embed').height('100%');
-        //     $('object').height('100%');
-        // }
+        if(size == 'x3') {
+            $('embed').height($('#streamView').height());
+            $('object').height($('#streamView').height());
+        } else {
+            $('embed').height('100%');
+            $('object').height('100%');
+        }
     });
 
     var streamType = twitch.substr(0,2);
@@ -52,8 +52,8 @@ $(function() {
             }
         ));
 
-        utilLoader.hide();
-        // $('object').height($('#streamView').height());
+        // utilLoader.hide();
+        $('object').height($('#streamView').height());
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
@@ -71,15 +71,14 @@ $(function() {
         .html(),{youtubeid: streamId}));
         $.getJSON(server+'streamers/youtube', function(e) {
             e.streamers.forEach(function(item) {
-                console.log(item.youtube.id, streamId)
                 if(item.youtube.id == streamId) {
                     $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-                    // $('embed').height($('#streamView').height());
+                    $('embed').height($('#streamView').height());
                 }
             })
         });
 
-        utilLoader.hide();
+        // utilLoader.hide();
 
         $('#tab-2').append(page_data.custom_fields.youtube_activity);
 				/*  This where you put your JSON result to be able to access the chat plugin  */
@@ -101,8 +100,6 @@ $(function() {
         removeMisalignedTags: false,
         addInLineBreaks: false
     });
-
-    console.log(result);
 
     $('#about-streamer').html(result.html);
 

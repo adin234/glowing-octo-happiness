@@ -80,15 +80,21 @@ $(window).on('hashchange', function(){
 
     if(hash.length) {
         var id = hash.shift();
-        filterGame = id.replace('#!', '');
+        filterGame = id = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
+
         if(id.trim() === '' || id.trim() === '#!') {
+
             filterGame = '';
-            $.getJSON(server+'games/all/videos', function(result) {
-                page_data.videos = result;
-                render_videos();
+            $.getJSON(server+'youtubers', function(result) {
+                page_data.new_youtubers = result.new_youtubers;
+                page_data.popular_youtubers = result.popular_youtubers;
+                page_data.youtubers = result.youtubers;
+                render_new_members();
+                render_all_members();
+                render_popular_members();
             });
             return;
         }
@@ -128,20 +134,21 @@ var filter_game = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_featured_games(filterString);
-    slider.featured_games.reloadSlider({startSlide: 0});
+    // slider.featured_games.reloadSlider({startSlide: 0});
     render_latest_games(filterString);
-    slider.latest_games.reloadSlider({startSlide: 0});
+    // slider.latest_games.reloadSlider({startSlide: 0});
+    $('.tooltip').tooltipster({contentAsHTML: true});
 };
 
 var filter_videos = function(input) {
     var $this = $(input);
     var filterString = $this.val();
     render_new_members(filterString);
-    newSlider.reloadSlider({startSlide: 0});
+    // newSlider.reloadSlider({startSlide: 0});
     render_all_members(filterString);
-    allSlider.reloadSlider({startSlide: 0});
+    // allSlider.reloadSlider({startSlide: 0});
     render_popular_members(filterString);
-    popularSlider.reloadSlider({startSlide: 0});
+    // popularSlider.reloadSlider({startSlide: 0});
 };
 
 var render_featured_games = function (filter) {
@@ -334,6 +341,9 @@ $(function() {
     $(".sf-menu").superfish();
     $(".tabs").tabslet({ animation: true });
     $(".games .tab li a").on('click', function() {
+        var search = $('#txtbox-search-games');
+        search.val('');
+        filter_game(search);
         window.location.hash = '#!';
     });
 });

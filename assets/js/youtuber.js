@@ -70,13 +70,13 @@ $.get(server+'streamers/youtube?user='+page_data.user.user_id, function(result) 
 	}
 });
 
-$('#responsive-menu-button').sidr({
-	name: 'sidr-main',
-	source: '#navigation',
-	renaming: false
-});
+// $('#responsive-menu-button').sidr({
+// 	name: 'sidr-main',
+// 	source: '#navigation',
+// 	renaming: false
+// });
 
-if ($(window).width() < 1024) {
-  $(".videoHeading").insertBefore($(".videoList"));
-  $(".channel").insertBefore($(".playFunctionBtn"));
-}
+// if ($(window).width() < 1024) {
+//   $(".videoHeading").insertBefore($(".videoList"));
+//   $(".channel").insertBefore($(".playFunctionBtn"));
+// }

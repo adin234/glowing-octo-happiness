@@ -56,17 +56,16 @@ $.fn.initChatBox = function(chl, usr)
     gchatdiv        = '#'+this.attr('id');
     btnname         = '#btn-'+chid;
     txtname         = '#msgs-'+chid;
-    
+
     $(window).resize(function(){
         $( gchatdiv ).css('height','100% !important');
     });
-    
+
     $(window).on('user_logged_in', function(){
         location.reload(5);
     });
 
     $(gchatdiv).on("click", btnname, function(){
-        console.log('Sending a message to server');
         txtctrl = '#msgs-'+chid;
         ud = {
             userid        : uid,
@@ -133,7 +132,6 @@ $.fn.initChatBox = function(chl, usr)
         var timesent, elem;
 
         if (sd.cid == chl.id) {
-            console.log('Update chatbox for channel ' + sd.cid);
             if (sd.msgtype == 'notification') {
                 msgbox      = '#tblchatmsgs-' + sd.cid;
                 $(msgbox).append(msgNotify.replace(/{gchat-message}/ig,sd.msg));
@@ -171,7 +169,6 @@ $.fn.initChatBox = function(chl, usr)
         socket.emit('leaveroom',{username : user})
     });
 
-    console.log(this.attr('id'));
     this.append(chatUI);
     return false;
 };

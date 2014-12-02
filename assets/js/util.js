@@ -61,7 +61,6 @@ var showSocialButtons = function () {
 
           FB.Event.subscribe('xfbml.render', function(response) {
             if($('#index-page').length){
-                console.log('detach');
                 $('#fb-like').detach().prependTo($('#viewport'));
             }
           });
@@ -75,10 +74,8 @@ var showSocialButtons = function () {
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     } else {
-        console.log(link);
         $('#fb-like').attr('data-href', link);
         FB.XFBML.parse(document.getElementById('fb-container'), function() {
-            console.log('rendered');
         });
     }
 
@@ -101,7 +98,6 @@ var utilLogin = {
         loginMenu.classname = 'full-overlay';
         loginMenu.id = 'loginMenu';
         loginMenu.addEventListener('click', function(e){
-            console.log(e.target.classname);
             switch(e.target.classname) {
                 case 'login-container'  :
                 case 'full-overlay'     :
@@ -235,9 +231,7 @@ var utilHash = {
          var hash = window.location.hash;
 
          var hash_string = hash.replace('/'+string, '');
-         console.log(apply);
          if(apply) {
-            console.log(123);
               window.location.hash = hash_string;
          }
 
@@ -300,7 +294,6 @@ var fixErrorImg = function(item) {
 };
 
 // $('body').on('error', 'img.safeloading', function(e) {
-//     console.log(e);
 //     $(this).attr(
 //         'src',
 //         'http://community.gamers.tm/zh/styles/default/xenforo/'
@@ -425,7 +418,7 @@ $.extend($.gritter.options, {
 
 var notify_stream = function(data) {
     $.gritter.add({
-        title: 'Streaming...',
+        title: '直播中',
         text: '<a class="link" href="'+data.link+'">'+data.streamer+'</a>'
     });
 }
@@ -441,8 +434,8 @@ $(function() {
     .done(function(session) {
         if(typeof session.username !== 'undefined') {
             var links = '<ul class="user-links">'+
-                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">Personal Details</a></li>'+
-                '<li><a href="/favorites" title="">Favorites</a></li>'+
+                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>'+
+                '<li><a href="/favorites" title="">我的最愛</a></li>'+
                 '</ul>';
             var link = $('<a>',{
                 text: session.username,
