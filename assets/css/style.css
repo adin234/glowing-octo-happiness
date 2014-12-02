@@ -1135,6 +1135,11 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .video .list h3, .video .list img {
   position: absolute;
 }
+
+.video .list img {
+  left: 0;
+}
+
 .video .list h3 {
   background-color: rgba(131, 7, 7, 0.75);
   bottom: 0;
@@ -2273,6 +2278,8 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 
 #index-page .video .list {
   width: 735px !important;
+  float: none !important;
+  display: inline-block;
 }
 
 
