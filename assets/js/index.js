@@ -128,7 +128,7 @@ var index_show_streamers = function(streamersList) {
 	            item.provider = attachments_server;
 	            item.thumb = item.twitch.preview.large;
 	            item.title = item.twitch.channel.status;
-	            item.bust = +new Date();
+	            item.bust = 1;
 	            item.views = item.twitch.viewers;
 	        } else {
 	            item.id = 'YT'+item.youtube.id;
@@ -139,7 +139,7 @@ var index_show_streamers = function(streamersList) {
 	            item.provider = attachments_server;
 	            item.thumb = item.youtube.snippet.thumbnails.high.url;
 	            item.title = item.youtube.snippet.title;
-	            item.bust = +new Date();
+	            item.bust = 1;
 	            item.views = '0';
 	        }
 
@@ -212,7 +212,7 @@ var update_index = function(index_data) {
 		item.provider = attachments_server;
 		item.thumb = item.snippet.thumbnails.medium.url;
 		item.title = item.snippet.title;
-		item.bust = +new Date();
+		item.bust = 1;
 		item.anytv_comment = item.anytv_comment || 0;
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
@@ -249,7 +249,7 @@ var update_index = function(index_data) {
 			item.provider = attachments_server;
 			item.thumb = item.snippet.thumbnails.medium.url;
 			item.title = item.snippet.title;
-			item.bust = +new Date();
+			item.bust = 1;
 			item.anytv_comment = item.anytv_comment || 0;
 			item.comments = item.snippet.meta.statistics.commentCount;
 			item.views = item.snippet.meta.statistics.viewCount;
@@ -283,7 +283,7 @@ var update_index = function(index_data) {
 		item.provider = attachments_server;
 		item.thumb = item.snippet.thumbnails.medium.url;
 		item.title = item.snippet.title;
-		item.bust = +new Date();
+		item.bust = 1;
 		item.anytv_comment = item.anytv_comment || 0;
 		item.comments = item.snippet.meta.statistics.commentCount;
 		item.views = item.snippet.meta.statistics.viewCount;
@@ -383,7 +383,7 @@ var update_index = function(index_data) {
 	index_data.recent_threads.forEach(function(item, i){
 		var data = {
 			posterimage: attachments_server+'data/avatars/l/0/'
-				+item.last_post_user_id+'.jpg?'+(+new Date),
+				+item.last_post_user_id+'.jpg',
 			title: item.title,
 			replies: item.reply_count,
 			views: item.view_count,
@@ -403,7 +403,7 @@ var update_index = function(index_data) {
 	index_data.threads.forEach(function(item, i){
 		var data = {
 			posterimage: attachments_server+'data/avatars/l/0/'
-				+item.last_post_user_id+'.jpg?'+(+new Date),
+				+item.last_post_user_id+'.jpg',
 			title: item.title,
 			replies: item.reply_count,
 			views: item.view_count,

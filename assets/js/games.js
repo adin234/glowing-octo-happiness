@@ -126,7 +126,7 @@ var render_videos = function() {
         item.provider = attachments_server;
         item.thumb = item.snippet.thumbnails.medium.url;
         item.title = item.snippet.title;
-        item.bust = +new Date();
+        item.bust = 1;
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
         item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
@@ -175,7 +175,7 @@ var load_game_videos_next_page = function() {
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
             item.title = item.snippet.title;
-            item.bust = +new Date();
+            item.bust = 1;
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
             item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;

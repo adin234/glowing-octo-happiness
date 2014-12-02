@@ -38,7 +38,6 @@ var onPlayerStateChange = function() {
     var videoId = event.target.getVideoData().video_id;
     var index = event.target.getPlaylistIndex();
     var context = $('img[data-index='+index+']');
-
   }
 };
 /* END YOUTUBE SHIZZ */
