@@ -44,6 +44,7 @@ var onPlayerStateChange = function() {
 /* END YOUTUBE SHIZZ */
 
 var update_videos = function (videos, append) {
+  console.log(videos);
   html = [];
   var link = '#!/';
   // if(active_playlist) {
@@ -55,12 +56,11 @@ var update_videos = function (videos, append) {
   var start = $('li.ytVideo.videoItem').length;
 
   if(!append || typeof append === 'undefined') {
-    console.log(-1);
     // activeVideos = videos;
     start = 0;
     videoIds = [];
   }
-  console.log('start',start);
+
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
 
@@ -71,14 +71,12 @@ var update_videos = function (videos, append) {
     } else {
       continue;
     }
-
     if(filterTags
     && (typeof item.snippet.meta == 'undefined'
        || typeof item.snippet.meta.tags == 'undefined'
        || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
 
     playlistIds.push(item.snippet.playlistId);
-
     if(item.snippet.thumbnails) {
       item = getVideo(item.snippet.resourceId.videoId) || item;
       if(typeof item.snippet.thumbnails !== 'undefined') {
@@ -561,8 +559,8 @@ $(document).ready(function() {
   }
   // get favorites
   if(typeof utilUser !== 'undefined'
-    && !$('body').hasClass('news')
-    && !$('body').hasClass('shows')) {
+    /*&& !$('body').hasClass('news')
+    && !$('body').hasClass('shows')*/) {
     $.ajax({
         dataType:'jsonp',
         url: server+'favorite-ids',
