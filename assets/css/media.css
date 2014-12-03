@@ -31,12 +31,21 @@
 	}
 
 	/*NAV-start*/
+		.nav-wrapper {
+			height: 80px;
+		}
+		#outContainer header nav a{
+			height: 72px;
+		}
+		.fa-2x {
+			font-size: 4em;
+		}
 		i {
 			color: #fff;
 		}
 		.logo_g {
 			height:auto;
-			width:115px;
+			width: 200px;
 		}
 		.fa-bars {
 			padding: 9px 10px;
@@ -199,12 +208,13 @@
 	/*index-end*/
 
 	/*Videos-start*/
+
 		.silderList .video [id^="tab-"]:before,
 		.silderList .video [id^="tab-"]:after {
 			display: none !important;
 		}
 
-		.videos .uploader, .list .uploader { 
+		.videos .uploader/*, .list .uploader*/ { 
 			display: none; 
 		}
 		.video {
@@ -219,23 +229,40 @@
 			text-align: center;
 			-webkit-transform: inherit !important;
 		}
+			#index-page .main .video .list > li {
+				width: 28% !important;
+			}
+			#index-page .main .video .list > li > a:nth-child(1) > img {
+				width: 100% !important;
+			}
+
+			#index-page .main .video .list > li > h3 {
+				float: none;
+				width: 93% !important;
+			}
+			#index-page .main .video .list > li > ul {
+				width: 94%;
+				float: none;
+				padding-left: 15px;
+			}
+
 			.video .list > li {
 				margin: 0 !important;
 				padding: 0 15px 20px !important;
 				height: auto !important;
-				width: 45% !important;
+				width:  45% !important; /*28% !important;*/
 			}
 			.video .list img { 
 					position: relative !important; 
 					float: left;
-					width: 55%; 
-					height: 100%;
+					width:  55% !important;/*100% !important;*/
+					height: 100% !important;
 			}
 			.video .list > li > h3 {
 					position: relative !important;
-					float: right;
+					float: right; /*none;*/
 					background: none !important;
-					width: 40% !important;
+					width: 40% !important; /*93% !important;*/
 					color: #000 !important;
 					font-size: 100% !important;
 					padding-left: 10px;
@@ -243,21 +270,40 @@
 					overflow: hidden;
 			}
 				.video .list > li > h3 > a{
-						text-align: left; padding: 10px 0 0 0 !important;
+						text-align: left;
+						padding: 10px 0 0 0 !important;
 						height: auto !important;
+						font-size: 16px;
+				}
+				.video .list .uploader {
+					border-radius: 0;
+					top: 0;
+					left: 49px;
+					position: absolute !important;
+					width: 25% !important;
+					height: 25% !important;
+					border: 6px solid rgba(229, 197, 197, 0.6) !important;
 				}
 					.video .list > li > ul{
-						position: relative !important; bottom: 0 !important; width: 40%;
-						float: right; padding-left: 0; text-align: left;  height: 45px;
+						position: relative !important;
+						bottom: 0 !important; 
+						width: 40%; /*94%;*/
+						float: right; /*none;*/
+						padding-left: 0; /*15px;*/ 
+						text-align: left;  
+						height: 45px;
 					}
 						.video .list > li > ul > li:nth-child(1){
-							width: 140px; text-transform: none;
+							width: 140px; 
+							text-transform: none;
 						}
 						.video .list > li > ul > li:nth-child(2){
-							margin-left: 0 !important; width: 140px;
+							margin-left: 0 !important; 
+							width: 140px;
 						}
 						.video .list > li > ul > li:nth-child(2) > em{
-							width: 70px !important; text-indent: 0 !important;
+							width: 60px !important; 
+							text-indent: 0 !important;
 						}
 						.video .list > li > ul > li:nth-child(3){
 							display: none;
@@ -292,6 +338,10 @@
 		.bxslider.videos > ul {
 			float: none !important;
 			width: auto !important;
+		}
+
+		.games > #tab-1-2 > div > div > div.bx-viewport > div.bx-wrapper > div.bx-viewport {
+			overflow-y: hidden !important;
 		}
 
 		/*container-videos-start*/
@@ -543,7 +593,6 @@
 				width: 93% !important;
 				float: none;
 				display: block;
-				padding-bottom: 110px !important;
 			}
 
 			.video .list img {
@@ -617,29 +666,30 @@
 		.main .bx-controls {display: none;}
 	/*index-end*/
 
-	/*Videos-start*/
-			#container-popular-member > ul > li,
-			#container-new-member > ul > li {
-				width: 45% !important;
-			}
-	/*Videos-end*/
-
 	/*games-start*/
 		/*games-list-start*/
-				#container-latest-games .game {width: 528px !important;}
-					#container-featured-games .game-item{width: 129px !important;}
-				.video .list {width: 345px !important;}
+				.bxslider.games .game {
+					width: 528px !important;
+					float: none !important;
+					display: inline-block;
+				}
+					#container-featured-games .game-item{
+						width: 129px !important;
+					}
+				.video .list {
+					width: 345px !important;
+				}
 		/*games-list-end*/
 
 	/*games-end*/
 
 	/*youtubers-start*/
-		.search > div:nth-child(1), #txtbox-search-games, #txtbox-search-videos {display: none;}
-		.video .collection {width: 348px !important;}
-		#container-new-member{ width: 415% !important;}
-			#container-new-member > ul > li {
-				width: 87% !important;
-			}
+		.search > div:nth-child(1), #txtbox-search-games, #txtbox-search-videos {
+			display: none;
+		}
+		.video .collection {
+			width: 348px !important;
+		}
 		#container-popular-member > .list {
 			width: 660px !important;
 		}
@@ -719,6 +769,25 @@
 	/*index-end*/
 
 	/*Videos-start*/
+/*		.video .list > li {
+			width: 30% !important;
+		}
+		.video .list img {
+			width: 100% !important;
+			height: 100% !important;
+		}
+		.video .list > li > h3{
+			float: none !important;
+			width: 93% !important;
+		}
+		.video .list > li > h3 > a {
+			font-size: 16px;
+		}
+		.video .list > li > ul {
+			float: none !important;
+			padding-left: 15px;
+			width: 94% !important;
+		}*/
 
 		#container-popular-member > ul > li > h3,
 		#container-new-member > ul > li > h3 {
@@ -743,12 +812,6 @@
 				}
 		/*games-list-end*/
 
-		/*container-videos-start*/
-			#container-videos > ul > li {
-				width: 40% !important;	
-				padding: 0 15px 55px !important;
-			}
-		/*container-videos-end*/
 	/*games-end*/
 
 	/*shows-start*/
@@ -775,11 +838,11 @@
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list li.live:before, .live:before {
 			top: -1%;
-			right: 45%;
+			right: 13px;
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
-			top: 145px;
-			width: 51.3%;
+			top: 128px;
+			width: 90.5%;
 			z-index: 9;
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
@@ -808,7 +871,7 @@
 	#prof_pic {
 		width: 54%;
 		height: auto;
-		padding: 40px 56px 15px;
+		padding: 10px 56px 15px;
 	}
 
 	#prof_pic_a { text-decoration: none; }
@@ -857,16 +920,17 @@
 		.sidr ul li:nth-child(7) { background-position: -68px -1592px; }
 		.sidr ul li:nth-child(8) {background: url('/assets/images/freedom_abt2.png')  no-repeat; background-size: 10%;
 			background-position: 53px;}
-		.sidr ul li:nth-child(9) {background: url('/assets/images/join.png')  no-repeat; background-size: 17%;
+		.sidr ul li:nth-child(9) {background: url('/assets/images/freedom_abt2.png')  no-repeat; background-size: 10%;
+			background-position: 53px;}
+		.sidr ul li:nth-child(10){background: url('/assets/images/join.png')  no-repeat; background-size: 17%;
 			background-position: 42px;}
-		.sidr ul li:nth-child(10){ background: none; }
 			.sidr ul li a {	padding-left: 95px !important; color: #ddd !important;}
 			.sidr ul li a:active, .sidr ul li a:hover {	color: #fff !important;}
-			.sidr ul li:nth-child(10) {display: none;}
-			.sidr ul li:nth-child(10) a {display: inline-block !important; padding-left: 60px !important;}
-			.sidr ul li:nth-child(10) a:last-child{padding-left: 10px !important; padding-right: 100px;}
+			.sidr ul li:nth-child(11) {display: none;}
+			.sidr ul li:nth-child(11) a {display: inline-block !important; padding-left: 60px !important;}
+			.sidr ul li:nth-child(11) a:last-child{padding-left: 10px !important; padding-right: 100px;}
 
-	.slider_footer {padding-top: 35px;}/*30px*/
+	.slider_footer {padding-top: 20px;}/*30px*/
 		.slider_footer ul {	border: none !important;text-align: center; margin-bottom: 0 !important; }
 			.slider_footer ul li {border: none !important;display: inline-block !important;}
 				.slider_footer ul li a {padding: 0 5px !important;}
