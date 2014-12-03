@@ -233,7 +233,7 @@ var render_all_members = function(filter) {
 
         item.provider = attachments_server;
         item.videoid = item.video.snippet.resourceId.videoId;
-        item.bust = new Date();
+        item.bust = 1;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -274,7 +274,7 @@ var render_new_members = function(filter) {
 
         item.provider = attachments_server;
         item.videoid = item.video.snippet.resourceId.videoId;
-        item.bust = new Date();
+        item.bust = 1;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -316,7 +316,7 @@ var render_popular_members = function(filter) {
 
         item.provider = attachments_server;
         item.videoid = item.video.snippet.resourceId.videoId;
-        item.bust = new Date();
+        item.bust = 1;
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);

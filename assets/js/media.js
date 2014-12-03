@@ -38,7 +38,6 @@ var onPlayerStateChange = function() {
     var videoId = event.target.getVideoData().video_id;
     var index = event.target.getPlaylistIndex();
     var context = $('img[data-index='+index+']');
-
   }
 };
 /* END YOUTUBE SHIZZ */
@@ -179,9 +178,13 @@ $('body').on('click', 'button#like', function(item, x) {
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
     });
+    if($('body').hasClass('favorites')) {
+        $('li[id=video-'+videoId+']').hide();
+    }
   } else {
     $elem.html('從我的最愛移除');
     page_data.favorites.push(videoId);
+    $('li[id=video-'+videoId+']').show();
   }
 
 $.ajax({

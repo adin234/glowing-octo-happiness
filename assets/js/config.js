@@ -1,5 +1,5 @@
 var server              = 'http://api.gamers.tm/';
-var origin              = 'http://beta.gamers.tm/';
+var origin              = 'http://www.gamers.tm/';
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';
 

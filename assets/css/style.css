@@ -4087,6 +4087,7 @@ button.load-more:hover {
 
 #index-page ul.list {
   overflow: hidden;
+  vertical-align: top;
 }
 
 #index-page .bx-viewport {
