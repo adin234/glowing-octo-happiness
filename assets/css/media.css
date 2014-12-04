@@ -38,7 +38,7 @@
 			height: 72px;
 		}
 		.fa-2x {
-			font-size: 4em;
+			font-size: 4em !important;
 		}
 		i {
 			color: #fff;
@@ -593,6 +593,7 @@
 				width: 93% !important;
 				float: none;
 				display: block;
+				padding: 0 0 115px !important;
 			}
 
 			.video .list img {
@@ -877,9 +878,9 @@
 	#prof_pic_a { text-decoration: none; }
 
 	#prof_photo {
-		border-radius: 40px;
+		border-radius: 50px;
 		border: 4px solid #757575;
-		width: 70px;
+		width: 100px;
 		margin: auto;
 		display: block;
 	}
@@ -888,43 +889,50 @@
 		color: #fff;
 		text-align: center;
 		margin-bottom: 0;
+		font-size: 20px;
 	}
 
 	.edit_prof {
 		background: url('/assets/images/sprite.png') no-repeat;
-		width: 35px;
+		width: 40px;
 		display: block;
-		height: 30px;
-		background-size: 150px;
-		background-position: 11px -2630px;
+		height: 35px;
+		background-size: 200px;
+		background-position: 15px -3512px;
 	}
 
 	.fa-gear {
 		position: absolute;
 		right: 10px;
 		top: 15px;
+		font-size: 2em !important;
 	}
 
 	.sidr ul {margin: 0 !important;}
 		.sidr ul li {
 			background: url('/assets/images/sprite.png') no-repeat;
 			font-weight: bold;
-			line-height: 40px !important;
+			line-height: 50px !important;
+			background-size: 215px;
 		}
-		.sidr ul li:nth-child(1) { background-position: -68px -1317px; }
-		.sidr ul li:nth-child(2) { background-position: -68px -1364px; }
-		.sidr ul li:nth-child(3) { background-position: -68px -1409px; }
-		.sidr ul li:nth-child(4) { background-position: -68px -1454px; }
-		.sidr ul li:nth-child(5) { background-position: -68px -1505px; }
-		.sidr ul li:nth-child(6) { background-position: -68px -1547px; }
-		.sidr ul li:nth-child(7) { background-position: -68px -1592px; }
-		.sidr ul li:nth-child(8) {background: url('/assets/images/freedom_abt2.png')  no-repeat; background-size: 10%;
-			background-position: 53px;}
+		.sidr ul li:nth-child(1) { background-position: -130px -1940px; }
+		.sidr ul li:nth-child(2) { background-position: -130px -2010px; }
+		.sidr ul li:nth-child(3) { background-position: -130px -2077px; }
+		.sidr ul li:nth-child(4) { background-position: -130px -2145px; }
+		.sidr ul li:nth-child(5) { background-position: -130px -2216px; }
+		.sidr ul li:nth-child(6) { background-position: -130px -2280px; }
+		.sidr ul li:nth-child(7) { background-position: -130px -2346px; }
+		.sidr ul li:nth-child(8) {background: url('/assets/images/heart-icon-stroke.png')  no-repeat; background-size: 10%;
+			background-position: 58px;}
 		.sidr ul li:nth-child(9) {background: url('/assets/images/freedom_abt2.png')  no-repeat; background-size: 10%;
-			background-position: 53px;}
+			background-position: 55px;}
 		.sidr ul li:nth-child(10){background: url('/assets/images/join.png')  no-repeat; background-size: 17%;
-			background-position: 42px;}
-			.sidr ul li a {	padding-left: 95px !important; color: #ddd !important;}
+			background-position: 38px;}
+			.sidr ul li a {	
+				padding-left: 100px !important; 
+				color: #ddd !important;
+				font-size: 25px;
+			}
 			.sidr ul li a:active, .sidr ul li a:hover {	color: #fff !important;}
 			.sidr ul li:nth-child(11) {display: none;}
 			.sidr ul li:nth-child(11) a {display: inline-block !important; padding-left: 60px !important;}
@@ -944,7 +952,7 @@
 		line-height: 30px !important;
 		border-top: 1px solid #4d4d4d !important;
 		font-weight: normal;
-		font-size: small;
+		font-size: large;
 		color: #ccc;
 		background: none !important;
 	}
