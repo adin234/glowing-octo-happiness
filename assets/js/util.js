@@ -328,7 +328,7 @@ function searchBoxInit() {
                 redirect_to_youtuber(value.data.user_id);
                 break;
         }
-        
+
       }
     };
     var searchDom = $('#query');
@@ -466,7 +466,6 @@ var notify_stream = function(data) {
 
 // session
 $(function() {
-    if($('body').hasClass('streams')) return;
     $.ajax({
         dataType:'jsonp',
         url:server+'logged_user',
@@ -485,10 +484,14 @@ $(function() {
             });
 
             utilCookie.set('user', JSON.stringify(session), 1/24);
+
+            if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links);
             // $('li.login').html(link);
         }
     });
+
+    if($('body').hasClass('streams')) return;
     setTimeout(function() {
          $('li.login').css('visibility', 'visible');
      }, 100);
