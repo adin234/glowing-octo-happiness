@@ -180,6 +180,20 @@ var render_videos = function(filter, game, lanparty) {
         hideControlOnEnd: true
     });
 
+    if(slider.container_videos.getSlideCount() < 2) {
+        if(!lanparty) {
+            $('#tab-2-1 .bx-controls').css('opacity', 0);
+        } else {
+            $('#tab-2-2 .bx-controls').css('opacity', 0);
+        }
+    } else {
+        if(!lanparty) {
+            $('#tab-2-1 .bx-controls').css('opacity', 100);
+        } else {
+            $('#tab-2-2 .bx-controls').css('opacity', 100);
+        }
+    }
+
     $('#container-videos .uploader > img').on('load', function(e) {
         if($(this).width() > $(this).height()) {
             $(this).height('100%');

@@ -346,6 +346,7 @@ $(function() {
         filter_game(search);
         window.location.hash = '#!';
     });
+    youtuberUserSearch();
 });
 
 var render_page = function() {

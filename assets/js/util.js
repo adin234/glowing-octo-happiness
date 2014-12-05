@@ -306,17 +306,34 @@ function redirect_to_youtuber(id)  {
     window.location.href = origin+'youtuber/?user='+id
 }
 
+function redirect_to_gamer(id) {
+    window.location.href = origin + 'game/?game=' + id;
+}
+
+function redirect_to_youtubers(id) {
+    window.location.href = origin + 'youtubers/?user' + id;
+}
+
 function searchBoxInit() {
     options = {
       serviceUrl: server+'youtubers/search',
       // minChars: 3,
       zIndex: 9999,
       onSelect: function(value) {
-        redirect_to_youtuber(value.data.user_id);
+        switch (value.typeid) {
+            case 'G':
+                redirect_to_gamer(value.data.game_id);
+                break;
+            default:
+                redirect_to_youtuber(value.data.user_id);
+                break;
+        }
+
       }
     };
     var searchDom = $('#query');
     if(searchDom.length) {
+        console.log(searchDom.val());
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
             if(e.which == 13) {
@@ -363,6 +380,30 @@ function youtuberSearch() {
                 } else {
                     return false;
                 }
+            }
+        });
+    }
+}
+
+function youtuberUserSearch() {
+    options = {
+      serviceUrl: server+'youtubers/search_youtubers',
+      // minChars: 3,
+      zIndex: 9999,
+      onSelect: function(value) {
+        var searchDom = $('#txtbox-search-videos');
+        searchDom.val(value.value);
+        filter_videos(searchDom);
+      }
+    };
+    var searchDom = $('#txtbox-search-videos');
+    if(searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                var searchDom = $('#txtbox-search-videos');
+                searchDom.val(value.data.user_id);
+                filter_videos(searchDom);
             }
         });
     }
@@ -425,7 +466,6 @@ var notify_stream = function(data) {
 
 // session
 $(function() {
-    if($('body').hasClass('streams')) return;
     $.ajax({
         dataType:'jsonp',
         url:server+'logged_user',
@@ -444,10 +484,14 @@ $(function() {
             });
 
             utilCookie.set('user', JSON.stringify(session), 1/24);
+
+            if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links);
             // $('li.login').html(link);
         }
     });
+
+    if($('body').hasClass('streams')) return;
     setTimeout(function() {
          $('li.login').css('visibility', 'visible');
      }, 100);
