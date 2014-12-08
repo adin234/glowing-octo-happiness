@@ -2596,6 +2596,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 #streamView header, #streamView #functionBar {
   width: 394px;
+  overflow: hidden;
 }
 #streamView header {
   background-color: black;
@@ -2658,6 +2659,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   right: 0;
   bottom: 0;
   background: #F2F2F2;
+}
+
+#streamView #functionBar #twitchTalk .content {
+  height: 100%;
+}
+
+#twitch-chat-frame-container {
+  height: 100%;
 }
 
 #streamView #functionBar .ad {
@@ -3635,11 +3644,11 @@ div[id^=tab-chat-] iframe {
 }
 
 .muti div[id^=tab-chat-] {
-  position: absolute;
-  left: 0;
+  position: relative;
+/*  left: 0;
   right: 0;
   bottom: 0;
-  top: 27px;
+  top: 27px;*/
   height: 100%;
 }
 

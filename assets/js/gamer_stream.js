@@ -75,7 +75,11 @@ $(function() {
                     $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                     $('embed').height($('#streamView').height());
                 }
-            })
+            });
+
+            if(item.youtube.snippet.description.trim().length) {
+                $('aside .streamer').hide();
+            }
         });
 
         // utilLoader.hide();
@@ -94,14 +98,18 @@ $(function() {
 
 				$('#twitchTalk').css('background-color','black');
 	}
+    console.log('about', page_data.about);
+    if(typeof page_data.about === 'undefined' || !page_data.about.trim().length) {
+        $('aside .streamer').hide();
+    } else {
+        var result = XBBCODE.process({
+            text: page_data.about,
+            removeMisalignedTags: false,
+            addInLineBreaks: false
+        });
 
-    var result = XBBCODE.process({
-        text: page_data.about,
-        removeMisalignedTags: false,
-        addInLineBreaks: false
-    });
-
-    $('#about-streamer').html(result.html);
+        $('#about-streamer').html(result.html);
+    }
 
     $('.streamer .streamer-name').html(page_data.custom_title);
 
@@ -109,7 +117,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -124,7 +131,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -132,7 +138,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -140,7 +145,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -148,7 +152,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -156,7 +159,6 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
-
             $(this).parent().parent().hide();
         }
     });
@@ -180,10 +182,11 @@ var sched_template = function(string) {
     var list = string.split(/<br ?\/?>/).filter(function(e) {
         return e.trim().length;
     }).map(function(e) {
-        return $('<li/>', {text:e})[0].outerHTML;
+        return e+'<br/>';
+        // return $('<li/>', {text:e})[0].outerHTML;
     });
 
-    return list.join('');
+    return $('<li/>', {html:list.join('')})[0].outerHTML;
 }
 
 var toggleChat = function() {
