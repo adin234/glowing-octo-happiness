@@ -1,10 +1,15 @@
 var liveStreamLink = false;
 var filterConsole = 'all';
 
-function filter_category(gameConsole, context) {
+var add_filter_category = function(string, context) {
+    utilHash.changeHashVal('console',string);
+}
+
+function filter_category(gameConsole) {
 	var videos = [];
-	$(context).parent().siblings().removeClass('current');
-	$(context).parent().addClass('current');
+	var context = $('.species a[data-console='+gameConsole+']');
+    context.parent().siblings().removeClass('current');
+    context.parent().addClass('current');
 
 	filterConsole = gameConsole;
 
