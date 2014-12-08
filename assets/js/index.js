@@ -74,6 +74,7 @@ $(document).ready(function() {
     }).done(function (data) {
         $.merge(streamersList, data.streamers);
         index_show_streamers(streamersList);
+        $(window).trigger('hashchange');
     });
 
     $.ajax({
@@ -96,8 +97,6 @@ $(document).ready(function() {
                 $('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2)
             });
         }
-
-        $(window).trigger('hashchange');
     });
 
     $(document).on('click', '.bx-wrapper .close', function(e) {
