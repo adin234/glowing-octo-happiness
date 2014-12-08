@@ -382,7 +382,7 @@ var update_index = function(index_data) {
 	html = [];
 	index_data.recent_threads.forEach(function(item, i){
 		var data = {
-			posterimage: attachments_server+'data/avatars/l/0/'
+			posterimage: attachments_server+'avatar.php?userid='
 				+item.last_post_user_id+'.jpg',
 			title: item.title,
 			replies: item.reply_count,
@@ -402,7 +402,7 @@ var update_index = function(index_data) {
 	html = [];
 	index_data.threads.forEach(function(item, i){
 		var data = {
-			posterimage: attachments_server+'data/avatars/l/0/'
+			posterimage: attachments_server+'avatar.php?userid='
 				+item.last_post_user_id+'.jpg',
 			title: item.title,
 			replies: item.reply_count,

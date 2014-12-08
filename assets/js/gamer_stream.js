@@ -105,62 +105,55 @@ $(function() {
 
     $('.streamer .streamer-name').html(page_data.custom_title);
 
-    $('#monSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.mondaySchedule)
-    })).promise().done(function(e){
+    $('#monSched').html(sched_template(page_data.custom_fields.mondaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
     });
-    $('#tueSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.tuesdaySchedule)
-    })).promise().done(function(e){
+    $('#tueSched').html(sched_template(page_data.custom_fields.tuesdaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             $(this).parent().parent().hide();
         }
     });
-    $('#wedSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.wednesdaySchedule)
-    })).promise().done(function(e){
+    $('#wedSched').html(sched_template(page_data.custom_fields.wednesdaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
     });
-    $('#thuSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.thursdaySchedule)
-    })).promise().done(function(e){
+    $('#thuSched').html(sched_template(page_data.custom_fields.thursdaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
     });
-    $('#friSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.fridaySchedule)
-    })).promise().done(function(e){
+    $('#friSched').html(sched_template(page_data.custom_fields.fridaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
     });
-    $('#satSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.saturdaySchedule)
-    })).promise().done(function(e){
+    $('#satSched').html(sched_template(page_data.custom_fields.saturdaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
 
             $(this).parent().parent().hide();
         }
     });
-    $('#sunSched').html($('<p/>', {
-        html: sched_template(page_data.custom_fields.sundaySchedule)
-    })).promise().done(function(e){
+    $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule))
+        .promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
 

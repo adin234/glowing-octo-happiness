@@ -241,7 +241,7 @@ var getComments = function (videoId) {
   $.getJSON(server+'youtubers/videos/'+videoId+'/comment', function(e) {
     var comments = e.map(function(item) {
       return {
-        userimage: attachments_server+'data/avatars/l/0/'
+        userimage: attachments_server+'avatar.php?userid='
           +item.user_id+'.jpg',
         userprofile: community+'index.php?members/'+item.username
           +'.'+item.user_id+'/',
@@ -538,7 +538,7 @@ $(document).on('load-page',function(){
         $('#tab-2 .discussions')
           .prepend(template(
             template($('#commentItemTpl').html(), {
-              userimage: attachments_server+'data/avatars/l/0/'
+              userimage: attachments_server+'avatar.php?userid='
                 +data.user_id+'.jpg',
               userprofile: community+'index.php?members/'+data.username
                 +'.'+data.user_id+'/',
