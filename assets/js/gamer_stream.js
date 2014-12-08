@@ -106,7 +106,7 @@ $(function() {
     $('.streamer .streamer-name').html(page_data.custom_title);
 
     $('#monSched').html($('<p/>', {
-        html: page_data.custom_fields.mondaySchedule
+        html: sched_template(page_data.custom_fields.mondaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
@@ -115,7 +115,7 @@ $(function() {
         }
     });
     $('#tueSched').html($('<p/>', {
-        html: page_data.custom_fields.tuesdaySchedule
+        html: sched_template(page_data.custom_fields.tuesdaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
@@ -123,7 +123,7 @@ $(function() {
         }
     });
     $('#wedSched').html($('<p/>', {
-        html: page_data.custom_fields.wednesdaySchedule
+        html: sched_template(page_data.custom_fields.wednesdaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
@@ -132,7 +132,7 @@ $(function() {
         }
     });
     $('#thuSched').html($('<p/>', {
-        html: page_data.custom_fields.thursdaySchedule
+        html: sched_template(page_data.custom_fields.thursdaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
@@ -141,7 +141,7 @@ $(function() {
         }
     });
     $('#friSched').html($('<p/>', {
-        html: page_data.custom_fields.fridaySchedule
+        html: sched_template(page_data.custom_fields.fridaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
@@ -150,7 +150,7 @@ $(function() {
         }
     });
     $('#satSched').html($('<p/>', {
-        html: page_data.custom_fields.saturdaySchedule
+        html: sched_template(page_data.custom_fields.saturdaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
@@ -159,7 +159,7 @@ $(function() {
         }
     });
     $('#sunSched').html($('<p/>', {
-        html: page_data.custom_fields.sundaySchedule
+        html: sched_template(page_data.custom_fields.sundaySchedule)
     })).promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
@@ -182,6 +182,16 @@ $.getJSON(server+'get_views/'+twitch, function(e) {
         utilLoader.hide();
     }
 });
+
+var sched_template = function(string) {
+    var list = string.split(/<br ?\/?>/).filter(function(e) {
+        return e.trim().length;
+    }).map(function(e) {
+        return $('<li/>', {text:e})[0].outerHTML;
+    });
+
+    return list.join('');
+}
 
 var toggleChat = function() {
     var advertisementContainer = $('#advertisement-container');
