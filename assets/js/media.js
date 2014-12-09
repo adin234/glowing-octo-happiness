@@ -46,6 +46,10 @@ var update_videos = function (videos, append) {
   console.log(videos);
   html = [];
   var link = '#!/';
+  var cons = '';
+  if(filterConsole.trim().length) {
+    cons = 'console/'+filterConsole+'/';
+  }
   // if(active_playlist) {
   //   link+='playlist/'+active_playlist+'/';
   // }
@@ -62,6 +66,7 @@ var update_videos = function (videos, append) {
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
+
 
     if(!item) { continue; }
 
@@ -81,8 +86,8 @@ var update_videos = function (videos, append) {
       if(typeof item.snippet.thumbnails !== 'undefined') {
         tempdata = {
           id: 'video-'+item.snippet.resourceId.videoId,
-          link: link+'video/'+item.snippet.resourceId.videoId,
-          link_user: '/youtuber/?user='+item.user_id+'/#!/'+'video/'+item.snippet.resourceId.videoId || '',
+          link: link+cons+'video/'+item.snippet.resourceId.videoId,
+          link_user: '/youtuber/?user='+item.user_id+'/#!/'+item.snippet.resourceId.videoId || '',
           user: item.username || '',
           title: item.snippet.title,
           thumb: item.snippet.thumbnails.default.url,
@@ -113,6 +118,11 @@ var willPlay = function() {
 var update_playlists = function (playlists) {
   html = [];
   var ids = [];
+  var cons = '';
+  if(filterConsole.trim().length) {
+    cons = 'console/'+filterConsole+'/';
+  }
+
   playlists.forEach(function(item, i){
     if(~ids.indexOf(item.id)) {
       return;
@@ -123,7 +133,7 @@ var update_playlists = function (playlists) {
 
     tempdata = {
       id: 'playlist-'+item.id,
-      link: '#!/playlist/'+item.id,
+      link: '#!/'+cons+'playlist/'+item.id,
       title: item.snippet.title,
       thumb: item.snippet.thumbnails.default.url,
       desc: item.snippet.description
@@ -161,6 +171,10 @@ var filterAction = function(action) {
     case 'comments':
       $('a[href="#tab-2"]').click();
       active_comments = true;
+      filterAction(hash.shift());
+      break;
+    case 'console':
+      filter_category(hash.shift())
       filterAction(hash.shift());
       break;
   }
@@ -241,7 +255,7 @@ var getComments = function (videoId) {
   $.getJSON(server+'youtubers/videos/'+videoId+'/comment', function(e) {
     var comments = e.map(function(item) {
       return {
-        userimage: attachments_server+'data/avatars/l/0/'
+        userimage: attachments_server+'avatar.php?userid='
           +item.user_id+'.jpg',
         userprofile: community+'index.php?members/'+item.username
           +'.'+item.user_id+'/',
@@ -538,7 +552,7 @@ $(document).on('load-page',function(){
         $('#tab-2 .discussions')
           .prepend(template(
             template($('#commentItemTpl').html(), {
-              userimage: attachments_server+'data/avatars/l/0/'
+              userimage: attachments_server+'avatar.php?userid='
                 +data.user_id+'.jpg',
               userprofile: community+'index.php?members/'+data.username
                 +'.'+data.user_id+'/',

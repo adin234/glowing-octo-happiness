@@ -42,7 +42,9 @@ var render_featured_games = function (filter) {
 
     page_data.featured_games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
-
+        if(item.id === filterGame) {
+            item.class = 'active';
+        }
         item.game = item.name;
          item.id = item.id.trim();
         items.push(template($('#gameTpl').html(), item));
@@ -72,7 +74,9 @@ var render_latest_games = function(filter) {
 
     page_data.games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
-
+        if(item.id === filterGame) {
+            item.class = 'active';
+        }
         items.push(template($('#gameTpl').html(), item));
          item.id = item.id.trim();
         if(items.length == 12) {
@@ -94,6 +98,22 @@ var render_latest_games = function(filter) {
         hideControlOnEnd: true
     });
 };
+
+var filterAction = function(action) {
+    switch (action) {
+        case 'console':
+            filter_category(hash.shift());
+            filterAction(hash.shift());
+            break;
+        case 'game':
+            categorize_game(hash.shift());
+            filterAction(hash.shift());
+    }
+}
+
+var add_filter_category = function(string, context) {
+    utilHash.changeHashVal('console',string);
+}
 
 var filter_game = function(input) {
     var $this = $(input);
@@ -240,7 +260,7 @@ var render_game_videos = function(game, page) {
     });
 };
 
-var filter_category = function(cons, context) {
+var filter_category = function(cons) {
     var parameters = {};
 
     filterConsole = cons;
@@ -256,27 +276,22 @@ var filter_category = function(cons, context) {
         page_data = results;
         render_page();
     }).done(function() {
-        $(context).parent().siblings().removeClass('current');
-        $(context).parent().addClass('current');
+        var context = $('.species a[data-console='+cons+']');
+        context.parent().siblings().removeClass('current');
+        context.parent().addClass('current');
     });
 };
 
 var render_page = function() {
-    render_latest_games();
-    render_featured_games();
-    $(window).trigger('hashchange');
+    var search = $('#txtbox-search-games');
+    filter_game(search);
     $('.tooltip').tooltipster({contentAsHTML: true});
 };
 
-$(window).on('hashchange', function(){
-    hash = get_hash();
-    hash = hash.filter(function(item) {
-        return item != "";
-    });
+var categorize_game = function(game) {
+    if(game.trim().length) {
+        var id = game;
 
-    if(hash.length) {
-        var id = hash.shift();
-        filterGame = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
         });
@@ -284,6 +299,7 @@ $(window).on('hashchange', function(){
         if(id.trim() === '' || id.trim() === '#!') {
             filterGame = '';
             $.getJSON(server+'games/all/videos', function(result) {
+                console.log(result);
                 page_data.videos = result;
                 render_videos();
             });
@@ -296,6 +312,15 @@ $(window).on('hashchange', function(){
     } else {
         render_videos();
     }
+}
+
+$(window).on('hashchange', function(){
+    hash = window.location.hash.replace('#!/', '');
+    hash = hash.split('/');
+    if(!~hash.indexOf('game')) {
+        render_videos();
+    }
+    filterAction(hash.shift());
 });
 
 $(function() {
@@ -305,9 +330,10 @@ $(function() {
         var search = $('#txtbox-search-games');
         search.val('');
         filter_game(search);
-        window.location.hash = '#!';
+        utilHash.changeHashVal('console', filterConsole || 'all');
         $('.video ul li h2 a').html('遊戲分類');
     });
+    $(window).trigger('hashchange');
 });
 
 $('#txtbox-search-games').on('keydown', function(e) {

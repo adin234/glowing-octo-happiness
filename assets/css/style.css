@@ -2603,6 +2603,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 #streamView header, #streamView #functionBar {
   width: 394px;
+  overflow: hidden;
 }
 #streamView header {
   background-color: black;
@@ -2665,6 +2666,14 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   right: 0;
   bottom: 0;
   background: #F2F2F2;
+}
+
+#streamView #functionBar #twitchTalk .content {
+  height: 100%;
+}
+
+#twitch-chat-frame-container {
+  height: 100%;
 }
 
 #streamView #functionBar .ad {
@@ -3520,7 +3529,7 @@ body:nth-child(3) {
   width: 288px;
 }
 #main-container .information {
-  float: left;
+  overflow: hidden;
   position: relative;
 }
 #main-container .information:before {
@@ -3572,7 +3581,10 @@ body:nth-child(3) {
   padding: 0 14px;
   position: relative;
   text-transform: uppercase;
-  max-width: 216px;
+  width:100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 #main-container .information [id^="tab-"] ul ul li:before {
   background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
@@ -3639,11 +3651,11 @@ div[id^=tab-chat-] iframe {
 }
 
 .muti div[id^=tab-chat-] {
-  position: absolute;
-  left: 0;
+  position: relative;
+/*  left: 0;
   right: 0;
   bottom: 0;
-  top: 27px;
+  top: 27px;*/
   height: 100%;
 }
 

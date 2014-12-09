@@ -43,7 +43,23 @@ var get_game = function() {
      return game == '' ? 'all' : game;
 }
 
-var filter_category = function(con, context) {
+var filterAction = function(action) {
+    switch (action) {
+        case 'console':
+            filter_category(hash.shift());
+            filterAction(hash.shift());
+            break;
+        case 'game':
+            categorize_game(hash.shift());
+            filterAction(hash.shift());
+    }
+}
+
+var add_filter_category = function(string, context) {
+    utilHash.changeHashVal('console',string);
+}
+
+var filter_category = function(con) {
     var parameters = {};
 
     filterConsole = con;
@@ -65,21 +81,28 @@ var filter_category = function(con, context) {
 
         render_page();
     }).done(function() {
-        $(context).parent().siblings().removeClass('current');
-        $(context).parent().addClass('current');
+        var context = $('.species a[data-console='+con+']');
+        context.parent().siblings().removeClass('current');
+        context.parent().addClass('current');
     });
 };
 
 $(window).on('hashchange', function(){
+    hash = window.location.hash.replace('#!/', '');
+    hash = hash.split('/');
+    if(!~hash.indexOf('game')) {
+        render_new_members();
+        render_all_members();
+        render_popular_members();
+    }
+    filterAction(hash.shift());
+});
+
+var categorize_game = function(game) {
     var parameters = {};
 
-    hash = get_hash();
-    hash = hash.filter(function(item) {
-        return item != "";
-    });
-
-    if(hash.length) {
-        var id = hash.shift();
+    if(game.length) {
+        var id = game;
         filterGame = id = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
@@ -120,7 +143,7 @@ $(window).on('hashchange', function(){
         render_all_members();
         render_popular_members();
     }
-});
+}
 
 $('body').on('keydown', '#txtbox-search-games', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
@@ -158,7 +181,9 @@ var render_featured_games = function (filter) {
 
     page_data.featured_games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
-
+        if(item.id === filterGame) {
+            item.class = 'active';
+        }
         item.game = item.name;
         item.id = item.id.trim();
         items.push(template($('#gameTpl').html(), item));
@@ -188,6 +213,9 @@ var render_latest_games = function(filter) {
 
     page_data.games.forEach(function(item, i){
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+        if(item.id === filterGame) {
+            item.class = 'active';
+        }
         item.id = item.id.trim();
 
         items.push(template($('#gameTpl').html(), item));
@@ -344,15 +372,18 @@ $(function() {
         var search = $('#txtbox-search-games');
         search.val('');
         filter_game(search);
-        window.location.hash = '#!';
+        utilHash.changeHashVal('console', filterConsole || 'all');
     });
     youtuberUserSearch();
+    $(window).trigger('hashchange');
 });
 
 var render_page = function() {
-    render_latest_games();
-    render_featured_games();
-    $(window).trigger('hashchange');
+    var search = $('#txtbox-search-games');
+    filter_game(search);
+    render_new_members();
+    render_all_members();
+    render_popular_members();
     $('.tooltip').tooltipster({contentAsHTML: true});
 };
 

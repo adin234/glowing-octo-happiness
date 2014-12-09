@@ -1,10 +1,15 @@
 var liveStreamLink = false;
 var filterConsole = 'all';
 
-function filter_category(gameConsole, context) {
+var add_filter_category = function(string, context) {
+    utilHash.changeHashVal('console',string);
+}
+
+function filter_category(gameConsole) {
 	var videos = [];
-	$(context).parent().siblings().removeClass('current');
-	$(context).parent().addClass('current');
+	var context = $('.species a[data-console='+gameConsole+']');
+    context.parent().siblings().removeClass('current');
+    context.parent().addClass('current');
 
 	filterConsole = gameConsole;
 
@@ -46,7 +51,7 @@ renderGame();
 $('#banner .info > cite').html(page_data.user.username);
 $('#banner .info > a').attr('href', community+'index.php?members/'
 	+page_data.user.username+'.'+page_data.user.user_id);
-$('#banner .info > img').attr('src', attachments_server+'data/avatars/l/0/'
+$('#banner .info > img').attr('src', attachments_server+'avatar.php?userid='
 	+page_data.user.user_id+'.jpg');
 twitchId = page_data.user.custom_fields.twitchStreams || null;
 youtubeId = page_data.user.custom_fields.youtube_id || null;

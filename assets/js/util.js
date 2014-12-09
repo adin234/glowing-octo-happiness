@@ -206,6 +206,35 @@ var utilHash = {
         hash = hash.split('/');
         return hash;
     },
+    'changeHashVal' : function(key, string, apply) {
+        var apply = typeof  apply == 'undefined' ? true : false;
+        var hash = window.location.hash.replace('#!/', '');
+        var hashObj = {};
+        var hashArr = [];
+        hash = hash.split('/');
+        for(var i = 0; i < hash.length; i++) {
+            if(hash[i].trim().length) {
+                hashObj[hash[i]] = hash[++i];
+            }
+        }
+        hashObj[key] = string;
+
+        Object.keys(hashObj).sort().forEach(function(key) {
+            hashArr.push(key);
+            if(hashObj[key] === undefined) {
+                return;
+            }
+            hashArr.push(hashObj[key]);
+        });
+
+        var hash_string = utilHash.buildHash(hashArr);
+
+        if(apply) {
+            window.location.hash = hash_string;
+        }
+
+        return hash_string;
+    },
     'addHash' : function(string, apply) {
         apply = typeof apply == 'undefined' ? true : false;
 

@@ -64,20 +64,18 @@
           </div>
         </nav> 
 
-        <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
-        <nav class="species">
-          <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
-
-            <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-          </ul>
-        </nav>
-
+    <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
+    <nav class="species">
+      <ul class="clearFix">
+        <li class="current"><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
+        <li><a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
+        <li><a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
+        <li><a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
+        <li><a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
+        <li><a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">PC</a></li>
+        <li><a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
+      </ul>
+    </nav>
 </div>
 <nav class="site sf-menu">
 
@@ -204,7 +202,7 @@
   </div>
 </div>
 <script type="text/html" id="gameTpl">
-<li class="game-item"><a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
+<li class="game-item {{CLASS}}"><a href="#" onClick="javascript:utilHash.changeHashVal('game', '{{ID}}');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 
 </script>
 <script type="text/html" id="gameContainerTpl">
@@ -215,7 +213,7 @@
   <a href="{{LINK}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot"></a>
   <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
   <a href="{{LINK}}" title="{{TITLE}}">
-  <img src="{{PROVIDER}}data/avatars/l/0/{{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" onerror="fixErrorImg(this);" class="uploader">
+  <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" onerror="fixErrorImg(this);" class="uploader">
   </a>
   <ul>
     <li><em>觀看次數：</em>{{VIEWS}}</li>
