@@ -38,14 +38,21 @@
 			height: 100px;
 		}
 		.fa-2x {
-			font-size: 6em !important;
+			font-size: 4em !important;
 		}
 		i {
 			color: #fff;
 		}
+		
+		#responsive-menu-button {
+			position: relative;
+			top: 28px;
+			left: 15px;
+		}
 		.logo_g {
-			height:auto;
+			height: auto;
 			width: 170px;
+			margin-left: 25px;
 		}
 		.fa-bars {
 			padding: 9px 10px;
@@ -626,6 +633,13 @@
 		#streamView #functionBar #twitchTalk {
 			position: relative !important;
 			top: 0 !important;
+		}
+		#twitch-container {
+			height: 700px !important;
+		}
+
+		#streamView #functionBar .ad {
+			height: auto !important;
 		}
 	/*gamer_stream-end*/
 }
