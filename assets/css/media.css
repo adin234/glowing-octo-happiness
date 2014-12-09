@@ -243,22 +243,22 @@
 				display: block;
 			}
 			#index-page .main .video .list > li > a:nth-child(1) > img {
-				width: 30% !important;
+				width: 40% !important;
 			}
 
 			#index-page .main .video .list > li > h3 {
 				float: none;
-				width: 60% !important;
+				width: 55% !important;
 			}
 			#index-page .main .video .list > li > ul {
-				width: 68%;
+				width: 58%;
 				padding-left: 15px;
 			}
 
 			.video .list > li {
 				margin: 0 !important;
 				padding: 0 15px 20px !important;
-				height: 150px !important;
+				height: 240px !important;
 				width:  100% !important; /*28% !important;*/
 			}
 			.video .list img { 
@@ -282,15 +282,15 @@
 						text-align: left;
 						padding: 10px 0 0 0 !important;
 						height: auto !important;
-						font-size: 18px;
+						font-size: 24px;
 				}
 				.video .list .uploader {
 					border-radius: 0;
 					top: 0;
 					left: 49px;
 					position: absolute !important;
-					width: 5% !important;
-					height: 25% !important;
+					width: 10% !important;
+					height: 30% !important;
 					border: 6px solid rgba(229, 197, 197, 0.6) !important;
 				}
 					.video .list > li > ul{
