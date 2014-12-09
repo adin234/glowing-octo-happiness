@@ -45,7 +45,7 @@
 		}
 		.logo_g {
 			height:auto;
-			width: 250px;
+			width: 170px;
 		}
 		.fa-bars {
 			padding: 9px 10px;
@@ -970,28 +970,3 @@
 	}
 /*MENU SLIDER-end*/
 
-@media (max-width: 320px) {
-	.main #content > div {
-		background-position: left 32px !important;
-	}
-	.tab > li {
-		font-size: 11px;
-	}
-	.video {
-		background: none !important;
-	}
-
-	.game li {
-		float: none;
-	}
-}
-
-@media (min-width: 501px) and (max-width: 731px) {
-	#latestVideos > li, #featuredVideos > li, #mostViewed > li { width: 90% !important; }
-	#latestVideos > li > h3 > a, #featuredVideos > li > h3 > a, #mostViewed > li > h3 > a  { white-space: normal;}
-}
-
-@media (min-width: 414px) and (max-width: 500px) {
-	#latestVideos > li, #featuredVideos > li, #mostViewed > li { width: 90% !important; }
-	#latestVideos > li > h3 > a, #featuredVideos > li > h3 > a, #mostViewed > li > h3 > a  { white-space: nowrap;}
-}
