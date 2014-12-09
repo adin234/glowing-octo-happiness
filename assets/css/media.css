@@ -918,9 +918,12 @@
 			right: 188px;
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
-			top: 128px;
+			top: 125px !important;
 			width: 51.8%;
 			z-index: 9;
+			transition: inherit;
+			-webkit-transition: inherit;
+			height: 35px;
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo:after {
 			right: 13%;
