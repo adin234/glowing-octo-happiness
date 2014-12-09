@@ -43,7 +43,7 @@
 		i {
 			color: #fff;
 		}
-		
+
 		#responsive-menu-button {
 			position: relative;
 			top: 28px;
@@ -239,39 +239,39 @@
 			-webkit-transform: inherit !important;
 		}
 			#index-page .main .video .list > li {
-				width: 28% !important;
+				width: 100% !important;
+				display: block;
 			}
 			#index-page .main .video .list > li > a:nth-child(1) > img {
-				width: 100% !important;
+				width: 30% !important;
 			}
 
 			#index-page .main .video .list > li > h3 {
 				float: none;
-				width: 93% !important;
+				width: 60% !important;
 			}
 			#index-page .main .video .list > li > ul {
-				width: 94%;
-				float: none;
+				width: 68%;
 				padding-left: 15px;
 			}
 
 			.video .list > li {
 				margin: 0 !important;
 				padding: 0 15px 20px !important;
-				height: auto !important;
-				width:  45% !important; /*28% !important;*/
+				height: 150px !important;
+				width:  100% !important; /*28% !important;*/
 			}
 			.video .list img { 
 					position: relative !important; 
 					float: left;
-					width:  55% !important;/*100% !important;*/
+					width:  40% !important;/*100% !important;*/
 					height: 100% !important;
 			}
 			.video .list > li > h3 {
 					position: relative !important;
 					float: right; /*none;*/
 					background: none !important;
-					width: 40% !important; /*93% !important;*/
+					width: 55% !important; /*93% !important;*/
 					color: #000 !important;
 					font-size: 100% !important;
 					padding-left: 10px;
@@ -282,25 +282,26 @@
 						text-align: left;
 						padding: 10px 0 0 0 !important;
 						height: auto !important;
-						font-size: 16px;
+						font-size: 18px;
 				}
 				.video .list .uploader {
 					border-radius: 0;
 					top: 0;
 					left: 49px;
 					position: absolute !important;
-					width: 25% !important;
+					width: 5% !important;
 					height: 25% !important;
 					border: 6px solid rgba(229, 197, 197, 0.6) !important;
 				}
 					.video .list > li > ul{
 						position: relative !important;
-						bottom: 0 !important; 
-						width: 40%; /*94%;*/
+						bottom: 7px !important; 
+						width: 53%; /*94%;*/
 						float: right; /*none;*/
 						padding-left: 0; /*15px;*/ 
 						text-align: left;  
 						height: 45px;
+						font-size: 15px;
 					}
 						.video .list > li > ul > li:nth-child(1){
 							width: 140px; 
@@ -915,11 +916,11 @@
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list li.live:before, .live:before {
 			top: -1%;
-			right: 188px;
+			right: 535px;
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
 			top: 125px !important;
-			width: 51.8%;
+			width: 38.8%;
 			z-index: 9;
 			transition: inherit;
 			-webkit-transition: inherit;
