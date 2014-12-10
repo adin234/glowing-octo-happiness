@@ -245,6 +245,7 @@ var render_game_videos = function(game, page) {
     if(filterConsole.length) {
         parameters.console = filterConsole;
     }
+
     if(filterGame.length) {
         parameters.game = filterGame;
     }
@@ -262,6 +263,10 @@ var render_game_videos = function(game, page) {
 
 var filter_category = function(cons) {
     var parameters = {};
+
+    if(cons == filterConsole) {
+        return;
+    }
 
     filterConsole = cons;
 

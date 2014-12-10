@@ -502,10 +502,13 @@ $(function() {
     })
     .done(function(session) {
         if(typeof session.username !== 'undefined') {
-            var links = '<ul class="user-links">'+
-                '<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>'+
-                '<li><a href="/favorites" title="">我的最愛</a></li>'+
-                '</ul>';
+            var links = [];
+            links.push('<ul class="user-links">');
+            links.push('<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>');
+            links.push('<li><a href="/favorites" title="">我的最愛</a></li>');
+            links.push('<li><a href="http://community.gamers.tm/zh/index.php?logout/">注销</a></li>');
+            links.push('</ul>');
+
             var link = $('<a>',{
                 text: session.username,
                 title: session.username,
@@ -515,7 +518,7 @@ $(function() {
             utilCookie.set('user', JSON.stringify(session), 1/24);
 
             if($('body').hasClass('streams')) return;
-            $('li.login').html(link).append(links);
+            $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
         }
     });
