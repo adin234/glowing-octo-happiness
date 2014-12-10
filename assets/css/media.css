@@ -898,10 +898,11 @@
 		}
 		#index-page .main .video .list > li > h3 {
 			width: 55% !important;
-			padding-top: 3px;
+			padding-top: 10px;
 		}
 		#index-page .main .video .list > li > ul {
 			width: 54%;
+			margin: 0;
 		}
 	/*index-end*/
 
