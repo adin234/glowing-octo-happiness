@@ -965,6 +965,9 @@ footer nav ul li + li:before {
   top: 21.5px;
   width: 2px;
 }
+body.lanparty footer nav ul li + li:before {
+  top: 8.5px;
+}
 footer nav .en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -165px;
   padding-left: 187px;

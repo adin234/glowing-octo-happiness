@@ -84,21 +84,21 @@ $(function() {
 
         // utilLoader.hide();
 
-        $('#tab-2').append(page_data.custom_fields.youtube_activity);
-				/*  This where you put your JSON result to be able to access the chat plugin  */
-				var userinfo = '';
-				var channelinfo = {"id":twitch, "title" : twitch};
+        // $('#tab-2').append(page_data.custom_fields.youtube_activity);
+		/*  This where you put your JSON result to be able to access the chat plugin  */
+		var userinfo = '';
+		var channelinfo = {"id":twitch, "title" : twitch};
 
-				if(utilCookie.get('user').length > 0){
-					userinfo = $.parseJSON(utilCookie.get('user'));
-					$('#twitchTalk').initChatBox(channelinfo, userinfo);
-				} else {
-					$('#twitchTalk').initChatBox(channelinfo, userinfo);
-				}
+		if(utilCookie.get('user').length > 0){
+			userinfo = $.parseJSON(utilCookie.get('user'));
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		} else {
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		}
 
-				$('#twitchTalk').css('background-color','black');
+		$('#twitchTalk').css('background-color','black');
 	}
-    console.log('about', page_data.about);
+
     if(typeof page_data.about === 'undefined' || !page_data.about.trim().length) {
         $('aside .streamer').hide();
     } else {
@@ -108,15 +108,18 @@ $(function() {
             addInLineBreaks: false
         });
 
-        $('#about-streamer').html(result.html);
+        $('#about-streamer').html(result.html.replace(/[\n\r]/, '<br/>'));
     }
 
     $('.streamer .streamer-name').html(page_data.custom_title);
+
+    var countEmpty = 0;
 
     $('#monSched').html(sched_template(page_data.custom_fields.mondaySchedule))
         .promise().done(function(e){
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -124,6 +127,7 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -131,6 +135,7 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -138,6 +143,7 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -145,6 +151,7 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -152,6 +159,7 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
@@ -159,9 +167,15 @@ $(function() {
         .promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
+            countEmpty++;
             $(this).parent().parent().hide();
         }
     });
+
+    if(countEmpty === 7) {
+        $('a[href=#tab-1]').parents('li').hide();
+        $('a[href=#tab-2]').trigger('click');
+    }
 
     $('#streamArea').mCustomScrollbar({
       theme:"inset-2",
@@ -211,7 +225,7 @@ var toggleChat = function() {
             -250
         );
 
-        toggleButton.html('增大');
+        toggleButton.html('縮小');
 
     } else {
         advertisementContainer
@@ -221,10 +235,10 @@ var toggleChat = function() {
 
         twitchContainer.height(
             twitchContainer.parent().height()
-            -100
+            -50
         );
 
-        toggleButton.html('縮小');
+        toggleButton.html('增大');
     }
 
     advertisementContainer.show();

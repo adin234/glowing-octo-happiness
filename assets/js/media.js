@@ -47,7 +47,7 @@ var update_videos = function (videos, append) {
   html = [];
   var link = '#!/';
   var cons = '';
-  if(filterConsole.trim().length) {
+  if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
   // if(active_playlist) {
@@ -119,7 +119,7 @@ var update_playlists = function (playlists) {
   html = [];
   var ids = [];
   var cons = '';
-  if(filterConsole.trim().length) {
+  if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
 

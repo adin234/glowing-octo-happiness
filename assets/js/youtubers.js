@@ -62,6 +62,10 @@ var add_filter_category = function(string, context) {
 var filter_category = function(con) {
     var parameters = {};
 
+    if(cons == filterConsole) {
+        return;
+    }
+
     filterConsole = con;
 
     if(filterConsole.length) {
@@ -78,7 +82,6 @@ var filter_category = function(con) {
         } else {
             $('.game-container').css('display', 'block');
         }
-
         render_page();
     }).done(function() {
         var context = $('.species a[data-console='+con+']');
