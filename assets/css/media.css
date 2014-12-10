@@ -2,6 +2,7 @@
 	width: inherit !important;
 }
 
+
 @media (max-width: 1023px) {
 	.mobile_menu {
 		display: block;
@@ -32,10 +33,11 @@
 
 	/*NAV-start*/
 		.nav-wrapper {
-			height: 125px;
+			height: auto;
+			max-width: none;
 		}
 		#outContainer header nav a{
-			height: 100px;
+			height: auto;
 		}
 		.fa-2x {
 			font-size: 4em !important;
@@ -46,7 +48,7 @@
 
 		#responsive-menu-button {
 			position: relative;
-			top: 28px;
+			top: 12px;
 			left: 15px;
 		}
 		.logo_g {
@@ -72,7 +74,7 @@
 		}
 		#mobilenav {
 			display: block !important;
-			width: 860px;
+			width: 100%;
 		}
 
 		#mobilenav > li.current > a {
@@ -88,7 +90,7 @@
 		}
 		#outContainer header .site {
 			text-align: center;
-			height: 65px !important;
+			height: auto !important;
 		}
 			#outContainer header .site > ul > li {
 				background: none !important;
@@ -102,7 +104,7 @@
 			}
 			#outContainer header .site > ul > li > a {
 				padding-left: 5px !important;
-				font-size: xx-large;
+				font-size: inherit;
 			}
 			header .site ul:last-child {
 				display: none;
@@ -195,6 +197,8 @@
 		}
 		.main .video [id^="tab-"] {
 			height: auto !important;
+			background: rgba(53, 53, 53, 0.1);
+			border: 3px inset #eee;
 		}
 		aside {
 			display: none;
@@ -213,6 +217,9 @@
 		}
 		.stream [id^="tab-"]:nth-of-type(1) .bx-viewport {
 			height: auto !important;
+		}
+		.lang_zh_tw #content h2 {
+			font-size: large;
 		}
 	/*index-end*/
 
@@ -243,73 +250,80 @@
 				display: block;
 			}
 			#index-page .main .video .list > li > a:nth-child(1) > img {
-				width: 40% !important;
+				width: 50% !important;
 			}
 
 			#index-page .main .video .list > li > h3 {
-				float: none;
-				width: 55% !important;
+				width: 45% !important;
 			}
 			#index-page .main .video .list > li > ul {
-				width: 58%;
+				width: 40%;
 				padding-left: 15px;
 			}
 
 			.video .list > li {
 				margin: 0 !important;
-				padding: 0 15px 20px !important;
-				height: 240px !important;
-				width:  100% !important; /*28% !important;*/
+				padding: 20px 0 !important;
+				height: auto !important;
+				width:  100% !important;
+				border-bottom: 1px outset #ddd;
+				float: none;
+			}
+			.video .list > li:last-child {
+				border-bottom: 0 !important;
 			}
 			.video .list img { 
 					position: relative !important; 
 					float: left;
-					width:  40% !important;/*100% !important;*/
-					height: 100% !important;
+					width:  50% !important;/*100% !important;*/
 			}
 			.video .list > li > h3 {
 					position: relative !important;
-					float: right; /*none;*/
 					background: none !important;
 					width: 55% !important; /*93% !important;*/
 					color: #000 !important;
 					font-size: 100% !important;
 					padding-left: 10px;
-					height: 3.5em;
-					overflow: hidden;
+					height: 5.5em;
+					display: inline-block;
+					/*overflow: hidden;*/
 			}
 				.video .list > li > h3 > a{
 						text-align: left;
-						padding: 10px 0 0 0 !important;
+						padding: 0 !important;
 						height: auto !important;
-						font-size: 24px;
+						font-size: large;
+						line-height: 1.2;
+						overflow: inherit;
 				}
 				.video .list .uploader {
 					border-radius: 0;
-					top: 0;
-					left: 49px;
+					top: 20px;
+					left: 35px;
 					position: absolute !important;
 					width: 10% !important;
-					height: 30% !important;
-					border: 6px solid rgba(229, 197, 197, 0.6) !important;
+					height: 20% !important;
+					border: 7px solid rgba(228, 53, 53, 0.6) !important;
 				}
 					.video .list > li > ul{
 						position: relative !important;
-						bottom: 7px !important; 
+						margin-top: 10px;
+						bottom: 0 !important; 
 						width: 53%; /*94%;*/
-						float: right; /*none;*/
+						float: none; /*none;*/
 						padding-left: 0; /*15px;*/ 
 						text-align: left;  
 						height: 45px;
-						font-size: 15px;
+						font-size: inherit;
+						display: inline-block;
 					}
 						.video .list > li > ul > li:nth-child(1){
-							width: 140px; 
+							width: auto; 
 							text-transform: none;
 						}
 						.video .list > li > ul > li:nth-child(2){
 							margin-left: 0 !important; 
-							width: 140px;
+							width: auto;
 						}
 						.video .list > li > ul > li:nth-child(2) > em{
 							width: 60px !important; 
@@ -645,17 +659,31 @@
 	/*gamer_stream-end*/
 }
 
-
-
-
 @media (max-width: 413px) {
 	/*NAV-start*/
-		#wrapper {max-width: 413px;	min-width: 0;}
-		#outContainer {	max-width: 413px; }
-		#outContainer header {max-width: 413px;}
-			#outContainer header .site {padding: 5px 12px !important;}
-			#outContainer header .site > ul > li {margin-left: 0px !important;}
-			#outContainer header .site > ul > li:nth-child(1) { margin-left: 0 !important; }
+		#wrapper {
+			max-width: 413px;
+			min-width: 0;}
+		#outContainer {	
+			max-width: 413px;
+		}
+		#outContainer header {
+			max-width: 413px;
+		}
+			#outContainer header .site {
+				padding: 5px 12px !important;
+			}
+			#outContainer header .site > ul > li {
+				margin-left: 0px !important;
+			}
+			#outContainer header .site > ul > li:nth-child(1) { 
+				margin-left: 0 !important; 
+			}
+
+		.fa-2x {font-size: 2.5em !important;}
+		#responsive-menu-button {top: 10px !important;}
+		.logo_g {width: 110px !important;}
+		.lang_zh_tw #content h2 {font-size: medium;}
 	/*NAV-end*/
 
 	#container {max-width: 413px;width: 93%;padding-top: 10px !important;}
@@ -672,13 +700,29 @@
 				width: 93% !important;
 				float: none;
 				display: block;
-				padding: 0 0 115px !important;
 			}
-
+			#index-page .main .video .list > li > a:nth-child(1) > img {
+				width: 100% !important;
+			}
+			#index-page .main .video .list > li > h3 {
+				width: 90% !important;
+				padding: 0 10px !important;
+				margin-top: 10px;
+			}
+			#index-page .main .video .list > li > ul {
+				width: 90%;
+				margin-top: 0;
+			}
+			.video .list > li > ul > li:nth-child(2) {
+				margin-left: 20px !important;
+			}
 			.video .list img {
-				width:55%;
+				width: 100%;
 			}
-
+			.video .list .uploader{
+				width: 25% !important;
+				height: 15% !important;
+			}
 			.bxslider.videos > ul {
 				width: 32% !important;
 			}
@@ -726,6 +770,8 @@
 		display: none;
 	}
 }
+
+
 
 @media (min-width: 414px) and (max-width: 767px) {
 	/*NAV-start*/
@@ -808,6 +854,8 @@
 
 }
 
+
+
 @media (min-width: 768px) and (max-width: 1023px) {
   	#wrapper {max-width: 1023px; min-width: 768px;}
 	#outContainer {	 max-width: 1023px; min-width: 768px; }
@@ -847,7 +895,7 @@
 	/*index-end*/
 
 	/*Videos-start*/
-/*		.video .list > li {
+	/*	.video .list > li {
 			width: 30% !important;
 		}
 		.video .list img {
@@ -939,6 +987,7 @@
 	/*streamers-end*/
 
 }
+
 
 
 
