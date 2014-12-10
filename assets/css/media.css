@@ -40,7 +40,7 @@
 			height: auto;
 		}
 		.fa-2x {
-			font-size: 4em !important;
+			font-size: 3em !important;
 		}
 		i {
 			color: #fff;
@@ -53,7 +53,7 @@
 		}
 		.logo_g {
 			height: auto;
-			width: 170px;
+			width: 135px;
 			margin-left: 25px;
 		}
 		.fa-bars {
@@ -104,7 +104,7 @@
 			}
 			#outContainer header .site > ul > li > a {
 				padding-left: 5px !important;
-				font-size: inherit;
+				font-size: x-large;
 			}
 			header .site ul:last-child {
 				display: none;
@@ -219,7 +219,7 @@
 			height: auto !important;
 		}
 		.lang_zh_tw #content h2 {
-			font-size: large;
+			font-size: x-large;
 		}
 	/*index-end*/
 
@@ -269,7 +269,7 @@
 				border-bottom: 1px outset #ddd;
 				float: none;
 			}
-			.video .list > li:last-child {
+			.video .list:last-child > li:last-child {
 				border-bottom: 0 !important;
 			}
 			.video .list img { 
@@ -301,7 +301,7 @@
 					top: 20px;
 					left: 35px;
 					position: absolute !important;
-					width: 10% !important;
+					width: 8% !important;
 					height: 20% !important;
 					border: 7px solid rgba(228, 53, 53, 0.6) !important;
 				}
@@ -991,11 +991,8 @@
 }
 
 
-
-
-/*MENU SLIDER-start*/
 	.sidr.left {
-		width: 1070px !important;
+		width: 35% !important;
 	}
 
 	.profile_div {
@@ -1015,7 +1012,7 @@
 	#prof_photo {
 		border-radius: 125px;
 		border: 8px solid #757575;
-		width: 260px;
+		width: 50%;
 		margin: auto;
 		display: block;
 	}
@@ -1024,7 +1021,7 @@
 		color: #fff;
 		text-align: center;
 		margin-bottom: 0;
-		font-size: 50px;
+		font-size: inherit;
 	}
 
 	.edit_prof {
@@ -1032,49 +1029,54 @@
 		width: 100px;
 		display: block;
 		height: 65px;
-		background-size: 400px;
-		background-position: 25px -7030px;
+		background-size: 228px;
+		background-position: 25px -4000px;
 	}
 
 	.fa-gear {
 		position: absolute;
 		right: 20px;
-		top: 15px;
-		font-size: 4em !important;
+		top: 18px;
+		font-size: 2em !important;
 	}
 
 	.sidr ul {margin: 0 !important;}
 		.sidr ul li {
 			background: url('/assets/images/sprite.png') no-repeat;
 			font-weight: bold;
-			line-height: 125px !important;
-			background-size: 500px;
+			line-height: normal !important;
+			background-size: 202px;
+			padding: 5px 0;
 		}
-		.sidr ul li:nth-child(1) { background-position: -180px -3409px; }
-		.sidr ul li:nth-child(2) { background-position: -180px -3566px; }
-		.sidr ul li:nth-child(3) { background-position: -180px -3723px; }
-		.sidr ul li:nth-child(4) { background-position: -180px -3880px; }
-		.sidr ul li:nth-child(5) { background-position: -180px -4044px; }
-		.sidr ul li:nth-child(6) { background-position: -180px -4194px; }
-		.sidr ul li:nth-child(7) { background-position: -180px -4351px; }
+		.sidr ul li:nth-child(1) { background-position: -90px -1827px; }
+		.sidr ul li:nth-child(2) { background-position: -90px -1892px; }
+		.sidr ul li:nth-child(3) { background-position: -90px -1954px; }
+		.sidr ul li:nth-child(4) { background-position: -90px -2019px; }
+		.sidr ul li:nth-child(5) { background-position: -90px -2085px; }
+		.sidr ul li:nth-child(6) { background-position: -90px -2147px; }
+		.sidr ul li:nth-child(7) { background-position: -90px -2209px; }
 		.sidr ul li:nth-child(8) {
 			background: url('/assets/images/heart-icon-stroke.png')  no-repeat; 
-			background-size: 6%;
-			background-position: 255px;
+			background-size: 7%;
+			background-position: 84px;
 		}
 		.sidr ul li:nth-child(9) {
 			background: url('/assets/images/freedom_abt2.png')  no-repeat; 
-			background-size: 8%;
-			background-position: 240px;
+			background-size: 9%;
+			background-position: 80px;
 		}
 		.sidr ul li:nth-child(10){
 			background: url('/assets/images/join.png')  no-repeat; 
-			background-size: 15%;
-			background-position: 195px;}
+			background-size: 16%;
+			background-position: 64px;
+		}
 			.sidr ul li a {	
-				padding-left: 365px !important;
+				padding-left: 115px !important;
 				color: #ddd !important;
-				font-size: 65px;
+				font-size: 26px;
+			}
+			.slider_footer > ul > li > a > i {
+				font-size: 1em;
 			}
 			.sidr ul li a:active, .sidr ul li a:hover {	color: #fff !important;}
 			.sidr ul li:nth-child(11) {display: none;}
@@ -1083,7 +1085,7 @@
 
 	.slider_footer {padding-top: 20px;}/*30px*/
 		.slider_footer ul {	border: none !important;text-align: center; margin-bottom: 0 !important; }
-			.slider_footer ul li {border: none !important;display: inline-block !important;}
+			.slider_footer ul li {border: none !important; background: none; display: inline-block !important;}
 				.slider_footer ul li a {padding: 0 5px !important;}
 
 	.sidr .sidr-inner {
@@ -1095,9 +1097,90 @@
 		line-height: 30px !important;
 		border-top: 1px solid #4d4d4d !important;
 		font-weight: normal;
-		font-size: 40px;
+		font-size: 20px;
 		color: #ccc;
 		background: none !important;
 	}
+/*MENU SLIDER-start*/
+
+@media (min-resolution: 120dpi), 
+(-webkit-min-device-pixel-ratio: 1.3),  
+ (-o-min-device-pixel-ratio: 13/10)  {
+/* mobile  */
+
+	.fa-2x {
+		font-size: 4em !important;
+	}
+
+	#outContainer header .site > ul > li > a {
+		font-size: inherit;
+	}
+	.video .list > li > h3 > a{
+		font-size: x-large;
+	}
+	.logo_g {
+		width: 135px;
+	}
+
+	.lang_zh_tw #content h2 {
+		font-size: xx-large;
+	}
+
+	.sidr.left {
+		width: 70% !important;
+	}
+
+	.sidr nav > ul > li > a {	
+		padding-left: 270px !important;
+		font-size: 85px;
+	}
+	.sidr ul li {
+		background-size: 565px;
+	}
+		.sidr ul li:nth-child(1) { background-position: -305px -3860px; }
+		.sidr ul li:nth-child(2) { background-position: -305px -4043px; }
+		.sidr ul li:nth-child(3) { background-position: -305px -4219px; }
+		.sidr ul li:nth-child(4) { background-position: -305px -4397px; }
+		.sidr ul li:nth-child(5) { background-position: -305px -4590px; }
+		.sidr ul li:nth-child(6) { background-position: -305px -4758px; }
+		.sidr ul li:nth-child(7) { background-position: -305px -4930px; }
+
+	.sidr ul li:nth-child(8) {
+		background-size: 6%;
+		background-position: 185px;
+	}
+	.sidr ul li:nth-child(9) {
+		background-size: 7%;
+		background-position: 180px;
+	}
+	.sidr ul li:nth-child(10){
+		background-size: 15%;
+		background-position: 135px;
+	}
+	.edit_prof {
+		width: 100px;
+		height: 65px;
+		background-size: 400px;
+		background-position: 25px -7030px;
+	}
+
+	.fa-gear {
+		top: 20px;
+		font-size: 5em !important;
+	}
+	.slider_footer {
+		padding-top: 70px;
+	}
+	.slider_footer ul li a {
+		padding: 0 25px !important;
+	}
+	.slider_footer > ul > li > a > i {
+		font-size: 3em;
+	}
+	.slider_footer li:last-child {
+		font-size: 57px;
+		padding-top: 35px;
+	}
+}
 /*MENU SLIDER-end*/
 
