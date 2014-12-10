@@ -84,21 +84,21 @@ $(function() {
 
         // utilLoader.hide();
 
-        $('#tab-2').append(page_data.custom_fields.youtube_activity);
-				/*  This where you put your JSON result to be able to access the chat plugin  */
-				var userinfo = '';
-				var channelinfo = {"id":twitch, "title" : twitch};
+        // $('#tab-2').append(page_data.custom_fields.youtube_activity);
+		/*  This where you put your JSON result to be able to access the chat plugin  */
+		var userinfo = '';
+		var channelinfo = {"id":twitch, "title" : twitch};
 
-				if(utilCookie.get('user').length > 0){
-					userinfo = $.parseJSON(utilCookie.get('user'));
-					$('#twitchTalk').initChatBox(channelinfo, userinfo);
-				} else {
-					$('#twitchTalk').initChatBox(channelinfo, userinfo);
-				}
+		if(utilCookie.get('user').length > 0){
+			userinfo = $.parseJSON(utilCookie.get('user'));
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		} else {
+			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+		}
 
-				$('#twitchTalk').css('background-color','black');
+		$('#twitchTalk').css('background-color','black');
 	}
-    console.log('about', page_data.about);
+
     if(typeof page_data.about === 'undefined' || !page_data.about.trim().length) {
         $('aside .streamer').hide();
     } else {
@@ -108,7 +108,7 @@ $(function() {
             addInLineBreaks: false
         });
 
-        $('#about-streamer').html(result.html);
+        $('#about-streamer').html(result.html.replace(/[\n\r]/, '<br/>'));
     }
 
     $('.streamer .streamer-name').html(page_data.custom_title);
