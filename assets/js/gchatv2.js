@@ -162,11 +162,12 @@ $.fn.initChatBox = function(chl, usr)
                     $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
                 }
             }
-
-            window.setInterval(function() {
-                elem = document.getElementById('chcontainer-'+sd.cid);
-                elem.scrollTop = elem.scrollHeight;
-            }, 2000);
+            
+            /* Disable this refresh feature for now as per Xenia */
+            //window.setInterval(function() {
+            //    elem = document.getElementById('chcontainer-'+sd.cid);
+            //    elem.scrollTop = elem.scrollHeight;
+            //}, 2000);
         }
     });
 
