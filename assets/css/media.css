@@ -1138,19 +1138,10 @@
 		.sidr ul li:nth-child(5) { background-position: -100px -1339px; }
 		.sidr ul li:nth-child(6) { background-position: -97px -1388px; }
 		.sidr ul li:nth-child(7) { background-position: -100px -1439px; }
+		.sidr ul li:nth-child(8) { background-position: -100px -2160px; }
+		.sidr ul li:nth-child(9) { background-position: -100px -2202px;;}
+		.sidr ul li:nth-child(10){ background-position: -100px -2120px;;}
 
-	.sidr ul li:nth-child(8) {
-		background-size: 6%;
-		background-position: 185px;
-	}
-	.sidr ul li:nth-child(9) {
-		background-size: 7%;
-		background-position: 180px;
-	}
-	.sidr ul li:nth-child(10){
-		background-size: 15%;
-		background-position: 135px;
-	}
 	.edit_prof {
 		width: 70px;
 		height: 45px;
