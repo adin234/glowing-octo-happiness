@@ -262,7 +262,7 @@
 			}
 
 			.video .list > li {
-				margin: 0 !important;
+				margin: 0 auto !important;
 				padding: 20px 0 !important;
 				height: auto !important;
 				width:  100% !important;
@@ -356,6 +356,7 @@
 		.bxslider.videos {
 			width: auto !important;
 			height: auto;
+			-webkit-transform: inherit !important;
 			/*overflow-y: scroll;*/
 		}
 
@@ -716,6 +717,9 @@
 				width: 90%;
 				margin-top: 0;
 			}
+			.video .list > li > ul {
+				width: 90%;
+			}
 			.video .list > li > ul > li:nth-child(2) {
 				margin-left: 20px !important;
 			}
@@ -726,7 +730,10 @@
 				width: 25% !important;
 			}
 			.bxslider.videos > ul {
-				width: 32% !important;
+				width: auto !important;
+			}
+			.video .collection{
+				width: auto !important;
 			}
 	/*Videos-end*/
 
@@ -738,12 +745,6 @@
 			#container-featured-games ul li img {width: 100%;}
 				.games .game {width: 352px !important;}
 		/*games-list-end*/
-
-		/*container-videos-start*/
-					#container-videos > ul > li {
-						width: 87% !important;
-					}
-		/*container-videos-end*/
 	/*games-end*/
 
 	/*youtubers-start*/
@@ -1174,18 +1175,6 @@
 		font-size: 25px;
 		padding-top: 10px;
 	}
-
-
-
-
-	.video .list img {
-		width: 35% !important;
-	}
-
-
-
-
-
 
 
 }
