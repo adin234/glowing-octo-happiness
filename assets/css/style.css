@@ -208,7 +208,7 @@ input[type="text"]:focus, textarea:focus, select:focus {
 }
 
 ::selection {
-  background-color: transparent;
+  background-color: red;
   color: white;
 }
 
@@ -462,6 +462,12 @@ a:hover, a:focus, a:active {
   position: relative;
   padding-top: 80px;
   width: 1148px;
+ -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #outContainer #container {
   background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
