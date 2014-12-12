@@ -337,7 +337,7 @@ body {
   font-size: 1.07143em;
 }
 .lang_zh_tw .login {
-  padding-left: 33px;
+  padding-left: 0;
 }
 .lang_zh_tw input[type="text"], .lang_zh_tw textarea {
   font: 0.875em Arial, Helvetica, Verdana, "Heiti TC", "Microsoft JhengHei", sans-serif;
@@ -856,7 +856,7 @@ padding-left: 297px !important;
 }
 #outContainer header .member {
   position: absolute;
-  right: 32px;
+  right: 0;
   top: 0;
 }
 #outContainer header .member > li:nth-child(1) {
@@ -878,7 +878,7 @@ padding-left: 297px !important;
 #outContainer header .member > li:nth-child(2) {
   border-left: 1px solid #cd614f;
   box-sizing: border-box;
-  width: 125px;
+  width: 190px;
 }
 #outContainer header .member .login {
   color: #e6bfbf;
@@ -889,9 +889,13 @@ padding-left: 297px !important;
 #outContainer header .member .login a:hover, #outContainer header .member .login a:active, #outContainer header .member .login a:focus {
   color: white;
 }
-#outContainer header .member .login a {
+#outContainer header .member .login > a {
   line-height: 42px;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  width: 100%;
   text-decoration: none;
+  overflow: hidden;
 }
 #outContainer header .member > .login a:nth-child(1) {
   padding-right: 6px;
@@ -4149,7 +4153,7 @@ button#like.like.active {
 
 .user-links {
   margin-top: -10px;
-  margin-left: 1px;
+  margin-left: 45px;
   width: 80px;
   text-align: left;
   background: #cecece;

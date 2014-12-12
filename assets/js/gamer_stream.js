@@ -69,15 +69,17 @@ $(function() {
     if(streamType == 'YT') {
         $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
         .html(),{youtubeid: streamId}));
+        var found = false;
         $.getJSON(server+'streamers/youtube', function(e) {
             e.streamers.forEach(function(item) {
                 if(item.youtube.id == streamId) {
+                    found = true;
                     $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
                     $('embed').height($('#streamView').height());
                 }
             });
 
-            if(item.youtube.snippet.description.trim().length) {
+            if(!found) {
                 $('aside .streamer').hide();
             }
         });
@@ -120,7 +122,8 @@ $(function() {
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(1);
+            $(this).parent().hide();
         }
     });
     $('#tueSched').html(sched_template(page_data.custom_fields.tuesdaySchedule))
@@ -128,7 +131,8 @@ $(function() {
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(2);
+            $(this).parent().hide();
         }
     });
     $('#wedSched').html(sched_template(page_data.custom_fields.wednesdaySchedule))
@@ -136,7 +140,8 @@ $(function() {
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(3);
+            $(this).parent().hide();
         }
     });
     $('#thuSched').html(sched_template(page_data.custom_fields.thursdaySchedule))
@@ -144,7 +149,8 @@ $(function() {
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(4);
+            $(this).parent().hide();
         }
     });
     $('#friSched').html(sched_template(page_data.custom_fields.fridaySchedule))
@@ -152,7 +158,8 @@ $(function() {
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(5);
+            $(this).parent().hide();
         }
     });
     $('#satSched').html(sched_template(page_data.custom_fields.saturdaySchedule))
@@ -160,7 +167,8 @@ $(function() {
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(6);
+            $(this).parent().hide();
         }
     });
     $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule))
@@ -168,7 +176,8 @@ $(function() {
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
             countEmpty++;
-            $(this).parent().parent().hide();
+            console.log(7);
+            $(this).parent().hide();
         }
     });
 
@@ -176,7 +185,7 @@ $(function() {
         $('a[href=#tab-1]').parents('li').hide();
         $('a[href=#tab-2]').trigger('click');
     }
-
+    $('#youtuber-link').attr('href', '/youtuber/?user='+page_data.user_id);
     $('#streamArea').mCustomScrollbar({
       theme:"inset-2",
     });
