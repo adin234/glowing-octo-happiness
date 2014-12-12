@@ -891,9 +891,11 @@ padding-left: 297px !important;
 }
 #outContainer header .member .login > a {
   line-height: 42px;
-  padding-right: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
   width: 100%;
   text-decoration: none;
+  overflow: hidden;
 }
 #outContainer header .member > .login a:nth-child(1) {
   padding-right: 6px;
