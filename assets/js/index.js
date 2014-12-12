@@ -213,6 +213,10 @@ var update_index = function(index_data) {
             item.style = item.youtube_link ? '' : 'display:none';
             item.youtube_link = item.youtube_link ? item.youtube_link : '';
             item.thumb = 'https://i.ytimg.com/vi/'+item.youtube_link.replace('https://www.youtube.com/watch?v=','')+'/default.jpg';
+            console.log(item);
+            var date = new Date(item.upload_date*1000);
+            console.log(date);
+            item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+(date.getMonth()+1)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
             html.push(template($('#sliderTpl').html(), item));
         });
         $('#imageSlider').html(html.join(''));

@@ -893,9 +893,15 @@ padding-left: 297px !important;
   line-height: 42px;
   padding-right: 0 !important;
   padding-left: 0 !important;
-  width: 100%;
+  /* width: 45%; */
+  /* display: inline-block; */
   text-decoration: none;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+#outContainer header .member > .login > a:only-of-type {
+width: 100%;
+diplay: block !important;
+overflow: hidden !important;
 }
 #outContainer header .member > .login a:nth-child(1) {
   padding-right: 6px;
