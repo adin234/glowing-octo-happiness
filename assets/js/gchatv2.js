@@ -77,9 +77,12 @@ $.fn.initChatBox = function(chl, usr)
             cname         : chl.title,
             msg           : $(txtctrl).val()
          };
-        socket.emit('send-gm', ud);
-        $(txtctrl).val('');
-        $(txtctrl).focus();
+        /* 12-12-2014 : Added condition if user tries to send empty message to chat  */
+        if ($(txtctrl).val().length > 0) {
+            socket.emit('send-gm', ud);
+            $(txtctrl).val('');
+            $(txtctrl).focus(); 
+        }
     });
 
     $(gchatdiv).on("keypress", txtname, function(evt){
@@ -95,9 +98,12 @@ $.fn.initChatBox = function(chl, usr)
                 cname         : chl.title,
                 msg           : $(txtctrl).val()
              };
-            socket.emit('send-gm', ud);
-            $(txtctrl).val('');
-            $(txtctrl).focus();
+            /* 12-12-2014 : Added condition if user tries to send empty message to chat  */
+            if ($(txtctrl).val().length > 0) {
+                socket.emit('send-gm', ud);
+                $(txtctrl).val('');
+                $(txtctrl).focus(); 
+            }
         }
     });
 
@@ -137,21 +143,24 @@ $.fn.initChatBox = function(chl, usr)
                 $(msgbox).append(msgNotify.replace(/{gchat-message}/ig,sd.msg));
             }
             else {
-                if (today.getMinutes() < 10) {
-                    tinmins = '0' + today.getMinutes()
-                } else {
-                    tinmins = today.getMinutes();
+                /* 12-12-2014 : Added condition if user sends empty message  */
+                if (sd.msg.length > 0) {
+                    if (today.getMinutes() < 10) {
+                        tinmins = '0' + today.getMinutes()
+                    } else {
+                        tinmins = today.getMinutes();
+                    }
+    
+                    msgbox      = '#tblchatmsgs-' + sd.cid;
+                    if (today.getHours() > 11) {
+                        timesent = today.getHours() + ':' + tinmins + 'PM';
+                    }
+                    else {
+                        timesent = today.getHours() + ':' + tinmins + 'AM';
+                    }
+    
+                    $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
                 }
-
-                msgbox      = '#tblchatmsgs-' + sd.cid;
-                if (today.getHours() > 11) {
-                    timesent = today.getHours() + ':' + tinmins + 'PM';
-                }
-                else {
-                    timesent = today.getHours() + ':' + tinmins + 'AM';
-                }
-
-                $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
             }
 
             window.setInterval(function() {
