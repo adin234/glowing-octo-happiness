@@ -245,6 +245,7 @@
 			width: 100% !important;
 			text-align: center;
 			-webkit-transform: inherit !important;
+			transform: inherit !important;
 		}
 			#index-page .main .video .list > li {
 				width: 100% !important;
@@ -352,12 +353,15 @@
 			text-align: center;
 			background: none !important;
 			-webkit-transform: inherit !important;
+			transform: inherit !important;
+
 		}
 
 		.bxslider.videos {
 			width: auto !important;
 			height: auto;
 			-webkit-transform: inherit !important;
+			transform: inherit !important;
 			/*overflow-y: scroll;*/
 		}
 
