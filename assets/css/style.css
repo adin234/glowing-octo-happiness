@@ -3749,12 +3749,16 @@ div[id^=tab-chat-] iframe {
 
 span.views {
   position: absolute;
-  left: 5px;
+  right: 5px;
   font-weight: bold;
   top: 5px;
   font-size: 21px;
+  display: none;
 }
 
+#twitchStream:hover span.views {
+  display: block;
+}
 
 #container_lanparty {
   background: url("../images/lanpartybg.jpg");

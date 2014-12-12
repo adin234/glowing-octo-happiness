@@ -506,7 +506,7 @@ $(function() {
             links.push('<ul class="user-links">');
             links.push('<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>');
             links.push('<li><a href="/favorites" title="">我的最愛</a></li>');
-            links.push('<li><a href="http://community.gamers.tm/zh/index.php?logout/">注销</a></li>');
+            links.push('<li><a href="http://community.gamers.tm/zh/index.php?logout/">登出</a></li>');
             links.push('</ul>');
 
             var link = $('<a>',{
