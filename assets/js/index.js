@@ -300,7 +300,13 @@ var update_index = function(index_data) {
     // most viewed
     html = [];
     group = [];
+    var ids = {};
     index_data.most_viewed.forEach(function(item, i){
+        ids[item.user_id] = typeof ids[item.user_id] === 'undefined' ? 1 : ids[item.user_id] + 1;
+        if(ids[item.user_id] > 2) {
+            return;
+        }
+
         item.provider = attachments_server;
         item.thumb = item.snippet.thumbnails.medium.url;
         item.title = item.snippet.title;
@@ -454,4 +460,15 @@ $(window).on('hashchange', function(e) {
     hash = window.location.hash.replace('#!/', '');
     hash = hash.split('/');
     filterAction(hash.shift());
+});
+
+$(".sf-menu").superfish();
+$(".tabs").tabslet({
+  animation: true,
+}).on("_before", function() {
+  slider.most_viewed.reloadSlider();
+  slider.featured_video.reloadSlider();
+  slider.latest_video.reloadSlider();
+  slider.featured_games.reloadSlider();
+  slider.latest_games.reloadSlider();
 });
