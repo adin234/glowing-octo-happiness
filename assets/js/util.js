@@ -127,6 +127,11 @@ var utilLogin = {
             class: 'login-button',
             text: 'Login'
         });
+        var loginWithSocialMedia = $('<a/>', {
+            class: 'social-login',
+            text: 'Login with Social Media',
+            href: '//community.gamers.tm/zh/index.php?login&front=1'
+        });
 
         loginBtn[0].addEventListener('click', function(e) {
             $.post(server+'login',{
@@ -155,6 +160,7 @@ var utilLogin = {
         loginDiv.appendChild(username[0]);
         loginDiv.appendChild(password[0]);
         loginDiv.appendChild(loginBtn[0]);
+        loginDiv.appendChild(loginWithSocialMedia[0]);
         loginMenu.appendChild(loginDiv);
 
         document.body.appendChild(loginMenu);
