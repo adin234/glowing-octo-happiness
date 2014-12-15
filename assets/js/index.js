@@ -455,3 +455,14 @@ $(window).on('hashchange', function(e) {
     hash = hash.split('/');
     filterAction(hash.shift());
 });
+
+$(".sf-menu").superfish();
+$(".tabs").tabslet({
+  animation: true,
+}).on("_before", function() {
+  slider.most_viewed.reloadSlider();
+  slider.featured_video.reloadSlider();
+  slider.latest_video.reloadSlider();
+  slider.featured_games.reloadSlider();
+  slider.latest_games.reloadSlider();
+});
