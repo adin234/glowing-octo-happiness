@@ -1,5 +1,8 @@
 
 $(function() {
+    var streamType = '';
+    var streamId = '';
+
     var information_masonry = function() {
         $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
 
@@ -21,7 +24,7 @@ $(function() {
 	$(".tabs").tabslet({
 		animation: true,
 	}).on('_after', function(e) {
-		if(e.target.id == 'tab-2') {
+		if(e.target.id == 'tab-2' && streamType !== 'YT') {
             information_masonry();
 		}
 	});
@@ -38,8 +41,8 @@ $(function() {
         }
     });
 
-    var streamType = twitch.substr(0,2);
-    var streamId = twitch.substr(2);
+    streamType = twitch.substr(0,2);
+    streamId = twitch.substr(2);
 
     if(streamType == 'TW') {
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
@@ -82,6 +85,8 @@ $(function() {
             if(!found) {
                 $('aside .streamer').hide();
             }
+
+            $('#tab-2').html(page_data.custom_fields.youtube_activity);
         });
 
         // utilLoader.hide();
