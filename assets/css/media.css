@@ -179,7 +179,19 @@
 		display: none;
 	}
 
+	.video, .games {
+		background: none !important;
+	}
+
+	.games > ul, .video > ul, .lang_zh_tw #content h2, .main #content > div {
+		border-bottom: 1px solid #777;
+		box-shadow: 0px 1px 0px #eee;
+	}
+
 	/*index-start*/
+		#content {
+			background: #ccc;
+		}
 		.main .bx-wrapper {
 			width: 100% !important;
 			margin-bottom: 0 !important;
