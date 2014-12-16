@@ -22,7 +22,6 @@ $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
     if(this.mcs.topPct >=75) {
       update_videos(activeVideos, true);
-      console.log(1);
     }
   }
 }});
@@ -43,7 +42,6 @@ var onPlayerStateChange = function() {
 /* END YOUTUBE SHIZZ */
 
 var update_videos = function (videos, append) {
-  console.log(videos);
   html = [];
   var link = '#!/';
   var cons = '';
@@ -59,14 +57,13 @@ var update_videos = function (videos, append) {
   var start = $('li.ytVideo.videoItem').length;
 
   if(!append || typeof append === 'undefined') {
-    // activeVideos = videos;
+    videos = activeVideos = page_data.videos;
     start = 0;
     videoIds = [];
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
-
 
     if(!item) { continue; }
 
