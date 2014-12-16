@@ -1036,7 +1036,7 @@
 	#prof_pic {
 		width: 50%;
 		height: auto;
-		padding: 35px 56px 15px;
+		padding: 0 56px 15px;
 		margin: 0 auto;
 	}
 
@@ -1058,12 +1058,12 @@
 	}
 
 	.edit_prof {
-		background: url('/assets/images/sprite.png') no-repeat;
+		background: url('/assets/images/editprof.png') no-repeat;
 		width: 100px;
 		display: block;
 		height: 65px;
-		background-size: 228px;
-		background-position: 25px -4000px;
+		background-size: 45px;
+		background-position: 15px;
 	}
 
 /*	.fa-gear {
@@ -1080,21 +1080,21 @@
 	.sidr ul {margin: 0 !important;}
 		.sidr ul li {
 			background: url('/assets/images/sprite.png') no-repeat;
-			font-weight: bold;
+			font-weight: normal;
 			line-height: normal !important;
 			background-size: 202px;
 			padding: 5px 0;
 		}
-		.sidr ul li:nth-child(1) { background-position: -90px -1827px; }
-		.sidr ul li:nth-child(2) { background-position: -90px -1892px; }
-		.sidr ul li:nth-child(3) { background-position: -90px -1954px; }
-		.sidr ul li:nth-child(4) { background-position: -90px -2019px; }
-		.sidr ul li:nth-child(5) { background-position: -90px -2085px; }
-		.sidr ul li:nth-child(6) { background-position: -90px -2147px; }
-		.sidr ul li:nth-child(7) { background-position: -90px -2209px; }
-		.sidr ul li:nth-child(8) { background-position: -90px -2645px;}
-		.sidr ul li:nth-child(9) { background-position: -90px -2697px;}
-		.sidr ul li:nth-child(10){ background-position: -90px -2597px;}
+		.sidr ul li:nth-child(1) { background-position: -110px -1827px; }
+		.sidr ul li:nth-child(2) { background-position: -110px -1892px; }
+		.sidr ul li:nth-child(3) { background-position: -110px -1954px; }
+		.sidr ul li:nth-child(4) { background-position: -110px -2019px; }
+		.sidr ul li:nth-child(5) { background-position: -110px -2085px; }
+		.sidr ul li:nth-child(6) { background-position: -110px -2147px; }
+		.sidr ul li:nth-child(7) { background-position: -110px -2209px; }
+		.sidr ul li:nth-child(8) { background-position: -110px -2645px;}
+		.sidr ul li:nth-child(9) { background-position: -110px -2697px;}
+		.sidr ul li:nth-child(10){ background-position: -110px -2597px;}
 			.sidr ul li a {	
 				padding-left: 115px !important;
 				color: #ddd !important;
