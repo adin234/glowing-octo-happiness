@@ -113,8 +113,10 @@ var render_videos = function(filter, game, lanparty) {
         : page_data.streamers;
 
     source.forEach(function (item, i) {
+        //console.log(item);
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined'
+            && item.twitch.channel.status   
             && !~item.twitch.channel.status.search(filterRegExp)
             && !~item.username.search(filterRegExp)) return;
             item.twitchid = item.field_value[item.field_value.length-1];
