@@ -56,13 +56,14 @@ var filterAction = function(action) {
 }
 
 var add_filter_category = function(string, context) {
-    utilHash.changeHashVal('console',string);
+    // utilHash.changeHashVal('console',string);
+    window.location.hash = '!/console/'+string;
 }
 
 var filter_category = function(con) {
     var parameters = {};
 
-    if(cons == filterConsole) {
+    if(con == filterConsole) {
         return;
     }
 
@@ -94,6 +95,7 @@ $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
     hash = hash.split('/');
     if(!~hash.indexOf('game')) {
+        filterGame = '';
         render_new_members();
         render_all_members();
         render_popular_members();
@@ -102,9 +104,10 @@ $(window).on('hashchange', function(){
 });
 
 var categorize_game = function(game) {
+    console.log(game);
     var parameters = {};
 
-    if(game.length) {
+    if(game.length && game !== 'all') {
         var id = game;
         filterGame = id = id.replace('#!', '');
         $('.game-item').each(function(i, item) {
