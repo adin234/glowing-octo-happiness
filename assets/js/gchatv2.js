@@ -1,3 +1,5 @@
+var x;
+
 $.fn.initChatBox = function(chl, usr)
 {
     var chatUI;
@@ -81,7 +83,7 @@ $.fn.initChatBox = function(chl, usr)
         if ($(txtctrl).val().length > 0) {
             socket.emit('send-gm', ud);
             $(txtctrl).val('');
-            $(txtctrl).focus(); 
+            $(txtctrl).focus();
         }
     });
 
@@ -102,7 +104,7 @@ $.fn.initChatBox = function(chl, usr)
             if ($(txtctrl).val().length > 0) {
                 socket.emit('send-gm', ud);
                 $(txtctrl).val('');
-                $(txtctrl).focus(); 
+                $(txtctrl).focus();
             }
         }
     });
@@ -150,7 +152,7 @@ $.fn.initChatBox = function(chl, usr)
                     } else {
                         tinmins = today.getMinutes();
                     }
-    
+
                     msgbox      = '#tblchatmsgs-' + sd.cid;
                     if (today.getHours() > 11) {
                         timesent = today.getHours() + ':' + tinmins + 'PM';
@@ -158,16 +160,13 @@ $.fn.initChatBox = function(chl, usr)
                     else {
                         timesent = today.getHours() + ':' + tinmins + 'AM';
                     }
-    
+
                     $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
                 }
             }
-            
-            /* Disable this refresh feature for now as per Xenia */
-            //window.setInterval(function() {
-            //    elem = document.getElementById('chcontainer-'+sd.cid);
-            //    elem.scrollTop = elem.scrollHeight;
-            //}, 2000);
+
+           x = elem = document.getElementById('chcontainer-'+sd.cid);
+           elem.scrollTop = elem.scrollHeight;
         }
     });
 
