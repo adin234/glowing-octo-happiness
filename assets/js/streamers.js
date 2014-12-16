@@ -23,7 +23,7 @@ var filter_videos = function(input) {
     var filterString = $this.val();
     var game = get_game();
     render_videos(filterString, game);
-    
+
 };
 
 var render_featured_games = function (filter) {
@@ -116,7 +116,7 @@ var render_videos = function(filter, game, lanparty) {
         //console.log(item);
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined'
-            && item.twitch.channel.status   
+            && item.twitch.channel.status
             && !~item.twitch.channel.status.search(filterRegExp)
             && !~item.username.search(filterRegExp)) return;
             item.twitchid = item.field_value[item.field_value.length-1];
@@ -355,6 +355,8 @@ var render_page = function() {
 };
 
 render_page();
+
+streamersSearch();
 
 $.getJSON(server+'streamers?lanparty=1', function(e) {
     page_data.lanparty = e.streamers;

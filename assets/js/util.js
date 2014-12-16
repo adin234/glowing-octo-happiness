@@ -446,23 +446,20 @@ function youtuberUserSearch() {
 function streamersSearch() {
     var streamers = [];
     var searchDom = $('#txtbox-search-videos');
-    
-    console.log(page_data.streamers);
-    
-    
+
     if ( typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
         for (var i = 0; i < page_data.streamers.length; i++) {
             var sd = page_data.streamers[i];
             if (sd.username.indexOf(searchDom.val()) > -1) {
                 var sdata   = {sname : sd.username, s_id: sd.user_id};
                 var svalue  = sd.username;
-                streamers.push({value: svalue, data: sdata});   
+                streamers.push({value: svalue, data: sdata});
             }
         }
     }
-    
+
     //console.log(streamers);
-    
+
     var options = {
         lookup : streamers,
         onSelect: function(value) {
@@ -471,7 +468,7 @@ function streamersSearch() {
             filter_videos(value.value);
         }
     };
-        
+
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
@@ -480,10 +477,10 @@ function streamersSearch() {
                 filter_videos(searchDom);
             }
         });
-    }   
+    }
 }
 
-$(function() { searchBoxInit(); searchGamesBoxInit(); streamersSearch();});
+$(function() { searchBoxInit(); searchGamesBoxInit(); });
 
 var streaming = [];
 var streamTimeout = 60000;
