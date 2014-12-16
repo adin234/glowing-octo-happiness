@@ -56,7 +56,8 @@ var filterAction = function(action) {
 }
 
 var add_filter_category = function(string, context) {
-    utilHash.changeHashVal('console',string);
+    // utilHash.changeHashVal('console',string);
+    window.location.hash = '!/console/'+string+'/game/all';
 }
 
 var filter_category = function(con) {
