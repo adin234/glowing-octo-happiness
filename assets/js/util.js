@@ -368,7 +368,6 @@ function searchBoxInit() {
     };
     var searchDom = $('#query');
     if(searchDom.length) {
-        console.log(searchDom.val());
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
             if(e.which == 13) {
@@ -442,6 +441,44 @@ function youtuberUserSearch() {
             }
         });
     }
+}
+
+function streamersSearch() {
+    var streamers = [];
+    var searchDom = $('#txtbox-search-videos');
+    
+    console.log(searchDom.val());
+    
+    if (page_data.streamers.length) {
+        for (var i = 0; i < page_data.streamers.length; i++) {
+            var sd = page_data.streamers[i];
+            //if (sd.username.indexOf(searchDom.val) > -1) {
+                var sdata   = {sname : sd.username, s_id: sd.user_id};
+                var svalue  = sd.username;
+                streamers.push({value: svalue, data: sdata});   
+            //}
+        }
+    }
+    
+    //console.log(streamers);
+    
+    var options = {
+        lookup : streamers,
+        onSelect: function(value) {
+            console.log(value.value);
+            searchDom.val(value.svalue);
+        }
+    };
+        
+    if (searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                searchDom.val(value.data.s_id);
+                filter_videos(searchDom);
+            }
+        });
+    }   
 }
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });

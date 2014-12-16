@@ -23,6 +23,7 @@ var filter_videos = function(input) {
     var filterString = $this.val();
     var game = get_game();
     render_videos(filterString, game);
+    
 };
 
 var render_featured_games = function (filter) {
@@ -112,7 +113,6 @@ var render_videos = function(filter, game, lanparty) {
         : page_data.streamers;
 
     source.forEach(function (item, i) {
-        console.log(item);
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined'
             && !~item.twitch.channel.status.search(filterRegExp)
@@ -164,7 +164,6 @@ var render_videos = function(filter, game, lanparty) {
     if(!lanparty) {
         $('#container-videos').html(html.join(''));
     } else {
-        console.log('here', html);
         $('#container-lanparty').html(html.join(''));
     }
 
@@ -313,7 +312,17 @@ $('#txtbox-search-games').on('keydown', function(e) {
 });
 
 $('#txtbox-search-videos').on('keydown', function(e) {
-    if (e.keyCode == 13) { filter_videos(this); }
+    if (e.keyCode == 13) {
+        filter_videos(this);
+    }
+});
+
+$('#txtbox-search-videos').on('keypress', function(e) {
+    if (e.keyCode == 13) {
+        filter_videos(this);
+    } else {
+        streamersSearch();
+    }
 });
 
 $('#container-videos').on('click', '.addToMultiview', add_to_multiview);
@@ -355,3 +364,4 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
         render_videos(undefined,undefined,1);
     });
 });
+
