@@ -447,16 +447,17 @@ function streamersSearch() {
     var streamers = [];
     var searchDom = $('#txtbox-search-videos');
     
-    console.log(searchDom.val());
+    console.log(page_data.streamers);
     
-    if (page_data.streamers.length) {
+    
+    if ( typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
         for (var i = 0; i < page_data.streamers.length; i++) {
             var sd = page_data.streamers[i];
-            //if (sd.username.indexOf(searchDom.val) > -1) {
+            if (sd.username.indexOf(searchDom.val()) > -1) {
                 var sdata   = {sname : sd.username, s_id: sd.user_id};
                 var svalue  = sd.username;
                 streamers.push({value: svalue, data: sdata});   
-            //}
+            }
         }
     }
     
@@ -465,8 +466,9 @@ function streamersSearch() {
     var options = {
         lookup : streamers,
         onSelect: function(value) {
-            console.log(value.value);
-            searchDom.val(value.svalue);
+            //console.log(value);
+            searchDom.val(value.value);
+            filter_videos(value.value);
         }
     };
         
@@ -474,14 +476,14 @@ function streamersSearch() {
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
             if(e.which == 13) {
-                searchDom.val(value.data.s_id);
+                //searchDom.val(value.value);
                 filter_videos(searchDom);
             }
         });
     }   
 }
 
-$(function() { searchBoxInit(); searchGamesBoxInit(); });
+$(function() { searchBoxInit(); searchGamesBoxInit(); streamersSearch();});
 
 var streaming = [];
 var streamTimeout = 60000;
