@@ -3180,6 +3180,22 @@ li.thread  .stats > dl > dt {
   float: right;
 }
 
+.social-login {
+  width: 448px;
+  display: block;
+  margin: 10px auto;
+  padding: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #0099ff;
+  border-radius: 5px;
+  color: #ffffff;
+  float: none;
+  border: 2px solid #0099ff;
+  box-sizing: border-box;
+}
+
 .social-links #viewport {
   padding: 20px;
   width: 258px;

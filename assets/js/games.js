@@ -112,7 +112,9 @@ var filterAction = function(action) {
 }
 
 var add_filter_category = function(string, context) {
-    utilHash.changeHashVal('console',string);
+    // utilHash.changeHashVal('console',string);
+    window.location.hash = '!/console/'+string+'/game/all';
+    $('#game-title').html('遊戲分類');
 }
 
 var filter_game = function(input) {

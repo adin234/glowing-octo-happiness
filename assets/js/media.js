@@ -22,7 +22,6 @@ $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
     if(this.mcs.topPct >=75) {
       update_videos(activeVideos, true);
-      console.log(1);
     }
   }
 }});
@@ -42,8 +41,7 @@ var onPlayerStateChange = function() {
 };
 /* END YOUTUBE SHIZZ */
 
-var update_videos = function (videos, append) {
-  console.log(videos);
+var update_videos = function (videos, append, initial) {
   html = [];
   var link = '#!/';
   var cons = '';
@@ -58,15 +56,18 @@ var update_videos = function (videos, append) {
 
   var start = $('li.ytVideo.videoItem').length;
 
+  console.log(arguments);
+
   if(!append || typeof append === 'undefined') {
-    // activeVideos = videos;
+    if(!initial){
+      activeVideos = [];
+    }
     start = 0;
     videoIds = [];
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
-
 
     if(!item) { continue; }
 
@@ -281,7 +282,7 @@ var getComments = function (videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
-
+  activeVideos = [];
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
@@ -313,7 +314,12 @@ var getPlaylistNext = function(playlist) {
         }
       }
     });
-}
+};
+
+var loadInitial = function() {
+  activeVideos = page_data.videos;
+  update_videos(page_data.videos, null, 1);
+};
 
 var filter = function(value) {
   var filterObj = page_data.categories.filter(function(item) {
@@ -501,7 +507,8 @@ $(document).on('load-page',function(){
   $('#categories').html('');
 
   $('li.ytVideo.videoItem').remove();
-  update_videos(page_data.videos);
+  activeVideos = page_data.videos;
+  update_videos(page_data.videos, null, 1);
 
   var thumbs = typeof page_data.videos[0] !== 'undefined'
         ? page_data.videos[0].snippet.thumbnails
