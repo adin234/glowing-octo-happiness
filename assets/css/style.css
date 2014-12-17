@@ -1116,7 +1116,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   float: left;
 }
 .video .list > li li + li {
-  margin-left: 25px;
+  margin-left: 10px;
 }
 .video .list > li li + li a {
   background: url("/assets/images/sprite.png") no-repeat 0 -1893px;
