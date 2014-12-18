@@ -375,6 +375,7 @@ body {
 }
 .lang_zh_tw .resize li:first-child {
   font-size: 1.17857em;
+  cursor: pointer;
 }
 .lang_zh_tw .listSwitch {
   font-size: 1.07143em;
@@ -4230,3 +4231,4 @@ ul.user-links:before {
   top: -7px;
   width: 0;
 }
+

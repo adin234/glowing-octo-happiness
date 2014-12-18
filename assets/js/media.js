@@ -474,9 +474,18 @@ $(document).on('load-page',function(){
       $('#tab-2').click();
     }
   });
-  $(".zoom a").click(function(){
-    $("body").toggleClass("zoom2x");
-    $(".zoom").toggleClass("zoomOut");
+  $("ul.resize").click(function(){
+    var $body = $("body"),
+        $zoom = $(".zoom"),
+        $resize = $("ul.resize li:first-child");
+    $body.toggleClass("zoom2x");
+    if($body.hasClass('zoom2x')) {
+      $resize.html('X2');
+    } else {
+      $resize.html('X1');
+    }
+
+    $zoom.toggleClass("zoomOut");
   });
 
   $(".listSwitch li").click(function(){
