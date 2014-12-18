@@ -574,14 +574,6 @@ $(document).on('load-page',function(){
       });
   });
 
-  $(window).trigger('hashchange');
-});
-
-$(document).ready(function() {
-  if(!$('body').hasClass('favorites')) {
-    $(document).trigger('load-page');
-  }
-
   // get favorites
   if(typeof utilUser !== 'undefined'
     /*&& !$('body').hasClass('news')
@@ -596,5 +588,13 @@ $(document).ready(function() {
       page_data.favorites = result;
       $(window).trigger('hashchange');
     });
+  }
+
+  $(window).trigger('hashchange');
+});
+
+$(document).ready(function() {
+  if(!$('body').hasClass('favorites')) {
+    $(document).trigger('load-page');
   }
 });
