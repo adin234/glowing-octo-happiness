@@ -9,5 +9,7 @@ $.ajax({
 })
 .done(function(result) {
 	page_data = result;
-	$(document).trigger('load-page');
+	$(function() {
+		$(document).trigger('load-page');
+	});
 });
