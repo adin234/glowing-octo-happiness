@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
 
     $(window).scroll(function(){
-        if($(this).scrollTop() > 80){
+        if($(this).scrollTop() > 200){
             nav.addClass("fixedMenu");
 			$("header").css("box-shadow","0 1px 3px rgba(0, 0, 0, 0.75)");
 			$(".site").css("display","none");
