@@ -562,7 +562,9 @@ $(document).on('load-page',function(){
       username:     utilUser.get().username,
       message:      $('#commentArea').val()
     };
-
+    if(!$('#commentArea').val().trim().length) {
+      return
+    }
     $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
       data, function(e) {
         $('#tab-2 .discussions')
@@ -597,6 +599,8 @@ $(document).on('load-page',function(){
       page_data.favorites = result;
       $(window).trigger('hashchange');
     });
+
+    return;
   }
 
   $(window).trigger('hashchange');
