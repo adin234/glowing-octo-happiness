@@ -14,7 +14,7 @@ var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
 var videoIds = [];
-var isPlayling = false;
+var isPlaying = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -22,7 +22,6 @@ $(".playList").mCustomScrollbar({theme: 'inset-2', callbacks: {
   onScroll: function() {
     if(this.mcs.topPct >=75) {
       update_videos(activeVideos, true);
-      console.log(1);
     }
   }
 }});
@@ -42,8 +41,7 @@ var onPlayerStateChange = function() {
 };
 /* END YOUTUBE SHIZZ */
 
-var update_videos = function (videos, append) {
-  console.log(videos);
+var update_videos = function (videos, append, initial) {
   html = [];
   var link = '#!/';
   var cons = '';
@@ -58,15 +56,18 @@ var update_videos = function (videos, append) {
 
   var start = $('li.ytVideo.videoItem').length;
 
+  console.log(arguments);
+
   if(!append || typeof append === 'undefined') {
-    // activeVideos = videos;
+    if(!initial){
+      activeVideos = [];
+    }
     start = 0;
     videoIds = [];
   }
 
   for(var k = start; k<start+20; k++) {
     var item = videos[k];
-
 
     if(!item) { continue; }
 
@@ -146,7 +147,7 @@ var update_playlists = function (playlists) {
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
         var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-        if(!isPlayling && !willPlay())
+        if(!isPlaying && !willPlay())
           window.location.hash = link;
     } else {
 
@@ -165,7 +166,7 @@ var filterAction = function(action) {
       $('#videosToggle a').trigger('click');
       break;
     case 'video':
-      isPlayling = true;
+      isPlaying = true;
       showVideo(hash.shift());
       break;
     case 'comments':
@@ -281,7 +282,7 @@ var getComments = function (videoId) {
 };
 
 var showPlaylist = function(playlistId, next) {
-
+  activeVideos = [];
   $('.playlistItem').removeClass('current');
   $('#playlist-'+playlistId).addClass('current');
   var playlist = getPlaylist(playlistId);
@@ -313,7 +314,12 @@ var getPlaylistNext = function(playlist) {
         }
       }
     });
-}
+};
+
+var loadInitial = function() {
+  activeVideos = page_data.videos;
+  update_videos(page_data.videos, null, 1);
+};
 
 var filter = function(value) {
   var filterObj = page_data.categories.filter(function(item) {
@@ -468,9 +474,18 @@ $(document).on('load-page',function(){
       $('#tab-2').click();
     }
   });
-  $(".zoom a").click(function(){
-    $("body").toggleClass("zoom2x");
-    $(".zoom").toggleClass("zoomOut");
+  $("ul.resize").click(function(){
+    var $body = $("body"),
+        $zoom = $(".zoom"),
+        $resize = $("ul.resize li:first-child");
+    $body.toggleClass("zoom2x");
+    if($body.hasClass('zoom2x')) {
+      $resize.html('X2');
+    } else {
+      $resize.html('X1');
+    }
+
+    $zoom.toggleClass("zoomOut");
   });
 
   $(".listSwitch li").click(function(){
@@ -501,7 +516,8 @@ $(document).on('load-page',function(){
   $('#categories').html('');
 
   $('li.ytVideo.videoItem').remove();
-  update_videos(page_data.videos);
+  activeVideos = page_data.videos;
+  update_videos(page_data.videos, null, 1);
 
   var thumbs = typeof page_data.videos[0] !== 'undefined'
         ? page_data.videos[0].snippet.thumbnails
@@ -546,7 +562,9 @@ $(document).on('load-page',function(){
       username:     utilUser.get().username,
       message:      $('#commentArea').val()
     };
-
+    if(!$('#commentArea').val().trim().length) {
+      return
+    }
     $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
       data, function(e) {
         $('#tab-2 .discussions')
@@ -567,14 +585,6 @@ $(document).on('load-page',function(){
       });
   });
 
-  $(window).trigger('hashchange');
-});
-
-$(document).ready(function() {
-  if(!$('body').hasClass('favorites')) {
-    $(document).trigger('load-page');
-  }
-
   // get favorites
   if(typeof utilUser !== 'undefined'
     /*&& !$('body').hasClass('news')
@@ -589,5 +599,23 @@ $(document).ready(function() {
       page_data.favorites = result;
       $(window).trigger('hashchange');
     });
+
+    return;
+  }
+
+  $(window).trigger('hashchange');
+});
+
+$('li#playlistsToggle').on('click', function() {
+  $('.playFunctionBtn li').css({'visibility': 'hidden'})
+});
+
+$('li#videosToggle').on('click', function() {
+  $('.playFunctionBtn li').css({'visibility': 'visible'});
+});
+
+$(document).ready(function() {
+  if(!$('body').hasClass('favorites')) {
+    $(document).trigger('load-page');
   }
 });

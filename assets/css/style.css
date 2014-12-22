@@ -375,6 +375,7 @@ body {
 }
 .lang_zh_tw .resize li:first-child {
   font-size: 1.17857em;
+  cursor: pointer;
 }
 .lang_zh_tw .listSwitch {
   font-size: 1.07143em;
@@ -856,7 +857,7 @@ padding-left: 297px !important;
   -webkit-border-radius: 9px;
   border-radius: 9px;
   color: #616161;
-  padding: 9px 11px 9px 40px;
+  padding: 6px 11px 8px 40px;
   width: 168px;
   border: 1px solid #434343;
 }
@@ -916,11 +917,13 @@ overflow: hidden !important;
 #outContainer header .member .login a:nth-child(2) {
   padding-left: 6px;
 }
+
 #outContainer .fixedMenu {
   position: fixed;
   top: 0;
   z-index: 9999;
 }
+
 #outContainer .fixedMenuLogo.en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
   height: 36px;
@@ -1270,7 +1273,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   -webkit-border-radius: 7px;
   border-radius: 7px;
   color: #9c9c9c;
-  padding: 9px 11px 9px 42px;
+  padding: 7px 11px 5px 42px;
   position: absolute;
   right: 0;
   top: 7px;
@@ -1909,7 +1912,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
 }
 .playFunctionBtn li:nth-child(4) a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -222px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;
 }
 .playFunctionBtn li:last-child a {
   background: url("/assets/images/player_ui.png") no-repeat 10px -264px;
@@ -2269,6 +2272,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background: url("/assets/images/sprite.png") no-repeat 23px -2403px;
   left: -23px;
   padding-right: 2px;
+  color: transparent;
 }
 .video .bx-next, .games .bx-next {
   background: url("/assets/images/sprite.png") no-repeat -23px -2464px;
@@ -3132,6 +3136,7 @@ small.date {
 
 #postComment {
   float: right;
+  margin-top: 2px;
 }
 
 .information.tabs #tab-2 .panel {
@@ -3973,7 +3978,7 @@ color: #fff;
 .autocomplete-suggestions {
   background: rgba(0, 0, 0, .9);
   border: 1px solid #434343;
-  padding: 0 5px;
+  padding: 0 5px 12px;
   color: #fff;
   overflow: hidden;
 }
@@ -4157,7 +4162,6 @@ button.load-more:hover {
 button#like.like {
   background: #ec0000 url('/assets/images/heart.svg') no-repeat;
   height: 11px;
-  background-size: contain;
   border: 0;
   cursor: pointer;
   margin-left: 10px;
@@ -4170,13 +4174,18 @@ button#like.like {
   border-radius: 2px;
   display: inline-block;
   margin-bottom: 5px;
+  line-height: 1em;
+  height: 1.3em;
+  background-size: 19px;
+  background-position-y: 2px;
 }
 
 button#like.like.active {
   background: #ffffff url('/assets/images/heart-active.svg') no-repeat;
   border: 3px solid #ffffff;
   color: #ec0000;
-  background-size: contain;
+  background-size: 19px;
+  background-position-y: 2px;
 }
 
 .user-links {
@@ -4241,3 +4250,4 @@ ul.user-links:before {
   top: -7px;
   width: 0;
 }
+

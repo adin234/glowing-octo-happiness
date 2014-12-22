@@ -111,13 +111,13 @@ var utilLogin = {
             type:'text',
             class: 'username-field',
             name: 'username',
-            placeholder: 'Username'
+            placeholder: '用戶名'
         });
         var password = $('<input/>', {
             type: 'password',
             class: 'password-field',
             name: 'password',
-            placeholder: 'Password'
+            placeholder: '密碼'
         });
         var label = $('<span/>', {
             class: 'login-label',
@@ -125,7 +125,7 @@ var utilLogin = {
         });
         var loginBtn = $('<button/>', {
             class: 'login-button',
-            text: 'Login'
+            text: '登入'
         });
         var loginWithSocialMedia = $('<a/>', {
             class: 'social-login',
@@ -368,7 +368,6 @@ function searchBoxInit() {
     };
     var searchDom = $('#query');
     if(searchDom.length) {
-        console.log(searchDom.val());
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
             if(e.which == 13) {
@@ -438,6 +437,43 @@ function youtuberUserSearch() {
             if(e.which == 13) {
                 var searchDom = $('#txtbox-search-videos');
                 searchDom.val(value.data.user_id);
+                filter_videos(searchDom);
+            }
+        });
+    }
+}
+
+function streamersSearch() {
+    var streamers = [];
+    var searchDom = $('#txtbox-search-videos');
+
+    if ( typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
+        for (var i = 0; i < page_data.streamers.length; i++) {
+            var sd = page_data.streamers[i];
+            if (sd.username.indexOf(searchDom.val()) > -1) {
+                var sdata   = {sname : sd.username, s_id: sd.user_id};
+                var svalue  = sd.username;
+                streamers.push({value: svalue, data: sdata});
+            }
+        }
+    }
+
+    //console.log(streamers);
+
+    var options = {
+        lookup : streamers,
+        onSelect: function(value) {
+            //console.log(value);
+            searchDom.val(value.value);
+            filter_videos(value.value);
+        }
+    };
+
+    if (searchDom.length) {
+        searchBox = searchDom.autocomplete(options);
+        searchDom.on('keypress', function(e) {
+            if(e.which == 13) {
+                //searchDom.val(value.value);
                 filter_videos(searchDom);
             }
         });
