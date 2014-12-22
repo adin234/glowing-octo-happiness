@@ -476,7 +476,7 @@
 		}
 
 		.stream .watchNow {
-          	top: -40px;
+          	top: -43px;
 			right: 0;
         }
 	/*streamers-end*/
@@ -850,9 +850,6 @@
 	/*games-end*/
 
 	/*youtubers-start*/
-		.search > div:nth-child(1), #txtbox-search-games, #txtbox-search-videos {
-			display: none;
-		}
 		.video .collection {
 			width: 348px !important;
 		}
@@ -866,9 +863,9 @@
 		.video .collection, .games .collection {width: 100% !important;}
 		.bx-loading {display: none;}
 		#container-videos .live:before {
-			right: 148px !important; top: -3px !important;
+			left: 13px; 
+			top: -3px !important;
 		}
-		#container-videos .live a:nth-child(1) {display: none;}
 		.stream [id^="tab-"]:nth-of-type(1):before,
 		.stream [id^="tab-"]:nth-of-type(1):after {
 			height: 450px !important;
@@ -1007,7 +1004,7 @@
 		.stream [id^="tab-"]:nth-of-type(1) .list > li .addTo {
 			top: 135px !important;
 			left: 0;
-			width: 35%;
+			width: 40%;
 			z-index: 9;
 			transition: inherit;
 			-webkit-transition: inherit;
@@ -1192,3 +1189,10 @@
 }
 /*MENU SLIDER-end*/
 
+.search input[type="text"] {
+	top: -25px;
+}
+
+.search div:empty:not(.bx-pager):not(.bx-loading) {
+	top: -17px;
+}
