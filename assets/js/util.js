@@ -483,11 +483,13 @@ function streamersSearch() {
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
 
 var streaming = [];
+var streamingNew = [];
 var streamTimeout = 100;
 
 function get_streamers(first) {
     $.get(server+'streamers', function(result) {
         result.streamers.forEach(function(item) {
+            streamingNew = result;
             if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
             notify_stream({
@@ -504,7 +506,7 @@ function get_streamers(first) {
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
-            console.log('alu');
+            streamingNew.push(item);
             if(first) { streaming.push('YT'+item.youtube.id); return; }
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
             notify_stream({
@@ -513,6 +515,8 @@ function get_youtube_streamers(first) {
             });
             streaming.push('YT'+item.youtube.id);
         });
+
+        streaming = streamingNew;
     }).always(function() {
         if(streaming && streaming.length && $("a[href='/streamers']").length) {
             $("a[href='/streamers']").html('直播<sup>' + streaming.length + '</sup>');
