@@ -578,9 +578,9 @@ $(function() {
 });
 
 $(function() {
-    if($('body').hasClass('stream-gritter')) {
+    // if($('body').hasClass('stream-gritter')) {
         get_streamers(true);
-    }
+    // }
 });
 
 
