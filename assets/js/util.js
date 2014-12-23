@@ -111,13 +111,13 @@ var utilLogin = {
             type:'text',
             class: 'username-field',
             name: 'username',
-            placeholder: 'Username'
+            placeholder: '用戶名'
         });
         var password = $('<input/>', {
             type: 'password',
             class: 'password-field',
             name: 'password',
-            placeholder: 'Password'
+            placeholder: '密碼'
         });
         var label = $('<span/>', {
             class: 'login-label',
@@ -125,7 +125,7 @@ var utilLogin = {
         });
         var loginBtn = $('<button/>', {
             class: 'login-button',
-            text: 'Login'
+            text: '登入'
         });
         var loginWithSocialMedia = $('<a/>', {
             class: 'social-login',
@@ -446,17 +446,15 @@ function youtuberUserSearch() {
 function streamersSearch() {
     var streamers = [];
     var searchDom = $('#txtbox-search-videos');
-    
-    console.log(searchDom.val());
-    
-    if (page_data.streamers.length) {
+
+    if ( typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
         for (var i = 0; i < page_data.streamers.length; i++) {
             var sd = page_data.streamers[i];
-            //if (sd.username.indexOf(searchDom.val) > -1) {
+            if (sd.username.indexOf(searchDom.val()) > -1) {
                 var sdata   = {sname : sd.username, s_id: sd.user_id};
                 var svalue  = sd.username;
-                streamers.push({value: svalue, data: sdata});   
-            //}
+                streamers.push({value: svalue, data: sdata});
+            }
         }
     }else{
 
@@ -464,32 +462,33 @@ function streamersSearch() {
         var svalue = '目前沒有此';
         streamers.push({value: svalue, data: sdata});
     }
-    
+
     //console.log(streamers);
-    
+
     var options = {
         lookup : streamers,
         onSelect: function(value) {
-            console.log(value.value);
-            searchDom.val(value.svalue);
+            //console.log(value);
+            searchDom.val(value.value);
+            filter_videos(value.value);
         }
     };
-        
+
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function(e) {
             if(e.which == 13) {
-                searchDom.val(value.data.s_id);
+                //searchDom.val(value.value);
                 filter_videos(searchDom);
             }
         });
-    }   
+    }
 }
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
 
 var streaming = [];
-var streamTimeout = 60000;
+var streamTimeout = 100;
 
 function get_streamers(first) {
     $.get(server+'streamers', function(result) {
@@ -498,31 +497,33 @@ function get_streamers(first) {
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/'+item.user_id+'/'+'TW'+item.twitch.channel.name
+                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
             streaming.push('TW'+item.twitch.channel.name);
         });
     }).always(function() {
-        setTimeout(function() {
-            get_streamers();
-        }, streamTimeout);
+        get_youtube_streamers(first);
     });
 }
 
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
+            console.log('alu');
             if(first) { streaming.push('YT'+item.youtube.id); return; }
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/'+item.user_id+'/'+'YT'+item.youtube.id
+                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'YT'+item.youtube.id
             });
             streaming.push('YT'+item.youtube.id);
         });
     }).always(function() {
+        if(streaming && streaming.length && $("a[href='/streamers']").length) {
+            $("a[href='/streamers']").html('直播<sup>' + streaming.length + '</sup>');
+        }
         setTimeout(function() {
-            get_youtube_streamers();
+            get_streamers();
         }, streamTimeout);
     });
 }
@@ -580,7 +581,6 @@ $(function() {
 $(function() {
     if($('body').hasClass('stream-gritter')) {
         get_streamers(true);
-        get_youtube_streamers(true);
     }
 });
 

@@ -375,6 +375,7 @@ body {
 }
 .lang_zh_tw .resize li:first-child {
   font-size: 1.17857em;
+  cursor: pointer;
 }
 .lang_zh_tw .listSwitch {
   font-size: 1.07143em;
@@ -910,11 +911,13 @@ overflow: hidden !important;
 #outContainer header .member .login a:nth-child(2) {
   padding-left: 6px;
 }
+
 #outContainer .fixedMenu {
   position: fixed;
   top: 0;
   z-index: 9999;
 }
+
 #outContainer .fixedMenuLogo.en {
   background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
   height: 36px;
@@ -1116,7 +1119,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   float: left;
 }
 .video .list > li li + li {
-  margin-left: 25px;
+  margin-left: 10px;
 }
 .video .list > li li + li a {
   background: url("/assets/images/sprite.png") no-repeat 0 -1893px;
@@ -1898,7 +1901,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
 }
 .playFunctionBtn li:nth-child(4) a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -222px;
+  background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;
 }
 .playFunctionBtn li:last-child a {
   background: url("/assets/images/player_ui.png") no-repeat 10px -264px;
@@ -4146,7 +4149,6 @@ button.load-more:hover {
 button#like.like {
   background: #ec0000 url('/assets/images/heart.svg') no-repeat;
   height: 11px;
-  background-size: contain;
   border: 0;
   cursor: pointer;
   margin-left: 10px;
@@ -4159,13 +4161,18 @@ button#like.like {
   border-radius: 2px;
   display: inline-block;
   margin-bottom: 5px;
+  line-height: 1em;
+  height: 1.3em;
+  background-size: 19px;
+  background-position-y: 2px;
 }
 
 button#like.like.active {
   background: #ffffff url('/assets/images/heart-active.svg') no-repeat;
   border: 3px solid #ffffff;
   color: #ec0000;
-  background-size: contain;
+  background-size: 19px;
+  background-position-y: 2px;
 }
 
 .user-links {
@@ -4230,3 +4237,4 @@ ul.user-links:before {
   top: -7px;
   width: 0;
 }
+

@@ -14,7 +14,7 @@ var filterTags = false;
 var playlistIds = [];
 var active_comments = false;
 var videoIds = [];
-var isPlayling = false;
+var isPlaying = false;
 
 $('#tab-1').mCustomScrollbar({theme: 'inset-2'});
 $('#tab-2').mCustomScrollbar({theme: 'inset-2'});
@@ -147,7 +147,7 @@ var update_playlists = function (playlists) {
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
         var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-        if(!isPlayling && !willPlay())
+        if(!isPlaying && !willPlay())
           window.location.hash = link;
     } else {
 
@@ -166,7 +166,7 @@ var filterAction = function(action) {
       $('#videosToggle a').trigger('click');
       break;
     case 'video':
-      isPlayling = true;
+      isPlaying = true;
       showVideo(hash.shift());
       break;
     case 'comments':
@@ -468,15 +468,24 @@ $(document).on('load-page',function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
     animation: true,
-    active: 1,
+    active: 1
   }).promise().done(function(e) {
     if(active_comments) {
       $('#tab-2').click();
     }
   });
-  $(".zoom a").click(function(){
-    $("body").toggleClass("zoom2x");
-    $(".zoom").toggleClass("zoomOut");
+  $("ul.resize").click(function(){
+    var $body = $("body"),
+        $zoom = $(".zoom"),
+        $resize = $("ul.resize li:first-child");
+    $body.toggleClass("zoom2x");
+    if($body.hasClass('zoom2x')) {
+      $resize.html('X2');
+    } else {
+      $resize.html('X1');
+    }
+
+    $zoom.toggleClass("zoomOut");
   });
 
   $(".listSwitch li").click(function(){
@@ -553,7 +562,9 @@ $(document).on('load-page',function(){
       username:     utilUser.get().username,
       message:      $('#commentArea').val()
     };
-
+    if(!$('#commentArea').val().trim().length) {
+      return
+    }
     $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
       data, function(e) {
         $('#tab-2 .discussions')
@@ -574,16 +585,8 @@ $(document).on('load-page',function(){
       });
   });
 
-  $(window).trigger('hashchange');
-});
-
-$(document).ready(function() {
-  if(!$('body').hasClass('favorites')) {
-    $(document).trigger('load-page');
-  }
-
   // get favorites
-  if(typeof utilUser !== 'undefined'
+  if(utilUser.get('user') && typeof utilUser.get('user') !== 'undefined'
     /*&& !$('body').hasClass('news')
     && !$('body').hasClass('shows')*/) {
     $.ajax({
@@ -596,5 +599,23 @@ $(document).ready(function() {
       page_data.favorites = result;
       $(window).trigger('hashchange');
     });
+
+    return;
+  }
+
+  $(window).trigger('hashchange');
+});
+
+$('li#playlistsToggle').on('click', function() {
+  $('.playFunctionBtn li').css({'visibility': 'hidden'})
+});
+
+$('li#videosToggle').on('click', function() {
+  $('.playFunctionBtn li').css({'visibility': 'visible'});
+});
+
+$(document).ready(function() {
+  if(!$('body').hasClass('favorites')) {
+    $(document).trigger('load-page');
   }
 });
