@@ -468,7 +468,7 @@ $(document).on('load-page',function(){
   $(".sf-menu").superfish();
   $(".tabs").tabslet({
     animation: true,
-    active: 1,
+    active: 1
   }).promise().done(function(e) {
     if(active_comments) {
       $('#tab-2').click();
@@ -586,7 +586,7 @@ $(document).on('load-page',function(){
   });
 
   // get favorites
-  if(typeof utilUser !== 'undefined'
+  if(utilUser.get('user') && typeof utilUser.get('user') !== 'undefined'
     /*&& !$('body').hasClass('news')
     && !$('body').hasClass('shows')*/) {
     $.ajax({
