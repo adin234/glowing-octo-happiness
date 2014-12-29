@@ -259,13 +259,14 @@
 		#featuredVideos,
 		#mostViewed {
 			width: 100% !important;
-			text-align: center;
+			/*text-align: center;*/
 			-webkit-transform: inherit !important;
 			transform: inherit !important;
+			overflow-x: scroll;
 		}
 			#index-page .main .video .list > li {
-				width: 100% !important;
-				display: block;
+				width: 12% !important;
+				display: inline-block;
 			}
 			#index-page .main .video .list > li > a:nth-child(1) > img {
 				width: 50% !important;

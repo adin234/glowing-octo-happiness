@@ -85,7 +85,7 @@ var filter_category = function(con) {
         }
         render_page();
     }).done(function() {
-        var context = $('.species a[data-console='+con+']');
+        var context = $('a[data-console='+con+']');
         context.parent().siblings().removeClass('current');
         context.parent().addClass('current');
     });

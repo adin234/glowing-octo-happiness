@@ -187,7 +187,7 @@ var filter_category = function (cnsl) {
         dataType: "json",
         url: server+"index?console="+cnsl,
     }).done(function (data) {
-        var context = $('.species a[data-console='+cnsl+']');
+        var context = $('a[data-console='+cnsl+']');
         context.parent().siblings().removeClass('current');
         context.parent().addClass('current');
         if(cnsl !== 'all') {

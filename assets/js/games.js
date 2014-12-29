@@ -283,7 +283,7 @@ var filter_category = function(cons) {
         page_data = results;
         render_page();
     }).done(function() {
-        var context = $('.species a[data-console='+cons+']');
+        var context = $('a[data-console='+cons+']');
         context.parent().siblings().removeClass('current');
         context.parent().addClass('current');
     });
