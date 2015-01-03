@@ -490,7 +490,7 @@ function get_streamers(first) {
     streamingLan = 0;
     $.get(server+'streamers', function(result) {
         result.streamers.forEach(function(item) {
-            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && ~item.twitch.channel.status.toLowerCase().indexOf('lan')) {
+            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && item.twitch.channel.status && ~item.twitch.channel.status.toLowerCase().indexOf('lan')) {
                 streamingLan++;
             }
             if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
