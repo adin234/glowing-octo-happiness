@@ -88,7 +88,7 @@ var update_videos = function (videos, append, initial) {
         tempdata = {
           id: 'video-'+item.snippet.resourceId.videoId,
           link: link+cons+'video/'+item.snippet.resourceId.videoId,
-          link_user: '/youtuber/?user='+item.user_id+'/#!/'+item.snippet.resourceId.videoId || '',
+          link_user: '/youtuber/?user='+item.user_id+'/#!/video/'+item.snippet.resourceId.videoId || '',
           user: item.username || '',
           title: item.snippet.title,
           thumb: item.snippet.thumbnails.default.url,
