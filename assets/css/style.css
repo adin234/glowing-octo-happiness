@@ -4238,3 +4238,11 @@ ul.user-links:before {
   width: 0;
 }
 
+.lanparty_type2 sup {
+  color: red;
+  left: 1px;
+  position: relative;
+  top: -5px;
+  width: 1em;
+}
+

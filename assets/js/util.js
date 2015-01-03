@@ -530,6 +530,11 @@ function get_youtube_streamers(first) {
             $("a[href='/lanparty']").html('Lan Party<sup>' + streamingLanCount + '</sup>');
         }
 
+        if($("a[href='/lanparty_stream_multi']").length) {
+            var streamingLanCount = streamingLan || '';
+            $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
+        }
+
         setTimeout(function() {
             get_streamers();
         }, streamTimeout);
