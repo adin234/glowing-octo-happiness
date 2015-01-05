@@ -138,13 +138,14 @@ $.fn.initChatBox = function(chl, usr)
         var today   = new Date();
         var tinmins;
         var timesent, elem;
-
+        
         if (sd.cid == chl.id) {
             if (sd.msgtype == 'notification') {
                 msgbox      = '#tblchatmsgs-' + sd.cid;
                 $(msgbox).append(msgNotify.replace(/{gchat-message}/ig,sd.msg));
             }
             else {
+                
                 /* 12-12-2014 : Added condition if user sends empty message  */
                 if (sd.msg.length > 0) {
                     if (today.getMinutes() < 10) {
@@ -160,8 +161,23 @@ $.fn.initChatBox = function(chl, usr)
                     else {
                         timesent = today.getHours() + ':' + tinmins + 'AM';
                     }
-
-                    $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
+                    
+                    /*
+                        12-23-2014 : Added function when user inputs continious text that would cause
+                        the chat UI to break
+                     */
+                    var newstring = '';
+                    if (sd.msg.length >= 40) {
+                        for(var i = 0; i < sd.msg.length; i+=40) {
+                            newstring = newstring + sd.msg.substring(i, i + 40) + '\n';
+                            console.log(newstring);
+                        }
+                    } else {
+                        console.log('Something\'s wrong');
+                    }
+                    
+                    $(msgbox).append(msgChat.replace(/{message}/ig,newstring).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));    
+                    //$(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
                 }
             }
 
