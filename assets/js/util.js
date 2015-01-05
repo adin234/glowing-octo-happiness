@@ -522,16 +522,17 @@ function get_youtube_streamers(first) {
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
-            $("a[href='/streamers']:not(.no-sup)").html('直播<sup>' + streaming.length + '</sup>');
+            var streamingLength = streaming.length || '';
+            $("a[href='/streamers']:not(.no-sup)").html('直播<sup>' + streamingLength + '</sup>');
         }
 
         if($("a[href='/lanparty']").length) {
-            var streamingLanCount = streamingLan;
+            var streamingLanCount = streamingLan || '';
             $("a[href='/lanparty']").html('Lan Party<sup>' + streamingLanCount + '</sup>');
         }
 
         if($("a[href='/lanparty_stream_multi']").length) {
-            var streamingLanCount = streamingLan;
+            var streamingLanCount = streamingLan || '';
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
