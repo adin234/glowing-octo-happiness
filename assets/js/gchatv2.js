@@ -165,12 +165,14 @@ $.fn.initChatBox = function(chl, usr)
                     /*
                         12-23-2014 : Added function when user inputs continious text that would cause
                         the chat UI to break
+                        
+                        01-05-2015 : Change the string length to check where to cut and will make the chat message
+                                     fit to the chat box.
                      */
                     var newstring = '';
                     if (sd.msg.length >= 35) {
                         for(var i = 0; i < sd.msg.length; i += 35) {
                             newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
-                            console.log(newstring);
                         }
                     } else {
                         //console.log('Something\'s wrong');
