@@ -1901,10 +1901,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
 }
 .playFunctionBtn li:nth-child(4) a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;
+  /*background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;*/
 }
 .playFunctionBtn li:last-child a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -264px;
+  /*background: url("/assets/images/player_ui.png") no-repeat 10px -264px;*/
   float: right;
 }
 .playList {
