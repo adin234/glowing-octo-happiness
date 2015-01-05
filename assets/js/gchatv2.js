@@ -167,13 +167,14 @@ $.fn.initChatBox = function(chl, usr)
                         the chat UI to break
                      */
                     var newstring = '';
-                    if (sd.msg.length >= 40) {
-                        for(var i = 0; i < sd.msg.length; i+=40) {
-                            newstring = newstring + sd.msg.substring(i, i + 40) + '\n';
+                    if (sd.msg.length >= 35) {
+                        for(var i = 0; i < sd.msg.length; i += 35) {
+                            newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
                             console.log(newstring);
                         }
                     } else {
-                        console.log('Something\'s wrong');
+                        //console.log('Something\'s wrong');
+                        newstring = sd.msg;
                     }
                     
                     $(msgbox).append(msgChat.replace(/{message}/ig,newstring).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));    
