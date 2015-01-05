@@ -30,8 +30,13 @@ $(function() {
 	});
 
      $('body').on('change', '#view-resize', function(e) {
-        var size = $(this).val();
+        var size = $('#view-resize').val();
         $('body').removeClass('x1 x2 x3').addClass(size);
+        resize_video_stream();
+    });
+
+    function resize_video_stream() {
+        var size = $('#view-resize').val();
         if(size == 'x3') {
             $('embed').height($('#streamView').height());
             $('object').height($('#streamView').height());
@@ -39,6 +44,10 @@ $(function() {
             $('embed').height('100%');
             $('object').height('100%');
         }
+    }
+
+    $(window).on('resize', function() {
+        resize_video_stream();
     });
 
     streamType = twitch.substr(0,2);

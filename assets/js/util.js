@@ -526,12 +526,12 @@ function get_youtube_streamers(first) {
         }
 
         if($("a[href='/lanparty']").length) {
-            var streamingLanCount = streamingLan || '';
+            var streamingLanCount = streamingLan;
             $("a[href='/lanparty']").html('Lan Party<sup>' + streamingLanCount + '</sup>');
         }
 
         if($("a[href='/lanparty_stream_multi']").length) {
-            var streamingLanCount = streamingLan || '';
+            var streamingLanCount = streamingLan;
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
@@ -550,7 +550,7 @@ $.extend($.gritter.options, {
 
 var notify_stream = function(data) {
     $.gritter.add({
-        title: 'ç›´æ’­ä¸­',
+        title: '直播',
         text: '<a class="link" href="'+data.link+'">'+data.streamer+'</a>'
     });
 };
