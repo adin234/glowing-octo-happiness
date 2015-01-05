@@ -169,15 +169,37 @@ $.fn.initChatBox = function(chl, usr)
                         01-05-2015 : Change the string length to check where to cut and will make the chat message
                                      fit to the chat box.
                      */
+                    
+                    var chatmsg = [];
+                    var hasContiniousText = false;
                     var newstring = '';
-                    if (sd.msg.length >= 35) {
-                        for(var i = 0; i < sd.msg.length; i += 35) {
-                            newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
+                    
+                    chatmsg = sd.msg.split(' ');
+                    for (var i = 0; i < chatmsg.length; i++){
+                        if (chatmsg[i].length >= 35) {
+                            hasContiniousText = true;
+                            console.log(chatmsg[i] + ' : true');
+                        } else {
+                            console.log(chatmsg[i] + ' : false');
                         }
-                    } else {
-                        //console.log('Something\'s wrong');
+                    }
+                    
+                    if (hasContiniousText) {
+                        if (sd.msg.length >= 35) {
+                            for(var i = 0; i < sd.msg.length; i += 35) {
+                                newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
+                            }
+                        } else {
+                            //console.log('Something\'s wrong');
+                            newstring = sd.msg;
+                        }                        
+                    }
+                    else {
                         newstring = sd.msg;
                     }
+                    
+                    
+
                     
                     $(msgbox).append(msgChat.replace(/{message}/ig,newstring).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));    
                     //$(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
