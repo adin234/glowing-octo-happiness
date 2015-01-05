@@ -2612,7 +2612,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 #streamView header, #streamView #functionBar {
-  width: 394px;
+  width: 356px;
   overflow: hidden;
 }
 #streamView header {
@@ -3261,7 +3261,7 @@ body.streams #streamArea {
 
 body.streams #side-container {
   display: table-cell;
-  width: 400px;
+  width: 365px;
   vertical-align: top;
 }
 
