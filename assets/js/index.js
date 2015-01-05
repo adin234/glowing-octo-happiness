@@ -159,11 +159,11 @@ var index_show_streamers = function(streamersList) {
             item.game = item.game == null ? 'Unlisted' : item.game;
 
             if(item.game.length > 10) {
-                item.game = item.game.substr(0,10) + '&#133;';
+                item.game = item.game.substr(0,9) + '&#133;';
             }
 
             if(item.username != null && item.username.length > 10) {
-                item.title = item.username.substr(0, 10) + '&#133;';
+                item.username = item.username.substr(0, 9) + '&#133;';
             }
 
             html.push(template($('#streamersTpl').html(), item));
