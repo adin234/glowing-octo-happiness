@@ -522,7 +522,7 @@ function get_youtube_streamers(first) {
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
-            $("a[href='/streamers']").html('直播<sup>' + streaming.length + '</sup>');
+            $("a[href='/streamers']:not(.no-sup)").html('直播<sup>' + streaming.length + '</sup>');
         }
 
         if($("a[href='/lanparty']").length) {
