@@ -292,6 +292,7 @@ var showPlaylist = function(playlistId, next) {
   }
 
   if(playlist.nextPageToken) {
+    activeVideos = activeVideos.concat(playlist.items);
     getPlaylistNext(playlist);
   }
   // $('#videosToggle').click();
@@ -307,6 +308,7 @@ var getPlaylistNext = function(playlist) {
       if(e.items[0].snippet.playlistId == active_playlist) {
         playlist.nextPageToken = e.nextPageToken;
         activeVideos = activeVideos.concat(e.items);
+        console.log('activeLength', activeVideos.length);
         // update_videos(e.items, true);
         if(e.nextPageToken) {
           getPlaylistNext(e);
