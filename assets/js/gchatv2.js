@@ -1,5 +1,3 @@
-var x;
-
 $.fn.initChatBox = function(chl, usr)
 {
     var chatUI;
@@ -125,12 +123,14 @@ $.fn.initChatBox = function(chl, usr)
 
     socket.on('allow-chat-input', function(sd){
         if(sd.allow == false){
-            $('#chatinputs-'+ sd.cid).css('display','none');
-            $('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
+            $('#chatinputs-'+ sd.cid).css({display: 'none', zIndex: -1});
+            //$('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
+            $('#notifylogin-'+sd.cid).css({display: 'block', zIndex: 1});
         } else {
-            $('#chatinputs-'+ sd.cid).css('display','block');
-            $('#notifylogin-'+sd.cid).remove();
+            $('#chatinputs-'+ sd.cid).css({display: 'block', zIndex: 1});
+            $('#notifylogin-'+sd.cid).css({display: 'none', zIndex: -1});
         }
+        console.log('Chat allow status : ' + sd.allow.toString());
     });
 
     socket.on('update-ui', function(sd){

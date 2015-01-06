@@ -136,7 +136,6 @@ $(function() {
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
-            console.log(1);
             $(this).parent().hide();
         }
     });
