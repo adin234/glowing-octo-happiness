@@ -145,6 +145,7 @@ $(function() {
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
+            //console.log(1);
             $(this).parent().hide();
         }
     });
@@ -153,7 +154,7 @@ $(function() {
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             countEmpty++;
-            console.log(2);
+            //console.log(2);
             $(this).parent().hide();
         }
     });
@@ -162,7 +163,7 @@ $(function() {
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
             countEmpty++;
-            console.log(3);
+            //console.log(3);
             $(this).parent().hide();
         }
     });
@@ -171,7 +172,7 @@ $(function() {
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
             countEmpty++;
-            console.log(4);
+            //console.log(4);
             $(this).parent().hide();
         }
     });
@@ -180,7 +181,7 @@ $(function() {
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
             countEmpty++;
-            console.log(5);
+            //console.log(5);
             $(this).parent().hide();
         }
     });
@@ -189,7 +190,7 @@ $(function() {
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
             countEmpty++;
-            console.log(6);
+            //console.log(6);
             $(this).parent().hide();
         }
     });
@@ -198,7 +199,7 @@ $(function() {
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
             countEmpty++;
-            console.log(7);
+            //console.log(7);
             $(this).parent().hide();
         }
     });
