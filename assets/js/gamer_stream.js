@@ -194,7 +194,7 @@ $(function() {
             $(this).parent().hide();
         }
     });
-    $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule))
+    $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule ))
         .promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
