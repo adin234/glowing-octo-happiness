@@ -92,7 +92,7 @@ $(document).ready(function() {
             vid = vid.split('?')[1].split('=');
             vid = vid[vid.indexOf('v')+1].split('#')[0];
             var html = template($('#playerTpl').html(), { video: '//www.youtube.com/embed/'+vid+'?autoplay=1' });
-            $('#container .bx-wrapper').prepend(html).promise().done(function() {
+            $('#container .bx-wrapper:first').prepend(html).promise().done(function() {
                 $('.bx-wrapper .video-player iframe').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2);
                 $('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2)
             });
@@ -216,7 +216,7 @@ var update_index = function(index_data) {
             console.log(item);
             var date = new Date(item.upload_date*1000);
             console.log(date);
-            item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+(date.getMonth()+1)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
+            item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+("00"+(date.getMonth()+1)).slice(-2)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
             html.push(template($('#sliderTpl').html(), item));
         });
         $('#imageSlider').html(html.join(''));
