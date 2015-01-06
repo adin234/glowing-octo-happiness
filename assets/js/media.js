@@ -528,7 +528,9 @@ $(document).on('load-page',function(){
 
   if(page_data.playlists.length) {
     page_data.playlists.splice(0,0,{
-      id: page_data.config.playlist,
+      id: !$('body').hasClass('news') 
+        ? page_data.config.playlist
+        : 'UU'+page_data.config.channel.slice(2),
       snippet: {
         title: '最新影片',
         channelId: page_data.config.channel,

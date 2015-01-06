@@ -147,7 +147,7 @@ var index_show_streamers = function(streamersList) {
                 item.id = 'YT'+item.youtube.id;
                 item.idraw= item.youtube.id;
                 item.live = 'live';
-                item.game = 'Unlisted';
+                item.game = '';
                 item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
@@ -156,10 +156,10 @@ var index_show_streamers = function(streamersList) {
                 item.views = '0';
             }
 
-            item.game = item.game == null ? 'Unlisted' : item.game;
+            item.game = item.game == null ? '' : item.game + ' / ';
 
             if(item.game.length > 10) {
-                item.game = item.game.substr(0,9) + '&#133;';
+                item.game = item.game.substr(0,9) + '&#133;' + ' / ';
             }
 
             if(item.username != null && item.username.length > 10) {
