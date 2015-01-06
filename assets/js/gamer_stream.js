@@ -79,17 +79,30 @@ $(function() {
     }
 
     if(streamType == 'YT') {
-        $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
-        .html(),{youtubeid: streamId}));
         var found = false;
-        $.getJSON(server+'streamers/youtube', function(e) {
+        var userId = params.user.replace('/', '');
+
+        $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
+            console.log(e);
+
+            var streamerId = '';
             e.streamers.forEach(function(item) {
-                if(item.youtube.id == streamId) {
-                    found = true;
-                    $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-                    $('embed').height($('#streamView').height());
-                }
+                found = true;
+                streamerId = item.youtube.id;
+
+                $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+                $('embed').height($('#streamView').height());
             });
+
+            if(found) {
+                $('#twitchStream')
+                    .replaceWith(template($('#youtube-stream-tpl')
+                    .html(),{youtubeid: streamerId}));
+            } else {
+                $('#twitchStream')
+                    .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+
+            }
 
             if(!found) {
                 $('aside .streamer').hide();
@@ -98,10 +111,6 @@ $(function() {
             $('#tab-2').html(page_data.custom_fields.youtube_activity);
         });
 
-        // utilLoader.hide();
-
-        // $('#tab-2').append(page_data.custom_fields.youtube_activity);
-		/*  This where you put your JSON result to be able to access the chat plugin  */
 		var userinfo = '';
 		var channelinfo = {"id":twitch, "title" : twitch};
 

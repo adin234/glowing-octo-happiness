@@ -2951,6 +2951,16 @@ div.streamer {
   display: block;
 }
 
+img.offline-placeholder {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  max-width: 400px;
+  width: 100%;
+}
+
 .remove-stream {
   background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
   border: 2px solid white;
@@ -3637,6 +3647,10 @@ body:nth-child(3) {
   font-weight: bold;
 }
 
+#twitchStream {
+  text-align: center;
+  background: rgba(0,0,0, .5);
+}
 .muti #twitchStream {
   float: left;
   padding-right: 10px;
@@ -4247,5 +4261,5 @@ ul.user-links:before {
 }
 
 .lanparty .videoHeading h3 {
-color: #fff;
+  color: #fff;
 }

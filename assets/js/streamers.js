@@ -136,7 +136,7 @@ var render_videos = function(filter, game, lanparty) {
         } else {
             if(typeof filter != 'undefined'
             && !~item.username.search(filterRegExp)) return;
-            item.id = 'YT'+item.youtube.id;
+            item.id = 'YT'+item.username;
             item.idraw= item.youtube.id;
             item.live = 'live';
             item.link = lanparty && typeof lanparty != 'undefined'
@@ -261,7 +261,7 @@ var add_to_multiview = function() {
         item.bust = 1;
         item.views = item.twitch.viewers;
     } else {
-        item.id = 'YT'+item.youtube.id;
+        item.id = 'YT'+item.username;
         item.idraw= item.youtube.id;
         item.live = 'live';
         item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;

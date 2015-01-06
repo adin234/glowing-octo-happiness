@@ -39,7 +39,7 @@ var format_stream_item = function(item) {
         item.bust = 1;
         item.views = item.twitch.viewers;
     } else {
-        item.id = 'YT'+item.youtube.id;
+        item.id = 'YT'+item.username;
         item.idraw= item.youtube.id;
         item.live = 'live';
         item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
