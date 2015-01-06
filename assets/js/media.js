@@ -56,8 +56,6 @@ var update_videos = function (videos, append, initial) {
 
   var start = $('li.ytVideo.videoItem').length;
 
-  console.log(arguments);
-
   if(!append || typeof append === 'undefined') {
     if(!initial){
       activeVideos = [];
@@ -112,7 +110,6 @@ var update_videos = function (videos, append, initial) {
 };
 
 var willPlay = function() {
-  console.log('checked if will play '+~window.location.hash.indexOf('video/'));
   return ~window.location.hash.indexOf('video/');
 };
 
@@ -262,13 +259,15 @@ var getComments = function (videoId) {
           +'.'+item.user_id+'/',
         username: item.username,
         comment: item.message,
-        date: item.date
+        date: formatDate(item.date*1000)
       }
     });
 
     var commentsHTML = comments.map(function(item) {
       return template($('#commentItemTpl').html(), item);
     }).join('');
+
+    page_data.commentsLength = comments.length;
 
     $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
@@ -567,6 +566,11 @@ $(document).on('load-page',function(){
     }
     $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
       data, function(e) {
+
+        page_data.commentsLength++;
+
+      $('.comments-list > a:first-child').html('所有留言 ('+page_data.commentsLength+')');
+
         $('#tab-2 .discussions')
           .prepend(template(
             template($('#commentItemTpl').html(), {
@@ -576,9 +580,10 @@ $(document).on('load-page',function(){
                 +'.'+data.user_id+'/',
               username: data.username,
               comment: data.message,
-              date: +new Date
+              date: formatDate(+new Date)
             })
           ));
+          $('#commentArea').val('');
       }).fail(function(e) {
         utilLogin.show('An error occured, please login to continue');
         utilCookie.set('user', '', 0);
@@ -619,3 +624,9 @@ $(document).ready(function() {
     $(document).trigger('load-page');
   }
 });
+
+function formatDate(date) {
+  var now = new Date(date),
+      months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return formattedDAte = now.getDate()+"-"+months[now.getMonth()]+"-"+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes();
+}

@@ -111,13 +111,13 @@ var utilLogin = {
             type:'text',
             class: 'username-field',
             name: 'username',
-            placeholder: 'ç”¨æˆ¶å'
+            placeholder: '用戶名'
         });
         var password = $('<input/>', {
             type: 'password',
             class: 'password-field',
             name: 'password',
-            placeholder: 'å¯†ç¢¼'
+            placeholder: '密碼'
         });
         var label = $('<span/>', {
             class: 'login-label',
@@ -125,7 +125,7 @@ var utilLogin = {
         });
         var loginBtn = $('<button/>', {
             class: 'login-button',
-            text: 'ç™»å…¥'
+            text: '登入'
         });
         var loginWithSocialMedia = $('<a/>', {
             class: 'social-login',
