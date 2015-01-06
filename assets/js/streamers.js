@@ -132,6 +132,7 @@ var render_videos = function(filter, game, lanparty) {
             item.thumb = item.twitch.preview.large;
             item.title = item.twitch.channel.status;
             item.bust = 1;
+            item.type = 'TW';
             item.views = item.twitch.viewers;
         } else {
             if(typeof filter != 'undefined'
@@ -146,6 +147,7 @@ var render_videos = function(filter, game, lanparty) {
             item.thumb = item.youtube.snippet.thumbnails.high.url;
             item.title = item.youtube.snippet.title;
             item.bust = 1;
+            item.type = 'YT';
             item.views = '0';
         }
 
@@ -259,6 +261,7 @@ var add_to_multiview = function() {
         item.thumb = item.twitch.preview.large;
         item.title = item.twitch.channel.status;
         item.bust = 1;
+        item.type = 'TW';
         item.views = item.twitch.viewers;
     } else {
         item.id = 'YT'+item.username;
@@ -269,6 +272,7 @@ var add_to_multiview = function() {
         item.thumb = item.youtube.snippet.thumbnails.high.url;
         item.title = item.youtube.snippet.title;
         item.bust = 1;
+        item.type = 'YT';
         item.views = '0';
     }
 
