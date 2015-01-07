@@ -48,9 +48,6 @@ var update_videos = function (videos, append, initial) {
   if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
-  // if(active_playlist) {
-  //   link+='playlist/'+active_playlist+'/';
-  // }
 
   playListIds = [];
 
@@ -237,6 +234,8 @@ var showVideo = function(videoId) {
       getPhoto(video.snippet.channelId, $('.videoHeading > img'));
     }
 
+    page_data.videoId = videoId;
+
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
@@ -249,8 +248,14 @@ var showVideo = function(videoId) {
   }
 };
 
-var getComments = function (videoId) {
+var getComments = function (videoId, sort) {
+  sort = sort || 'latest';
   $.getJSON(server+'youtubers/videos/'+videoId+'/comment', function(e) {
+    if(sort === 'last') {
+      e = e.sort(function(a, b) {
+        return a.date - b.date;
+      });
+    }
     var comments = e.map(function(item) {
       return {
         userimage: attachments_server+'avatar.php?userid='
@@ -268,10 +273,16 @@ var getComments = function (videoId) {
     }).join('');
 
     page_data.commentsLength = comments.length;
-
+    console.log(sort);
     $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
-      { count: e.length, video: videoId, comments: commentsHTML})
+      {
+        count: e.length,
+        video: videoId,
+        comments: commentsHTML,
+        sortlatest: sort === 'latest' ? 'current' : '',
+        sortlast: sort === 'last' ? 'current' : ''
+      })
     ).promise().done(function() {
       if(utilUser.get()) {
         $('img.userImg').attr('src', utilUser.get().links.avatar);
@@ -528,7 +539,7 @@ $(document).on('load-page',function(){
 
   if(page_data.playlists.length) {
     page_data.playlists.splice(0,0,{
-      id: !$('body').hasClass('news') 
+      id: !$('body').hasClass('news')
         ? page_data.config.playlist
         : 'UU'+page_data.config.channel.slice(2),
       snippet: {
@@ -627,6 +638,12 @@ $(document).ready(function() {
   if(!$('body').hasClass('favorites')) {
     $(document).trigger('load-page');
   }
+});
+
+$(document).on('click', '.sort-comments', function() {
+  var el = $(this);
+  var sort = el.hasClass('last') ? 'last' : 'latest';
+  getComments(page_data.videoId, sort);
 });
 
 function formatDate(date) {
