@@ -497,7 +497,7 @@ function get_streamers(first) {
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
             streaming.push('TW'+item.twitch.channel.name);
         });
