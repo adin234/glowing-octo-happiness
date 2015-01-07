@@ -516,7 +516,7 @@ function get_youtube_streamers(first) {
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'YT'+item.youtube.id
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'YT'+item.username
             });
             streaming.push('YT'+item.youtube.id);
         });
