@@ -30,8 +30,13 @@ $(function() {
 	});
 
      $('body').on('change', '#view-resize', function(e) {
-        var size = $(this).val();
+        var size = $('#view-resize').val();
         $('body').removeClass('x1 x2 x3').addClass(size);
+        resize_video_stream();
+    });
+
+    function resize_video_stream() {
+        var size = $('#view-resize').val();
         if(size == 'x3') {
             $('embed').height($('#streamView').height());
             $('object').height($('#streamView').height());
@@ -39,6 +44,10 @@ $(function() {
             $('embed').height('100%');
             $('object').height('100%');
         }
+    }
+
+    $(window).on('resize', function() {
+        resize_video_stream();
     });
 
     streamType = twitch.substr(0,2);
@@ -70,17 +79,30 @@ $(function() {
     }
 
     if(streamType == 'YT') {
-        $('#twitchStream').replaceWith(template($('#youtube-stream-tpl')
-        .html(),{youtubeid: streamId}));
         var found = false;
-        $.getJSON(server+'streamers/youtube', function(e) {
+        var userId = params.user.replace('/', '');
+
+        $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
+            console.log(e);
+
+            var streamerId = '';
             e.streamers.forEach(function(item) {
-                if(item.youtube.id == streamId) {
-                    found = true;
-                    $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-                    $('embed').height($('#streamView').height());
-                }
+                found = true;
+                streamerId = item.youtube.id;
+
+                $('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+                $('embed').height($('#streamView').height());
             });
+
+            if(found) {
+                $('#twitchStream')
+                    .replaceWith(template($('#youtube-stream-tpl')
+                    .html(),{youtubeid: streamerId}));
+            } else {
+                $('#twitchStream')
+                    .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+
+            }
 
             if(!found) {
                 $('aside .streamer').hide();
@@ -89,10 +111,6 @@ $(function() {
             $('#tab-2').html(page_data.custom_fields.youtube_activity);
         });
 
-        // utilLoader.hide();
-
-        // $('#tab-2').append(page_data.custom_fields.youtube_activity);
-		/*  This where you put your JSON result to be able to access the chat plugin  */
 		var userinfo = '';
 		var channelinfo = {"id":twitch, "title" : twitch};
 
@@ -127,7 +145,7 @@ $(function() {
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
-            console.log(1);
+            //console.log(1);
             $(this).parent().hide();
         }
     });
@@ -136,7 +154,7 @@ $(function() {
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             countEmpty++;
-            console.log(2);
+            //console.log(2);
             $(this).parent().hide();
         }
     });
@@ -145,7 +163,7 @@ $(function() {
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
             countEmpty++;
-            console.log(3);
+            //console.log(3);
             $(this).parent().hide();
         }
     });
@@ -154,7 +172,7 @@ $(function() {
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
             countEmpty++;
-            console.log(4);
+            //console.log(4);
             $(this).parent().hide();
         }
     });
@@ -163,7 +181,7 @@ $(function() {
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
             countEmpty++;
-            console.log(5);
+            //console.log(5);
             $(this).parent().hide();
         }
     });
@@ -172,16 +190,16 @@ $(function() {
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
             countEmpty++;
-            console.log(6);
+            //console.log(6);
             $(this).parent().hide();
         }
     });
-    $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule))
+    $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule ))
         .promise().done(function(e){
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
             countEmpty++;
-            console.log(7);
+            //console.log(7);
             $(this).parent().hide();
         }
     });

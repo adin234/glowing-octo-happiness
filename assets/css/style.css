@@ -1901,10 +1901,10 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
 }
 .playFunctionBtn li:nth-child(4) a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;
+  /*background: url("/assets/images/player_ui.png") no-repeat 10px -222px !important;*/
 }
 .playFunctionBtn li:last-child a {
-  background: url("/assets/images/player_ui.png") no-repeat 10px -264px;
+  /*background: url("/assets/images/player_ui.png") no-repeat 10px -264px;*/
   float: right;
 }
 .playList {
@@ -2612,7 +2612,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   position: relative;
 }
 #streamView header, #streamView #functionBar {
-  width: 394px;
+  width: 356px;
   overflow: hidden;
 }
 #streamView header {
@@ -2951,6 +2951,16 @@ div.streamer {
   display: block;
 }
 
+img.offline-placeholder {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  max-width: 400px;
+  width: 100%;
+}
+
 .remove-stream {
   background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
   border: 2px solid white;
@@ -3261,7 +3271,7 @@ body.streams #streamArea {
 
 body.streams #side-container {
   display: table-cell;
-  width: 400px;
+  width: 365px;
   vertical-align: top;
 }
 
@@ -3637,6 +3647,10 @@ body:nth-child(3) {
   font-weight: bold;
 }
 
+#twitchStream {
+  text-align: center;
+  background: rgba(0,0,0, .5);
+}
 .muti #twitchStream {
   float: left;
   padding-right: 10px;
@@ -4238,3 +4252,14 @@ ul.user-links:before {
   width: 0;
 }
 
+.lanparty_type2 sup {
+  color: red;
+  left: 1px;
+  position: relative;
+  top: -5px;
+  width: 1em;
+}
+
+.lanparty .videoHeading h3 {
+  color: #fff;
+}

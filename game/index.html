@@ -112,7 +112,11 @@
                 <li><a href="javascript:;" title="上一個影片" id="btn-prev">上一個影片</a></li>
                 <li><a href="javascript:;" title="下一個影片" id="btn-next">下一個影片</a></li>
                 <li></li>
-                <li><a href="javascript:loadInitial();" title="加入播放清單">加入播放清單</a></li>
+                <li style="visibility: visible;overflow: visible;"><a href="javascript:loadInitial();" title="Show All" style="
+                    color: #999;
+                    font-weight: bold;
+                    line-height: 27px;
+                ">ALL</a></li>
                 <!-- <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li> -->
               </ul>
             <ul class="playList toggleList current" id="playlists">
@@ -237,9 +241,8 @@
     </div>
     <div class="type clearFix"><span>類型：</span>
       <ul>
-        <li class="current"><a href="javascript:;">最新留言</a></li>
-        <li><a href="javascript:;">由新到舊</a></li>
-        <li><a href="javascript:;">熱門留言</a></li>
+<li class="{{SORTLATEST}}"><a href="javascript:;" class="sort-comments latest">最新留言</a></li>
+        <li class="{{SORTLAST}}"><a href="javascript:;" class="sort-comments last">由新到舊</a></li>
       </ul>
     </div>
     <div class="discussions">

@@ -48,15 +48,10 @@ var update_videos = function (videos, append, initial) {
   if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
-  // if(active_playlist) {
-  //   link+='playlist/'+active_playlist+'/';
-  // }
 
   playListIds = [];
 
   var start = $('li.ytVideo.videoItem').length;
-
-  console.log(arguments);
 
   if(!append || typeof append === 'undefined') {
     if(!initial){
@@ -88,7 +83,7 @@ var update_videos = function (videos, append, initial) {
         tempdata = {
           id: 'video-'+item.snippet.resourceId.videoId,
           link: link+cons+'video/'+item.snippet.resourceId.videoId,
-          link_user: '/youtuber/?user='+item.user_id+'/#!/'+item.snippet.resourceId.videoId || '',
+          link_user: '/youtuber/?user='+item.user_id+'/#!/video/'+item.snippet.resourceId.videoId || '',
           user: item.username || '',
           title: item.snippet.title,
           thumb: item.snippet.thumbnails.default.url,
@@ -112,7 +107,6 @@ var update_videos = function (videos, append, initial) {
 };
 
 var willPlay = function() {
-  console.log('checked if will play '+~window.location.hash.indexOf('video/'));
   return ~window.location.hash.indexOf('video/');
 };
 
@@ -240,6 +234,8 @@ var showVideo = function(videoId) {
       getPhoto(video.snippet.channelId, $('.videoHeading > img'));
     }
 
+    page_data.videoId = videoId;
+
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
@@ -252,8 +248,14 @@ var showVideo = function(videoId) {
   }
 };
 
-var getComments = function (videoId) {
+var getComments = function (videoId, sort) {
+  sort = sort || 'latest';
   $.getJSON(server+'youtubers/videos/'+videoId+'/comment', function(e) {
+    if(sort === 'last') {
+      e = e.sort(function(a, b) {
+        return a.date - b.date;
+      });
+    }
     var comments = e.map(function(item) {
       return {
         userimage: attachments_server+'avatar.php?userid='
@@ -262,7 +264,7 @@ var getComments = function (videoId) {
           +'.'+item.user_id+'/',
         username: item.username,
         comment: item.message,
-        date: item.date
+        date: formatDate(item.date*1000)
       }
     });
 
@@ -270,9 +272,17 @@ var getComments = function (videoId) {
       return template($('#commentItemTpl').html(), item);
     }).join('');
 
+    page_data.commentsLength = comments.length;
+    console.log(sort);
     $('#tab-2 .mCSB_container').html(template(
       $('#commentsTpl').html(),
-      { count: e.length, video: videoId, comments: commentsHTML})
+      {
+        count: e.length,
+        video: videoId,
+        comments: commentsHTML,
+        sortlatest: sort === 'latest' ? 'current' : '',
+        sortlast: sort === 'last' ? 'current' : ''
+      })
     ).promise().done(function() {
       if(utilUser.get()) {
         $('img.userImg').attr('src', utilUser.get().links.avatar);
@@ -293,6 +303,7 @@ var showPlaylist = function(playlistId, next) {
   }
 
   if(playlist.nextPageToken) {
+    activeVideos = activeVideos.concat(playlist.items);
     getPlaylistNext(playlist);
   }
   // $('#videosToggle').click();
@@ -308,6 +319,7 @@ var getPlaylistNext = function(playlist) {
       if(e.items[0].snippet.playlistId == active_playlist) {
         playlist.nextPageToken = e.nextPageToken;
         activeVideos = activeVideos.concat(e.items);
+        console.log('activeLength', activeVideos.length);
         // update_videos(e.items, true);
         if(e.nextPageToken) {
           getPlaylistNext(e);
@@ -527,7 +539,9 @@ $(document).on('load-page',function(){
 
   if(page_data.playlists.length) {
     page_data.playlists.splice(0,0,{
-      id: page_data.config.playlist,
+      id: !$('body').hasClass('news')
+        ? page_data.config.playlist
+        : 'UU'+page_data.config.channel.slice(2),
       snippet: {
         title: '最新影片',
         channelId: page_data.config.channel,
@@ -567,6 +581,11 @@ $(document).on('load-page',function(){
     }
     $.post(server+'youtubers/videos/'+$(this).attr('data-video')+'/comment',
       data, function(e) {
+
+        page_data.commentsLength++;
+
+      $('.comments-list > a:first-child').html('所有留言 ('+page_data.commentsLength+')');
+
         $('#tab-2 .discussions')
           .prepend(template(
             template($('#commentItemTpl').html(), {
@@ -576,9 +595,10 @@ $(document).on('load-page',function(){
                 +'.'+data.user_id+'/',
               username: data.username,
               comment: data.message,
-              date: +new Date
+              date: formatDate(+new Date)
             })
           ));
+          $('#commentArea').val('');
       }).fail(function(e) {
         utilLogin.show('An error occured, please login to continue');
         utilCookie.set('user', '', 0);
@@ -619,3 +639,15 @@ $(document).ready(function() {
     $(document).trigger('load-page');
   }
 });
+
+$(document).on('click', '.sort-comments', function() {
+  var el = $(this);
+  var sort = el.hasClass('last') ? 'last' : 'latest';
+  getComments(page_data.videoId, sort);
+});
+
+function formatDate(date) {
+  var now = new Date(date),
+      months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return formattedDAte = now.getDate()+"-"+months[now.getMonth()]+"-"+now.getFullYear()+' '+now.getHours()+':'+now.getMinutes();
+}

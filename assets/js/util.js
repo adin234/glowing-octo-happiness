@@ -488,11 +488,16 @@ function streamersSearch() {
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
 
 var streaming = [];
-var streamTimeout = 100;
+var streamingLan = 0;
+var streamTimeout = 60000;
 
 function get_streamers(first) {
+    streamingLan = 0;
     $.get(server+'streamers', function(result) {
         result.streamers.forEach(function(item) {
+            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && item.twitch.channel.status && ~item.twitch.channel.status.toLowerCase().indexOf('lan')) {
+                streamingLan++;
+            }
             if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
             notify_stream({
@@ -509,7 +514,9 @@ function get_streamers(first) {
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
-            console.log('alu');
+            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && ~item.youtube.snippet.title.toLowerCase().indexOf('lan')) {
+                streamingLan++;
+            }
             if(first) { streaming.push('YT'+item.youtube.id); return; }
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
             notify_stream({
@@ -519,9 +526,21 @@ function get_youtube_streamers(first) {
             streaming.push('YT'+item.youtube.id);
         });
     }).always(function() {
-        if(streaming && streaming.length && $("a[href='/streamers']").length) {
-            $("a[href='/streamers']").html('直播<sup>' + streaming.length + '</sup>');
+        if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
+            var streamingLength = streaming.length || '';
+            $("a[href='/streamers']:not(.no-sup)").html('直播<sup>' + streamingLength + '</sup>');
         }
+
+        if($("a[href='/lanparty']").length) {
+            var streamingLanCount = streamingLan || '';
+            $("a[href='/lanparty']").html('Lan Party<sup>' + streamingLanCount + '</sup>');
+        }
+
+        if($("a[href='/lanparty_stream_multi']").length) {
+            var streamingLanCount = streamingLan || '';
+            $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
+        }
+
         setTimeout(function() {
             get_streamers();
         }, streamTimeout);
@@ -537,10 +556,10 @@ $.extend($.gritter.options, {
 
 var notify_stream = function(data) {
     $.gritter.add({
-        title: '直播中',
+        title: '直播',
         text: '<a class="link" href="'+data.link+'">'+data.streamer+'</a>'
     });
-}
+};
 
 // session
 $(function() {
@@ -579,9 +598,9 @@ $(function() {
 });
 
 $(function() {
-    if($('body').hasClass('stream-gritter')) {
+    // if($('body').hasClass('stream-gritter')) {
         get_streamers(true);
-    }
+    // }
 });
 
 
@@ -591,4 +610,6 @@ $(function() {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-46773919-11', 'auto');
-ga('send', 'pageview')
+
+ga('send', 'pageview');
+

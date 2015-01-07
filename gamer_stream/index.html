@@ -34,6 +34,11 @@
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
 <script type="text/javascript" src="/assets/js/config.js"></script>
 <script type="text/javascript" src="/assets/js/get.gamer_stream.data.js"></script>
+<style type="text/css">
+  sup {
+    display:none;
+  }
+</style>
 </head>
 <body class="lang_zh_tw streams x3 single">
 <div id="stream-container">
@@ -41,13 +46,7 @@
     <div id="streamArea">
       <div id="twitchStream">
         <div class="videoWrapper">
-          <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-            <param name="allowFullScreen" value="true" />
-            <param name="allowScriptAccess" value="always" />
-            <param name="allowNetworking" value="all" />
-            <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-            <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
-          </object>
+
         </div>
       </div>
       <aside class="clearFix">
@@ -123,10 +122,9 @@
         <nav>
           <h1><a href="/" target="_blank">實況咖</a></h1>
           <ul>
-            <li><a href="/" title="回首頁" target="_blank">首頁</a></li>
             <li><a href="http://community.gamers.tm/zh/index.php" title="論壇" target="_blank">論壇</a></li>
             <li><a href="/shows" id="youtuber-link" title="影片" target="_blank">影片</a></li>
-            <li><a href="/streamers" title="直播" target="_blank">直播</a></li>
+            <li><a href="/streamers" class="no-sup" title="直播" target="_blank">直播</a></li>
           </ul>
         </nav>
         <select id="view-resize">

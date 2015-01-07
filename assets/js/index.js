@@ -92,7 +92,7 @@ $(document).ready(function() {
             vid = vid.split('?')[1].split('=');
             vid = vid[vid.indexOf('v')+1].split('#')[0];
             var html = template($('#playerTpl').html(), { video: '//www.youtube.com/embed/'+vid+'?autoplay=1' });
-            $('#container .bx-wrapper').prepend(html).promise().done(function() {
+            $('#container .bx-wrapper:first').prepend(html).promise().done(function() {
                 $('.bx-wrapper .video-player iframe').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2);
                 $('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $('.bx-wrapper iframe').height())/2)
             });
@@ -147,7 +147,7 @@ var index_show_streamers = function(streamersList) {
                 item.id = 'YT'+item.youtube.id;
                 item.idraw= item.youtube.id;
                 item.live = 'live';
-                item.game = 'Unlisted';
+                item.game = '';
                 item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
@@ -156,14 +156,14 @@ var index_show_streamers = function(streamersList) {
                 item.views = '0';
             }
 
-            item.game = item.game == null ? 'Unlisted' : item.game;
+            item.game = item.game == null ? '' : item.game + ' / ';
 
             if(item.game.length > 10) {
-                item.game = item.game.substr(0,10) + '&#133;';
+                item.game = item.game.substr(0,9) + '&#133;' + ' / ';
             }
 
             if(item.username != null && item.username.length > 10) {
-                item.title = item.username.substr(0, 10) + '&#133;';
+                item.username = item.username.substr(0, 9) + '&#133;';
             }
 
             html.push(template($('#streamersTpl').html(), item));
@@ -216,7 +216,7 @@ var update_index = function(index_data) {
             console.log(item);
             var date = new Date(item.upload_date*1000);
             console.log(date);
-            item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+(date.getMonth()+1)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
+            item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+("00"+(date.getMonth()+1)).slice(-2)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
             html.push(template($('#sliderTpl').html(), item));
         });
         $('#imageSlider').html(html.join(''));

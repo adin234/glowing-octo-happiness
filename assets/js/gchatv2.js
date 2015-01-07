@@ -1,5 +1,3 @@
-var x;
-
 $.fn.initChatBox = function(chl, usr)
 {
     var chatUI;
@@ -125,12 +123,14 @@ $.fn.initChatBox = function(chl, usr)
 
     socket.on('allow-chat-input', function(sd){
         if(sd.allow == false){
-            $('#chatinputs-'+ sd.cid).css('display','none');
-            $('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
+            $('#chatinputs-'+ sd.cid).css({display: 'none', zIndex: -1});
+            //$('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
+            $('#notifylogin-'+sd.cid).css({display: 'block', zIndex: 1});
         } else {
-            $('#chatinputs-'+ sd.cid).css('display','block');
-            $('#notifylogin-'+sd.cid).remove();
+            $('#chatinputs-'+ sd.cid).css({display: 'block', zIndex: 1});
+            $('#notifylogin-'+sd.cid).css({display: 'none', zIndex: -1});
         }
+        console.log('Chat allow status : ' + sd.allow.toString());
     });
 
     socket.on('update-ui', function(sd){
@@ -138,13 +138,14 @@ $.fn.initChatBox = function(chl, usr)
         var today   = new Date();
         var tinmins;
         var timesent, elem;
-
+        
         if (sd.cid == chl.id) {
             if (sd.msgtype == 'notification') {
                 msgbox      = '#tblchatmsgs-' + sd.cid;
                 $(msgbox).append(msgNotify.replace(/{gchat-message}/ig,sd.msg));
             }
             else {
+                
                 /* 12-12-2014 : Added condition if user sends empty message  */
                 if (sd.msg.length > 0) {
                     if (today.getMinutes() < 10) {
@@ -160,8 +161,48 @@ $.fn.initChatBox = function(chl, usr)
                     else {
                         timesent = today.getHours() + ':' + tinmins + 'AM';
                     }
+                    
+                    /*
+                        12-23-2014 : Added function when user inputs continious text that would cause
+                        the chat UI to break
+                        
+                        01-05-2015 : Change the string length to check where to cut and will make the chat message
+                                     fit to the chat box.
+                     */
+                    
+                    var chatmsg = [];
+                    var hasContiniousText = false;
+                    var newstring = '';
+                    
+                    chatmsg = sd.msg.split(' ');
+                    for (var i = 0; i < chatmsg.length; i++){
+                        if (chatmsg[i].length >= 35) {
+                            hasContiniousText = true;
+                            console.log(chatmsg[i] + ' : true');
+                        } else {
+                            console.log(chatmsg[i] + ' : false');
+                        }
+                    }
+                    
+                    if (hasContiniousText) {
+                        if (sd.msg.length >= 35) {
+                            for(var i = 0; i < sd.msg.length; i += 35) {
+                                newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
+                            }
+                        } else {
+                            //console.log('Something\'s wrong');
+                            newstring = sd.msg;
+                        }                        
+                    }
+                    else {
+                        newstring = sd.msg;
+                    }
+                    
+                    
 
-                    $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
+                    
+                    $(msgbox).append(msgChat.replace(/{message}/ig,newstring).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));    
+                    //$(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));
                 }
             }
 
