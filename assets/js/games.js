@@ -30,7 +30,9 @@ var get_hash = function() {
 };
 
 var get_game = function() {
-    var game = get_hash()[0];
+    var game = ~get_hash().indexOf('game') 
+        ? get_hash()[get_hash().indexOf('game')+1]
+        : 0;
 
     return game == '' ? 'all' : game;
 }
