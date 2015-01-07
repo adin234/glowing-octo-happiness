@@ -500,9 +500,26 @@ function get_streamers(first) {
             }
             if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
+            
+            /*
+                2015-01-07 :  When other streamers go online add streamed videos on the slider
+            */
+            
+            var html = [];
+            var streamer_container = $('#streamContainer').html('');
+            streamers_list.twitch.forEach(function(item) {
+                item = format_stream_item(item);
+                html.push(template($('#streamlist-item-tpl').html(), item));
+            });
+            
+            $('#streamContainer').html(html.join(''));
+            stream_slider.reloadSlider();
+            
+            console.log('TW refresh executed');
+            
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
             streaming.push('TW'+item.twitch.channel.name);
         });
@@ -519,9 +536,23 @@ function get_youtube_streamers(first) {
             }
             if(first) { streaming.push('YT'+item.youtube.id); return; }
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
+            
+            var html = [];
+            var streamer_container = $('#streamContainer').html('');
+            
+            streamers_list.youtube.forEach(function(item) {
+                item = format_stream_item(item);
+                html.push(template($('#streamlist-item-tpl').html(), item));
+            });
+            
+            $('#streamContainer').html(html.join(''));
+            stream_slider.reloadSlider();
+            
+            console.log('YT refresh executed');
+            
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/?user_id='+item.user_id+'#!/'+'YT'+item.youtube.id
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'YT'+item.username
             });
             streaming.push('YT'+item.youtube.id);
         });
