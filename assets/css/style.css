@@ -1784,7 +1784,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   font-weight: bold;
   line-height: 26px;
   text-decoration: none;
-  width: 82px;
+  padding: 0 10px;
 }
 .channel .current a {
   color: #e00000;
@@ -4262,4 +4262,9 @@ ul.user-links:before {
 
 .lanparty .videoHeading h3 {
   color: #fff;
+}
+
+a.social-share img {
+  width: 35px;
+  margin-right: 10px!important;
 }
