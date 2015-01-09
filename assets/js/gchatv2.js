@@ -136,7 +136,6 @@ $.fn.initChatBox = function(chl, usr)
             $('#chatinputs-'+ sd.cid).css({display: 'block', zIndex: 1});
             $('#notifylogin-'+sd.cid).css({display: 'none', zIndex: -1});
         }
-        console.log('Chat allow status : ' + sd.allow.toString());
     });
 
     socket.on('update-ui', function(sd){
