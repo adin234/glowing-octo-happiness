@@ -114,6 +114,8 @@ var update_playlists = function (playlists) {
   html = [];
   var ids = [];
   var cons = '';
+  var source = $('#playlistTpl').html();
+
   if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
@@ -122,6 +124,12 @@ var update_playlists = function (playlists) {
     if(~ids.indexOf(item.id)) {
       return;
     }
+    
+    source = $('#playlistTpl').html();
+    if($('body').hasClass('news')) {
+      source = $('#categoriesTpl').html();
+    }
+
     ids.push(item.id);
     // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
     if(!item.snippet.thumbnails) { return; }
@@ -133,7 +141,9 @@ var update_playlists = function (playlists) {
       thumb: item.snippet.thumbnails.default.url,
       desc: item.snippet.description
     }
-    html.push(template($('#playlistTpl').html(), tempdata));
+
+
+    html.push(template(source, tempdata));
   });
   if(!html.length) {
     html.push('No Playlist Available');
@@ -150,6 +160,12 @@ var update_playlists = function (playlists) {
     $('.game_page .listSwitch').removeClass('no-playlist');
   }
 
+
+  if($('body').hasClass('news')) {
+    $('.listSwitch').addClass('no-playlist');
+    $('#videosToggle').trigger('click');
+    $('#categories').html(html.join(''));
+  }
   $('#playlists .mCSB_container').html(html.join(''));
 };
 
@@ -521,6 +537,7 @@ $(document).on('load-page',function(){
     && typeof page_data.config.channel === 'string') {
     getPhoto(page_data.config.channel, $('.videoHeading > img'));
   }
+
   page_data.categories.forEach(function(item, i){
     html.push(template($('#categoriesTpl').html(), item));
   });

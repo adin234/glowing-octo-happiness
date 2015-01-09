@@ -134,7 +134,7 @@ $.fn.initChatBox = function(chl, usr)
     });
 
     socket.on('update-ui', function(sd){
-
+        
         var today   = new Date();
         var tinmins;
         var timesent, elem;

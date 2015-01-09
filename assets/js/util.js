@@ -14,26 +14,7 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
-
-    // // fix for youtubers 404 page2
-    // if(~document.location.pathname.indexOf('/youtuber/')) {
-    //     var id = window.location.pathname
-    //         .split('/').filter(function(e){return e;})[1];
-
-    //     var hash = document.location.hash;
-    //     hash = hash.replace('#!/', '#!/'+id+'/');
-
-    //     link = origin+'youtuber/share/'+hash;
-    // } else if(~document.location.pathname.indexOf('/game/')) {
-    //     var id = window.location.pathname
-    //         .split('/').filter(function(e){return e;})[1];
-
-    //     var hash = document.location.hash;
-    //     hash = hash.replace('#!/', '#!/'+id+'/');
-
-    //     link = origin+'game/share/'+hash;
-    // }
-
+    var clean = link.replace('#', '%23')
     $('#viewport').html('');
     // $('#fb-root').html('');
     $('#social-buttons').html('');
@@ -43,7 +24,7 @@ var showSocialButtons = function () {
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
             + '"standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" '
-            + 'class="twitter-share-button" data-url="'+link+'" data-text="">' 
+            + 'class="twitter-share-button" data-url="'+link+'" data-text="">'
             + 'Tweet</a>'
             + '</div>';
 
@@ -610,6 +591,10 @@ $(function() {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-46773919-11', 'auto');
+<<<<<<< HEAD
 
 ga('send', 'pageview');
 
+=======
+ga('send', 'pageview');
+>>>>>>> c01c365bcd5d152e71e5c512f588dd6ba7feb0c8
