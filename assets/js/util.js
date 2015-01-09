@@ -74,7 +74,7 @@ var showSocialButtons = function () {
 
 var utilLogin = {
     show : function (message) {
-        var msg = message || 'You need to login to perform this action';
+        var msg = message || '要留言請您先登入';
         var loginMenu = document.createElement('div');
         loginMenu.classname = 'full-overlay';
         loginMenu.id = 'loginMenu';
@@ -110,7 +110,7 @@ var utilLogin = {
         });
         var loginWithSocialMedia = $('<a/>', {
             class: 'social-login',
-            text: 'Login with Social Media',
+            text: '用Facebook或Google+登入',
             href: '//community.gamers.tm/zh/index.php?login&front=1'
         });
 

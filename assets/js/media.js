@@ -124,7 +124,7 @@ var update_playlists = function (playlists) {
     if(~ids.indexOf(item.id)) {
       return;
     }
-    
+
     source = $('#playlistTpl').html();
     if($('body').hasClass('news')) {
       source = $('#categoriesTpl').html();
@@ -251,7 +251,7 @@ var showVideo = function(videoId) {
     }
 
     page_data.videoId = videoId;
-
+    console.log(videoId);
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();
