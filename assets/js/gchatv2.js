@@ -43,7 +43,7 @@ $.fn.initChatBox = function(chl, usr)
         2015-01-09 : Bug fix for user object returns null causing chat plugin not to display
     */
     
-    if (!jQuery.isEmptyObject(usr) || typeof(usr) !== 'undefined') {
+    if (!jQuery.isEmptyObject(usr) && typeof(usr) !== 'undefined') {
         if (usr.user_id && usr.access_code) {
             uid         = usr.user_id;
             uname       = usr.username;ut
