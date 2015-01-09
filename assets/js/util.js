@@ -1,5 +1,4 @@
 var template = function (templateHTML, data) {
-
     for(var x in data) {
         var torep = new RegExp('{{'+x+'}}', 'gi');
         if(torep) {
@@ -14,62 +13,12 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
-    var clean = link.replace('#', '%23')
-    $('#viewport').html('');
-    // $('#fb-root').html('');
-    $('#social-buttons').html('');
+    var social = [];
+    social.push('<a class="social-share" href="http://www.facebook.com/share.php?u='+link+'" target="_blank"><img src="/assets/images/social/facebook.png"/></a>');
+    social.push('<a class="social-share" href="https://twitter.com/intent/tweet?text=Check out '+encodeURIComponent(link)+'" target="_blank"><img src="/assets/images/social/twitter.png"/></a>');
+    social.push('<a class="social-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url='+link+'" target="_blank"><img src="/assets/images/social/googleplus.png"/></a>');
 
-    var html = '<div id="social-buttons">'
-            // + '<div id="fb-container"></div>'
-            + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
-            + '"standard" data-href="'+link+'"></div></div>'
-            + '<a href="https://twitter.com/share" '
-            + 'class="twitter-share-button" data-url="'+link+'" data-text="">'
-            + 'Tweet</a>'
-            + '</div>';
-
-    document.getElementById('viewport').insertAdjacentHTML( 'beforeEnd', html );
-
-    if(typeof FB === 'undefined') {
-        var fb =  '<div id="fb-like" class="fb-like" data-share="true" '
-        +'data-href="'+link+'" data-layout="button_count" data-width="50">'
-        +'</div>';
-        $('#viewport').before('<div id="fb-container"></div>');
-        $('#viewport').before('<div id="fb-root"></div>');
-        $('#fb-container').html(fb);
-
-        window.fbAsyncInit = function() {
-
-          FB.Event.subscribe('xfbml.render', function(response) {
-            if($('#index-page').length){
-                $('#fb-like').detach().prependTo($('#viewport'));
-            }
-          });
-        };
-
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=305385862975541&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    } else {
-        $('#fb-like').attr('data-href', link);
-        FB.XFBML.parse(document.getElementById('fb-container'), function() {
-        });
-    }
-
-    script = document.createElement( 'script' );
-    script.async = true;
-    script.src = document.location.protocol+'//platform.twitter.com/widgets.js';
-    document.getElementById( 'social-buttons' ).appendChild( script );
-
-    script = document.createElement( 'script' );
-    script.async = true;
-    script.src = document.location.protocol + '//apis.google.com/js/plusone.js';
-    document.getElementById( 'social-buttons' ).appendChild( script );
-
+    $('#viewport').html(social.join(''));
 };
 
 var utilLogin = {
@@ -569,6 +518,8 @@ $(function() {
             if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
+        } else {
+            utilCookie.set('user', null);
         }
     });
 

@@ -192,6 +192,11 @@ var filterAction = function(action) {
 };
 
 $('body').on('click', 'button#like', function(item, x) {
+  if(utilUser.get() == null) {
+    utilLogin.show();
+    return;
+  }
+
   var $elem = $('button#like');
   var isActive = $elem.hasClass('active');
   var videoId = $elem.attr('data-id');
@@ -212,7 +217,7 @@ $('body').on('click', 'button#like', function(item, x) {
     $('li[id=video-'+videoId+']').show();
   }
 
-$.ajax({
+  $.ajax({
       dataType:'jsonp',
       url: url,
       crossDomain: true,
@@ -229,7 +234,13 @@ var showVideo = function(videoId) {
     var likeButton = '';
     var text = '加入至我的最愛';
     var active = '';
+
+    if(typeof page_data.favorites === 'undefined') {
+        page_data.favorites = [];
+    }
+
     if(typeof page_data.favorites !== 'undefined') {
+
       if(~page_data.favorites.indexOf(videoId)) {
         text = '從我的最愛移除';
         active = 'active';
@@ -251,7 +262,7 @@ var showVideo = function(videoId) {
     }
 
     page_data.videoId = videoId;
-    console.log(videoId);
+
     getComments(videoId);
     showSocialButtons();
     updatePrevNext();

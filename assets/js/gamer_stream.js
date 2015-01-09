@@ -1,4 +1,28 @@
 
+function checkIfOnline(userId) {
+    var found = false;
+
+    $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
+        e.streamers.forEach(function(item) {
+                found = true;
+                streamerId = item.youtube.id;
+        });
+
+        if(found) {
+            $('#twitchStream')
+                .replaceWith(template($('#youtube-stream-tpl')
+                .html(),{youtubeid: streamerId}));
+        } else {
+            $('#twitchStream')
+                .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+
+            setTimeout(function() {
+                checkIfOnline(userId);
+            }, 30000);
+        }
+    });
+}
+
 $(function() {
     var streamType = '';
     var streamId = '';
@@ -101,7 +125,7 @@ $(function() {
             } else {
                 $('#twitchStream')
                     .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-
+                checkIfOnline(userId);
             }
 
             if(!found) {
