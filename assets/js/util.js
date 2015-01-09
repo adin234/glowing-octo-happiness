@@ -13,8 +13,10 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
+    var clean = link.replace('#', '%23')
     var social = [];
-    social.push('<a class="social-share" href="http://www.facebook.com/share.php?u='+link+'" target="_blank"><img src="/assets/images/social/facebook.png"/></a>');
+    social.push('<div class="frame-container"><iframe class="fb-like-frame" src="//www.facebook.com/plugins/like.php?href='+encodeURIComponent(clean)+'&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe></div>');
+    social.push('<a class="social-share" href="http://www.facebook.com/share.php?u='+clean+'" target="_blank"><img src="/assets/images/social/facebook.png"/></a>');
     social.push('<a class="social-share" href="https://twitter.com/intent/tweet?text=Check out '+encodeURIComponent(link)+'" target="_blank"><img src="/assets/images/social/twitter.png"/></a>');
     social.push('<a class="social-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url='+link+'" target="_blank"><img src="/assets/images/social/googleplus.png"/></a>');
 

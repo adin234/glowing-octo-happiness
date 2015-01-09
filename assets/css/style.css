@@ -4268,3 +4268,26 @@ a.social-share img {
   width: 35px;
   margin-right: 10px!important;
 }
+
+.fb-like-frame {
+  transform: scale(1.6);
+  -ms-transform: scale(1.6);
+  -webkit-transform: scale(1.6);
+  -o-transform: scale(1.6);
+  -moz-transform: scale(1.6);
+  transform-origin: bottom left;
+  -ms-transform-origin: bottom left;
+  -webkit-transform-origin: bottom left;
+  -moz-transform-origin: bottom left;
+  -webkit-transform-origin: bottom left;
+  height: 21px;
+  width: 52px;
+  margin-right: 35px;
+  display: inline;
+}
+
+.frame-container {
+  display: inline;
+  margin-top: 14px;
+  float: left;
+}
