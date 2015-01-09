@@ -591,10 +591,4 @@ $(function() {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-46773919-11', 'auto');
-<<<<<<< HEAD
-
 ga('send', 'pageview');
-
-=======
-ga('send', 'pageview');
->>>>>>> c01c365bcd5d152e71e5c512f588dd6ba7feb0c8
