@@ -43,7 +43,7 @@ var showSocialButtons = function () {
             + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
             + '"standard" data-href="'+link+'"></div></div>'
             + '<a href="https://twitter.com/share" '
-            + 'class="twitter-share-button" data-url="'+link+'" data-text="">'
+            + 'class="twitter-share-button" data-url="'+link+'" data-text="">' 
             + 'Tweet</a>'
             + '</div>';
 
@@ -456,6 +456,11 @@ function streamersSearch() {
                 streamers.push({value: svalue, data: sdata});
             }
         }
+    }else{
+
+        var sdata = {sname: 'streamer', s_id: -1};
+        var svalue = '目前沒有此';
+        streamers.push({value: svalue, data: sdata});
     }
 
     //console.log(streamers);
@@ -605,4 +610,6 @@ $(function() {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-46773919-11', 'auto');
+
 ga('send', 'pageview');
+
