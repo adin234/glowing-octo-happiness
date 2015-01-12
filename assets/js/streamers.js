@@ -163,7 +163,7 @@ var render_videos = function(filter, game, lanparty) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有影片streamers'); }
+    if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有人在直播'); }
 
     if(!lanparty) {
         $('#container-videos').html(html.join(''));
@@ -213,7 +213,7 @@ var get_youtube_streams = function(filter, game, fetch) {
         result.streamers.forEach(function(item) {
             page_data.streamers.push(item);
         });
-        render_videos();
+        render_videos(); 
     });
 }
 
