@@ -382,17 +382,30 @@ function streamersSearch() {
     if ( typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
         for (var i = 0; i < page_data.streamers.length; i++) {
             var sd = page_data.streamers[i];
-            if (sd.username.indexOf(searchDom.val()) > -1) {
+            if (sd.username.indexOf(searchDom.val()) > -1 ) {
                 var sdata   = {sname : sd.username, s_id: sd.user_id};
                 var svalue  = sd.username;
+               
                 streamers.push({value: svalue, data: sdata});
-            }
+            }else if(sd.title.indexOf(searchDom.val()) > -1 ){
+                    var sdata = {sname: sd.title, s_id: sd.user_id};
+                    var stitle = sd.title;
+                    streamers.push({value: stitle, data: sdata});
+
+            }else{
+
+              var sdata = {sname: 'streamer', s_id: -1};
+              var svalue = '目前沒有此';
+       
+             streamers.push({value: svalue, data: sdata});
+    }
         }
     }else{
 
         var sdata = {sname: 'streamer', s_id: -1};
         var svalue = '目前沒有此';
-        streamers.push({value: svalue, data: sdata});
+        var stitle = '';
+        streamers.push({value: svalue, data: sdata, title: stitle});
     }
 
     //console.log(streamers);

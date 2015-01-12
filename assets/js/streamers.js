@@ -301,9 +301,11 @@ var get_active_for_multiview = function() {
     videos.each(function(i, item) {
         ids.push($(item).attr('data-streamid'));
     });
-
+   
     return ids;
 };
+
+
 
 var update_watch_multiview = function() {
     var ids = get_active_for_multiview();
