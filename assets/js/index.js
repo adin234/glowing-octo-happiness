@@ -414,7 +414,7 @@ var update_index = function(index_data) {
             title: item.title,
             replies: item.reply_count,
             views: item.view_count,
-            link: community+'index.php?threads/'+item.title+'.'+item.thread_id+'/',
+            link: community+'index.php?threads/'+item.thread_id+'/',
         }
         html.push(template($('#recentForumItemTpl').html(), data));
     });
