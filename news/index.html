@@ -185,7 +185,7 @@
             <div id="tab-2"></div>
             <div id="tab-3">
               <form method="post">
-                <a href="javascript:;">所有留言 (30)</a>
+                <a href="javascript:;">所有留言 ({{COUNT}})</a>
                 <div class="yourDiscussion"> <img src="" width="65" height="65" alt="{使用者帳號}">
                   <div>
                     <div class="angle"></div>
@@ -249,7 +249,7 @@
   </li>
 </script>
 <script type="text/html" id="categoriesTpl">
-  <li><a href="#" onclick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+  <li><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></li>
 </script>
 <script type="text/html" id="recommendedTpl">
    <li class="list clearFix">
@@ -271,7 +271,7 @@
   </li>
 </script>
 <script type="text/html" id="categoriesTpl">
-  <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+  <li><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></li>
 </script>
 <script type="text/html" id="commentItemTpl">
   <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onError="fixErrorImg(this);">
@@ -285,7 +285,7 @@
 </script>
 <script type="text/html" id="commentsTpl">
   <div class="comments-list">
-    <a href="javascript:;">所有留言 (30)</a>
+    <a href="javascript:;">所有留言 ({{COUNT}})</a>
     <div class="yourDiscussion"> <img class="userImg"src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}" onError="fixErrorImg(this);">
       <div>
         <div class="angle"></div>

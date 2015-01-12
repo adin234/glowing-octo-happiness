@@ -163,13 +163,22 @@ var render_videos = function(filter, game, lanparty) {
         html.push(template(tplVideoContainer, {'items' : items.join('')}));
     }
 
-    if(!html.length && $('#container-videos').html().trim().length === 0) { html.push('目前沒有人在直播'); }
 
     if(!lanparty) {
         $('#container-videos').html(html.join(''));
     } else {
         $('#container-lanparty').html(html.join(''));
     }
+
+    if(!html.length && $('#container-videos').html().trim().length === 0) {
+        html.push('目前沒有影片streamers');
+        if(!lanparty) {
+            $('#container-videos').html(html.join(''));
+        } else {
+            $('#container-lanparty').html(html.join(''));
+        }
+    }
+
 
     var activeSlider = !lanparty
         ? slider.container_videos

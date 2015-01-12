@@ -39,18 +39,24 @@ $.fn.initChatBox = function(chl, usr)
     msgNotify   = $('#gchatnotify').html().replace(/{cid}/ig,chid);
     msgChat     = $('#chatms').html().replace(/{cid}/ig,chid);
 
-    if (usr.user_id && usr.access_code) {
-        uid         = usr.user_id;
-        uname       = usr.username;
-        avatar      = usr.links.avatar;
-        detail      = usr.links.detail;
-        acode       = usr.access_code;
-    } else {
-        uid         = dt.getMonth() +''+ dt.getDay() +''+ dt.getFullYear() +''+ dt.getHours() +''+ dt.getMinutes() +''+ dt.getSeconds();
-        uname       = 'Guest'+ uid;
-        avatar      = '/assets/images/gchat-anoni-user.png';
-        detail      = 'none';
-        acode       = uid;
+    /*
+        2015-01-09 : Bug fix for user object returns null causing chat plugin not to display
+    */
+    
+    if (!jQuery.isEmptyObject(usr) && typeof(usr) !== 'undefined') {
+        if (usr.user_id && usr.access_code) {
+            uid         = usr.user_id;
+            uname       = usr.username;
+            avatar      = usr.links.avatar;
+            detail      = usr.links.detail;
+            acode       = usr.access_code;
+        } else {
+            uid         = dt.getMonth() +''+ dt.getDay() +''+ dt.getFullYear() +''+ dt.getHours() +''+ dt.getMinutes() +''+ dt.getSeconds();
+            uname       = 'Guest'+ uid;
+            avatar      = '/assets/images/gchat-anoni-user.png';
+            detail      = 'none';
+            acode       = uid;
+        }
     }
 
     gchatdiv        = '#'+this.attr('id');
@@ -130,7 +136,6 @@ $.fn.initChatBox = function(chl, usr)
             $('#chatinputs-'+ sd.cid).css({display: 'block', zIndex: 1});
             $('#notifylogin-'+sd.cid).css({display: 'none', zIndex: -1});
         }
-        console.log('Chat allow status : ' + sd.allow.toString());
     });
 
     socket.on('update-ui', function(sd){

@@ -1,5 +1,4 @@
 var template = function (templateHTML, data) {
-
     for(var x in data) {
         var torep = new RegExp('{{'+x+'}}', 'gi');
         if(torep) {
@@ -14,86 +13,19 @@ var template = function (templateHTML, data) {
 
 var showSocialButtons = function () {
     var link = document.location.href;
+    var clean = link.replace('#', '%23')
+    var social = [];
+    social.push('<div class="frame-container"><iframe class="fb-like-frame" src="//www.facebook.com/plugins/like.php?href='+encodeURIComponent(clean)+'&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe></div>');
+    social.push('<a class="social-share" href="http://www.facebook.com/share.php?u='+clean+'" target="_blank"><img src="/assets/images/social/facebook.png"/></a>');
+    social.push('<a class="social-share" href="https://twitter.com/intent/tweet?text=Check out '+encodeURIComponent(link)+'" target="_blank"><img src="/assets/images/social/twitter.png"/></a>');
+    social.push('<a class="social-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url='+link+'" target="_blank"><img src="/assets/images/social/googleplus.png"/></a>');
 
-    // // fix for youtubers 404 page2
-    // if(~document.location.pathname.indexOf('/youtuber/')) {
-    //     var id = window.location.pathname
-    //         .split('/').filter(function(e){return e;})[1];
-
-    //     var hash = document.location.hash;
-    //     hash = hash.replace('#!/', '#!/'+id+'/');
-
-    //     link = origin+'youtuber/share/'+hash;
-    // } else if(~document.location.pathname.indexOf('/game/')) {
-    //     var id = window.location.pathname
-    //         .split('/').filter(function(e){return e;})[1];
-
-    //     var hash = document.location.hash;
-    //     hash = hash.replace('#!/', '#!/'+id+'/');
-
-    //     link = origin+'game/share/'+hash;
-    // }
-
-    $('#viewport').html('');
-    // $('#fb-root').html('');
-    $('#social-buttons').html('');
-
-    var html = '<div id="social-buttons">'
-            // + '<div id="fb-container"></div>'
-            + '<div class="g-plusone-frame"><div class="g-plusone" data-size='
-            + '"standard" data-href="'+link+'"></div></div>'
-            + '<a href="https://twitter.com/share" '
-            + 'class="twitter-share-button" data-url="'+link+'" data-text="">' 
-            + 'Tweet</a>'
-            + '</div>';
-
-    document.getElementById('viewport').insertAdjacentHTML( 'beforeEnd', html );
-
-    if(typeof FB === 'undefined') {
-        var fb =  '<div id="fb-like" class="fb-like" data-share="true" '
-        +'data-href="'+link+'" data-layout="button_count" data-width="50">'
-        +'</div>';
-        $('#viewport').before('<div id="fb-container"></div>');
-        $('#viewport').before('<div id="fb-root"></div>');
-        $('#fb-container').html(fb);
-
-        window.fbAsyncInit = function() {
-
-          FB.Event.subscribe('xfbml.render', function(response) {
-            if($('#index-page').length){
-                $('#fb-like').detach().prependTo($('#viewport'));
-            }
-          });
-        };
-
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=305385862975541&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    } else {
-        $('#fb-like').attr('data-href', link);
-        FB.XFBML.parse(document.getElementById('fb-container'), function() {
-        });
-    }
-
-    script = document.createElement( 'script' );
-    script.async = true;
-    script.src = document.location.protocol+'//platform.twitter.com/widgets.js';
-    document.getElementById( 'social-buttons' ).appendChild( script );
-
-    script = document.createElement( 'script' );
-    script.async = true;
-    script.src = document.location.protocol + '//apis.google.com/js/plusone.js';
-    document.getElementById( 'social-buttons' ).appendChild( script );
-
+    $('#viewport').html(social.join(''));
 };
 
 var utilLogin = {
     show : function (message) {
-        var msg = message || 'You need to login to perform this action';
+        var msg = message || '要留言請您先登入';
         var loginMenu = document.createElement('div');
         loginMenu.classname = 'full-overlay';
         loginMenu.id = 'loginMenu';
@@ -129,7 +61,7 @@ var utilLogin = {
         });
         var loginWithSocialMedia = $('<a/>', {
             class: 'social-login',
-            text: 'Login with Social Media',
+            text: '用Facebook或Google+登入',
             href: '//community.gamers.tm/zh/index.php?login&front=1'
         });
 
@@ -500,23 +432,6 @@ function get_streamers(first) {
             }
             if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
-            
-            /*
-                2015-01-07 :  When other streamers go online add streamed videos on the slider
-            */
-            
-            var html = [];
-            var streamer_container = $('#streamContainer').html('');
-            streamers_list.twitch.forEach(function(item) {
-                item = format_stream_item(item);
-                html.push(template($('#streamlist-item-tpl').html(), item));
-            });
-            
-            $('#streamContainer').html(html.join(''));
-            stream_slider.reloadSlider();
-            
-            console.log('TW refresh executed');
-            
             notify_stream({
                 streamer: item.username,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
@@ -536,20 +451,6 @@ function get_youtube_streamers(first) {
             }
             if(first) { streaming.push('YT'+item.youtube.id); return; }
             if(~streaming.indexOf('YT'+item.youtube.id)) return;
-            
-            var html = [];
-            var streamer_container = $('#streamContainer').html('');
-            
-            streamers_list.youtube.forEach(function(item) {
-                item = format_stream_item(item);
-                html.push(template($('#streamlist-item-tpl').html(), item));
-            });
-            
-            $('#streamContainer').html(html.join(''));
-            stream_slider.reloadSlider();
-            
-            console.log('YT refresh executed');
-            
             notify_stream({
                 streamer: item.username,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'YT'+item.username
@@ -619,6 +520,8 @@ $(function() {
             if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
+        } else {
+            utilCookie.set('user', null);
         }
     });
 
@@ -641,6 +544,4 @@ $(function() {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-46773919-11', 'auto');
-
 ga('send', 'pageview');
-
