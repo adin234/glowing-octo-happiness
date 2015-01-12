@@ -46,7 +46,7 @@ $.fn.initChatBox = function(chl, usr)
     if (!jQuery.isEmptyObject(usr) && typeof(usr) !== 'undefined') {
         if (usr.user_id && usr.access_code) {
             uid         = usr.user_id;
-            uname       = usr.username;ut
+            uname       = usr.username;
             avatar      = usr.links.avatar;
             detail      = usr.links.detail;
             acode       = usr.access_code;
