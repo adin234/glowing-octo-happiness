@@ -22,6 +22,8 @@
 <link rel="shortcut icon" href="http://www.gamers.tm/favicon.ico?ver=22" />
 <link href="/assets/css/jquery.mCustomScrollbar.css?ver=22" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
+<!-- 2015.01.12 : Adding chat plugin style reference -->
+<link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
 <script src="/assets/js/config.js?ver=22"></script>
 <script src="/assets/js/get.lanparty.stream.js?ver=22"></script>
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
@@ -151,6 +153,56 @@
   </iframe>
 </div>
 </script>
+
+<!-- 2015.01.12 : Enabling chat feature on lanparty -->
+<script type="text/html" id="gchat-tab-tpl">
+  <li class="chat-{{ChannelId}}">
+    <a href="#gchat-{{ChannelId}}">{{ChannelId}}</a>
+  </li>
+</script>
+
+<script type="text/html" id="gchat-tpl">
+  <div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>
+</script>
+
+<script type="text/html" id="chatui">
+  <div id="chid-{cid}" class="chid">{cid}</div>
+  <div id="chcontainer-{cid}" class="chcontainer">
+      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
+      </table>
+  </div>
+  <div id="chatinputs-{cid}" class="chatinputs">
+      <input type="text" id="msgs-{cid}" class="msgs">
+      <button id="btn-{cid}" class="btnSend">SEND</button>
+  </div>
+  <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
+    <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
+  </div>
+</script>
+<script type="text/html" id="gchatnotify">
+  <tr id="trnotify-{cid}">
+      <td>
+          <div class="notifier">
+              <p id="notifymsg-{cid}" class="message">{gchat-message}</p>
+          </div>
+      </td>
+  </tr>
+</script>
+<script type="text/html" id="chatms">
+  <tr id="trms-{cid}">
+      <td>
+          <div id="usericon-{cid}" class="usericon">
+              <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
+          </div>
+          <div id="chat-message-{cid}" class="chat-message">
+              <label id="uname">{username}</label>
+              <p id="imsg" class="message">{message}</p>
+              <label id="timestamp-{cid}" class="timestamp">{timesent}</label>
+          </div>
+      </td>
+  </tr>
+</script>
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.gritter.min.js"></script>
 
@@ -159,6 +211,9 @@
 <script src="/assets/js/jquery.tabslet.min.js?ver=22"></script>
 <script src="/assets/js/jquery.tooltipster.min.js?ver=22"></script>
 <script type="text/javascript" src="/assets/js/util.js?ver=22"></script>
+<!-- 2015.01.12 : Adding reference to chat plugin library -->
+<script src="/assets/js/socketio.js"></script>
+<script type="text/javascript" src="/assets/js/gchatv2.js"></script>
 <script type="text/javascript" src="/assets/js/lanparty_stream.js?ver=22"></script>
 
 </html>
