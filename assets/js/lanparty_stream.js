@@ -89,6 +89,25 @@ var render_stream_video = function(item) {
     }
     if(streamType == 'YT') {
         $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(),{youtubeid: streamId}));
+        $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(),{ChannelId: streamId}));
+        $('#twitch-chat-tab-container').append(template($('#gchat-tab-tpl').html(),{ChannelId: streamId}));
+
+        var userinfo    = '';
+        var channelinfo = {"id" : streamId, "title" : streamId};
+        var parentHt    = $('#side-container').css('height');
+
+        if (utilCookie.get('user').length > 0) {
+            userinfo    = $.parseJSON(utilCookie.get('user'));
+            $('#gchat-'+streamId).css('height',parentHt);
+            $('#gchat-'+streamId).initChatBox(channelinfo,userinfo);
+        } else {
+            $('#gchat-'+streamId).css('height',parentHt);
+            $('#gchat-'+streamId).initChatBox(channelinfo,userinfo);
+        }
+
+        $(".tabs").tabslet({
+            animation: false,
+        });
     }
 };
 
@@ -131,3 +150,6 @@ $(function() {
     get_streamers();
 });
 
+window.setInterval(function() {
+    
+},)

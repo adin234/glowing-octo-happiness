@@ -217,6 +217,8 @@ var update_index = function(index_data) {
             var date = new Date(item.upload_date*1000);
             console.log(date);
             item.link = 'http://cdn.gamers.tm/'+date.getFullYear()+'/'+("00"+(date.getMonth()+1)).slice(-2)+'/'+item.data_id+'_'+item.file_hash+'.jpg';
+            /* 2015.01.12 : Cursor will change if there's a redirection link on the image inside the image slider */
+            item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
             html.push(template($('#sliderTpl').html(), item));
         });
         $('#imageSlider').html(html.join(''));
