@@ -77,3 +77,5 @@ $('#event-container').mCustomScrollbar({
   advanced: { updateOnContentResize: true, updateOnBrowserResize: true },
   theme: "dark"
 });
+
+ $(".sf-menu").superfish();
