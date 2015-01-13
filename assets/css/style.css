@@ -209,7 +209,7 @@ input[type="text"]:focus, textarea:focus, select:focus {
 
 ::selection {
   background-color: transparent;
-  color: white;
+  /*color: white;*/
 }
 
 html, body {
