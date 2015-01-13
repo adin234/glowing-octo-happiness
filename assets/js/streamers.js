@@ -171,7 +171,7 @@ var render_videos = function(filter, game, lanparty) {
     }
 
     if(!html.length && $('#container-videos').html().trim().length === 0) {
-        html.push('目前沒有影片streamers');
+        html.push('目前沒有人在直播');
         if(!lanparty) {
             $('#container-videos').html(html.join(''));
         } else {
@@ -301,7 +301,7 @@ var get_active_for_multiview = function() {
     videos.each(function(i, item) {
         ids.push($(item).attr('data-streamid'));
     });
-   
+
     return ids;
 };
 
