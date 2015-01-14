@@ -150,4 +150,20 @@ $(function() {
     get_streamers();
 });
 
-
+window.setInterval(function() {
+    $.get(server+'streamers', function(result) {
+        streamers_list.twitch = result.streamers;
+    });
+    $.get(server+'streamers/youtube', function(result) {
+        streamers_list.youtube = result.streamers;
+    });
+    
+    var currentStreams  = $('#streamContainer > li').length;
+    var streamersOnline = streamers_list.youtube.length + streamers_list.twitch.length
+    
+    if (streamersOnline !== currentStreams) {
+        console.log('Re-rendering streamers');
+        render_streamers();
+    }
+    
+}, 5000);
