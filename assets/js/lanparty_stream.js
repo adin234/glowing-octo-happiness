@@ -149,3 +149,7 @@ $(function() {
 
     get_streamers();
 });
+
+window.setInterval(function() {
+    get_streamers();
+},5000);

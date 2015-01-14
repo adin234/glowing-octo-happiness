@@ -144,8 +144,8 @@ var index_show_streamers = function(streamersList) {
                 item.bust = 1;
                 item.views = item.twitch.viewers;
             } else {
-                item.id = 'YT'+item.username;
-                item.idraw= item.username;
+                item.id = 'YT'+item.youtube.id;
+                item.idraw= item.youtube.id;
                 item.live = 'live';
                 item.game = '';
                 item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
