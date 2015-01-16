@@ -2,7 +2,8 @@ var index_data;
 var slider_loaded = 0;
 var streamersList = [];
 /* RDC - 2015.01.15 : Placeholder for all active streamers */
-var onlineStreams = [];
+var onlineStreamers = [];
+var currentStreamers = [];
 
 var hash = '';
 $.ajax({
@@ -168,8 +169,6 @@ var index_show_streamers = function(streamersList) {
             if(item.username != null && item.username.length > 10) {
                 item.username = item.username.substr(0, 9) + '&#133;';
             }
-            
-            onlineStreams.push(item.username);
 
             html.push(template($('#streamersTpl').html(), item));
         });
@@ -480,24 +479,46 @@ $(".tabs").tabslet({
   slider.latest_games.reloadSlider();
 });
 
-var htmlStream = [];
-var checkForNewStreamers = function() {
-    console.log(streamersList);
-    $('#streamers').html('');
-     /* Streamers */
+/* RDC */
+var YTStreamers = [];
+var TWStreamers = [];
+
+var getOnlineStreamers = function(link, streamType) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: server+"streamers"
+        url: link,
     }).done(function (data) {
-        var st = [];
-        data.streamers.forEach(function(item){
-            
-        })
-        
-        data.streamers.forEach(function(item){
-            
-            //if ($.inArray(item.username,onlineStreams) === -1) {
+        if (streamType === 'YT') {
+            YTStreamers = [];
+            $.merge(YTStreamers, data.streamers);
+        } else {
+            TWStreamers = [];
+            $.merge(TWStreamers, data.streamers);
+        }
+    });
+};
+
+var checkForNewStreamers = function() {
+    if (currentStreamers.length > 0 ) {
+        currentStreamers = [];
+        $('#streamers > li').each(function(li) {
+            currentStreamers.push($(this).attr('id'));    
+        });
+    }
+    
+    getOnlineStreamers(server + 'streamers', 'TW');
+    getOnlineStreamers(server + 'streamers/youtube', 'YT');
+    
+    onlineStreamers = [];
+    $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
+    
+    console.log(onlineStreamers);
+    
+    $('div #streamers > li').remove();
+    
+    onlineStreamers.forEach(function(item) {
+        if(typeof item.twitch != 'undefined') {
                 item.twitchid = item.field_value[item.field_value.length-1];
                 item.id = 'TW'+item.twitchid;
                 item.idraw = item.twitchid;
@@ -509,65 +530,39 @@ var checkForNewStreamers = function() {
                 item.title = item.twitch.channel.status;
                 item.bust = 1;
                 item.views = item.twitch.viewers;
-                    
-                item.game = item.game == null ? '' : item.game + ' / ';
-        
-                if(item.game.length > 10) {
-                    item.game = item.game.substr(0,9) + '&#133;' + ' / ';
-                }
-        
-                if(item.username != null && item.username.length > 10) {
-                    item.username = item.username.substr(0, 9) + '&#133;';
-                }
-                
-                
-                
-                
-                $('div #streamers').append(template($('#streamersTpl').html(), item));
-                
-            //}
-        });
+            } else {
+                item.id = 'YT'+item.username;
+                item.idraw= item.username;
+                item.live = 'live';
+                item.game = '';
+                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                item.provider = attachments_server;
+                item.thumb = item.youtube.snippet.thumbnails.high.url;
+                item.title = item.youtube.snippet.title;
+                item.bust = 1;
+                item.views = '0';
+            }
+    
+            item.game = item.game == null ? '' : item.game + ' / ';
+    
+            if(item.game.length > 10) {
+                item.game = item.game.substr(0,9) + '&#133;' + ' / ';
+            }
+    
+            if(item.username != null && item.username.length > 10) {
+                item.username = item.username.substr(0, 9) + '&#133;';
+            }
+    
+            $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
     });
-
-    /* Youtubers */
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: server+"streamers/youtube"
-    }).done(function (data) {
-        data.streamers.forEach(function(item){
-            if (typeof(item.twitch) === 'undefined') {
-                //if ($.inArray(item.username,onlineStreams) === -1) {
-                    item.id = 'YT'+item.youtube.id;
-                    item.idraw= item.youtube.id;
-                    item.live = 'live';
-                    item.game = '';
-                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.youtube.snippet.thumbnails.high.url;
-                    item.title = item.youtube.snippet.title;
-                    item.bust = 1;
-                    item.views = '0';
-                    
-                    item.game = item.game == null ? '' : item.game + ' / ';
-            
-                    if(item.game.length > 10) {
-                        item.game = item.game.substr(0,9) + '&#133;' + ' / ';
-                    }
-            
-                    if(item.username != null && item.username.length > 10) {
-                        item.username = item.username.substr(0, 9) + '&#133;';
-                    }
-                    $('div #streamers').append(template($('#streamersTpl').html(), item));
-                //}
-            }            
-        });
-    });
+    
 };
 
 setInterval(function() {
-    //checkForNewStreamers();
-    
+    checkForNewStreamers();
+    //$('#streamers > li').each(function(item){
+    //    console.log(item.toString() +  ' ' + $(this).attr('id'));    
+    //});
 }, 5000);
 
 
