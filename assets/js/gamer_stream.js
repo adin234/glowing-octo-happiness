@@ -12,6 +12,9 @@ function checkIfOnline(userId) {
             $('#twitchStream')
                 .replaceWith(template($('#youtube-stream-tpl')
                 .html(),{youtubeid: streamerId}));
+			setTimeout(function() {
+                checkIfOnline(userId);
+            }, 30000);
         } else {
             $('#twitchStream')
                 .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
