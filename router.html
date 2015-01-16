@@ -1,41 +1,8 @@
 <script type="text/javascript" src="/assets/js/config.js?ver=22"></script>
 <script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript">
-	var page = location.pathname.split('/')[1];
-	var xhReq = new XMLHttpRequest();
-	var notCached = [
-		'/assets/js/media.js',
-		'/assets/js/youtuber.js',
-	];
-	xhReq.open("GET", origin+page, false);
-	xhReq.send(null);
-	var data = xhReq.responseText;
-	var stripAndExecuteScript = function (text) {
-	    var scripts = '';
-	    var matches = text.match(/<script[^>]* src="(.+)"/gi);
-	    if(matches) {
-	    	$.ajaxSetup({
-	    		async: false,
-	    		defer: 'defer'
-	    	});
-		    matches.map(function(item) {
-		    	var scriptsrc = item.replace(
-		    		new RegExp('<script (type="text/javascript")?( )*(async="false")?( )*src="'), '').replace('"', '');
-		    	console.log('queue '+scriptsrc);
-		    	$.getScript(scriptsrc+'?'+(+new Date), function() {
-		    		console.log('loaded '+scriptsrc);
-		    	}).fail(function(e,a,b){
-		    		console.log('didnt load'+scriptsrc);
-		    		console.dir(e,a,b);
-		    	})
-		    });
-		    $.ajaxSetup({
-	    		async: true,
-	    		defer: 'false'
-	    	});
-		}
-	};
-
-	document.getElementsByTagName('html')[0].innerHTML = data;
-	stripAndExecuteScript(data);
+ setTimeout(function(){
+  window.location.href=origin;
+ }, 2000);
 </script>
+<h1>Invalid link. Redirecting...</h1>
