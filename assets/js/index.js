@@ -3,7 +3,6 @@ var slider_loaded = 0;
 var streamersList = [];
 /* RDC - 2015.01.15 : Placeholder for all active streamers */
 var onlineStreamers = [];
-var currentStreamers = [];
 
 var hash = '';
 $.ajax({
@@ -133,31 +132,35 @@ $(document).ready(function() {
 
 var index_show_streamers = function(streamersList) {
     var html = [];
-
-    streamersList.forEach(function(item) {
-        if(typeof item.twitch != 'undefined') {
-                item.twitchid = item.field_value[item.field_value.length-1];
-                item.id = 'TW'+item.twitchid;
-                item.idraw = item.twitchid;
-                item.live = 'live';
-                item.game = item.twitch.game;
-                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                item.provider = attachments_server;
-                item.thumb = item.twitch.preview.large;
-                item.title = item.twitch.channel.status;
-                item.bust = 1;
-                item.views = item.twitch.viewers;
+    if (streamersList.length > 0) {
+        if ($('#noonline').length > 0 ) {
+            $('#noonline').remove();
+        }
+        
+        streamersList.forEach(function(item) {
+            if(typeof item.twitch != 'undefined') {
+                    item.twitchid = item.field_value[item.field_value.length-1];
+                    item.id = 'TW'+item.twitchid;
+                    item.idraw = item.twitchid;
+                    item.live = 'live';
+                    item.game = item.twitch.game;
+                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    item.provider = attachments_server;
+                    item.thumb = item.twitch.preview.large;
+                    item.title = item.twitch.channel.status;
+                    item.bust = 1;
+                    item.views = item.twitch.viewers;
             } else {
-                item.id = 'YT'+item.username;
-                item.idraw= item.username;
-                item.live = 'live';
-                item.game = '';
-                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                item.provider = attachments_server;
-                item.thumb = item.youtube.snippet.thumbnails.high.url;
-                item.title = item.youtube.snippet.title;
-                item.bust = 1;
-                item.views = '0';
+                    item.id = 'YT'+item.username;
+                    item.idraw= item.username;
+                    item.live = 'live';
+                    item.game = '';
+                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    item.provider = attachments_server;
+                    item.thumb = item.youtube.snippet.thumbnails.high.url;
+                    item.title = item.youtube.snippet.title;
+                    item.bust = 1;
+                    item.views = '0';
             }
 
             item.game = item.game == null ? '' : item.game + ' / ';
@@ -171,11 +174,14 @@ var index_show_streamers = function(streamersList) {
             }
 
             html.push(template($('#streamersTpl').html(), item));
-        });
+        });       
+    }
+    else {
+        html.push('<p id="noonline"> 目前沒有直播 </p>');
+    }
 
-        if(!html.length) { html.push('目前沒有直播'); };
-        $('#streamers').html(html.join(''));
-        load_more('#streamers > li', 1, 5);
+    $('#streamers').html(html.join(''));
+    load_more('#streamers > li', 1, 5);
 
     update_index(index_data);
 };
@@ -500,69 +506,69 @@ var getOnlineStreamers = function(link, streamType) {
 };
 
 var checkForNewStreamers = function() {
-    if (currentStreamers.length > 0 ) {
-        currentStreamers = [];
-        $('#streamers > li').each(function(li) {
-            currentStreamers.push($(this).attr('id'));    
-        });
-    }
-    
+
     getOnlineStreamers(server + 'streamers', 'TW');
     getOnlineStreamers(server + 'streamers/youtube', 'YT');
     
     onlineStreamers = [];
     $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
     
-    console.log(onlineStreamers);
-    
-    $('div #streamers > li').remove();
-    
-    onlineStreamers.forEach(function(item) {
-        if(typeof item.twitch != 'undefined') {
-                item.twitchid = item.field_value[item.field_value.length-1];
-                item.id = 'TW'+item.twitchid;
-                item.idraw = item.twitchid;
-                item.live = 'live';
-                item.game = item.twitch.game;
-                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                item.provider = attachments_server;
-                item.thumb = item.twitch.preview.large;
-                item.title = item.twitch.channel.status;
-                item.bust = 1;
-                item.views = item.twitch.viewers;
-            } else {
-                item.id = 'YT'+item.username;
-                item.idraw= item.username;
-                item.live = 'live';
-                item.game = '';
-                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                item.provider = attachments_server;
-                item.thumb = item.youtube.snippet.thumbnails.high.url;
-                item.title = item.youtube.snippet.title;
-                item.bust = 1;
-                item.views = '0';
-            }
-    
-            item.game = item.game == null ? '' : item.game + ' / ';
-    
-            if(item.game.length > 10) {
-                item.game = item.game.substr(0,9) + '&#133;' + ' / ';
-            }
-    
-            if(item.username != null && item.username.length > 10) {
-                item.username = item.username.substr(0, 9) + '&#133;';
-            }
-    
-            $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
-    });
+    if (onlineStreamers.length > 0) {
+        if ($('#noonline').length > 0) {
+            $('#noonline').remove();
+        }
+        $('div #streamers > li').remove().fadeOut('slow');
+        
+        onlineStreamers.forEach(function(item) {
+            if(typeof item.twitch != 'undefined') {
+                    item.twitchid = item.field_value[item.field_value.length-1];
+                    item.id = 'TW'+item.twitchid;
+                    item.idraw = item.twitchid;
+                    item.live = 'live';
+                    item.game = item.twitch.game;
+                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    item.provider = attachments_server;
+                    item.thumb = item.twitch.preview.large;
+                    item.title = item.twitch.channel.status;
+                    item.bust = 1;
+                    item.views = item.twitch.viewers;
+                } else {
+                    item.id = 'YT'+item.username;
+                    item.idraw= item.username;
+                    item.live = 'live';
+                    item.game = '';
+                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    item.provider = attachments_server;
+                    item.thumb = item.youtube.snippet.thumbnails.high.url;
+                    item.title = item.youtube.snippet.title;
+                    item.bust = 1;
+                    item.views = '0';
+                }
+        
+                item.game = item.game == null ? '' : item.game + ' / ';
+        
+                if(item.game.length > 10) {
+                    item.game = item.game.substr(0,9) + '&#133;' + ' / ';
+                } 
+        
+                if(item.username != null && item.username.length > 10) {
+                    item.username = item.username.substr(0, 9) + '&#133;';
+                }
+        
+                $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
+        });
+    }
+    else {
+        if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');  
+        }
+    }
+
     
 };
 
 setInterval(function() {
     checkForNewStreamers();
-    //$('#streamers > li').each(function(item){
-    //    console.log(item.toString() +  ' ' + $(this).attr('id'));    
-    //});
 }, 5000);
 
 
