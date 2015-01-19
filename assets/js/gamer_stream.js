@@ -12,12 +12,13 @@ function checkIfOnline(userId) {
             $('#twitchStream')
                 .replaceWith(template($('#youtube-stream-tpl')
                 .html(),{youtubeid: streamerId}));
-            setTimeout(function() {
+			setTimeout(function() {
                 checkIfOnline(userId);
             }, 30000);
         } else {
             $('#twitchStream')
                 .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+
             setTimeout(function() {
                 checkIfOnline(userId);
             }, 30000);
@@ -26,7 +27,6 @@ function checkIfOnline(userId) {
 }
 
 $(function() {
-
     var streamType = '';
     var streamId = '';
 
@@ -302,4 +302,23 @@ var toggleChat = function() {
 
     advertisementContainer.show();
 }
+
+var checker = setInterval(function(){
+	var found = false;
+	
+	$.getJSON(server+'streamers/youtube/?user='+page_data.user_id, function(e) {
+        e.streamers.forEach(function(item) {
+                found = true;
+                streamerId = item.youtube.id;
+        });
+		
+		if (!found) {
+			$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+			window.clearInterval(checker);
+		}
+	});
+},5000);
+
+
+
 
