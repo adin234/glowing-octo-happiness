@@ -171,7 +171,7 @@ var render_videos = function(filter, game, lanparty) {
     }
 
     if(!html.length && $('#container-videos').html().trim().length === 0) {
-        html.push('目前沒有人在直播');
+        html.push('無法找到你指定的實況主');
         if(!lanparty) {
             $('#container-videos').html(html.join(''));
         } else {
