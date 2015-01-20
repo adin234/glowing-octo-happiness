@@ -392,7 +392,6 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
 var checker = setInterval(function() {
     if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
         render_videos();
-        console.log('Videos re-rendered');
     } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-2').css('display') === 'block') {
         $.getJSON(server+'streamers?lanparty=1', function(e) {
             page_data.lanparty = e.streamers;
