@@ -170,14 +170,6 @@ var render_videos = function(filter, game, lanparty) {
         $('#container-lanparty').html(html.join(''));
     }
 
-    //if(!html.length && $('#container-videos').html().trim().length === 0) {
-    //    html.push('目前沒有影片streamers');
-    //    if(!lanparty) {
-    //        $('#container-videos').html(html.join(''));
-    //    } else {
-    //        $('#container-lanparty').html(html.join(''));
-    //    }
-    //}
 
     if(!html.length && $('#container-videos').html().trim().length === 0) {
         html.push('無法找到你指定的實況主');
