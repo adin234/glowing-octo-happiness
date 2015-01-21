@@ -170,6 +170,15 @@ var render_videos = function(filter, game, lanparty) {
         $('#container-lanparty').html(html.join(''));
     }
 
+    //if(!html.length && $('#container-videos').html().trim().length === 0) {
+    //    html.push('目前沒有影片streamers');
+    //    if(!lanparty) {
+    //        $('#container-videos').html(html.join(''));
+    //    } else {
+    //        $('#container-lanparty').html(html.join(''));
+    //    }
+    //}
+
     if(!html.length && $('#container-videos').html().trim().length === 0) {
         html.push('無法找到你指定的實況主');
         if(!lanparty) {
@@ -178,7 +187,6 @@ var render_videos = function(filter, game, lanparty) {
             $('#container-lanparty').html(html.join(''));
         }
     }
-
 
     var activeSlider = !lanparty
         ? slider.container_videos
@@ -383,4 +391,25 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
         render_videos(undefined,undefined,1);
     });
 });
+
+var checker = setInterval(function() {
+    if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
+        render_videos();
+    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-2').css('display') === 'block') {
+        $.getJSON(server+'streamers?lanparty=1', function(e) {
+            page_data.lanparty = e.streamers;
+            render_videos(undefined, undefined, true);
+            $.getJSON(server+'streamers/youtube?lanparty=1', function(result) {
+                result.streamers.forEach(function(item) {
+                    page_data.lanparty.push(item);
+                });
+                render_videos(undefined,undefined,1);
+            });
+        });
+    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-3').css('display') === 'block') {
+        //code
+    } else {
+        
+    }
+},5000);
 
