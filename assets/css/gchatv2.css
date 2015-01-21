@@ -167,9 +167,13 @@ input[type=text].msgs{
 }
 img.uavatar{border-radius: 5px 5px 5px 5px; border:1px solid gray;}
 
-p.message{font-size:12px; font-family: Arial; text-decoration: none;}
+p.message{font-size:12px; font-family: Arial; word-wrap: break-word; -webkit-user-select: text; -moz-user-select: text; ms-user-select: text;}
+
+a.linkified {color: blue !important;}
 
 span.spandex{ display: inline-block;
               vertical-align: middle;
               line-height: normal;
               background-color: #F0F0F0;}
+              
+::selection {background-color: rgb(136,136,136); color: white ;}
