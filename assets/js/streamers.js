@@ -1,6 +1,12 @@
 var slider = {};
 var con = 'all';
 
+/* RDC */
+var YTStreamers = [];
+var TWStreamers = [];
+var onlineStreamers = [];
+var curStreamCount = 0;
+var prevStreamCount = 0;
 
 $(".sf-menu").superfish();
 // slider.featured_games = $("#container-featured-games").bxSlider();
@@ -107,7 +113,7 @@ var render_videos = function(filter, game, lanparty) {
     var filterGameRegExp = new RegExp(filterGame, 'i');
 
     var itemToComplete = 9;
-
+    
     var source = lanparty && typeof lanparty != 'undefined'
         ? page_data.lanparty
         : page_data.streamers;
@@ -169,9 +175,6 @@ var render_videos = function(filter, game, lanparty) {
     } else {
         $('#container-lanparty').html(html.join(''));
     }
-
-
-    
 
     if(!html.length && $('#container-videos').html().trim().length === 0) {
 
@@ -366,10 +369,10 @@ $(window).on('hashChange', function() {
 var render_page = function() {
     // render_latest_games();
     // render_featured_games();
-    render_videos();
+    //render_videos();
     $('.tooltip').tooltipster({contentAsHTML: true});
     $(window).trigger('hashchange');
-    get_youtube_streams();
+    //get_youtube_streams();
 };
 
 render_page();
@@ -387,24 +390,52 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
     });
 });
 
-var checker = setInterval(function() {
-    if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
-        render_videos();
-    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-2').css('display') === 'block') {
-        $.getJSON(server+'streamers?lanparty=1', function(e) {
-            page_data.lanparty = e.streamers;
-            render_videos(undefined, undefined, true);
-            $.getJSON(server+'streamers/youtube?lanparty=1', function(result) {
-                result.streamers.forEach(function(item) {
-                    page_data.lanparty.push(item);
-                });
-                render_videos(undefined,undefined,1);
-            });
-        });
-    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-3').css('display') === 'block') {
-        //code
-    } else {
-        
-    }
-},5000);
+var getOnlineStreamers = function(link, streamType) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: link,
+    }).done(function (data) {
+        if (streamType === 'YT') {
+            YTStreamers = [];
+            $.merge(YTStreamers, data.streamers);
+        } else {
+            TWStreamers = [];
+            $.merge(TWStreamers, data.streamers);
+        }
+    });
+};
 
+var updateStreamCount = function (){
+    getOnlineStreamers(server + 'streamers', 'TW');
+    getOnlineStreamers(server + 'streamers/youtube', 'YT');
+    
+    onlineStreamers = [];
+    $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
+    
+    if (onlineStreamers.length === 0) {
+        $('#container-videos').html('目前沒有正在直播的實況主');
+        $('#txtbox-search-videos').prop('disabled',true);
+        $('a[href$="/streamers"] > sup').text('');
+    }
+    else {
+        $('#txtbox-search-videos').prop('disabled',false);
+        $('a[href$="/streamers"] > sup').text(onlineStreamers.length).fadeIn('slow');
+        //if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
+        //    page_data.streamers = onlineStreamers;
+        //    render_videos();
+        //    $('a[href$="/streamers"] > sup').text(onlineStreamers.length).fadeIn('slow');
+        //}  
+    }
+    console.log('Refreshed');
+};
+
+var checker = setInterval(function() {
+    updateStreamCount();
+},1000);
+
+var delayer = setTimeout(function(){
+    render_videos();
+    get_youtube_streams();
+    console.log('Im here');
+},10000);
