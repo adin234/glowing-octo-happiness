@@ -427,7 +427,7 @@ var updateStreamCount = function (){
         //    $('a[href$="/streamers"] > sup').text(onlineStreamers.length).fadeIn('slow');
         //}  
     }
-    console.log('Refreshed');
+    
 };
 
 var checker = setInterval(function() {
@@ -437,5 +437,5 @@ var checker = setInterval(function() {
 var delayer = setTimeout(function(){
     render_videos();
     get_youtube_streams();
-    console.log('Im here');
+  
 },10000);
