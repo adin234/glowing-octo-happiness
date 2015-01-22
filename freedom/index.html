@@ -91,84 +91,79 @@
         </ul>
       </header>
     </div>
-    <div id="container_lanparty" class="tabs lanparty-nav">
-      <hr class="line">
-      <ul class="lanparty_type1">
-        <li onclick="window.location.hash='tab-4-1';"><a href="#tab-4-1">什麼是Lan party</a></li>
-        <li onclick="window.location.hash='tab-4-2';"><a href="#tab-4-2">Lan party時刻表</a></li>
-        <li onclick="window.location.hash='tab-4-3';"><a href="#tab-4-3">活動內容</a></li>
-        <li onclick="window.location.hash='tab-4-4';"><a href="#tab-4-4">Lan Party活動紀錄</a></li>
-      </ul>
-      <ul class="lanparty_type2">
-        <li><a href="/lanparty_stream_multi">直播</a></li>
-        <li><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
-      </ul>
 
-    <div id="tab-4-1">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty1.png" alt="">
-      </div>
-      <div class="lanparty_content" id="lanparty_content">
 
-      </div>
-    </div>
 
-    <div id="tab-4-2">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty2.png" alt="">
-      </div>
-      <div class="lanparty_timetable">
-        <ul class="hour_time">
-          <li>0000</li>
-          <li>0100</li>
-          <li>0200</li>
-          <li>0300</li>
-          <li>0400</li>
-          <li>0500</li>
-          <li>0600</li>
-          <li>0700</li>
-          <li>0800</li>
-          <li>0900</li>
-          <li>1000</li>
-          <li>1100</li>
-          <li>1200</li>
-          <li>1300</li>
-          <li>1400</li>
-          <li>1500</li>
-          <li>1600</li>
-          <li>1700</li>
-          <li>1800</li>
-          <li>1900</li>
-          <li>2000</li>
-          <li>2100</li>
-          <li>2200</li>
-          <li>2300</li>
-          <li>2400</li>
-        </ul>
-        <div class="event" id="event-container">
-          <div id="lanparty_event"></div>
+    <div id="container_lanparty_green" class="tabs lanparty-nav-green">
+
+          <hr class="line">
+          <ul class="lanparty_type1">
+            <li onclick="window.location.hash='tab-4-1';"><a href="#tab-4-1" title="最新發文">活動內容</a></li>
+            <li onclick="window.location.hash='tab-4-2';"><a href="#tab-4-2" title="Freedom! 活動時間">Freedom! 活動時間</a></li>
+            <li onclick="window.location.hash='tab-4-3';"><a href="#tab-4-3">Freedom!活動紀錄</a></li>
+          </ul>
+<!--           <ul class="lanparty_type2">
+            <li><a href="/lanparty_stream_multi">直播</a></li>
+            <li><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
+          </ul> -->
+
+        <div id="tab-4-1">
+          <div class="lanparty_title">
+            <img src="/assets/images/freedom_activities.png" alt="">
+          </div>
+          <div></div>
         </div>
-      </div>
+
+        <div id="tab-4-2">
+          <div class="lanparty_title">
+            <img src="/assets/images/freedom_schedule.png" alt="">
+          </div>
+          <div class="lanparty_timetable">
+            <ul class="hour_time">
+              <li>0000</li>
+              <li>0100</li>
+              <li>0200</li>
+              <li>0300</li>
+              <li>0400</li>
+              <li>0500</li>
+              <li>0600</li>
+              <li>0700</li>
+              <li>0800</li>
+              <li>0900</li>
+              <li>1000</li>
+              <li>1100</li>
+              <li>1200</li>
+              <li>1300</li>
+              <li>1400</li>
+              <li>1500</li>
+              <li>1600</li>
+              <li>1700</li>
+              <li>1800</li>
+              <li>1900</li>
+              <li>2000</li>
+              <li>2100</li>
+              <li>2200</li>
+              <li>2300</li>
+              <li>2400</li>
+            </ul>
+            <div class="event" id="event-container">
+              <div id="lanparty_event"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-4-3">
+          <div class="lanparty_title">
+            <img src="/assets/images/freedom_archive.png" alt="">
+          </div>
+          <div></div>
+        </div>
+
     </div>
 
-    <div id="tab-4-3">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty3.png" alt="">
-      </div>
-      <div class="lanparty_content" id="lanparty_activities">
-
-      </div>
-    </div>
-
-    <div id="tab-4-4"></div>
-
-    <div id="tab-4-5">
 
 
-    </div>
 
-
-    </div>
     </div>
     <footer class="clearFix">
         <nav>
@@ -198,14 +193,14 @@
 </div>
 
 <script type="text/html" id="eventItemTpl">
-  <div class="event-item">
-    <h3 class="event_date">{{DATE}}</h3>
+  <div class="event-item-green">
+    <h3 class="event_date_green">{{DATE}}</h3>
     {{TIME}}
   </div>
 </script>
 
 <script type="text/html" id="eventItemTime">
-  <div class="event_title" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}"><p>{{TITLE}}</p></div>
+  <div class="event_title_green" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}"><p>{{TITLE}}</p></div>
 </script>
 
 <script src="/assets/js/jquery.min.js"></script>

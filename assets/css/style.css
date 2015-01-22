@@ -674,7 +674,8 @@ padding-left: 297px !important;
   padding-left: 25px;
 }
 #outContainer header .site > ul > li:nth-child(8) > a {
-   background: url("/assets/images/sprite.png") no-repeat -127px -1763px;
+  background: url("/assets/images/def-trophy.png") no-repeat;
+  background-position: 5px 3px;
   padding-left: 25px;
 }
 /*-----------------*/
@@ -731,7 +732,8 @@ padding-left: 297px !important;
 #outContainer header .site > ul > li:nth-child(8) > a:hover,
 #outContainer header .site > ul > li:nth-child(8) > a:focus,
 #outContainer header .site > ul > li:nth-child(8) > a:active {
-  background: url("/assets/images/sprite.png") no-repeat -127px -1691px;
+  background: url("/assets/images/active-trophy.png") no-repeat;
+  background-position: 5px 3px;
 }
 
 #outContainer header .site > ul > li:nth-child(9) {
@@ -3805,6 +3807,8 @@ span.views {
   min-height: 900px;
   padding: 40px 40px 80px 40px;
 }
+
+
 .lanparty .tabs {
 color: #fff;
 }
@@ -3817,7 +3821,6 @@ color: #fff;
 .lanparty-nav .lanparty_type2{
   float: right;
 }
-
 .lanparty-nav .lanparty_type2 > li > a:hover{
   color: #eee;
   text-decoration: none;
@@ -3861,20 +3864,81 @@ color: #fff;
   padding: 20px 50px;
 }
 
+
+.lanparty-nav-green .lanparty_type2{
+  float: right;
+}
+.lanparty-nav-green .lanparty_type2 > li > a:hover{
+  color: #eee;
+  text-decoration: none;
+}
+.lanparty-nav-green .lanparty_type2 > li:nth-child(1) {
+  background: url("../images/sprite.png") no-repeat 0 -1279px;
+}
+.lanparty-nav-green .lanparty_type2 > li:nth-child(2) {
+  margin-left: 20px;
+  background: url("../images/icon_fire_grey.png") no-repeat;
+  position: relative;
+  top: 1px;
+  vertical-align: middle;
+}
+.lanparty-nav-green .lanparty_menu {
+  border-top: 1px solid #434343;
+  padding: 10px;
+}
+.lanparty-nav-green li{
+  display: inline-block;
+  padding: 0px 20px;
+  vertical-align: middle;
+}
+.lanparty-nav-green > ul li:not(:last-child){
+  border-right: 1px solid #434343;
+}
+.lanparty-nav-green li > a{
+  color: #868686;
+  text-decoration: none;
+  /*outline: 1px solid red;*/
+  padding: 15px 10px;
+  position: relative;
+  top: -1px;
+}
+.lanparty-nav-green li.current > a{
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+#container .lanparty-nav-green {
+  margin: -34px -50px 25px;
+  padding: 20px 50px;
+}
+
+
+
 #outContainer #container.lanparty {
   /*background: #000 url('../images/lanparty_bg.png') no-repeat;*/
   background: #000;
 }
-
 #outContainer #container.lanparty a {
   color: #999;
 }
 
+
+/*New color scheme for activity tab*/
 .lanparty-nav .lanparty_type1 li.active > a,
 .lanparty-nav .lanparty_type1 li:hover > a{
   color: #00b8e6;
   border-top: 2px solid #00b8e6;
 }
+.lanparty-nav-green .lanparty_type1 li.active > a,
+.lanparty-nav-green .lanparty_type1 li:hover > a{
+  color: #00ff54;
+  border-top: 2px solid #00ff54;
+}
+
+
+
+
+
+
 #container_lanparty .lanparty_title{
   display: inline-block;
   margin: 100px 80px 0px;
@@ -3903,22 +3967,84 @@ color: #fff;
 #container_lanparty .hour_time{
   display: inline-block;
   width: 155px;
-  color: #0a8bac;
+  color: #00b8e6;
   padding-top: 60px;
 }
 
 #container_lanparty .hour_time li{
-  border-top: 1px dotted #0a8bac;
+  border-top: 1px dotted #00b8e6;
   margin: 0px 5px 0px 40px;
   height: 36px;
 }
 
 #container_lanparty .hour_time li:last-child {
-  border-bottom: 1px dotted #0a8bac;
+  border-bottom: 1px dotted #00b8e6;
   margin-bottom: 20px;
 }
 
+
+
+#container_lanparty_green  {
+  background: url("../images/lanparty_bg_3.png");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  min-height: 900px;
+  padding: 40px 40px 80px 40px;
+}
+#container_lanparty_green .lanparty_title{
+  display: inline-block;
+  margin: 100px 80px 0px;
+}
+#container_lanparty_green .lanparty_content{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 80px auto;
+}
+#container_lanparty_green .lanparty_timetable{
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 51px auto 80px;
+  background: url(../images/lanparty_grid_bg.png);
+  min-width: 940px;
+  min-height: 829px;
+  padding-top: 40px;
+}
+
+#container_lanparty_green .lanparty_content p{
+  margin: 20px 0px;
+  line-height: 1.75;
+}
+#container_lanparty_green .hour_time{
+  display: inline-block;
+  width: 155px;
+  color: #00ff54;
+  padding-top: 60px;
+}
+
+#container_lanparty_green .hour_time li{
+  border-top: 1px dotted #00ff54;
+  margin: 0px 5px 0px 40px;
+  height: 36px;
+}
+
+#container_lanparty_green .hour_time li:last-child {
+  border-bottom: 1px dotted #00ff54;
+  margin-bottom: 20px;
+}
+
+
+
+
+
 .lanparty-nav > hr.line {
+  height: 1px;
+  border-top: 1px solid #434343;
+  margin-bottom: 9px;
+}
+
+.lanparty-nav-green > hr.line {
   height: 1px;
   border-top: 1px solid #434343;
   margin-bottom: 9px;
@@ -3940,7 +4066,16 @@ color: #fff;
   margin-left: 20px;
   width: 210px;
   height: 990px;
-  border-right: 1px dotted #0a8bac;
+  border-right: 1px dotted #00b8e6;
+}
+.event-item-green {
+  vertical-align: top;
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  width: 210px;
+  height: 990px;
+  border-right: 1px dotted #00ff54;
 }
 .event_date{
   position: absolute;
@@ -3954,13 +4089,36 @@ color: #fff;
   padding-left: 12px;
   z-index: 2000;
 }
+.event_date_green{
+  position: absolute;
+  top: 0px;
+  width: 178px;
+  height: 65px;
+  background: url(../images/month_bg_3.png) no-repeat;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 12px;
+  z-index: 2000;
+}
 
 .event-item .event_title{
   position: absolute;
   display: table;
   vertical-align: middle;
-  border-top: 1px dotted #0a8bac;
-  border-bottom: 1px dotted #0a8bac;
+  border-top: 1px dotted #00ff54;
+  border-bottom: 1px dotted #00ff54;
+  font-size: 18px;
+  color: #eee;
+  text-align: center;
+  width: 100%;
+}
+.event-item-green .event_title_green{
+  position: absolute;
+  display: table;
+  vertical-align: middle;
+  border-top: 1px dotted #00ff54;
+  border-bottom: 1px dotted #00ff54;
   font-size: 18px;
   color: #eee;
   text-align: center;
@@ -4290,4 +4448,13 @@ a.social-share img {
   display: inline;
   margin-top: 14px;
   float: left;
+}
+
+.updateFeaturedUsers {
+  float: right;
+  margin-top: -31px;
+  padding: 5px;
+  color: white;
+  background-color: #B50000;
+  cursor: pointer;
 }
