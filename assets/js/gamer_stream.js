@@ -128,7 +128,7 @@ $(function() {
             } else {
                 $('#twitchStream')
                     .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-                checkIfOnline(userId);
+                //checkIfOnline(userId);
             }
 
             if(!found) {
@@ -305,18 +305,19 @@ var toggleChat = function() {
 
 var checker = setInterval(function(){
 	var found = false;
-	
-	$.getJSON(server+'streamers/youtube/?user='+page_data.user_id, function(e) {
-        e.streamers.forEach(function(item) {
-                found = true;
-                streamerId = item.youtube.id;
-        });
-		
-		if (!found) {
-			$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-			window.clearInterval(checker);
-		}
-	});
+	if (twitch.substr(0,2) === 'YT') {
+		$.getJSON(server+'streamers/youtube/?user='+page_data.user_id, function(e) {
+			e.streamers.forEach(function(item) {
+					found = true;
+					streamerId = item.youtube.id;
+			});
+			
+			if (!found) {
+				$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+				window.clearInterval(checker);
+			}
+		});		
+	}
 },5000);
 
 
