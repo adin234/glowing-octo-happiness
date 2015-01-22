@@ -506,16 +506,12 @@ var getOnlineStreamers = function(link, streamType) {
 };
 
 var checkForNewStreamers = function() {
-    
-    onlineStreamers.length = 0;
 
     getOnlineStreamers(server + 'streamers', 'TW');
     getOnlineStreamers(server + 'streamers/youtube', 'YT');
     
+    onlineStreamers = [];
     $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
-    $('a[href$="/streamers"] > sup').text('');
-    
-    console.log(onlineStreamers.length);
     
     if (onlineStreamers.length > 0) {
         if ($('#noonline').length > 0) {
@@ -559,22 +555,22 @@ var checkForNewStreamers = function() {
                     item.username = item.username.substr(0, 9) + '&#133;';
                 }
         
-                $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow');
+                $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
         });
     }
     else {
         if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');
-            $('a[href$="/streamers"] > sup').text('');
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');  
         }
     }
+
     
-    $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
 };
 
 setInterval(function() {
     checkForNewStreamers();
 }, 5000);
+
 
  
 
