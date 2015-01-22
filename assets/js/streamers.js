@@ -171,8 +171,11 @@ var render_videos = function(filter, game, lanparty) {
     }
 
 
+    
+
     if(!html.length && $('#container-videos').html().trim().length === 0) {
-        html.push('無法找到你指定的實況主');
+
+                 html.push('無法找到你指定的實況主');
         if(!lanparty) {
             $('#container-videos').html(html.join(''));
         } else {
@@ -328,7 +331,7 @@ $('#txtbox-search-games').on('keydown', function(e) {
     if (e.keyCode == 13) { filter_game(this); }
 });
 
-$('#txtbox-search-videos').on('keydown', function(e) {
+$('#txtbox-search-videos').on('keydown', function(e) {                                                                           
     if (e.keyCode == 13) {
         filter_videos(this);
     }
