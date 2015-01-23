@@ -517,6 +517,11 @@ var checkForNewStreamers = function() {
         if ($('#noonline').length > 0) {
             $('#noonline').remove();
         }
+        
+        if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
+            $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+        }
+        
         $('div #streamers > li').remove().fadeOut('slow');
         
         onlineStreamers.forEach(function(item) {
@@ -560,7 +565,8 @@ var checkForNewStreamers = function() {
     }
     else {
         if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');  
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');
+            $('a[href$="/streamers"] > sup').text('');
         }
     }
 
@@ -570,10 +576,6 @@ var checkForNewStreamers = function() {
 setInterval(function() {
     checkForNewStreamers();
 }, 5000);
-
-
- 
-
 
 
 

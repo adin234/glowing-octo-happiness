@@ -389,24 +389,46 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
     });
 });
 
+
+var YTStreamers = [];
+var TWStreamers = [];
+var onlineStreamers = [];
+
+var getOnlineStreamers = function(link, streamType) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: link,
+    }).done(function (data) {
+        if (streamType === 'YT') {
+            YTStreamers = [];
+            $.merge(YTStreamers, data.streamers);
+        } else {
+            TWStreamers = [];
+            $.merge(TWStreamers, data.streamers);
+        }
+    });
+};
+
 var checker = setInterval(function() {
     if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
-        render_videos();
-    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-2').css('display') === 'block') {
-        $.getJSON(server+'streamers?lanparty=1', function(e) {
-            page_data.lanparty = e.streamers;
-            render_videos(undefined, undefined, true);
-            $.getJSON(server+'streamers/youtube?lanparty=1', function(result) {
-                result.streamers.forEach(function(item) {
-                    page_data.lanparty.push(item);
-                });
-                render_videos(undefined,undefined,1);
-            });
-        });
-    } else if ($('#txtbox-search-videos').val() === '' && $('#tab-2-3').css('display') === 'block') {
-        //code
-    } else {
+        getOnlineStreamers(server + 'streamers', 'TW');
+        getOnlineStreamers(server + 'streamers/youtube', 'YT');
         
+        onlineStreamers = [];
+        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
+        
+        if (onlineStreamers.length > 0) {
+            if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
+                $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+            }        
+        }
+        else {
+            if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
+                $('a[href$="/streamers"] > sup').text('');
+            }
+        }
+
     }
 },5000);
 

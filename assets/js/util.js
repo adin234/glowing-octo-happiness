@@ -443,6 +443,7 @@ function get_streamers(first) {
     });
 }
 
+var x = 0;
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
@@ -473,9 +474,11 @@ function get_youtube_streamers(first) {
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
-        setTimeout(function() {
-            get_streamers();
-        }, streamTimeout);
+        //setTimeout(function() {
+        //    get_streamers();
+        //}, streamTimeout);
+        x+=1;
+        console.log('I\'m called ' + x.toString());
     });
 }
 
