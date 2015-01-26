@@ -3944,13 +3944,13 @@ color: #fff;
   margin: 100px 80px 0px;
 }
 #container_lanparty .lanparty_content{
-  color: #acacac;
+  color: #00b8e6;
   width: 85%;
   position: relative;
   margin: 80px auto;
 }
 #container_lanparty .lanparty_timetable{
-  color: #acacac;
+  color: #00b8e6;
   width: 85%;
   position: relative;
   margin: 51px auto 80px;
@@ -4106,8 +4106,8 @@ color: #fff;
   position: absolute;
   display: table;
   vertical-align: middle;
-  border-top: 1px dotted #00ff54;
-  border-bottom: 1px dotted #00ff54;
+  border-top: 1px dotted #00b8e6;
+  border-bottom: 1px dotted #00b8e6;
   font-size: 18px;
   color: #eee;
   text-align: center;
