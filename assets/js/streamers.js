@@ -168,25 +168,27 @@ var render_videos = function(filter, game, lanparty) {
     } else {
         $('#container-lanparty').html(html.join(''));
     }
-
-    //if(!html.length && $('#container-videos').html().trim().length === 0) {
-    //    html.push('目前沒有影片streamers');
-    //    if(!lanparty) {
-    //        $('#container-videos').html(html.join(''));
-    //    } else {
-    //        $('#container-lanparty').html(html.join(''));
-    //    }
-    //}
-
-    if(!html.length && $('#container-videos').html().trim().length === 0) {
-        html.push('無法找到你指定的實況主');
-        if(!lanparty) {
-            $('#container-videos').html(html.join(''));
-        } else {
-            $('#container-lanparty').html(html.join(''));
-        }
+    
+    if (typeof(filter) !== 'undefined' || filter !== '') {
+        if(!html.length && $('#container-videos').html().trim().length === 0) {
+            html.push('無法找到你指定的實況主');
+            if(!lanparty) {
+                $('#container-videos').html(html.join(''));
+            } else {
+                $('#container-lanparty').html(html.join(''));
+            }
+        }  
+    } else {
+        if(!html.length && $('#container-videos').html().trim().length === 0) {
+            html.push('目前沒有正在直播的實況主');
+            if(!lanparty) {
+                $('#container-videos').html(html.join(''));
+            } else {
+                $('#container-lanparty').html(html.join(''));
+            }
+        }        
     }
-
+    
     var activeSlider = !lanparty
         ? slider.container_videos
         : slider.container_lanparty;
@@ -431,4 +433,11 @@ var checker = setInterval(function() {
 
     }
 },5000);
+
+$('a[href$="#tab-2-1"]').on('click',function() {
+    window.location.assign(origin + 'streamers');
+});
+
+
+
 
