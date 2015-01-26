@@ -423,9 +423,12 @@ var checker = setInterval(function() {
         $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
         
         if (onlineStreamers.length > 0) {
-            if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
+            if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
-               // window.location.assign(origin + 'streamers');
+
+                page_data.streamers = onlineStreamers;
+                render_videos();
+
             }        
         }
         else {
