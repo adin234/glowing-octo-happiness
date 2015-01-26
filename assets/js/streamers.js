@@ -423,8 +423,6 @@ var checker = setInterval(function() {
         $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
         
         if (onlineStreamers.length > 0) {
-            console.log(onlineStreamers.length);
-            console.log($('a[href$="/streamers"] > sup').text());
             if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
                 page_data.streamers = onlineStreamers;
