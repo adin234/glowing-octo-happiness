@@ -473,9 +473,9 @@ function get_youtube_streamers(first) {
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
-        setTimeout(function() {
-            get_streamers();
-        }, streamTimeout);
+        //setTimeout(function() {
+        //    get_streamers();
+        //}, streamTimeout);
     });
 }
 
@@ -536,7 +536,6 @@ $(function() {
         get_streamers(true);
     // }
 });
-
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
