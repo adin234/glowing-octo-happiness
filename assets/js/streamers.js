@@ -425,6 +425,7 @@ var checker = setInterval(function() {
         if (onlineStreamers.length > 0) {
             if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+               // window.location.assign(origin + 'streamers');
             }        
         }
         else {
