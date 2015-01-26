@@ -178,6 +178,14 @@ var render_videos = function(filter, game, lanparty) {
     //    }
     //}
 
+/*
+    if(page_data.streamers.length === 4){
+            html.push('目前沒有正在直播的實況主');
+            console.log('No live streamers');
+    }
+
+*/
+      
     if(!html.length && $('#container-videos').html().trim().length === 0) {
         html.push('無法找到你指定的實況主');
         if(!lanparty) {
