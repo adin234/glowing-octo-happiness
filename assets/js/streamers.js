@@ -168,6 +168,7 @@ var render_videos = function(filter, game, lanparty) {
     } else {
         $('#container-lanparty').html(html.join(''));
     }
+
     
     if (typeof(filter) !== 'undefined' || filter !== '') {
         if(!html.length && $('#container-videos').html().trim().length === 0) {
@@ -187,6 +188,7 @@ var render_videos = function(filter, game, lanparty) {
                 $('#container-lanparty').html(html.join(''));
             }
         }        
+
     }
     
     var activeSlider = !lanparty
@@ -421,8 +423,12 @@ var checker = setInterval(function() {
         $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
         
         if (onlineStreamers.length > 0) {
-            if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
+            if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+
+                page_data.streamers = onlineStreamers;
+                render_videos();
+
             }        
         }
         else {
