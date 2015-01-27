@@ -117,10 +117,15 @@ footer > ul li a,
   background: url("/assets/images/sprite.png") no-repeat -125px -1592px;
   padding-left: 23px;
 }
+
+/*For new lanparty and freedom link scroll down*/
 #outContainer header .species li.nav-switch-item:nth-child(8) a {
-  background: url("/assets/images/sprite.png") no-repeat -125px -1789px;
+  background: url("/assets/images/white-trophy.png") no-repeat;
+  background-position: 5px 14px;
   padding-left: 23px;
 }
+
+
 #outContainer header .species li.nav-switch-item:nth-child(1) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(1).current a {
   background: url("/assets/images/sprite.png") no-repeat -125px -993px;
@@ -170,9 +175,12 @@ footer > ul li a,
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);
 }
+
+/*For new lanparty and freedom link scroll down*/
 #outContainer header .species li.nav-switch-item:nth-child(8) a:hover,
 #outContainer header .species li.nav-switch-item:nth-child(8).current a {
-  background: url("/assets/images/sprite.png") no-repeat -125px -1716px;
+  background: url("/assets/images/active-white-trophy.png") no-repeat;
+  background-position: 5px 14px;
   font-weight: bold;
   color: #fff;
   text-shadow: 0px -1px 4px rgba(0,0,0,.75);

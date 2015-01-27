@@ -32,7 +32,7 @@
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
 <script type="text/javascript" src="/assets/js/config.js?ver=22"></script>
-<script type="text/javascript" src="/assets/js/get.lanparty.data.js?ver=22"></script>
+<script type="text/javascript" src="/assets/js/get.freedomactivities.data.js?ver=22"></script>
 </head>
 
 <body class="lang_zh_tw switch-menu stream-gritter lanparty">
@@ -72,9 +72,9 @@
             <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
             <!-- <li class="nav-switch-item current"><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
-            <li><a href="http://gamers.tm" title="搞活動" id="sf-with-ul">搞活動</a>
+            <li class="nav-switch-item"><a href="http://gamers.tm" title="搞活動">搞活動</a>
               <ul>
-                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動 </a></li>
+                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
                 <li><a href="/lanparty" title="最新發文">Lan Party活動</a></li>
               </ul>
             </li>
@@ -111,7 +111,7 @@
           <div class="lanparty_title">
             <img src="/assets/images/freedom_activities.png" alt="">
           </div>
-          <div></div>
+          <div class="lanparty_content" id="lanparty_content"></div>
         </div>
 
         <div id="tab-4-2">
@@ -156,7 +156,7 @@
           <div class="lanparty_title">
             <img src="/assets/images/freedom_archive.png" alt="">
           </div>
-          <div></div>
+          <div class="lanparty_content" id="lanparty_archive"></div>
         </div>
 
     </div>
@@ -217,7 +217,14 @@
 <script src="/assets/js/autolinker.js?ver=22"></script>
 <script src="/assets/js/jquery.gritter.min.js?ver=22"></script>
 <script src="/assets/js/util.js?ver=22"></script>
-<script src="/assets/js/lanparty.js?ver=22"></script>
+<script src="/assets/js/faactivities.js?ver=22"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sf-menu").superfish();
+  });
+</script>
+
 <script>
 $('.tabs').tabslet();
 var tab = utilHash.getHash();
