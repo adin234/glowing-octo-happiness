@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-tw">
+<html lang="en">
 <head prefix="og: http://ogp.me/ns#">
 <meta charset="utf-8">
 <!--<meta name="description" content="">-->
@@ -35,7 +35,7 @@
 <script type="text/javascript" src="/assets/js/get.lanparty.data.js?ver=22"></script>
 </head>
 
-<body class="lang_zh_tw switch-menu stream-gritter lanparty">
+<body class="lang_zh_tw switch-menu stream-gritter">
 <div id="wrapper">
     <div id="outContainer">
     <div class="nav-container">
@@ -71,7 +71,6 @@
             <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
             <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <!-- <li class="nav-switch-item current"><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
             <li class="nav-switch-item"><a href="http://gamers.tm" title="搞活動">搞活動</a>
               <ul>
                 <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
@@ -91,87 +90,106 @@
         </ul>
       </header>
     </div>
-    <div id="container_lanparty" class="tabs lanparty-nav">
-      <hr class="line">
-      <ul class="lanparty_type1">
-        <li onclick="window.location.hash='tab-4-1';"><a href="#tab-4-1">什麼是Lan party</a></li>
-        <li onclick="window.location.hash='tab-4-2';"><a href="#tab-4-2">Lan party時刻表</a></li>
-        <li onclick="window.location.hash='tab-4-3';"><a href="#tab-4-3">活動內容</a></li>
-        <li onclick="window.location.hash='tab-4-4';"><a href="#tab-4-4">Lan Party活動紀錄</a></li>
-      </ul>
-      <ul class="lanparty_type2">
-        <li><a href="/lanparty_stream_multi">直播</a></li>
-        <li><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
-      </ul>
+    <div id="container" class="lanparty">
+      <div id="content" class="clearFix">
+        <div class="lanparty-nav clearFix">
+          <hr class="line">
+          <ul class="lanparty_type1">
+            <li><a href="/lanparty/#tab-4-1">什麼是Lan party</a></li>
+            <li><a href="/lanparty/#tab-4-2">Lan party時刻表</a></li>
+            <li><a href="/lanparty/#tab-4-3">活動內容</a></li>
+          </ul>
+          <ul class="lanparty_type2">
+            <li><a href="/lanparty_stream_multi">直播</a></li>
+            <li class="current"><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
+          </ul>
+        </div>
 
-    <div id="tab-4-1">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty1.png" alt="">
-      </div>
-      <div class="lanparty_content" id="lanparty_content">
-
-      </div>
-    </div>
-
-    <div id="tab-4-2">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty2.png" alt="">
-      </div>
-      <div class="lanparty_timetable">
-        <ul class="hour_time">
-          <li>0000</li>
-          <li>0100</li>
-          <li>0200</li>
-          <li>0300</li>
-          <li>0400</li>
-          <li>0500</li>
-          <li>0600</li>
-          <li>0700</li>
-          <li>0800</li>
-          <li>0900</li>
-          <li>1000</li>
-          <li>1100</li>
-          <li>1200</li>
-          <li>1300</li>
-          <li>1400</li>
-          <li>1500</li>
-          <li>1600</li>
-          <li>1700</li>
-          <li>1800</li>
-          <li>1900</li>
-          <li>2000</li>
-          <li>2100</li>
-          <li>2200</li>
-          <li>2300</li>
-          <li>2400</li>
+        <ul class="resize">
+          <li>X1</li>
+          <li class="zoom"><a href="javascript:;" title="縮放">縮放</a></li>
         </ul>
-        <div class="event" id="event-container">
-          <div id="lanparty_event"></div>
+        <div class="clearFix">
+          <div class="playArea">
+            <iframe id="ytplayer" type="text/html" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="videoList">
+            <ul class="listSwitch clearFix">
+              <li  id="playlistsToggle" class="current"><a href="javascript:;">播放清單</a></li>
+              <li  id="videosToggle" ><a href="javascript:;" title="影片">影片</a></li>
+            </ul>
+             <ul class="playFunctionBtn clearFix">
+                <li><a href="javascript:;" title="上一個影片" id="btn-prev">上一個影片</a></li>
+                <li><a href="javascript:;" title="下一個影片" id="btn-next">下一個影片</a></li>
+                <li></li><li></li>
+
+              </ul>
+            <ul class="playList toggleList current" id="playlists">
+            </ul>
+            <ul class="playList toggleList" id="videos">
+            </ul>
+          </div>
+        </div>
+        <div class="videoHeading clearFix"> <img src="" width="65" height="65" alt="{使用者帳號}">
+          <h3></h3>
+          <div id="viewport"></div>
+        </div>
+        <div class="videoRelated clearFix">
+          <div class="tabs">
+            <ul class="tab clearFix">
+              <li>
+                <h2><a href="#tab-1" title="現在播放">現在播放</a></h2>
+              </li>
+              <li>
+                <h2><a href="#tab-2" title="評論">評論</a></h2>
+              </li>
+              <!--<li>
+                <h2><a href="#tab-3">討論</a></h2>
+              </li> -->
+            <!--   <li>
+                <h2><a href="#tab-4" title="遊戲分類">遊戲分類</a></h2>
+              </li>
+ -->            </ul>
+            <div id="tab-1"></div>
+            <div id="tab-2"></div>
+            <!--
+            <div id="tab-3">
+              <form method="post">
+                <a href="javascript:;" title="所有留言">所有留言 ({{COUNT}})</a>
+                <div class="yourDiscussion"> <img src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+                  <div>
+                    <div class="angle"></div>
+                    <textarea placeholder="分享您的想法"></textarea>
+                  </div>
+                </div>
+                <div class="type clearFix"><span>類型：</span>
+                  <ul>
+                    <li class="current"><a href="javascript:;">最新留言</a></li>
+                    <li><a href="javascript:;" title="由新到舊">由新到舊</a></li>
+                    <li><a href="javascript:;" title="熱門留言">熱門留言</a></li>
+                  </ul>
+                </div>
+                <div class="discussions">
+
+                </div>
+              </form>
+            </div>
+            -->
+            <div id="tab-4">
+              <ul class="gamesList clearFix" id="gamesCast">
+
+              </ul>
+            </div>
+          </div>
+          <aside class="recommend">
+            <h2>建議影片</h2>
+            <ul>
+
+            </ul>
+          </aside>
         </div>
       </div>
-    </div>
-
-    <div id="tab-4-3">
-      <div class="lanparty_title">
-        <img src="/assets/images/font_lanparty3.png" alt="">
-      </div>
-      <div class="lanparty_content" id="lanparty_activities">
-
-      </div>
-    </div>
-
-    <div id="tab-4-4">
-      <div class="lanparty_title">
-        <img src="/assets/images/lanpartyarchive.png" alt="">
-      </div>
-      <div class="lanparty_content" id="lanparty_archive">
-      </div>
-    </div>
-
-
-    </div>
-    </div>
-    <footer class="clearFix">
+      <footer class="clearFix">
         <nav>
           <ul class="zh_tw">
             <li><a href="/">首頁</a></li>
@@ -194,42 +212,93 @@
           <li><a href="index_tw.html">繁體中文</a></li>
         </ul>
         </span></footer>
-      </div>
+    </div>
   </div>
 </div>
-
-<script type="text/html" id="eventItemTpl">
-  <div class="event-item">
-    <h3 class="event_date">{{DATE}}</h3>
-    {{TIME}}
+<script type="text/html" id="categoriesTpl">
+  <li><a href="#" onclick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+</script>
+<script type="text/html" id="playlistTpl">
+  <li class="playlistItem" id="{{ID}}">
+    <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
+      <h3>{{TITLE}}</h3>
+      <p>{{DESC}}</p>
+    </a>
+  </li>
+</script>
+<script type="text/html" id="videosTpl">
+  <li class="ytVideo videoItem" id="{{ID}}">
+    <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
+      <h3>{{TITLE}}</h3>
+      <p>{{DESC}}</p>
+    </a>
+  </li>
+</script>
+<script type="text/html" id="categoriesTpl">
+  <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
+</script>
+<script type="text/html" id="gamesCastTpl">
+  <li class="game-item">
+    <a href="javascript:void(0);" data-id="{{ID}}" onClick="filterGame('{{ID}}'); return false;" title="{{NAME}}">
+      <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}">
+    </a>
+  </li>
+</script>
+<script type="text/html" id="commentItemTpl">
+  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
+    <cite>{{USERNAME}}</cite><span>．
+    <date datetime="{{DATE}}">{{DATE}}</date>
+    </span>
+    <div class="replyContent">
+      <p>{{COMMENT}}</p>
+    </div>
+  </article>
+</script>
+<script type="text/html" id="commentsTpl">
+  <div class="comments-list">
+    <a href="javascript:;">所有留言 ({{COUNT}})</a>
+    <div class="yourDiscussion"> <img class="userImg"src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+      <div>
+        <div class="angle"></div>
+        <textarea id="commentArea" placeholder="分享您的想法"></textarea>
+      </div>
+      <button id="postComment" data-video='{{VIDEO}}'>Post</button>
+    </div>
+    <div class="type clearFix"><span>類型：</span>
+      <ul>
+<li class="{{SORTLATEST}}"><a href="javascript:;" class="sort-comments latest">最新留言</a></li>
+        <li class="{{SORTLAST}}"><a href="javascript:;" class="sort-comments last">由舊到新</a></li>
+      </ul>
+    </div>
+    <div class="discussions">
+    {{COMMENTS}}
+    </div>
   </div>
 </script>
-
-<script type="text/html" id="eventItemTime">
-  <div class="event_title" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}"><p>{{TITLE}}</p></div>
+<script type="text/html" id="recommendedTpl">
+   <li class="list clearFix">
+    <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
+    <h3>{{TITLE}}</h3>
+    <ul>
+      <li><cite>{{USERNAME}}</cite> 上傳</li>
+      <li>{{VIEWS}} Views</li>
+    </ul>
+    </a></li>
 </script>
-
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/hoverIntent.js?ver=22"></script>
 <script src="/assets/js/superfish.js?ver=22"></script>
 <script src="/assets/js/function.js?ver=22"></script>
 <script src="/assets/js/jquery.autocomplete.min.js?ver=22"></script>
-<script src="/assets/js/jquery.fixed.menu.js?ver=22"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=22"></script>
-<script src="/assets/js/jquery.bxslider.min.js?ver=22"></script>
 <script src="/assets/js/jquery.tabslet.min.js?ver=22"></script>
 <script src="/assets/js/jquery.tooltipster.min.js?ver=22"></script>
-<script src="/assets/js/jquery.tooltipster.min.js?ver=22"></script>
+<script src="/assets/js/jquery.fixed.menu.js?ver=22"></script>
 <script src="/assets/js/autolinker.js?ver=22"></script>
 <script src="/assets/js/jquery.gritter.min.js?ver=22"></script>
 <script src="/assets/js/util.js?ver=22"></script>
-<script src="/assets/js/lanparty.js?ver=22"></script>
-<script>
-$('.tabs').tabslet();
-var tab = utilHash.getHash();
-if(tab !== '') {
-  $('[href='+tab+']').trigger('click');
-}
-</script>
+<script src="/assets/js/media.js?ver=22"></script>
 </body>
 </html>
