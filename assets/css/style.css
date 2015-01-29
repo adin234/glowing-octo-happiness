@@ -4190,20 +4190,13 @@ padding-left:10px;
   font-size:smaller;
 }
 #container_lanparty .hour_time li{
-<<<<<<< HEAD
-  
-=======
-  border-top: 1px dotted #00b8e6;
->>>>>>> 3c0b0c2e1d7d6b071d06ea261416d8137eb4da3b
+
   margin: 0px 5px 0px 40px;
   height: 36px;
 }
 
 #container_lanparty .hour_time li:last-child {
-<<<<<<< HEAD
- 
-=======
-  border-bottom: 1px dotted #00b8e6;
+
   margin-bottom: 20px;
 }
 
@@ -4270,15 +4263,9 @@ padding-left:10px;
   margin-bottom: 9px;
 }
 
-<<<<<<< HEAD
 div#lanparty_event {
 display: none;
-=======
-.lanparty-nav-green > hr.line {
-  height: 1px;
-  border-top: 1px solid #434343;
-  margin-bottom: 9px;
->>>>>>> 3c0b0c2e1d7d6b071d06ea261416d8137eb4da3b
+
 }
 
 .event{
@@ -4397,11 +4384,11 @@ display: none;
   width: 100%;
 }
 
-#streamers .video .list > li {
+#streamers .video .list > li{
   float: left;
   height: 246px;
   width: 334px;
-  position: relative;
+  position: relative;  
 }
 
 .gritter-item .link {
