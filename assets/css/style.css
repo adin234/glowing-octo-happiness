@@ -67,6 +67,7 @@ footer > ul li a,
 }
 
 #outContainer header .species > ul li a {
+  /*color: #969BA5;*/
   padding: 0 4px;
 }
 
@@ -81,7 +82,7 @@ footer > ul li a,
 
 
 #outContainer header .species > ul li.current {
-  background-color: #C54646;
+  /*background-color: #C54646;*/
 }
 
 #outContainer header .species li.nav-switch-item:nth-child(2) > ul {
@@ -629,7 +630,7 @@ padding-left: 297px !important;
   background-position: 0 -789px;
 }*/
 #outContainer header .species a {
-  color: #fff;
+  color: #EF9A9A;
   display: inline-block;
 }
 #outContainer header .site {
@@ -683,7 +684,7 @@ padding-left: 297px !important;
 }
 #outContainer header .site > ul > li:nth-child(8) > a {
   background: url("/assets/images/def-trophy.png") no-repeat;
-  background-position: 5px 3px;
+  background-position: 5px 2px;
   padding-left: 25px;
 }
 /*-----------------*/
@@ -741,7 +742,7 @@ padding-left: 297px !important;
 #outContainer header .site > ul > li:nth-child(8) > a:focus,
 #outContainer header .site > ul > li:nth-child(8) > a:active {
   background: url("/assets/images/active-trophy.png") no-repeat;
-  background-position: 5px 3px;
+  background-position: 5px 2px;
 }
 
 #outContainer header .site > ul > li:nth-child(9) {
@@ -4465,4 +4466,8 @@ a.social-share img {
   color: white;
   background-color: #B50000;
   cursor: pointer;
+}
+
+.adjust_line_green {
+  margin-top: -5.50px;
 }
