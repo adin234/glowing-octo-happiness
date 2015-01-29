@@ -114,7 +114,13 @@
             <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
             <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <li class="nav-switch-item"><a href='/lanparty' title="Lan Party">Lan Party</a></li>
+            <!-- <li class="nav-switch-item"><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
+            <li class="nav-switch-item"><a href="http://gamers.tm" title="搞活動">搞活動</a>
+              <ul>
+                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動 </a></li>
+                <li><a href="/lanparty" title="最新發文">Lan Party活動</a></li>
+              </ul>
+            </li>
             <li>
               <div>
                 <input type="text" placeholder="搜尋" id="query">
@@ -324,6 +330,13 @@
 <script src="/assets/js/util.js?ver=22"></script>
 <script src="/assets/js/media.js?ver=22"></script>
 <script src="/assets/js/sidr/jquery.sidr.min.js?ver=22"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sf-menu").superfish();
+  });
+</script>
+
   <!--MENU SLIDER-->
 
       <div id="navigation" >
@@ -353,11 +366,11 @@
           </nav>
         <div class="slider_footer">
           <ul>
-                  <li><a href="#facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
-                  <li><a href="#twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
-                  <li><a href="#googleplus"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                  <li><a href="#youtube"><i class="fa fa-youtube-play fa-lg"></i></a></li>
-                  <li>&copy; 2014 freedom!</li>
+              <li><a href="#facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
+              <li><a href="#twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
+              <li><a href="#googleplus"><i class="fa fa-google-plus fa-lg"></i></a></li>
+              <li><a href="#youtube"><i class="fa fa-youtube-play fa-lg"></i></a></li>
+              <li>&copy; 2014 freedom!</li>
           </ul>
         </div>
       </div>

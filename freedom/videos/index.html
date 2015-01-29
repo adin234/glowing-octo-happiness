@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Freedom Asia">
 <meta property="og:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網">
 <meta name="robots" content="none">
-<title>遊戲分類 | 實況咖</title>
+<title>Lan Party | 實況咖</title>
 <link href="/assets/css/html5-doctor-reset-stylesheet.min.css?ver=22" rel="stylesheet">
 <link href="/assets/css/style.css?ver=22" rel="stylesheet">
 <link rel="shortcut icon" href="http://www.gamers.tm/favicon.ico?ver=22" />
 <link href="/assets/css/jquery.mCustomScrollbar.css?ver=22" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
 <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css?ver=22" />
+<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -32,48 +32,48 @@
 <link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
 <link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
 <script type="text/javascript" src="/assets/js/config.js?ver=22"></script>
-<script type="text/javascript" src="/assets/js/get.game.data.js?ver=22"></script>
+<script type="text/javascript" src="/assets/js/get.lanparty.data.js?ver=22"></script>
 </head>
 
-<body class="lang_zh_tw game_page switch-menu stream-gritter">
+<body class="lang_zh_tw switch-menu stream-gritter">
 <div id="wrapper">
     <div id="outContainer">
     <div class="nav-container">
       <header class="zh_tw">
-        <div class="nav-wrapper">
-          <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
-          <nav class="species">
-            <ul class="clearFix">
-              <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
+<div class="nav-wrapper">
+        <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
+        <nav class="species">
+          <ul class="clearFix">
+            <li><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
 
-              <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-              <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-            </ul>
-          </nav>
-       </div>
-      <nav class="site sf-menu">
+            <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
+            <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
+          </ul>
+        </nav>
+
+</div>
+<nav class="site sf-menu">
           <ul class="clearFix">
             <li class="nav-switch-item"><a href="/" title="首頁">首頁</a></li>
-            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇">論壇</a>
-              <ul>
+            <li class="nav-switch-item"><a href="http://community.gamers.tm" title="論壇" class="sf-with-ul">論壇</a>
+              <ul style="display: none;">
                 <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
-                <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
+                <li><a href="http://community.gamers.tm/zh/index.php?search/&amp;type=post" title="搜尋論壇">搜尋論壇</a></li>
               </ul>
             </li>
             <li class="nav-switch-item"><a href="/news" title="新聞">新聞</a></li>
             <li class="nav-switch-item"><a href="/shows" title="Shows">Shows</a></li>
-            <li class="nav-switch-item current"><a href="/games" title="遊戲分類">遊戲分類</a></li>
+            <li class="nav-switch-item"><a href="/games" title="遊戲分類">遊戲分類</a></li>
             <li class="nav-switch-item"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
             <li class="nav-switch-item"><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <!-- <li class="nav-switch-item"><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
             <li class="nav-switch-item"><a href="http://gamers.tm" title="搞活動">搞活動</a>
               <ul>
-                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動 </a></li>
+                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
                 <li><a href="/lanparty" title="最新發文">Lan Party活動</a></li>
               </ul>
             </li>
@@ -90,17 +90,21 @@
         </ul>
       </header>
     </div>
-    <div id="container">
+    <div id="container" class="lanparty">
       <div id="content" class="clearFix">
-        <div style="position: relative">
-          <div class="profile" id="banner">
-            <div class="info">
-              <h1 id="game_name"></h1>
-            </div>
-            <div class="clearFix"></div>
-          </div>
-          <a href="" class="live-button"></a>
+        <div class="lanparty-nav clearFix">
+          <hr class="line">
+          <ul class="lanparty_type1">
+            <li><a href="/lanparty/#tab-4-1">什麼是Lan party</a></li>
+            <li><a href="/lanparty/#tab-4-2">Lan party時刻表</a></li>
+            <li><a href="/lanparty/#tab-4-3">活動內容</a></li>
+          </ul>
+          <ul class="lanparty_type2">
+            <li><a href="/lanparty_stream_multi">直播</a></li>
+            <li class="current"><a href="/lanparty/videos">LAN PARTY影片頻道</a></li>
+          </ul>
         </div>
+
         <ul class="resize">
           <li>X1</li>
           <li class="zoom"><a href="javascript:;" title="縮放">縮放</a></li>
@@ -117,13 +121,8 @@
              <ul class="playFunctionBtn clearFix">
                 <li><a href="javascript:;" title="上一個影片" id="btn-prev">上一個影片</a></li>
                 <li><a href="javascript:;" title="下一個影片" id="btn-next">下一個影片</a></li>
-                <li></li>
-                <li style="visibility: visible;overflow: visible;"><a href="javascript:loadInitial();" title="Show All" style="
-                    color: #999;
-                    font-weight: bold;
-                    line-height: 27px;
-                ">ALL</a></li>
-                <!-- <li><a href="javascript:;" title="加入播放清單">加入播放清單</a></li> -->
+                <li></li><li></li>
+
               </ul>
             <ul class="playList toggleList current" id="playlists">
             </ul>
@@ -146,13 +145,36 @@
               </li>
               <!--<li>
                 <h2><a href="#tab-3">討論</a></h2>
-              </li>
-              <li>
-                <h2><a href="#tab-4" title="遊戲分類">遊戲分類</a></h2>
               </li> -->
-            </ul>
+            <!--   <li>
+                <h2><a href="#tab-4" title="遊戲分類">遊戲分類</a></h2>
+              </li>
+ -->            </ul>
             <div id="tab-1"></div>
             <div id="tab-2"></div>
+            <!--
+            <div id="tab-3">
+              <form method="post">
+                <a href="javascript:;" title="所有留言">所有留言 ({{COUNT}})</a>
+                <div class="yourDiscussion"> <img src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
+                  <div>
+                    <div class="angle"></div>
+                    <textarea placeholder="分享您的想法"></textarea>
+                  </div>
+                </div>
+                <div class="type clearFix"><span>類型：</span>
+                  <ul>
+                    <li class="current"><a href="javascript:;">最新留言</a></li>
+                    <li><a href="javascript:;" title="由新到舊">由新到舊</a></li>
+                    <li><a href="javascript:;" title="熱門留言">熱門留言</a></li>
+                  </ul>
+                </div>
+                <div class="discussions">
+
+                </div>
+              </form>
+            </div>
+            -->
             <div id="tab-4">
               <ul class="gamesList clearFix" id="gamesCast">
 
@@ -199,7 +221,7 @@
 <script type="text/html" id="playlistTpl">
   <li class="playlistItem" id="{{ID}}">
     <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52" >
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
       <h3>{{TITLE}}</h3>
       <p>{{DESC}}</p>
     </a>
@@ -208,9 +230,8 @@
 <script type="text/html" id="videosTpl">
   <li class="ytVideo videoItem" id="{{ID}}">
     <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52" />
+      <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
       <h3>{{TITLE}}</h3>
-      <h4><span onClick="window.location.href = '{{LINK_USER}}';">{{USER}} 上傳</span></h4>
       <p>{{DESC}}</p>
     </a>
   </li>
@@ -219,14 +240,14 @@
   <li><a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">{{NAME}}</a></li>
 </script>
 <script type="text/html" id="gamesCastTpl">
- <li class="game-item">
-  <a href="#!/{{ID}}" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" title="{{NAME}}">
-    <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}">
-  </a>
-</li>
+  <li class="game-item">
+    <a href="javascript:void(0);" data-id="{{ID}}" onClick="filterGame('{{ID}}'); return false;" title="{{NAME}}">
+      <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}">
+    </a>
+  </li>
 </script>
 <script type="text/html" id="commentItemTpl">
-  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onerror="fixErrorImg(this);">
+  <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
     <cite>{{USERNAME}}</cite><span>．
     <date datetime="{{DATE}}">{{DATE}}</date>
     </span>
@@ -238,7 +259,7 @@
 <script type="text/html" id="commentsTpl">
   <div class="comments-list">
     <a href="javascript:;">所有留言 ({{COUNT}})</a>
-    <div class="yourDiscussion"> <img class="userImg" src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}" onerror="fixErrorImg(this);">
+    <div class="yourDiscussion"> <img class="userImg"src="images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
       <div>
         <div class="angle"></div>
         <textarea id="commentArea" placeholder="分享您的想法"></textarea>
@@ -279,12 +300,5 @@
 <script src="/assets/js/jquery.gritter.min.js?ver=22"></script>
 <script src="/assets/js/util.js?ver=22"></script>
 <script src="/assets/js/media.js?ver=22"></script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(".sf-menu").superfish();
-  });
-</script>
-
 </body>
 </html>
