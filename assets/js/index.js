@@ -516,50 +516,50 @@ var checkForNewStreamers = function() {
             $('#noonline').remove();
         }
         
-        if (onlineStreamers.length !== $('a[href$="/streamers"] > sup').text()) {
+        if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+            
+            $('div #streamers > li').remove().fadeOut('slow');
+            
+            onlineStreamers.forEach(function(item) {
+                if(typeof item.twitch != 'undefined') {
+                        item.twitchid = item.field_value[item.field_value.length-1];
+                        item.id = 'TW'+item.twitchid;
+                        item.idraw = item.twitchid;
+                        item.live = 'live';
+                        item.game = item.twitch.game;
+                        item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                        item.provider = attachments_server;
+                        item.thumb = item.twitch.preview.large;
+                        item.title = item.twitch.channel.status;
+                        item.bust = 1;
+                        item.views = item.twitch.viewers;
+                    } else {
+                        item.id = 'YT'+item.username;
+                        item.idraw= item.username;
+                        item.live = 'live';
+                        item.game = '';
+                        item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                        item.provider = attachments_server;
+                        item.thumb = item.youtube.snippet.thumbnails.high.url;
+                        item.title = item.youtube.snippet.title;
+                        item.bust = 1;
+                        item.views = '0';
+                    }
+            
+                    item.game = item.game == null ? '' : item.game + ' / ';
+            
+                    if(item.game.length > 10) {
+                        item.game = item.game.substr(0,9) + '&#133;' + ' / ';
+                    } 
+            
+                    if(item.username != null && item.username.length > 10) {
+                        item.username = item.username.substr(0, 9) + '&#133;';
+                    }
+            
+                    $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
+            });            
         }
-        
-        $('div #streamers > li').remove().fadeOut('slow');
-        
-        onlineStreamers.forEach(function(item) {
-            if(typeof item.twitch != 'undefined') {
-                    item.twitchid = item.field_value[item.field_value.length-1];
-                    item.id = 'TW'+item.twitchid;
-                    item.idraw = item.twitchid;
-                    item.live = 'live';
-                    item.game = item.twitch.game;
-                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.twitch.preview.large;
-                    item.title = item.twitch.channel.status;
-                    item.bust = 1;
-                    item.views = item.twitch.viewers;
-                } else {
-                    item.id = 'YT'+item.username;
-                    item.idraw= item.username;
-                    item.live = 'live';
-                    item.game = '';
-                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.youtube.snippet.thumbnails.high.url;
-                    item.title = item.youtube.snippet.title;
-                    item.bust = 1;
-                    item.views = '0';
-                }
-        
-                item.game = item.game == null ? '' : item.game + ' / ';
-        
-                if(item.game.length > 10) {
-                    item.game = item.game.substr(0,9) + '&#133;' + ' / ';
-                } 
-        
-                if(item.username != null && item.username.length > 10) {
-                    item.username = item.username.substr(0, 9) + '&#133;';
-                }
-        
-                $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
-        });
     }
     else {
         if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
@@ -567,8 +567,6 @@ var checkForNewStreamers = function() {
             $('a[href$="/streamers"] > sup').text('');
         }
     }
-
-    
 };
 
 setInterval(function() {

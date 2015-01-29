@@ -387,6 +387,14 @@ function streamersSearch() {
                 var svalue  = sd.username;
                 streamers.push({value: svalue, data: sdata});
             }
+            
+            if (typeof(sd.title) !== 'undefined') {
+                if (sd.title.indexOf(searchDom.val()) > -1) {
+                    var sdata   = {sname : sd.title, s_id: sd.user_id};
+                    var svalue  = sd.title;
+                    streamers.push({value: svalue, data: sdata});
+                }
+            }
         }
     }else{
 

@@ -3949,9 +3949,104 @@ color: #fff;
 
 
 #container_lanparty .lanparty_title{
+  font-weight:bold;
   display: inline-block;
   margin: 100px 80px 0px;
 }
+
+.dates_title {
+  width: 823px;
+  position: relative;
+  margin-left: 100px;
+  margin-top: 75px;
+}
+
+ul.date_schedule{
+  color: #fffd21;
+  font-size:large;
+}
+
+ul.date_schedule > li:nth-child(1){
+
+}
+
+ul.date_schedule > li:nth-child(2) {
+padding-left: 48px;
+}
+
+ul.date_schedule > li:nth-child(3) {
+padding-left: 60px;
+}
+
+ul.date_schedule > li:nth-child(4) {
+padding-left: 55px;
+}
+
+ul.date_schedule > li:nth-child(5) {
+padding-left: 60px;
+}
+
+ul.date_schedule > li:nth-child(6) {
+padding-left: 65px;
+}
+
+ul.date_schedule > li:nth-child(7) {
+padding-left: 65px;
+}
+
+/*specific_dates*/
+.specific_dates {
+margin-left: 100px;
+margin-top: -15px;
+}
+
+ul.dateSpecific {
+color: #e9ae0b;
+font-size: larger;
+}
+
+ul.dateSpecific > li:nth-child(2) {
+padding-left: 47px;
+}
+
+ul.dateSpecific > li:nth-child(3) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(4) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(5) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(6) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(7) {
+padding-left: 56px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #container_lanparty .lanparty_content{
   color: #00b8e6;
   width: 85%;
@@ -3963,31 +4058,273 @@ color: #fff;
   width: 85%;
   position: relative;
   margin: 51px auto 80px;
-  background: url(../images/lanparty_grid_bg.png);
-  min-width: 940px;
+  min-width: 1047px;
   min-height: 829px;
-  padding-top: 40px;
+  border-top: #00c7f9 solid 1px;
 }
 
 #container_lanparty .lanparty_content p{
   margin: 20px 0px;
   line-height: 1.75;
 }
-#container_lanparty .hour_time{
-  display: inline-block;
-  width: 155px;
-  color: #00b8e6;
-  padding-top: 60px;
+
+
+
+
+.scheduler {
+  background: url(../images/bg_grid.jpg) repeat-x;
+  width: 941px;
+  height: 863px;
+  display:inline-block;
+  vertical-align: top;
 }
 
+#container_lanparty .hour_time {
+  display: inline-block;
+  width: 105px;
+  color: #FFFFFF;
+  font-size: large;
+}
+
+ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(11), ul.hour_time > li:nth-child(15) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(19), ul.hour_time > li:nth-child(23) {
+color: #00c7f9;
+}
+
+
+ul.hour_time > li:nth-child(2),  ul.hour_time > li:nth-child(4),  ul.hour_time > li:nth-child(6),  ul.hour_time > li:nth-child(8),  ul.hour_time > li:nth-child(10)   {
+color: #666666;
+font-size: smaller;
+}
+
+
+ul.hour_time > li:nth-child(12),  ul.hour_time > li:nth-child(14),  ul.hour_time > li:nth-child(16)  {
+color: #666666;
+font-size: smaller;
+}
+
+ul.hour_time > li:nth-child(18),  ul.hour_time > li:nth-child(20),  ul.hour_time > li:nth-child(22),  ul.hour_time > li:nth-child(24)  {
+color: #666666;
+font-size: smaller;
+}
+
+
+/*scheduler*/
+
+.hours {
+display: inline-block;
+width: 102px;
+vertical-align: top;
+padding-top:8px;
+}
+
+.Monday {
+width: 116px;
+display: inline-block;
+vertical-align: top;
+padding-top:28px;
+}
+
+#Monday1 {
+background-color: #00c7f9;
+width: 102px;
+height: 119px;
+z-index: 1;
+
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+padding-left: 10px;
+line-height: 1.20;
+padding-top: 10px;
+}
+
+#Monday1 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
+
+#Monday2 {
+background-color: #00c7f9;
+width: 102px;
+height: 373px;
+z-index: 1;
+margin-top: 79px;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+padding-left: 10px;
+line-height: 1.20;
+padding-top: 10px;
+}
+
+#Monday2 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
+
+.Tuesday {
+display: inline-block;
+width: 118px;
+vertical-align: top;
+padding-top:375px;
+}
+
+#Tuesday1 {
+background-color: #00c7f9;
+width: 106px;
+height: 373px;
+z-index: 1;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+line-height: 1.20;
+padding-top: 10px;
+/* margin-left: 17px; */
+padding-left: 10px;
+}
+
+#Tuesday1 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
+
+
+.Wednesday {
+display: inline-block;
+width: 118px;
+vertical-align: top;
+padding-top: 164px;
+}
+
+#Wednesday1 {
+background-color: #00c7f9;
+width: 103px;
+height: 125px;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+padding-top: 10px;
+padding-left: 10px;
+line-height: 1.20;
+}
+
+#Wednesday1 > p {
+
+  font-size: smaller;
+  color: #13a1c4;
+}
+
+
+.Thursday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 400px;
+}
+
+#Thursday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 235px;
+  width: 102px;
+  }
+
+#Thursday1 > p {
+
+  font-size: smaller;
+  color: #13a1c4;
+}
+
+.Friday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+}
+
+
+
+.Saturday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+  padding-top: 95px;
+}
+
+#Saturday1 {
+  background-color: #00c7f9;
+  color: white;
+  font-size: large;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-left: #fffd21 solid;
+  width: 102px;
+}
+
+#Saturday1 > p {
+
+  font-size: smaller;
+  color: #13a1c4;
+}
+
+.Sunday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+  padding-top: 128px;
+
+}
+
+#Sunday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: white;
+  font-size: large;
+  width: 102px;
+  height: 370px;
+}
+
+#Sunday1 > p {
+
+  font-size: smaller;
+  color: #13a1c4;
+}
+
+
+
+
+
 #container_lanparty .hour_time li{
-  border-top: 1px dotted #00b8e6;
+
   margin: 0px 5px 0px 40px;
   height: 36px;
 }
 
 #container_lanparty .hour_time li:last-child {
-  border-bottom: 1px dotted #00b8e6;
+
   margin-bottom: 20px;
 }
 
@@ -4040,6 +4377,7 @@ color: #fff;
 
 #container_lanparty_green .hour_time li:last-child {
   border-bottom: 1px dotted #00ff54;
+>>>>>>> 3c0b0c2e1d7d6b071d06ea261416d8137eb4da3b
   margin-bottom: 20px;
 }
 
@@ -4053,10 +4391,9 @@ color: #fff;
   margin-bottom: 9px;
 }
 
-.lanparty-nav-green > hr.line {
-  height: 1px;
-  border-top: 1px solid #434343;
-  margin-bottom: 9px;
+div#lanparty_event {
+display: none;
+
 }
 
 .event{
@@ -4175,11 +4512,11 @@ color: #fff;
   width: 100%;
 }
 
-#streamers .video .list > li {
+#streamers .video .list > li{
   float: left;
   height: 246px;
   width: 334px;
-  position: relative;
+  position: relative;  
 }
 
 .gritter-item .link {
