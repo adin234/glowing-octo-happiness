@@ -3954,10 +3954,10 @@ color: #fff;
 }
 
 .dates_title {
-width: 823px;
-position: relative;
-margin-left: 45px;
-margin-top: 75px;
+  width: 823px;
+  position: relative;
+  margin-left: 158px;
+  margin-top: 75px;
 }
 
 ul.date_schedule{
@@ -3995,7 +3995,7 @@ padding-left: 65px;
 
 /*specific_dates*/
 .specific_dates {
-margin-left: 45px;
+margin-left: 158px;
 margin-top: -15px;
 }
 
@@ -4057,10 +4057,8 @@ padding-left: 56px;
   width: 85%;
   position: relative;
   margin: 51px auto 80px;
-  background: url(../images/bg_grid.jpg) no-repeat;
-  min-width: 940px;
+  min-width: 1047px;
   min-height: 829px;
-  padding-top: 40px;
   border-top: #00c7f9 solid 1px;
 }
 
@@ -4070,18 +4068,21 @@ padding-left: 56px;
 }
 
 
-.scheduler {
-display: inline-block;
 
+
+.scheduler {
+  background: url(../images/bg_grid.jpg) repeat-x;
+  width: 941px;
+  height: 863px;
+  display:inline-block;
+  vertical-align: top;
 }
 
 #container_lanparty .hour_time {
-display: inline-block;
-width: 105px;
-color: #FFFFFF;
-margin-top: -33px;
-margin-left: -360px;
-font-size: large;
+  display: inline-block;
+  width: 105px;
+  color: #FFFFFF;
+  font-size: large;
 }
 
 ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
@@ -4120,16 +4121,26 @@ font-size: smaller;
 
 /*scheduler*/
 
-.Monday {
+.hours {
+display: inline-block;
 width: 102px;
+vertical-align: top;
+padding-top:8px;
 }
 
-#Monday1{
+.Monday {
+width: 116px;
+display: inline-block;
+vertical-align: top;
+padding-top:28px;
+}
+
+#Monday1 {
 background-color: #00c7f9;
 width: 102px;
 height: 119px;
 z-index: 1;
-margin-top: -13px;
+
 border-left: #fffd21 solid;
 color: white;
 font-size: large;
@@ -4145,8 +4156,7 @@ padding-top: 10px;
   font-size:smaller;
 }
 
-#Monday2{
-
+#Monday2 {
 background-color: #00c7f9;
 width: 102px;
 height: 373px;
@@ -4159,7 +4169,6 @@ text-align: left;
 padding-left: 10px;
 line-height: 1.20;
 padding-top: 10px;
-
 }
 
 #Monday2 > p{
@@ -4168,20 +4177,26 @@ padding-top: 10px;
   font-size:smaller;
 }
 
+.Tuesday {
+display: inline-block;
+width: 118px;
+vertical-align: top;
+padding-top:375px;
+}
+
 #Tuesday1 {
 background-color: #00c7f9;
-width: 100px;
+width: 106px;
 height: 373px;
 z-index: 1;
-
 border-left: #fffd21 solid;
 color: white;
 font-size: large;
 text-align: left;
 line-height: 1.20;
 padding-top: 10px;
-margin-left: 125px;
-padding-left:10px;
+/* margin-left: 17px; */
+padding-left: 10px;
 }
 
 #Tuesday1 > p{
@@ -4189,6 +4204,99 @@ padding-left:10px;
   color: #13a1c4;
   font-size:smaller;
 }
+
+
+.Wednesday {
+display: inline-block;
+width: 118px;
+vertical-align: top;
+padding-top: 164px;
+}
+
+#Wednesday1 {
+background-color: #00c7f9;
+width: 103px;
+height: 125px;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+padding-top: 10px;
+padding-left: 10px;
+line-height: 1.20;
+}
+
+#Wednesday1 > p {
+
+  font-size: smaller;
+  color: #13a1c4;
+}
+
+
+.Thursday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 400px;
+}
+
+#Thursday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 235px;
+  width: 102px;
+  }
+
+.Friday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+}
+
+.Saturday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+  padding-top: 95px;
+}
+
+#Saturday1 {
+  background-color: #00c7f9;
+  color: white;
+  font-size: large;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-left: #fffd21 solid;
+  width: 102px;
+}
+
+.Sunday {
+  display: inline-block;
+  width: 118px;
+  vertical-align:top;
+  padding-top: 128px;
+
+}
+
+#Sunday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: white;
+  font-size: large;
+  width: 102px;
+  height: 370px;
+}
+
+
+
+
+
+
 #container_lanparty .hour_time li{
 
   margin: 0px 5px 0px 40px;
