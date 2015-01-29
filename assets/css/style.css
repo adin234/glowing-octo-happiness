@@ -3876,9 +3876,104 @@ color: #fff;
   border-top: 2px solid #00b8e6;
 }
 #container_lanparty .lanparty_title{
+  font-weight:bold;
   display: inline-block;
   margin: 100px 80px 0px;
 }
+
+.dates_title {
+width: 823px;
+position: relative;
+margin-left: 45px;
+margin-top: 75px;
+}
+
+ul.date_schedule{
+  color: #fffd21;
+  font-size:large;
+}
+
+ul.date_schedule > li:nth-child(1){
+
+}
+
+ul.date_schedule > li:nth-child(2) {
+padding-left: 48px;
+}
+
+ul.date_schedule > li:nth-child(3) {
+padding-left: 60px;
+}
+
+ul.date_schedule > li:nth-child(4) {
+padding-left: 55px;
+}
+
+ul.date_schedule > li:nth-child(5) {
+padding-left: 60px;
+}
+
+ul.date_schedule > li:nth-child(6) {
+padding-left: 65px;
+}
+
+ul.date_schedule > li:nth-child(7) {
+padding-left: 65px;
+}
+
+/*specific_dates*/
+.specific_dates {
+margin-left: 45px;
+margin-top: -15px;
+}
+
+ul.dateSpecific {
+color: #e9ae0b;
+font-size: larger;
+}
+
+ul.dateSpecific > li:nth-child(2) {
+padding-left: 47px;
+}
+
+ul.dateSpecific > li:nth-child(3) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(4) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(5) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(6) {
+padding-left: 55px;
+}
+
+ul.dateSpecific > li:nth-child(7) {
+padding-left: 56px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #container_lanparty .lanparty_content{
   color: #acacac;
   width: 85%;
@@ -3890,31 +3985,144 @@ color: #fff;
   width: 85%;
   position: relative;
   margin: 51px auto 80px;
-  background: url(../images/lanparty_grid_bg.png);
+  background: url(../images/bg_grid.jpg) no-repeat;
   min-width: 940px;
   min-height: 829px;
   padding-top: 40px;
+  border-top: #00c7f9 solid 1px;
 }
 
 #container_lanparty .lanparty_content p{
   margin: 20px 0px;
   line-height: 1.75;
 }
-#container_lanparty .hour_time{
-  display: inline-block;
-  width: 155px;
-  color: #0a8bac;
-  padding-top: 60px;
+
+.scheduler {
+display: inline-block;
 }
 
+#container_lanparty .hour_time {
+display: inline-block;
+width: 105px;
+color: #FFFFFF;
+margin-top: -33px;
+margin-left: -360px;
+font-size: large;
+}
+
+ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(11), ul.hour_time > li:nth-child(15) {
+color: #00c7f9;
+}
+
+ul.hour_time > li:nth-child(19), ul.hour_time > li:nth-child(23) {
+color: #00c7f9;
+}
+
+
+ul.hour_time > li:nth-child(2),  ul.hour_time > li:nth-child(4),  ul.hour_time > li:nth-child(6),  ul.hour_time > li:nth-child(8),  ul.hour_time > li:nth-child(10)   {
+color: #666666;
+font-size: smaller;
+}
+
+
+ul.hour_time > li:nth-child(12),  ul.hour_time > li:nth-child(14),  ul.hour_time > li:nth-child(16)  {
+color: #666666;
+font-size: smaller;
+}
+
+ul.hour_time > li:nth-child(18),  ul.hour_time > li:nth-child(20),  ul.hour_time > li:nth-child(22),  ul.hour_time > li:nth-child(24)  {
+color: #666666;
+font-size: smaller;
+}
+
+
+/*scheduler*/
+
+.Monday {
+width: 102px;
+}
+
+#Monday1{
+background-color: #00c7f9;
+width: 102px;
+height: 119px;
+z-index: 1;
+margin-top: -13px;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+padding-left: 10px;
+line-height: 1.20;
+padding-top: 10px;
+}
+
+#Monday1 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
+
+#Monday2{
+
+background-color: #00c7f9;
+width: 102px;
+height: 373px;
+z-index: 1;
+margin-top: 79px;
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+padding-left: 10px;
+line-height: 1.20;
+padding-top: 10px;
+
+}
+
+#Monday2 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
+
+#Tuesday1 {
+background-color: #00c7f9;
+width: 100px;
+height: 373px;
+z-index: 1;
+
+border-left: #fffd21 solid;
+color: white;
+font-size: large;
+text-align: left;
+line-height: 1.20;
+padding-top: 10px;
+margin-left: 125px;
+padding-left:10px;
+}
+
+#Tuesday1 > p{
+
+  color: #13a1c4;
+  font-size:smaller;
+}
 #container_lanparty .hour_time li{
-  border-top: 1px dotted #0a8bac;
+  
   margin: 0px 5px 0px 40px;
   height: 36px;
 }
 
 #container_lanparty .hour_time li:last-child {
-  border-bottom: 1px dotted #0a8bac;
+ 
   margin-bottom: 20px;
 }
 
@@ -3922,6 +4130,10 @@ color: #fff;
   height: 1px;
   border-top: 1px solid #434343;
   margin-bottom: 9px;
+}
+
+div#lanparty_event {
+display: none;
 }
 
 .event{
