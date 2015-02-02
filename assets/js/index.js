@@ -576,15 +576,15 @@ var checkForNewStreamers = function() {
     }
     else {
         if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
             $('a[href$="/streamers"] > sup').text('');
         } else if ($('#noonline').length === 0 && $('#streamers > li').length > 0) {
             $('#streamers > li').remove();
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
             $('a[href$="/streamers"] > sup').text('');
         } else if ($('#noonline').length > 0 && $('#streamers > li').length > 0) {
             $('#streamers > li').remove();
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有直播 </p>');
+            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
             $('a[href$="/streamers"] > sup').text('');         
         } else {
             console.log($('#noonline').length);
