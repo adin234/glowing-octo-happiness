@@ -462,7 +462,8 @@ a:hover, a:focus, a:active {
 }
 
 #wrapper {
-  background: url("/assets/images/background.jpg") no-repeat fixed center top;
+  /*background: url("/assets/images/background.jpg") no-repeat fixed center top;*/
+  background: url("/assets/images/gamers-newbg.jpg") no-repeat fixed center top;
   background-size: 100% auto;
   min-width: 1148px;
 }
@@ -3243,7 +3244,8 @@ li.thread  .stats > dl > dt {
 
 /* Streams */
 body.streams {
-  background: url("/assets/images/background.jpg") no-repeat fixed center top;
+  /*background: url("/assets/images/background.jpg") no-repeat fixed center top;*/
+  background: url("/assets/images/gamers-newbg.jpg") no-repeat fixed center top;
   background-size: cover;
 }
 
