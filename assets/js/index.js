@@ -513,9 +513,6 @@ var checkForNewStreamers = function() {
     onlineStreamers = [];
     $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
     
-    
-    console.log(onlineStreamers.length);
-    
     if (onlineStreamers.length > 0) {
         if ($('#noonline').length > 0) {
             $('#noonline').remove();
@@ -525,9 +522,6 @@ var checkForNewStreamers = function() {
         if ($('a[href$="/streamers"] > sup').text() !== '') {
             currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
-        
-        console.log(onlineStreamers.length);
-        console.log(currentStreamCount);
         
         if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
@@ -587,8 +581,8 @@ var checkForNewStreamers = function() {
             $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
             $('a[href$="/streamers"] > sup').text('');         
         } else {
-            console.log($('#noonline').length);
-            console.log($('#streamers > li').length);
+            //console.log($('#noonline').length);
+            //console.log($('#streamers > li').length);
         }
     }
 };
