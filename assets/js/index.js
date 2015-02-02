@@ -179,7 +179,7 @@ var index_show_streamers = function(streamersList) {
         });       
     }
     else {
-        html.push('<p id="noonline"> 目前沒有直播 </p>');
+        html.push('<p id="noonline"> 目前沒有人直播 </p>');
     }
 
     $('#streamers').html(html.join(''));
