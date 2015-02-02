@@ -29,6 +29,12 @@ function checkIfOnline(userId) {
 $(function() {
     var streamType = '';
     var streamId = '';
+	
+	$.ajax(server + 'streamers', function(data) {
+        
+    }).fail(function() {
+      window.location.assign(page_maintenance);  
+    });
 
     var information_masonry = function() {
         $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);

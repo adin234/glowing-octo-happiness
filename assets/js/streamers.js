@@ -26,6 +26,20 @@ var filter_videos = function(input) {
 
 };
 
+$(function() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: server+"streamers"
+    }).done(function (data) {
+        $.merge(streamersList, data.streamers);
+        index_show_streamers(streamersList);
+        $(window).trigger('hashchange');
+    }).fail(function(){
+        window.location.assign(page_maintenance);    
+    });    
+});
+
 var render_featured_games = function (filter) {
     var html = [];
     var items = [];
