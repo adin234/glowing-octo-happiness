@@ -120,58 +120,20 @@
     </div>
     <div id="container">
       <div id="content" class="clearFix">
-        <div class="silderList clearFix">
-          <div method="post" class="search">
-            <div></div>
-            <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
-            <div class="games tabs">
-              <ul class="tab clearFix">
-                <li>
-                  <h2><a href="#tab-1-1">最新遊戲</a></h2>
-                </li>
-                <li>
-                  <h2><a href="#tab-1-2">精選遊戲</a></h2>
-                </li>
-              </ul>
-              <div id="tab-1-1">
-                <div class="collection">
-                  <div class="bxslider games" id="container-latest-games">
-                      <!-- START -->
-
-                      <!-- END -->
-                  </div>
-                </div>
-              </div>
-              <div id="tab-1-2">
-                <div class="collection">
-                  <div class="bxslider games" id="container-featured-games">
-                      <!-- START -->
-
-                      <!-- END -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div method="post" class="search">
-            <div></div>
-            <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-            <div class="video tabs">
-              <ul class="tab clearFix">
-                <li>
-                  <h2><a href="#tab-2-1" id="game-title">遊戲分類</a></h2>
-                </li>
-              </ul>
-              <div id="tab-2-1">
-                <div class="collection">
-                  <div class="bxslider videos" id="container-videos">
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <table border="0">
+          <tr>
+            <td>Views: <td>
+            <td id="views"></td>
+          </tr>
+          <tr>
+            <td>Clicks: <td>
+            <td id="clicks"></td>
+          </tr>
+          <tr>
+            <td>Earnings: <td>
+            <td id="earnings"></td>
+          </tr>
+        </table>
       </div>
       <footer class="clearFix">
         <nav>
@@ -199,31 +161,6 @@
       </div>
   </div>
 </div>
-<script type="text/html" id="gameTpl">
-<li class="game-item {{CLASS}}"><a href="#" onClick="javascript:utilHash.changeHashVal('game', '{{ID}}');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" title="{{NAME}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
-
-</script>
-<script type="text/html" id="gameContainerTpl">
-  <ul class="game clearFix"> {{ITEMS}} </ul>
-</script>
-<script type="text/html" id="videoTpl">
-<li class="pointer">
-  <a href="{{LINK}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot"></a>
-  <h3><a href="{{LINK}}" title="{{TITLE}}">{{TITLE}}</a></h3>
-  <a href="{{LINK}}" title="{{TITLE}}">
-  <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" onerror="fixErrorImg(this);" class="uploader">
-  </a>
-  <ul>
-    <li><em>觀看次數：</em>{{VIEWS}}</li>
-    <li><a href="{{LINK}}/comments"><em>Replies: </em> {{ANYTV_COMMENTS}}</a></li>
-  </ul>
-</li>
-</script>
-<script type="text/html" id="videoContainerTpl">
-<ul class="list clearFix">
-  {{ITEMS}}
-</ul>
-</script>
 
 
 <script src="/assets/js/jquery.min.js"></script>
@@ -240,7 +177,7 @@
 <script src="/assets/js/autolinker.js"></script>
 <script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/util.js"></script>
-<script type="text/javascript" src="/assets/js/games.js"></script>
+<script type="text/javascript" src="/assets/js/earnings.js"></script>
 <!-- <script src="/assets/js/sidr/jquery.sidr.min.js"></script> -->
 
 

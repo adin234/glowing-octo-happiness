@@ -26,6 +26,20 @@ var filter_videos = function(input) {
 
 };
 
+$(function() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: server+"streamers"
+    }).done(function (data) {
+        $.merge(streamersList, data.streamers);
+        index_show_streamers(streamersList);
+        $(window).trigger('hashchange');
+    }).fail(function(){
+        window.location.assign(page_maintenance);    
+    });    
+});
+
 var render_featured_games = function (filter) {
     var html = [];
     var items = [];
@@ -107,13 +121,12 @@ var render_videos = function(filter, game, lanparty) {
     var filterGameRegExp = new RegExp(filterGame, 'i');
 
     var itemToComplete = 9;
-
+    
     var source = lanparty && typeof lanparty != 'undefined'
         ? page_data.lanparty
         : page_data.streamers;
 
     source.forEach(function (item, i) {
-        //console.log(item);
         if(typeof item.twitch != 'undefined') {
             if(typeof filter != 'undefined'
             && item.twitch.channel.status
@@ -127,7 +140,7 @@ var render_videos = function(filter, game, lanparty) {
             item.live = 'live';
             item.link = lanparty && typeof lanparty != 'undefined'
                 ? '/lanparty_stream_multi/#/'+item.id
-                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
+                : '/gamer_stream/?user='+item.user_id+'/#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.twitch.preview.large;
             item.title = item.twitch.channel.status;
@@ -142,7 +155,7 @@ var render_videos = function(filter, game, lanparty) {
             item.live = 'live';
             item.link = lanparty && typeof lanparty != 'undefined'
                 ? '/lanparty_stream_multi/#/'+item.id
-                : '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
+                : '/gamer_stream/?user='+item.user_id+'/#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.youtube.snippet.thumbnails.high.url;
             item.title = item.youtube.snippet.title;
@@ -168,9 +181,8 @@ var render_videos = function(filter, game, lanparty) {
     } else {
         $('#container-lanparty').html(html.join(''));
     }
-
     
-    if (typeof(filter) !== 'undefined' || filter !== '') {
+    if (typeof(filter) !== 'undefined') {
         if(!html.length && $('#container-videos').html().trim().length === 0) {
             html.push('無法找到你指定的實況主');
             if(!lanparty) {
@@ -425,10 +437,8 @@ var checker = setInterval(function() {
         if (onlineStreamers.length > 0) {
             if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
-
                 page_data.streamers = onlineStreamers;
                 render_videos();
-
             }        
         }
         else {

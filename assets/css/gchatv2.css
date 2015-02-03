@@ -68,6 +68,7 @@ div.chat-message{
     font-family: Arial;
     font-size: 12px;
     margin-bottom: 3px;
+    max-width: 265px;
 }
 div.msgborder{
     width: 95%;
@@ -88,6 +89,7 @@ div.notifier{
     white-space: normal;
     line-height: normal;
     font-size: 12px;
+    word-wrap: break-word;
 }
 label.timestamp{
     text-align: right;

@@ -10,7 +10,7 @@ $(document).ready(function(){
         links.push($(item)[0].outerHTML);
     });
     links.pop();
-    links.push('<li class="nav-switch-item"><a href="http://gamers.tm" title="搞活動">搞活動</a>');
+    links.push('<li class="nav-switch-item"><a href="/lanparty" title="搞活動">搞活動</a>');
 
     $(window).scroll(function(){
         console.log('> 200');
