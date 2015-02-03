@@ -83,6 +83,7 @@ var utilLogin = {
                 $('img.userImg').attr('src', utilUser.get().links.avatar);
                 $(window).trigger('user_logged_in');
                 utilLogin.hide();
+                $(window).trigger('login-success');
             })
             .fail(function(e) {
                 $('.login-label').html(e.responseJSON.message);
@@ -387,7 +388,7 @@ function streamersSearch() {
                 var svalue  = sd.username;
                 streamers.push({value: svalue, data: sdata});
             }
-            
+
             if (typeof(sd.title) !== 'undefined') {
                 if (sd.title.indexOf(searchDom.val()) > -1) {
                     var sdata   = {sname : sd.title, s_id: sd.user_id};
