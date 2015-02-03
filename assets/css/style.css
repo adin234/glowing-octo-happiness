@@ -4790,3 +4790,11 @@ top: 100px !important;
 }
 
 #query {width: 150px !important;}
+
+
+div#activity_container {
+background: #FFFFFF;
+width: 920px;
+height: 500px;
+margin-left: 75px;
+}
