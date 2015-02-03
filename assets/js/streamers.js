@@ -452,9 +452,6 @@ var checker = setInterval(function() {
             streamCount = 0;
         }
         
-        console.log(streamCount);
-        console.log(onlineStreamers.length);
-        
         if (onlineStreamers.length > 0) {
             if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
