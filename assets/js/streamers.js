@@ -32,9 +32,9 @@ $(function() {
         dataType: "json",
         url: server+"streamers"
     }).done(function (data) {
-        $.merge(streamersList, data.streamers);
-        index_show_streamers(streamersList);
-        $(window).trigger('hashchange');
+        //$.merge(streamersList, data.streamers);
+        //index_show_streamers(streamersList);
+        //$(window).trigger('hashchange');
     }).fail(function(){
         window.location.assign(page_maintenance);    
     });    
@@ -426,16 +426,37 @@ var getOnlineStreamers = function(link, streamType) {
     });
 };
 
+var streamCount = 0;
 var checker = setInterval(function() {
     if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
-        getOnlineStreamers(server + 'streamers', 'TW');
-        getOnlineStreamers(server + 'streamers/youtube', 'YT');
+        
+        for (i=0; i < 2; i++) {
+            if (i === 0) {
+                getOnlineStreamers(server + 'streamers', 'TW');
+            } else {
+                getOnlineStreamers(server + 'streamers/youtube', 'YT');
+            }
+        }
         
         onlineStreamers = [];
-        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
         
         if (onlineStreamers.length > 0) {
-            if (onlineStreamers.length > $('a[href$="/streamers"] > sup').text() || onlineStreamers.length < $('a[href$="/streamers"] > sup').text()) {
+            onlineStreamers.length = 0;
+        }
+        
+        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
+        
+        if ($('a[href$="/streamers"] > sup').text().length > 0) {
+            streamCount = parseInt($('a[href$="/streamers"] > sup').text());
+        } else {
+            streamCount = 0;
+        }
+        
+        console.log(streamCount);
+        console.log(onlineStreamers.length);
+        
+        if (onlineStreamers.length > 0) {
+            if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
                 page_data.streamers = onlineStreamers;
                 render_videos();
@@ -444,6 +465,7 @@ var checker = setInterval(function() {
         else {
             if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
                 $('a[href$="/streamers"] > sup').text('');
+                $('#container-videos > ul').remove().fadeOut();
             }
         }
 
