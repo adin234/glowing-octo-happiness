@@ -4782,3 +4782,9 @@ a.social-share img {
 .adjust_line_green {
   margin-top: -5.50px;
 }
+
+/*added css*/
+
+#container-multiview .uploader {
+top: 82px !important;
+}
