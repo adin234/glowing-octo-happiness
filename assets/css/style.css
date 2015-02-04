@@ -4610,7 +4610,7 @@ button.load-more {
   background: #ececec;
   border: 0;
   color: #444;
-  font-size: 15px;
+  font-size: 15px; 
   margin: auto;
   width: 100%;
   cursor: pointer;
@@ -4908,3 +4908,17 @@ div#banner {
   color: #fff;
 }
 
+#add_event > a {
+color: #fff;
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+padding: 8px 15px;
+background: rgba(0,255,84,0.3);
+border: 3px solid #00ff54;
+border-radius: 20px;
+}
+
+div#add_event {
+display: inline-block;
+}
