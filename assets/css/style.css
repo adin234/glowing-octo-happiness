@@ -4333,8 +4333,8 @@ line-height: 1.20;
 }
 
 #container_lanparty_green .lanparty_content p{
-  margin: 20px 0px;
-  line-height: 1.75;
+  /*margin: 20px 0px;*/
+  /*line-height: 1.75;*/
 }
 #container_lanparty_green .hour_time{
   display: inline-block;
@@ -4801,8 +4801,9 @@ margin-left: 75px !important;
 
 
 .event_list {
-  display: block !important;
-  
+display: block !important;
+width: 100%;
+margin-top: 45px;
 }
 
 #event {
@@ -4810,12 +4811,10 @@ margin-left: 75px !important;
   width: 958px;
   color: black;
   padding-left: 0px;
-  height: 175px;
+  height: 195px;
   padding-top: 19px;
   padding-right: 15px;
-  padding-bottom: 60px;
 }
-
 
 
 
@@ -4849,6 +4848,7 @@ p#event_details {
 
 p#event_desc {
   color: #ccc;
+  line-height: 1.3;
 
 }
 
@@ -4884,4 +4884,11 @@ p#date_2 {
 
 .event_list > #event:last-child #separator {
 display: none;
+}
+
+#container_lanparty_green .lanparty_content {
+color: #acacac;
+width: 100%;
+position: relative;
+height: 900px;
 }
