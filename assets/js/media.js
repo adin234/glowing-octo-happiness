@@ -96,7 +96,7 @@ var update_videos = function (videos, append, initial) {
   }
 
   if(!html.length && !append) {
-    html.push('目前沒有影片');
+    html.push('ç›®å‰�æ²’æœ‰å½±ç‰‡');
   }
 
   if(append) {
@@ -114,21 +114,27 @@ var update_playlists = function (playlists) {
   html = [];
   var ids = [];
   var cons = '';
-  var source = $('#playlistTpl').html();
+  var source = $('#categoriesTpl').html();
+  var visible_playlists = (typeof page_data.visible_playlists != 'undefined') ? page_data.visible_playlists.split(',') : [];
 
   if(typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
     cons = 'console/'+filterConsole+'/';
   }
 
   playlists.forEach(function(item, i){
+      //console.log('playlist = '+item.id);
     if(~ids.indexOf(item.id)) {
       return;
     }
 
-    source = $('#playlistTpl').html();
-    if($('body').hasClass('news')) {
-      source = $('#categoriesTpl').html();
+    if(visible_playlists.indexOf(item.id) == -1){
+        return;
     }
+
+//    source = $('#playlistTpl').html();
+//    if($('body').hasClass('news')) {
+//      source = $('#categoriesTpl').html();
+//    }
 
     ids.push(item.id);
     // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
@@ -161,11 +167,11 @@ var update_playlists = function (playlists) {
   }
 
 
-  if($('body').hasClass('news')) {
+  //if($('body').hasClass('news')) {
     $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
     $('#categories').html(html.join(''));
-  }
+  //}
   $('#playlists .mCSB_container').html(html.join(''));
 };
 
@@ -203,7 +209,7 @@ $('body').on('click', 'button#like', function(item, x) {
 
   var url = server+'fav/'+videoId;
   if(isActive) {
-    $elem.html('加入至我的最愛');
+    $elem.html('åŠ å…¥è‡³æˆ‘çš„æœ€æ„›');
     url = server+'unfav/'+videoId;
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
@@ -212,7 +218,7 @@ $('body').on('click', 'button#like', function(item, x) {
         $('li[id=video-'+videoId+']').hide();
     }
   } else {
-    $elem.html('從我的最愛移除');
+    $elem.html('å¾žæˆ‘çš„æœ€æ„›ç§»é™¤');
     page_data.favorites.push(videoId);
     $('li[id=video-'+videoId+']').show();
   }
@@ -232,7 +238,7 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     var likeButton = '';
-    var text = '加入至我的最愛';
+    var text = 'åŠ å…¥è‡³æˆ‘çš„æœ€æ„›';
     var active = '';
 
     if(typeof page_data.favorites === 'undefined') {
@@ -242,7 +248,7 @@ var showVideo = function(videoId) {
     if(typeof page_data.favorites !== 'undefined') {
 
       if(~page_data.favorites.indexOf(videoId)) {
-        text = '從我的最愛移除';
+        text = 'å¾žæˆ‘çš„æœ€æ„›ç§»é™¤';
         active = 'active';
       }
       likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';
@@ -565,15 +571,13 @@ $(document).on('load-page',function(){
             ? page_data.playlists[0].snippet.thumbnails
             : '';
 
-  if(page_data.playlists.length) {
+  if(false && page_data.playlists.length) {
     page_data.playlists.splice(0,0,{
-      id: !$('body').hasClass('news')
-        ? page_data.config.playlist
-        : 'UU'+page_data.config.channel.slice(2),
+      id: 'UU'+page_data.config.channel.slice(2),
       snippet: {
-        title: '最新影片',
+        title: 'æœ€æ–°å½±ç‰‡',
         channelId: page_data.config.channel,
-        description: '會員上傳',
+        description: 'æœƒå“¡ä¸Šå‚³',
         thumbnails: thumbs
       }
     });
@@ -612,7 +616,7 @@ $(document).on('load-page',function(){
 
         page_data.commentsLength++;
 
-      $('.comments-list > a:first-child').html('所有留言 ('+page_data.commentsLength+')');
+      $('.comments-list > a:first-child').html('æ‰€æœ‰ç•™è¨€ ('+page_data.commentsLength+')');
 
         $('#tab-2 .discussions')
           .prepend(template(
