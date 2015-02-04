@@ -1,9 +1,8 @@
 var server              = 'http://api.gamers.tm/';
-//var origin              = 'http://www.gamers.tm/';
-var origin              = 'http://localhost:8000/';
+var origin              = 'http://www.gamers.tm/';
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';
-var page_maintenance    = 'http://localhost:8000/maintenance.html';
+var page_maintenance    = origin + 'maintenance.html';
 
 var utilLoader = {
     show: function(loader) {
