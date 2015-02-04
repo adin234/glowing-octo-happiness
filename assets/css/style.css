@@ -4319,7 +4319,7 @@ line-height: 1.20;
   color: #acacac;
   width: 85%;
   position: relative;
-  margin: 80px auto;
+ /* margin: 80px auto;*/
 }
 #container_lanparty_green .lanparty_timetable{
   color: #acacac;
@@ -4802,18 +4802,19 @@ margin-left: 75px !important;
 
 .event_list {
 display: block !important;
-width: 100%;
+width: 99%;
 margin-top: 45px;
 }
 
+
 #event {
-  margin-left: 78px;
-  width: 958px;
-  color: black;
-  padding-left: 0px;
-  height: 195px;
-  padding-top: 19px;
-  padding-right: 15px;
+margin-left: 78px;
+width: 691px;
+color: black;
+padding-left: 0px;
+height: 195px;
+padding-top: 19px;
+padding-right: 15px;
 }
 
 
@@ -4828,7 +4829,7 @@ height: 70px;
 
 div#event_details {
 display: inline-block;
-width: 800px;
+width: 583px;
 margin-left: 15px;
 }
 
@@ -4888,7 +4889,7 @@ display: none;
 
 #container_lanparty_green .lanparty_content {
 color: #acacac;
-width: 100%;
+width: 85%;
 position: relative;
 height: 900px;
 }
