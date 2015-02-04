@@ -4809,7 +4809,7 @@ margin-top: 45px;
 
 #event {
 margin-left: 78px;
-width: 691px;
+width: 700px;
 color: black;
 padding-left: 0px;
 height: 195px;
@@ -4829,7 +4829,7 @@ height: 70px;
 
 div#event_details {
 display: inline-block;
-width: 583px;
+width: 600px;
 margin-left: 15px;
 }
 
@@ -4893,3 +4893,6 @@ width: 85%;
 position: relative;
 height: 900px;
 }
+
+
+.lanparty_timetable{ display: none;}
