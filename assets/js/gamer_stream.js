@@ -316,15 +316,22 @@ var checker = setInterval(function(){
 			e.streamers.forEach(function(item) {
 					found = true;
 					streamerId = item.youtube.id;
+					$('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+					$('embed').height($('#streamView').height());
 			});
 			
 			if (!found) {
-				$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-				window.clearInterval(checker);
+				if ($('div .videoWrapper').length > 0) {
+					$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>').fadeTo('slow');
+				} 
+			} else {
+				if ($('div .videoWrapper').length === 0) {
+					$('#twitchStream').replaceWith(template($('#youtube-stream-tpl').html(),{youtubeid: streamerId})).fadeIn('slow');
+				}
 			}
 		});		
 	}
-},5000);
+}, 5000);
 
 
 
