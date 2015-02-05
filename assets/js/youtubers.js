@@ -185,7 +185,7 @@ var render_featured_games = function (filter) {
     var items = [];
     filter =  new RegExp(filter, 'i');
 
-    page_data.featured_games.forEach(function(item, i){
+    page_data.featured_games.forEach(function(item, i)rende
         if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
         if(item.id === filterGame) {
             item.class = 'active';
