@@ -4812,9 +4812,10 @@ margin-left: 78px;
 width: 700px;
 color: black;
 padding-left: 0px;
-height: 195px;
+height: 325px;
 padding-top: 19px;
 padding-right: 15px;
+display: inline-block;
 }
 
 
@@ -4921,4 +4922,36 @@ border-radius: 20px;
 
 div#add_event {
 display: inline-block;
+margin-left: 200px;
+}
+
+div#backButton {
+  background: url("/assets/images/back_button.png") no-repeat;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div#Join_Event {
+display: inline-block;
+padding-right: 15px;
+margin-left: 163px;
+margin-top: 60px;
+}
+
+p#Join_Event_Title {
+font-size: 32px;
+color: #fff;
+font-weight: bold;
+}
+
+#Join > p:last-child {
+color: #8befa7;
+font-weight: 600;
+font-size: 14px;
+}
+
+div#Join {
+line-height: 1;
 }
