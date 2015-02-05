@@ -1,4 +1,4 @@
-$.fn.initChatBox = function(chl, usr)
+$.fn.initChatBox = function(chl, usr, sender)
 {
     var chatUI;
     var msgNotify;
@@ -35,9 +35,14 @@ $.fn.initChatBox = function(chl, usr)
         chname = chl.title;
     }
 
-    console.log(page_data.custom_fields && page_data.custom_fields.advertisement);
+    if (typeof(sender) === 'undefined') {
+        console.log('I\'m at option 1');
+        chatUI      = $('#chatui').html().replace(/{cid}/ig,chid);
+    } else {
+        console.log('I\'m at option 2');
+        chatUI      = $('#chatui').html().replace(/{cid}/ig,chid).replace(/{ADVERT}/ig, page_data.custom_fields && page_data.custom_fields.advertisement);
+    }
     
-    chatUI      = $('#chatui').html().replace(/{cid}/ig,chid).replace(/{ADVERT}/ig, page_data.custom_fields && page_data.custom_fields.advertisement);
     msgNotify   = $('#gchatnotify').html().replace(/{cid}/ig,chid);
     msgChat     = $('#chatms').html().replace(/{cid}/ig,chid);
 
