@@ -116,7 +116,7 @@ $(function() {
         var userId = params.user.replace('/', '');
 
         $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
-            console.log(e);
+
 
             var streamerId = '';
             e.streamers.forEach(function(item) {
@@ -149,12 +149,10 @@ $(function() {
 
 		if(utilCookie.get('user').length > 0){
 			userinfo = $.parseJSON(utilCookie.get('user'));
-			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+			$('#twitchTalk').initChatBox(channelinfo, userinfo, 'gamers-stream');
 		} else {
-			$('#twitchTalk').initChatBox(channelinfo, userinfo);
+			$('#twitchTalk').initChatBox(channelinfo, userinfo, 'gamers-stream');
 		}
-
-		$('#twitchTalk').css('background-color','black');
 	}
 
     if(typeof page_data.about === 'undefined' || !page_data.about.trim().length) {
