@@ -35,7 +35,9 @@ $.fn.initChatBox = function(chl, usr)
         chname = chl.title;
     }
 
-    chatUI      = $('#chatui').html().replace(/{cid}/ig,chid);
+    console.log(page_data.custom_fields && page_data.custom_fields.advertisement);
+    
+    chatUI      = $('#chatui').html().replace(/{cid}/ig,chid).replace(/{ADVERT}/ig, page_data.custom_fields && page_data.custom_fields.advertisement);
     msgNotify   = $('#gchatnotify').html().replace(/{cid}/ig,chid);
     msgChat     = $('#chatms').html().replace(/{cid}/ig,chid);
 
@@ -233,3 +235,4 @@ $.fn.initChatBox = function(chl, usr)
     this.append(chatUI);
     return false;
 };
+
