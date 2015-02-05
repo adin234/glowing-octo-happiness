@@ -4955,3 +4955,33 @@ font-size: 14px;
 div#Join {
 line-height: 1;
 }
+
+#Join_Event > input {
+background: #454545;
+width: 275px;
+height: 28px;
+margin: 11px 0;
+border: 1px solid #7b7b7b;
+}
+
+p#full_name {
+padding-top: 20px;
+}
+
+#joinButton > a {
+color: #fff;
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+padding: 7px 24px;
+background: rgba(0,255,84,0.3);
+border: 3px solid #00ff54;
+border-radius: 20px;
+
+}
+
+div#joinButton {
+margin-top: 15px;
+margin-left: 150px;
+}
+
