@@ -151,6 +151,7 @@ var update_playlists = function (playlists) {
 
     html.push(template(source, tempdata));
   });
+  console.log(html.length);
   if(!html.length) {
     html.push('No Playlist Available');
     $('.listSwitch').addClass('no-playlist');

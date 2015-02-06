@@ -1410,17 +1410,17 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   box-shadow: 0 0 10px black inset;
   box-sizing: border-box;
 }
+
 .main #indexSliderContainer .bxslider .play {
-  background: url("/assets/images/icon-1.png") no-repeat 0 -193px;
-  margin-top: -28px;
-  position: absolute;
-  right: 520px;
-  bottom: 14px;
-  height: 65px;
-  width: 70px;
-  opacity: 0.75;
-  z-index: 10;
-  top: 260px;
+background: url("/assets/images/icon.png") no-repeat 0 -208px;
+margin-top: -28px;
+position: absolute;
+right: 23px;
+bottom: 14px;
+height: 54px;
+width: 54px;
+opacity: 0.75;
+z-index: 10;
 }
 
 .main #indexSliderContainer .bxslider .play:hover,
