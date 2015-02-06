@@ -209,7 +209,7 @@ $('body').on('click', 'button#like', function(item, x) {
 
   var url = server+'fav/'+videoId;
   if(isActive) {
-    $elem.html('åŠ å…¥è‡³æˆ‘çš„æœ€æ„›');
+    $elem.html('從我的最愛移除');
     url = server+'unfav/'+videoId;
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
@@ -218,7 +218,7 @@ $('body').on('click', 'button#like', function(item, x) {
         $('li[id=video-'+videoId+']').hide();
     }
   } else {
-    $elem.html('å¾žæˆ‘çš„æœ€æ„›ç§»é™¤');
+    $elem.html('加入至我的最愛');
     page_data.favorites.push(videoId);
     $('li[id=video-'+videoId+']').show();
   }
@@ -238,7 +238,7 @@ var showVideo = function(videoId) {
   var video = getVideo(videoId);
   if(video) {
     var likeButton = '';
-    var text = 'åŠ å…¥è‡³æˆ‘çš„æœ€æ„›';
+    var text = '加入至我的最愛';
     var active = '';
 
     if(typeof page_data.favorites === 'undefined') {
@@ -248,7 +248,7 @@ var showVideo = function(videoId) {
     if(typeof page_data.favorites !== 'undefined') {
 
       if(~page_data.favorites.indexOf(videoId)) {
-        text = 'å¾žæˆ‘çš„æœ€æ„›ç§»é™¤';
+        text = '從我的最愛移除';
         active = 'active';
       }
       likeButton = '<button id="like" class="like '+active+'" alt="like" data-id="'+videoId+'">'+text+'</button>';
