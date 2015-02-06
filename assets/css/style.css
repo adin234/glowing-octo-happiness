@@ -1411,16 +1411,16 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   box-sizing: border-box;
 }
 .main #indexSliderContainer .bxslider .play {
-background: url("/assets/images/icon-1.png") no-repeat 0 -193px;
-margin-top: -28px;
-position: absolute;
-right: 520px;
-bottom: 14px;
-height: 65px;
-width: 70px;
-opacity: 0.75;
-z-index: 10;
-top: 260px;
+  background: url("/assets/images/icon-1.png") no-repeat 0 -193px;
+  margin-top: -28px;
+  position: absolute;
+  right: 520px;
+  bottom: 14px;
+  height: 65px;
+  width: 70px;
+  opacity: 0.75;
+  z-index: 10;
+  top: 260px;
 }
 
 .main #indexSliderContainer .bxslider .play:hover,
@@ -3975,62 +3975,62 @@ ul.date_schedule > li:nth-child(1){
 }
 
 ul.date_schedule > li:nth-child(2) {
-padding-left: 48px;
+  padding-left: 48px;
 }
 
 ul.date_schedule > li:nth-child(3) {
-padding-left: 60px;
+  padding-left: 60px;
 }
 
 ul.date_schedule > li:nth-child(4) {
-padding-left: 55px;
+  padding-left: 55px;
 }
 
 ul.date_schedule > li:nth-child(5) {
-padding-left: 60px;
+  padding-left: 60px;
 }
 
 ul.date_schedule > li:nth-child(6) {
-padding-left: 65px;
+  padding-left: 65px;
 }
 
 ul.date_schedule > li:nth-child(7) {
-padding-left: 65px;
+  padding-left: 65px;
 }
 
 /*specific_dates*/
 .specific_dates {
-margin-left: 100px;
-margin-top: -15px;
+  margin-left: 100px;
+  margin-top: -15px;
 }
 
 ul.dateSpecific {
-color: #e9ae0b;
-font-size: larger;
+  color: #e9ae0b;
+  font-size: larger;
 }
 
 ul.dateSpecific > li:nth-child(2) {
-padding-left: 47px;
+  padding-left: 47px;
 }
 
 ul.dateSpecific > li:nth-child(3) {
-padding-left: 55px;
+  padding-left: 55px;
 }
 
 ul.dateSpecific > li:nth-child(4) {
-padding-left: 55px;
+  padding-left: 55px;
 }
 
 ul.dateSpecific > li:nth-child(5) {
-padding-left: 55px;
+  padding-left: 55px;
 }
 
 ul.dateSpecific > li:nth-child(6) {
-padding-left: 55px;
+  padding-left: 55px;
 }
 
 ul.dateSpecific > li:nth-child(7) {
-padding-left: 56px;
+  padding-left: 56px;
 }
 
 #container_lanparty .lanparty_content{
@@ -4070,68 +4070,67 @@ padding-left: 56px;
 }
 
 ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
-color: #00c7f9;
+  color: #00c7f9;
 }
 
 ul.hour_time > li:nth-child(3), ul.hour_time > li:nth-child(7) {
-color: #00c7f9;
+  color: #00c7f9;
 }
 
 ul.hour_time > li:nth-child(11), ul.hour_time > li:nth-child(15) {
-color: #00c7f9;
+  color: #00c7f9;
 }
 
 ul.hour_time > li:nth-child(19), ul.hour_time > li:nth-child(23) {
-color: #00c7f9;
+  color: #00c7f9;
 }
 
 
 ul.hour_time > li:nth-child(2),  ul.hour_time > li:nth-child(4),  ul.hour_time > li:nth-child(6),  ul.hour_time > li:nth-child(8),  ul.hour_time > li:nth-child(10)   {
-color: #666666;
-font-size: smaller;
+  color: #666666;
+  font-size: smaller;
 }
 
 
 ul.hour_time > li:nth-child(12),  ul.hour_time > li:nth-child(14),  ul.hour_time > li:nth-child(16)  {
-color: #666666;
-font-size: smaller;
+  color: #666666;
+  font-size: smaller;
 }
 
 ul.hour_time > li:nth-child(18),  ul.hour_time > li:nth-child(20),  ul.hour_time > li:nth-child(22),  ul.hour_time > li:nth-child(24)  {
-color: #666666;
-font-size: smaller;
+  color: #666666;
+  font-size: smaller;
 }
 
 
 /*scheduler*/
 
 .hours {
-display: inline-block;
-width: 102px;
-vertical-align: top;
-padding-top:8px;
+  display: inline-block;
+  width: 102px;
+  vertical-align: top;
+  padding-top:8px;
 }
 
 .Monday {
-width: 116px;
-display: inline-block;
-vertical-align: top;
-padding-top:28px;
+  width: 116px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top:28px;
 }
 
 #Monday1 {
-background-color: #00c7f9;
-width: 102px;
-height: 119px;
-z-index: 1;
-
-border-left: #fffd21 solid;
-color: white;
-font-size: large;
-text-align: left;
-padding-left: 10px;
-line-height: 1.20;
-padding-top: 10px;
+  background-color: #00c7f9;
+  width: 102px;
+  height: 119px;
+  z-index: 1;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.20;
+  padding-top: 10px;
 }
 
 #Monday1 > p{
@@ -4141,18 +4140,18 @@ padding-top: 10px;
 }
 
 #Monday2 {
-background-color: #00c7f9;
-width: 102px;
-height: 373px;
-z-index: 1;
-margin-top: 79px;
-border-left: #fffd21 solid;
-color: white;
-font-size: large;
-text-align: left;
-padding-left: 10px;
-line-height: 1.20;
-padding-top: 10px;
+  background-color: #00c7f9;
+  width: 102px;
+  height: 373px;
+  z-index: 1;
+  margin-top: 79px;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.20;
+  padding-top: 10px;
 }
 
 #Monday2 > p{
@@ -4162,25 +4161,24 @@ padding-top: 10px;
 }
 
 .Tuesday {
-display: inline-block;
-width: 118px;
-vertical-align: top;
-padding-top:375px;
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top:375px;
 }
 
 #Tuesday1 {
-background-color: #00c7f9;
-width: 106px;
-height: 373px;
-z-index: 1;
-border-left: #fffd21 solid;
-color: white;
-font-size: large;
-text-align: left;
-line-height: 1.20;
-padding-top: 10px;
-/* margin-left: 17px; */
-padding-left: 10px;
+  background-color: #00c7f9;
+  width: 106px;
+  height: 373px;
+  z-index: 1;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  line-height: 1.20;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 #Tuesday1 > p{
@@ -4191,22 +4189,22 @@ padding-left: 10px;
 
 
 .Wednesday {
-display: inline-block;
-width: 118px;
-vertical-align: top;
-padding-top: 164px;
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 164px;
 }
 
 #Wednesday1 {
-background-color: #00c7f9;
-width: 103px;
-height: 125px;
-border-left: #fffd21 solid;
-color: white;
-font-size: large;
-padding-top: 10px;
-padding-left: 10px;
-line-height: 1.20;
+  background-color: #00c7f9;
+  width: 103px;
+  height: 125px;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 1.20;
 }
 
 #Wednesday1 > p {
@@ -4232,7 +4230,7 @@ line-height: 1.20;
   padding-left: 10px;
   height: 235px;
   width: 102px;
-  }
+}
 
 #Thursday1 > p {
 
@@ -4321,7 +4319,6 @@ line-height: 1.20;
   color: #acacac;
   width: 100%;
   position: relative;
- /* margin: 80px auto;*/
 }
 #container_lanparty_green .lanparty_timetable{
   color: #acacac;
@@ -4334,10 +4331,7 @@ line-height: 1.20;
   padding-top: 40px;
 }
 
-#container_lanparty_green .lanparty_content p{
-  /*margin: 20px 0px;*/
-  /*line-height: 1.75;*/
-}
+
 #container_lanparty_green .hour_time{
   display: inline-block;
   width: 155px;
@@ -4353,7 +4347,6 @@ line-height: 1.20;
 
 #container_lanparty_green .hour_time li:last-child {
   border-bottom: 1px dotted #00ff54;
->>>>>>> 3c0b0c2e1d7d6b071d06ea261416d8137eb4da3b
   margin-bottom: 20px;
 }
 
@@ -4890,35 +4883,35 @@ p#date_2 {
 }
 
 .event_list > #event:last-child #separator {
-display: none;
+  display: none;
 }
 
 #container_lanparty_green .lanparty_content {
-color: #acacac;
-width: 100%;
-position: relative;
-height: 900px;
-margin-right:50px;
+  color: #acacac;
+  width: 100%;
+  position: relative;
+  height: 900px;
+  margin-right:50px;
 }
 
 
 
 #edit_event > a {
-color: #fff;
-text-decoration: none;
-font-family: Arial, Helvetica, sans-serif;
-font-weight: bold;
-padding: 8px 15px;
-background: rgba(0,255,84,0.3);
-border: 3px solid #00ff54;
-border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 8px 15px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
 }
 
 div#edit_event {
-display: inline-block;
-width:143px;
-vertical-align:top;
-margin-left:200px;
+  display: inline-block;
+  width:143px;
+  vertical-align:top;
+  margin-left:200px;
 }
 
 div#backButton {
@@ -4930,24 +4923,23 @@ div#backButton {
 }
 
 div#Join_Event {
-display: inline-block;
-
+  display: inline-block;
 }
 
 p#Join_Event_Title {
-font-size: 32px;
-color: #fff;
-font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
 }
 
 #Join > p:last-child {
-color: #8befa7;
-font-weight: 600;
-font-size: 14px;
+  color: #8befa7;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 div#Join {
-line-height: 1;
+  line-height: 1;
 }
 
 #Join_Event > input {
@@ -4959,82 +4951,83 @@ line-height: 1;
 }
 
 p#full_name {
-padding-top: 20px;
+  padding-top: 20px;
 }
 
 #joinButton > a {
-color: #fff;
-text-decoration: none;
-font-family: Arial, Helvetica, sans-serif;
-font-weight: bold;
-padding: 7px 24px;
-background: rgba(0,255,84,0.3);
-border: 3px solid #00ff54;
-border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 7px 24px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
 
 }
 
 div#joinButton {
-margin-top: 15px;
-margin-left: 103px;
+  margin-top: 15px;
+  margin-left: 103px;
 }
 
 div#gallery_thumbnails {
-width: 275px;
-vertical-align: top;
-display: inline-block;
-margin-top: 100px;
+  width: 275px;
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 100px;
 }
 
 #gallery_thumbnails > img {
-padding: 2px 2px;
+  padding: 2px 2px;
 }
 
 div#tab-4-1 {
-width: 1108px;
+  width: 1108px;
 }
 
 div#event_right {
-width: 270px;
-display: inline-block;
-vertical-align: top;
-margin-left: 30px;
+  width: 270px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 30px;
 }
 
 #enter_link > input {
-background: #454545;
-width: 300px;
-height: 25px;
-border: 1px solid #7b7b7b;
+  background: #454545;
+  width: 300px;
+  height: 25px;
+  border: 1px solid #7b7b7b;
 }
 
 #enter_link > a {
-color: white;
-font-weight: bold;
-font-size: 12px;
-background: #7b7b7b;
-padding: 7px 12px;
-margin-left: -5px;
-border-radius: 2px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  background: #7b7b7b;
+  padding: 7px 12px;
+  margin-left: -5px;
+  border-radius: 2px;
 }
 
 #enter_link > p {
-font-size: 12px;
-padding-bottom: 5px;
+  font-size: 12px;
+  padding-bottom: 5px;
 }
 
 div#enter_link {
-margin-left: 103px;
-margin-top: 30px;
+  margin-left: 103px;
+  margin-top: 30px;
 }
 
 div#year {
-text-align: center;
+  text-align: center;
 }
 
 #year > p {
-font-size: 60px;
-color: #00E64C;
-text-shadow: 0px 1px #000;
-font-weight: bold;
+  font-size: 60px;
+  color: #00E64C;
+  text-shadow: 0px 1px #000;
+  font-weight: bold;
+  height: 75px;
 }
