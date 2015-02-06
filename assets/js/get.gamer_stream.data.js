@@ -2,6 +2,12 @@ var xhReq = new XMLHttpRequest();
 var path = window.location.hash.split('/')
 	.filter(function(e){return e;});
 
+if(path.length === 0){
+    var url = window.location.href;
+    url = url.replace('%2F&_escaped_fragment_=%2F', '/#!/');
+    window.location.href = url;
+}
+
 function getSearchParameters() {
       var prmstr = window.location.search.substr(1);
       return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
