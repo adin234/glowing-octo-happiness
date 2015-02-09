@@ -10,6 +10,9 @@ if(url.indexOf('%2F&_escaped_fragment_=%2F') !== -1){
 }else if(url.indexOf('%2F/#!') !== -1){
     url = url.replace('%2F/#!', '/#!');
     window.location.href = url;
+}else if(url.indexOf('%2F#!') !== -1){
+    url = url.replace('%2F#!', '/#!');
+    window.location.href = url;
 }
 
 function getSearchParameters() {
