@@ -210,7 +210,8 @@ $('body').on('click', 'button#like', function(item, x) {
 
   var url = server+'fav/'+videoId;
   if(isActive) {
-    $elem.html('從我的最愛移除');
+    $elem.removeClass('active');
+    $elem.html('加入至我的最愛');
     url = server+'unfav/'+videoId;
     page_data.favorites = page_data.favorites.filter(function(item) {
       return item != videoId;
@@ -219,7 +220,8 @@ $('body').on('click', 'button#like', function(item, x) {
         $('li[id=video-'+videoId+']').hide();
     }
   } else {
-    $elem.html('加入至我的最愛');
+    $elem.addClass('active');
+    $elem.html('從我的最愛移除');
     page_data.favorites.push(videoId);
     $('li[id=video-'+videoId+']').show();
   }
@@ -231,7 +233,6 @@ $('body').on('click', 'button#like', function(item, x) {
       type: 'get'
   });
   
-  $elem.toggleClass('active');
 });
 
 var showVideo = function(videoId) {
