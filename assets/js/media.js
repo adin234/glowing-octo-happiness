@@ -153,7 +153,7 @@ var update_playlists = function (playlists) {
   });
   console.log(html.length);
   if(!html.length) {
-    html.push('No Playlist Available');
+    //html.push('No Playlist Available');
     $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
