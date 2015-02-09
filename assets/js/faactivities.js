@@ -77,3 +77,21 @@ $('#event-container').mCustomScrollbar({
   advanced: { updateOnContentResize: true, updateOnBrowserResize: true },
   theme: "dark"
 });
+
+
+
+
+
+//freedom activities getters and setters
+
+function (){
+
+	var html = [];
+
+	if(!html.length){
+	html.push('No Events Available');
+	}
+
+	console.log(html);
+
+}
