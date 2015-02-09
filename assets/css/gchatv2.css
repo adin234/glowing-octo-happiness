@@ -43,12 +43,42 @@ div.chcontainer_single{
     right: 0;
 }
 
+div.chcontainer_single_noadvert{
+    width: inherit;
+    border:0px none transparent;
+    border-top: 1px solid gray;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top:7px;
+    padding-left: 1px;
+    background-color: #F0F0F0;
+    color:black;
+    position: absolute;
+    top: 33px;
+    bottom: 62px;
+    left: 0;
+    right: 0;
+}
+
 #advertisement-container-yt {
     border: 1px solid black;
     bottom: 0;
     position:absolute;
     left: 0;
     right: 0;
+}
+
+#close-advert {
+    float: right;
+    position: absolute;
+    font-family: Courier New;
+    color: white;
+    right: 0;
+}
+
+#close-advert-link {
+    text-decoration: none;
+    font-weight: bolder;
 }
 
 #uname{
@@ -143,6 +173,21 @@ div.chatinputs_single{
     left: 0;
     right: 0;
     bottom: 261px;
+    position: absolute;
+    height: 60px;
+    border: 0px solid gray;
+    border-top: 1px solid gray;
+    padding-left:2px;
+    padding-top: 2px;
+    padding-right: 2px;
+    float:left;
+    background-color: #F0F0F0 ;
+}
+
+div.chatinputs_single_noadvert{
+    left: 0;
+    right: 0;
+    bottom: 0;
     position: absolute;
     height: 60px;
     border: 0px solid gray;

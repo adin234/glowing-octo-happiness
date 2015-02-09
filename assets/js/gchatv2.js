@@ -119,7 +119,7 @@ $.fn.initChatBox = function(chl, usr, sender)
             }
         }
     });
-
+    
     socket.on('connect', function()
     {
         ud = {
@@ -174,46 +174,6 @@ $.fn.initChatBox = function(chl, usr, sender)
                         timesent = today.getHours() + ':' + tinmins + 'AM';
                     }
                     
-                    /*
-                        12-23-2014 : Added function when user inputs continious text that would cause
-                        the chat UI to break
-                        
-                        01-05-2015 : Change the string length to check where to cut and will make the chat message
-                                     fit to the chat box.
-                     */
-                    
-                    //var chatmsg = [];
-                    //var hasContiniousText = false;
-                    //var newstring = '';
-                    //
-                    //chatmsg = sd.msg.split(' ');
-                    //for (var i = 0; i < chatmsg.length; i++){
-                    //    if (chatmsg[i].length >= 35) {
-                    //        hasContiniousText = true;
-                    //        console.log(chatmsg[i] + ' : true');
-                    //    } else {
-                    //        console.log(chatmsg[i] + ' : false');
-                    //    }
-                    //}
-                    //
-                    //if (hasContiniousText) {
-                    //    if (sd.msg.length >= 35) {
-                    //        for(var i = 0; i < sd.msg.length; i += 35) {
-                    //            newstring = newstring + sd.msg.substring(i, i + 35) + '\n';
-                    //        }
-                    //    } else {
-                    //        //console.log('Something\'s wrong');
-                    //        newstring = sd.msg;
-                    //    }                        
-                    //}
-                    //else {
-                    //    newstring = sd.msg;
-                    //}
-                    
-                    
-
-                    
-                    //$(msgbox).append(msgChat.replace(/{message}/ig,newstring).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent));    
                     $(msgbox).append(msgChat.replace(/{message}/ig,sd.msg).replace(/{username}/ig, sd.user).replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' + timesent)).linkify({
                                         tagName: 'a',
                                         target: '_blank',
@@ -239,5 +199,11 @@ $.fn.initChatBox = function(chl, usr, sender)
 
     this.append(chatUI);
     return false;
+};
+
+var closeAdvert = function() {
+    $('#advertisement-container-yt').css('display','none').fadeOut('slow');
+    $('div .chatinputs_single').removeClass('chatinputs_single').addClass('chatinputs_single_noadvert');
+    $('div .chcontainer_single').removeClass('chcontainer_single').addClass('chcontainer_single_noadvert');
 };
 

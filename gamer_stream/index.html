@@ -200,10 +200,11 @@
   <div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">
     <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
   </div>
-  <div class="advert" id="advertisement-container-yt" data-size="minified" data-status="full">
-  {ADVERT}
-  <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert">MINIFY</a>
-</div>
+  <div class="advert" id="advertisement-container-yt" data-size="minified" data-status="full" style="background-color: black;">
+    <div id="close-advert"><a id="close-advert-link" onclick="javascript: closeAdvert();">X</a></div>
+    {ADVERT}
+    <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>
+  </div>
 </script>
 <script type="text/html" id="gchatnotify">
   <tr id="trnotify-{cid}">
