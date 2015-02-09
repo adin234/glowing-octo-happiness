@@ -229,10 +229,9 @@ $('body').on('click', 'button#like', function(item, x) {
       url: url,
       crossDomain: true,
       type: 'get'
-  })
-  .always(function(result) {
-    $elem.toggleClass('active');
   });
+  
+  $elem.toggleClass('active');
 });
 
 var showVideo = function(videoId) {
