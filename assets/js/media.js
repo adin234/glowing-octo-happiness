@@ -151,9 +151,12 @@ var update_playlists = function (playlists) {
 
     html.push(template(source, tempdata));
   });
-  console.log(html.length);
+
+  //console.log(html.length);
+
+
   if(!html.length) {
-    //html.push('No Playlist Available');
+    html.push('請將影片加至您的"我的最愛"播放清單!');
     $('.listSwitch').addClass('no-playlist');
     $('#videosToggle').trigger('click');
     if($('#videos li.videoItem > a').length) {
