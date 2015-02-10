@@ -9,7 +9,7 @@ $.ajax({
     async: false,
     type: "GET",
     dataType: "json",
-    url: server+"index",
+    url: server+"index?console=all",
 }).done(function (data) {
     index_data = data;
 });
