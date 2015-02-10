@@ -4837,6 +4837,7 @@ p#event_title {
   color: white;
   font-size: xx-large;
   line-height: 1;
+  display: inline-block;
 }
 
 p#event_details {
