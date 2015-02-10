@@ -96,7 +96,7 @@ var update_videos = function (videos, append, initial) {
   }
 
   if(!html.length && !append) {
-    html.push('ç›®å‰�æ²’æœ‰å½±ç‰‡');
+    html.push('目前沒有影片');
   }
 
   if(append) {
@@ -579,9 +579,9 @@ $(document).on('load-page',function(){
     page_data.playlists.splice(0,0,{
       id: 'UU'+page_data.config.channel.slice(2),
       snippet: {
-        title: 'æœ€æ–°å½±ç‰‡',
+        title: '最新影片',
         channelId: page_data.config.channel,
-        description: 'æœƒå“¡ä¸Šå‚³',
+        description: '會員上傳',
         thumbnails: thumbs
       }
     });
@@ -620,7 +620,7 @@ $(document).on('load-page',function(){
 
         page_data.commentsLength++;
 
-      $('.comments-list > a:first-child').html('æ‰€æœ‰ç•™è¨€ ('+page_data.commentsLength+')');
+      $('.comments-list > a:first-child').html('所有留言 ('+page_data.commentsLength+')');
 
         $('#tab-2 .discussions')
           .prepend(template(
