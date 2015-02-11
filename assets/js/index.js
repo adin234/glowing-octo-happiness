@@ -4,12 +4,16 @@ var streamersList = [];
 /* RDC - 2015.01.15 : Placeholder for all active streamers */
 var onlineStreamers = [];
 
+var randomFeaturedVids = [];
+var randomLatestVids = [];
+var randomMostViewedVids = [];
+
 var hash = '';
 $.ajax({
     async: false,
     type: "GET",
     dataType: "json",
-    url: server+"index",
+    url: server+"index?console=all",
 }).done(function (data) {
     index_data = data;
 });
@@ -241,7 +245,8 @@ var update_index = function(index_data) {
 
     // featured videos
     html = [];
-    index_data.featured_videos.forEach(function(item, i){
+    randomFeaturedVids = shuffle(index_data.featured_videos);
+    randomFeaturedVids.forEach(function(item, i){
         item.provider = attachments_server;
         item.thumb = item.snippet.thumbnails.medium.url;
         item.title = item.snippet.title;
@@ -273,7 +278,8 @@ var update_index = function(index_data) {
     html = [];
     group = [];
     var flag = {};
-    index_data.latest_videos.forEach(function(item, i){
+    randomLatestVids = shuffle(index_data.latest_videos);
+    randomLatestVids.forEach(function(item, i){
         var date = item.snippet.publishedAt.substr(0,10);
         if(!flag[date]) {
             flag[date] = [];
@@ -313,7 +319,8 @@ var update_index = function(index_data) {
     html = [];
     group = [];
     var ids = {};
-    index_data.most_viewed.forEach(function(item, i){
+    randomMostViewedVids = shuffle(index_data.most_viewed);
+    randomMostViewedVids.forEach(function(item, i){
         ids[item.user_id] = typeof ids[item.user_id] === 'undefined' ? 1 : ids[item.user_id] + 1;
         if(ids[item.user_id] > 2) {
             return;
@@ -590,3 +597,8 @@ var checkForNewStreamers = function() {
 setInterval(function() {
     checkForNewStreamers();
 }, 5000);
+
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
