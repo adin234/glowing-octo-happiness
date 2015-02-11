@@ -5089,3 +5089,65 @@ p#event_status{
   margin-top: 3px;
   margin-left: 23px;
 }
+
+
+/*delete this after*/
+
+  .lanparty_content{
+    display:none;
+  }
+
+
+/*css for all events list*/
+.all_events_content{
+  width: 1020px;
+  height: 800px;
+  margin-left: 60px;
+}
+
+div#date_button {
+  background: url("/assets/images/bubble_event.png") no-repeat;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  line-height: 1;
+  padding-top: 12px;
+}
+
+p#month {
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+p#day {
+  color: #fff;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+p#year {
+  color: #8befa7;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+div#separator {
+  border-bottom: 1px solid #ccc;
+  padding-top: 15px;
+}
+
+div#eventListing{
+  margin-top: 12px;
+}
+
+.event_list > #eventListing:last-child #separator {
+  display: none;
+}
+
+div#event_right_add {
+  display: inline-block;
+  vertical-align: top;
+}
