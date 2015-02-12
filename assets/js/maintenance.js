@@ -13,7 +13,8 @@ var isUnderMaintenance = function() {
         }
     }).success(function() {
         if ($('#gamers-link').css('display') === 'none') {
-            $('#gamers-link').css('display','block');
+            //$('#gamers-link').css('display','block');
+            window.location.assign(origin);
         }
     });
 };
@@ -28,7 +29,8 @@ var checker = setInterval(function() {
         console.log('Fail');
     }).success(function() {
         if ($('#gamers-link').css('display') === 'none') {
-            $('#gamers-link').css('display','block');
+            //$('#gamers-link').css('display','block');
+            window.location.assign(origin);
             clearInterval(checker);
         }
     });
