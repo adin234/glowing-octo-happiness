@@ -1,4 +1,7 @@
 var xhReq = new XMLHttpRequest();
-xhReq.open("GET", server+"freedom_activities", false);
+
+console.log(server);
+
+xhReq.open("GET", server+"freedom_events", false); //freedom_activities
 xhReq.send(null);
 var page_data = xhReq.responseText;

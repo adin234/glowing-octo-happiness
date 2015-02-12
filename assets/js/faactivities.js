@@ -1,6 +1,6 @@
-page_data = $.parseJSON(page_data);
+/*page_data = $.parseJSON(page_data);
 
-$('#lanparty_content').html(page_data.fa_activities.replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
+$('#lanparty_content').html(papage.replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
 $('#lanparty_activities').html(page_data.fa_activities.replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
 
 function get24Hour(time) {
@@ -80,18 +80,79 @@ $('#event-container').mCustomScrollbar({
 
 
 
+*/
+/*Freedom_Activities*/
 
+function add_event(){
 
-//freedom activities getters and setters
+	$.ajax({
+			dataType: 'json',
+			url: server+'freedom_events/add',
+			type: 'post'
 
-function (){
-
-	var html = [];
-
-	if(!html.length){
-	html.push('No Events Available');
-	}
-
-	console.log(html);
+	});
+		
 
 }
+
+function get_events() {
+
+	$.ajax({
+			dataType: 'json',
+			url: server+'freedom_events',
+			type: 'get'
+
+	});
+
+}
+
+function delete_events() {
+
+	$.ajax({
+			dataType: 'json',
+			url: server+'freedom_events/delete/:id',
+			type: 'get'
+
+	});
+
+}
+
+/*edit events*/
+function update_events() {
+
+		
+	/*$.ajax({
+
+		dataType: 'json',
+		url: server+'freedom_events/update',
+		type: 'post'
+	
+	});*/
+
+
+		$.ajax(server + 'freedom_events/update', function(data){
+				
+
+		if(data === 'undefined') console.log('No data found');
+
+		}).fail(function (){
+				console.log(server);
+				console.log(data);
+				console.log('Fail');
+
+		}).success(function (){
+					console.log('Success');
+		});
+	
+
+}
+
+function search_events() {
+
+	$.ajax({
+			dataType: 'json',
+			url: server+'freedom_events/search/:keyword',
+			type: 'get'
+
+	});
+} 

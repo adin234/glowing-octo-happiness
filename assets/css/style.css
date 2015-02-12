@@ -5151,3 +5151,20 @@ div#event_right_add {
   display: inline-block;
   vertical-align: top;
 }
+#addEvent > a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  background: rgba(0,255,84,0.3);
+  padding: 8px 15px;
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*delete after*/
+
+.all_events_content{
+  display:none;
+}
