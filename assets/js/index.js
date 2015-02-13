@@ -530,6 +530,9 @@ var checkForNewStreamers = function() {
             currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
         
+        console.log(streamersList.length);
+        console.log(onlineStreamers.length);
+        
         if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             
@@ -598,7 +601,7 @@ setInterval(function() {
     checkForNewStreamers();
 }, 5000);
 
-function shuffle(o){ //v1.0
+var shuffle = function(o) {
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
-};
+}

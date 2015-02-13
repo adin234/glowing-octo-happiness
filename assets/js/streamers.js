@@ -384,7 +384,7 @@ $(window).on('hashChange', function() {
 var render_page = function() {
     // render_latest_games();
     // render_featured_games();
-    render_videos();
+    //render_videos();
     $('.tooltip').tooltipster({contentAsHTML: true});
     $(window).trigger('hashchange');
     get_youtube_streams();
@@ -456,6 +456,7 @@ var checker = setInterval(function() {
             if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
                 $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
                 page_data.streamers = onlineStreamers;
+                $('#container-videos > ul > li').empty().fadeOut('slow');
                 render_videos();
             }        
         }
