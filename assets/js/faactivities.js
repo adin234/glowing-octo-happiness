@@ -129,6 +129,7 @@ function update_events() {
 	
 	});*/
 
+		console.log(server);
 
 		$.ajax(server + 'freedom_events/update', function(data){
 				

@@ -5168,3 +5168,25 @@ div#event_right_add {
 .all_events_content{
   display:none;
 }
+
+/*notifier*/
+div#fa_notifications{
+  margin-top: 5px;
+}
+div#fa_notifier {
+float: right;
+background: #ffff10; 
+background: -moz-linear-gradient(top,  #ffff10 0%, #e0ae0e 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffff10), color-stop(100%,#e0ae0e)); 
+background: -webkit-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+background: -o-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+background: -ms-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+background: linear-gradient(to bottom,  #ffff10 0%,#e0ae0e 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff10', endColorstr='#e0ae0e',GradientType=0 );
+  color: white;
+  width: 250px;
+  padding: 3px 8px;
+  text-align: center;
+  border-bottom-left-radius: ;
+
+}
