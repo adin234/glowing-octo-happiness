@@ -278,8 +278,8 @@ var update_index = function(index_data) {
     html = [];
     group = [];
     var flag = {};
-    //randomLatestVids = shuffle(index_data.latest_videos);
-    index_data.latest_videos.forEach(function(item, i){
+    randomLatestVids = shuffle(index_data.latest_videos);
+    randomLatestVids.forEach(function(item, i){
         var date = item.snippet.publishedAt.substr(0,10);
         if(!flag[date]) {
             flag[date] = [];
@@ -319,8 +319,8 @@ var update_index = function(index_data) {
     html = [];
     group = [];
     var ids = {};
-    //randomMostViewedVids = shuffle(index_data.most_viewed);
-    index_data.most_viewed.forEach(function(item, i){
+    randomMostViewedVids = shuffle(index_data.most_viewed);
+    randomMostViewedVids.forEach(function(item, i){
         ids[item.user_id] = typeof ids[item.user_id] === 'undefined' ? 1 : ids[item.user_id] + 1;
         if(ids[item.user_id] > 2) {
             return;
@@ -529,10 +529,7 @@ var checkForNewStreamers = function() {
         if ($('a[href$="/streamers"] > sup').text() !== '') {
             currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
-        
-        console.log(streamersList.length);
-        console.log(onlineStreamers.length);
-        
+    
         if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             
