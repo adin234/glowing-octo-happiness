@@ -1,94 +1,41 @@
-/*page_data = $.parseJSON(page_data);
 
-$('#lanparty_content').html(papage.replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
-$('#lanparty_activities').html(page_data.fa_activities.replace(/\r/g, '<br>').replace(/\n/g, '<br>'));
 
-function get24Hour(time) {
-	var x = time.substr(-2);
-	var time = time.replace(x, '');
 
-	if(x != 'am') {
-		time = parseInt(time)+12;
-	}
+function showHideDiv(){
 
-	return time;
+		if(!is_admin) 
+
+			$('.add_events_form').css("display","none");
+
 }
-
-var eventsHtml = [];
-var eventsOption = {
-	paddingTop: 60,
-	height: 37
-};
-var daysOfWeek = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thur.', 'Fri.', 'Sat.'];
-var monthName = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-var schedules = {};
-
-page_data.fa_schedule.forEach(function(item) {
-	var index = item.date_day+''+item.date_month+''+item.date_year;
-	if(typeof schedules[index] == 'undefined') {
-		schedules[index] = [];
-	}
-	schedules[index].push(item);
-});
-
-for (var key in schedules) {
-   var data = schedules[key];
-   var itemDate = '';
-   var timeHtml = [];
-
-	data.forEach(function(item) {
-		var date = new Date(item.date_month + ' ' + item.date_day + ' ' + item.date_year).setHours(0, 0, 0, 0);
-		var dateNow = new Date().setHours(0, 0, 0, 0);
-
-		var start = get24Hour(item.time_start);
-		var end = get24Hour(item.time_end);
-
-		var height = (end - start) * eventsOption.height + 'px';
-		var topPosition = (start * eventsOption.height) + eventsOption.paddingTop + 'px';
-
-		var dateTemp = new Date(date);
-
-		itemDate = monthName[dateTemp.getMonth()]+'/'+('0' + dateTemp.getDate()).slice(-2)+' '+ daysOfWeek[dateTemp.getDay()];
-
-		var tempdata = {
-			top: topPosition,
-			height: height,
-			title: item.game,
-			start: item.time_start,
-			end: item.time_end,
-			date: itemDate
-		};
-
-		timeHtml.push(template($('#eventItemTime').html(), tempdata));
-	});
-
-	var tempdata = {
-		date: itemDate,
-		time: timeHtml.join('')
-	};
-
-	eventsHtml.push(template($('#eventItemTpl').html(), tempdata));
-}
-
-$('#lanparty_event').html(eventsHtml.join(''));
-$('#lanparty_event').css('width', Object.keys(schedules).length*211+150+'px');
-$('#event-container').mCustomScrollbar({
-  horizontalScroll: true,
-  advanced: { updateOnContentResize: true, updateOnBrowserResize: true },
-  theme: "dark"
-});
-
-
-
-*/
-/*Freedom_Activities*/
 
 function add_event(){
 
+
+console.log('adding event');
+var data = $('#event_name').val();
+
+console.log(data);
+
 	$.ajax({
-			dataType: 'json',
+			
 			url: server+'freedom_events/add',
-			type: 'post'
+			type: 'post',
+			data: {
+
+				'event_title': $('#event_name').val(),
+				'start_date' : $('#event_start_date').val(),
+				'end_date' : $('#event_end_date').val(),
+				'start_time' : $('#event_start_time').val(),
+				'end_time' : $('#event_end_time').val(),
+			}
+
+	}).success(function (data){
+			console.log(data);
+			console.log('success');
+	}).fail(function (data){
+			console.log(data);
+			console.log('Fail');
 
 	});
 		
@@ -97,12 +44,62 @@ function add_event(){
 
 function get_events() {
 
+var eventsHtml = []; 
+var title, startDate, endDate, startTime, endTime; 
+
 	$.ajax({
 			dataType: 'json',
 			url: server+'freedom_events',
-			type: 'get'
+			type: 'get',
+			data: {
 
+				'event_title': $('#event_name').val(),
+				'start_date' : $('#event_start_date').val(),
+				'end_date' : $('#event_end_date').val(),
+				'start_time' : $('#event_start_time').val(),
+				'end_time' : $('#event_end_time').val(),
+			}
+
+	}).success(function (data){
+
+			
+		data.forEach(function(item){
+
+			
+			console.log(item.event_title);
+			console.log(item.start_date);
+			console.log(item.end_date);
+			console.log(item.start_time);
+			console.log(item.end_time);
+			
+			 title = item.event_title;
+			 startDate = item.start_date;
+			 endDate = item.end_date;
+			 startTime = item.start_time;
+			 endTime = item.end_time;
+
+		});	
+
+
+
+			$('#show_events').html(
+				'<div id="eventHeader">' + title + '</div>' +
+				'<div id="startEventDate">' + startDate + '</div>' + 
+				'<div id="endEventDate">' + endDate + '</div>' + 
+				'<div id="startEventTime">' + startTime + '</div>' + 
+				'<div id="endEventTime">' + endTime + '</div>' 
+				);
+
+
+	}).fail(function (data){
+			console.log(data);
+			console.log('failure');
 	});
+
+	console.log('Fetching data ... ');
+
+
+
 
 }
 
@@ -111,42 +108,38 @@ function delete_events() {
 	$.ajax({
 			dataType: 'json',
 			url: server+'freedom_events/delete/:id',
-			type: 'get'
+			type: 'get',
+			data:{}
 
 	});
 
 }
 
-/*edit events*/
 function update_events() {
 
+
+
+
+	$.ajax({
+			url: server + 'freedom_events/update',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {'event_title': $('#event_name').val(),
+					'event_start_date' : $('#event_start_date').val()}
+
+	}).success(function (data){
+			console.log(data);
+	}).fail(function (data){
+			console.log(data);
+			console.log('Fail');
 		
-	/*$.ajax({
-
-		dataType: 'json',
-		url: server+'freedom_events/update',
-		type: 'post'
-	
-	});*/
-
-		console.log(server);
-
-		$.ajax(server + 'freedom_events/update', function(data){
-				
-
-		if(data === 'undefined') console.log('No data found');
-
-		}).fail(function (){
-				console.log(server);
-				console.log(data);
-				console.log('Fail');
-
-		}).success(function (){
-					console.log('Success');
-		});
-	
+		
+	});
 
 }
+
+
+
 
 function search_events() {
 

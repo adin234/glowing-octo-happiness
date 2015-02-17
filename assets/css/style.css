@@ -5171,23 +5171,24 @@ div#event_right_add {
 
 /*notifier*/
 div#fa_notifications{
-  margin-top: 5px;
-}
+ 
+ }
 div#fa_notifier {
-float: right;
-background: #ffff10; 
-background: -moz-linear-gradient(top,  #ffff10 0%, #e0ae0e 100%); 
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffff10), color-stop(100%,#e0ae0e)); 
-background: -webkit-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
-background: -o-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
-background: -ms-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
-background: linear-gradient(to bottom,  #ffff10 0%,#e0ae0e 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff10', endColorstr='#e0ae0e',GradientType=0 );
+  float: left;
+  background: #ffff10; 
+  background: -moz-linear-gradient(top,  #ffff10 0%, #e0ae0e 100%); 
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffff10), color-stop(100%,#e0ae0e)); 
+  background: -webkit-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+  background: -o-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+  background: -ms-linear-gradient(top,  #ffff10 0%,#e0ae0e 100%); 
+  background: linear-gradient(to bottom,  #ffff10 0%,#e0ae0e 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff10', endColorstr='#e0ae0e',GradientType=0 );
   color: white;
   width: 250px;
   padding: 3px 8px;
   text-align: center;
-  border-bottom-left-radius: ;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
 }  
 
@@ -5195,4 +5196,59 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff10', end
 .uploader > img {
   width: 100%;
   margin-top: 0px;
+}
+
+/*Add Event*/
+
+.add_events_form {
+  width: 1000px;
+  margin-left: 75px;
+  margin-top: 75px;
+}
+
+div#add_event_header {
+  width: 200px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+div#addForm {
+  width: 92%;
+}
+
+#addForm button {
+  display: inline-block;
+  margin-top: 100px;
+  padding: 8px 15px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#addForm p {
+  width: 45%;
+  display: inline-block;
+  font-weight: 600;
+  font-size: large;
+}
+
+#addForm input {
+  padding: 8px 15px;
+  border-radius: 3px;
+  display: inline-block;
+  width: 50%;
+  margin: 5px 0;
+}
+
+/*show events*/
+
+div#show_events{
+  width: 1000px;
+  height: 500px;
+  margin-left: 40px;
+  margin-top: 10px;
 }

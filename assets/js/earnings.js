@@ -16,8 +16,8 @@ $(window).on('login-success', function (e) {
         $("#earnings").html('$'+earnings[1]);
         $("#clicks").html(earnings[2]);
         $("#views").html(earnings[3]);
-    })
-    .fail(function() {
+    }
+)    .fail(function() {
         alert('no earnings found');
     });
 });
