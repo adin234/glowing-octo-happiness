@@ -389,7 +389,7 @@ var update_index = function(index_data) {
         if(found_games.length === 1){
             item.imgsrc = found_games[0].image;
         }else{
-            item.imgsrc = null;
+            return;
         }
         
         item.game = item.name;
