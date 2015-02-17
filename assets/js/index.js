@@ -7,6 +7,8 @@ var onlineStreamers = [];
 var randomFeaturedVids = [];
 var randomLatestVids = [];
 var randomMostViewedVids = [];
+var currentStreamCount = 0;
+var UniqueStreamers = [];
 
 var hash = '';
 $.ajax({
@@ -520,18 +522,20 @@ var checkForNewStreamers = function() {
     onlineStreamers = [];
     $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
     
+    if (streamersList.length > 0) {
+        streamersList.length = 0;
+        return null;
+    }
+    
     if (onlineStreamers.length > 0) {
         if ($('#noonline').length > 0) {
             $('#noonline').remove();
         }
         
-        var currentStreamCount = 0;
         if ($('a[href$="/streamers"] > sup').text() !== '') {
             currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
-
     
-
         if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             
