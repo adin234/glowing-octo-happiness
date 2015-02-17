@@ -529,10 +529,9 @@ var checkForNewStreamers = function() {
         if ($('a[href$="/streamers"] > sup').text() !== '') {
             currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
-        
-        // console.log(streamersList.length);
-        // console.log(onlineStreamers.length);
-        
+
+    
+
         if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             
