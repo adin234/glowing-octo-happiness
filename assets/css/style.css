@@ -5252,3 +5252,51 @@ div#show_events{
   margin-left: 40px;
   margin-top: 10px;
 }
+
+p#e_desc {
+  display: inline-block;
+  vertical-align: top;
+}
+
+textarea#event_desc {
+  width: 50%;
+  padding: 8px 15px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 5px;
+  height: 100px;
+}
+
+
+/*get_schedules*/
+
+div#startEventDate {
+  display: inline-block;
+  color: #98ffb2;
+  font-weight: bold;
+}
+
+div#endEventDate {
+  display: inline-block;
+  color: #98ffb2;
+  font-weight: bold;
+}
+
+div#startEventTime {
+  display: inline-block;
+  margin-left: 5px;
+  color: #98ffb2;
+  font-weight: bold;
+}
+
+div#endEventTime {
+  display: inline-block;
+  color: #98ffb2;
+  font-weight: bold;
+}
+
+div#eventHeader {
+  display: inline-block;
+  padding-left: 115px;
+  font-weight: bold;
+}

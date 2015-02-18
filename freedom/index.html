@@ -263,10 +263,11 @@
                 <p id="e_e_date">End Date:</p> <input type="text" name="event_end_date" placeholder="Event End Date" id="event_end_date">
                 <p id="s_time">Start Time:</p> <input type="text" name="event_start_time" placeholder="Event Start Time" id="event_start_time">
                 <p id="e_time">End Time:</p> <input type="text" name="event_end_time" placeholder="Event End Time" id="event_end_time">
+             <!--   <p id="e_desc">Event Description:</p>
+                <textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea> 
+                <!-- <input type="submit" value="Submit" > --> 
 
-                <!-- <input type="submit" value="Submit" > -->
-
-                <button onclick="add_event()">SUBMIT</button>
+                <button onclick="add_event()">ADD EVENT</button>
           </form>
 
 
@@ -340,6 +341,16 @@
                         <p id="activity_title">Massive Potato Salad Making Contest</p>
                         <div id="status_activity"><p id="stat_ongoing">Ongoing</p></div>
                     </div>
+
+                </div>
+
+
+                <div id="freedom_schedule">
+                  
+                    <div id="all_schedule"></div>
+                    <div id="getSchedules"><button onclick="get_schedule()">Get Schedules</button></div>
+
+
 
                 </div>
 
