@@ -385,12 +385,18 @@ var update_index = function(index_data) {
     html = [];
     group = [];
     index_data.featured_games.forEach(function(item, i){
-        item.imgsrc = item.image;
-        item.game = item.name;
-        group.push(template($('#gameTpl').html(), item));
-        if(group.length == 12) {
-            html.push('<ul class="game clearFix">'+group.join('')+'</ul>');
-            group = [];
+        var found_games = index_data.games.filter(function(game){
+            return game.id === item.id;
+        });
+        if(found_games.length === 1){
+            item.imgsrc = found_games[0].image;
+            item.game = found_games[0].name;
+            item.chinese = found_games[0].chinese;
+            group.push(template($('#gameTpl').html(), item));
+            if(group.length == 12) {
+                html.push('<ul class="game clearFix">'+group.join('')+'</ul>');
+                group = [];
+            }
         }
     });
 
