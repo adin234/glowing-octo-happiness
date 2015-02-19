@@ -5249,8 +5249,9 @@ div#addForm {
 div#show_events{
   width: 1000px;
   height: 500px;
-  margin-left: 40px;
+  margin-left: 80px;
   margin-top: 10px;
+  display: inline-block;
 }
 
 p#e_desc {
@@ -5263,7 +5264,7 @@ textarea#event_desc {
   padding: 8px 15px;
   border-radius: 5px;
   display: inline-block;
-  margin: 5px;
+  margin: 5px 0px;
   height: 100px;
 }
 
@@ -5300,3 +5301,60 @@ div#eventHeader {
   padding-left: 115px;
   font-weight: bold;
 }
+
+
+/*show events*/
+
+div#title {
+  font-weight: bold;
+  font-size: 28px;
+  display: inline-block;
+  width: 1000px;
+}
+
+div#startDate {
+  color: #8befa7;
+  font-weight: 600;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+div#endDate {
+  display: inline-block;
+  color: #8befa7;
+  font-weight: 600;
+  padding: 0 5px;
+}
+
+div#startTime {
+  display: inline-block;
+  color: #8befa7;
+  font-weight: 600;
+}
+
+div#endTime {
+  display: inline-block;
+  color: #8befa7;
+  font-weight: 600;
+}
+
+div#getSchedules > button {
+  display: inline-block;
+  margin-top: 100px;
+  padding: 8px 15px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-left: 50px;
+}
+
+div#editEvent {
+  display: inline-block;
+  width: 134px;
+  vertical-align: top;
+}
+
