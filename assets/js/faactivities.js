@@ -32,6 +32,7 @@ console.log(data);
 			}
 
 	}).success(function (data){
+			console.log(data.e_description);
 			console.log(data);
 			console.log('success');
 	}).fail(function (data){
@@ -45,8 +46,8 @@ console.log(data);
 
 function get_events() {
 
-var eventsHtml = []; 
-var title, startDate, endDate, startTime, endTime, eDesc; 
+	var eventsHtml = []; 
+	var title, startDate, endDate, startTime, endTime, eDesc; 
 
 					$.ajax({
 							dataType: 'json',
@@ -66,9 +67,6 @@ var title, startDate, endDate, startTime, endTime, eDesc;
 
 							
 						data.forEach(function(item){
-							
-							
-
 
 							 title = item.event_title;
 							 startDate = item.start_date;
@@ -76,26 +74,27 @@ var title, startDate, endDate, startTime, endTime, eDesc;
 							 startTime = item.start_time;
 							 endTime = item.end_time;
 							 eDesc = item.e_description; 
+							 console.log(eDesc);
+
 						});
 
-				
+						$('.add_events_form').hide();
+						$('#show_events').html(
+								'<div id="title">' + title + '</div>' +
+								'<div id="startDate">' + startDate + '</div>' + '-' +
+								'<div id="endDate">' + endDate + '</div>' + 
+								'<div id="startTime">' + startTime + '</div>' + '-' +
+								'<div id="endTime">' + endTime + '</div>' +
+								'<div id="e-desc">' + eDesc + '</div>' 
+						);
+
+						$('#editEvent').html('<div id="edit_event">' +  '<a href="#"><img src="/assets/images/pencil.jpg">EDIT EVENT</a>' + '</div>');
 
 
-
-			$('#show_events').html(
-				'<div id="eventHeader">' + title + '</div>' +
-				'<div id="startEventDate">' + startDate + '</div>' + 
-				'<div id="endEventDate">' + endDate + '</div>' + 
-				'<div id="startEventTime">' + startTime + '</div>' + 
-				'<div id="endEventTime">' + endTime + '</div>' +
-				'<div id="e-desc">' + eDesc + '</div>' 
-				);
-
-
-	}).fail(function (data){
-			console.log(data);
-			console.log('failure');
-	});
+				}).fail(function (data){
+						console.log(data);
+						console.log('failure');
+				});
 
 	console.log('Fetching data ... ');
 
@@ -159,6 +158,15 @@ function get_event_status(){
 	//get event status 
 
 	//flag - ended - 0, ongoing - 1
+
+	var currentDate = get_current_date(); 
+
+			if(currentDate < eventDate){
+				var status = 0; //ended
+
+			}else{
+				var status = 1; //ongoing
+			}
 }
 
 
@@ -184,7 +192,6 @@ var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
 					}).success(function (data){
 
 								data.forEach(function (item){
-
 											 console.log(item.event_title);
 											 console.log(item.start_date);
 											 console.log(item.end_date);
@@ -196,8 +203,6 @@ var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
 											 endDate = item.end_date;
 											 startTime = item.start_time; 
 											 endTime = item.end_time; 
-
-
 								}); 
 
 								$('#all_schedule').html(
@@ -210,10 +215,11 @@ var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
 
 
 					}).fail(function(data){
-							console.log('There were no data fetched');
+							$('#all_schedule').html('<div id="error_report"> <p> There are no schedules available </p></div>'); 
 					});
 
 
 
 			
 }
+

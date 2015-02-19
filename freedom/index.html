@@ -263,9 +263,9 @@
                 <p id="e_e_date">End Date:</p> <input type="text" name="event_end_date" placeholder="Event End Date" id="event_end_date">
                 <p id="s_time">Start Time:</p> <input type="text" name="event_start_time" placeholder="Event Start Time" id="event_start_time">
                 <p id="e_time">End Time:</p> <input type="text" name="event_end_time" placeholder="Event End Time" id="event_end_time">
-             <!--   <p id="e_desc">Event Description:</p>
+               <p id="e_desc">Event Description:</p>
                 <textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea> 
-                <!-- <input type="submit" value="Submit" > --> 
+               
 
                 <button onclick="add_event()">ADD EVENT</button>
           </form>
@@ -281,6 +281,8 @@
       <div id="show_events">
         
       </div>
+      <div id="editEvent"></div>
+
 
 
 
@@ -310,45 +312,14 @@
                     <img src="/assets/images/border-top-green.png"> 
                 </div>
 
-                <div id="scheduled_activities">
-                    <div class="activity">
-                        <p id="activity_date">Jan 15 - Mar 20, 8:30-11am </p>
-                        <p id="activity_title">Massive Potato Salad Making Contest</p>
-                        <div id="status_activity"><p id="stat_ended">Ended</p></div>
-                    </div>
-                     <div class="activity">
-                        <p id="activity_date">Apr 01 - Jun 08, 8:30-11am </p>
-                        <p id="activity_title">Super Massive Potato Eating Contest</p>
-                        <div id="status_activity"><p id="stat_ended">Ended</p></div>
-                    </div>
-                     <div class="activity">
-                        <p id="activity_date">Jul 15 - 20, 8:30-11am </p>
-                        <p id="activity_title">Massive Potato Salad Making Contest</p>
-                        <div id="status_activity"><p id="stat_ongoing">Ongoing</p></div>
-                    </div>
-                     <div class="activity">
-                        <p id="activity_date">Aug 15 - Sep 20, 8:30-11am </p>
-                        <p id="activity_title">Massive Potato Salad Making Contest</p>
-                        <div id="status_activity"><p id="stat_ongoing">Ongoing</p></div>
-                    </div>
-                    <div class="activity">
-                        <p id="activity_date">Oct 15 - Nov 20, 8:30-11am </p>
-                        <p id="activity_title">Massive Potato Salad Making Contest</p>
-                        <div id="status_activity"><p id="stat_ongoing">Ongoing</p></div>
-                    </div>
-                    <div class="activity">
-                        <p id="activity_date">Nov 15 - Dec 20, 8:30-11am </p>
-                        <p id="activity_title">Massive Potato Salad Making Contest</p>
-                        <div id="status_activity"><p id="stat_ongoing">Ongoing</p></div>
-                    </div>
-
-                </div>
+           
 
 
                 <div id="freedom_schedule">
                   
                     <div id="all_schedule"></div>
                     <div id="getSchedules"><button onclick="get_schedule()">Get Schedules</button></div>
+
 
 
 
