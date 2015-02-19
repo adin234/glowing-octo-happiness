@@ -522,7 +522,7 @@ var news_shows_playlists = function() {
                             item.thumb = null;
                         }
                         item.title = item.snippet.title;
-                        item.link = '/news/#!/video/'+item.snippet.resourceId.videoId;
+                        item.link = '/news/#!/playlist/'+playlist.id+'/video/'+item.snippet.resourceId.videoId;
                         $('#tab-news-playlist-'+index+' ul').append(template($('#newsShowsTpl').html(), item));
                         ctr++;
                     }
@@ -557,7 +557,7 @@ var news_shows_playlists = function() {
                             item.thumb = null;
                         }
                         item.title = item.snippet.title;
-                        item.link = '/shows/#!/video/'+item.snippet.resourceId.videoId;
+                        item.link = '/shows/#!/playlist/'+playlist.id+'/video/'+item.snippet.resourceId.videoId;
                         $('#tab-shows-playlist-'+index+' ul').append(template($('#newsShowsTpl').html(), item));
                         ctr++;
                     }
