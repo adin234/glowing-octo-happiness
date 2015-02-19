@@ -345,7 +345,11 @@ var showPlaylist = function(playlistId, next) {
   }
   // $('#videosToggle').click();
   if(!next) {
-    return showVideo(playlist.items[0].snippet.resourceId.videoId);
+    if((typeof playlist.items[0].status !== 'undefined') && (playlist.items[0].status === 'public')){
+        return showVideo(playlist.items[0].snippet.resourceId.videoId);
+    }else{
+        return showVideo(playlist.items[1].snippet.resourceId.videoId);
+    }
   }
   filterAction(next);
 };
