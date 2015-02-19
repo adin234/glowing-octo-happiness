@@ -11,15 +11,6 @@ var currentStreamCount = 0;
 var UniqueStreamers = [];
 
 var hash = '';
-$.ajax({
-    async: false,
-    type: "GET",
-    dataType: "json",
-    url: server+"index?console=all",
-}).done(function (data) {
-    index_data = data;
-});
-
 var slider = {};
 slider.most_viewed = $("#mostViewed").bxSlider({
         startSlide: 0,
@@ -67,35 +58,36 @@ var filterAction = function(action) {
     }
 }
 
-$('html').on('click', '.load-more', function() {
-    e = $(this);
-    var selector = e.attr('data-selector');
-    var page = e.attr('data-page');
-    var per_page = e.attr('data-per-page');
-    load_more(selector, page, per_page);
-});
-
 $(document).ready(function() {
     $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: server+"streamers"
-    }).done(function (data) {
-        $.merge(streamersList, data.streamers);
-        index_show_streamers(streamersList);
-        $(window).trigger('hashchange');
-    }).fail(function(){
-        window.location.assign(page_maintenance);    
-    });
-
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: server+"streamers/youtube"
-    }).done(function (data) {
-        $.merge(streamersList, data.streamers);
-        index_show_streamers(streamersList);
-    });
+    async: false,
+    type: "GET",
+    dataType: "json",
+    url: server+"index?console=all",
+}).done(function (data) {
+    index_data = data;
+    update_index(index_data);
+    
+//    $.ajax({
+//        type: "GET",
+//        dataType: "json",
+//        url: server+"streamers"
+//    }).done(function (data) {
+//        $.merge(streamersList, data.streamers);
+//        $.ajax({
+//            type: "GET",
+//            dataType: "json",
+//            url: server+"streamers/youtube"
+//        }).done(function (data) {
+//            $.merge(streamersList, data.streamers);
+//            index_show_streamers(streamersList);
+//            $(window).trigger('hashchange');
+//        });
+//    }).fail(function(){
+//        window.location.assign(page_maintenance);    
+//    });
+    
+});
 
     $(document).on('click', '.slider-item .play', function(e) {
         var vid = $(this).attr('data-vid');
@@ -135,6 +127,22 @@ $(document).ready(function() {
             scrollTop: 0
         });
     });
+    
+    $('html').on('click', '.load-more', function() {
+        e = $(this);
+        var selector = e.attr('data-selector');
+        var page = e.attr('data-page');
+        var per_page = e.attr('data-per-page');
+        load_more(selector, page, per_page);
+    });
+    
+    $(window).on('hashchange', function(e) {
+        hash = window.location.hash.replace('#!/', '');
+        hash = hash.split('/');
+        filterAction(hash.shift());
+    });
+    
+    news_shows_playlists();
 });
 
 
@@ -190,8 +198,6 @@ var index_show_streamers = function(streamersList) {
 
     $('#streamers').html(html.join(''));
     load_more('#streamers > li', 1, 5);
-
-    update_index(index_data);
 };
 
 var add_filter_category = function(string, context) {
@@ -483,22 +489,97 @@ var update_index = function(index_data) {
 
 };
 
-$(window).on('hashchange', function(e) {
-    hash = window.location.hash.replace('#!/', '');
-    hash = hash.split('/');
-    filterAction(hash.shift());
-});
-
-$(".sf-menu").superfish();
-$(".tabs").tabslet({
-  animation: true,
-}).on("_before", function() {
-  slider.most_viewed.reloadSlider();
-  slider.featured_video.reloadSlider();
-  slider.latest_video.reloadSlider();
-  slider.featured_games.reloadSlider();
-  slider.latest_games.reloadSlider();
-});
+var news_shows_playlists = function() {
+  
+//    var html = [];
+//    var blocks = '';
+//    var max_items = 3;
+//    var visible_news_playlists = (typeof index_data.visible_news_playlists != 'undefined') ? index_data.visible_news_playlists.split(',') : [];
+//    var visible_shows_playlists = (typeof index_data.visible_shows_playlists != 'undefined') ? index_data.visible_shows_playlists.split(',') : [];
+//        
+//    index_data.news_playlists.forEach(function(playlist, index){
+//       if(visible_news_playlists.indexOf(playlist.id) == -1){
+//            return;
+//       }
+//       blocks = '<div id="tab-news-playlist-'+index+'"><ul class="list clearFix">';
+//       blocks += '</ul></div>';
+//       $('#news_shows_playlists_block').append(blocks);
+//       
+//       $.ajax({
+//            url: server+'news',
+//            dataType: 'json',
+//            async: false,
+//            data: { playlist: playlist.id },
+//            success: function(result) {
+//                result.items.forEach(function(item, i){
+//                    if(item.status.privacyStatus === 'public'){
+//                        if(i > max_items) return;
+//                        if(typeof item.snippet.thumbnails !== 'undefined'){
+//                            item.thumb = item.snippet.thumbnails.medium.url;
+//                        }else{
+//                            item.thumb = null;
+//                        }
+//                        item.title = item.snippet.title;
+//                        item.link = '/news/#!/video/'+item.snippet.resourceId.videoId;
+//                        $('#tab-news-playlist-'+index+' ul').append(template($('#newsShowsTpl').html(), item));
+//                    }
+//                });
+//            }
+//       });
+//       
+//       html.push('<li><h2><a href="#tab-news-playlist-'+index+'">'+playlist.snippet.title+'</a></h2></li>');
+//    });
+//    
+//    index_data.shows_playlists.forEach(function(playlist, index){
+//       if(visible_shows_playlists.indexOf(playlist.id) == -1){
+//            return;
+//       }
+//       blocks = '<div id="tab-shows-playlist-'+index+'"><ul class="list clearFix">';
+//       blocks += '</ul></div>';
+//       $('#news_shows_playlists_block').append(blocks);
+//       
+//       $.ajax({
+//            url: server+'shows',
+//            dataType: 'json',
+//            async: false,
+//            data: { playlist: playlist.id },
+//            success: function(result) {
+//                result.items.forEach(function(item, i){
+//                    if(item.status.privacyStatus === 'public'){
+//                        if(i > max_items) return;
+//                        if(typeof item.snippet.thumbnails !== 'undefined'){
+//                            item.thumb = item.snippet.thumbnails.medium.url;
+//                        }else{
+//                            item.thumb = null;
+//                        }
+//                        item.title = item.snippet.title;
+//                        item.link = '/shows/#!/video/'+item.snippet.resourceId.videoId;
+//                        $('#tab-shows-playlist-'+index+' ul').append(template($('#newsShowsTpl').html(), item));
+//                    }
+//                });
+//            }
+//       });
+//       
+//       html.push('<li><h2><a href="#tab-shows-playlist-'+index+'">'+playlist.snippet.title+'</a></h2></li>');
+//    });
+//
+//    $('#news_shows_playlists').html(html.join(''));
+    //$('#news_shows_playlists_block').append(blocks);
+    $(".sf-menu").superfish();
+    $(".tabs").tabslet({
+        animation: true,
+    }).on("_before", function() {
+        slider.most_viewed.reloadSlider();
+        slider.featured_video.reloadSlider();
+        slider.latest_video.reloadSlider();
+        slider.featured_games.reloadSlider();
+        slider.latest_games.reloadSlider();
+    });
+    
+    setInterval(function() {
+        checkForNewStreamers();
+    }, 5000);
+}
 
 /* RDC */
 var YTStreamers = [];
@@ -605,10 +686,6 @@ var checkForNewStreamers = function() {
         }
     }
 };
-
-setInterval(function() {
-    checkForNewStreamers();
-}, 5000);
 
 var shuffle = function(o) {
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
