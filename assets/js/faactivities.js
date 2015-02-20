@@ -91,7 +91,13 @@ function get_events() {
 								'<div id="endDate">' + endDate + '</div>' + 
 								'<div id="startTime">' + startTime + '</div>' + '-' +
 								'<div id="endTime">' + endTime + '</div>' +
-								'<div id="e-desc">' + eDesc + '</div>' 
+								'<div id="e-desc">' + eDesc + '</div>' +
+
+								'<div id="join-event">' + '<button onclick="join_event()">JOIN EVENT</buttton>' + '</div>' + 
+
+									'<div id="join-link">' + '<p>ENTER JOIN EVENT LINK</p>' + '<input type="text" name="event_link" id="event_link">' + '</div>' 
+
+								
 						);
 
 						$('#editEvent').html('<div id="edit_event">' +  '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' + '</div>');
@@ -137,9 +143,6 @@ var title;
 }
 
 function update_events() {
-
-
-
 
 	$.ajax({
 			url: server + 'freedom_events/update',
