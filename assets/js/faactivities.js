@@ -65,7 +65,10 @@ function get_events() {
 
 					}).success(function (data){
 
-							
+						if(data == 'undefined')	 { $('#show_events').html('No events added');
+
+						}else{
+
 						data.forEach(function(item){
 
 							 title = item.event_title;
@@ -91,7 +94,7 @@ function get_events() {
 						);
 
 						$('#editEvent').html('<div id="edit_event">' +  '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' + '</div>');
-
+					}
 
 				}).fail(function (data){
 						console.log(data);
@@ -160,14 +163,11 @@ function update_events() {
 
 function search_events() {
 
-	$.ajax({
+	/*$.ajax({
 			dataType: 'json',
 			url: server+'freedom_events/search/:keyword',
 			type: 'get'
-			data: {
-
-				'event_title' : $('#event_name').val()
-			}
+			
 
 	}).success(function (){
 
@@ -177,6 +177,7 @@ function search_events() {
 
 
 	});
+*/
 } 
 
 

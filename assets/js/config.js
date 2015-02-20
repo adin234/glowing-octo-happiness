@@ -28,4 +28,4 @@ var utilLoader = {
             loaderIcn.remove();
         }
     }
-};
+}; 
