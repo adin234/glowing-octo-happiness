@@ -5199,10 +5199,16 @@ div#add_event_header {
   width: 200px;
   font-weight: bold;
   font-size: 30px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+  padding: 8px 15px;
 }
 
 div#addForm {
   width: 92%;
+  margin-top: 50px;
+  margin-left: 10px;
 }
 
 #addForm button {
@@ -5236,11 +5242,18 @@ div#addForm {
 /*show events*/
 
 div#show_events{
-  width: 600px;
+  width: 700px;
   height: 500px;
-  margin-left: 80px;
   margin-top: 10px;
   display: inline-block;
+}
+
+div#backButton {
+  background: url("/assets/images/back_button.png") no-repeat;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 p#e_desc {
@@ -5298,7 +5311,8 @@ div#title {
   font-weight: bold;
   font-size: 28px;
   display: inline-block;
-  width: 1000px;
+  width: 600px;
+  margin-left: 20px;
 }
 
 div#startDate {
@@ -5306,6 +5320,7 @@ div#startDate {
   font-weight: 600;
   display: inline-block;
   padding-right: 5px;
+  margin-left: 85px;
 }
 
 div#endDate {
@@ -5325,6 +5340,12 @@ div#endTime {
   display: inline-block;
   color: #8befa7;
   font-weight: 600;
+}
+
+div#e-desc {
+  display: inline-block;
+  width: 700px;
+  margin-left: 85px;
 }
 
 div#getSchedules > button {

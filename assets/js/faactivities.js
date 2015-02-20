@@ -85,6 +85,7 @@ function get_events() {
 
 						$('.add_events_form').hide();
 						$('#show_events').html(
+								'<div id="backButton">' + '<a href="http://localhost:8000/freedom"><img src="/assets/images/back_button.png"></a>' + '</div>' + 
 								'<div id="title">' + title + '</div>' +
 								'<div id="startDate">' + startDate + '</div>' + '-' +
 								'<div id="endDate">' + endDate + '</div>' + 
