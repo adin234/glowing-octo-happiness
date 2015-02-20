@@ -75,6 +75,8 @@ function get_events() {
 							 endTime = item.end_time;
 							 eDesc = item.e_description; 
 							 console.log(eDesc);
+							 console.log(item.event_id);
+							 
 
 						});
 
@@ -88,7 +90,7 @@ function get_events() {
 								'<div id="e-desc">' + eDesc + '</div>' 
 						);
 
-						$('#editEvent').html('<div id="edit_event">' +  '<a href="#"><img src="/assets/images/pencil.jpg">EDIT EVENT</a>' + '</div>');
+						$('#editEvent').html('<div id="edit_event">' +  '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' + '</div>');
 
 
 				}).fail(function (data){
@@ -105,11 +107,26 @@ function get_events() {
 
 function delete_events() {
 
+var title; 
+
 	$.ajax({
 			dataType: 'json',
 			url: server+'freedom_events/delete/:id',
 			type: 'get',
-			data:{}
+			data: {
+				'event_title' : $('#event_name').val()
+			}
+
+	}).success(function(data){
+
+		title = data.event_title;
+
+		$('#deleted_event').html(title + 'successfully deleted');
+
+
+	}).fail(function(){
+
+			$('#deleted_event').html(title + 'was unsuccessfully deleted');
 
 	});
 
@@ -147,6 +164,17 @@ function search_events() {
 			dataType: 'json',
 			url: server+'freedom_events/search/:keyword',
 			type: 'get'
+			data: {
+
+				'event_title' : $('#event_name').val()
+			}
+
+	}).success(function (){
+
+
+
+	}).fail(function () {
+
 
 	});
 } 
@@ -223,3 +251,52 @@ var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
 			
 }
 
+function edit_events(){ 
+
+	console.log('editing event');
+	var data = $('#event_name').val();
+
+	console.log(data);
+
+		$.ajax({
+				
+				url: server+'freedom_events/add',
+				type: 'post',
+				data: {
+
+					'event_title': $('#event_name').val(),
+					'start_date' : $('#event_start_date').val(),
+					'end_date' : $('#event_end_date').val(),
+					'start_time' : $('#event_start_time').val(),
+					'end_time' : $('#event_end_time').val(),
+					'e_description' : $('#event_desc').val()
+				}
+
+		}).success(function (data){
+				console.log(data.e_description);
+				console.log(data);
+				console.log('success');
+		}).fail(function (data){
+				console.log(data);
+				console.log('Fail');
+
+		});
+
+}
+
+function get_archive(){
+
+
+
+
+
+}
+
+
+
+var get_fa_data = function(ajaxparam) {
+
+	$.ajax(ajaxparam).success({
+
+	});
+}

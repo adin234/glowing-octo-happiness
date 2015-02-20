@@ -4897,17 +4897,6 @@ p#date_2 {
 
 
 
-#edit_event > a {
-  color: #fff;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  padding: 8px 15px;
-  background: rgba(0,255,84,0.3);
-  border: 3px solid #00ff54;
-  border-radius: 20px;
-}
-
 div#edit_event {
   display: inline-block;
   width:143px;
@@ -5247,7 +5236,7 @@ div#addForm {
 /*show events*/
 
 div#show_events{
-  width: 1000px;
+  width: 600px;
   height: 500px;
   margin-left: 80px;
   margin-top: 10px;
@@ -5358,3 +5347,13 @@ div#editEvent {
   vertical-align: top;
 }
 
+#edit_event > button {
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: bold;
+  padding: 8px 15px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+}
