@@ -1661,7 +1661,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   width: 234px;
 }
 .main .streaming .dynamic:before {
-  background: url("/assets/images/Sprite.png") no-repeat 0 -1985px;
+  background: url("/assets/images/sprite.png") no-repeat 0 -1985px;
   content: "\00A0";
   left: -5px;
   position: absolute;
