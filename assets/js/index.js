@@ -9,6 +9,7 @@ var randomLatestVids = [];
 var randomMostViewedVids = [];
 var currentStreamCount = 0;
 var UniqueStreamers = [];
+var gamesPerConsole;
 
 var hash = '';
 var slider = {};
@@ -61,6 +62,22 @@ var filterAction = function(action) {
     }
 }
 
+/* RDC 2015-02-23 */
+$(document).ready(function() {
+   $.ajax({url: server + 'gamesperconsole',
+           type: 'GET',
+           dataType: 'json'
+          }).success(function(data) {
+                console.log('Game list successfully acquired.');
+          }).fail(function(xhr, data){
+                console.log(xhr.status);
+          }).done(function(data){
+            displayGamesPerConsole(data);
+          }); 
+});
+
+
+
 $(document).ready(function() {
     $.ajax({
     async: false,
@@ -70,26 +87,6 @@ $(document).ready(function() {
 }).done(function (data) {
     index_data = data;
     update_index(index_data);
-    
-//    $.ajax({
-//        type: "GET",
-//        dataType: "json",
-//        url: server+"streamers"
-//    }).done(function (data) {
-//        $.merge(streamersList, data.streamers);
-//        $.ajax({
-//            type: "GET",
-//            dataType: "json",
-//            url: server+"streamers/youtube"
-//        }).done(function (data) {
-//            $.merge(streamersList, data.streamers);
-//            index_show_streamers(streamersList);
-//            $(window).trigger('hashchange');
-//        });
-//    }).fail(function(){
-//        window.location.assign(page_maintenance);    
-//    });
-    
 });
 
     $(document).on('click', '.slider-item .play', function(e) {
@@ -229,7 +226,7 @@ var filter_category = function (cnsl) {
     return false;
 }
 
-var update_index = function(index_data) {
+var update_index = function(index_data) {    
     var html = [];
     var group = [];
     // slider
@@ -389,8 +386,8 @@ var update_index = function(index_data) {
         infiniteLoop: false,
         hideControlOnEnd: true
     });
-
-    // featured games
+    
+     featured games
     html = [];
     group = [];
     index_data.featured_games.forEach(function(item, i){
@@ -408,14 +405,14 @@ var update_index = function(index_data) {
             }
         }
     });
-
+    
     if(group.length >= 1) {
         html.push('<ul class="game clearFix">'+group.join('')+'</ul>')
     }
-
+    
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#featuredGames').html(html.join(''));
-
+    
     slider.featured_games.reloadSlider({
         startSlide: 0,
         infiniteLoop: false,
@@ -698,4 +695,39 @@ var checkForNewStreamers = function() {
 var shuffle = function(o) {
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
-}
+};
+
+var displayGamesPerConsole = function(gl) {
+    $('#featuredGames').empty();
+    // featured games
+    html = [];
+    group = [];
+    gl.forEach(function(item, i){
+        if (item.game.length > 20) {
+            item.gamename = item.gamename.replace('_', ' ').substring(0,17) + '...';
+        }
+        
+        if (item.imgsrc.indexOf('game-logos') === -1) {
+            item.gamename = '';
+        }
+        
+        group.push(template($('#gameConsoleTpl').html(), item));
+        if(group.length == 12) {
+            html.push('<ul class="game clearFix">'+group.join('')+'</ul>');
+            group = [];
+        }
+    });
+
+    if(group.length >= 1) {
+        html.push('<ul class="game clearFix">'+group.join('')+'</ul>')
+    }
+
+    if(!html.length) { html.push('目前沒有遊戲'); }
+    $('#featuredGames').html(html.join(''));
+
+    slider.featured_games.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    }); 
+};
