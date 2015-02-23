@@ -703,8 +703,8 @@ var displayGamesPerConsole = function(gl) {
     html = [];
     group = [];
     gl.forEach(function(item, i){
-        if (item.game.length > 20) {
-            item.gamename = item.gamename.replace('_', ' ').substring(0,17) + '...';
+        if (item.game.length > 15) {
+            item.gamename = item.gamename.replace('_', ' ').substring(0,12) + '...';
         }
         
         if (item.imgsrc.indexOf('game-logos') === -1) {
