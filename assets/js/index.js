@@ -387,7 +387,7 @@ var update_index = function(index_data) {
         hideControlOnEnd: true
     });
     
-     featured games
+    //featured games
     html = [];
     group = [];
     index_data.featured_games.forEach(function(item, i){
