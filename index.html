@@ -331,8 +331,20 @@
   </li>
 </script>
 <script type="text/html" id="gameTpl">
-<li><a href="/game/?game={{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
+<li><a href="/game/?game={{ID}}"><img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltip tooltipstered" title="{{GAME}}&lt;/br&gt;{{CHINESE}}"></a></li>
 </script>
+
+<!--RDC 2015-02-23-->
+<script type="text/html" id="gameConsoleTpl">
+    <li>
+        <a href="/game/?game={{ID}}">
+            <span id={{ID}} class="gamelabel capitalized">{{GAMENAME}}</span>
+            <img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" class="tooltipstered capitalized">
+        </a>
+    </li>
+</script>
+<!-- End -->
+
 <script type="text/html" id="featuredUsersTpl">
   <li class={{COUNT}}>
     <div class="list">
