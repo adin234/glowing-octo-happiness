@@ -595,6 +595,7 @@ var getOnlineStreamers = function(link, streamType) {
         type: "GET",
         dataType: "json",
         url: link,
+        timeout: 5000
     }).done(function (data) {
         if (streamType === 'YT') {
             YTStreamers = [];
