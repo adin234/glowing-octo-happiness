@@ -5046,13 +5046,15 @@ div#status_activity {
   padding-left: 150px;
 }
 
-p#stat_ended {
+div#eventStatus {
   width: 56px;
   text-align: center;
   background: red;
   border: 1px solid #000;
   font-weight: bold;
   font-size: 12px;
+  display:inline-block;
+  margin-left: 200px;
 }
 
 p#stat_ongoing {
@@ -5205,7 +5207,6 @@ div#addForm {
 #addForm p {
   width: 45%;
   display: inline-block;
-  font-weight: 600;
   font-size: large;
 }
 
@@ -5215,6 +5216,9 @@ div#addForm {
   display: inline-block;
   width: 50%;
   margin: 5px 0;
+  background-color: transparent;
+  border: 1px solid #7b7b7b;
+  color: #7b7b7b;
 }
 
 /*show events*/
@@ -5246,6 +5250,9 @@ textarea#event_desc {
   display: inline-block;
   margin: 5px 0px;
   height: 100px;
+  background: transparent;
+  border: 1px solid #7b7b7b;
+  color: #7b7b7b;
 }
 
 
@@ -5324,6 +5331,13 @@ div#e-desc {
   display: inline-block;
   width: 700px;
   margin-left: 85px;
+  margin-top: 12px;
+  margin-bottom: 30px;
+}
+
+div#join-link {
+  margin-left: 10px;
+  margin-top: 30px;
 }
 
 div#getSchedules > button {
@@ -5385,4 +5399,48 @@ div#editEvent {
   background: #7b7b7b;
   border: 1px solid #fff;
   width: 200px;
+}
+
+/*date*/
+
+input#event_start_date {
+  font-family: Arial;
+  color: #7b7b7b;
+  text-transform: uppercase;
+}
+
+input#event_end_date {
+  color: #7b7b7b;
+  text-transform: uppercase;
+  font-family: Arial;
+}
+
+input#event_start_time {
+  color: #7b7b7b;
+  font-family: Arial;
+}
+
+input#event_end_time {
+  color: #7b7b7b;
+  font-family: Arial;
+}
+
+div#getArchive > button {
+  display: inline-block;
+  margin-top: 100px;
+  padding: 8px 15px;
+  background: rgba(0,255,84,0.3);
+  border: 3px solid #00ff54;
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-left: 50px;
+}
+
+/*archive*/
+div#archive_schedule {
+  margin-top: 100px;
+  margin-left: 20px;
 }

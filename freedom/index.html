@@ -74,7 +74,7 @@
             <!-- <li class="nav-switch-item current"><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
             <li class="nav-switch-item"><a href="/lanparty" title="搞活動" class="sf-with-ul">搞活動</a>
               <ul>
-                  <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
+                  <li><a href="/freedom" title="Freedom! 活動時間" onclick="get_userinfo()">Freedom!活動</a></li>
                   <li><a href="/lanparty" title="最新發文">Lan party</a></li>
               </ul>
             <li>
@@ -122,10 +122,10 @@
             <div id="addForm">
             <form>
                 <p id="e_title">Title</p> <input type="text" name="event_name" placeholder="Event Title" id="event_name">
-                <p id="e_s_date">Start Date</p> <input type="text" name="event_start_date" placeholder="Event Start Date" id="event_start_date">
-                <p id="e_e_date">End Date</p> <input type="text" name="event_end_date" placeholder="Event End Date" id="event_end_date">
-                <p id="s_time">Start Time</p> <input type="text" name="event_start_time" placeholder="Event Start Time" id="event_start_time">
-                <p id="e_time">End Time</p> <input type="text" name="event_end_time" placeholder="Event End Time" id="event_end_time">
+                <p id="e_s_date">Start Date</p> <input type="date" name="event_start_date" placeholder="Event Start Date" id="event_start_date">
+                <p id="e_e_date">End Date</p> <input type="date" name="event_end_date" placeholder="Event End Date" id="event_end_date">
+                <p id="s_time">Start Time</p> <input type="time" name="event_start_time" placeholder="Event Start Time" id="event_start_time">
+                <p id="e_time">End Time</p> <input type="time" name="event_end_time" placeholder="Event End Time" id="event_end_time">
                <p id="e_desc">Event Description</p>
                 <textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea> 
                
@@ -198,16 +198,11 @@
             <img src="/assets/images/freedom_archive.png" alt="">
           </div>
           <div class="lanparty_content" id="lanparty_archive">
-              <div class="event_list">
-             
+          </div>
 
 
-
-              </div>
-
-     
-
-        </div>
+              <div id="archive_schedule"></div>
+              <div id="getArchive"><button onclick="get_archive()">Get Archive</button></div>
 
         <div id = "activity_container">
 
