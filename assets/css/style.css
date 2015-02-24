@@ -5179,9 +5179,6 @@ div#add_event_header {
   width: 200px;
   font-weight: bold;
   font-size: 30px;
-  background: rgba(0,255,84,0.3);
-  border: 3px solid #00ff54;
-  border-radius: 20px;
   padding: 8px 15px;
 }
 
@@ -5208,6 +5205,7 @@ div#addForm {
   width: 45%;
   display: inline-block;
   font-size: large;
+  color: #ccc;
 }
 
 #addForm input {
@@ -5225,7 +5223,6 @@ div#addForm {
 
 div#show_events{
   width: 700px;
-  height: 500px;
   margin-top: 10px;
   display: inline-block;
 }

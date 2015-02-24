@@ -286,6 +286,7 @@ function edit_events(){
 
 function get_archive(){
 
+	var data_entries = []; 
 	var eventTitle,startDate,endDate,startTime,endTime;
 	var eventStatus = 'Ended';
 			$.ajax({
@@ -293,18 +294,18 @@ function get_archive(){
 							url: server+'freedom_events',
 							type: 'get',
 							data: {
-
+/*
 								'event_title': $('#event_name').val(),
 								'start_date' : $('#event_start_date').val(),
 								'end_date' : $('#event_end_date').val(),
 								'start_time' : $('#event_start_time').val(),
 								'end_time' : $('#event_end_time').val(),
-								'e_description' : $('#event_desc').val()
+								'e_description' : $('#event_desc').val()*/
 							}
 
 					}).success(function (data){
-						console.log(data);
-						console.log('success');
+						
+				
 			
 							data.forEach(function (item){
 										
