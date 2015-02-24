@@ -5401,6 +5401,7 @@ div#editEvent {
   width: 200px;
 }
 
+
 /*date*/
 
 input#event_start_date {
@@ -5444,3 +5445,16 @@ div#archive_schedule {
   margin-top: 100px;
   margin-left: 20px;
 }
+
+/* RDC 2015-02-23 */
+.capitalized {text-transform: capitalize !important;}
+
+.gamelabel {position: absolute;
+            text-align: center;
+            background-color: transparent;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            width: 160px;
+            margin-top: 70px;}
+
