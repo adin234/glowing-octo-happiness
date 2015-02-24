@@ -243,6 +243,11 @@ $(function() {
     $('#streamArea').mCustomScrollbar({
       theme:"inset-2",
     });
+    
+    if(typeof page_data.custom_fields !== 'undefined' && typeof page_data.custom_fields.streamingImage !== 'undefined' && page_data.custom_fields.streamingImage !== ''){
+        $("meta[property='og\\:image']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
+        $("meta[name='twitter\\:image\\:src']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
+    }
 });
 
 var viewers;
