@@ -5398,7 +5398,6 @@ div#editEvent {
   width: 200px;
 }
 
-
 /*date*/
 
 input#event_start_date {
@@ -5454,4 +5453,3 @@ div#archive_schedule {
             text-align: center;
             width: 160px;
             margin-top: 70px;}
-
