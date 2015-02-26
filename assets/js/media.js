@@ -615,6 +615,11 @@ $(document).on('load-page',function(){
       user_id:      utilUser.get().user_id,
       username:     utilUser.get().username,
       message:      $('#commentArea').val()
+
+      // access_token: 'titingmalikot',
+      // user_id:      'buratskill03',
+      // username:     'penisillin',
+      // message:      'kissmykak'
     };
     if(!$('#commentArea').val().trim().length) {
       return
