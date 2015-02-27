@@ -1,4 +1,4 @@
-var server              = 'http://localhost:3000/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/' 
+var server              = 'http://api.gamers.tm/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/' 
 var origin              = 'http://localhost:8000/';  //'http://www.gamers.tm/';////
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';
