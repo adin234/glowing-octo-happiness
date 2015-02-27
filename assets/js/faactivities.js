@@ -1,5 +1,20 @@
 
 
+function get_userinfo(){
+
+	var user_id;
+
+		//if(item.user_group_id === 3){}
+
+					//get user_id
+					userinfo = $.parseJSON(utilCookie.get('user'));
+					user_id = userinfo.user_id;
+		
+
+		console.log(user_id);
+			
+
+}
 
 function showHideDiv(){
 
@@ -77,8 +92,7 @@ function get_events() {
 							 startTime = item.start_time;
 							 endTime = item.end_time;
 							 eDesc = item.e_description; 
-							 console.log(eDesc);
-							 console.log(item.event_id);
+							
 							 
 
 						});
@@ -108,7 +122,6 @@ function get_events() {
 						console.log('failure');
 				});
 
-	console.log('Fetching data ... ');
 
 
 
@@ -167,21 +180,7 @@ function update_events() {
 
 function search_events() {
 
-	/*$.ajax({
-			dataType: 'json',
-			url: server+'freedom_events/search/:keyword',
-			type: 'get'
-			
 
-	}).success(function (){
-
-
-
-	}).fail(function () {
-
-
-	});
-*/
 } 
 
 
@@ -225,11 +224,7 @@ var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
 					}).success(function (data){
 
 								data.forEach(function (item){
-											 console.log(item.event_title);
-											 console.log(item.start_date);
-											 console.log(item.end_date);
-											 console.log(item.start_time);
-											 console.log(item.end_time);
+										
 
 											 eventTitle = item.event_title; 
 											 startDate = item.start_date;
@@ -291,7 +286,51 @@ function edit_events(){
 
 function get_archive(){
 
+	var data_entries = []; 
+	var eventTitle,startDate,endDate,startTime,endTime;
+	var eventStatus = 'Ended';
+			$.ajax({
+							dataType: 'json',
+							url: server+'freedom_events',
+							type: 'get',
+							data: {
+/*
+								'event_title': $('#event_name').val(),
+								'start_date' : $('#event_start_date').val(),
+								'end_date' : $('#event_end_date').val(),
+								'start_time' : $('#event_start_time').val(),
+								'end_time' : $('#event_end_time').val(),
+								'e_description' : $('#event_desc').val()*/
+							}
 
+					}).success(function (data){
+						
+				
+			
+							data.forEach(function (item){
+										
+
+											 eventTitle = item.event_title; 
+											 startDate = item.start_date;
+											 endDate = item.end_date;
+											 startTime = item.start_time; 
+											 endTime = item.end_time; 
+							}); 
+
+							$('#archive_schedule').html(
+										'<div class="activity">' + 
+										'<div id="startEventDate">' + startDate + '</div>' + '-' + '<div id="endEventDate">' + endDate + '</div>' + 
+										'<div id="startEventTime">' + startTime + '</div>' + '-' + '<div id="endEventTime">' + endTime + '</div>' +
+										'<div id="eventHeader">' + eventTitle + '</div>' + 
+										'<div id="eventStatus">' + eventStatus + '</div>' + 
+										'</div>'
+							);
+
+
+					}).fail(function (data){
+						console.log(data);
+						console.log('fail');
+					});
 
 
 
@@ -305,3 +344,4 @@ var get_fa_data = function(ajaxparam) {
 
 	});
 }
+
