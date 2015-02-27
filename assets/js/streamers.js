@@ -147,7 +147,26 @@ var render_videos = function(filter, game, lanparty) {
             item.bust = 1;
             item.type = 'TW';
             item.views = item.twitch.viewers;
-        } else {
+        } if ( typeof item.hitbox != 'undefined' ) { //we have hitbox
+            var hitboxData = item.hitbox.livestream[0];
+
+            if(typeof filter != 'undefined'
+            && !~hitboxData.media_status.search(filterRegExp)
+            && !~item.user.username.search(filterRegExp)) return;
+
+            item.hitboxid = hitboxData.media_name;
+            // dont render if already active
+            item.id = 'HB'+item.hitboxid;
+            item.idraw = item.hitboxid;
+            item.live = 'live';
+            item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
+            item.provider = attachments_server;
+            item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
+            item.title = hitboxData.media_status;
+            item.bust = 1;
+            item.type = 'HB';
+            item.views = hitboxData.media_views;
+        } else if ( typeof item.youtube != 'undefined' ) {
             if(typeof filter != 'undefined'
             && !~item.username.search(filterRegExp)) return;
             item.id = 'YT'+item.username;
@@ -242,6 +261,15 @@ var render_videos = function(filter, game, lanparty) {
 
 var get_youtube_streams = function(filter, game, fetch) {
     $.getJSON(server+'streamers/youtube', function(result) {
+        result.streamers.forEach(function(item) {
+            page_data.streamers.push(item);
+        });
+        render_videos();
+    });
+}
+
+var get_hitbox_streams = function(filter, game, fetch) {
+    $.getJSON(server+'streamers/hitbox', function(result) {
         result.streamers.forEach(function(item) {
             page_data.streamers.push(item);
         });
@@ -388,6 +416,7 @@ var render_page = function() {
     $('.tooltip').tooltipster({contentAsHTML: true});
     $(window).trigger('hashchange');
     get_youtube_streams();
+    get_hitbox_streams();
 };
 
 render_page();
@@ -408,6 +437,7 @@ $.getJSON(server+'streamers?lanparty=1', function(e) {
 
 var YTStreamers = [];
 var TWStreamers = [];
+var HBStreamers = [];
 var onlineStreamers = [];
 
 var getOnlineStreamers = function(link, streamType) {
@@ -419,6 +449,9 @@ var getOnlineStreamers = function(link, streamType) {
         if (streamType === 'YT') {
             YTStreamers = [];
             $.merge(YTStreamers, data.streamers);
+        } if (streamType === 'HB') {
+            HBStreamers = [];
+            $.merge(HBStreamers, data.streamers);
         } else {
             TWStreamers = [];
             $.merge(TWStreamers, data.streamers);
@@ -428,15 +461,19 @@ var getOnlineStreamers = function(link, streamType) {
 
 var streamCount = 0;
 var checker = setInterval(function() {
-    if ($('#txtbox-search-videos').val() === '' && $('#tab-2-1').css('display') === 'block' && $('#multiview-count').text() === '0') {
+    if ($('#txtbox-search-videos').val() === '' 
+        && $('#tab-2-1').css('display') === 'block' 
+        && $('#multiview-count').text() === '0') {
         
-        for (i=0; i < 2; i++) {
-            if (i === 0) {
+        // for (i=0; i < 2; i++) {
+        //     if (i === 0) {
                 getOnlineStreamers(server + 'streamers', 'TW');
-            } else {
+        //    } else {
                 getOnlineStreamers(server + 'streamers/youtube', 'YT');
-            }
-        }
+
+                getOnlineStreamers(server + 'streamers/hitbox', 'HB');
+        //     }
+        // }
         
         onlineStreamers = [];
         
@@ -444,7 +481,7 @@ var checker = setInterval(function() {
             onlineStreamers.length = 0;
         }
         
-        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
+        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers, HBStreamers));
         
         if ($('a[href$="/streamers"] > sup').text().length > 0) {
             streamCount = parseInt($('a[href$="/streamers"] > sup').text());

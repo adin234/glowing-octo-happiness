@@ -514,6 +514,7 @@ var news_shows_playlists = function() {
             success: function(result) {
                 ctr = 1;
                 result.items.forEach(function(item, i){
+                    var newsShows, newsShowsTpl;
                     if(item.status.privacyStatus === 'public'){
                         if(ctr > max_items) return;
                         if(typeof item.snippet.thumbnails !== 'undefined'){
@@ -523,7 +524,9 @@ var news_shows_playlists = function() {
                         }
                         item.title = item.snippet.title;
                         item.link = '/news/#!/playlist/'+playlist.id+'/video/'+item.snippet.resourceId.videoId;
-                        $('#tab-news-playlist-'+index+' ul').append(template($('#newsShowsTpl').html(), item));
+                        newsShowsTpl = $('#newsShowsTpl').html() || '';
+                        newsShows = template(newsShowsTpl, item);
+                        $('#tab-news-playlist-'+index+' ul').append(newsShows);
                         ctr++;
                     }
                 });
