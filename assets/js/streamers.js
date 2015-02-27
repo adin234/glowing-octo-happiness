@@ -32,7 +32,7 @@ $(function() {
         dataType: "json",
         url: server+"streamers"
     }).done(function (data) {
-        //$.merge(streamersList, data.streamers);
+        //$.extend(streamersList, data.streamers);
         //index_show_streamers(streamersList);
         //$(window).trigger('hashchange');
     }).fail(function(){
@@ -157,6 +157,8 @@ var render_videos = function(filter, game, lanparty) {
             item.hitboxid = hitboxData.media_name;
             // dont render if already active
             item.id = 'HB'+item.hitboxid;
+            item.username = item.user.username;
+            item.user_id = item.user.user_id;
             item.idraw = item.hitboxid;
             item.live = 'live';
             item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
@@ -166,6 +168,7 @@ var render_videos = function(filter, game, lanparty) {
             item.bust = 1;
             item.type = 'HB';
             item.views = hitboxData.media_views;
+            item.provider = attachments_server;
         } else if ( typeof item.youtube != 'undefined' ) {
             if(typeof filter != 'undefined'
             && !~item.username.search(filterRegExp)) return;
@@ -182,6 +185,10 @@ var render_videos = function(filter, game, lanparty) {
             item.type = 'YT';
             item.views = '0';
         }
+
+        // if ($('a[data-streamid="'+item.type+item.idraw+'"]')) {
+        //     return;
+        // }
 
         items.push(template(tplVideo, item));
         ids.push(item.youtube_id);
@@ -440,7 +447,7 @@ var TWStreamers = [];
 var HBStreamers = [];
 var onlineStreamers = [];
 
-var getOnlineStreamers = function(link, streamType) {
+var getOnlineStreamers = function(link, streamType, cb) {
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -448,14 +455,15 @@ var getOnlineStreamers = function(link, streamType) {
     }).done(function (data) {
         if (streamType === 'YT') {
             YTStreamers = [];
-            $.merge(YTStreamers, data.streamers);
+            $.extend(YTStreamers, data.streamers);
         } if (streamType === 'HB') {
             HBStreamers = [];
-            $.merge(HBStreamers, data.streamers);
+            $.extend(HBStreamers, data.streamers);
         } else {
             TWStreamers = [];
-            $.merge(TWStreamers, data.streamers);
+            $.extend(TWStreamers, data.streamers);
         }
+        cb();
     });
 };
 
@@ -464,48 +472,49 @@ var checker = setInterval(function() {
     if ($('#txtbox-search-videos').val() === '' 
         && $('#tab-2-1').css('display') === 'block' 
         && $('#multiview-count').text() === '0') {
-        
-        // for (i=0; i < 2; i++) {
-        //     if (i === 0) {
-                getOnlineStreamers(server + 'streamers', 'TW');
-        //    } else {
-                getOnlineStreamers(server + 'streamers/youtube', 'YT');
 
-                getOnlineStreamers(server + 'streamers/hitbox', 'HB');
-        //     }
-        // }
+        clearStreamers();
         
-        onlineStreamers = [];
-        
-        if (onlineStreamers.length > 0) {
-            onlineStreamers.length = 0;
-        }
-        
-        $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers, HBStreamers));
-        
-        if ($('a[href$="/streamers"] > sup').text().length > 0) {
-            streamCount = parseInt($('a[href$="/streamers"] > sup').text());
-        } else {
-            streamCount = 0;
-        }
-        
-        if (onlineStreamers.length > 0) {
-            if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
-                $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
-                page_data.streamers = onlineStreamers;
-                $('#container-videos > ul > li').empty().fadeOut('slow');
-                render_videos();
-            }        
-        }
-        else {
-            if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
-                $('a[href$="/streamers"] > sup').text('');
-                $('#container-videos > ul').remove().fadeOut();
-            }
-        }
+        getOnlineStreamers(server + 'streamers', 'TW', displayStreamers);
+        getOnlineStreamers(server + 'streamers/youtube', 'YT', displayStreamers);
+        getOnlineStreamers(server + 'streamers/hitbox', 'HB', displayStreamers);
+
+
 
     }
 },5000);
+
+function clearStreamers() {
+    onlineStreamers = [];
+    YTStreamers = [];
+    TWStreamers = [];
+    HBStreamers = [];
+}
+
+function displayStreamers () {
+    $.extend(onlineStreamers, $.extend(YTStreamers, TWStreamers, HBStreamers));
+
+    if ($('a[href$="/streamers"] > sup').text().length > 0) {
+        streamCount = parseInt($('a[href$="/streamers"] > sup').text());
+    } else {
+        streamCount = 0;
+    }
+
+    if (onlineStreamers.length > 0) {
+        if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
+            $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
+            page_data.streamers = onlineStreamers;
+            // $('#container-videos > ul > li').empty().fadeOut('slow');
+            render_videos();
+        }
+    }
+    else {
+        if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
+            $('a[href$="/streamers"] > sup').text('');
+            $('#container-videos > ul').remove().fadeOut();
+        }
+    }
+}
 
 $('a[href$="#tab-2-1"]').on('click',function() {
     window.location.assign(origin + 'streamers');
