@@ -5453,3 +5453,24 @@ div#archive_schedule {
             text-align: center;
             width: 160px;
             margin-top: 70px;}
+
+/*Freedom News Playlist*/
+#tab-news-playlist-1 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-news-playlist-2 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-shows-playlist-0 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-shows-playlist-3 img {
+  width: 100%;
+  height: 100%;
+}

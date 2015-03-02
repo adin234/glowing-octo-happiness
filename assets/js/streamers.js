@@ -312,7 +312,7 @@ var add_to_multiview = function() {
         if(typeof item.youtube != 'undefined' && item.youtube.id == id) {
             return true;
         }
-        if (typeof item.hitbox !== 'undefined') {
+        if (typeof item.hitbox !== 'undefined' && item.hitboxid == id) {
             return true;
         }
         return false;
