@@ -312,12 +312,15 @@ var add_to_multiview = function() {
         if(typeof item.youtube != 'undefined' && item.youtube.id == id) {
             return true;
         }
+        if (typeof item.hitbox !== 'undefined') {
+            return true;
+        }
         return false;
     })[0];
 
     var item = streamer;
 
-    if(typeof item.twitch != 'undefined') {
+    if(typeof item.twitch !== 'undefined') {
         item.twitchid = item.field_value[item.field_value.length-1];
         // dont render if already active
         item.id = 'TW'+item.twitchid;
@@ -330,6 +333,24 @@ var add_to_multiview = function() {
         item.bust = 1;
         item.type = 'TW';
         item.views = item.twitch.viewers;
+    } if (typeof item.hitbox !== 'undefined') {
+        var hitboxData = item.hitbox.livestream[0];
+
+        item.hitboxid = hitboxData.media_name;
+        // dont render if already active
+        item.id = 'HB'+item.hitboxid;
+        item.username = item.user.username;
+        item.user_id = item.user.user_id;
+        item.idraw = item.hitboxid;
+        item.live = 'live';
+        item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
+        item.provider = attachments_server;
+        item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
+        item.title = hitboxData.media_status;
+        item.bust = 1;
+        item.type = 'HB';
+        item.views = hitboxData.media_views;
+        item.provider = attachments_server;
     } else {
         item.id = 'YT'+item.username;
         item.idraw= item.youtube.id;
@@ -517,7 +538,7 @@ function displayStreamers () {
 }
 
 $('a[href$="#tab-2-1"]').on('click',function() {
-    window.location.assign(origin + 'streamers');
+    window.location.assign('/streamers');
 });
 
 
