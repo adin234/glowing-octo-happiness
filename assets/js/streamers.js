@@ -405,31 +405,6 @@ var render_featured_games = function (filter) {
         watch_now_button.attr('href', stream_link+utilHash.buildHash(ids));
     },
 
-    getOnlineStreamers = function(link, streamType, cb) {
-        var toExtend = null;
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: link,
-        }).done(function (data) {
-            switch (streamType) {
-                case 'YT' :
-                    YTStreamers = data.streamers;;
-                    break;
-
-                case 'HB' :
-                    HBStreamers = data.streamers;;
-                    break;
-
-                default:
-                    TWStreamers = data.streamers;;
-                    break;
-            };
-
-            cb();
-        });
-    },
-
     checker = function() {
         onlineStreamers = [];
 
