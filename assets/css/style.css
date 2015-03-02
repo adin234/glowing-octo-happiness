@@ -5439,8 +5439,25 @@ div#getArchive > button {
 /*archive*/
 div#archive_schedule {
   margin-top: 100px;
-  margin-left: 20px;
+  
 }
+
+.left {
+  width: 350px;
+  display: inline-block;
+}
+
+.center {
+  width: 250px;
+  display: inline-block;
+}
+
+.right {
+  display: inline-block;
+  width: 200px;
+  margin-left: 110px;
+}
+
 
 /* RDC 2015-02-23 */
 .capitalized {text-transform: capitalize !important;}
