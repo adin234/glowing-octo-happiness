@@ -491,7 +491,9 @@ function get_streamers(first) {
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
-            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5))
+            console.log(item);
+            if((item.user_group_id === 5 ||
+                (item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5)))
                 && ~item.youtube.snippet.title.toLowerCase().indexOf('lan')) {
                 streamingLan++;
             }
@@ -599,7 +601,8 @@ $(function() {
         type: 'get'
     })
     .done(function(session) {
-        if(typeof session.username !== 'undefined') {
+        console.log(session);
+        if (session.username) {
             var links = [];
             links.push('<ul class="user-links">');
             links.push('<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>');
@@ -613,13 +616,14 @@ $(function() {
                 href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
             });
 
-            utilCookie.set('user', JSON.stringify(session), 1/24);
+            utilCookie.set('user', JSON.stringify(session), 1);
 
             if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
         } else {
-            utilCookie.set('user', null);
+            console.log('no user');
+            utilCookie.set('user', "", 0);
         }
     });
 

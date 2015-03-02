@@ -5462,6 +5462,7 @@ div#archive_schedule {
 /* RDC 2015-02-23 */
 .capitalized {text-transform: capitalize !important;}
 
+
 .gamelabel {position: absolute;
             text-align: center;
             background-color: transparent;
@@ -5490,4 +5491,22 @@ div#archive_schedule {
 #tab-shows-playlist-3 img {
   width: 100%;
   height: 100%;
+}
+
+#subscribe-follow {
+  float: none;
+  vertical-align: middle;
+}
+
+#youtube-subscribe {
+  float:right;
+  margin-left: 5px;
+}
+
+#twitter-follow {
+  float:right;
+}
+
+#top-controls {
+  height: 35px;
 }
