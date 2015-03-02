@@ -36,8 +36,8 @@ $(function() {
         //index_show_streamers(streamersList);
         //$(window).trigger('hashchange');
     }).fail(function(){
-        window.location.assign(page_maintenance);    
-    });    
+        window.location.assign(page_maintenance);
+    });
 });
 
 var render_featured_games = function (filter) {
@@ -121,7 +121,7 @@ var render_videos = function(filter, game, lanparty) {
     var filterGameRegExp = new RegExp(filterGame, 'i');
 
     var itemToComplete = 9;
-    
+
     var source = lanparty && typeof lanparty != 'undefined'
         ? page_data.lanparty
         : page_data.streamers;
@@ -207,7 +207,7 @@ var render_videos = function(filter, game, lanparty) {
     } else {
         $('#container-lanparty').html(html.join(''));
     }
-    
+
     if (typeof(filter) !== 'undefined') {
         if(!html.length && $('#container-videos').html().trim().length === 0) {
             html.push('無法找到你指定的實況主');
@@ -216,7 +216,7 @@ var render_videos = function(filter, game, lanparty) {
             } else {
                 $('#container-lanparty').html(html.join(''));
             }
-        }  
+        }
     } else {
         if(!html.length && $('#container-videos').html().trim().length === 0) {
             html.push('目前沒有正在直播的實況主');
@@ -225,10 +225,10 @@ var render_videos = function(filter, game, lanparty) {
             } else {
                 $('#container-lanparty').html(html.join(''));
             }
-        }        
+        }
 
     }
-    
+
     var activeSlider = !lanparty
         ? slider.container_videos
         : slider.container_lanparty;
@@ -265,24 +265,6 @@ var render_videos = function(filter, game, lanparty) {
         }
     });
 };
-
-var get_youtube_streams = function(filter, game, fetch) {
-    $.getJSON(server+'streamers/youtube', function(result) {
-        result.streamers.forEach(function(item) {
-            page_data.streamers.push(item);
-        });
-        render_videos();
-    });
-}
-
-var get_hitbox_streams = function(filter, game, fetch) {
-    $.getJSON(server+'streamers/hitbox', function(result) {
-        result.streamers.forEach(function(item) {
-            page_data.streamers.push(item);
-        });
-        render_videos();
-    });
-}
 
 var get_game = function() {
     var game = utilHash.getHashArr()[0];
@@ -437,18 +419,6 @@ $(window).on('hashChange', function() {
     filter_videos();
 });
 
-var render_page = function() {
-    // render_latest_games();
-    // render_featured_games();
-    //render_videos();
-    $('.tooltip').tooltipster({contentAsHTML: true});
-    $(window).trigger('hashchange');
-    get_youtube_streams();
-    get_hitbox_streams();
-};
-
-render_page();
-
 streamersSearch();
 
 $.getJSON(server+'streamers?lanparty=1', function(e) {
@@ -469,51 +439,70 @@ var HBStreamers = [];
 var onlineStreamers = [];
 
 var getOnlineStreamers = function(link, streamType, cb) {
+    var toExtend = null;
     $.ajax({
         type: "GET",
         dataType: "json",
         url: link,
     }).done(function (data) {
-        if (streamType === 'YT') {
-            YTStreamers = [];
-            $.extend(YTStreamers, data.streamers);
-        } if (streamType === 'HB') {
-            HBStreamers = [];
-            $.extend(HBStreamers, data.streamers);
-        } else {
-            TWStreamers = [];
-            $.extend(TWStreamers, data.streamers);
-        }
+        switch (streamType) {
+            case 'YT' :
+                YTStreamers = data.streamers;;
+                break;
+
+            case 'HB' :
+                HBStreamers = data.streamers;;
+                break;
+
+            default:
+                TWStreamers = data.streamers;;
+                break;
+        };
+
         cb();
     });
 };
 
 var streamCount = 0;
-var checker = setInterval(function() {
-    if ($('#txtbox-search-videos').val() === '' 
-        && $('#tab-2-1').css('display') === 'block' 
+
+var checker = function() {
+    if ($('#txtbox-search-videos').val() === ''
+        && $('#tab-2-1').css('display') === 'block'
         && $('#multiview-count').text() === '0') {
 
-        clearStreamers();
-        
-        getOnlineStreamers(server + 'streamers', 'TW', displayStreamers);
-        getOnlineStreamers(server + 'streamers/youtube', 'YT', displayStreamers);
-        getOnlineStreamers(server + 'streamers/hitbox', 'HB', displayStreamers);
+        onlineStreamers = [];
 
-
-
+        getOnlineStreamers(server + 'streamers', 'TW', function() {
+            getOnlineStreamers(server + 'streamers/youtube', 'YT', function() {
+                getOnlineStreamers(server + 'streamers/hitbox', 'HB', displayStreamers);
+            });
+        });
     }
-},5000);
+};
 
-function clearStreamers() {
-    onlineStreamers = [];
-    YTStreamers = [];
-    TWStreamers = [];
-    HBStreamers = [];
-}
+var render_page = function() {
+    // render_latest_games();
+    // render_featured_games();
+    //render_videos();
+    $('.tooltip').tooltipster({contentAsHTML: true});
+    $(window).trigger('hashchange');
+
+    checker();
+};
 
 function displayStreamers () {
-    $.extend(onlineStreamers, $.extend(YTStreamers, TWStreamers, HBStreamers));
+    console.log('display');
+    YTStreamers.forEach(function(item) {
+        onlineStreamers.push(item);
+    });
+
+    TWStreamers.forEach(function(item) {
+        onlineStreamers.push(item);
+    });
+
+    HBStreamers.forEach(function(item) {
+        onlineStreamers.push(item);
+    });
 
     if ($('a[href$="/streamers"] > sup').text().length > 0) {
         streamCount = parseInt($('a[href$="/streamers"] > sup').text());
@@ -522,25 +511,28 @@ function displayStreamers () {
     }
 
     if (onlineStreamers.length > 0) {
-        if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
+        //if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             page_data.streamers = onlineStreamers;
             // $('#container-videos > ul > li').empty().fadeOut('slow');
             render_videos();
-        }
-    }
-    else {
+        //}
+    } else {
         if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
             $('a[href$="/streamers"] > sup').text('');
             $('#container-videos > ul').remove().fadeOut();
         }
     }
+
+    setTimeout(function() {
+        checker();
+    }, 1000);
+
 }
 
 $('a[href$="#tab-2-1"]').on('click',function() {
     window.location.assign('/streamers');
 });
 
-
-
+render_page();
 
