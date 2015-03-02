@@ -4,8 +4,6 @@ function get_user_info(){
 
 	var user_id;
 
-
-					
 					userinfo = $.parseJSON(utilCookie.get('user'));
 					user_id = userinfo.user_id;
 		
@@ -176,9 +174,6 @@ function search_events() {
 
 		}).success(function (data){
 
-
-
-
 		}).fail(function (data){
 
 		});
@@ -231,9 +226,13 @@ var eventsHtml = [];
 								 endTime = item.end_time; 
 								
 								eventsHtml.push('<div class="activity">');
+								eventsHtml.push('<div class="left">');
 								eventsHtml.push('<div id="startEventDate">' + startDate + '</div>' + '<div id="endEventDate">' + endDate + '</div>');
 								eventsHtml.push('<div id="startEventTime">' + startTime + '</div>' + '<div id="endEventTime">' + endTime + '</div>');
+								eventsHtml.push('</div>');
+								eventsHtml.push('<div class="center">');
 								eventsHtml.push('<div id="eventHeader">' + eventTitle + '</div>' + '<div id="e_status"></div>');
+								eventsHtml.push('</div>');
 								eventsHtml.push('</div>');
 
 
@@ -318,16 +317,18 @@ function get_archive(){
 
 
 											 	html.push('<div class="activity">');
+											 	html.push('<div class="left">');
 												html.push('<div id="startEventDate">' + startDate + '</div>' + '<div id="endEventDate">' + endDate + '</div>');
 												html.push('<div id="startEventTime">' + startTime + '</div>' + '<div id="endEventTime">' + endTime + '</div>');
+												html.push('</div>');
+												html.push('<div class="center">');
 												html.push('<div id="eventHeader">' + eventTitle + '</div>');
+												html.push('</div>');
+												html.push('<div class="right">');
 												html.push('<div id="eventStatus">' + eventStatus + '</div>');
 												html.push('</div>');
+												html.push('</div>');
 							}); 
-
-
-							
-
 
 								$('#archive_schedule').html(html.join(''));
 
