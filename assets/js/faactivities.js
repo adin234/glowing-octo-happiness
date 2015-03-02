@@ -23,7 +23,6 @@ function add_event(){
 
 var data = $('#event_name').val();
 
-
 	$.ajax({
 			
 			url: server+'freedom_events/add',
