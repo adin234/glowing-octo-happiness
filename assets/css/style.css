@@ -3512,13 +3512,15 @@ body:nth-child(3) {
 }
 #main-container .watchList li h3 {
   float: left;
-  font-size: 12px;
-  width: 135px;
+  font-size: 17px;
+  width: 100px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-top: -74px;
+  margin-left: 110px;
 }
 #main-container .watchList li dt {
   float: left;
