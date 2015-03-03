@@ -5,6 +5,7 @@ var slider = {},
     HBStreamers = [],
     onlineStreamers = [],
     streamCount = 0,
+    first = true,
     multiview_items = [],
     hash,
     filter_videos = function(input) {
@@ -112,6 +113,8 @@ var render_featured_games = function (filter) {
         var html = [],
             items = [],
             ids = [],
+            flags = [],
+            recent_videos,
             tplVideo = $('#videoTpl').html(),
             tplVideoContainer = $('#videoContainerTpl').html(),
             activeMultiView = get_active_for_multiview(),
@@ -209,6 +212,8 @@ var render_featured_games = function (filter) {
             //     return;
             // }
 
+            flags.push(item.idraw);
+
             if (!~multiview_items.indexOf(item.idraw)) {
                 items.push(template(tplVideo, item));
                 ids.push(item.idraw);
@@ -224,8 +229,36 @@ var render_featured_games = function (filter) {
             html.push(template(tplVideoContainer, {'items' : items.join('')}));
         }
 
-        if(!lanparty) {
+        if (first && html.length) {
+            console.log('is first', html);
             $('#container-videos').html(html.join(''));
+            first = false;
+        }
+
+        if(!lanparty) {
+            recent_videos= [];
+            $('#tab-2-1 [data-streamidraw]')
+                .each(function (i, item){
+                    recent_videos.push(item.getAttribute('data-streamidraw'))
+                });
+            $('#tab-2-3 [data-streamidraw]')
+                .each(function (i, item){
+                    recent_videos.push(item.getAttribute('data-streamidraw'))
+                });
+
+
+            if ($(recent_videos).not(flags).length !== 0
+                || $(flags).not(recent_videos).length !== 0) {
+
+                $('#container-videos').html(html.join('')).promise()
+                    .done(function() {
+                        activeSlider.reloadSlider({
+                            activeSlide: currentSlide,
+                            infiniteLoop: false,
+                            hideControlOnEnd: true
+                        });
+                    });
+            }
         } else {
             $('#container-lanparty').html(html.join(''));
         }
@@ -234,7 +267,15 @@ var render_featured_games = function (filter) {
             if(!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('無法找到你指定的實況主');
                 if(!lanparty) {
-                    $('#container-videos').html(html.join(''));
+                    console.log('render here2');
+                    $('#container-videos').html(html.join('')).promise()
+                        .done(function() {
+                            activeSlider.reloadSlider({
+                                activeSlide: currentSlide,
+                                infiniteLoop: false,
+                                hideControlOnEnd: true
+                            });
+                        });
                 } else {
                     $('#container-lanparty').html(html.join(''));
                 }
@@ -243,19 +284,21 @@ var render_featured_games = function (filter) {
             if(!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('目前沒有正在直播的實況主');
                 if(!lanparty) {
-                    $('#container-videos').html(html.join(''));
+                    console.log('render here3');
+                    $('#container-videos').html(html.join('')).promise()
+                        .done(function() {
+                            activeSlider.reloadSlider({
+                                activeSlide: currentSlide,
+                                infiniteLoop: false,
+                                hideControlOnEnd: true
+                            });
+                        });
                 } else {
                     $('#container-lanparty').html(html.join(''));
                 }
             }
 
         }
-
-        activeSlider.reloadSlider({
-            activeSlide: currentSlide,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
 
         if(slider.container_videos.getSlideCount() < 2) {
             if(!lanparty) {

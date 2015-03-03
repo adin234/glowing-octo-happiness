@@ -541,21 +541,25 @@ function get_hitbox_streamers(first) {
                 streamingLan++;
             }
 
+            console.log(item.hitbox);
+
             if(first) {
-                streaming.push('HB'+item.hitbox.media_user_name);
+                streaming.push('HB'+item.hitbox.livestream[0].media_user_name);
                 return;
             }
 
-            if(~streaming.indexOf('HB'+item.hitbox.media_user_name)) {
+            if(~streaming.indexOf('HB'+item.hitbox.livestream[0].media_user_name)) {
                 return;
             }
 
             notify_stream({
                 streamer: item.username,
-                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'HB'+item.hitbox.media_user_name
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'HB'+item.hitbox.livestream[0].media_user_name
             });
 
-            streaming.push('HB'+item.hitbox.media_user_name);
+            console.log(item.hitbox);
+
+            streaming.push('HB'+item.hitbox.livestream[0].media_user_name);
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
