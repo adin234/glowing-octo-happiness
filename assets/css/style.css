@@ -5495,7 +5495,7 @@ div#archive_schedule {
   height: 100%;
 }
 
-#subscribe-follow {
+#subscribe-follow-like {
   float: none;
   vertical-align: middle;
 }
@@ -5508,6 +5508,11 @@ div#archive_schedule {
 #twitter-follow {
   float:right;
 }
+
+#facebook-like {
+  float:right;
+}
+
 
 #top-controls {
   height: 35px;
