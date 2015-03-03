@@ -1,7 +1,7 @@
 var template = function (templateHTML, data) {
     for(var x in data) {
         var torep = new RegExp('{{'+x+'}}', 'gi');
-        if(torep) {
+        if(torep && templateHTML) {
             templateHTML = templateHTML
                 .replace(torep,
                     data[x] == null ? '' : data[x]);
@@ -315,6 +315,31 @@ function searchBoxInit() {
 }
 var gamesAutocompleteArray = [];
 
+var getOnlineStreamers = function(link, streamType, cb) {
+    var toExtend = null;
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: link,
+    }).done(function (data) {
+        switch (streamType) {
+            case 'YT' :
+                YTStreamers = data.streamers;;
+                break;
+
+            case 'HB' :
+                HBStreamers = data.streamers;;
+                break;
+
+            default:
+                TWStreamers = data.streamers;;
+                break;
+        };
+
+        cb();
+    });
+};
+
 function searchGamesBoxInit() {
     if(!gamesAutocompleteArray.length) return;
 
@@ -428,24 +453,38 @@ function streamersSearch() {
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
 
-var streaming = [];
-var streamingLan = 0;
-var streamTimeout = 60000;
+var streaming = [],
+    streamingNew = [],
+    streamingLan = 0,
+    streamTimeout = 60000;
 
 function get_streamers(first) {
     streamingLan = 0;
+    streamingNew = [];
     $.get(server+'streamers', function(result) {
         result.streamers.forEach(function(item) {
-            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && item.twitch.channel.status && ~item.twitch.channel.status.toLowerCase().indexOf('lan')) {
+            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5))
+                && item.twitch.channel.status
+                && ~item.twitch.channel.status.toLowerCase().indexOf('lan')) {
+
                 streamingLan++;
             }
-            if(first) { streaming.push('TW'+item.twitch.channel.name); return; }
-            if(~streaming.indexOf('TW'+item.twitch.channel.name)) return;
+
+            if(first) {
+                streamingNew.push('TW'+item.twitch.channel.name); return;
+            }
+
+            if(~streaming.indexOf('TW'+item.twitch.channel.name)) {
+                streamingNew.push('TW'+item.twitch.channel.name);
+                return;
+            }
+
             notify_stream({
                 streamer: item.username,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
-            streaming.push('TW'+item.twitch.channel.name);
+
+                streamingNew.push('TW'+item.twitch.channel.name);
         });
     }).always(function() {
         get_youtube_streamers(first);
@@ -455,16 +494,29 @@ function get_streamers(first) {
 function get_youtube_streamers(first) {
     $.get(server+'streamers/youtube', function(result) {
         result.streamers.forEach(function(item) {
-            if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && ~item.youtube.snippet.title.toLowerCase().indexOf('lan')) {
+            console.log(item);
+            if((item.user_group_id === 5 ||
+                (item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5)))
+                && ~item.youtube.snippet.title.toLowerCase().indexOf('lan')) {
                 streamingLan++;
             }
-            if(first) { streaming.push('YT'+item.youtube.id); return; }
-            if(~streaming.indexOf('YT'+item.youtube.id)) return;
+
+            if (first) {
+                streamingNew.push('YT'+item.youtube.id);
+                return;
+            }
+
+            if(~streaming.indexOf('YT'+item.youtube.id)) {
+                streamingNew.push('YT'+item.youtube.id);
+                return;
+            }
+
             notify_stream({
                 streamer: item.username,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'YT'+item.username
             });
-            streaming.push('YT'+item.youtube.id);
+
+                streamingNew.push('YT'+item.youtube.id);
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
@@ -482,9 +534,55 @@ function get_youtube_streamers(first) {
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
-        //setTimeout(function() {
-        //    get_streamers();
-        //}, streamTimeout);
+        get_hitbox_streamers(first);
+    });
+}
+
+function get_hitbox_streamers(first) {
+    $.get(server+'streamers/hitbox', function(result) {
+        result.streamers.forEach(function(item) {
+            if((item.user_group_id === 5 || (
+                item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5)))
+                && ~item.youtube.snippet.title.toLowerCase().indexOf('lan')) {
+                streamingLan++;
+            }
+
+            if(first) {
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
+                return;
+            }
+
+            if(~streaming.indexOf('HB'+item.hitbox.livestream[0].media_user_name)) {
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
+                return;
+            }
+
+            notify_stream({
+                streamer: item.username,
+                link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'HB'+item.hitbox.livestream[0].media_user_name
+            });
+
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
+        });
+    }).always(function() {
+        if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
+            var streamingLength = streaming.length || '';
+            $("a[href='/streamers']:not(.no-sup)").html('直播<sup>' + streamingLength + '</sup>');
+        }
+
+        if($("a[href='/lanparty']").length) {
+            var streamingLanCount = streamingLan || '';
+            $("a[href='/lanparty']").html('Lan Party<sup>' + streamingLanCount + '</sup>');
+        }
+
+        if($("a[href='/lanparty_stream_multi']").length) {
+            var streamingLanCount = streamingLan || '';
+            $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
+        }
+
+
+        streaming = streamingNew;
+        get_streamers();
     });
 }
 
@@ -510,7 +608,8 @@ $(function() {
         type: 'get'
     })
     .done(function(session) {
-        if(typeof session.username !== 'undefined') {
+        console.log(session);
+        if (session.username) {
             var links = [];
             links.push('<ul class="user-links">');
             links.push('<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>');
@@ -524,13 +623,14 @@ $(function() {
                 href: 'http://community.gamers.tm/zh/index.php?account/personal-details'
             });
 
-            utilCookie.set('user', JSON.stringify(session), 1/24);
+            utilCookie.set('user', JSON.stringify(session), 1);
 
             if($('body').hasClass('streams')) return;
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
         } else {
-            utilCookie.set('user', null);
+            console.log('no user');
+            utilCookie.set('user', "", 0);
         }
     });
 

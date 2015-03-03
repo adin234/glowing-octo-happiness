@@ -63,18 +63,18 @@ var filterAction = function(action) {
 }
 
 /* RDC 2015-02-23 */
-$(document).ready(function() {
-   $.ajax({url: server + 'gamesperconsole',
-           type: 'GET',
-           dataType: 'json'
-          }).success(function(data) {
-                console.log('Game list successfully acquired.');
-          }).fail(function(xhr, data){
-                console.log(xhr.status);
-          }).done(function(data){
-            displayGamesPerConsole(data);
-          }); 
-});
+// $(document).ready(function() {
+//    $.ajax({url: server + 'gamesperconsole',
+//            type: 'GET',
+//            dataType: 'json'
+//           }).success(function(data) {
+//                 console.log('Game list successfully acquired.');
+//           }).fail(function(xhr, data){
+//                 console.log(xhr.status);
+//           }).done(function(data){
+//             displayGamesPerConsole(data);
+//           });
+// });
 
 
 
@@ -127,7 +127,7 @@ $(document).ready(function() {
             scrollTop: 0
         });
     });
-    
+
     $('html').on('click', '.load-more', function() {
         e = $(this);
         var selector = e.attr('data-selector');
@@ -135,13 +135,13 @@ $(document).ready(function() {
         var per_page = e.attr('data-per-page');
         load_more(selector, page, per_page);
     });
-    
+
     $(window).on('hashchange', function(e) {
         hash = window.location.hash.replace('#!/', '');
         hash = hash.split('/');
         filterAction(hash.shift());
     });
-    
+
     news_shows_playlists();
 });
 
@@ -152,31 +152,47 @@ var index_show_streamers = function(streamersList) {
         if ($('#noonline').length > 0 ) {
             $('#noonline').remove();
         }
-        
+
         streamersList.forEach(function(item) {
             if(typeof item.twitch != 'undefined') {
-                    item.twitchid = item.field_value[item.field_value.length-1];
-                    item.id = 'TW'+item.twitchid;
-                    item.idraw = item.twitchid;
-                    item.live = 'live';
-                    item.game = item.twitch.game;
-                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.twitch.preview.large;
-                    item.title = item.twitch.channel.status;
-                    item.bust = 1;
-                    item.views = item.twitch.viewers;
+                item.twitchid = item.field_value[item.field_value.length-1];
+                item.id = 'TW'+item.twitchid;
+                item.idraw = item.twitchid;
+                item.live = 'live';
+                item.game = item.twitch.game;
+                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                item.provider = attachments_server;
+                item.thumb = item.twitch.preview.large;
+                item.title = item.twitch.channel.status;
+                item.bust = 1;
+                item.views = item.twitch.viewers;
+            } else if (typeof item.hitbox != 'undefined') {
+                item.hitboxid = item.hitbox.media_name;
+                // dont render if already active
+                item.id = 'HB'+item.hitboxid;
+                item.username = item.user.username;
+                item.user_id = item.user.user_id;
+                item.idraw = item.hitboxid;
+                item.live = 'live';
+                item.link = 'gamer_stream/?user='+item.user.user_id+'/#!/HB'+item.hitbox.livestream[0].media_user_name;
+                item.provider = attachments_server;
+                item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.media_thumbnail_large;
+                item.title = item.hitbox.media_status;
+                item.bust = 1;
+                item.type = 'HB';
+                item.views = item.hitbox.media_views;
+                item.provider = attachments_server;
             } else {
-                    item.id = 'YT'+item.username;
-                    item.idraw= item.username;
-                    item.live = 'live';
-                    item.game = '';
-                    item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.youtube.snippet.thumbnails.high.url;
-                    item.title = item.youtube.snippet.title;
-                    item.bust = 1;
-                    item.views = '0';
+                item.id = 'YT'+item.username;
+                item.idraw= item.username;
+                item.live = 'live';
+                item.game = '';
+                item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                item.provider = attachments_server;
+                item.thumb = item.youtube.snippet.thumbnails.high.url;
+                item.title = item.youtube.snippet.title;
+                item.bust = 1;
+                item.views = '0';
             }
 
             item.game = item.game == null ? '' : item.game + ' / ';
@@ -190,7 +206,7 @@ var index_show_streamers = function(streamersList) {
             }
 
             html.push(template($('#streamersTpl').html(), item));
-        });       
+        });
     }
     else {
         html.push('<p id="noonline"> 目前沒有人直播 </p>');
@@ -226,7 +242,7 @@ var filter_category = function (cnsl) {
     return false;
 }
 
-var update_index = function(index_data) {    
+var update_index = function(index_data) {
     var html = [];
     var group = [];
     // slider
@@ -386,7 +402,7 @@ var update_index = function(index_data) {
         infiniteLoop: false,
         hideControlOnEnd: true
     });
-    
+
     //featured games
     html = [];
     group = [];
@@ -405,14 +421,14 @@ var update_index = function(index_data) {
             }
         }
     });
-    
+
     if(group.length >= 1) {
         html.push('<ul class="game clearFix">'+group.join('')+'</ul>')
     }
-    
+
     if(!html.length) { html.push('目前沒有遊戲'); }
     $('#featuredGames').html(html.join(''));
-    
+
     slider.featured_games.reloadSlider({
         startSlide: 0,
         infiniteLoop: false,
@@ -490,14 +506,14 @@ var update_index = function(index_data) {
 };
 
 var news_shows_playlists = function() {
-  
+
     var html = [];
     var blocks = '';
     var max_items = 3;
     var ctr = 1;
     var visible_news_playlists = (typeof index_data.visible_news_playlists != 'undefined') ? index_data.visible_news_playlists.split(',') : [];
     var visible_shows_playlists = (typeof index_data.visible_shows_playlists != 'undefined') ? index_data.visible_shows_playlists.split(',') : [];
-        
+
     index_data.news_playlists.forEach(function(playlist, index){
        if(visible_news_playlists.indexOf(playlist.id) == -1){
             return;
@@ -505,7 +521,7 @@ var news_shows_playlists = function() {
        blocks = '<div id="tab-news-playlist-'+index+'"><ul class="list clearFix">';
        blocks += '</ul></div>';
        $('#news_shows_playlists_block').append(blocks);
-       
+
        $.ajax({
             url: server+'news',
             dataType: 'json',
@@ -532,10 +548,10 @@ var news_shows_playlists = function() {
                 });
             }
        });
-       
+
        html.push('<li><h2><a href="#tab-news-playlist-'+index+'">'+playlist.snippet.title+'</a></h2></li>');
     });
-    
+
     index_data.shows_playlists.forEach(function(playlist, index){
        if(visible_shows_playlists.indexOf(playlist.id) == -1){
             return;
@@ -543,7 +559,7 @@ var news_shows_playlists = function() {
        blocks = '<div id="tab-shows-playlist-'+index+'"><ul class="list clearFix">';
        blocks += '</ul></div>';
        $('#news_shows_playlists_block').append(blocks);
-       
+
        $.ajax({
             url: server+'shows',
             dataType: 'json',
@@ -567,7 +583,7 @@ var news_shows_playlists = function() {
                 });
             }
        });
-       
+
        html.push('<li><h2><a href="#tab-shows-playlist-'+index+'">'+playlist.snippet.title+'</a></h2></li>');
     });
 
@@ -583,117 +599,41 @@ var news_shows_playlists = function() {
         slider.featured_games.reloadSlider();
         slider.latest_games.reloadSlider();
     });
-    
-    setInterval(function() {
-        checkForNewStreamers();
-    }, 5000);
 }
 
 /* RDC */
 var YTStreamers = [];
 var TWStreamers = [];
+var HBStreamers = [];
+var onlineStreamers = [];
 
-var getOnlineStreamers = function(link, streamType) {
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: link,
-        timeout: 5000
-    }).done(function (data) {
-        if (streamType === 'YT') {
-            YTStreamers = [];
-            $.merge(YTStreamers, data.streamers);
-        } else {
-            TWStreamers = [];
-            $.merge(TWStreamers, data.streamers);
-        }
-    });
-};
-
-var checkForNewStreamers = function() {
-
-    getOnlineStreamers(server + 'streamers', 'TW');
-    getOnlineStreamers(server + 'streamers/youtube', 'YT');
-    
+var checker_index = function() {
     onlineStreamers = [];
-    $.merge(onlineStreamers, $.merge(YTStreamers, TWStreamers));
-    
-    if (streamersList.length > 0) {
-        streamersList.length = 0;
-        return null;
-    }
-    
-    if (onlineStreamers.length > 0) {
-        if ($('#noonline').length > 0) {
-            $('#noonline').remove();
-        }
-        
-        if ($('a[href$="/streamers"] > sup').text() !== '') {
-            currentStreamCount = parseInt($('a[href$="/streamers"] > sup').text());
-        }
-    
-        if (onlineStreamers.length > currentStreamCount || onlineStreamers.length < currentStreamCount) {
-            $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
-            
-            $('div #streamers > li').remove().fadeOut('slow');
-            
-            onlineStreamers.forEach(function(item) {
-                if(typeof item.twitch != 'undefined') {
-                        item.twitchid = item.field_value[item.field_value.length-1];
-                        item.id = 'TW'+item.twitchid;
-                        item.idraw = item.twitchid;
-                        item.live = 'live';
-                        item.game = item.twitch.game;
-                        item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                        item.provider = attachments_server;
-                        item.thumb = item.twitch.preview.large;
-                        item.title = item.twitch.channel.status;
-                        item.bust = 1;
-                        item.views = item.twitch.viewers;
-                    } else {
-                        item.id = 'YT'+item.username;
-                        item.idraw= item.username;
-                        item.live = 'live';
-                        item.game = '';
-                        item.link = 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
-                        item.provider = attachments_server;
-                        item.thumb = item.youtube.snippet.thumbnails.high.url;
-                        item.title = item.youtube.snippet.title;
-                        item.bust = 1;
-                        item.views = '0';
-                    }
-            
-                    item.game = item.game == null ? '' : item.game + ' / ';
-            
-                    if(item.game.length > 10) {
-                        item.game = item.game.substr(0,9) + '&#133;' + ' / ';
-                    } 
-            
-                    if(item.username != null && item.username.length > 10) {
-                        item.username = item.username.substr(0, 9) + '&#133;';
-                    }
-            
-                    $('div #streamers').prepend(template($('#streamersTpl').html(),item)).fadeIn('slow'); 
-            });            
-        }
-    }
-    else {
-        if ($('#noonline').length === 0 && $('#streamers > li').length === 0) {
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
-            $('a[href$="/streamers"] > sup').text('');
-        } else if ($('#noonline').length === 0 && $('#streamers > li').length > 0) {
-            $('#streamers > li').remove();
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
-            $('a[href$="/streamers"] > sup').text('');
-        } else if ($('#noonline').length > 0 && $('#streamers > li').length > 0) {
-            $('#streamers > li').remove();
-            $('div #streamers').prepend('<p id="noonline"> 目前沒有人直播 </p>');
-            $('a[href$="/streamers"] > sup').text('');         
-        } else {
-            //console.log($('#noonline').length);
-            //console.log($('#streamers > li').length);
-        }
-    }
+
+    getOnlineStreamers(server + 'streamers', 'TW', function() {
+        getOnlineStreamers(server + 'streamers/youtube', 'YT', function() {
+            getOnlineStreamers(server + 'streamers/hitbox', 'HB', function () {
+                YTStreamers.forEach(function(item) {
+                    onlineStreamers.push(item);
+                });
+
+                TWStreamers.forEach(function(item) {
+                    onlineStreamers.push(item);
+                });
+
+                HBStreamers.forEach(function(item) {
+                    onlineStreamers.push(item);
+                });
+
+                index_show_streamers(onlineStreamers);
+
+                setTimeout(function() {
+                    checker_index();
+                }, 1000);
+
+            });
+        });
+    });
 };
 
 var shuffle = function(o) {
@@ -710,11 +650,11 @@ var displayGamesPerConsole = function(gl) {
         if (item.game.length > 15) {
             item.gamename = item.gamename.replace('_', ' ').substring(0,12) + '...';
         }
-        
+
         if (item.imgsrc.indexOf('game-logos') === -1) {
             item.gamename = '';
         }
-        
+
         group.push(template($('#gameConsoleTpl').html(), item));
         if(group.length == 12) {
             html.push('<ul class="game clearFix">'+group.join('')+'</ul>');
@@ -733,5 +673,7 @@ var displayGamesPerConsole = function(gl) {
         startSlide: 0,
         infiniteLoop: false,
         hideControlOnEnd: true
-    }); 
+    });
 };
+
+checker_index();
