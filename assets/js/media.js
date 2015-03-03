@@ -572,14 +572,14 @@ $(document).on('load-page',function(){
     $("youtube-subscribe").remove();
   }
   //ADD FACEBOOK BUTTON
-  var facebook = page_data.user.custom_fields.facebook;
+  var facebook = 'adin234';//page_data.user.custom_fields.facebook;
   var inner = "";
   if(facebook) {
     console.log("ADD");
     inner = '<div class="fb-like" '
-    + 'data-href="https://www.facebook.com/"'
+    + 'data-href="https://www.facebook.com/'
     + facebook
-    + ' data-layout="button_count" '
+    + '" data-layout="button_count" '
     + ' data-action="like" </div>';
     $("#facebook-like").html(inner);
   }
