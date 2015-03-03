@@ -480,7 +480,7 @@ function get_streamers(first) {
             }
 
             notify_stream({
-                streamer: item.username,
+                streamer: item.twitch.channel.name,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
 
