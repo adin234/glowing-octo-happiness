@@ -63,18 +63,18 @@ var filterAction = function(action) {
 }
 
 /* RDC 2015-02-23 */
-// $(document).ready(function() {
-//    $.ajax({url: server + 'gamesperconsole',
-//            type: 'GET',
-//            dataType: 'json'
-//           }).success(function(data) {
-//                 console.log('Game list successfully acquired.');
-//           }).fail(function(xhr, data){
-//                 console.log(xhr.status);
-//           }).done(function(data){
-//             displayGamesPerConsole(data);
-//           });
-// });
+$(document).ready(function() {
+   $.ajax({url: server + 'gamesperconsole',
+           type: 'GET',
+           dataType: 'json'
+          }).success(function(data) {
+                console.log('Game list successfully acquired.');
+          }).fail(function(xhr, data){
+                console.log(xhr.status);
+          }).done(function(data){
+            displayGamesPerConsole(data);
+          });
+});
 
 
 
