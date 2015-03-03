@@ -453,12 +453,14 @@ function streamersSearch() {
 
 $(function() { searchBoxInit(); searchGamesBoxInit(); });
 
-var streaming = [];
-var streamingLan = 0;
-var streamTimeout = 60000;
+var streaming = [],
+    streamingNew = [],
+    streamingLan = 0,
+    streamTimeout = 60000;
 
 function get_streamers(first) {
     streamingLan = 0;
+    streamingNew = [];
     $.get(server+'streamers', function(result) {
         result.streamers.forEach(function(item) {
             if((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5))
@@ -469,10 +471,11 @@ function get_streamers(first) {
             }
 
             if(first) {
-                streaming.push('TW'+item.twitch.channel.name); return;
+                streamingNew.push('TW'+item.twitch.channel.name); return;
             }
 
             if(~streaming.indexOf('TW'+item.twitch.channel.name)) {
+                streamingNew.push('TW'+item.twitch.channel.name);
                 return;
             }
 
@@ -481,7 +484,7 @@ function get_streamers(first) {
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
 
-            streaming.push('TW'+item.twitch.channel.name);
+                streamingNew.push('TW'+item.twitch.channel.name);
         });
     }).always(function() {
         get_youtube_streamers(first);
@@ -499,11 +502,12 @@ function get_youtube_streamers(first) {
             }
 
             if (first) {
-                streaming.push('YT'+item.youtube.id);
+                streamingNew.push('YT'+item.youtube.id);
                 return;
             }
 
             if(~streaming.indexOf('YT'+item.youtube.id)) {
+                streamingNew.push('YT'+item.youtube.id);
                 return;
             }
 
@@ -512,7 +516,7 @@ function get_youtube_streamers(first) {
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'YT'+item.username
             });
 
-            streaming.push('YT'+item.youtube.id);
+                streamingNew.push('YT'+item.youtube.id);
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
@@ -543,14 +547,13 @@ function get_hitbox_streamers(first) {
                 streamingLan++;
             }
 
-            console.log(item.hitbox);
-
             if(first) {
-                streaming.push('HB'+item.hitbox.livestream[0].media_user_name);
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
                 return;
             }
 
             if(~streaming.indexOf('HB'+item.hitbox.livestream[0].media_user_name)) {
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
                 return;
             }
 
@@ -559,9 +562,7 @@ function get_hitbox_streamers(first) {
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'HB'+item.hitbox.livestream[0].media_user_name
             });
 
-            console.log(item.hitbox);
-
-            streaming.push('HB'+item.hitbox.livestream[0].media_user_name);
+                streamingNew.push('HB'+item.hitbox.livestream[0].media_user_name);
         });
     }).always(function() {
         if(streaming && typeof streaming.length !== undefined && $("a[href='/streamers']").length) {
@@ -579,6 +580,8 @@ function get_hitbox_streamers(first) {
             $("a[href='/lanparty_stream_multi']").html('直播<sup>' + streamingLanCount + '</sup>');
         }
 
+
+        streaming = streamingNew;
         get_streamers();
     });
 }
