@@ -5443,6 +5443,10 @@ div#archive_schedule {
   
 }
 
+#archive_schedule p {
+  display: inline-block;
+}
+
 .left {
   width: 350px;
   display: inline-block;
@@ -5516,3 +5520,16 @@ div#archive_schedule {
 #top-controls {
   height: 35px;
 }
+
+
+/*Freedom News*/
+
+div#news_shows_playlists_block {
+  width: 1048px !important;
+}
+
+#news_shows_playlists_block ul.list.clearFix {
+  width: 1048px !important;
+} 
+
+
