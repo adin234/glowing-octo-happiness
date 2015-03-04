@@ -629,7 +629,6 @@ $(function() {
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
         } else {
-            console.log('have user');
             utilCookie.set('user', '', 0)
         }
     });
