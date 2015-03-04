@@ -577,9 +577,9 @@ $(document).on('load-page',function(){
   if(facebook) {
     console.log("ADD");
     inner = '<div class="fb-like" '
-    + 'data-href="https://www.facebook.com/"'
+    + 'data-href="https://www.facebook.com/'
     + facebook
-    + ' data-layout="button_count" '
+    + '" data-layout="button" '
     + ' data-action="like" </div>';
     $("#facebook-like").html(inner);
   }
