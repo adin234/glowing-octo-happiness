@@ -90,10 +90,11 @@ function get_events() {
 
 	
 	var html = [];	
+							html.push('<div id="backButton">' + '<a href="' + origin + 'freedom">' + '<img src="/assets/images/back_button.png"></a>' + '</div>' );
 
 							all_events.fetched_data.forEach(function(item){
 
-								html.push('<div id="backButton">' + '<a href="http://localhost:8000/freedom"><img src="/assets/images/back_button.png"></a>' + '</div>' );
+								
 								html.push('<div id="title">' + item.event_title + '</div>');
 								html.push('<div id="startDate">' + item.start_date + '</div>');
 								html.push('<div id="endDate">' + item.end_date + '</div>');
@@ -197,16 +198,15 @@ var eventsHtml = [];
 								eventsHtml.push('</div>');
 								eventsHtml.push('</div>');
 
-
 								}); 
 
 								$('#all_schedule').html(eventsHtml.join(''));
+								var difference = get_date_diff();
+								console.log(difference);
 				
 }
 
 function edit_events(){ 
-
-	
 
 	
 
@@ -240,7 +240,7 @@ function get_archive(){
 
 	var html = []; 
 	var eventStatus = 'Ended';
-
+	
 							
 							all_events.fetched_data.forEach(function(item){
 
@@ -264,6 +264,18 @@ function get_archive(){
 
 function get_date_diff(){
 
+	var status = [];
 
+	var date = new Date();
+	var dateLocal = date.toLocaleDateString();
 
+		all_events.fetched_data.forEach(function(item){
+		
+			var end = item.end_date;
+
+				if(end < dateLocal){ status.push('Ended');}
+				else{ status.push('Ongoing'); }
+		});
+
+		
 }
