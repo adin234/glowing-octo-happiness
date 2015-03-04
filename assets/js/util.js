@@ -510,7 +510,8 @@ $(function() {
         type: 'get'
     })
     .done(function(session) {
-        if(typeof session.username !== 'undefined') {
+        console.log(session);
+        if (session.username) {
             var links = [];
             links.push('<ul class="user-links">');
             links.push('<li><a href="http://community.gamers.tm/zh/index.php?account/personal-details" title="">個人資料</a></li>');
@@ -530,7 +531,8 @@ $(function() {
             $('li.login').html(link).append(links.join(''));
             // $('li.login').html(link);
         } else {
-            utilCookie.set('user', null);
+            console.log('have user');
+            utilCookie.set('user', '', 0)
         }
     });
 

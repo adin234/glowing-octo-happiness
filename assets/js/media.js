@@ -294,6 +294,15 @@ var getComments = function (videoId, sort) {
       });
     }
     var comments = e.map(function(item) {
+      console.log(utilUser.get().user_id);
+      var that_class ='';
+      if(+utilUser.get().user_id === +item.user_id) {
+        USER_ACCESS_CLASS
+        that_class = 'deleteComment';
+      }
+      else {
+        that_class = 'hide';
+      }
       return {
         userimage: attachments_server+'avatar.php?userid='
           +item.user_id+'.jpg',
@@ -301,7 +310,9 @@ var getComments = function (videoId, sort) {
           +'.'+item.user_id+'/',
         username: item.username,
         comment: item.message,
-        date: formatDate(item.date*1000)
+        date: formatDate(item.date*1000),
+        comment_id: item.comment_id,
+        user_acess_class : that_class
       }
     });
 
@@ -355,12 +366,12 @@ var showPlaylist = function(playlistId, next) {
 };
 
 var getPlaylistNext = function(playlist) {
-  $.get(server+'news', { playlist: active_playlist, pageToken: playlist.nextPageToken },
+  $.getJSON(server+'news', { playlist: active_playlist, pageToken: playlist.nextPageToken },
     function(e) {
       if(e.items[0].snippet.playlistId == active_playlist) {
         playlist.nextPageToken = e.nextPageToken;
         activeVideos = activeVideos.concat(e.items);
-        console.log('activeLength', activeVideos.length);
+        //console.log('activeLength', activeVideos.length);
         // update_videos(e.items, true);
         if(e.nextPageToken) {
           getPlaylistNext(e);
@@ -615,11 +626,6 @@ $(document).on('load-page',function(){
       user_id:      utilUser.get().user_id,
       username:     utilUser.get().username,
       message:      $('#commentArea').val()
-
-      // access_token: 'titingmalikot',
-      // user_id:      'buratskill03',
-      // username:     'penisillin',
-      // message:      'kissmykak'
     };
     if(!$('#commentArea').val().trim().length) {
       return
@@ -691,6 +697,27 @@ $(document).on('click', '.sort-comments', function() {
   getComments(page_data.videoId, sort);
 });
 
+var deleteComment = function(data,context) {
+  console.log($(context).parent().parent());
+  var videoId = $('#postComment').attr('data-video'),
+      url = server+'youtubers/videos/'+videoId+'/comment/'+data+'/delete',
+      user_id:      utilUser.get().user_id;
+
+  $(context).parent().parent().addClass("deletecommentbox");
+
+    if (confirm("Do you want to permanently delete this comment?") == true) {
+      $.ajax({
+          dataType:'jsonp',
+          url: url,
+          crossDomain: true,
+          type: 'get'
+      });
+      $(context).parent().parent().remove();
+    }
+    else{
+      $('.deletecommentbox').removeClass('deletecommentbox');
+    } 
+};
 function formatDate(date) {
   var now = new Date(date),
       months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

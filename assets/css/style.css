@@ -2091,6 +2091,9 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 .videoRelated .discussions article {
   margin-top: 23px;
 }
+.videoRelated .discussions article:hover .deleteComment {
+  display: block;
+}
 .videoRelated .discussions article img {
   float: left;
   margin-right: 16px;
@@ -2195,6 +2198,24 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
   color: #7a7a7a;
   line-height: 1.25;
 }
+.videoRelated .deleteComment {
+  width: 10%;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  display: none;
+  margin-top: -24px;
+}
+.videoRelated .hide, .videoRelated .hide:hover {
+  display: none;
+}
+.deletecommentbox {
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 0, 0, 0.23);
+  box-shadow: 0px 1px 20px rgba(221, 104, 104, 0.72);
+}
+
 
 /*Shows_2x, News_2x, Youtuber_video_2x */
 .zoom2x #outContainer {

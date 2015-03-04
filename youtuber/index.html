@@ -289,10 +289,13 @@
 <script type="text/html" id="commentItemTpl">
   <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}"  onError="fixErrorImg(this);">
     <cite>{{USERNAME}}</cite><span>．
-    <date datetime="{{DATE}}">{{DATE}}</date>
+    <date datetime="{{DATE}}">{{DATE}}</date>-
     </span>
+    <div class="{{USER_ACCESS_CLASS}}">
+      <button onClick='deleteComment({{COMMENT_ID}},this);'>x</button>
+    </div>
     <div class="replyContent">
-      <p>{{COMMENT}}</p>
+      <p class>{{COMMENT}}</p>    
     </div>
   </article>
 </script>
