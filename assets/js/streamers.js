@@ -231,7 +231,14 @@ var render_featured_games = function (filter) {
 
         if (first && html.length) {
             console.log('is first', html);
-            $('#container-videos').html(html.join(''));
+            $('#container-videos').html(html.join('')).promise()
+                .done(function() {
+                    activeSlider.reloadSlider({
+                        activeSlide: currentSlide,
+                        infiniteLoop: false,
+                        hideControlOnEnd: true
+                    });
+                });
             first = false;
         }
 
