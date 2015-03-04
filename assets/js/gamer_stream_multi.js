@@ -2,6 +2,7 @@ var streamers_list = {},
 active_streams = [];
 streamers_list.youtube = [];
 streamers_list.twitch = [];
+streamers_list.hitbox = [];
 
 var stream_slider = $(".bxslider").bxSlider({
     infiniteLoop: false,
@@ -22,6 +23,10 @@ var get_streamers = function() {
         streamers_list.youtube = result.streamers;
         render_streamers();
     });
+    $.get(server+'streamers/hitbox', function(result) {
+        streamers_list.hitbox = result.streamers;
+        render_streamers();
+    });
 };
 
 var format_stream_item = function(item) {
@@ -38,6 +43,18 @@ var format_stream_item = function(item) {
         item.title = item.twitch.channel.status;
         item.bust = 1;
         item.views = item.twitch.viewers;
+    } else if(typeof item.hitbox !== 'undefined') {
+        var hitboxData = item.hitbox.livestream[0];
+
+        item.id = 'HB'+hitboxData.media_name;
+        item.idraw= item.hitboxid;
+        item.live = 'live';
+        item.link = '/gamer_stream/'+item.user_id+'/'+item.id;
+        item.provider = attachments_server;
+        item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
+        item.title = hitboxData.media_status;
+        item.bust = 1;
+        item.views = hitboxData.media_views;
     } else {
         item.id = 'YT'+item.youtube.id;
         item.idraw= item.youtube.id;
@@ -62,6 +79,11 @@ var render_streamers = function() {
     var streamer_container = $('#streamContainer').html('');
 
     streamers_list.youtube.forEach(function(item) {
+        item = format_stream_item(item);
+        html.push(template($('#streamlist-item-tpl').html(), item));
+    });
+
+    streamers_list.hitbox.forEach(function(item) {
         item = format_stream_item(item);
         html.push(template($('#streamlist-item-tpl').html(), item));
     });
