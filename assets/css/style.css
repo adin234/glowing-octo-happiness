@@ -3533,13 +3533,15 @@ body:nth-child(3) {
 }
 #main-container .watchList li h3 {
   float: left;
-  font-size: 12px;
-  width: 135px;
+  font-size: 17px;
+  width: 100px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-top: -74px;
+  margin-left: 110px;
 }
 #main-container .watchList li dt {
   float: left;
@@ -5460,11 +5462,29 @@ div#getArchive > button {
 /*archive*/
 div#archive_schedule {
   margin-top: 100px;
-  margin-left: 20px;
+  
 }
+
+.left {
+  width: 350px;
+  display: inline-block;
+}
+
+.center {
+  width: 250px;
+  display: inline-block;
+}
+
+.right {
+  display: inline-block;
+  width: 200px;
+  margin-left: 110px;
+}
+
 
 /* RDC 2015-02-23 */
 .capitalized {text-transform: capitalize !important;}
+
 
 .gamelabel {position: absolute;
             text-align: center;
@@ -5474,3 +5494,42 @@ div#archive_schedule {
             text-align: center;
             width: 160px;
             margin-top: 70px;}
+
+/*Freedom News Playlist*/
+#tab-news-playlist-1 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-news-playlist-2 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-shows-playlist-0 img {
+  width: 100%;
+  height: 100%;
+}
+
+#tab-shows-playlist-3 img {
+  width: 100%;
+  height: 100%;
+}
+
+#subscribe-follow {
+  float: none;
+  vertical-align: middle;
+}
+
+#youtube-subscribe {
+  float:right;
+  margin-left: 5px;
+}
+
+#twitter-follow {
+  float:right;
+}
+
+#top-controls {
+  height: 35px;
+}

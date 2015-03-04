@@ -29,6 +29,7 @@ function checkIfOnline(userId) {
 $(function() {
     var streamType = '';
     var streamId = '';
+    var viewers;
 	
 	$.ajax(server + 'streamers', function(data) {
         
@@ -79,6 +80,16 @@ $(function() {
         }
     }
 
+    function getViewersCount(url) {
+        $.getJSON(url, function(e) {
+            if(e && e.stream && e.stream.viewers) {
+                viewers = e.stream.viewers;
+                $('#twitchStream .views').html(e.stream.viewers+' Views');
+                utilLoader.hide();
+            }
+        });
+    }
+
     $(window).on('resize', function() {
         resize_video_stream();
     });
@@ -87,9 +98,40 @@ $(function() {
     streamId = twitch.substr(2);
 
     if(streamType == 'TW') {
+
+        getViewersCount(server+'get_views/'+twitch);
+
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
         .html(),{twitchid: streamId, number: viewers}))
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
+            .html(),{
+                twitchid: streamId,
+                advert: page_data.custom_fields
+                    && page_data.custom_fields.advertisement
+            }
+        ));
+
+        // utilLoader.hide();
+        $('object').height($('#streamView').height());
+        // $.getJSON(server+'scrape/'+streamId, function(e) {
+        //     e.forEach(function(item) {
+        //         item.data.html = item.html_description;
+        //         item.data.link = item.data.link || '';
+        //         $('#tab-2').append(template($('#panelTpl').html(), item.data));
+        //     });
+        //     setTimeout(function(){
+        //         $('img[src=""]').hide();
+        //     },100);
+        // });
+    }
+
+    if(streamType == 'HB') {
+
+        getViewersCount(server+'get_hitbox_views/'+streamId);
+
+        $('#twitchStream').replaceWith(template($('#hitbox-stream-tpl')
+        .html(),{twitchid: streamId, number: viewers}))
+        $('#twitchTalk').html(template($('#hitbox-chat-tpl')
             .html(),{
                 twitchid: streamId,
                 advert: page_data.custom_fields
@@ -112,6 +154,9 @@ $(function() {
     }
 
     if(streamType == 'YT') {
+
+        getViewersCount(server+'get_views/'+twitch);
+
         var found = false;
         var userId = params.user.replace('/', '');
 
@@ -247,16 +292,6 @@ $(function() {
     if(typeof page_data.custom_fields !== 'undefined' && typeof page_data.custom_fields.streamingImage !== 'undefined' && page_data.custom_fields.streamingImage !== ''){
         $("meta[property='og\\:image']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
         $("meta[name='twitter\\:image\\:src']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
-    }
-});
-
-var viewers;
-
-$.getJSON(server+'get_views/'+twitch, function(e) {
-    if(e && e.stream && e.stream.viewers) {
-        viewers = e.stream.viewers;
-        $('#twitchStream .views').html(e.stream.viewers+' Views');
-        utilLoader.hide();
     }
 });
 

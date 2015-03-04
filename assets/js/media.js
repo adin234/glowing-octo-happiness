@@ -552,6 +552,32 @@ $(document).on('load-page',function(){
     $zoom.toggleClass("zoomOut");
   });
 
+  //ADD TWITTER BUTTON
+  var twitter = page_data.user.custom_fields.twitter;
+  var inner = "";
+  if(twitter) {
+    console.log("ADD");
+    inner = '<a href="https://twitter.com/'+twitter+'" class="twitter-follow-button" data-show-count="false" data-size="large"></a>';
+    $("#twitter-follow").html(inner);
+    twttr.widgets.load();
+  }
+  else {
+    console.log("DON'T ADD");
+    $("a.twitter-follow-button").remove();
+  }
+  //ADD YOUTUBE BUTTON
+  var youtube_channel = page_data.config.channel;
+  if(youtube_channel) {
+    inner = '<div class="g-ytsubscribe" data-channelid="'+youtube_channel+'" data-layout="default" data-theme="dark" data-count="hidden" data-onytevent="onYtEvent"></div>';
+    $("#youtube-subscribe").html(inner);
+    console.log("ADD");
+  }
+  else {
+    console.log("DON'T ADD");
+    $("youtube-subscribe").remove();
+  }
+
+
   $(".listSwitch li").click(function(){
     if(!$(this).hasClass('current')) {
       $(".listSwitch li").toggleClass('current');

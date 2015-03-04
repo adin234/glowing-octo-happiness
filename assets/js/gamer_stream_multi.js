@@ -87,6 +87,18 @@ var render_stream_video = function(item) {
             animation: true,
         });
     }
+
+    if (streamType == 'HB') {
+        $('#twitchStreamContainer').append(template($('#hitbox-stream-tpl').html(),{twitchid: streamId}));
+        $('#twitch-chat-frame-container').append(template($('#hitbox-chat-tpl').html(),{
+            twitchid: streamId
+        }));
+        $('#twitch-chat-tab-container').append(template($('#hitbox-chat-tab-tpl').html(),{twitchid: streamId}));
+        $(".tabs").tabslet({
+            animation: true,
+        });
+    }
+
     if(streamType == 'YT') {
         $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(),{youtubeid: streamId}));
         $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(),{ChannelId: streamId}));

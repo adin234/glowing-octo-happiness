@@ -128,6 +128,16 @@
   </div>
 </div>
 </script>
+
+<script type="text/html" id="hitbox-stream-tpl">
+<div id="twitchStream">
+  <div class="videoWrapper">
+    <iframe width="100%" height="100%" src="http://hitbox.tv/#!/embed/{{TWITCHID}}?autoplay=true" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+</script>
+
+
 <script type="text/html" id="youtube-stream-tpl">
 <div id="twitchStream" class="stream-item">
   <div class="videoWrapper">
@@ -146,6 +156,19 @@
 <script type="text/html" id="twitch-chat-tpl">
 <div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
   <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
+  </iframe>
+</div>
+</script>
+
+<script type="text/html" id="hitbox-chat-tab-tpl">
+<li class="chat-{{TWITCHID}}">
+  <a href="#tab-chat-{{TWITCHID}}">{{TWITCHID}}</a>
+</li>
+</script>
+
+<script type="text/html" id="hitbox-chat-tpl">
+<div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
+  <iframe src="http://www.hitbox.tv/embedchat/{{TWITCHID}}?autoconnect=true" width="100%" height="640px">
   </iframe>
 </div>
 </script>
