@@ -510,7 +510,7 @@ var news_shows_playlists = function() {
 
     var html = [];
     var blocks = '';
-    var max_items = 3;
+    var max_items = 4;
     var ctr = 1;
     var visible_news_playlists = (typeof index_data.visible_news_playlists != 'undefined') ? index_data.visible_news_playlists.split(',') : [];
     var visible_shows_playlists = (typeof index_data.visible_shows_playlists != 'undefined') ? index_data.visible_shows_playlists.split(',') : [];
