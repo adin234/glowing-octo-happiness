@@ -1,7 +1,7 @@
 var template = function (templateHTML, data) {
     for(var x in data) {
         var torep = new RegExp('{{'+x+'}}', 'gi');
-        if(torep) {
+        if(torep && templateHTML) {
             templateHTML = templateHTML
                 .replace(torep,
                     data[x] == null ? '' : data[x]);
@@ -480,7 +480,7 @@ function get_streamers(first) {
             }
 
             notify_stream({
-                streamer: item.username,
+                streamer: item.twitch.channel.name,
                 link: origin+'gamer_stream/?user='+item.user_id+'#!/'+'TW'+item.twitch.channel.name
             });
 
@@ -642,7 +642,7 @@ $(function() {
 
 $(function() {
     // if($('body').hasClass('stream-gritter')) {
-        get_streamers(true);
+        //get_streamers(true);
     // }
 });
 

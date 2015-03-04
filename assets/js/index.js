@@ -148,7 +148,6 @@ $(document).ready(function() {
 
 var index_show_streamers = function(streamersList) {
     var html = [];
-    console.log(streamersList);
     if (streamersList.length > 0) {
         if ($('#noonline').length > 0 ) {
             $('#noonline').remove();
@@ -175,7 +174,7 @@ var index_show_streamers = function(streamersList) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
-                item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
+                item.link = 'gamer_stream/?user='+item.user.user_id+'/#!/HB'+item.hitbox.livestream[0].media_user_name;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.media_thumbnail_large;
                 item.title = item.hitbox.media_status;
