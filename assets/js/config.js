@@ -1,7 +1,12 @@
 
 
-var server              = 'http://dev.gamers.tm:3000/';
-var origin              = 'http://dev.gamers.tm:8000/';//'http://localhost:8000/';  //'http://www.gamers.tm/';////
+// var server              = 'http://dev.gamers.tm:3000/';
+// var origin              = 'http://dev.gamers.tm:8000/';//'http://localhost:8000/';  //'http://www.gamers.tm/';////
+
+
+var server              = 'http://localhost:3000/';
+var origin              = 'http://localhost:8000/'; 
+
 
 var attachments_server  = 'http://community.gamers.tm/zh/';
 var community           = 'http://community.gamers.tm/zh/';

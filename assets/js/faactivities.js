@@ -77,8 +77,7 @@ function get_data(){
 
 							
 							all_events.fetched_data = data;
-							console.log(all_events.fetched_data);
-
+							
 					}).fail(function (data){
 						console.log(data);
 						console.log('failure');
@@ -90,31 +89,27 @@ function get_data(){
 function get_events() {
 
 	
-	var html = [];
-	 
-							console.log(all_events.fetched_data);
+	var html = [];	
 
-							// html.push('<div id="backButton">' + '<a href="http://localhost:8000/freedom"><img src="/assets/images/back_button.png"></a>' + '</div>' );
-							// html.push('<div id="title">' + title + '</div>');
-							// html.push('<div id="startDate">' + startDate + '</div>');
-							// html.push('<div id="endDate">' + endDate + '</div>');
-							// html.push('<div id="startTime">' + startTime + '</div>');
-							// html.push('<div id="endTime">' + endTime + '</div>');
-							// html.push('<div id="e-desc">' + eDesc + '</div>');
-							// html.push('<div id="join-event">' + '<button onclick="join_event()">JOIN EVENT</buttton>' + '</div>');
-							// html.push('<div id="join-link">' + '<p>ENTER JOIN EVENT LINK</p>' + '<input type="text" name="event_link" id="event_link">' + '</div>');
+							all_events.fetched_data.forEach(function(item){
 
+								html.push('<div id="backButton">' + '<a href="http://localhost:8000/freedom"><img src="/assets/images/back_button.png"></a>' + '</div>' );
+								html.push('<div id="title">' + item.event_title + '</div>');
+								html.push('<div id="startDate">' + item.start_date + '</div>');
+								html.push('<div id="endDate">' + item.end_date + '</div>');
+								html.push('<div id="startTime">' + item.start_time + '</div>');
+								html.push('<div id="endTime">' + item.end_time + '</div>');
+								html.push('<div id="e-desc">' + item.e_description + '</div>');
+								html.push('<div id="join-event">' + '<button onclick="join_event()">JOIN EVENT</buttton>' + '</div>');
+								html.push('<div id="join-link">' + '<p>ENTER JOIN EVENT LINK</p>' + '<input type="text" name="event_link" id="event_link">' + '</div>');
 
-						
-	
-					
+							});
+
 						$('.add_events_form').hide();
 						$('#show_events').html(html.join(''));
 						$('#editEvent').html('<div id="edit_event">' +  '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' + '</div>');
 
-					
-
-				
+			
 }
 
 function delete_events() {
@@ -186,63 +181,27 @@ function search_events() {
 } 
 
 
-
-
-
-
 function get_schedule(){
 
-var startDate, endDate, startTime, endTime, eventTitle, eventStatus;
-var eventsHtml = []; 
-	
-		$.ajax({
-							dataType: 'json',
-							url: server+'freedom_events',
-							type: 'get',
-							data: {
+var eventsHtml = [];
 
-								'event_title': $('#event_name').val(),
-								'start_date' : $('#event_start_date').val(),
-								'end_date' : $('#event_end_date').val(),
-								'start_time' : $('#event_start_time').val(),
-								'end_time' : $('#event_end_time').val(),
-								'e_description' : $('#event_desc').val()
-							}
-
-					}).success(function (data){
-
-								data.forEach(function (item){
-										
-
-								 eventTitle = item.event_title; 
-								 startDate = item.start_date;
-								 endDate = item.end_date;
-								 startTime = item.start_time; 
-								 endTime = item.end_time; 
+							all_events.fetched_data.forEach(function(item){
 								
 								eventsHtml.push('<div class="activity">');
 								eventsHtml.push('<div class="left">');
-								eventsHtml.push('<div id="startEventDate">' + startDate + '</div>' + '<div id="endEventDate">' + endDate + '</div>');
-								eventsHtml.push('<div id="startEventTime">' + startTime + '</div>' + '<div id="endEventTime">' + endTime + '</div>');
+								eventsHtml.push('<div id="startEventDate">' + item.start_date + '</div>' + '<div id="endEventDate">' + item.end_date + '</div>');
+								eventsHtml.push('<div id="startEventTime">' + item.start_time + '</div>' + '<div id="endEventTime">' + item.end_time + '</div>');
 								eventsHtml.push('</div>');
 								eventsHtml.push('<div class="center">');
-								eventsHtml.push('<div id="eventHeader">' + eventTitle + '</div>' + '<div id="e_status"></div>');
+								eventsHtml.push('<div id="eventHeader">' + item.event_title + '</div>' + '<div id="e_status"></div>');
 								eventsHtml.push('</div>');
 								eventsHtml.push('</div>');
 
 
 								}); 
 
-								
 								$('#all_schedule').html(eventsHtml.join(''));
-							
-							
-
-					}).fail(function(data){
-
-							$('#all_schedule').html('<div id="error_report"> <p> There are no schedules available </p></div>'); 
-					});
-
+				
 }
 
 function edit_events(){ 
@@ -280,48 +239,18 @@ function edit_events(){
 function get_archive(){
 
 	var html = []; 
-	var eventTitle,startDate,endDate,startTime,endTime;
 	var eventStatus = 'Ended';
 
-
-				console.log(all_events.fetched_data);
-				var dataCon = all_events.fetched_data;
-				console.log(dataCon.event_title);
-			
-
-			$.ajax({
-							dataType: 'json',
-							url: server+'freedom_events',
-							type: 'get',
-							data: {
-
-								'event_title': $('#event_name').val(),
-								'start_date' : $('#event_start_date').val(),
-								'end_date' : $('#event_end_date').val(),
-								'start_time' : $('#event_start_time').val(),
-								'end_time' : $('#event_end_time').val(),
-								'e_description' : $('#event_desc').val()
-							}
-
-					}).success(function (data){
-						
-							data.forEach(function (item){
-										
-
-											 eventTitle = item.event_title; 
-											 startDate = item.start_date;
-											 endDate = item.end_date;
-											 startTime = item.start_time; 
-											 endTime = item.end_time; 
-
+							
+							all_events.fetched_data.forEach(function(item){
 
 											 	html.push('<div class="activity">');
 											 	html.push('<div class="left">');
-												html.push('<div id="startEventDate">' + startDate + '</div>' + '<p> - </p>' + '<div id="endEventDate">' + endDate + '</div>');
-												html.push('<div id="startEventTime">' + startTime + '</div>' + '<p> - </p>' + '<div id="endEventTime">' + endTime + '</div>');
+												html.push('<div id="startEventDate">' + item.start_date + '</div>' + '<p> - </p>' + '<div id="endEventDate">' + item.end_date + '</div>');
+												html.push('<div id="startEventTime">' + item.start_time + '</div>' + '<p> - </p>' + '<div id="endEventTime">' + item.end_time + '</div>');
 												html.push('</div>');
 												html.push('<div class="center">');
-												html.push('<div id="eventHeader">' + eventTitle + '</div>');
+												html.push('<div id="eventHeader">' + item.event_title + '</div>');
 												html.push('</div>');
 												html.push('<div class="right">');
 												html.push('<div id="eventStatus">' + eventStatus + '</div>');
@@ -330,13 +259,6 @@ function get_archive(){
 							}); 
 
 								$('#archive_schedule').html(html.join(''));
-
-					}).fail(function (data){
-						console.log(data);
-						console.log('fail');
-					});
-
-
 
 }
 
