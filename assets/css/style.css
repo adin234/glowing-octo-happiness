@@ -3518,7 +3518,7 @@ body:nth-child(3) {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin: -7px 0 0 0;
+  margin: -9px 0 0 0;
 }
 #main-container .watchList li dt {
   float: left;
