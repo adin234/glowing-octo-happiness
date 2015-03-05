@@ -79,18 +79,15 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-
-    // $("#lightSlider").lightSlider(); 
-
     $.ajax({
-        async: false,
-        type: "GET",
-        dataType: "json",
-        url: server+"index?console=all",
-    }).done(function (data) {
-        index_data = data;
-        update_index(index_data);
-    });
+    async: false,
+    type: "GET",
+    dataType: "json",
+    url: server+"index?console=all",
+}).done(function (data) {
+    index_data = data;
+    update_index(index_data);
+});
 
     $(document).on('click', '.slider-item .play', function(e) {
         var vid = $(this).attr('data-vid');
@@ -361,23 +358,19 @@ var update_index = function(index_data) {
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
         item.link = '/youtuber/?user='+item.user_id+'/#!/video/'+item.snippet.resourceId.videoId;
-
-
         group.push(template($('#latestVideosTpl').html(), item));
-
-
-
-        if(group.length == 3) {
-            html.push(group.join(''));
+        if(group.length == 9) {
+            html.push('<ul class="list clearFix">'+group.join('')+'</ul>');
             group = [];
         }
     });
 
     if(group.length >= 1) {
-            html.push(group.join(''));
+            html.push('<ul class="list clearFix">'+group.join('')+'</ul>');
     }
 
     if(!html.length) { html.push('目前沒有影片'); }
+
     $('#mostViewed').html(html.join(''));
     slider.most_viewed.reloadSlider({
         startSlide: 0,
