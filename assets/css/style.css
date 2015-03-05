@@ -3466,7 +3466,7 @@ body:nth-child(3) {
 }
 #main-container .watchList li {
   height: 110px;
-  width:100px;
+  width: 260px !important;
 }
 #main-container .watchList li a {
   box-sizing: border-box;
@@ -3504,14 +3504,13 @@ body:nth-child(3) {
 #main-container .watchList li img {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.75);
   float: left;
-  margin-right: 14px;
 }
 #main-container .watchList li h3, #main-container .watchList li dl {
   -webkit-transform: scale(0.8334);
   -o-transform: scale(1);
 }
 #main-container .watchList li h3 {
-  float: left;
+  float: right;
   font-size: 17px;
   width: 100px;
   text-overflow: ellipsis;
@@ -3519,13 +3518,14 @@ body:nth-child(3) {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin-top: -74px;
-  margin-left: 110px;
+  margin: -7px 0 0 0;
+  line-height: 25px;
 }
 #main-container .watchList li dt {
   float: left;
 }
 #main-container .watchList .bx-wrapper {
+  max-width: inherit !important;
   padding: 0 37px;
   position: relative;
 }
@@ -5522,6 +5522,7 @@ div#archive_schedule {
   height: 35px;
 }
 
+
 /*Freedom News*/
 
 div#news_shows_playlists_block {
@@ -5532,3 +5533,36 @@ div#news_shows_playlists_block {
   width: 1048px !important;
 } 
 
+
+
+
+
+
+
+
+.multistreamList {
+  width: inherit !important;
+  padding-left: 60px !important;
+}
+
+.lSAction .lSPrev,
+.lSAction .lSNext {
+  background: url("/assets/images/stream_control.png") no-repeat 0 0 !important;
+  opacity: 1;
+  height: 107px;
+  position: absolute;
+  top: 15px;
+  width: 37px;
+}
+
+.lSAction .lSPrev {
+  background-position: -67px 40px !important;
+  border-right: 1px solid #434343;
+  left: 0 !important;
+}
+
+.lSAction .lSNext {
+  background-position: -106px 40px !important;
+  border-left: 1px solid #434343;
+  right: 0 !important;
+}
