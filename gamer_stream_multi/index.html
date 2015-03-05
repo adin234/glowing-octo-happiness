@@ -23,6 +23,9 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
 <script src="/assets/js/config.js"></script>
+
+<link type="text/css" rel="stylesheet" href="/assets/lightSlider/css/lightSlider.css" />    
+
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
 <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
@@ -58,15 +61,21 @@
       <div id="twitchStreamContainer" class="clearFix"></div>
       <div class="watchList" style="visibility:hidden">
         <h2>正在直播</h2>
+        <ul id="lightSlider" class="multistreamList">
+          
+        </ul>
+      </div>
+      <!-- <div class="watchList" style="visibility:hidden">
+        <h2>正在直播</h2>
         <ul class="bxslider clearFix" id="streamContainer">
-         <!--  <li>
+          <li>
             <a href="javascript:;" title="{stream title}" data-id="TWqksniper">
               <img src="images/stream_thumb.png" width="110" height="62" al t="{stream title}">
               <h3>Protect</h3>
             </a>
-          </li> -->
+          </li>
         </ul>
-     </div>
+     </div> -->
     </div>
   </div>
 
@@ -224,6 +233,21 @@
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
+
+<script src="/assets/lightSlider/js/jquery.lightSlider.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#lightSlider").lightSlider({
+    item: 3,
+    cssEasing: 'ease',
+    loop: true,
+    slideEndAnimation: true,
+    enableDrag:false,
+  });
+});
+</script>
+
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/assets/js/jquery.tabslet.min.js"></script>
 <script src="/assets/js/jquery.tooltipster.min.js"></script>

@@ -90,3 +90,54 @@ $.get(server+'streamers/youtube?user='+page_data.user.user_id, function(result) 
 //   $(".videoHeading").insertBefore($(".videoList"));
 //   $(".channel").insertBefore($(".playFunctionBtn"));
 // }
+
+var add_buttons = function() {
+  //ADD TWITTER BUTTON
+  var twitter = page_data.user.custom_fields.twitter;
+  var inner = "";
+  if(twitter) {
+    console.log("ADD");
+    inner = '<a href="https://twitter.com/'
+      + twitter
+      + '" class="twitter-follow-button" '
+      + 'data-show-count="false" data-size="large"></a>';
+    $("#twitter-follow").html(inner);
+    twttr.widgets.load();
+  }
+  else {
+    console.log("DON'T ADD");
+    $("#twitter-follow").remove();
+  }
+  //ADD YOUTUBE BUTTON
+  var youtube_channel = page_data.config.channel;
+  if(youtube_channel) {
+    inner = '<div class="g-ytsubscribe" data-channelid="'
+      + youtube_channel
+      + '" data-layout="default" data-theme="dark" '
+      + 'data-count="hidden" data-onytevent="onYtEvent"></div>';
+    $("#youtube-subscribe").html(inner);
+    console.log("ADD");
+  }
+  else {
+    console.log("DON'T ADD");
+    $("youtube-subscribe").remove();
+  }
+  //ADD FACEBOOK BUTTON
+  var facebook = page_data.user.custom_fields.facebook;
+  var inner = "";
+  if(facebook) {
+    console.log("ADD");
+    inner = '<div class="fb-like" '
+    + 'data-href="https://www.facebook.com/'
+    + facebook
+    + '" data-layout="button" '
+    + ' data-action="like" </div>';
+    $("#facebook-like").html(inner);
+  }
+  else {
+    console.log("DON'T ADD");
+    $("a.facebook-like-button").remove();
+  }
+}
+
+add_buttons();
