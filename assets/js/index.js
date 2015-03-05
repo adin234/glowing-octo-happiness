@@ -63,18 +63,18 @@ var filterAction = function(action) {
 }
 
 /* RDC 2015-02-23 */
-$(document).ready(function() {
-   $.ajax({url: server + 'gamesperconsole',
-           type: 'GET',
-           dataType: 'json'
-          }).success(function(data) {
-                console.log('Game list successfully acquired.');
-          }).fail(function(xhr, data){
-                console.log(xhr.status);
-          }).done(function(data){
-            displayGamesPerConsole(data);
-          });
-});
+// $(document).ready(function() {
+//    $.ajax({url: server + 'gamesperconsole',
+//            type: 'GET',
+//            dataType: 'json'
+//           }).success(function(data) {
+//                 console.log('Game list successfully acquired.');
+//           }).fail(function(xhr, data){
+//                 console.log(xhr.status);
+//           }).done(function(data){
+//             displayGamesPerConsole(data);
+//           });
+// });
 
 
 
@@ -169,6 +169,7 @@ var index_show_streamers = function(streamersList) {
             } else if (typeof item.hitbox != 'undefined') {
                 item.hitboxid = item.hitbox.media_name;
                 // dont render if already active
+                console.log(item.hitbox);
                 item.id = 'HB'+item.hitboxid;
                 item.username = item.user.username;
                 item.user_id = item.user.user_id;
