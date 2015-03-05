@@ -363,41 +363,27 @@ var update_index = function(index_data) {
         item.link = '/youtuber/?user='+item.user_id+'/#!/video/'+item.snippet.resourceId.videoId;
 
 
-        // group.push(template($('#latestVideosTpl').html(), item));
-
-        console.log(item);
+        group.push(template($('#latestVideosTpl').html(), item));
 
 
-        $('<li class="pointer"><a href="'+item.link+'"><img src="'+item.thumb+'" width="100%" height="100%" alt="screenshot"></a>'+
-                '<h3><a href="'+item.link+'" title="'+item.title+'">'+item.title+'</a></h3>' +
-                '<a href="'+item.link+'" title="'+item.title+'">' +
-                '<img src="'+item.provider+'avatar.php?userid='+item.user_id+'.jpg" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">' +
-                '</a>' +
-                '<ul>' +
-                  '<li>'+item.username+'</li>' +
-                  '<li><em>觀看次數：</em>'+item.views+'</li>' +
-                  '<li><a href="'+item.link+'/comments"><em>Replies: </em> '+item.anytv_comment+'</a></li>' +
-                '</ul>' +
-              '</li>').appendTo('#lightSlider');
 
-        // if(group.length == 9) {
-        //     html.push('<ul id="lightSlider" class="list clearFix">'+group.join('')+'</ul>');
-        //     group = [];
-        // }
+        if(group.length == 3) {
+            html.push(group.join(''));
+            group = [];
+        }
     });
 
-    // if(group.length >= 1) {
-    //         html.push('<ul id="lightSlider" class="list clearFix">'+group.join('')+'</ul>');
-    // }
+    if(group.length >= 1) {
+            html.push(group.join(''));
+    }
 
-    // if(!html.length) { html.push('目前沒有影片'); }
-
-    // $('#lightSlider').html(group.join(''));
-    // slider.most_viewed.reloadSlider({
-    //     startSlide: 0,
-    //     infiniteLoop: false,
-    //     hideControlOnEnd: true
-    // });
+    if(!html.length) { html.push('目前沒有影片'); }
+    $('#mostViewed').html(html.join(''));
+    slider.most_viewed.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
 
     // latest games
     html = [];
