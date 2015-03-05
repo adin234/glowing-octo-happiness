@@ -92,7 +92,8 @@ var render_streamers = function() {
         item = format_stream_item(item);
         html.push(template($('#streamlist-item-tpl').html(), item));
     });
-
+        console.log('asd',html.join(''));
+    $('#lightSlider').html(html.join(''));
     $('#streamContainer').html(html.join(''));
     stream_slider.reloadSlider();
 };

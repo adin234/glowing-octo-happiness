@@ -79,18 +79,15 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-
-    // $("#lightSlider").lightSlider(); 
-
     $.ajax({
-        async: false,
-        type: "GET",
-        dataType: "json",
-        url: server+"index?console=all",
-    }).done(function (data) {
-        index_data = data;
-        update_index(index_data);
-    });
+    async: false,
+    type: "GET",
+    dataType: "json",
+    url: server+"index?console=all",
+}).done(function (data) {
+    index_data = data;
+    update_index(index_data);
+});
 
     $(document).on('click', '.slider-item .play', function(e) {
         var vid = $(this).attr('data-vid');
@@ -361,43 +358,25 @@ var update_index = function(index_data) {
         item.comments = item.snippet.meta.statistics.commentCount;
         item.views = item.snippet.meta.statistics.viewCount;
         item.link = '/youtuber/?user='+item.user_id+'/#!/video/'+item.snippet.resourceId.videoId;
-
-
-        // group.push(template($('#latestVideosTpl').html(), item));
-
-        console.log(item);
-
-
-        $('<li class="pointer"><a href="'+item.link+'"><img src="'+item.thumb+'" width="100%" height="100%" alt="screenshot"></a>'+
-                '<h3><a href="'+item.link+'" title="'+item.title+'">'+item.title+'</a></h3>' +
-                '<a href="'+item.link+'" title="'+item.title+'">' +
-                '<img src="'+item.provider+'avatar.php?userid='+item.user_id+'.jpg" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">' +
-                '</a>' +
-                '<ul>' +
-                  '<li>'+item.username+'</li>' +
-                  '<li><em>觀看次數：</em>'+item.views+'</li>' +
-                  '<li><a href="'+item.link+'/comments"><em>Replies: </em> '+item.anytv_comment+'</a></li>' +
-                '</ul>' +
-              '</li>').appendTo('#lightSlider');
-
-        // if(group.length == 9) {
-        //     html.push('<ul id="lightSlider" class="list clearFix">'+group.join('')+'</ul>');
-        //     group = [];
-        // }
+        group.push(template($('#latestVideosTpl').html(), item));
+        if(group.length == 9) {
+            html.push('<ul class="list clearFix">'+group.join('')+'</ul>');
+            group = [];
+        }
     });
 
-    // if(group.length >= 1) {
-    //         html.push('<ul id="lightSlider" class="list clearFix">'+group.join('')+'</ul>');
-    // }
+    if(group.length >= 1) {
+            html.push('<ul class="list clearFix">'+group.join('')+'</ul>');
+    }
 
-    // if(!html.length) { html.push('目前沒有影片'); }
+    if(!html.length) { html.push('目前沒有影片'); }
 
-    // $('#lightSlider').html(group.join(''));
-    // slider.most_viewed.reloadSlider({
-    //     startSlide: 0,
-    //     infiniteLoop: false,
-    //     hideControlOnEnd: true
-    // });
+    $('#mostViewed').html(html.join(''));
+    slider.most_viewed.reloadSlider({
+        startSlide: 0,
+        infiniteLoop: false,
+        hideControlOnEnd: true
+    });
 
     // latest games
     html = [];
