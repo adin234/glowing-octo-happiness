@@ -707,8 +707,7 @@ $(function () {
                 // $('li.login').html(link);
             }
             else {
-                console.log('no user');
-                utilCookie.set('user', "", 0);
+                utilCookie.set('user', '', 0)
             }
         });
 
