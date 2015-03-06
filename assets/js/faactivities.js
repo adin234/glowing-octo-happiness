@@ -2,12 +2,14 @@
 var all_events = [];
 
 function get_user_info() {
-    var userinfo = $.parseJSON(utilCookie.get('user')),
-        user_id = userinfo.user_id;
 
+    var userinfo = $.parseJSON(utilCookie.get('user'));
 
-    console.log(user_id);
+    // var userinfo = $.parseJSON(utilCookie.get('user'));
+    // var user_id = userinfo.user_id;
 
+    console.log(userinfo);
+    // console.log(user_id);
     // if(user_id === 18){
     //          addEventForm();
     //  }else if(user_id != 18){ console.log('Not an admin!');
@@ -57,7 +59,6 @@ function addEventForm() {
     );
 
     $('.add_events_form').html(html.join(''));
-
 
     get_user_info();
 

@@ -162,7 +162,7 @@ var utilHash = {
     },
     'changeHashVal': function (key, string, apply) {
 
-        console.log(key+' // '+string+' // '+apply);
+        console.log(key + ' // ' + string + ' // ' + apply);
 
         var apply = typeof apply == 'undefined' ? true : false;
         var hash = window.location.hash.replace('#!/', '');
@@ -552,7 +552,7 @@ function get_streamers(first) {
 function get_youtube_streamers(first) {
     $.get(server + 'streamers/youtube', function (result) {
             result.streamers.forEach(function (item) {
-                console.log(item);
+                //  console.log(item);
                 if ((item.user_group_id === 5 ||
                         (item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5))) && ~item.youtube
                     .snippet.title.toLowerCase()
