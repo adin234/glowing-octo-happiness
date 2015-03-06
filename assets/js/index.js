@@ -169,6 +169,7 @@ var index_show_streamers = function(streamersList) {
             } else if (typeof item.hitbox != 'undefined') {
                 item.hitboxid = item.hitbox.media_name;
                 // dont render if already active
+                console.log(item.hitbox);
                 item.id = 'HB'+item.hitboxid;
                 item.username = item.user.username;
                 item.user_id = item.user.user_id;
@@ -509,7 +510,7 @@ var news_shows_playlists = function() {
 
     var html = [];
     var blocks = '';
-    var max_items = 3;
+    var max_items = 4;
     var ctr = 1;
     var visible_news_playlists = (typeof index_data.visible_news_playlists != 'undefined') ? index_data.visible_news_playlists.split(',') : [];
     var visible_shows_playlists = (typeof index_data.visible_shows_playlists != 'undefined') ? index_data.visible_shows_playlists.split(',') : [];

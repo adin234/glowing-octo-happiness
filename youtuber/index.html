@@ -54,6 +54,15 @@
 </head>
 
 <body class="lang_zh_tw stream-gritter" id="youtuberPage">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 <div id="wrapper">
     <div id="outContainer">
     <div class="nav-container">
@@ -146,12 +155,15 @@
           <a href="" class="live-button"></a>
         </div>
         <div id="top-controls">
-          <div id="subscribe-follow">
+          <div id="subscribe-follow-like">
             <div id="youtube-subscribe">
              <!--add youtube button-->
             </div>
             <div id="twitter-follow">
              <!--add twitter button-->
+            </div>
+            <div id="facebook-like">
+             <!--add facebook button-->
             </div>
           </div>
           <div id="zoomer">
