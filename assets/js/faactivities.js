@@ -8,6 +8,10 @@ function get_user_info() {
 
     if (user_id === 18) {
         addEventForm();
+        get_data();
+    }
+    else {
+        get_data();
     }
 }
 
@@ -47,8 +51,7 @@ function addEventForm() {
     html.push('<button onclick="add_event()">ADD EVENT</button>');
     html.push(
         '</form><button onclick="get_events()">' +
-        'SHOW EVENTS</button><button onclick="get_data()">' +
-        'Get Data</button></div>'
+        'SHOW EVENTS</button>'
     );
 
     $('.add_events_form').html(html.join(''));
