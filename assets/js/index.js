@@ -169,8 +169,8 @@ var index_show_streamers = function(streamersList) {
             } else if (typeof item.hitbox != 'undefined') {
                 item.hitboxid = item.hitbox.media_name;
                 // dont render if already active
-                console.log(item.hitbox);
                 item.id = 'HB'+item.hitboxid;
+                item.game = item.hitbox.livestream[0].category_name;
                 item.username = item.user.username;
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
@@ -404,6 +404,11 @@ var update_index = function(index_data) {
         hideControlOnEnd: true
     });
 
+
+
+
+
+
     //featured games
     html = [];
     group = [];
@@ -435,6 +440,16 @@ var update_index = function(index_data) {
         infiniteLoop: false,
         hideControlOnEnd: true
     });
+
+
+
+
+
+
+
+
+
+
 
     // featuredUser
     html = [];

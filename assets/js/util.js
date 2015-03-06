@@ -161,6 +161,9 @@ var utilHash = {
         return hash;
     },
     'changeHashVal': function (key, string, apply) {
+
+        console.log(key+' // '+string+' // '+apply);
+
         var apply = typeof apply == 'undefined' ? true : false;
         var hash = window.location.hash.replace('#!/', '');
         var hashObj = {};
