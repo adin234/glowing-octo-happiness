@@ -152,8 +152,8 @@ var render_featured_games = function (filter) {
                 item.idraw = item.twitchid;
                 item.live = 'live';
                 item.link = lanparty && typeof lanparty != 'undefined'
-                    ? '/lanparty_stream_multi/#/'+item.id
-                    : '/gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    ? 'lanparty_stream_multi/#/'+item.id
+                    : 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
                 item.provider = attachments_server;
                 item.thumb = item.twitch.preview.large;
                 item.title = item.twitch.channel.status;
@@ -178,7 +178,7 @@ var render_featured_games = function (filter) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
-                item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
+                item.link = 'gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
                 item.title = hitboxData.media_status;
@@ -198,8 +198,8 @@ var render_featured_games = function (filter) {
                 item.idraw= item.youtube.id;
                 item.live = 'live';
                 item.link = lanparty && typeof lanparty != 'undefined'
-                    ? '/lanparty_stream_multi/#/'+item.id
-                    : '/gamer_stream/?user='+item.user_id+'/#!/'+item.id;
+                    ? 'lanparty_stream_multi/#/'+item.id
+                    : 'gamer_stream/?user='+item.user_id+'/#!/'+item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
                 item.title = item.youtube.snippet.title;
@@ -377,7 +377,7 @@ var render_featured_games = function (filter) {
             item.id = 'TW'+item.twitchid;
             item.idraw = item.twitchid;
             item.live = 'live';
-            item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
+            item.link = 'gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.twitch.preview.large;
             item.title = item.twitch.channel.status;
@@ -394,7 +394,7 @@ var render_featured_games = function (filter) {
             item.user_id = item.user.user_id;
             item.idraw = item.hitboxid;
             item.live = 'live';
-            item.link = '/gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
+            item.link = 'gamer_stream/?user='+item.user.user_id+'/#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
             item.title = hitboxData.media_status;
@@ -406,7 +406,7 @@ var render_featured_games = function (filter) {
             item.id = 'YT'+item.username;
             item.idraw= item.youtube.id;
             item.live = 'live';
-            item.link = '/gamer_stream/?user='+item.user_id+'#!/'+item.id;
+            item.link = 'gamer_stream/?user='+item.user_id+'#!/'+item.id;
             item.provider = attachments_server;
             item.thumb = item.youtube.snippet.thumbnails.high.url;
             item.title = item.youtube.snippet.title;
