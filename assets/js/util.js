@@ -662,7 +662,7 @@ $.extend($.gritter.options, {
     position: 'bottom-right',
     fade_in_speed: 'medium',
     fade_out_speed: 2000,
-    time: 5000
+    time: 1000
 });
 
 var notify_stream = function (data) {
