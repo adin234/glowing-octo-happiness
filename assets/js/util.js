@@ -662,7 +662,7 @@ $.extend($.gritter.options, {
     position: 'bottom-right',
     fade_in_speed: 'medium',
     fade_out_speed: 2000,
-    time: 5000
+    time: 1000
 });
 
 var notify_stream = function (data) {
@@ -707,8 +707,7 @@ $(function () {
                 // $('li.login').html(link);
             }
             else {
-                console.log('no user');
-                utilCookie.set('user', "", 0);
+                utilCookie.set('user', '', 0)
             }
         });
 

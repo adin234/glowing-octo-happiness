@@ -92,22 +92,7 @@ $.get(server+'streamers/youtube?user='+page_data.user.user_id, function(result) 
 // }
 
 var add_buttons = function() {
-  //ADD TWITTER BUTTON
-  var twitter = page_data.user.custom_fields.twitter;
   var inner = "";
-  if(twitter) {
-    console.log("ADD");
-    inner = '<a href="https://twitter.com/'
-      + twitter
-      + '" class="twitter-follow-button" '
-      + 'data-show-count="false" data-size="large"></a>';
-    $("#twitter-follow").html(inner);
-    twttr.widgets.load();
-  }
-  else {
-    console.log("DON'T ADD");
-    $("#twitter-follow").remove();
-  }
   //ADD YOUTUBE BUTTON
   var youtube_channel = page_data.config.channel;
   if(youtube_channel) {
@@ -137,6 +122,21 @@ var add_buttons = function() {
   else {
     console.log("DON'T ADD");
     $("a.facebook-like-button").remove();
+  }
+    //ADD TWITTER BUTTON
+  var twitter = page_data.user.custom_fields.twitter;
+  if(twitter) {
+    console.log("ADD");
+    inner = '<a href="https://twitter.com/'
+      + twitter
+      + '" class="twitter-follow-button" '
+      + 'data-show-count="false" data-size="large"></a>';
+    $("#twitter-follow").html(inner);
+    twttr.widgets.load();
+  }
+  else {
+    console.log("DON'T ADD");
+    $("#twitter-follow").remove();
   }
 }
 

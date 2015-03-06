@@ -1,4 +1,24 @@
 0 info it worked if it ends with ok
+<<<<<<< HEAD
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 error install Couldn't read dependencies
+5 error package.json ENOENT, open 'd:\homestead\package.json'
+5 error package.json This is most likely not a problem with npm itself.
+5 error package.json npm can't find a package.json file in your current directory.
+6 error System Windows_NT 6.1.7601
+7 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+8 error cwd d:\homestead\glowing-octo-happiness
+9 error node -v v0.10.35
+10 error npm -v 1.4.28
+11 error path d:\homestead\package.json
+12 error code ENOPACKAGEJSON
+13 error errno 34
+14 verbose exit [ 34, true ]
+=======
 1 verbose cli [ 'node', '/Users/adin234/.node/bin/npm', 'start' ]
 2 info using npm@2.1.18
 3 info using node@v0.10.32
@@ -16,3 +36,4 @@
 14 error enoent This is most likely not a problem with npm itself
 14 error enoent and is related to npm not being able to find a file.
 15 verbose exit [ 34, true ]
+>>>>>>> eb6f88a3326826dc504a54a12666d1af0c75f8a2
