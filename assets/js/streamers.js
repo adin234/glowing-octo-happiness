@@ -57,7 +57,7 @@ var render_featured_games = function (filter) {
         }
 
         if(!html.length) {
-            html.push('目前沒有遊戲');
+            html.push('ç›®å‰æ²’æœ‰éŠæˆ²');
         }
 
         $('#container-featured-games').html(html.join(''));
@@ -89,7 +89,7 @@ var render_featured_games = function (filter) {
         }
 
         if(!html.length) {
-            html.push('目前沒有遊戲');
+            html.push('ç›®å‰æ²’æœ‰éŠæˆ²');
         }
 
         $('#container-latest-games').html(html.join(''));
@@ -272,7 +272,7 @@ var render_featured_games = function (filter) {
 
         if (typeof(filter) !== 'undefined') {
             if(!html.length && $('#container-videos').html().trim().length === 0) {
-                html.push('無法找到你指定的實況主');
+                html.push('ç„¡æ³•æ‰¾åˆ°ä½ æŒ‡å®šçš„å¯¦æ³ä¸»');
                 if(!lanparty) {
                     console.log('render here2');
                     $('#container-videos').html(html.join('')).promise()
@@ -289,7 +289,7 @@ var render_featured_games = function (filter) {
             }
         } else {
             if(!html.length && $('#container-videos').html().trim().length === 0) {
-                html.push('目前沒有正在直播的實況主');
+                html.push('ç›®å‰æ²’æœ‰æ­£åœ¨ç›´æ’­çš„å¯¦æ³ä¸»');
                 if(!lanparty) {
                     console.log('render here3');
                     $('#container-videos').html(html.join('')).promise()

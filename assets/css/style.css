@@ -3526,7 +3526,7 @@ body:nth-child(3) {
 }
 #main-container .watchList .bx-wrapper {
   max-width: inherit !important;
-  padding: 0 37px;
+  padding: 0 10px;
   position: relative;
 }
 #main-container .watchList .bx-pager-item {
