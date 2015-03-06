@@ -320,7 +320,7 @@ var getComments = function (videoId, sort) {
         }
         var comments = e.map(function (item) {
             var that_class = '';
-            if (+utilUser.get().user_id === +item.user_id) {
+            if (utilUser.get() && +utilUser.get().user_id === +item.user_id) {
                 that_class = 'deleteComment';
             }
             else {
@@ -334,7 +334,7 @@ var getComments = function (videoId, sort) {
                 comment: item.message,
                 date: formatDate(item.date * 1000),
                 comment_id: item.comment_id,
-                user_acess_class: that_class
+                user_access_class: that_class
             }
         });
 
