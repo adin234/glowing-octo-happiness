@@ -197,8 +197,7 @@ var index_show_streamers = function(streamersList) {
             }
 
             item.game = item.game == null ? '' : item.game + ' / ';
-            item.link = origin+item.link;
-            
+
             if(item.game.length > 10) {
                 item.game = item.game.substr(0,9) + '&#133;' + ' / ';
             }
