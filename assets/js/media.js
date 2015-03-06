@@ -495,7 +495,8 @@ var updateSuggestions = function (suggestions) {
     html = [];
     suggestions.forEach(function (item, i) {
         if (filterTags && (typeof item.snippet.meta == 'undefined' || typeof item.snippet.meta.tags ==
-                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return
+        ;
 
         if (item.snippet.thumbnails) {
             tempdata = {
@@ -729,7 +730,7 @@ var deleteComment = function (data, context) {
     console.log($(context).parent().parent());
     var videoId = $('#postComment').attr('data-video'),
         url = server + 'youtubers/videos/' + videoId + '/comment/' + data + '/delete',
-        user_id: utilUser.get().user_id;
+        user_id = utilUser.get().user_id;
 
     $(context).parent().parent().addClass("deletecommentbox");
 
