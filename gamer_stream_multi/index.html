@@ -23,8 +23,8 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
 <link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
 <script src="/assets/js/config.js"></script>
-<!-- 
-<link type="text/css" rel="stylesheet" href="/assets/lightSlider/css/lightSlider.css" />    --> 
+
+<!-- <link type="text/css" rel="stylesheet" href="/assets/lightSlider/css/lightSlider.css" />  -->   
 
 <!--<link href="favicon.ico" rel="icon" type="image/x-icon">
 <link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
@@ -62,7 +62,7 @@
       <!-- <div class="watchList" style="visibility:hidden">
         <h2>正在直播</h2>
         <ul id="lightSlider" class="multistreamList">
-          
+
         </ul>
       </div> -->
       <div class="watchList" style="visibility:hidden">
@@ -233,17 +233,61 @@
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.gritter.min.js"></script>
 <script src="/assets/js/jquery.bxslider.min.js"></script>
-<!-- 
-<script src="/assets/lightSlider/js/jquery.lightSlider.js"></script> -->
+
+<!-- <script src="/assets/lightSlider/js/jquery.lightSlider.js"></script> -->
 
 <script type="text/javascript">
 /*$(document).ready(function() {
   $("#lightSlider").lightSlider({
-    item: 3,
-    cssEasing: 'ease',
-    loop: true,
-    slideEndAnimation: true,
+    item: 5,
+    autoWidth: false,
+    slideMove: 1, // slidemove will be 1 if loop is true
+    slideMargin: 10,
+
+    addClass: '',
+    mode: "slide",
+    useCSS: true,
+    cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
+    easing: 'linear', //'for jquery animation',////
+
+    speed: 400, //ms'
+    auto: false,
+    loop: false,
+    slideEndAnimatoin: true,
+    pause: 2000,
+
+    keyPress: false,
+    controls: true,
+    prevHtml: '',
+    nextHtml: '',
+
+    rtl:false,
+    adaptiveHeight:false,
+
+    vertical:false,
+    verticalHeight:500,
+    vThumbWidth:100,
+
+    thumbItem:10,
+    pager: true,
+    gallery: false,
+    galleryMargin: 5,
+    thumbMargin: 5,
+    currentPagerPosition: 'middle',
+
+    enableTouch:false,
     enableDrag:false,
+    freeMove:false,
+    swipeThreshold: 40,
+
+    responsive : [],
+
+    onBeforeStart: function (el) {},
+    onSliderLoad: function (el) {},
+    onBeforeSlide: function (el) {},
+    onAfterSlide: function (el) {},
+    onBeforeNextSlide: function (el) {},
+    onBeforePrevSlide: function (el) {}
   });
 });*/
 </script>
