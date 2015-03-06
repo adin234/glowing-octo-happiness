@@ -701,7 +701,7 @@ var deleteComment = function(data,context) {
   console.log($(context).parent().parent());
   var videoId = $('#postComment').attr('data-video'),
       url = server+'youtubers/videos/'+videoId+'/comment/'+data+'/delete',
-      user_id:      utilUser.get().user_id;
+      user_id = utilUser.get().user_id;
 
   $(context).parent().parent().addClass("deletecommentbox");
 
