@@ -13,7 +13,7 @@ $(document)
                 links.push($(item)[0].outerHTML);
             });
         links.pop();
-        links.push('<li class="nav-switch-item"><a href="/lanparty" title="搞活動">搞活動</a>');
+        links.push('<li class="nav-switch-item"><a href="#" title="搞活動">搞活動</a>');
 
         $(window)
             .scroll(function () {

@@ -586,11 +586,11 @@ function get_youtube_streamers(first) {
                     .html('直播<sup>' + streamingLength + '</sup>');
             }
 
-            if ($("a[href='/lanparty']")
+            if ($("a[href='#']")
                 .length) {
                 var streamingLanCount = streamingLan || '';
-                $("a[href='/lanparty']")
-                    .html('Lan Party<sup>' + streamingLanCount + '</sup>');
+                $("a[href='#']")
+                    .html('搞活動<sup>' + streamingLanCount + '</sup>');
             }
 
             if ($("a[href='/lanparty_stream_multi']")

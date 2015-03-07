@@ -4,18 +4,15 @@ var all_events = [];
 function get_user_info() {
 
     var userinfo = $.parseJSON(utilCookie.get('user'));
+    var user_id = userinfo.user_id;
 
-    // var userinfo = $.parseJSON(utilCookie.get('user'));
-    // var user_id = userinfo.user_id;
-
-    console.log(userinfo);
-    // console.log(user_id);
-    // if(user_id === 18){
-    //          addEventForm();
-    //  }else if(user_id != 18){ console.log('Not an admin!');
-    // }else if(user_id == null){
-    //      console.log('No one logged in');
-    //  }
+    if (user_id === 18) {
+        addEventForm();
+        get_data();
+    }
+    else {
+        get_data();
+    }
 }
 
 function addEventForm() {
@@ -54,13 +51,12 @@ function addEventForm() {
     html.push('<button onclick="add_event()">ADD EVENT</button>');
     html.push(
         '</form><button onclick="get_events()">' +
-        'SHOW EVENTS</button><button onclick="get_data()">' +
-        'Get Data</button></div>'
+        'SHOW EVENTS</button>'
     );
 
     $('.add_events_form').html(html.join(''));
 
-    get_user_info();
+
 
 }
 
@@ -69,29 +65,27 @@ function add_event() {
 
     $.ajax({
 
-            url: server + 'freedom_events/add',
-            type: 'post',
-            data: {
+        url: server + 'freedom_events/add',
+        type: 'post',
+        data: {
 
-                'event_title': $('#event_name').val(),
-                'start_date': $('#event_start_date').val(),
-                'end_date': $('#event_end_date').val(),
-                'start_time': $('#event_start_time').val(),
-                'end_time': $('#event_end_time').val(),
-                'e_description': $('#event_desc').val()
-            }
+            'event_title': $('#event_name').val(),
+            'start_date': $('#event_start_date').val(),
+            'end_date': $('#event_end_date').val(),
+            'start_time': $('#event_start_time').val(),
+            'end_time': $('#event_end_time').val(),
+            'e_description': $('#event_desc').val()
+        }
 
-        })
-        .success(function (data) {
+    }).success(function (data) {
 
-            console.log(data);
-            console.log('success');
-        })
-        .fail(function (data) {
-            console.log(data);
-            console.log('Fail');
+        console.log(data);
+        console.log('success');
+    }).fail(function (data) {
+        console.log(data);
+        console.log('Fail');
 
-        });
+    });
 
 }
 
