@@ -195,6 +195,7 @@ $(function () {
         $('.chat-' + id.substr(2)).remove();
         utilHash.removeHash(id);
         $(this).parent().parent().remove();
+        window.history.pushState('', '', '/gamer_stream_multi');
     });
 
     $('#streamContainer').on('click', 'li a:not(.current)', function (e) {
@@ -202,8 +203,11 @@ $(function () {
         var id = $(this).attr('data-id');
         utilHash.addHash(id);
         render_stream_video(id);
+        window.history.pushState('', '', '/gamer_stream_multi');
     });
 
     get_streamers();
+
+    window.history.pushState('', '', '/gamer_stream_multi');
 });
 
