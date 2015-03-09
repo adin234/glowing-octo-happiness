@@ -3079,11 +3079,11 @@ li.thread .stats > dl > dt {
     height: 100%;
     width: 100%;
 }
-.game-item.active {
+/*.game-item.active {
     border: 5px solid #e00;
     height: 84px;
     width: 150px;
-}
+}*/
 /* Streams */
 
 body.streams {
