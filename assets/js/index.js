@@ -415,9 +415,7 @@ var update_index = function(index_data) {
     index_data.featured_games.forEach(function(item, i){
         var found_games = index_data.games.filter(function(game){
             return game.id === item.id;
-        console.log(item.id, 'hello');
         });
-        console.log(found_games, 'hi');
         if(found_games.length === 1){
             item.imgsrc = found_games[0].image;
             item.game = found_games[0].name;
