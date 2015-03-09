@@ -590,7 +590,7 @@ function get_youtube_streamers(first) {
                 .length) {
                 var streamingLanCount = streamingLan || '';
                 $("a[href='#']")
-                    .html('搞活動<sup>' + streamingLanCount + '</sup>');
+                    .html('觀看直播<sup>' + streamingLanCount + '</sup>');
             }
 
             if ($("a[href='/lanparty_stream_multi']")
