@@ -664,7 +664,7 @@ function get_hitbox_streamers(first) {
 $.extend($.gritter.options, {
     position: 'bottom-right',
     fade_in_speed: 'medium',
-    fade_out_speed: 2000,
+    fade_out_speed: 1000,
     time: 1000
 });
 
