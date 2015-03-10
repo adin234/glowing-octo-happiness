@@ -624,7 +624,7 @@ var HBStreamers = [];
 var onlineStreamers = [];
 
 var checker_index = function() {
-    var socket = io.connect('http://dev.gamers.tm:3001');
+    var socket = io.connect(socket_server);
     socket.on('message', function(e) {
         onlineStreamers = [];
         onlineStreamers = onlineStreamers.concat(

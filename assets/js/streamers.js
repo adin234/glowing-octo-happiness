@@ -469,7 +469,7 @@ var render_featured_games = function (filter) {
     },
 
     checker = function () {
-        var socket = io.connect('http://dev.gamers.tm:3001');
+        var socket = io.connect(socket_server);
         socket.on('message', function(e) {
             YTStreamers = e.streamers.youtube;
             TWStreamers = e.streamers.twitch;
