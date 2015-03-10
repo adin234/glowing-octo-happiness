@@ -193,6 +193,7 @@ $(function () {
         var id = $(this).attr('data-id');
         $('#streamContainer li a[data-id=' + id + ']').removeClass('current');
         $('.chat-' + id.substr(2)).remove();
+        $('#gchat-' + id.substr(2)).remove();
         utilHash.removeHash(id);
         $(this).parent().parent().remove();
         window.history.pushState('', '', '/gamer_stream_multi');
