@@ -1,5 +1,6 @@
 var server = 'http://api.gamers.tm/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/'
 var origin = 'http://www.gamers.tm/';
+var socket_server = 'http://api.gamers.tm:3001/';
 
 
 
