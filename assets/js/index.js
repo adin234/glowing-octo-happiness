@@ -624,32 +624,18 @@ var HBStreamers = [];
 var onlineStreamers = [];
 
 var checker_index = function() {
-    onlineStreamers = [];
-
-    getOnlineStreamers(server + 'streamers', 'TW', function() {
-        getOnlineStreamers(server + 'streamers/youtube', 'YT', function() {
-            getOnlineStreamers(server + 'streamers/hitbox', 'HB', function () {
-                YTStreamers.forEach(function(item) {
-                    onlineStreamers.push(item);
-                });
-
-                TWStreamers.forEach(function(item) {
-                    onlineStreamers.push(item);
-                });
-
-                HBStreamers.forEach(function(item) {
-                    onlineStreamers.push(item);
-                });
-
-                index_show_streamers(onlineStreamers);
-
-                setTimeout(function() {
-                    checker_index();
-                }, 1000);
-
-            });
-        });
-    });
+    var socket = io.connect('http://dev.gamers.tm:3001');
+    socket.on('message', function(e) {
+        onlineStreamers = [];
+        onlineStreamers = onlineStreamers.concat(
+            e.streamers.youtube.concat(
+                e.streamers.twitch.concat(
+                    e.streamers.hitbox
+                )
+            )
+        );
+        index_show_streamers(onlineStreamers);
+    })
 };
 
 var shuffle = function(o) {

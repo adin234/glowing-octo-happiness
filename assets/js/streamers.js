@@ -469,13 +469,14 @@ var render_featured_games = function (filter) {
     },
 
     checker = function () {
-        onlineStreamers = [];
-
-        getOnlineStreamers(server + 'streamers', 'TW', function () {
-            getOnlineStreamers(server + 'streamers/youtube', 'YT', function () {
-                getOnlineStreamers(server + 'streamers/hitbox', 'HB', displayStreamers);
-            });
-        });
+        var socket = io.connect('http://dev.gamers.tm:3001');
+        socket.on('message', function(e) {
+            YTStreamers = e.streamers.youtube;
+            TWStreamers = e.streamers.twitch;
+            HBStreamers = e.streamers.hitbox;
+            onlineStreamers = [];
+            displayStreamers();
+        })
     },
 
     render_page = function () {
@@ -500,7 +501,7 @@ var render_featured_games = function (filter) {
         HBStreamers.forEach(function (item) {
             onlineStreamers.push(item);
         });
-
+        console.log(onlineStreamers);
         if ($('a[href$="/streamers"] > sup').text().length > 0) {
             streamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
@@ -522,11 +523,6 @@ var render_featured_games = function (filter) {
                 $('#container-videos > ul').remove().fadeOut();
             }
         }
-
-        setTimeout(function () {
-            checker();
-        }, 1000);
-
     };
 
 $('#txtbox-search-games').on('keydown', function (e) {
@@ -601,6 +597,6 @@ slider.container_lanparty = $("#container-lanparty").bxSlider({
 
 
 streamersSearch();
-render_page();
 checker();
+render_page();
 

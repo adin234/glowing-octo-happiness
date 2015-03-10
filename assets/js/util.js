@@ -343,32 +343,6 @@ function searchBoxInit() {
 }
 var gamesAutocompleteArray = [];
 
-var getOnlineStreamers = function (link, streamType, cb) {
-    var toExtend = null;
-    $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: link,
-        })
-        .done(function (data) {
-            switch (streamType) {
-            case 'YT':
-                YTStreamers = data.streamers;;
-                break;
-
-            case 'HB':
-                HBStreamers = data.streamers;;
-                break;
-
-            default:
-                TWStreamers = data.streamers;;
-                break;
-            };
-
-            cb();
-        });
-};
-
 function searchGamesBoxInit() {
     if (!gamesAutocompleteArray.length) return;
 
