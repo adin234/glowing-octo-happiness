@@ -3072,8 +3072,11 @@ li.thread .stats > dl > dt {
     width: 258px;
 }
 .game-item {
-    height: 98px;/* height: 94px;*/
-    width: 163px;/*width: 160px;*/
+    height: 98px;
+    /* height: 94px;*/
+    
+    width: 163px;
+    /*width: 160px;*/
 }
 .game-item > img {
     height: 100%;
@@ -3349,7 +3352,7 @@ body:nth-child(3) {
 }
 #main-container .watchList .bx-wrapper {
     max-width: inherit !important;
-    padding: 0 10px;
+    padding: 0 20px;
     position: relative;
 }
 #main-container .watchList .bx-pager-item {
@@ -4285,7 +4288,7 @@ button.load-more {
   background: #ececec;
   border: 0;
   color: #444;
-  font-size: 15px; 
+  font-size: 15px;
   margin: auto;
   width: 100%;
   cursor: pointer;
