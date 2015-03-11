@@ -23,27 +23,27 @@ function addEventForm() {
     html.push('<div id="add_event_header">Add an Event</div>');
     html.push('<div id="addForm"><form>');
     html.push(
-        '<p id="e_title">Title</p> <input type="text" name="event_name" placeholder="Event Title" id="event_name">'
+        '<p id="e_title">Title</p> <input type="text" name="event_name" placeholder="Event Title" id="event_name" required>'
     );
     html.push(
         '<p id="e_s_date">Start Date</p> <input type = "date" name = "event_start_date"' +
         'placeholder = "Event Start Date"' +
-        'id = "event_start_date">'
+        'id = "event_start_date" required>'
     );
     html.push(
         '<p id="e_e_date">End Date</p> <input type="date"' +
         'name="event_end_date" placeholder="Event End Date"' +
-        ' id="event_end_date">'
+        ' id="event_end_date" required>'
     );
     html.push(
         '<p id="s_time">Start Time</p> <input type="time"' +
         ' name="event_start_time"' +
-        'placeholder="Event Start Time" id="event_start_time">'
+        'placeholder="Event Start Time" id="event_start_time" required>'
     );
     html.push(
         '<p id="e_time">End Time</p> <input type="time"' +
         'name="event_end_time"' +
-        'placeholder="Event End Time" id="event_end_time">'
+        'placeholder="Event End Time" id="event_end_time" required>'
     );
     html.push('<p id="e_desc">Event Description</p>');
 
@@ -63,8 +63,6 @@ function addEventForm() {
 
 function add_event() {
 
-
-
     $.ajax({
 
         url: server + 'freedom_events/add',
@@ -80,13 +78,11 @@ function add_event() {
         }
 
     }).success(function (data) {
-
         console.log(data);
         console.log('success');
     }).fail(function (data) {
         console.log(data);
         console.log('Fail');
-
     });
 
 }
@@ -94,26 +90,23 @@ function add_event() {
 function get_data() {
 
     $.ajax({
-            dataType: 'json',
-            url: server + 'freedom_events',
-            type: 'get',
-            data: {
-                'event_title': $('#event_name').val(),
-                'start_date': $('#event_start_date').val(),
-                'end_date': $('#event_end_date').val(),
-                'start_time': $('#event_start_time').val(),
-                'end_time': $('#event_end_time').val(),
-                'e_description': $('#event_desc').val()
-            }
-
-        })
-        .success(function (data) {
-            all_events.fetched_data = data;
-        })
-        .fail(function (data) {
-            console.log(data);
-            console.log('failure');
-        });
+        dataType: 'json',
+        url: server + 'freedom_events',
+        type: 'get',
+        data: {
+            'event_title': $('#event_name').val(),
+            'start_date': $('#event_start_date').val(),
+            'end_date': $('#event_end_date').val(),
+            'start_time': $('#event_start_time').val(),
+            'end_time': $('#event_end_time').val(),
+            'e_description': $('#event_desc').val()
+        }
+    }).success(function (data) {
+        all_events.fetched_data = data;
+    }).fail(function (data) {
+        console.log(data);
+        console.log('failure');
+    });
 }
 
 function get_events() {
@@ -143,11 +136,12 @@ function get_events() {
     );
 }
 
-function delete_events() {
+function delete_events(eventTitle) {
+
+
 
 
 }
-
 
 function search_events(eventTitle) {
 
@@ -174,63 +168,42 @@ function search_events(eventTitle) {
     console.log(search_query);
 }
 
-function edit_events() {
+function edit_events(eventTitle) {
+
+
 
 }
 
-function get_date_diff() {
 
-    var status = [];
+var get_date_diff = function (sched, time) {
 
-    var date = new Date();
-    var dateLocal = date.toLocaleDateString();
+    var today = new Date(),
+        currdate = today.toJSON().substr(0, 10),
+        currtime = today.toTimeString().substr(0, 5),
+        result = currdate.localeCompare(sched),
+        result2 = currtime.localeCompare(time);
 
-    all_events.fetched_data.forEach(function (item) {
-
-        var end = item.end_date;
-
-        if (end < dateLocal) {
-            status.push('Ended');
+    if (result < 0) {
+        return 'Ongoing';
+    }
+    else if (result === 0) {
+        if (result2 <= 0) {
+            return 'Ongoing';
         }
         else {
-            status.push('Ongoing');
+            return 'Ended';
         }
-    });
+    }
+    else {
+        return 'Ended';
+    }
+
 }
 
 
-function get_schedule() {
+function schedule_template() {
 
     var html = [];
-
-    all_events.fetched_data.forEach(function (item) {
-
-        html.push('<div class="activity">');
-        html.push('<div class="left">');
-        html.push('<div id="startEventDate">' + item.start_date + '</div>' +
-            '<div id="endEventDate">' + item.end_date + '</div>');
-        html.push('<div id="startEventTime">' + item.start_time + '</div>' +
-            '<div id="endEventTime">' + item.end_time + '</div>');
-        html.push('</div>');
-        html.push('<div class="center">');
-        html.push('<div id="eventHeader">' + item.event_title + '</div>' +
-            '<div id="e_status"></div>');
-        html.push('</div>');
-        html.push('</div>');
-    });
-
-    $('#all_schedule').html(html.join(''));
-    var difference = get_date_diff();
-    console.log(difference);
-}
-
-
-
-function get_archive() {
-
-    var html = [];
-    var eventStatus = 'Ended';
-
 
     all_events.fetched_data.forEach(function (item) {
 
@@ -245,10 +218,29 @@ function get_archive() {
         html.push('<div id="eventHeader">' + item.event_title + '</div>');
         html.push('</div>');
         html.push('<div class="right">');
-        html.push('<div id="eventStatus">' + eventStatus + '</div>');
+        html.push('<div id="eventStatus">' + get_date_diff(item.end_date, item.end_time) + '</div>');
         html.push('</div>');
         html.push('</div>');
+
     });
+
+    return html;
+
+}
+
+function get_schedule() {
+
+    var html = [];
+    html = schedule_template();
+
+    $('#all_schedule').html(html.join(''));
+
+}
+
+function get_archive() {
+
+    var html = [];
+    html = schedule_template();
 
     $('#archive_schedule').html(html.join(''));
 

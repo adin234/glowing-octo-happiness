@@ -3072,8 +3072,11 @@ li.thread .stats > dl > dt {
     width: 258px;
 }
 .game-item {
-    height: 98px;/* height: 94px;*/
-    width: 163px;/*width: 160px;*/
+    height: 98px;
+    /* height: 94px;*/
+    
+    width: 163px;
+    /*width: 160px;*/
 }
 .game-item > img {
     height: 100%;
@@ -4992,8 +4995,9 @@ div#getArchive > button {
 div#archive_schedule {
     margin-top: 100px;
 }
-#archive_schedule p {
+#all_schedule p, #archive_schedule p {
     display: inline-block;
+    padding: 0 10px;
 }
 .left {
     width: 350px;
