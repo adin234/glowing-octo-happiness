@@ -15,16 +15,10 @@ var stream_slider = $(".bxslider").bxSlider({
 $(".watchList").css('visibility', 'visible');
 
 var get_streamers = function () {
-    $.get(server + 'streamers', function (result) {
-        streamers_list.twitch = result.streamers;
-        render_streamers();
-    });
-    $.get(server + 'streamers/youtube', function (result) {
-        streamers_list.youtube = result.streamers;
-        render_streamers();
-    });
-    $.get(server + 'streamers/hitbox', function (result) {
-        streamers_list.hitbox = result.streamers;
+    console.log('connectsoccket');
+    var socket_streamers = io.connect(socket_server);
+    socket_streamers.on('message', function (e) {
+        streamers_list = e.streamers
         render_streamers();
     });
 };
@@ -196,7 +190,7 @@ $(function () {
         $('#gchat-' + id.substr(2)).remove();
         utilHash.removeHash(id);
         $(this).parent().parent().remove();
-        window.history.pushState('', '', '/gamer_stream_multi');
+        //window.history.pushState('', '', '/gamer_stream_multi');
     });
 
     $('#streamContainer').on('click', 'li a:not(.current)', function (e) {
@@ -204,11 +198,11 @@ $(function () {
         var id = $(this).attr('data-id');
         utilHash.addHash(id);
         render_stream_video(id);
-        window.history.pushState('', '', '/gamer_stream_multi');
+        //window.history.pushState('', '', '/gamer_stream_multi');
     });
 
     get_streamers();
 
-    window.history.pushState('', '', '/gamer_stream_multi');
+    //window.history.pushState('', '', '/gamer_stream_multi');
 });
 
