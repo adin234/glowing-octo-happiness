@@ -15,16 +15,10 @@ var stream_slider = $(".bxslider").bxSlider({
 $(".watchList").css('visibility', 'visible');
 
 var get_streamers = function () {
-    $.get(server + 'streamers', function (result) {
-        streamers_list.twitch = result.streamers;
-        render_streamers();
-    });
-    $.get(server + 'streamers/youtube', function (result) {
-        streamers_list.youtube = result.streamers;
-        render_streamers();
-    });
-    $.get(server + 'streamers/hitbox', function (result) {
-        streamers_list.hitbox = result.streamers;
+    console.log('connectsoccket');
+    var socket_streamers = io.connect(socket_server);
+    socket_streamers.on('message', function (e) {
+        streamers_list = e.streamers
         render_streamers();
     });
 };
