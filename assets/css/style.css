@@ -5028,8 +5028,9 @@ div#getArchive > button {
 div#archive_schedule {
     margin-top: 100px;
 }
-#archive_schedule p {
+#all_schedule p, #archive_schedule p {
     display: inline-block;
+    padding: 0 10px;
 }
 .left {
     width: 350px;
