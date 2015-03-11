@@ -39,6 +39,7 @@
         <script type="text/javascript" src="/assets/js/config.js?ver=22"></script>
         <script type="text/javascript" src="/assets/js/get.youtuber.data.js?ver=22"></script>
 
+
         <!-- /*<style type="text/css">
   @media (max-width: 1023px){
     #outContainer #container {
@@ -55,16 +56,55 @@
     </head>
 
     <body class="lang_zh_tw stream-gritter" id="youtuberPage">
+        <g:plus action="share"></g:plus>
         <div id="fb-root"></div>
+
         <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '1393452887636738',
+                status: true,
+                xfbml: true,
+                version: 'v2.2',
+                cookie: true
+            });
+            FB.ui({
+                method: 'feed',
+                link: encodeURI(window.location.href)
+            }, function(response) {
+                console.log(response);
+            });
+        };
+
+
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        window.___gcfg = {
+            lang: 'en-US',
+            parsetags: 'onload'
+        };
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            js.src = "https://platform.twitter.com/widgets.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
 
         </script>
         <div id="wrapper">
@@ -354,16 +394,26 @@
             </li>
         </script>
         <script type="text/html" id="commentItemTpl">
-            <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onError="fixErrorImg(this);">
+            <article class="clearFix" id="comment{{COMMENT_ID}}"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onError="fixErrorImg(this);">
                 <cite>{{USERNAME}}</cite><span>．
-    <date datetime="{{DATE}}">{{DATE}}</date>-
-    </span>
+                <date datetime="{{DATE}}">{{DATE}}</date>-
+                </span>
                 <div class="{{USER_ACCESS_CLASS}}">
                     <button onClick='deleteComment({{COMMENT_ID}},this);'>x</button>
                 </div>
                 <div class="replyContent">
                     <p>{{COMMENT}}</p>
+                    <div class='commentShare'>
+                        <a href="https://www.facebook.com/dialog/feed?app_id=1393452887636738&display=page&description={{COMMENT}}&link={{SHARE_LINK}}&redirect_uri=http://www.facebook.com/&name={{USERNAME}} shared a comment!&picture=http://i.imgur.com/3bkmv4o.png" class='fbbutton' target="_blank">
+                        </a>
+                        <a href="https://plus.google.com/share?url={{SHARE_LINK}}#comment{{COMMENT_ID}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class='gpbutton'><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+" />
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?text=Check out {{SHARE_LINK}}#comment{{COMMENT_ID}}" target="_blank" class='twbutton'><img src="/assets/images/social/twitter.png" />
+                        </a>
+                        <p class="commentShare">Share this comment.</p>
+                    </div>
                 </div>
+
             </article>
         </script>
         <script type="text/html" id="commentsTpl">
@@ -403,7 +453,10 @@
             </li>
         </script>
 
-        <script src="https://apis.google.com/js/platform.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        < script src = "https://apis.google.com/js/platform.js" >
+
+        </script>
         <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/hoverIntent.js"></script>

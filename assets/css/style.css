@@ -2006,6 +2006,39 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
     padding-bottom: 30px;
     position: relative;
 }
+.videoRelated .discussions article .commentShare {
+    padding-top: 20px;
+    font-size: 11px;
+    color: #3B579D;
+}
+.videoRelated .discussions article .commentShare a.fbbutton {
+    background: url('http://cache.addthiscdn.com/icons/v1/thumbs/32x32/facebook.png');
+    background-size: 16px;
+    position: absolute;
+    z-index: 999999;
+    height: 16px;
+    width: 16px;
+}
+.videoRelated .discussions article .commentShare a.gpbutton {
+    background-size: 16px;
+    position: absolute;
+    z-index: 999999;
+    left: 20px;
+    height: 16px;
+    width: 16px;
+}
+.videoRelated .discussions article .commentShare a.twbutton {
+    background-size: 16px;
+    position: absolute;
+    z-index: 999999;
+    left: 40px;
+    height: 16px;
+    width: 16px;
+}
+.videoRelated .discussions article .commentShare a.twbutton img {
+    height: 16px;
+    width: 16px;
+}
 .videoRelated .discussions article .replyBtn {
     background: url("/assets/images/player_ui.png") no-repeat 0 -396px;
     bottom: 0;
@@ -3352,7 +3385,7 @@ body:nth-child(3) {
 }
 #main-container .watchList .bx-wrapper {
     max-width: inherit !important;
-    padding: 0 10px;
+    padding: 0 20px;
     position: relative;
 }
 #main-container .watchList .bx-pager-item {
@@ -4288,7 +4321,7 @@ button.load-more {
   background: #ececec;
   border: 0;
   color: #444;
-  font-size: 15px; 
+  font-size: 15px;
   margin: auto;
   width: 100%;
   cursor: pointer;

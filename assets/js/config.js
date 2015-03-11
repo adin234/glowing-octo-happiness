@@ -1,3 +1,7 @@
+/*var server = 'http://dev.gamers.tm:3000/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/'
+var origin = 'http://dev.gamers.tm:8000/';*/
+
+
 var server = 'http://api.gamers.tm/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/'
 var origin = 'http://beta.gamers.tm/'; //'http://localhost:8000/';  //'http://www.gamers.tm/';////
 
