@@ -115,13 +115,13 @@ var render_stream_video = function (item) {
 
     if (streamType == 'HB') {
         $('#twitchStreamContainer').append(template($('#hitbox-stream-tpl').html(), {
-            twitchid: streamId
+            hitboxid: streamId
         }));
         $('#twitch-chat-frame-container').append(template($('#hitbox-chat-tpl').html(), {
-            twitchid: streamId
+            hitboxid: streamId
         }));
         $('#twitch-chat-tab-container').append(template($('#hitbox-chat-tab-tpl').html(), {
-            twitchid: streamId
+            hitboxid: streamId
         }));
         $(".tabs").tabslet({
             animation: true,
