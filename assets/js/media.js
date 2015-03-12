@@ -333,7 +333,7 @@ var getComments = function (videoId, sort) {
                 currUrl = window.location.href,
                 hashes = window.location.hash.replace('#!', '').split('/');
 
-            if (hashes.indexOf('comment')) {
+            if (hashes.indexOf('comment') !== -1) {
                 hashes[hashes.indexOf('comment') + 1] = item.comment_id;
             }
             else {
@@ -529,7 +529,8 @@ var updateSuggestions = function (suggestions) {
     html = [];
     suggestions.forEach(function (item, i) {
         if (filterTags && (typeof item.snippet.meta == 'undefined' || typeof item.snippet.meta.tags ==
-                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return
+        ;
 
         if (item.snippet.thumbnails) {
             tempdata = {

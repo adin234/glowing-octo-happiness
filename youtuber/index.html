@@ -13,6 +13,7 @@
         <meta name="twitter:title" content="實況咖" />
         <meta name="twitter:image:src" content="http://www.gamers.tm/assets/images/fb.jpg">
         <meta name="twitter:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網" />
+        <meta name="twitter:site" content="@jonthekoala">
         <meta name="twitter:url" content="http://www.gamers.tm" />
         <meta property="og:site_name" content="Freedom Asia">
         <meta property="og:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網">
@@ -55,7 +56,7 @@
 
     </head>
 
-    <body class="lang_zh_tw stream-gritter" id="youtuberPage">
+    <body class="lang_zh_tw stream-gritter" id="youtuberPage" itemscope itemtype="http://schema.org/Article">
         <g:plus action="share"></g:plus>
         <div id="fb-root"></div>
 
@@ -408,7 +409,10 @@
                         </a>
                         <a href="https://plus.google.com/share?url={{SHARE_LINK}}#comment{{COMMENT_ID}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class='gpbutton'><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+" />
                         </a>
+                        /*
                         <a href="https://twitter.com/intent/tweet?text=Check out {{SHARE_LINK}}#comment{{COMMENT_ID}}" target="_blank" class='twbutton'><img src="/assets/images/social/twitter.png" />
+                        </a>*/
+                        <a href="http://twitter.com/share?url={{SHARE_LINK}}" target="_blank" class='twbutton'><img src="/assets/images/social/twitter.png" />
                         </a>
                         <p class="commentShare">Share this comment.</p>
                     </div>
