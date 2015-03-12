@@ -568,8 +568,7 @@ $('#container-multiview').on('click', '.remove-multiview', function () {
         id = $this.parent('li').attr('data-streamidraw'),
         index = multiview_items.indexOf(id);
 
-    $('#container-videos a.addToMultiview[data-twitch=' + id + ']').parent('li').show();
-
+    $('#container-videos a[data-streamidraw=' + id + ']').parent('li').show();
     $this.parent('li').remove();
 
     if (index > -1) {

@@ -207,6 +207,20 @@ function schedule_template() {
 
     all_events.fetched_data.forEach(function (item) {
 
+        if (get_date_diff(item.end_date, item.end_time) === 'Ongoing') {
+            $("#eventStatus").css({
+                "background": "#FFE10E",
+                "color": "#000000"
+            });
+        }
+        else {
+            $("#eventStatus").css({
+                "background": "red",
+                'color': '#FFFFFF'
+            });
+        }
+
+
         html.push('<div class="activity">');
         html.push('<div class="left">');
         html.push('<div id="startEventDate">' + item.start_date + '</div>' + '<p> - </p>' +
@@ -221,6 +235,7 @@ function schedule_template() {
         html.push('<div id="eventStatus">' + get_date_diff(item.end_date, item.end_time) + '</div>');
         html.push('</div>');
         html.push('</div>');
+
 
     });
 
