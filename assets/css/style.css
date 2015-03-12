@@ -4689,7 +4689,6 @@ div#status_activity {
 div#eventStatus {
     width: 56px;
     text-align: center;
-    background: red;
     border: 1px solid #000;
     font-weight: bold;
     font-size: 12px;
