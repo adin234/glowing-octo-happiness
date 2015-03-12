@@ -21,7 +21,6 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
 <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-
 <script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/config.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -290,7 +289,7 @@
   </li>
 </script>
 <script type="text/html" id="streamersTpl">
-  <li id="{{USERNAME}}" onClick="window.open(origin+'{{LINK}}','_blank')">
+  <li id="{{USERNAME}}" onClick="window.open('{{LINK}}','_blank')">
     <div class="dynamic">{{GAME}}{{USERNAME}}</div>
     <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="32" height="30" alt="{{GAME}} / {{USERNAME}}" class="safeloading" onError="fixErrorImg(this);">
   </li>
@@ -337,7 +336,7 @@
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=22"></script>
 <script src="/assets/js/jquery.tabslet.min.js?ver=22"></script>
 <script src="/assets/js/jquery.tooltipster.min.js?ver=22"></script>
+<script src="/assets/js/socketio.js?ver=22"></script>
 <script type="text/javascript" src="/assets/js/index.js?ver=22"></script>
-
 </body>
 </html>

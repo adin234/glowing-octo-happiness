@@ -411,7 +411,7 @@ a:hover, a:focus, a:active {
 #wrapper {
     /*background: url("/assets/images/background.jpg") no-repeat fixed center top;*/
     
-    background: url("/assets/images/gamers-newbg.jpg") no-repeat fixed center top;
+    background: url("/assets/images/newgamersbg.jpg") no-repeat fixed center top;
     background-size: 100% auto;
     min-width: 1148px;
 }
@@ -1117,7 +1117,7 @@ header .site input[type="text"]:focus, .search input[type="text"]:focus {
 }
 .game li, .gamesList li {
     float: left;
-    margin: 0 16px 13px 0;
+    margin: 0 10px 5px 0;
 }
 .game img, .gamesList img {
     display: block;
@@ -3105,17 +3105,17 @@ li.thread .stats > dl > dt {
     width: 258px;
 }
 .game-item {
-    height: 94px;
-    width: 160px;
+    height: 98px;/* height: 94px;*/
+    width: 163px;/*width: 160px;*/
 }
-.game-item a > img {
+.game-item > img {
     height: 100%;
     width: 100%;
 }
 .game-item.active {
-    border: 5px solid #e00;
-    height: 84px;
-    width: 150px;
+    border: 2px solid #e00;
+    height: 94px;
+    width: 159px;
 }
 /* Streams */
 

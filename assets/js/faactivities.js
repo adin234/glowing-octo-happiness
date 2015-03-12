@@ -63,6 +63,8 @@ function addEventForm() {
 
 function add_event() {
 
+
+
     $.ajax({
 
         url: server + 'freedom_events/add',
@@ -118,7 +120,7 @@ function get_events() {
 
 
     var html = [];
-    html.push('<div id="backButton">' + '<a href="' + origin + 'freedom">' +
+    html.push('<div id="backButton">' + '<a href="' + origin + 'freedom/#tab-4-1">' +
         '<img src="/assets/images/back_button.png"></a>' + '</div>');
 
     all_events.fetched_data.forEach(function (item) {
@@ -142,7 +144,6 @@ function get_events() {
 }
 
 function delete_events() {
-
 
 
 }

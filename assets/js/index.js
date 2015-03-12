@@ -166,7 +166,8 @@ var index_show_streamers = function (streamersList) {
                 item.idraw = item.twitchid;
                 item.live = 'live';
                 item.game = item.twitch.game;
-                item.link = 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
+
+                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.twitch.preview.large;
                 item.title = item.twitch.channel.status;
@@ -182,8 +183,9 @@ var index_show_streamers = function (streamersList) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
-                item.link = 'gamer_stream/?user=' + item.user.user_id + '/#!/HB' + item.hitbox.livestream[0]
-                    .media_user_name;
+
+                item.link = origin + 'gamer_stream/?user=' + item.user.user_id + '/#!/HB' + item.hitbox.livestream[
+                    0].media_user_name;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.media_thumbnail_large;
                 item.title = item.hitbox.media_status;
@@ -197,7 +199,8 @@ var index_show_streamers = function (streamersList) {
                 item.idraw = item.username;
                 item.live = 'live';
                 item.game = '';
-                item.link = 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
+
+                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
                 item.title = item.youtube.snippet.title;
@@ -664,31 +667,17 @@ var HBStreamers = [];
 var onlineStreamers = [];
 
 var checker_index = function () {
-    onlineStreamers = [];
-
-    getOnlineStreamers(server + 'streamers', 'TW', function () {
-        getOnlineStreamers(server + 'streamers/youtube', 'YT', function () {
-            getOnlineStreamers(server + 'streamers/hitbox', 'HB', function () {
-                YTStreamers.forEach(function (item) {
-                    onlineStreamers.push(item);
-                });
-
-                TWStreamers.forEach(function (item) {
-                    onlineStreamers.push(item);
-                });
-
-                HBStreamers.forEach(function (item) {
-                    onlineStreamers.push(item);
-                });
-
-                index_show_streamers(onlineStreamers);
-
-                setTimeout(function () {
-                    checker_index();
-                }, 1000);
-
-            });
-        });
+    var socket = io.connect(socket_server);
+    socket.on('message', function (e) {
+        onlineStreamers = [];
+        onlineStreamers = onlineStreamers.concat(
+            e.streamers.youtube.concat(
+                e.streamers.twitch.concat(
+                    e.streamers.hitbox
+                )
+            )
+        );
+        index_show_streamers(onlineStreamers);
     });
 };
 
