@@ -231,6 +231,7 @@ var index_show_streamers = function (streamersList) {
 
 var add_filter_category = function (string, context) {
     utilHash.changeHashVal('console', string);
+    renderFeaturedGames(string);
 }
 
 var filter_category = function (cnsl) {
@@ -255,6 +256,162 @@ var filter_category = function (cnsl) {
 
     return false;
 }
+
+var renderFeaturedGames = function (string) {
+    document.getElementById('featuredGames').innerHTML = '';
+    if (string === 'all') {
+        $.ajax({
+            url: server + "gamesdata?console=all"
+        }).done(function(res) {
+
+
+
+            // featured
+            shuffledGames = shuffle(res.featured_games);
+            html = [];
+            group = [];
+            shuffledGames.forEach(function (item, i) {
+                var found_games = shuffledGames.filter(function (game) {
+                    return game.id === item.id;
+                });
+                if (found_games.length === 1) {
+                    item.imgsrc = found_games[0].image;
+                    item.game = found_games[0].name;
+                    item.chinese = found_games[0].chinese;
+                    group.push(template($('#gameTpl').html(), item));
+                    if (group.length == 12) {
+                        html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
+                        group = [];
+                    }
+                }
+            });
+            if (group.length >= 1) {
+                html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
+            }
+            if (!html.length) {
+                html.push('目前沒有遊戲');
+            }
+            $('#featuredGames').html(html.join(''));
+            slider.featured_games.reloadSlider({
+                startSlide: 0,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+            $('.tooltip').tooltipster({
+                contentAsHTML: true,
+                position: 'top'
+            });
+
+
+            // latest
+            html2 = [];
+            group2 = [];
+            shuffledLatest = shuffle(shuffledGames);
+            shuffledLatest.forEach(function (item, i) {
+                item.imgsrc = item.image;
+                item.game = item.name;
+                group2.push(template($('#gameTpl').html(), item));
+                if (group2.length == 5) {
+                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
+                    group2 = [];
+                }
+            });
+            if (group2.length >= 1) {
+                html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>')
+            }
+            if (!html2.length) {
+                html2.push('目前沒有遊戲');
+            }
+            $('#latestGames').html(html2.join(''));
+            slider.latest_games.reloadSlider({
+                startSlide: 0,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+
+        });
+
+    } else {
+        $.ajax({
+            url: server + "gamesdata?console="+string
+        }).done(function(res) {
+
+
+            // featured
+            shuffledGames = shuffle(res.games);
+            html = [];
+            group = [];
+            shuffledGames.forEach(function (item, i) {
+                var found_games = shuffledGames.filter(function (game) {
+                    return game.id === item.id;
+                });
+                if (found_games.length === 1) {
+                    item.imgsrc = found_games[0].image;
+                    item.game = found_games[0].name;
+                    item.chinese = found_games[0].chinese;
+                    group.push(template($('#gameTpl').html(), item));
+                    if (group.length == 12) {
+                        html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
+                        group = [];
+                    }
+                }
+            });
+            if (group.length >= 1) {
+                html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
+            }
+            if (!html.length) {
+                html.push('目前沒有遊戲');
+            }
+            $('#featuredGames').html(html.join(''));
+            slider.featured_games.reloadSlider({
+                startSlide: 0,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+            $('.tooltip').tooltipster({
+                contentAsHTML: true,
+                position: 'top'
+            });
+
+
+            // latest
+            html2 = [];
+            group2 = [];
+            shuffledLatest = shuffle(shuffledGames);
+            shuffledLatest.forEach(function (item, i) {
+                item.imgsrc = item.image;
+                item.game = item.name;
+                group2.push(template($('#gameTpl').html(), item));
+                if (group2.length == 5) {
+                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
+                    group2 = [];
+                }
+            });
+            if (group2.length >= 1) {
+                html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>')
+            }
+            if (!html2.length) {
+                html2.push('目前沒有遊戲');
+            }
+            $('#latestGames').html(html2.join(''));
+            slider.latest_games.reloadSlider({
+                startSlide: 0,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+
+
+
+
+
+
+        });
+    }
+}
+
+
+
+
 
 var update_index = function (index_data) {
     var html = [];
@@ -400,71 +557,50 @@ var update_index = function (index_data) {
         hideControlOnEnd: true
     });
 
-    // latest games
-    html = [];
-    group = [];
-    index_data.games.forEach(function (item, i) {
-        item.imgsrc = item.image;
-        item.game = item.name;
-        group.push(template($('#gameTpl').html(), item));
-        if (group.length == 12) {
-            html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
-            group = [];
-        }
-    });
 
-    if (group.length >= 1) {
-        html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
+
+
+
+
+    switch (window.location.href) {
+        case origin:
+            renderFeaturedGames('all');
+            break;
+        case origin + "#!/console/all":
+            renderFeaturedGames('all');
+            break;
+        case origin + "#!/console/xbox360":
+            renderFeaturedGames('xbox360');
+            break;
+        case origin + "#!/console/xbox1":
+            renderFeaturedGames('xbox1');
+            break;
+        case origin + "#!/console/ps3":
+            renderFeaturedGames('ps3');
+            break;
+        case origin + "#!/console/ps4":
+            renderFeaturedGames('ps4');
+            break;
+        case origin + "#!/console/pc":
+            renderFeaturedGames('pc');
+            break;
+        case origin + "#!/console/mobile_app":
+            renderFeaturedGames('mobile_app');
+            break;
+        case origin + "#!/console/vlogs":
+            renderFeaturedGames('vlogs');
+            break;
     }
 
-    if (!html.length) {
-        html.push('目前沒有遊戲');
-    }
-    $('#latestGames').html(html.join(''));
-    slider.latest_games.reloadSlider({
-        startSlide: 0,
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
 
 
 
 
 
 
-    //featured games
-    html = [];
-    group = [];
-    index_data.featured_games.forEach(function (item, i) {
-        var found_games = index_data.games.filter(function (game) {
-            return game.id === item.id;
-        });
-        if (found_games.length === 1) {
-            item.imgsrc = found_games[0].image;
-            item.game = found_games[0].name;
-            item.chinese = found_games[0].chinese;
-            group.push(template($('#gameTpl').html(), item));
-            if (group.length == 12) {
-                html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
-                group = [];
-            }
-        }
-    });
 
-    if (group.length >= 1) {
-        html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
-    }
 
-    if (!html.length) {
-        html.push('目前沒有遊戲');
-    }
-    $('#featuredGames').html(html.join(''));
 
-    slider.featured_games.reloadSlider({
-        startSlide: 0,
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
 
 
 
@@ -552,7 +688,6 @@ var update_index = function (index_data) {
 };
 
 var news_shows_playlists = function () {
-    console.log('jjjjj', index_data);
     var html = [];
     var blocks = '';
     var max_items = 4;

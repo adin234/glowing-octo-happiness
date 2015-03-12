@@ -193,6 +193,7 @@ var utilHash = {
             window.location.hash = hash_string;
         }
 
+        console.log(hash_string);
         return hash_string;
     },
     'addHash': function (string, apply) {
