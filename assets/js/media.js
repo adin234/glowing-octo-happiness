@@ -333,7 +333,7 @@ var getComments = function (videoId, sort) {
                 currUrl = window.location.href,
                 hashes = window.location.hash.replace('#!', '').split('/');
 
-            if (hashes.indexOf('comment')) {
+            if (hashes.indexOf('comment') !== -1) {
                 hashes[hashes.indexOf('comment') + 1] = item.comment_id;
             }
             else {
