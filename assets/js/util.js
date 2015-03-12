@@ -724,7 +724,7 @@ $(function () {
 
 $(function () {
     // if($('body').hasClass('stream-gritter')) {
-    get_streamers(true);
+    //get_streamers(true);
     // }
 });
 

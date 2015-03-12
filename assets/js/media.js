@@ -199,7 +199,10 @@ var update_playlists = function (playlists) {
     $('#playlists .mCSB_container').html(html.join(''));
 };
 
+var showComment = false;
+
 var filterAction = function (action) {
+    console.log('action', action);
     switch (action) {
     case 'playlist':
         showPlaylist(hash.shift(), hash.shift());
@@ -212,6 +215,12 @@ var filterAction = function (action) {
     case 'comments':
         $('a[href="#tab-2"]').click();
         active_comments = true;
+        filterAction(hash.shift());
+        break;
+    case 'comment':
+        $('a[href="#tab-2"]').click();
+        active_comments = true;
+        showComment = 'comment' + hash.shift();
         filterAction(hash.shift());
         break;
     case 'console':
@@ -318,8 +327,19 @@ var getComments = function (videoId, sort) {
                 return a.date - b.date;
             });
         }
+
         var comments = e.map(function (item) {
-            var that_class = '';
+            var that_class = '',
+                currUrl = window.location.href,
+                hashes = window.location.hash.replace('#!', '').split('/');
+
+            if (hashes.indexOf('comment')) {
+                hashes[hashes.indexOf('comment') + 1] = item.comment_id;
+            }
+            else {
+                hashes = ['', 'comment', item.comment_id].concat(hashes.splice(1));
+            }
+
             if (utilUser.get() && +utilUser.get().user_id === +item.user_id) {
                 that_class = 'deleteComment';
             }
@@ -332,9 +352,13 @@ var getComments = function (videoId, sort) {
                     '/',
                 username: item.username,
                 comment: item.message,
+                share_link: encodeURIComponent(window.location.href.replace(window.location.hash,
+                    '') + '#!' + hashes.join(
+                    '/')),
                 date: formatDate(item.date * 1000),
                 comment_id: item.comment_id,
-                user_access_class: that_class
+                user_access_class: that_class,
+                current_url: encodeURIComponent(currUrl)
             }
         });
 
@@ -344,18 +368,25 @@ var getComments = function (videoId, sort) {
 
         page_data.commentsLength = comments.length;
         console.log(sort);
-        $('#tab-2 .mCSB_container').html(template(
-            $('#commentsTpl').html(), {
-                count: e.length,
-                video: videoId,
-                comments: commentsHTML,
-                sortlatest: sort === 'latest' ? 'current' : '',
-                sortlast: sort === 'last' ? 'current' : ''
-            })).promise().done(function () {
-            if (utilUser.get()) {
-                $('img.userImg').attr('src', utilUser.get().links.avatar);
-            }
-        });
+        $('#tab-2 .mCSB_container')
+            .html(template(
+                $('#commentsTpl').html(), {
+                    count: e.length,
+                    video: videoId,
+                    comments: commentsHTML,
+                    sortlatest: sort === 'latest' ? 'current' : '',
+                    sortlast: sort === 'last' ? 'current' : ''
+                }))
+            .promise()
+            .done(function () {
+                if (utilUser.get()) {
+                    $('img.userImg').attr('src', utilUser.get().links.avatar);
+                }
+
+                if (showComment) {
+                    document.getElementById(showComment) && document.getElementById(showComment).scrollIntoView()
+                }
+            });
     });
 };
 
@@ -377,12 +408,15 @@ var showPlaylist = function (playlistId, next) {
     // $('#videosToggle').click();
     if (!next) {
         if ((typeof playlist.items[0].status !== 'undefined') && (playlist.items[0].status === 'public')) {
-            return showVideo(playlist.items[0].snippet.resourceId.videoId);
+            return show
+
+            Video(playlist.items[0].snippet.resourceId.videoId);
         }
         else {
             return showVideo(playlist.items[1].snippet.resourceId.videoId);
         }
     }
+
     filterAction(next);
 };
 
@@ -495,8 +529,7 @@ var updateSuggestions = function (suggestions) {
     html = [];
     suggestions.forEach(function (item, i) {
         if (filterTags && (typeof item.snippet.meta == 'undefined' || typeof item.snippet.meta.tags ==
-                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return
-        ;
+                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
 
         if (item.snippet.thumbnails) {
             tempdata = {
@@ -670,7 +703,9 @@ $(document).on('load-page', function () {
                                 '.' + data.user_id + '/',
                             username: data.username,
                             comment: data.message,
-                            date: formatDate(+new Date)
+                            date: formatDate(+new Date),
+                            user_access_class: 'deleteComment',
+                            share_link: encodeURIComponent(window.location.href)
                         })
                     ));
                 $('#commentArea').val('');

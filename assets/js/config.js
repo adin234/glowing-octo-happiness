@@ -1,5 +1,5 @@
-var server = 'http://api.gamers.tm/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/'
-var origin = 'http://beta.gamers.tm/';
+var server = 'http://dev.gamers:3000/'; //'http://api.gamers.tm/'; //;//http://api.gamers.tm/'
+var origin = 'http://dev.gamers:8000/';
 
 var attachments_server = 'http://community.gamers.tm/zh/';
 var community = 'http://community.gamers.tm/zh/';
