@@ -202,9 +202,11 @@ var get_date_diff = function (sched, time) {
 
 function schedule_template() {
 
-    var html = [];
+    var html = [],
+        eventStatus = '';
 
     all_events.fetched_data.forEach(function (item) {
+
         html.push('<div class="activity">');
         html.push('<div class="left">');
         html.push('<div id="startEventDate">' + item.start_date + '</div>' + '<p> - </p>' +
@@ -216,7 +218,13 @@ function schedule_template() {
         html.push('<div id="eventHeader">' + item.event_title + '</div>');
         html.push('</div>');
         html.push('<div class="right">');
-        html.push('<div id="eventStatus">' + get_date_diff(item.end_date, item.end_time) + '</div>');
+        if (get_date_diff(item.end_date, item.end_time) == 'Ongoing') {
+            eventStatus = '<div id="eventStatus" style="background:#FFE10E;color:#000">';
+        }
+        else {
+            eventStatus = '<div id="eventStatus" style="background:red;color:#FFF">';
+        }
+        html.push(eventStatus + get_date_diff(item.end_date, item.end_time) + '</div>');
         html.push('</div>');
         html.push('</div>');
     });
@@ -225,8 +233,11 @@ function schedule_template() {
 
 }
 
-function get_schedule() {
-    var html = schedule_template();
+function get_schedule() { << << << < HEAD
+    var html = schedule_template(); === === =
+
+    var html = [];
+    html = schedule_template(); >>> >>> > 70 fb15929d1875503c998a3703ad7c9e1af6a956
     $('#all_schedule').html(html.join(''));
 }
 
