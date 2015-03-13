@@ -17,7 +17,6 @@ $.fn.initChatBox = function (chl, usr, sender) {
     dt = new Date();
 
     socket = io.connect('http://52.74.64.71:3000');
-    //socket      = io.connect('http://localhost:3000');
 
     /* Checking if templates are properly loaded
         alert(chatUI);
@@ -144,7 +143,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
                 display: 'none',
                 zIndex: -1
             });
-            //$('#notifylogin-'+sd.cid).css({'display':'block', 'color':'black', 'font-weight':'bolder'});
+
             $('#notifylogin-' + sd.cid).css({
                 display: 'block',
                 zIndex: 1

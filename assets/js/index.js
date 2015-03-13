@@ -525,7 +525,7 @@ var update_index = function (index_data) {
     html = [];
     group = [];
     var flag = {};
-    //randomLatestVids = shuffle(index_data.latest_videos);
+
     index_data.latest_videos.forEach(function (item, i) {
         var date = item.snippet.publishedAt.substr(0, 10);
         if (!flag[date]) {
@@ -568,7 +568,7 @@ var update_index = function (index_data) {
     html = [];
     group = [];
     var ids = {};
-    //randomMostViewedVids = shuffle(index_data.most_viewed);
+
     index_data.most_viewed.forEach(function (item, i) {
         ids[item.user_id] = typeof ids[item.user_id] === 'undefined' ? 1 : ids[item.user_id] + 1;
         if (ids[item.user_id] > 2) {
@@ -799,7 +799,7 @@ var news_shows_playlists = function () {
     });
 
     $('#news_shows_playlists').html(html.join(''));
-    //$('#news_shows_playlists_block').append(blocks);
+
     $(".sf-menu").superfish();
     $(".tabs").tabslet({
         animation: true,

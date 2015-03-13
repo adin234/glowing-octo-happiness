@@ -1,15 +1,4 @@
 var loader = {};
-// loader = setInterval(function() {
-// 	if(document.body) {
-// 		utilLoader.show();
-// 		clearInterval(loader);
-// 	}
-// }, 5);
-// var hash = window.location.hash;
-// var id = hash.split('/')[1];
-
-// history.pushState(null, '', '/youtuber/'+id+'/'+hash.replace('/'+id+'/', '/'));
-
 
 function getSearchParameters() {
       var prmstr = window.location.search.substr(1);

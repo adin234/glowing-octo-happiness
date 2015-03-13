@@ -111,18 +111,7 @@ $(function() {
             }
         ));
 
-        // utilLoader.hide();
         $('object').height($('#streamView').height());
-        // $.getJSON(server+'scrape/'+streamId, function(e) {
-        //     e.forEach(function(item) {
-        //         item.data.html = item.html_description;
-        //         item.data.link = item.data.link || '';
-        //         $('#tab-2').append(template($('#panelTpl').html(), item.data));
-        //     });
-        //     setTimeout(function(){
-        //         $('img[src=""]').hide();
-        //     },100);
-        // });
     }
 
     if(streamType == 'HB') {
@@ -139,7 +128,6 @@ $(function() {
             }
         ));
 
-        // utilLoader.hide();
         $('object').height($('#streamView').height());
         $.getJSON(server+'scrape/'+streamId, function(e) {
             e.forEach(function(item) {
@@ -179,7 +167,6 @@ $(function() {
             } else {
                 $('#twitchStream')
                     .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-                //checkIfOnline(userId);
             }
 
             if(!found) {
@@ -221,7 +208,6 @@ $(function() {
         if(!page_data.custom_fields.mondaySchedule
 			|| !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
-            //console.log(1);
             $(this).parent().hide();
         }
     });
@@ -230,7 +216,6 @@ $(function() {
         if(!page_data.custom_fields.tuesdaySchedule
 			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
             countEmpty++;
-            //console.log(2);
             $(this).parent().hide();
         }
     });
@@ -239,7 +224,6 @@ $(function() {
         if(!page_data.custom_fields.wednesdaySchedule
 			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
             countEmpty++;
-            //console.log(3);
             $(this).parent().hide();
         }
     });
@@ -248,7 +232,6 @@ $(function() {
         if(!page_data.custom_fields.thursdaySchedule
 			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
             countEmpty++;
-            //console.log(4);
             $(this).parent().hide();
         }
     });
@@ -257,7 +240,6 @@ $(function() {
         if(!page_data.custom_fields.fridaySchedule
 			|| !page_data.custom_fields.fridaySchedule.trim().length) {
             countEmpty++;
-            //console.log(5);
             $(this).parent().hide();
         }
     });
@@ -266,7 +248,6 @@ $(function() {
         if(!page_data.custom_fields.saturdaySchedule
 			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
             countEmpty++;
-            //console.log(6);
             $(this).parent().hide();
         }
     });
@@ -275,7 +256,6 @@ $(function() {
         if(!page_data.custom_fields.sundaySchedule
 			|| !page_data.custom_fields.sundaySchedule.trim().length) {
             countEmpty++;
-            //console.log(7);
             $(this).parent().hide();
         }
     });
@@ -300,7 +280,6 @@ var sched_template = function(string) {
         return e.trim().length;
     }).map(function(e) {
         return e+'<br/>';
-        // return $('<li/>', {text:e})[0].outerHTML;
     });
 
     return $('<li/>', {html:list.join('')})[0].outerHTML;
