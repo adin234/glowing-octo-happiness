@@ -221,11 +221,9 @@ function schedule_template() {
         html.push('<div class="right">');
         if (get_date_diff(item.end_date, item.end_time) == 'Ongoing') {
             eventStatus = '<div id="eventStatus" style="background:#FFE10E;color:#000">';
-          // html.push('<div id="eventStatus" style="background:#FFE10E;color:#000">' + get_date_diff(item.end_date, item.end_time) + '</div>');
         }
         else {
-            eventStatus = '<div id="eventStatus" style="background:red;color:#FFF">';
-          // html.push('<div id="eventStatus" style="background:red;color:#FFF">' + get_date_diff(item.end_date, item.end_time) + '</div>');
+            eventStatus = '<div id="eventStatus" style="background:red;color:#FFF">'; 
         }
         html.push(eventStatus + get_date_diff(item.end_date, item.end_time) + '</div>');
         html.push('</div>');
