@@ -238,7 +238,6 @@ function get_schedule() {
 
     var html = [];
     html = schedule_template();
-
     $('#all_schedule').html(html.join(''));
 
 }
