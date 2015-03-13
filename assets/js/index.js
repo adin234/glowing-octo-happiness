@@ -257,17 +257,52 @@ var filter_category = function (cnsl) {
     return false;
 }
 
-var renderFeaturedGames = function (string) {
+
+var shuffleTriggerFunction = function (trigger) {
+    switch (window.location.href) {
+        case origin:
+            renderFeaturedGames('all', trigger);
+            break;
+        case origin + "#!/console/all":
+            renderFeaturedGames('all', trigger);
+            break;
+        case origin + "#!/console/xbox360":
+            renderFeaturedGames('xbox360', trigger);
+            break;
+        case origin + "#!/console/xbox1":
+            renderFeaturedGames('xbox1', trigger);
+            break;
+        case origin + "#!/console/ps3":
+            renderFeaturedGames('ps3', trigger);
+            break;
+        case origin + "#!/console/ps4":
+            renderFeaturedGames('ps4', trigger);
+            break;
+        case origin + "#!/console/pc":
+            renderFeaturedGames('pc', trigger);
+            break;
+        case origin + "#!/console/mobile_app":
+            renderFeaturedGames('mobile_app', trigger);
+            break;
+        case origin + "#!/console/vlogs":
+            renderFeaturedGames('vlogs', trigger);
+            break;
+    }
+}
+
+var renderFeaturedGames = function (string, trigger) {
     document.getElementById('featuredGames').innerHTML = '';
     if (string === 'all') {
         $.ajax({
             url: server + "gamesdata?console=all"
         }).done(function(res) {
 
-
-
             // featured
-            shuffledGames = shuffle(res.featured_games);
+            if (trigger === 1) {
+                shuffledGames = shuffle(res.featured_games);
+            } else {
+                shuffledGames = res.featured_games;
+            }
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
@@ -279,7 +314,7 @@ var renderFeaturedGames = function (string) {
                     item.game = found_games[0].name;
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
-                    if (group.length == 12) {
+                    if (group.length == 5) {
                         html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                         group = [];
                     }
@@ -303,10 +338,16 @@ var renderFeaturedGames = function (string) {
             });
 
 
+
             // latest
             html2 = [];
             group2 = [];
-            shuffledLatest = shuffle(shuffledGames);
+
+            if (trigger === 1) {
+                shuffledLatest = shuffle(shuffledGames);
+            } else {
+                shuffledLatest = shuffledGames;
+            }
             shuffledLatest.forEach(function (item, i) {
                 item.imgsrc = item.image;
                 item.game = item.name;
@@ -336,9 +377,12 @@ var renderFeaturedGames = function (string) {
             url: server + "gamesdata?console="+string
         }).done(function(res) {
 
-
             // featured
-            shuffledGames = shuffle(res.games);
+            if (trigger === 1) {
+                shuffledGames = shuffle(res.games);
+            } else {
+                shuffledGames = res.games;
+            }
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
@@ -350,7 +394,7 @@ var renderFeaturedGames = function (string) {
                     item.game = found_games[0].name;
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
-                    if (group.length == 12) {
+                    if (group.length == 5) {
                         html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                         group = [];
                     }
@@ -377,7 +421,11 @@ var renderFeaturedGames = function (string) {
             // latest
             html2 = [];
             group2 = [];
-            shuffledLatest = shuffle(shuffledGames);
+            if (trigger === 1) {
+                shuffledLatest = shuffle(shuffledGames);
+            } else {
+                shuffledLatest = shuffledGames;
+            }
             shuffledLatest.forEach(function (item, i) {
                 item.imgsrc = item.image;
                 item.game = item.name;
@@ -557,35 +605,25 @@ var update_index = function (index_data) {
         hideControlOnEnd: true
     });
 
-    switch (window.location.href) {
-        case origin:
-            renderFeaturedGames('all');
-            break;
-        case origin + "#!/console/all":
-            renderFeaturedGames('all');
-            break;
-        case origin + "#!/console/xbox360":
-            renderFeaturedGames('xbox360');
-            break;
-        case origin + "#!/console/xbox1":
-            renderFeaturedGames('xbox1');
-            break;
-        case origin + "#!/console/ps3":
-            renderFeaturedGames('ps3');
-            break;
-        case origin + "#!/console/ps4":
-            renderFeaturedGames('ps4');
-            break;
-        case origin + "#!/console/pc":
-            renderFeaturedGames('pc');
-            break;
-        case origin + "#!/console/mobile_app":
-            renderFeaturedGames('mobile_app');
-            break;
-        case origin + "#!/console/vlogs":
-            renderFeaturedGames('vlogs');
-            break;
-    }
+    var shuffleTrigger = 0;
+    var tCounterCorrect = 0;
+    var tCounterWrong = 0;
+    window.setInterval(function(){
+        var date = new Date();
+        if(date.getHours() === 24 && date.getMinutes() === 0 && date.getSeconds() === 0){
+            shuffleTrigger = 1;
+            tCounterCorrect++;
+            if (tCounterCorrect === 1) {
+                shuffleTriggerFunction(shuffleTrigger);
+            }
+        }else {
+            shuffleTrigger = 0;
+            tCounterWrong++;
+            if (tCounterWrong === 1) {
+                shuffleTriggerFunction(shuffleTrigger);
+            }
+        }
+    }, 1000);
 
 
 
