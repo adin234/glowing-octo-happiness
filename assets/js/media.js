@@ -308,7 +308,10 @@ var showVideo = function (videoId) {
         page_data.videoId = videoId;
 
         getComments(videoId);
-        showSocialButtons();
+        showSocialButtons(
+            'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
+            encodeURIComponent(video.snippet.description),
+            encodeURIComponent(video.snippet.title));
         updatePrevNext();
 
         if (!$('#youtuberPage').length) {
@@ -358,6 +361,8 @@ var getComments = function (videoId, sort) {
                 date: formatDate(item.date * 1000),
                 comment_id: item.comment_id,
                 user_access_class: that_class,
+                image_link: encodeURIComponent('https://i.ytimg.com/vi/' + videoId +
+                    '/mqdefault.jpg'),
                 current_url: encodeURIComponent(currUrl)
             }
         });
@@ -529,7 +534,8 @@ var updateSuggestions = function (suggestions) {
     html = [];
     suggestions.forEach(function (item, i) {
         if (filterTags && (typeof item.snippet.meta == 'undefined' || typeof item.snippet.meta.tags ==
-                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return;
+                'undefined' || utilArray.intersect(filterTags, item.snippet.meta.tags).length == 0)) return
+        ;
 
         if (item.snippet.thumbnails) {
             tempdata = {
@@ -678,15 +684,17 @@ $(document).on('load-page', function () {
 
     $('body').on('click', '#postComment', function () {
         var data = {
-            access_token: utilUser.get().access_code,
-            user_id: utilUser.get().user_id,
-            username: utilUser.get().username,
-            message: $('#commentArea').val()
-        };
+                access_token: utilUser.get().access_code,
+                user_id: utilUser.get().user_id,
+                username: utilUser.get().username,
+                message: $('#commentArea').val()
+            },
+            videoId = $(this).attr('data-video');
+
         if (!$('#commentArea').val().trim().length) {
             return
         }
-        $.post(server + 'youtubers/videos/' + $(this).attr('data-video') + '/comment',
+        $.post(server + 'youtubers/videos/' + videoId + '/comment',
             data,
             function (e) {
 
@@ -705,7 +713,10 @@ $(document).on('load-page', function () {
                             comment: data.message,
                             date: formatDate(+new Date),
                             user_access_class: 'deleteComment',
-                            share_link: encodeURIComponent(window.location.href)
+                            share_link: encodeURIComponent(window.location.href),
+                            image_link: encodeURIComponent('https://i.ytimg.com/vi/' +
+                                videoId +
+                                '/mqdefault.jpg')
                         })
                     ));
                 $('#commentArea').val('');
