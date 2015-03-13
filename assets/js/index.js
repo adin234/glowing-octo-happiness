@@ -557,11 +557,6 @@ var update_index = function (index_data) {
         hideControlOnEnd: true
     });
 
-
-
-
-
-
     switch (window.location.href) {
         case origin:
             renderFeaturedGames('all');
@@ -591,22 +586,6 @@ var update_index = function (index_data) {
             renderFeaturedGames('vlogs');
             break;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -858,5 +837,5 @@ var displayGamesPerConsole = function (gl) {
     });
 };
 
-//checker_index();
+checker_index();
 
