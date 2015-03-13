@@ -203,23 +203,10 @@ var get_date_diff = function (sched, time) {
 
 function schedule_template() {
 
-    var html = [];
+    var html = [],
+        eventStatus = '';
 
     all_events.fetched_data.forEach(function (item) {
-
-        if (get_date_diff(item.end_date, item.end_time) === 'Ongoing') {
-            $("#eventStatus").css({
-                "background": "#FFE10E",
-                "color": "#000000"
-            });
-        }
-        else {
-            $("#eventStatus").css({
-                "background": "red",
-                'color': '#FFFFFF'
-            });
-        }
-
 
         html.push('<div class="activity">');
         html.push('<div class="left">');
@@ -232,11 +219,17 @@ function schedule_template() {
         html.push('<div id="eventHeader">' + item.event_title + '</div>');
         html.push('</div>');
         html.push('<div class="right">');
-        html.push('<div id="eventStatus">' + get_date_diff(item.end_date, item.end_time) + '</div>');
+        if (get_date_diff(item.end_date, item.end_time) == 'Ongoing') {
+            eventStatus = '<div id="eventStatus" style="background:#FFE10E;color:#000">';
+          // html.push('<div id="eventStatus" style="background:#FFE10E;color:#000">' + get_date_diff(item.end_date, item.end_time) + '</div>');
+        }
+        else {
+            eventStatus = '<div id="eventStatus" style="background:red;color:#FFF">';
+          // html.push('<div id="eventStatus" style="background:red;color:#FFF">' + get_date_diff(item.end_date, item.end_time) + '</div>');
+        }
+        html.push(eventStatus + get_date_diff(item.end_date, item.end_time) + '</div>');
         html.push('</div>');
         html.push('</div>');
-
-
     });
 
     return html;
@@ -260,4 +253,3 @@ function get_archive() {
     $('#archive_schedule').html(html.join(''));
 
 }
-
