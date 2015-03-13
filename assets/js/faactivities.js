@@ -1,10 +1,6 @@
 'use strict';
 var all_events = [];
 
-
-
-
-
 var addEventForm = function () {
 
     var html = [];
@@ -233,11 +229,8 @@ function schedule_template() {
 
 }
 
-function get_schedule() { << << << < HEAD
-    var html = schedule_template(); === === =
-
-    var html = [];
-    html = schedule_template(); >>> >>> > 70 fb15929d1875503c998a3703ad7c9e1af6a956
+function get_schedule() {
+    var html = schedule_template();
     $('#all_schedule').html(html.join(''));
 }
 
