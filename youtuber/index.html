@@ -63,17 +63,11 @@
         <script>
         window.fbAsyncInit = function() {
             FB.init({
-                appId: '1393452887636738',
+                appId: '305385862975541',
                 status: true,
                 xfbml: true,
                 version: 'v2.2',
                 cookie: true
-            });
-            FB.ui({
-                method: 'feed',
-                link: encodeURI(window.location.href)
-            }, function(response) {
-                console.log(response);
             });
         };
 
@@ -405,7 +399,7 @@
                 <div class="replyContent">
                     <p>{{COMMENT}}</p>
                     <div class='commentShare'>
-                        <a href="https://www.facebook.com/dialog/feed?app_id=1393452887636738&display=page&description={{COMMENT}}&link={{SHARE_LINK}}&redirect_uri=http://www.facebook.com/&name={{USERNAME}} shared a comment!&picture=http://i.imgur.com/3bkmv4o.png" class='fbbutton' target="_blank">
+                        <a href="https://www.facebook.com/dialog/feed?app_id=305385862975541&display=page&description={{COMMENT}}&link={{SHARE_LINK}}&redirect_uri=http://www.facebook.com/&name={{USERNAME}} shared a comment!&picture={{IMAGE_LINK}}" class='fbbutton' target="_blank">
                         </a>
                         <a href="https://plus.google.com/share?url={{SHARE_LINK}}#comment{{COMMENT_ID}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class='gpbutton'><img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+" />
                         </a>

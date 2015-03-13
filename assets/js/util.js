@@ -11,17 +11,26 @@ var template = function (templateHTML, data) {
     return templateHTML;
 };
 
-var showSocialButtons = function () {
-    var link = document.location.href;
-    var clean = link.replace('#', '%23')
-    var social = [];
+var showSocialButtons = function (_image, _description, _title) {
+    var link = document.location.href,
+        clean = link.replace('#', '%23'),
+        social = [],
+        image = encodeURIComponent(_image || 'http://www.gamers.tm/assets/images/fb.jpg'),
+        description = _description ||
+        '實況咖是一個集結和給予玩家各個利益的YouTube社群網! 在這裡，每位實況咖的玩家都有機會享受我們所提供的服務，包括: 免費取得廠商遊戲、硬體設備，協助擴大您的頻道，與實況主交流結合，參與遊戲相關活動…等等。 要如何正式成為實況咖一員呢?',
+        title = _title || 'Gamers.TM';
+
     social.push(
         '<div class="frame-container"><iframe class="fb-like-frame" src="//www.facebook.com/plugins/like.php?href=' +
         encodeURIComponent(clean) +
         '&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe></div>'
     );
-    social.push('<a class="social-share" href="http://www.facebook.com/share.php?u=' + clean +
-        '" target="_blank"><img src="/assets/images/social/facebook.png"/></a>');
+    social.push(
+        '<a class="social-share" href="https://www.facebook.com/dialog/feed?app_id=305385862975541&display=page&description=' +
+        description + '&link=' + clean +
+        '&redirect_uri=http://www.facebook.com/&name=' + title + '!&picture=' + image +
+        '" target="_blank"><img src="/assets/images/social/facebook.png"/></a>'
+    );
     social.push('<a class="social-share" href="https://twitter.com/intent/tweet?text=Check out ' +
         encodeURIComponent(link) + '" target="_blank"><img src="/assets/images/social/twitter.png"/></a>');
     social.push('<a class="social-share" href="https://plusone.google.com/_/+1/confirm?hl=en&url=' + link +
