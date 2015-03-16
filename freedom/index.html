@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="zh-tw">
-
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="author" content="E.H.">
@@ -30,7 +29,6 @@
     <script type="text/javascript" src="/assets/js/get.freedomactivities.data.js?ver=22">
     </script>
   </head>
-
   <body class="lang_zh_tw switch-menu stream-gritter lanparty">
     <div id="wrapper">
       <div id="outContainer">
@@ -86,7 +84,6 @@
                   </li>
                 </ul>
               </nav>
-
             </div>
             <nav class="site sf-menu">
               <ul class="clearFix">
@@ -354,73 +351,69 @@
         </footer>
       </div>
     </div>
-  </div>
-  <script type="text/html" id="eventItemTpl">
-    <div class="event-item-green">
-      <h3 class="event_date_green">
-        {{DATE}}
-      </h3>
-      {{TIME}}
-    </div>
-  </script>
+    <script type="text/html" id="eventItemTpl">
+      <div class="event-item-green">
+        <h3 class="event_date_green">
+          {{DATE}}
+        </h3>
+        {{TIME}}
+      </div>
+    </script>
 
-  <script type="text/html" id="eventItemTime">
-    <div class="event_title_green" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}">
-      <p>
-        {{TITLE}}
-      </p>
-    </div>
-  </script>
+    <script type="text/html" id="eventItemTime">
+      <div class="event_title_green" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}">
+        <p>
+          {{TITLE}}
+        </p>
+      </div>
+    </script>
 
-  <script src="/assets/js/jquery.min.js">
-  </script>
-  <script src="/assets/js/hoverIntent.js?ver=22">
-  </script>
-  <script src="/assets/js/superfish.js?ver=22">
-  </script>
-  <script src="/assets/js/function.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.autocomplete.min.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.fixed.menu.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.bxslider.min.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.tabslet.min.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.tooltipster.min.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.tooltipster.min.js?ver=22">
-  </script>
-  <script src="/assets/js/autolinker.js?ver=22">
-  </script>
-  <script src="/assets/js/jquery.gritter.min.js?ver=22">
-  </script>
-  <script src="/assets/js/util.js?ver=22">
-  </script>
-  <script src="/assets/js/faactivities.js?ver=22">
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $(".sf-menu").superfish();
-    });
-  </script>
-
-  <script>
-    $('.tabs').tabslet();
-    var tab = utilHash.getHash();
-    if (tab !== '') {
-      $('[href=' + tab + ']').trigger('click');
-    }
-  </script>
-
-  <script>
-    $().click(function() {
-      $().slideDown();
-    });
-  </script>
-
-</body>
+    <script src="/assets/js/jquery.min.js">
+    </script>
+    <script src="/assets/js/hoverIntent.js?ver=22">
+    </script>
+    <script src="/assets/js/superfish.js?ver=22">
+    </script>
+    <script src="/assets/js/function.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.autocomplete.min.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.fixed.menu.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.bxslider.min.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.tabslet.min.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.tooltipster.min.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.tooltipster.min.js?ver=22">
+    </script>
+    <script src="/assets/js/autolinker.js?ver=22">
+    </script>
+    <script src="/assets/js/jquery.gritter.min.js?ver=22">
+    </script>
+    <script src="/assets/js/util.js?ver=22">
+    </script>
+    <script src="/assets/js/faactivities.js?ver=22">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".sf-menu").superfish();
+      });
+    </script>
+    <script>
+      $('.tabs').tabslet();
+      var tab = utilHash.getHash();
+      if (tab !== '') {
+        $('[href=' + tab + ']').trigger('click');
+      }
+    </script>
+    <script>
+      $().click(function() {
+        $().slideDown();
+      });
+    </script>
+  </body>
 </html>
