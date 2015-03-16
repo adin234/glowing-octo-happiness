@@ -6,8 +6,8 @@ var add_filter_category = function (string, context) {
 }
 
 function filter_category(gameConsole) {
-    var videos = [];
-    var context = $('.species a[data-console=' + gameConsole + ']');
+    var videos = [],
+        context = $('.species a[data-console=' + gameConsole + ']');
 
     if (gameConsole == filterConsole) {
         return;

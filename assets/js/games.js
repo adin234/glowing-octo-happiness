@@ -1,199 +1,151 @@
+'use strict';
 page_data = $.parseJSON(page_data);
 
-var slider = {};
-var con = 'all';
-var currentPage = 1;
-var hash;
-var filterConsole = '';
-var filterGame = '';
-var gameNames = [];
-
-page_data.games.forEach(function(item) {
-    gamesAutocompleteArray.push({value: item.name, data: item});
-    gameNames.push(item.name);
-    if(!~gameNames.indexOf(item.chinese)) {
-        gamesAutocompleteArray.push({value: item.chinese, data: item});
-    }
-});
-
-slider.featured_games = $("#container-featured-games").bxSlider();
-slider.latest_games = $("#container-latest-games").bxSlider();
-slider.container_videos = $("#container-videos").bxSlider({
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
+var slider = {}, 
+    con = 'all',
+    currentPage = 1,
+    hash,
+    filterConsole = '',
+    filterGame = '',
+    gameNames = [];
 
 var get_hash = function() {
-    var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
-    hash = hash.split('/');
-    return hash;
-};
+        var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
+        hash = hash.split('/');
+        return hash;
+    },
 
-var get_game = function() {
-    var game = ~get_hash().indexOf('game') 
-        ? get_hash()[get_hash().indexOf('game')+1]
-        : 0;
+    get_game = function() {
+        var game = ~get_hash().indexOf('game') ?
+            get_hash()[get_hash().indexOf('game') + 1] :
+            0;
 
-    return game == '' ? 'all' : game;
-}
+        return game === '' ? 'all' : game;
+    },
 
-var render_featured_games = function (filter) {
-    var html = [];
-    var items = [];
-    filter =  new RegExp(filter, 'i');
+    render_featured_games = function (filter) {
+        var html = [];
+        var items = [];
+        filter =  new RegExp(filter, 'i');
 
-    page_data.featured_games.forEach(function(item, i){
-        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
-        if(item.id === filterGame) {
-            item.class = 'active';
-        }
-        item.game = item.name;
-         item.id = item.id.trim();
-        items.push(template($('#gameTpl').html(), item));
-        if(items.length == 12) {
-            html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
-            items = []
-        }
-    });
-
-    if(items.length != 0) {
-        html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
-    }
-    if(!html.length) { html.push('目前沒有遊戲'); }
-    $('#container-featured-games').html(html.join(''));
-
-    slider.featured_games.reloadSlider({
-        startSlide: 0,
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
-}
-
-var render_latest_games = function(filter) {
-    var html = [];
-    var items = [];
-    filter =  new RegExp(filter, 'i');
-
-    page_data.games.forEach(function(item, i){
-        if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
-        if(item.id === filterGame) {
-            item.class = 'active';
-        }
-        items.push(template($('#gameTpl').html(), item));
-         item.id = item.id.trim();
-        if(items.length == 12) {
-            html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
-            items = []
-        }
-    });
-
-    if(items.length != 0) {
-        html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
-    }
-
-    if(!html.length) { html.push('目前沒有遊戲'); }
-    $('#container-latest-games').html(html.join(''));
-
-    slider.latest_games.reloadSlider({
-        startSlide: 0,
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
-};
-
-var filterAction = function(action) {
-    switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            break;
-        case 'game':
-            categorize_game(hash.shift());
-            filterAction(hash.shift());
-    }
-}
-
-var add_filter_category = function(string, context) {
-    window.location.hash = '!/console/'+string+'/game/all';
-    $('#game-title').html('遊戲分類');
-}
-
-var filter_game = function(input) {
-    var $this = $(input);
-    var filterString = $this.val();
-    render_featured_games(filterString);
-    render_latest_games(filterString);
-    $('.tooltip').tooltipster({contentAsHTML: true});
-};
-
-var filter_videos = function(input) {
-    var $this = $(input);
-    var filterString = $this.val();
-    var game = get_game();
-    $.getJSON(server+'games/'+game+'/videos?limit=32&console='
-        +con+'&search='+filterString, function(result) {
-        page_data.videos = result;
-        render_videos();
-    });
-};
-
-var render_videos = function() {
-    var html = [];
-    var items = [];
-    var ids = [];
-    var tplVideo = $('#videoTpl').html();
-    var tplVideoContainer = $('#videoContainerTpl').html();
-
-    page_data.videos.forEach(function (item, i) {
-        item.anytv_comments = item.anytv_comment || 0;
-        item.provider = attachments_server;
-        item.thumb = item.snippet.thumbnails.medium.url;
-        item.title = item.snippet.title;
-        item.bust = 1;
-        item.comments = item.snippet.meta.statistics.commentCount;
-        item.views = item.snippet.meta.statistics.viewCount;
-        item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
-
-        items.push(template(tplVideo, item));
-        ids.push(item.youtube_id);
-        if(items.length == 16) {
-            html.push(template(tplVideoContainer, {'items' : items.join('')}));
-            items = [];
-        }
-    });
-
-    if(items.length != 0) {
-        html.push(template(tplVideoContainer, {'items' : items.join('')}));
-    }
-
-    if(!html.length) { html.push('目前沒有影片'); }
-
-    $('#container-videos').html(html.join(''));
-    $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
-            $(this).removeClass('disabled');
+        page_data.featured_games.forEach(function(item, i){
+            if(item.name.search(filter) == -1 && item.chinese.search(filter) == -1) return;
+            if(item.id === filterGame) {
+                item.class = 'active';
+            }
+            item.game = item.name;
+             item.id = item.id.trim();
+            items.push(template(
+                $('#gameTpl').html(), item)
+            );
+            if(items.length == 12) {
+                html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
+                items = [];
+            }
         });
-    var currentSlide = slider.container_videos.getCurrentSlide();
-    slider.container_videos.reloadSlider({
-        onSlideAfter: load_game_videos_next_page,
-        infiniteLoop: false,
-        hideControlOnEnd: true
-    });
-};
 
-var load_game_videos_next_page = function() {
-    var html = [];
-    var items = [];
-    var page = Math.floor(slider.container_videos.getSlideCount()/2);
-    var nextPage = page+1;
-    if(nextPage <= currentPage) { return; }
-    currentPage = nextPage;
-    var tplVideo = $('#videoTpl').html();
-    var tplVideoContainer = $('#videoContainerTpl').html();
-    var game = get_game();
-    var filter = $('#txtbox-search-videos').val();
-    $.getJSON(server+'games/'+game+'/videos?limit=32&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
-        page_data.videos.concat(result);
-        result.forEach(function (item, i) {
+        if(items.length !== 0) {
+            html.push(template($('#gameContainerTpl').html(), {'items' : items.join('')}));
+        }
+        if(!html.length) { html.push('目前沒有遊戲'); }
+        $('#container-featured-games').html(html.join(''));
+
+        slider.featured_games.reloadSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+    },
+
+    render_latest_games = function(filter) {
+        var html = [];
+        var items = [];
+        filter =  new RegExp(filter, 'i');
+
+        page_data.games.forEach(function(item, i){
+            if(item.name.search(filter) == -1 &&
+                item.chinese.search(filter) == -1) {
+                    return;
+            } 
+            if(item.id === filterGame) {
+                item.class = 'active';
+            }
+            items.push(template(
+                $('#gameTpl').html(), item)
+            );
+            item.id = item.id.trim();
+            if(items.length == 12) {
+                html.push(template(
+                    $('#gameContainerTpl').html(), {'items' : items.join('')})
+                );
+                items = [];
+            }
+        });
+
+        if(items.length !== 0) {
+            html.push(template(
+                $('#gameContainerTpl').html(), {'items' : items.join('')})
+            );
+        }
+
+        if(!html.length) { html.push('目前沒有遊戲'); }
+        $('#container-latest-games').html(
+            html.join('')
+        );
+
+        slider.latest_games.reloadSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+    },
+
+    filterAction = function(action) {
+        switch (action) {
+            case 'console':
+                filter_category(hash.shift());
+                filterAction(hash.shift());
+                break;
+            case 'game':
+                categorize_game(hash.shift());
+                filterAction(hash.shift());
+        }
+    },
+
+    add_filter_category = function(string, context) {
+        window.location.hash = '!/console/'+string+'/game/all';
+        $('#game-title').html('遊戲分類');
+    },
+
+    filter_game = function(input) {
+        var $this = $(input);
+        var filterString = $this.val();
+        render_featured_games(filterString);
+        render_latest_games(filterString);
+        $('.tooltip').tooltipster({contentAsHTML: true});
+    },
+
+    filter_videos = function(input) {
+        var $this = $(input);
+        var filterString = $this.val();
+        var game = get_game();
+        $.getJSON(server + 'games/' + game + '/videos?limit=32&console=' +
+            con + '&search=' + filterString,
+            function(result) {
+                page_data.videos = result;
+                render_videos();
+            }
+        );
+    },
+
+    render_videos = function() {
+        var html = [];
+        var items = [];
+        var ids = [];
+        var tplVideo = $('#videoTpl').html();
+        var tplVideoContainer = $('#videoContainerTpl').html();
+
+        page_data.videos.forEach(function (item, i) {
             item.anytv_comments = item.anytv_comment || 0;
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
@@ -204,123 +156,193 @@ var load_game_videos_next_page = function() {
             item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
 
             items.push(template(tplVideo, item));
-
+            ids.push(item.youtube_id);
             if(items.length == 16) {
                 html.push(template(tplVideoContainer, {'items' : items.join('')}));
                 items = [];
             }
         });
 
-        if(items.length != 0) {
-           html.push(template(tplVideoContainer, {'items' : items.join('')}));
+        if(items.length !== 0) {
+            html.push(template(tplVideoContainer, {'items' : items.join('')}));
         }
 
-        $("#container-videos").append(html.join(''));
+        if(!html.length) { html.push('目前沒有影片'); }
 
+        $('#container-videos').html(html.join(''));
+        $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
+                $(this).removeClass('disabled');
+            });
         var currentSlide = slider.container_videos.getCurrentSlide();
-
         slider.container_videos.reloadSlider({
-            startSlide: currentSlide,
             onSlideAfter: load_game_videos_next_page,
             infiniteLoop: false,
             hideControlOnEnd: true
         });
+    },
 
-        if(currentSlide != slider.container_videos.getSlideCount() - 1) {
-            $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
-                $(this).removeClass('disabled');
-            });
-        }
+    load_game_videos_next_page = function() {
+        var html = [],
+            items = [],
+            page = Math.floor(slider.container_videos.getSlideCount() / 2),
+            nextPage = page + 1,
+            tplVideo = $('#videoTpl').html(),
+            tplVideoContainer = $('#videoContainerTpl').html(),
+            game = get_game(),
+            filter = $('#txtbox-search-videos').val();
 
-        if(slider.container_videos.getCurrentSlide() == 0) {
-            $(".video .bx-prev").addClass('disabled');
-        }
-    });
-}
-
-var render_game_videos = function(game, page) {
-    var parameters = {
-        limit: 32
-    };
-
-    filterGame = game;
-
-    if(filterConsole.length) {
-        parameters.console = filterConsole;
-    }
-
-    if(filterGame.length) {
-        parameters.game = filterGame;
-    }
-
-    page = typeof page !== 'undefined' ? '&page='+page : '';
-    var searchString = $('#txtbox-search-videos').val();
-    if(searchString.trim()) {
-        page += '&search='+searchString;
-    }
-    $.getJSON(server+'games/'+game+'/videos?'+$.param(parameters)+page, function(result) {
-        page_data.videos = result;
-        render_videos();
-    });
-};
-
-var filter_category = function(cons) {
-    var parameters = {};
-
-    if(cons == filterConsole) {
-        return;
-    }
-
-    filterConsole = cons;
-
-    if(filterConsole.length) {
-        parameters.console = filterConsole;
-    }
-    if(filterGame.length) {
-        parameters.game = filterGame;
-    }
-
-    $.getJSON(server+'gamesdata?'+$.param(parameters), function(results) {
-        page_data = results;
-        render_page();
-    }).done(function() {
-        var context = $('.species a[data-console='+cons+']');
-        context.parent().siblings().removeClass('current');
-        context.parent().addClass('current');
-    });
-};
-
-var render_page = function() {
-    var search = $('#txtbox-search-games');
-    filter_game(search);
-    $('.tooltip').tooltipster({contentAsHTML: true});
-};
-
-var categorize_game = function(game) {
-    if(game.trim().length) {
-        var id = game;
-
-        $('.game-item').each(function(i, item) {
-            $(item).removeClass('active');
-        });
-
-        if(id.trim() === '' || id.trim() === '#!') {
-            filterGame = '';
-            $.getJSON(server+'games/all/videos', function(result) {
-                console.log(result);
-                page_data.videos = result;
-                render_videos();
-            });
+        if(nextPage <= currentPage) {
             return;
         }
 
-        $('[data-id='+id+']').parent().addClass('active');
-        $('#game-title').html($('[data-id='+id+']').attr('data-chi'));
-        render_game_videos(id);
-    } else {
-        render_videos();
+        currentPage = nextPage;
+        $.getJSON(server+'games/'+game+'/videos?limit=32&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
+            page_data.videos.concat(result);
+            result.forEach(function (item, i) {
+                item.anytv_comments = item.anytv_comment || 0;
+                item.provider = attachments_server;
+                item.thumb = item.snippet.thumbnails.medium.url;
+                item.title = item.snippet.title;
+                item.bust = 1;
+                item.comments = item.snippet.meta.statistics.commentCount;
+                item.views = item.snippet.meta.statistics.viewCount;
+                item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+
+                items.push(template(tplVideo, item));
+
+                if(items.length == 16) {
+                    html.push(template(tplVideoContainer, {'items' : items.join('')}));
+                    items = [];
+                }
+            });
+
+            if(items.length !== 0) {
+               html.push(template(tplVideoContainer, {'items' : items.join('')}));
+            }
+
+            $('#container-videos').append(html.join(''));
+
+            var currentSlide = slider.container_videos.getCurrentSlide();
+
+            slider.container_videos.reloadSlider({
+                startSlide: currentSlide,
+                onSlideAfter: load_game_videos_next_page,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+
+            if(currentSlide != slider.container_videos.getSlideCount() - 1) {
+                $('.video .bx-next.disabled, .video .bx-prev.disabled').each(function(i, item) {
+                    $(this).removeClass('disabled');
+                });
+            }
+
+            if(slider.container_videos.getCurrentSlide() === 0) {
+                $('.video .bx-prev').addClass('disabled');
+            }
+        });
+    },
+
+    render_game_videos = function(game, page) {
+        var parameters = {
+            limit: 32
+        };
+
+        filterGame = game;
+
+        if(filterConsole.length) {
+            parameters.console = filterConsole;
+        }
+
+        if(filterGame.length) {
+            parameters.game = filterGame;
+        }
+
+        page = typeof page !== 'undefined' ? '&page=' + page : '';
+        var searchString = $('#txtbox-search-videos').val();
+        if(searchString.trim()) {
+            page += '&search=' + searchString;
+        }
+        $.getJSON(server + 'games/' + game + '/videos?' +
+            $.param(parameters) + page, function(result) {
+                page_data.videos = result;
+                render_videos();
+            }
+        );
+    },
+
+    filter_category = function(cons) {
+        var parameters = {};
+
+        if(cons == filterConsole) {
+            return;
+        }
+
+        filterConsole = cons;
+
+        if(filterConsole.length) {
+            parameters.console = filterConsole;
+        }
+        if(filterGame.length) {
+            parameters.game = filterGame;
+        }
+
+        $.getJSON(server+'gamesdata?'+$.param(parameters), function(results) {
+            page_data = results;
+            render_page();
+        }).done(function() {
+            var context = $('.species a[data-console='+cons+']');
+            context.parent().siblings().removeClass('current');
+            context.parent().addClass('current');
+        });
+    },
+
+    render_page = function() {
+        var search = $('#txtbox-search-games');
+        filter_game(search);
+        $('.tooltip').tooltipster({contentAsHTML: true});
+    },
+
+    categorize_game = function(game) {
+        if(game.trim().length) {
+            var id = game;
+
+            $('.game-item').each(function(i, item) {
+                $(item).removeClass('active');
+            });
+
+            if(id.trim() === '' || id.trim() === '#!') {
+                filterGame = '';
+                $.getJSON(server+'games/all/videos', function(result) {
+                    console.log(result);
+                    page_data.videos = result;
+                    render_videos();
+                });
+                return;
+            }
+
+            $('[data-id='+id+']').parent().addClass('active');
+            $('#game-title').html($('[data-id='+id+']').attr('data-chi'));
+            render_game_videos(id);
+        } else {
+            render_videos();
+        }
+    };
+
+page_data.games.forEach(function(item) {
+    gamesAutocompleteArray.push({value: item.name, data: item});
+    gameNames.push(item.name);
+    if(!~gameNames.indexOf(item.chinese)) {
+        gamesAutocompleteArray.push({value: item.chinese, data: item});
     }
-}
+});
+
+slider.featured_games = $('#container-featured-games').bxSlider();
+slider.latest_games = $('#container-latest-games').bxSlider();
+slider.container_videos = $('#container-videos').bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true
+});
 
 $(window).on('hashchange', function(){
     hash = window.location.hash.replace('#!/', '');
@@ -332,9 +354,9 @@ $(window).on('hashchange', function(){
 });
 
 $(function() {
-    $(".sf-menu").superfish();
-    $(".tabs").tabslet({ animation: true });
-    $(".games .tab li a").on('click', function() {
+    $('.sf-menu').superfish();
+    $('.tabs').tabslet({ animation: true });
+    $('.games .tab li a').on('click', function() {
         var search = $('#txtbox-search-games');
         search.val('');
         filter_game(search);

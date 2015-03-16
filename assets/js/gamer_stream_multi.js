@@ -1,10 +1,11 @@
+'use strict';
 var streamers_list = {},
     active_streams = [];
 streamers_list.youtube = [];
 streamers_list.twitch = [];
 streamers_list.hitbox = [];
 
-var stream_slider = $(".bxslider").bxSlider({
+var stream_slider = $('.bxslider').bxSlider({
     infiniteLoop: false,
     hideControlOnEnd: true,
     minSlides: 2,
@@ -12,13 +13,12 @@ var stream_slider = $(".bxslider").bxSlider({
     slideWidth: 329.5,
 });
 
-$(".watchList").css('visibility', 'visible');
+$('.watchList').css('visibility', 'visible');
 
 var get_streamers = function () {
-    console.log('connectsoccket');
     var socket_streamers = io.connect(socket_server);
     socket_streamers.on('message', function (e) {
-        streamers_list = e.streamers
+        streamers_list = e.streamers;
         render_streamers();
     });
 };
@@ -46,7 +46,8 @@ var format_stream_item = function (item) {
         item.live = 'live';
         item.link = '/gamer_stream/' + item.user_id + '/' + item.id;
         item.provider = attachments_server;
-        item.thumb = 'http://edge.sf.hitbox.tv/' + hitboxData.media_thumbnail_large;
+        item.thumb = 'http://edge.sf.hitbox.tv/' +
+            hitboxData.media_thumbnail_large;
         item.title = hitboxData.media_status;
         item.bust = 1;
         item.views = hitboxData.media_views;
@@ -64,7 +65,7 @@ var format_stream_item = function (item) {
     }
 
     if ($.inArray(item.id, active_streams) + 1) {
-        item.class = 'current'
+        item.class = 'current';
     }
 
     return item;
@@ -88,7 +89,6 @@ var render_streamers = function () {
         item = format_stream_item(item);
         html.push(template($('#streamlist-item-tpl').html(), item));
     });
-    console.log('asd', html.join(''));
     $('#lightSlider').html(html.join(''));
     $('#streamContainer').html(html.join(''));
     stream_slider.reloadSlider();
@@ -99,50 +99,86 @@ var render_stream_video = function (item) {
     var streamType = item.substr(0, 2);
     var streamId = item.substr(2);
     if (streamType == 'TW') {
-        $('#twitchStreamContainer').append(template($('#twitch-stream-tpl').html(), {
-            twitchid: streamId
-        }));
-        $('#twitch-chat-frame-container').append(template($('#twitch-chat-tpl').html(), {
-            twitchid: streamId
-        }));
-        $('#twitch-chat-tab-container').append(template($('#twitch-chat-tab-tpl').html(), {
-            twitchid: streamId
-        }));
+        $('#twitchStreamContainer').append(
+            template(
+                $('#twitch-stream-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
+        $('#twitch-chat-frame-container').append(
+            template(
+                $('#twitch-chat-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
+        $('#twitch-chat-tab-container').append(
+            template(
+                $('#twitch-chat-tab-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
         $(".tabs").tabslet({
             animation: true,
         });
     }
 
     if (streamType == 'HB') {
-        $('#twitchStreamContainer').append(template($('#hitbox-stream-tpl').html(), {
-            twitchid: streamId
-        }));
-        $('#twitch-chat-frame-container').append(template($('#hitbox-chat-tpl').html(), {
-            twitchid: streamId
-        }));
-        $('#twitch-chat-tab-container').append(template($('#hitbox-chat-tab-tpl').html(), {
-            twitchid: streamId
-        }));
+        $('#twitchStreamContainer').append(
+            template(
+                $('#hitbox-stream-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
+        $('#twitch-chat-frame-container').append(
+            template(
+                $('#hitbox-chat-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
+        $('#twitch-chat-tab-container').append(
+            template(
+                $('#hitbox-chat-tab-tpl').html(), {
+                    twitchid: streamId
+                }
+            )
+        );
         $(".tabs").tabslet({
             animation: true,
         });
     }
 
     if (streamType == 'YT') {
-        $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(), {
-            youtubeid: streamId
-        }));
-        $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(), {
-            ChannelId: streamId
-        }));
-        $('#twitch-chat-tab-container').append(template($('#gchat-tab-tpl').html(), {
-            ChannelId: streamId
-        }));
+        $('#twitchStreamContainer').append(
+            template(
+                $('#youtube-stream-tpl').html(), {
+                    youtubeid: streamId
+                }
+            )
+        );
+        $('#twitch-chat-frame-container').append(
+            template(
+                $('#gchat-tpl').html(), {
+                    ChannelId: streamId
+                }
+            )
+        );
+        $('#twitch-chat-tab-container').append(
+            template(
+                $('#gchat-tab-tpl').html(), {
+                    ChannelId: streamId
+                }
+            )
+        );
 
         var userinfo = '';
         var channelinfo = {
-            "id": streamId,
-            "title": streamId
+            'id': streamId,
+            'title': streamId
         };
         var parentHt = $('#side-container').css('height');
 
@@ -156,15 +192,15 @@ var render_stream_video = function (item) {
             $('#gchat-' + streamId).initChatBox(channelinfo, userinfo);
         }
 
-        $(".tabs").tabslet({
+        $('.tabs').tabslet({
             animation: false,
         });
     }
 };
 
 $(window).load(function () {
-    $("#streamArea").mCustomScrollbar({
-        theme: "inset-2",
+    $('#streamArea').mCustomScrollbar({
+        theme: 'inset-2',
     });
 });
 
@@ -175,7 +211,7 @@ $(function () {
         render_stream_video(item);
     });
 
-    $(".tabs").tabslet({
+    $('.tabs').tabslet({
         animation: true,
     });
     $('body').on('change', '#view-resize', function (e) {
