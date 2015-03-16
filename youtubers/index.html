@@ -1,338 +1,399 @@
 <!doctype html>
 <html lang="zh-tw">
-<head prefix="og: http://ogp.me/ns#">
-<meta charset="utf-8">
-<!--<meta name="description" content="">-->
-<meta name="author" content="E.H.">
-<meta name="robots" content="noindex">
-<meta property="og:title" content="實況咖">
-<meta property="og:type" content="website">
-<meta property="og:image" content="http://www.gamers.tm/assets/images/fb.jpg">
-<meta name="twitter:card" content="photo" />
-<meta name="twitter:title" content="實況咖" />
-<meta name="twitter:image:src" content="http://www.gamers.tm/assets/images/fb.jpg">
-<meta name="twitter:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網" />
-<meta name="twitter:url" content="http://www.gamers.tm" />
-<meta property="og:site_name" content="Freedom Asia">
-<meta property="og:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網">
-<meta name="robots" content="none">
-<title>YouTubers | 實況咖</title>
-<link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
-<link href="/assets/css/style.css?v=1" rel="stylesheet">
-<!-- <link href="/assets/css/media.css" rel="stylesheet"> -->
-<link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- <link rel="stylesheet" href="/assets/css/jquery.sidr.dark.css"> -->
-<link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-<!--<link href="favicon.ico" rel="icon" type="image/x-icon">
-<link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
-<link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-<link href="apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
-<link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
-<link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
-<link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
-<link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
-
-<script type="text/javascript" src="/assets/js/config.js"></script>
-<script type="text/javascript" src="/assets/js/get.youtubers.data.js"></script>
-<!-- /*<style type="text/css">
-  @media (max-width: 413px) {
-    #content {
-      overflow-x: hidden;
-    }
-
-  }
-  @media (min-width: 414px) and (max-width: 767px) {
-    .silderList .video [id^="tab-"]:before, .silderList .video [id^="tab-"]:after {
-      height: 570px;
-    }
-
-    .silderList .games #tab-1-1 .bx-viewport {
-        width: 100% !important;
-      }
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .games .collection, .video .collection {
-      width: auto !important;
-    }
-
-
-  }
-</style>*/ -->
-</head>
-<body class="lang_zh_tw stream-gritter" id="youtubers">
-<div id="wrapper">
-    <div id="outContainer">
-    <div class="nav-container">
-      <header class="zh_tw">
-<div class="nav-wrapper">
-
-<!--         <nav class="species">
-          <div class="mobile_menu">
-            <a id="responsive-menu-button" href="#sidr-main"><i class='fa fa-bars fa-2x'></i></a>
-            <a href="#"><img class="logo_g" src="/assets/images/logo_en_crop.png" /></a>
-            <i class='fa fa-search fa-2x'></i>
-          </div>
-        </nav> -->
-
-        <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
-        <nav class="species">
-           <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-            <li><a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-            <li><a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-            <li><a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">PC</a></li>
-
-            <li><a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-            <li><a href="javascript:void(0)" data-console='vlogs' onClick="add_filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-          </ul>
-        </nav>
-</div>
-<nav class="site sf-menu">
-
-          <!--MOBILE NAVIGATOR start-->
-<!--         <ul class="clearFix" id="mobilenav">
-            <li class="current"><a href="javascript:void(0);" onClick="javascript:filter_category('all', this); return false;" title="All">All</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('pc', this); return false;" title="PC">PC</a></li>
-
-            <li><a href="javascript:void(0)" onClick="filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-            <li><a href="javascript:void(0)" onClick="filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-        </ul> -->
-          <!--MOBILE NAVIGATOR end-->
-
-          <ul class="clearFix">
-            <li><a href="/" title="首頁">首頁</a></li>
-            <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
-              <ul>
-                <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
-                <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
+  <head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="author" content="E.H.">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="實況咖">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.gamers.tm/assets/images/fb.jpg">
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:title" content="實況咖" />
+    <meta name="twitter:image:src" content="http://www.gamers.tm/assets/images/fb.jpg">
+    <meta name="twitter:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網" />
+    <meta name="twitter:url" content="http://www.gamers.tm" />
+    <meta property="og:site_name" content="Freedom Asia">
+    <meta property="og:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網">
+    <meta name="robots" content="none">
+    <title>
+      YouTubers | 實況咖
+    </title>
+    <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css?v=1" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+    <script type="text/javascript" src="/assets/js/config.js">
+    </script>
+    <script type="text/javascript" src="/assets/js/get.youtubers.data.js">
+    </script>
+  </head>
+  <body class="lang_zh_tw stream-gritter" id="youtubers">
+    <div id="wrapper">
+      <div id="outContainer">
+        <div class="nav-container">
+          <header class="zh_tw">
+            <div class="nav-wrapper">
+              <h1>
+                <a href="/" title="Home" class="zh_tw">
+                  Gamers
+                </a>
+              </h1>
+              <nav class="species">
+                <ul class="clearFix">
+                  <li class="current">
+                    <a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">
+                      All
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">
+                      Xbox 360
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">
+                      Xbox One
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">
+                      PS3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">
+                      PS4
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">
+                      PC
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">
+                      Mobile Game
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" data-console='vlogs' onClick="add_filter_category('vlogs', this); return false;" title="Vlogs">
+                      Vlogs
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <nav class="site sf-menu">
+              <ul class="clearFix">
+                <li>
+                  <a href="/" title="首頁">
+                    首頁
+                  </a>
+                </li>
+                <li>
+                  <a href="http://community.gamers.tm" title="論壇">
+                    論壇
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">
+                        最新發文
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">
+                        搜尋論壇
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/news" title="新聞">
+                    新聞
+                  </a>
+                </li>
+                <li>
+                  <a href="/shows" title="Shows">
+                    Shows
+                  </a>
+                </li>
+                <li>
+                  <a href="/games" title="遊戲分類">
+                    遊戲分類
+                  </a>
+                </li>
+                <li class="current">
+                  <a href="/youtubers" title="實況主" alt="實況主">
+                    YouTubers
+                  </a>
+                </li>
+                <li>
+                  <a href="/streamers" title="直播">
+                    直播
+                  </a>
+                  <sup id="number-of-streamers">
+                  </sup>
+                </li>
+                <li class="nav-switch-item">
+                  <a href="#" title="搞活動">
+                    搞活動
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="/freedom" title="Freedom!活動">
+                        Freedom!活動 
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/lanparty" title="Lan Party活動">
+                        Lan Party活動
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <div>
+                    <input type="text" placeholder="搜尋" id="query">
+                  </div>
+                </li>
               </ul>
-            </li>
-            <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shows</a></li>
-            <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <!-- <li><a href='/lanparty' title="Lan Party">Lan Party</a></li> -->
-            <li class="nav-switch-item"><a href="#" title="搞活動">搞活動</a>
-              <ul>
-                <li><a href="/freedom" title="Freedom!活動">Freedom!活動 </a></li>
-                <li><a href="/lanparty" title="Lan Party活動">Lan Party活動</a></li>
-              </ul>
-            </li>
-            <li>
-              <div>
-                <input type="text" placeholder="搜尋" id="query">
+            </nav>
+            <ul class="member">
+              <li>
+                <a href="http://freedom.tm/zh" title="加入我們" class="zh_tw">
+                  加入我們
+                </a>
+              </li>
+              <li class="login">
+                <a href="http://community.gamers.tm/zh/index.php?login&front=1" title="登入">
+                  登入
+                </a>
+                /
+                <a href="http://community.gamers.tm/zh/index.php?register&front=1" title="註冊">
+                  註冊
+                </a>
+              </li>
+            </ul>
+          </header>
+        </div>
+        <div id="container">
+          <div id="content" class="clearFix">
+            <div class="silderList clearFix">
+              <div method="post" class="search game-container">
+                <div>
+                </div>
+                <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
+                <div class="games tabs">
+                  <ul class="tab clearFix">
+                    <li>
+                      <h2>
+                        <a href="#tab-1-1">
+                          最新遊戲
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-1-2">
+                          精選遊戲
+                        </a>
+                      </h2>
+                    </li>
+                  </ul>
+                  <div id="tab-1-1">
+                    <div class="collection">
+                      <div class="bxslider games" id="container-latest-games">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-1-2">
+                    <div class="collection">
+                      <div class="bxslider games" id="container-featured-games">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </li>
-          </ul>
-        </nav>
-        <ul class="member">
-          <li><a href="http://freedom.tm/zh" title="加入我們" class="zh_tw">加入我們</a></li>
-          <li class="login"><a href="http://community.gamers.tm/zh/index.php?login&front=1" title="登入">登入</a>/<a href="http://community.gamers.tm/zh/index.php?register&front=1" title="註冊">註冊</a></li>
-        </ul>
-      </header>
+              <div method="post" class="search">
+                <div>
+                </div>
+                <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
+                <div class="video tabs">
+                  <ul class="tab clearFix">
+                    <li>
+                      <h2>
+                        <a href="#tab-2-1" onClick="popularSlider.reloadSlider();">
+                          熱門YouTuber
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-2-2" onClick="newSlider.reloadSlider();">
+                          新實況咖成員
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-2-3" onClick="allSlider.reloadSlider();">
+                          All
+                        </a>
+                      </h2>
+                    </li>
+                  </ul>
+                  <div id="tab-2-1">
+                    <div class="collection">
+                      <div class="bxslider videos popular" id="container-popular-member">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-2-2">
+                    <div class="collection">
+                      <div class="bxslider videos new" id="container-new-member">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-2-3">
+                    <div class="collection">
+                      <div class="bxslider videos all" id="container-all-member">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="clearFix">
+            <nav>
+              <ul class="zh_tw">
+                <li>
+                  <a href="/">
+                    首頁
+                  </a>
+                </li>
+                <li>
+                  <a href="/about">
+                    關於我們
+                  </a>
+                </li>
+                <li>
+                  <a href="/news">
+                    新聞
+                  </a>
+                </li>
+                <li>
+                  <a href="/shows">
+                    Shows
+                  </a>
+                </li>
+                <li class="current">
+                  <a href="/youtubers" title="實況主" alt="實況主">
+                    YouTubers
+                  </a>
+                </li>
+                <li>
+                  <a href="http://freedom.tm/zh">
+                    加入我們
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <ul>
+              <li>
+                <a href="https://www.facebook.com/gamers.tm">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/mcnFreedomASIA">
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a href="https://plus.google.com/u/0/b/110692434160149822943/110692434160149822943">
+                  Google+
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/mcnFreedomTW">
+                  Youtube
+                </a>
+              </li>
+            </ul>
+            <small>
+              © 2014 
+              <strong>
+                freedom!
+              </strong>
+              . All Rights Reserved.
+            </small>
+            <span>
+              Language: 
+              <a href="javascript:;" class="language">
+                English
+              </a>
+              <ul class="selectLanguage">
+                <li>
+                  <a href="index_en.html">
+                    English
+                  </a>
+                </li>
+                <li>
+                  <a href="index_tw.html">
+                    繁體中文
+                  </a>
+                </li>
+              </ul>
+            </span>
+          </footer>
+        </div>
+      </div>
     </div>
-    <div id="container">
-      <div id="content" class="clearFix">
-        <div class="silderList clearFix">
-          <div method="post" class="search game-container">
-            <div></div>
-            <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
-            <div class="games tabs">
-              <ul class="tab clearFix">
-                <li>
-                  <h2><a href="#tab-1-1">最新遊戲</a></h2>
-                </li>
-                <li>
-                  <h2><a href="#tab-1-2">精選遊戲</a></h2>
-                </li>
-              </ul>
-              <div id="tab-1-1">
-                <div class="collection">
-                  <div class="bxslider games" id="container-latest-games">
-                      <!-- START -->
-
-                      <!-- END -->
-                  </div>
-                </div>
-              </div>
-              <div id="tab-1-2">
-                <div class="collection">
-                  <div class="bxslider games" id="container-featured-games">
-                      <!-- START -->
-
-                      <!-- END -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div method="post" class="search">
-            <div></div>
-            <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-            <div class="video tabs">
-              <ul class="tab clearFix">
-                <li>
-                  <h2><a href="#tab-2-1" onClick="popularSlider.reloadSlider();">熱門YouTuber</a></h2>
-                </li>
-                <li>
-                  <h2><a href="#tab-2-2" onClick="newSlider.reloadSlider();">新實況咖成員</a></h2>
-                </li>
-                <li>
-                  <h2><a href="#tab-2-3" onClick="allSlider.reloadSlider();">All</a></h2>
-                </li>
-              </ul>
-              <div id="tab-2-1">
-                <div class="collection">
-                  <div class="bxslider videos popular" id="container-popular-member">
-
-                  </div>
-                </div>
-              </div>
-              <div id="tab-2-2">
-                <div class="collection">
-                  <div class="bxslider videos new" id="container-new-member">
-
-                  </div>
-                </div>
-              </div>
-              <div id="tab-2-3">
-                <div class="collection">
-                  <div class="bxslider videos all" id="container-all-member">
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="clearFix">
-        <nav>
-          <ul class="zh_tw">
-            <li><a href="/">首頁</a></li>
-            <li><a href="/about">關於我們</a></li>
-            <li><a href="/news">新聞</a></li>
-            <li><a href="/shows">Shows</a></li>
-            <li class="current"><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="http://freedom.tm/zh">加入我們</a></li>
-          </ul>
-        </nav>
-        <ul>
-          <li><a href="https://www.facebook.com/gamers.tm">Facebook</a></li>
-          <li><a href="https://twitter.com/mcnFreedomASIA">Twitter</a></li>
-          <li><a href="https://plus.google.com/u/0/b/110692434160149822943/110692434160149822943">Google+</a></li>
-          <li><a href="https://www.youtube.com/user/mcnFreedomTW">Youtube</a></li>
-        </ul>
-        <small>© 2014 <strong>freedom!</strong>. All Rights Reserved.</small><span>Language: <a href="javascript:;" class="language">English</a>
-        <ul class="selectLanguage">
-          <li><a href="index_en.html">English</a></li>
-          <li><a href="index_tw.html">繁體中文</a></li>
-        </ul>
-        </span></footer>
-      </div>
-  </div>
-</div>
-<script type="text/html" id="gameTpl">
-  <li class="game-item {{CLASS}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}" onClick="javascript:utilHash.changeHashVal('game', '{{ID}}');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" style="cursor:pointer;"/></li>
-</script>
-<script type="text/html" id="gameContainerTpl">
-  <ul class="game clearFix"> {{ITEMS}} </ul>
-</script>
-<script type="text/html" id="videoTpl">
-    <li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/?user={{USER_ID}}';">
-      <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot">
-      </a>
-      <h3>
-        <a href="javascript:void(0);" title="{{TITLE}}">{{TITLE}}</a>
-      </h3>
-
-      <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}" onError="fixErrorImg(this);"></a>
-    </li>
-</script>
-<script type="text/html" id="videoContainerTpl">
-<ul class="list clearFix">
-  {{ITEMS}}
-</ul>
-</script>
-
-<script src="/assets/js/libs/jquery.min.js"></script>
-<script src="/assets/js/libs/hoverIntent.js"></script>
-<script src="/assets/js/libs/superfish.js"></script>
-<script src="/assets/js/function.js"></script>
-<script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
-<script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/libs/jquery.bxslider.min.js"></script>
-<script src="/assets/js/libs/jquery.fixed.menu.js"></script>
-<script src="/assets/js/libs/jquery.tabslet.min.js"></script>
-<script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
-<script src="/assets/js/libs/autolinker.js"></script>
-<script src="/assets/js/libs/jquery.gritter.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script type="text/javascript" src="/assets/js/youtubers.js"></script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(".sf-menu").superfish();
-  });
-</script>
-
-<!-- <script src="/assets/js/sidr/jquery.sidr.min.js"></script> -->
-
-  <!--MENU SLIDER-->
-
-<!--       <div id="navigation" >
-        <div class="profile_div">
-          <a href="#edit_prof" class="edit_prof"></a>
-          <a href="#" id="prof_pic_a" >
-            <div id="prof_pic">
-              <img id="prof_photo" src="/assets/images/photo.jpg" />
-              <p id="prof_name">Xenia Wang</p>
-            </div>
+    <script type="text/html" id="gameTpl">
+      <li class="game-item {{CLASS}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}" onClick="javascript:utilHash.changeHashVal('game', '{{ID}}');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" style="cursor:pointer;"/></li>
+    </script>
+    <script type="text/html" id="gameContainerTpl">
+      <ul class="game clearFix"> {{ITEMS}} </ul>
+    </script>
+    <script type="text/html" id="videoTpl">
+      <li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/?user={{USER_ID}}';">
+        <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot">
+        </a>
+        <h3>
+          <a href="javascript:void(0);" title="{{TITLE}}">
+            {{TITLE}}
           </a>
-          <a href="/settings" class="settings"><i class="fa fa-gear fa-lg"></i></a>
-        </div>
-          <nav class="nav">
-              <ul>
-                  <li><a href="/">首頁</a></li>
-                  <li><a href="http://community.gamers.tm/">論壇</a></li>
-                  <li><a href="/news">新聞</a></li>
-                  <li><a href="/shows">Shows</a></li>
-                  <li><a href="/games">遊戲分類</a></li>
-                  <li><a href="/youtubers">實況咖</a></li>
-                  <li><a href="/streamers">直播</a></li>
-                  <li><a href="/about">關於我們</a></li>
-                  <li><a href="http://freedom.tm/zh">加入我們</a></li>
-                  <li><a href="#PC">PC</a>&middot;<a href="#Mobile">Mobile</a></li>
-              </ul>
-          </nav>
-        <div class="slider_footer">
-          <ul>
-                  <li><a href="#facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
-                  <li><a href="#twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
-                  <li><a href="#googleplus"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                  <li><a href="#youtube"><i class="fa fa-youtube-play fa-lg"></i></a></li>
-                  <li>&copy; 2014 freedom!</li>
-          </ul>
-        </div>
-      </div> -->
+        </h3>
+        <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}" onError="fixErrorImg(this);"></a>
+      </li>
+    </script>
+    <script type="text/html" id="videoContainerTpl">
+      <ul class="list clearFix"> {{ITEMS}} </ul>
+    </script>
 
-<!--   /*<script>
-      $('#responsive-menu-button').sidr({
-        name: 'sidr-main',
-        source: '#navigation',
-        renaming: false
+    <script src="/assets/js/libs/jquery.min.js"></script>
+    <script src="/assets/js/libs/hoverIntent.js"></script>
+    <script src="/assets/js/libs/superfish.js"></script>
+    <script src="/assets/js/function.js"></script>
+    <script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
+    <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/assets/js/libs/jquery.bxslider.min.js"></script>
+    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
+    <script src="/assets/js/libs/jquery.tabslet.min.js"></script>
+    <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
+    <script src="/assets/js/libs/autolinker.js"></script>
+    <script src="/assets/js/libs/jquery.gritter.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script type="text/javascript" src="/assets/js/youtubers.js"></script>
+
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".sf-menu").superfish();
       });
-  </script>*/ -->
-
-</body>
+    </script>
+  </body>
 </html>

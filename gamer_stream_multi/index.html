@@ -1,305 +1,264 @@
 <!doctype html>
 <html lang="zh-tw" class="muti">
-<head prefix="og: http://ogp.me/ns#">
-<meta charset="utf-8">
-<!--<meta name="description" content="">-->
-<meta name="author" content="E.H.">
-<meta name="robots" content="noindex">
-<meta property="og:title" content="實況咖">
-<meta property="og:type" content="website">
-<meta property="og:image" content="http://www.gamers.tm/assets/images/fb.jpg">
-<meta name="twitter:card" content="photo" />
-<meta name="twitter:title" content="實況咖" />
-<meta name="twitter:image:src" content="http://www.gamers.tm/assets/images/fb.jpg">
-<meta name="twitter:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網" />
-<meta name="twitter:url" content="http://www.gamers.tm" />
-<meta property="og:site_name" content="Freedom Asia">
-<!--<meta property="og:description" content="">-->
-<meta name="robots" content="none">
-<title>直播 | 實況咖</title>
-<link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
-<link href="/assets/css/style.css?v=1" rel="stylesheet">
-<link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-<link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
-<script src="/assets/js/config.js"></script>
-
-<!-- <link type="text/css" rel="stylesheet" href="/assets/lightSlider/css/lightSlider.css" />  -->   
-
-<!--<link href="favicon.ico" rel="icon" type="image/x-icon">
-<link href="apple-touch-icon-200x200.png" rel="apple-touch-icon" sizes="200x200">
-<link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-<link href="apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
-<link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
-<link href="apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
-<link href="apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
-<link href="apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">-->
-
-<style>
-#twitchTalk .tab > li a {
-  padding: 0 7px;
-  background: #fefefe;
-  color: #888;
-}
-
-#twitchTalk .tab > li.active a {
-  background: #efefef;
-}
-
-#twitchTalk .tab > li + li {
-  margin: 0;
-  border-left: #aaa;
-}
-</style>
-</head>
-
-<body class="lang_zh_tw streams x3">
-
-<div id="stream-container">
-  <div id="main-container">
-    <div id="streamArea">
-      <div id="twitchStreamContainer" class="clearFix"></div>
-      <!-- <div class="watchList" style="visibility:hidden">
-        <h2>正在直播</h2>
-        <ul id="lightSlider" class="multistreamList">
-
-        </ul>
-      </div> -->
-      <div class="watchList" style="visibility:hidden">
-        <h2>正在直播</h2>
-        <ul class="bxslider clearFix" id="streamContainer">
-          <!-- <li>
-            <a href="javascript:;" title="{stream title}" data-id="TWqksniper">
-              <img src="images/stream_thumb.png" width="110" height="62" al t="{stream title}">
-              <h3>Protect</h3>
-            </a>
-          </li> -->
-        </ul>
-     </div>
-    </div>
-  </div>
-
-  <div id="side-container">
-    <div id="streamView">
-      <div id="functionBar">
-        <header>
-        <nav>
-          <h1><a href="/" target="_blank">實況咖</a></h1>
-          <ul>
-            <li><a href="http://community.gamers.tm/zh/index.php" title="論壇" target="_blank">論壇</a></li>
-            <li><a href="/youtubers" title="影片" target="_blank">影片</a></li>
-            <li><a href="/streamers" class="no-sup" title="直播" target="_blank">直播</a></li>
-          </ul>
-        </nav>
-        <select id="view-resize">
-          <option value="x1">X1</option>
-          <option value="x3" selected>FIT</option>
-        </select>
-        <a href="http://freedom.tm/zh" title="加入我們" target="_blank">加入我們</a>
-      </header>
-        <div id="twitchTalk">
-          <div class="content">
-              <div class="tabs" id="twitch-chat-frame-container">
-                <ul class="tab clearFix" id="twitch-chat-tab-container">
-
-                </ul>
-              </div>
+  <head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="author" content="E.H.">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="實況咖">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.gamers.tm/assets/images/fb.jpg">
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:title" content="實況咖" />
+    <meta name="twitter:image:src" content="http://www.gamers.tm/assets/images/fb.jpg">
+    <meta name="twitter:description" content="歡迎來到實況咖，盡情在這專屬玩家的遊戲群網" />
+    <meta name="twitter:url" content="http://www.gamers.tm" />
+    <meta property="og:site_name" content="Freedom Asia">
+    <meta name="robots" content="none">
+    <title>
+      直播 | 實況咖
+    </title>
+    <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css?v=1" rel="stylesheet">
+    <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css" />
+    <script src="/assets/js/config.js">
+    </script>
+    <style>
+      #twitchTalk .tab > li a {
+        padding: 0 7px;
+        background: #fefefe;
+        color: #888;
+      }
+      #twitchTalk .tab > li.active a {
+        background: #efefef;
+      }
+      #twitchTalk .tab > li + li {
+        margin: 0;
+        border-left: #aaa;
+      }
+    </style>
+  </head>
+  <body class="lang_zh_tw streams x3">
+    <div id="stream-container">
+      <div id="main-container">
+        <div id="streamArea">
+          <div id="twitchStreamContainer" class="clearFix">
+          </div>
+          <div class="watchList" style="visibility:hidden">
+            <h2>
+              正在直播
+            </h2>
+            <ul class="bxslider clearFix" id="streamContainer">
+            </ul>
           </div>
         </div>
-        <div class="ad"></div>
+      </div>
+      <div id="side-container">
+        <div id="streamView">
+          <div id="functionBar">
+            <header>
+              <nav>
+                <h1>
+                  <a href="/" target="_blank">
+                    實況咖
+                  </a>
+                </h1>
+                <ul>
+                  <li>
+                    <a href="http://community.gamers.tm/zh/index.php" title="論壇" target="_blank">
+                      論壇
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/youtubers" title="影片" target="_blank">
+                      影片
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/streamers" class="no-sup" title="直播" target="_blank">
+                      直播
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <select id="view-resize">
+                <option value="x1">
+                  X1
+                </option>
+                <option value="x3" selected>
+                  FIT
+                </option>
+              </select>
+              <a href="http://freedom.tm/zh" title="加入我們" target="_blank">
+                加入我們
+              </a>
+            </header>
+            <div id="twitchTalk">
+              <div class="content">
+                <div class="tabs" id="twitch-chat-frame-container">
+                  <ul class="tab clearFix" id="twitch-chat-tab-container">
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="ad">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-</body>
-
-<script type="text/html" id="streamlist-item-tpl">
-<li>
-  <a href="javascript:;" class="{{class}}" title="{{TITLE}}" data-id="{{ID}}">
-    <img src="{{THUMB}}" width="110" height="62" al t="{{TITLE}}">
-    <h3>{{TITLE}}</h3>
-  </a>
-</li>
-</script>
-
-<script type="text/html" id="twitch-stream-tpl">
-<div id="twitchStream" class="stream-item">
-  <div class="videoWrapper">
-    <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-      <param name="allowFullScreen" value="true" />
-      <param name="allowScriptAccess" value="always" />
-      <param name="allowNetworking" value="all" />
-      <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-      <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=70" />
-    </object>
-    <a href="javascript:;" class="close remove-stream" data-id="TW{{TWITCHID}}" title="Close">Close</a>
-  </div>
-</div>
-</script>
-
-<script type="text/html" id="hitbox-stream-tpl">
-<div id="twitchStream">
-  <div class="videoWrapper">
-    <iframe width="100%" height="100%" src="http://hitbox.tv/#!/embed/{{TWITCHID}}?autoplay=true" frameborder="0" allowfullscreen></iframe>
-    <a href="javascript:;" class="close remove-stream" data-id="HB{{TWITCHID}}" title="Close">Close</a>
-  </div>
-</div>
-</script>
-
-
-<script type="text/html" id="youtube-stream-tpl">
-<div id="twitchStream" class="stream-item">
-  <div class="videoWrapper">
-    <object height="100%" width="100%" id="live_embed_player_flash"><param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-    <a href="javascript:;" class="close remove-stream" data-id="YT{{YOUTUBEID}}" title="Close">Close</a>
-  </div>
-</div>
-</script>
-
-<script type="text/html" id="twitch-chat-tab-tpl">
-<li class="chat-{{TWITCHID}}">
-  <a href="#tab-chat-{{TWITCHID}}">{{TWITCHID}}</a>
-</li>
-</script>
-
-<script type="text/html" id="twitch-chat-tpl">
-<div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
-  <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
-  </iframe>
-</div>
-</script>
-
-<script type="text/html" id="hitbox-chat-tab-tpl">
-<li class="chat-{{TWITCHID}}">
-  <a href="#tab-chat-{{TWITCHID}}">{{TWITCHID}}</a>
-</li>
-</script>
-
-<script type="text/html" id="hitbox-chat-tpl">
-<div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
-  <iframe src="http://www.hitbox.tv/embedchat/{{TWITCHID}}?autoconnect=true" width="100%" height="640px">
-  </iframe>
-</div>
-</script>
-
-<script type="text/html" id="gchat-tab-tpl">
-  <li class="chat-{{ChannelId}}">
-    <a href="#gchat-{{ChannelId}}">{{ChannelId}}</a>
-  </li>
-</script>
-
-<script type="text/html" id="gchat-tpl">
-  <div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>
-</script>
-
-<script type="text/html" id="chatui">
-  <div id="chid-{cid}" class="chid">{cid}</div>
-  <div id="chcontainer-{cid}" class="chcontainer">
-      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
-      </table>
-  </div>
-  <div id="chatinputs-{cid}" class="chatinputs">
-      <input type="text" id="msgs-{cid}" class="msgs">
-      <button id="btn-{cid}" class="btnSend">SEND</button>
-  </div>
-  <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
-    <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
-  </div>
-</script>
-<script type="text/html" id="gchatnotify">
-  <tr id="trnotify-{cid}">
-      <td>
+  </body>
+    <script type="text/html" id="streamlist-item-tpl">
+      <li>
+        <a href="javascript:;" class="{{class}}" title="{{TITLE}}" data-id="{{ID}}">
+          <img src="{{THUMB}}" width="110" height="62" al t="{{TITLE}}">
+          <h3>
+            {{TITLE}}
+          </h3>
+        </a>
+      </li>
+    </script>
+    <script type="text/html" id="twitch-stream-tpl">
+      <div id="twitchStream" class="stream-item">
+        <div class="videoWrapper">
+          <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
+            <param name="allowFullScreen" value="true" />
+            <param name="allowScriptAccess" value="always" />
+            <param name="allowNetworking" value="all" />
+            <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+            <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=70" />
+          </object>
+          <a href="javascript:;" class="close remove-stream" data-id="TW{{TWITCHID}}" title="Close">Close</a>
+        </div>
+      </div>
+    </script>
+    <script type="text/html" id="hitbox-stream-tpl">
+      <div id="twitchStream">
+        <div class="videoWrapper">
+          <iframe width="100%" height="100%" src="http://hitbox.tv/#!/embed/{{TWITCHID}}?autoplay=true" frameborder="0" allowfullscreen></iframe>
+          <a href="javascript:;" class="close remove-stream" data-id="HB{{TWITCHID}}" title="Close">Close</a>
+        </div>
+      </div>
+    </script>
+    <script type="text/html" id="youtube-stream-tpl">
+      <div id="twitchStream" class="stream-item">
+        <div class="videoWrapper">
+        <object height="100%" width="100%" id="live_embed_player_flash">
+          <param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param>
+          <param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>
+          <embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>
+        </object>
+        <a href="javascript:;" class="close remove-stream" data-id="YT{{YOUTUBEID}}" title="Close">Close</a>
+        </div>
+      </div>
+    </script>
+    <script type="text/html" id="twitch-chat-tab-tpl">
+      <li class="chat-{{TWITCHID}}">
+        <a href="#tab-chat-{{TWITCHID}}">
+          {{TWITCHID}}
+        </a>
+      </li>
+    </script>
+    <script type="text/html" id="twitch-chat-tpl">
+      <div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
+        <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
+        </iframe>
+      </div>
+    </script>
+    <script type="text/html" id="hitbox-chat-tab-tpl">
+      <li class="chat-{{TWITCHID}}">
+        <a href="#tab-chat-{{TWITCHID}}">
+          {{TWITCHID}}
+        </a>
+      </li>
+    </script>
+    <script type="text/html" id="hitbox-chat-tpl">
+      <div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
+        <iframe src="http://www.hitbox.tv/embedchat/{{TWITCHID}}?autoconnect=true" width="100%" height="640px">
+        </iframe>
+      </div>
+    </script>
+    <script type="text/html" id="gchat-tab-tpl">
+      <li class="chat-{{ChannelId}}">
+        <a href="#gchat-{{ChannelId}}">
+          {{ChannelId}}
+        </a>
+      </li>
+    </script>
+    <script type="text/html" id="gchat-tpl">
+      <div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>
+    </script>
+    <script type="text/html" id="chatui">
+      <div id="chid-{cid}" class="chid">
+        {cid}
+      </div>
+      <div id="chcontainer-{cid}" class="chcontainer">
+        <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
+        </table>
+      </div>
+      <div id="chatinputs-{cid}" class="chatinputs">
+        <input type="text" id="msgs-{cid}" class="msgs">
+        <button id="btn-{cid}" class="btnSend">SEND</button>
+      </div>
+      <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
+        <span class="spandex">
+          <a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. 
+        </span>
+      </div>
+    </script>
+    <script type="text/html" id="gchatnotify">
+      <tr id="trnotify-{cid}">
+        <td>
           <div class="notifier">
-              <p id="notifymsg-{cid}" class="message">{gchat-message}</p>
+            <p id="notifymsg-{cid}" class="message">
+              {gchat-message}
+            </p>
           </div>
-      </td>
-  </tr>
-</script>
-<script type="text/html" id="chatms">
-  <tr id="trms-{cid}">
-      <td>
+        </td>
+      </tr>
+    </script>
+    <script type="text/html" id="chatms">
+      <tr id="trms-{cid}">
+        <td>
           <div id="usericon-{cid}" class="usericon">
-              <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
+            <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
           </div>
           <div id="chat-message-{cid}" class="chat-message">
-              <label id="uname">{username}</label>
-              <p id="imsg" class="message">{message}</p>
-              <label id="timestamp-{cid}" class="timestamp">{timesent}</label>
+            <label id="uname">
+              {username}
+            </label>
+            <p id="imsg" class="message">
+              {message}
+            </p>
+            <label id="timestamp-{cid}" class="timestamp">
+              {timesent}
+            </label>
           </div>
-      </td>
-  </tr>
-</script>
-
-<script src="/assets/js/libs/jquery.min.js"></script>
-<script src="/assets/js/libs/jquery.gritter.min.js"></script>
-<script src="/assets/js/libs/jquery.bxslider.min.js"></script>
-
-<!-- <script src="/assets/lightSlider/js/jquery.lightSlider.js"></script> -->
-
-<script type="text/javascript">
-/*$(document).ready(function() {
-  $("#lightSlider").lightSlider({
-    item: 5,
-    autoWidth: false,
-    slideMove: 1, // slidemove will be 1 if loop is true
-    slideMargin: 10,
-
-    addClass: '',
-    mode: "slide",
-    useCSS: true,
-    cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
-    easing: 'linear', //'for jquery animation',////
-
-    speed: 400, //ms'
-    auto: false,
-    loop: false,
-    slideEndAnimatoin: true,
-    pause: 2000,
-
-    keyPress: false,
-    controls: true,
-    prevHtml: '',
-    nextHtml: '',
-
-    rtl:false,
-    adaptiveHeight:false,
-
-    vertical:false,
-    verticalHeight:500,
-    vThumbWidth:100,
-
-    thumbItem:10,
-    pager: true,
-    gallery: false,
-    galleryMargin: 5,
-    thumbMargin: 5,
-    currentPagerPosition: 'middle',
-
-    enableTouch:false,
-    enableDrag:false,
-    freeMove:false,
-    swipeThreshold: 40,
-
-    responsive : [],
-
-    onBeforeStart: function (el) {},
-    onSliderLoad: function (el) {},
-    onBeforeSlide: function (el) {},
-    onAfterSlide: function (el) {},
-    onBeforeNextSlide: function (el) {},
-    onBeforePrevSlide: function (el) {}
-  });
-});*/
-</script>
-
-<script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/libs/jquery.tabslet.min.js"></script>
-<script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
-<script type="text/javascript" src="/assets/js/util.js"></script>
-<!-- Chat plugin 10.30.2014-->
-<script src="/assets/js/libs/jquery.linkify.1.1.7.min.js"></script>
-<script src="/assets/js/libs/socketio.js"></script>
-<script type="text/javascript" src="/assets/js/gchatv2.js"></script>
-<script type="text/javascript" src="/assets/js/gamer_stream_multi.js"></script>
+        </td>
+      </tr>
+    </script>
+  <script src="/assets/js/libs/jquery.min.js">
+  </script>
+  <script src="/assets/js/libs/jquery.gritter.min.js">
+  </script>
+  <script src="/assets/js/libs/jquery.bxslider.min.js">
+  </script>
+  <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js">
+  </script>
+  <script src="/assets/js/libs/jquery.tabslet.min.js">
+  </script>
+  <script src="/assets/js/libs/jquery.tooltipster.min.js">
+  </script>
+  <script type="text/javascript" src="/assets/js/util.js">
+  </script>
+  <script src="/assets/js/libs/jquery.linkify.1.1.7.min.js">
+  </script>
+  <script src="/assets/js/libs/socketio.js">
+  </script>
+  <script type="text/javascript" src="/assets/js/gchatv2.js">
+  </script>
+  <script type="text/javascript" src="/assets/js/gamer_stream_multi.js">
+  </script>
+>>>>>>> 50eccf8a3a204cda96325849ee547ae187188da0
 </html>
