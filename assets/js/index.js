@@ -313,32 +313,32 @@ var renderFeaturedGames = function (string, trigger) {
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
-                if (axbox360.length <= 4) {
+                if (axbox360.length <= 5) {
                     if (item.consoles.indexOf('xbox360') > -1) {
                         axbox360.push(item);
                     }
                 }
-                if (axbox1.length <= 4) {
+                if (axbox1.length <= 5) {
                     if (item.consoles.indexOf('xbox1') > -1) {
                         axbox1.push(item);
                     }
                 }
-                if (aps3.length <= 4) {
+                if (aps3.length <= 5) {
                     if (item.consoles.indexOf('ps3') > -1) {
                         aps3.push(item);
                     }
                 }
-                if (aps4.length <= 4) {
+                if (aps4.length <= 5) {
                     if (item.consoles.indexOf('ps4') > -1) {
                         aps4.push(item);
                     }
                 }
-                if (apc.length <= 4) {
+                if (apc.length <= 5) {
                     if (item.consoles.indexOf('pc') > -1) {
                         apc.push(item);
                     }
                 }
-                if (amobile.length <= 4) {
+                if (amobile.length <= 5) {
                     if (item.consoles.indexOf('mobile_app') > -1) {
                         amobile.push(item);
                     }
@@ -430,7 +430,7 @@ var renderFeaturedGames = function (string, trigger) {
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
-                if (spec_game.length <= 4) { spec_game.push(item); }
+                if (spec_game.length <= 5) { spec_game.push(item); }
                 var found_games = spec_game.filter(function (game) {
                     return game.id === item.id;
                 });
