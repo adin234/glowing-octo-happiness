@@ -729,7 +729,7 @@ ga('create', 'UA-46773919-11', 'auto');
 ga('send', 'pageview');
 
 
-$.getScript("/assets/js/socketio.js", function(){
+$.getScript("/assets/js/libs/socketio.js", function(){
     var socket = io.connect(socket_server);
     socket.on('message', function(e) {
         var count = e.streamers.youtube.length
