@@ -291,22 +291,63 @@ var shuffleTriggerFunction = function (trigger) {
 }
 
 var renderFeaturedGames = function (string, trigger) {
-    document.getElementById('featuredGames').innerHTML = '';
+    
     if (string === 'all') {
+        document.getElementById('featuredGames').innerHTML = '';
         $.ajax({
             url: server + "gamesdata?console=all"
         }).done(function(res) {
-
             // featured
             if (trigger === 1) {
-                shuffledGames = shuffle(res.featured_games);
+                shuffledGames = shuffle(res.games);
             } else {
-                shuffledGames = res.featured_games;
+                shuffledGames = res.games;
             }
+
+            var axbox360 = [],
+                axbox1 = [],
+                aps3 = [],
+                aps4 = [],
+                apc = [],
+                amobile = [];
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
-                var found_games = shuffledGames.filter(function (game) {
+                if (axbox360.length <= 4) {
+                    if (item.consoles.indexOf('xbox360') > -1) {
+                        axbox360.push(item);
+                    }
+                }
+                if (axbox1.length <= 4) {
+                    if (item.consoles.indexOf('xbox1') > -1) {
+                        axbox1.push(item);
+                    }
+                }
+                if (aps3.length <= 4) {
+                    if (item.consoles.indexOf('ps3') > -1) {
+                        aps3.push(item);
+                    }
+                }
+                if (aps4.length <= 4) {
+                    if (item.consoles.indexOf('ps4') > -1) {
+                        aps4.push(item);
+                    }
+                }
+                if (apc.length <= 4) {
+                    if (item.consoles.indexOf('pc') > -1) {
+                        apc.push(item);
+                    }
+                }
+                if (amobile.length <= 4) {
+                    if (item.consoles.indexOf('mobile_app') > -1) {
+                        amobile.push(item);
+                    }
+                }
+            });
+            var sarray = axbox360.concat(axbox1, aps3, aps4, apc, amobile);
+
+            sarray.forEach(function (item, i) {
+                var found_games = sarray.filter(function (game) {
                     return game.id === item.id;
                 });
                 if (found_games.length === 1) {
@@ -314,7 +355,7 @@ var renderFeaturedGames = function (string, trigger) {
                     item.game = found_games[0].name;
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
-                    if (group.length == 5) {
+                    if (group.length == 12) {
                         html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                         group = [];
                     }
@@ -338,21 +379,18 @@ var renderFeaturedGames = function (string, trigger) {
             });
 
 
-
+            document.getElementById('latestGames').innerHTML = '';
             // latest
             html2 = [];
             group2 = [];
 
-            if (trigger === 1) {
-                shuffledLatest = shuffle(shuffledGames);
-            } else {
-                shuffledLatest = shuffledGames;
-            }
+            shuffledLatest = shuffle(sarray);
+
             shuffledLatest.forEach(function (item, i) {
                 item.imgsrc = item.image;
                 item.game = item.name;
                 group2.push(template($('#gameTpl').html(), item));
-                if (group2.length == 5) {
+                if (group2.length == 12) {
                     html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                     group2 = [];
                 }
@@ -373,6 +411,7 @@ var renderFeaturedGames = function (string, trigger) {
         });
 
     } else {
+        document.getElementById('featuredGames').innerHTML = '';
         $.ajax({
             url: server + "gamesdata?console="+string
         }).done(function(res) {
@@ -383,10 +422,16 @@ var renderFeaturedGames = function (string, trigger) {
             } else {
                 shuffledGames = res.games;
             }
+
+            // console.log('4444444444444', shuffledGames);
+
+
+            var spec_game = [];
             html = [];
             group = [];
             shuffledGames.forEach(function (item, i) {
-                var found_games = shuffledGames.filter(function (game) {
+                if (spec_game.length <= 4) { spec_game.push(item); }
+                var found_games = spec_game.filter(function (game) {
                     return game.id === item.id;
                 });
                 if (found_games.length === 1) {
@@ -418,14 +463,13 @@ var renderFeaturedGames = function (string, trigger) {
             });
 
 
+            document.getElementById('latestGames').innerHTML = '';
             // latest
             html2 = [];
             group2 = [];
-            if (trigger === 1) {
-                shuffledLatest = shuffle(shuffledGames);
-            } else {
-                shuffledLatest = shuffledGames;
-            }
+
+            shuffledLatest = shuffle(spec_game);
+
             shuffledLatest.forEach(function (item, i) {
                 item.imgsrc = item.image;
                 item.game = item.name;
