@@ -85,7 +85,6 @@ $(function() {
             if(e && e.stream && e.stream.viewers) {
                 viewers = e.stream.viewers;
                 $('#twitchStream .views').html(e.stream.viewers+' Views');
-                utilLoader.hide();
             }
         });
     }

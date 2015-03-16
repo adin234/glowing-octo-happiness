@@ -314,10 +314,6 @@ var showVideo = function (videoId) {
             encodeURIComponent(video.snippet.title));
         updatePrevNext();
 
-        if (!$('#youtuberPage').length) {
-            utilLoader.hide();
-        }
-
         filterAction(hash.shift());
     }
 };
