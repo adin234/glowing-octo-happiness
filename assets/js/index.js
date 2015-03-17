@@ -4,6 +4,8 @@ var streamersList = [];
 /* RDC - 2015.01.15 : Placeholder for all active streamers */
 var onlineStreamers = [];
 
+console.log('wwwxxx', index_data);
+
 var randomFeaturedVids = [];
 var randomLatestVids = [];
 var randomMostViewedVids = [];
@@ -293,7 +295,7 @@ var shuffleTriggerFunction = function (trigger) {
 var renderFeaturedGames = function (string, trigger) {
     
     if (string === 'all') {
-        document.getElementById('featuredGames').innerHTML = '';
+
         $.ajax({
             url: server + "gamesdata?console=all"
         }).done(function(res) {
@@ -378,8 +380,6 @@ var renderFeaturedGames = function (string, trigger) {
                 position: 'top'
             });
 
-
-            document.getElementById('latestGames').innerHTML = '';
             // latest
             html2 = [];
             group2 = [];
@@ -411,7 +411,7 @@ var renderFeaturedGames = function (string, trigger) {
         });
 
     } else {
-        document.getElementById('featuredGames').innerHTML = '';
+
         $.ajax({
             url: server + "gamesdata?console="+string
         }).done(function(res) {
@@ -422,9 +422,6 @@ var renderFeaturedGames = function (string, trigger) {
             } else {
                 shuffledGames = res.games;
             }
-
-            // console.log('4444444444444', shuffledGames);
-
 
             var spec_game = [];
             html = [];
@@ -439,7 +436,7 @@ var renderFeaturedGames = function (string, trigger) {
                     item.game = found_games[0].name;
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
-                    if (group.length == 5) {
+                    if (group.length == 6) {
                         html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                         group = [];
                     }
@@ -462,8 +459,6 @@ var renderFeaturedGames = function (string, trigger) {
                 position: 'top'
             });
 
-
-            document.getElementById('latestGames').innerHTML = '';
             // latest
             html2 = [];
             group2 = [];
@@ -474,7 +469,7 @@ var renderFeaturedGames = function (string, trigger) {
                 item.imgsrc = item.image;
                 item.game = item.name;
                 group2.push(template($('#gameTpl').html(), item));
-                if (group2.length == 5) {
+                if (group2.length == 6) {
                     html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                     group2 = [];
                 }
