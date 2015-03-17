@@ -1,23 +1,14 @@
+/*global $, server, origin, community, attachments_server, socket_server, template, utilHash, io*/
 'use strict';
 
 var index_data,
     slider_loaded = 0,
-    streamersList = [],
-    onlineStreamers = [],
-    randomFeaturedVids = [],
-    randomLatestVids = [],
-    randomMostViewedVids = [],
-    currentStreamCount = 0,
-    UniqueStreamers = [],
-    gamesPerConsole,
+    online_streamers = [],
+    random_featured_vids = [],
     hash = '',
     slider = {},
-    YTStreamers = [],
-    TWStreamers = [],
-    HBStreamers = [],
-    onlineStreamers = [],
-    shuffledGames = [],
-    shuffledLatest = [],
+    shuffled_games = [],
+    shuffled_latest = [],
 
     load_more = function (selector, page, per_page) {
         $(selector).slice(0, page * per_page).show();
@@ -43,14 +34,14 @@ var index_data,
         }
     },
 
-    index_show_streamers = function (streamersList) {
+    index_show_streamers = function (streamers_list) {
         var html = [];
-        if (streamersList.length > 0) {
+        if (streamers_list.length > 0) {
             if ($('#noonline').length > 0) {
                 $('#noonline').remove();
             }
 
-            streamersList.forEach(function (item) {
+            streamers_list.forEach(function (item) {
                 if (typeof item.twitch != 'undefined') {
                     item.twitchid = item.field_value[
                         item.field_value.length - 1
@@ -122,7 +113,7 @@ var index_data,
         load_more('#streamers > li', 1, 5);
     },
 
-    add_filter_category = function (string, context) {
+    add_filter_category = function (string) {
         utilHash.changeHashVal('console', string);
         renderFeaturedGames(string);
     },
@@ -158,15 +149,15 @@ var index_data,
             }).done(function(res) {
 
                 if (trigger === 1) {
-                    shuffledGames = shuffle(res.featured_games);
+                    shuffled_games = shuffle(res.featured_games);
                 } else {
-                    shuffledGames = res.featured_games;
+                    shuffled_games = res.featured_games;
                 }
 
                 var html = [],
                     group = [];
-                shuffledGames.forEach(function (item, i) {
-                    var found_games = shuffledGames.filter(function (game) {
+                shuffled_games.forEach(function (item) {
+                    var found_games = shuffled_games.filter(function (game) {
                         return game.id === item.id;
                     });
                     if (found_games.length === 1) {
@@ -204,12 +195,12 @@ var index_data,
                     group2 = [];
 
                 if (trigger === 1) {
-                    shuffledLatest = shuffle(shuffledGames);
+                    shuffled_latest = shuffle(shuffled_games);
                 } else {
-                    shuffledLatest = shuffledGames;
+                    shuffled_latest = shuffled_games;
                 }
 
-                shuffledLatest.forEach(function (item, i) {
+                shuffled_latest.forEach(function (item) {
                     item.imgsrc = item.image;
                     item.game = item.name;
                     group2.push(
@@ -250,14 +241,14 @@ var index_data,
             }).done(function(res) {
 
                 if (trigger === 1) {
-                    shuffledGames = shuffle(res.games);
+                    shuffled_games = shuffle(res.games);
                 } else {
-                    shuffledGames = res.games;
+                    shuffled_games = res.games;
                 }
                 var html = [],
                     group = [];
-                shuffledGames.forEach(function (item, i) {
-                    var found_games = shuffledGames.filter(function (game) {
+                shuffled_games.forEach(function (item) {
+                    var found_games = shuffled_games.filter(function (game) {
                         return game.id === item.id;
                     });
                     if (found_games.length === 1) {
@@ -300,13 +291,13 @@ var index_data,
                     group2 = [];
 
                 if (trigger === 1) {
-                    shuffledLatest = shuffle(shuffledGames);
+                    shuffled_latest = shuffle(shuffled_games);
                 }
                 else {
-                    shuffledLatest = shuffledGames;
+                    shuffled_latest = shuffled_games;
                 }
 
-                shuffledLatest.forEach(function (item, i) {
+                shuffled_latest.forEach(function (item) {
                     item.imgsrc = item.image;
                     item.game = item.name;
                     group2.push(template($('#gameTpl').html(), item));
@@ -374,7 +365,7 @@ var index_data,
         var group = [];
 
         if (!slider_loaded) {
-            index_data.slider.forEach(function (item, i) {
+            index_data.slider.forEach(function (item) {
                 item.onclick = 
                     item.header_location ?
                         'window.location=\'' +
@@ -400,8 +391,8 @@ var index_data,
         }
 
         html = [];
-        randomFeaturedVids = shuffle(index_data.featured_videos);
-        randomFeaturedVids.forEach(function (item, i) {
+        random_featured_vids = shuffle(index_data.featured_videos);
+        random_featured_vids.forEach(function (item) {
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
             item.title = item.snippet.title;
@@ -435,7 +426,7 @@ var index_data,
         group = [];
         var flag = {};
 
-        index_data.latest_videos.forEach(function (item, i) {
+        index_data.latest_videos.forEach(function (item) {
             var date = item.snippet.publishedAt.substr(0, 10);
             if (!flag[date]) {
                 flag[date] = [];
@@ -480,7 +471,7 @@ var index_data,
         group = [];
         var ids = {};
 
-        index_data.most_viewed.forEach(function (item, i) {
+        index_data.most_viewed.forEach(function (item) {
             ids[item.user_id] = 
                 typeof ids[item.user_id] === 'undefined' ?
                     1 :
@@ -554,7 +545,7 @@ var index_data,
         html = [];
         if (index_data.feature_list.feature_list_active === '1') {
             $('.viewer > h2').html(index_data.feature_list.feature_list_header);
-            index_data.feature_list.feature_list_items.forEach(function (item, i) {
+            index_data.feature_list.feature_list_items.forEach(function (item) {
                 html.push(template($('#featureTpl').html(), item));
             });
             if (!html.length) {
@@ -564,7 +555,7 @@ var index_data,
             $('#featuredUsers').html(html.join(''));
         }
         else {
-            index_data.featured_users.forEach(function (item, i) {
+            index_data.featured_users.forEach(function (item) {
                 item.provider = attachments_server;
                 html.push(template($('#featuredUsersTpl').html(), item));
             });
@@ -575,7 +566,7 @@ var index_data,
         }
 
         html = [];
-        index_data.recent_threads.forEach(function (item, i) {
+        index_data.recent_threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server +
                     'avatar.php?userid=' +
@@ -598,7 +589,7 @@ var index_data,
 
         // hot forum
         html = [];
-        index_data.threads.forEach(function (item, i) {
+        index_data.threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server + 'avatar.php?userid=' + item.last_post_user_id + '.jpg',
                 title: item.title,
@@ -660,7 +651,7 @@ var index_data,
                 },
                 success: function (result) {
                     ctr = 1;
-                    result.items.forEach(function (item, i) {
+                    result.items.forEach(function (item) {
                         var newsShows, newsShowsTpl;
                         if (item.status.privacyStatus === 'public') {
                             if (ctr > max_items) return;
@@ -706,7 +697,7 @@ var index_data,
                 },
                 success: function (result) {
                     ctr = 1;
-                    result.items.forEach(function (item, i) {
+                    result.items.forEach(function (item) {
                         if (item.status.privacyStatus === 'public') {
                             if (ctr > max_items) return;
                             if (typeof item.snippet.thumbnails !== 'undefined') {
@@ -753,61 +744,22 @@ var index_data,
     checker_index = function () {
         var socket = io.connect(socket_server);
         socket.on('message', function (e) {
-            onlineStreamers = [];
-            onlineStreamers = onlineStreamers.concat(
+            online_streamers = [];
+            online_streamers = online_streamers.concat(
                 e.streamers.youtube.concat(
                     e.streamers.twitch.concat(
                         e.streamers.hitbox
                     )
                 )
             );
-            index_show_streamers(onlineStreamers);
+            index_show_streamers(online_streamers);
         });
     },
 
     shuffle = function (o) {
         for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
         return o;
-    },
-
-    displayGamesPerConsole = function (gl) {
-        $('#featuredGames').empty();
-        html = [];
-        group = [];
-        gl.forEach(function (item, i) {
-
-            if (item.game.length > 15) {
-                item.gamename = item.gamename.replace('_', ' ').substring(0, 12) + '...';
-            }
-
-            if (item.imgsrc.indexOf('game-logos') === -1) {
-                item.gamename = '';
-            }
-
-            group.push(template($('#gameConsoleTpl').html(), item));
-            if (group.length == 12) {
-                html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
-                group = [];
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
-        }
-
-        if (!html.length) {
-            html.push('目前沒有遊戲');
-        }
-        $('#featuredGames').html(html.join(''));
-
-        slider.featured_games.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
     };
-
 
 
 slider.most_viewed = $('#mostViewed').bxSlider({
@@ -851,7 +803,7 @@ $(document).ready(function () {
         update_index(index_data);
     });
 
-    $(document).on('click', '.slider-item .play', function (e) {
+    $(document).on('click', '.slider-item .play', function () {
         var vid = $(this).attr('data-vid');
         if (vid.trim().length) {
             vid = vid.split('?')[1].split('=');
@@ -870,11 +822,9 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.bx-wrapper .close', function (e) {
+    $(document).on('click', '.bx-wrapper .close', function () {
         $('#container .bx-wrapper .video-player').remove();
     });
-
-    showSocialButtons();
 
     $(window).scroll(function () {
         if ($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
@@ -898,14 +848,14 @@ $(document).ready(function () {
     });
 
     $('html').on('click', '.load-more', function () {
-        e = $(this);
+        var e = $(this);
         var selector = e.attr('data-selector');
         var page = e.attr('data-page');
         var per_page = e.attr('data-per-page');
         load_more(selector, page, per_page);
     });
 
-    $(window).on('hashchange', function (e) {
+    $(window).on('hashchange', function () {
         hash = window.location.hash.replace('#!/', '');
         hash = hash.split('/');
         filterAction(hash.shift());
