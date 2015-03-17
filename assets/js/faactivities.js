@@ -1,17 +1,6 @@
 'use strict';
-var all_events = [],
-    get_user_info = function () {
-        var userinfo = $.parseJSON(utilCookie.get('user')),
-            user_id = userinfo.user_id;
 
-        if (user_id === 18) {
-            addEventForm();
-            get_data();
-        }
-        else {
-            get_data();
-        }
-    },
+var all_events = [],
 
     addEventForm = function () {
         var html = [];
@@ -48,6 +37,19 @@ var all_events = [],
             'SHOW EVENTS</button>'
         );
         $('.add_events_form').html(html.join(''));
+    },
+
+    get_user_info = function () {
+        var userinfo = $.parseJSON(utilCookie.get('user')),
+            user_id = userinfo.user_id;
+
+        if (user_id === 18) {
+            addEventForm();
+            get_data();
+        }
+        else {
+            get_data();
+        }
     },
 
     add_event = function () {

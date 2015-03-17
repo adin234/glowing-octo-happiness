@@ -10,6 +10,7 @@ var slider = {},
     first = true,
     multiview_items = [],
     hash,
+
     render_featured_games = function (filter) {
         var html = [],
             items = [];

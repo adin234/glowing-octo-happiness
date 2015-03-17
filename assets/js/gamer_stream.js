@@ -1,4 +1,5 @@
 'use strict';
+
 var checkIfOnline = function (userId) {
     var found = false;
     $.getJSON(server + 'streamers/youtube/?user=' + userId, function(e) {
@@ -127,9 +128,9 @@ $(function() {
         });
     };
 
-    page_data =JSON.parse(page_data);
+    page_data = JSON.parse(page_data);
 
-    $(".bxslider").bxSlider({
+    $('.bxslider').bxSlider({
         infiniteLoop: false,
         hideControlOnEnd: true,
         minSlides: 4,
@@ -137,10 +138,10 @@ $(function() {
         slideWidth: 298,
     });
 
-    $(".tabs").tabslet({
+    $('.tabs').tabslet({
         animation: true,
     }).on('_after', function(e) {
-        if(e.target.id == 'tab-2' && streamType !== 'YT') {
+        if(e.target.id === 'tab-2' && streamType !== 'YT') {
             information_masonry();
         }
     });
@@ -153,7 +154,7 @@ $(function() {
 
     var resize_video_stream = function () {
         var size = $('#view-resize').val();
-        if(size == 'x3') {
+        if(size === 'x3') {
             $('embed').height($('#streamView').height());
             $('object').height($('#streamView').height());
         } else {
@@ -178,7 +179,7 @@ $(function() {
     streamType = twitch.substr(0,2);
     streamId = twitch.substr(2);
 
-    if(streamType == 'TW') {
+    if(streamType === 'TW') {
         getViewersCount(server + 'get_views/' + twitch);
 
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
@@ -195,7 +196,7 @@ $(function() {
         );
     }
 
-    if(streamType == 'HB') {
+    if(streamType === 'HB') {
         getViewersCount(server + 'get_hitbox_views/' + streamId);
         $('#twitchStream').replaceWith(template($('#hitbox-stream-tpl')
             .html(),{twitchid: streamId, number: viewers}));
@@ -220,7 +221,7 @@ $(function() {
         });
     }
 
-    if(streamType == 'YT') {
+    if(streamType === 'YT') {
         getViewersCount(server + 'get_views/' + twitch);
         var found = false,
             userId = params.user.replace('/', '');

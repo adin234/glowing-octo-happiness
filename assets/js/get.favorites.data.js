@@ -1,8 +1,10 @@
+'use strict';
+
 var page_data;
 
 $.ajax({
     dataType:'jsonp',
-    url:server+'favorites',
+    url: server + 'favorites',
     crossDomain: true,
     type: 'get',
     async: false

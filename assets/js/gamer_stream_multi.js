@@ -1,4 +1,5 @@
 'use strict';
+
 var streamers_list = {},
     active_streams = [];
 
@@ -14,17 +15,9 @@ var stream_slider = $('.bxslider').bxSlider({
         slideWidth: 329.5,
     }),
 
-    get_streamers = function () {
-        var socket_streamers = io.connect(socket_server);
-        socket_streamers.on('message', function (e) {
-            streamers_list = e.streamers;
-            render_streamers();
-        });
-    },
-
     format_stream_item = function (item) {
         item.class = '';
-        if (typeof item.twitch != 'undefined') {
+        if (typeof item.twitch !== 'undefined') {
             item.twitchid = item.field_value[0];
             // dont render if already active
             item.id = 'TW' + item.twitchid;
@@ -93,11 +86,19 @@ var stream_slider = $('.bxslider').bxSlider({
         stream_slider.reloadSlider();
     },
 
+    get_streamers = function () {
+        var socket_streamers = io.connect(socket_server);
+        socket_streamers.on('message', function (e) {
+            streamers_list = e.streamers;
+            render_streamers();
+        });
+    },
+
     render_stream_video = function (item) {
         active_streams.push(item);
         var streamType = item.substr(0, 2);
         var streamId = item.substr(2);
-        if (streamType == 'TW') {
+        if (streamType === 'TW') {
             $('#twitchStreamContainer').append(
                 template(
                     $('#twitch-stream-tpl').html(), {
@@ -124,7 +125,7 @@ var stream_slider = $('.bxslider').bxSlider({
             });
         }
 
-        if (streamType == 'HB') {
+        if (streamType === 'HB') {
             $('#twitchStreamContainer').append(
                 template(
                     $('#hitbox-stream-tpl').html(), {
@@ -151,7 +152,7 @@ var stream_slider = $('.bxslider').bxSlider({
             });
         }
 
-        if (streamType == 'YT') {
+        if (streamType === 'YT') {
             $('#twitchStreamContainer').append(
                 template(
                     $('#youtube-stream-tpl').html(), {

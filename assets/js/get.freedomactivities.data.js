@@ -1,7 +1,10 @@
-var xhReq = new XMLHttpRequest();
+'use strict';
+
+var page_data,
+    xhReq = new XMLHttpRequest();
 
 console.log(server);
 
-xhReq.open("GET", server+"freedom_events", false); //freedom_activities
+xhReq.open('GET', server + 'freedom_events', false);
 xhReq.send(null);
-var page_data = xhReq.responseText;
+page_data = xhReq.responseText;

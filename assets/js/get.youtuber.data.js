@@ -1,25 +1,32 @@
-var loader = {};
+'use strict';
 
-function getSearchParameters() {
-      var prmstr = window.location.search.substr(1);
-      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
-}
+var params,
+    page_data,
+    xhReq,
+    user,
+    loader = {},
 
-function transformToAssocArray( prmstr ) {
-    var params = {};
-    var prmarr = prmstr.split("&");
+transformToAssocArray = function (prmstr) {
+    var params = {},
+        prmarr = prmstr.split('&');
     for ( var i = 0; i < prmarr.length; i++) {
-        var tmparr = prmarr[i].split("=");
+        var tmparr = prmarr[i].split('=');
         params[tmparr[0]] = tmparr[1];
     }
     return params;
-}
+},
+
+getSearchParameters = function () {
+    var prmstr = window.location.search.substr(1);
+    return prmstr !== null && prmstr !== '' ? transformToAssocArray(prmstr) : {};
+};
+
 
 params = getSearchParameters();
 
-var xhReq = new XMLHttpRequest();
-var user = params.user.replace('/', '');
+xhReq = new XMLHttpRequest();
+user = params.user.replace('/', '');
 
-xhReq.open("GET", server+"user/personal/"+user, false);
+xhReq.open('GET', server + 'user/personal/'+user, false);
 xhReq.send(null);
-var page_data = xhReq.responseText;
+page_data = xhReq.responseText;

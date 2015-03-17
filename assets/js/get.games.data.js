@@ -1,4 +1,7 @@
-var xhReq = new XMLHttpRequest();
-xhReq.open("GET", server+"gamesdata?limit=32", false);
+'use strict';
+
+var page_data,
+    xhReq = new XMLHttpRequest();
+xhReq.open('GET', server + 'gamesdata?limit=32', false);
 xhReq.send(null);
-var page_data = xhReq.responseText;
+page_data = xhReq.responseText;
