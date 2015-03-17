@@ -34,7 +34,8 @@ var get_date_diff = function (sched, time) {
 
 };
 
-var show_events = function (all_events) {
+
+var sched_template = function (all_events) {
 
     var html = [];
 
@@ -56,25 +57,54 @@ var show_events = function (all_events) {
             '</div>');
         html.push('</div>');
         html.push('</div>');
-
-        if (get_date_diff(item.end_date, item.end_time) === 'Ongoing') {
-            $("#eventStatus")
-                .css({
-                    "background": "#FFE10E",
-                    "color": "#000000"
-                });
-        }
-        else {
-            $("#eventStatus")
-                .css({
-                    "background": "red",
-                    'color': '#FFFFFF'
-                });
-        }
-
-
     });
-    $('#all_schedule').html(html.join(''));
+
+    return html;
+
+}
+
+var add_event = function () {
+
+    $.ajax({
+
+        url: server + 'freedom_events/add',
+        type: 'post',
+        data: {
+            'event_title': $('#event_name').val(),
+            'start_date': $('#event_start_date').val(),
+            'end_date': $('#event_end_date').val(),
+            'start_time': $('#event_start_time').val(),
+            'end_time': $('#event_end_time').val(),
+            'e_description': $('#event_desc').val()
+        }
+
+    }).success(function (data) {
+        console.log(data);
+        console.log('success');
+    }).fail(function (data) {
+        console.log(data);
+        console.log('Fail');
+    });
+
+};
+
+var show_events = function (all_events) {
+    all_events.forEach(function (item) {
+        if ((get_date_diff(item.end_date, item.end_time) === 'Ongoing') || (get_date_diff(item.end_date,
+                item.end_time) === 'Ended')) {
+            var html_content_sched = sched_template(all_events);
+            $('#all_schedule').html(html_content_sched.join(''));
+            console.log('schedule added');
+        }
+    });
+
+    all_events.forEach(function (item) {
+        if (get_date_diff(item.end_date, item.end_time) === 'Ended') {
+            var html_content_archive = sched_template(all_events);
+            $('#archive_schedule').html(html_content_archive.join(''));
+            console.log('archive added');
+        }
+    });
 
 
 };
@@ -87,6 +117,7 @@ var checkAdminUser = function () {
         return true;
     }
     else {
+        console.log('not admin');
         return false;
     }
 };
@@ -169,10 +200,8 @@ var add_events = function (all_events) {
     if (checkAdminUser() === true) {
         add_event_form();
     }
-    else {
+    else if (checkAdminUser() === false) {
         show_all_events(all_events);
     }
-
-
 };
 
