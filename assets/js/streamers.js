@@ -158,14 +158,16 @@ var slider = {},
             source = lanparty && typeof lanparty !== 'undefined' ?
                 page_data.lanparty :
                 page_data.streamers,
-            activeSlider = !lanparty ? slider.container_videos : slider.container_lanparty,
+            activeSlider = !lanparty ?
+                slider.container_videos :
+                slider.container_lanparty,
             currentSlide = activeSlider.getCurrentSlide();
         source.forEach(function (item, i) {
             if (typeof item.twitch !== 'undefined') {
                 if (typeof filter !== 'undefined' &&
                     item.twitch.channel.status &&
-                    !~item.twitch.channel.status.search(
-                        filterRegExp) && !~item.username.search(filterRegExp)) {
+                    !~item.twitch.channel.status.search(filterRegExp) &&
+                    !~item.username.search(filterRegExp)) {
                     return;
                 }
 
@@ -502,15 +504,13 @@ var slider = {},
         }
 
         if (onlineStreamers.length > 0) {
-            //if (onlineStreamers.length > streamCount || onlineStreamers.length < streamCount) {
             $('a[href$="/streamers"] > sup').text(onlineStreamers.length);
             page_data.streamers = onlineStreamers;
-            // $('#container-videos > ul > li').empty().fadeOut('slow');
             render_videos();
-            //}
         }
         else {
-            if (onlineStreamers.length === 0 && $('a[href$="/streamers"] > sup').text() === '') {
+            if (onlineStreamers.length === 0 &&
+                $('a[href$="/streamers"] > sup').text() === '') {
                 $('a[href$="/streamers"] > sup').text('');
                 $('#container-videos > ul').remove().fadeOut();
             }
