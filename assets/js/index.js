@@ -3,9 +3,6 @@ var slider_loaded = 0;
 var streamersList = [];
 /* RDC - 2015.01.15 : Placeholder for all active streamers */
 var onlineStreamers = [];
-
-console.log('wwwxxx', index_data);
-
 var randomFeaturedVids = [];
 var randomLatestVids = [];
 var randomMostViewedVids = [];
