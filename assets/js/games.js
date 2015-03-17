@@ -113,7 +113,7 @@ var get_hash = function() {
     },
 
     add_filter_category = function(string, context) {
-        window.location.hash = '!/console/'+string+'/game/all';
+        window.location.hash = '!/console/' + string + '/game/all';
         $('#game-title').html('遊戲分類');
     },
 
@@ -153,7 +153,7 @@ var get_hash = function() {
             item.bust = 1;
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+            item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
 
             items.push(template(tplVideo, item));
             ids.push(item.youtube_id);
@@ -170,7 +170,7 @@ var get_hash = function() {
         if(!html.length) { html.push('目前沒有影片'); }
 
         $('#container-videos').html(html.join(''));
-        $(".video .bx-next.disabled, .video .bx-prev.disabled").each(function(i, item) {
+        $('.video .bx-next.disabled, .video .bx-prev.disabled').each(function(i, item) {
                 $(this).removeClass('disabled');
             });
         var currentSlide = slider.container_videos.getCurrentSlide();
@@ -196,7 +196,11 @@ var get_hash = function() {
         }
 
         currentPage = nextPage;
-        $.getJSON(server+'games/'+game+'/videos?limit=32&console='+con+'&page='+nextPage+'&search='+filter, function(result) {
+        $.getJSON(server + 'games/' + game +
+            '/videos?limit=32&console=' + con +
+            '&page=' + nextPage +
+            '&search=' + filter,
+            function(result) {
             page_data.videos.concat(result);
             result.forEach(function (item, i) {
                 item.anytv_comments = item.anytv_comment || 0;
@@ -206,7 +210,8 @@ var get_hash = function() {
                 item.bust = 1;
                 item.comments = item.snippet.meta.statistics.commentCount;
                 item.views = item.snippet.meta.statistics.viewCount;
-                item.link = '/youtuber/?user='+item.user_id+'#!/video/'+item.snippet.resourceId.videoId;
+                item.link = '/youtuber/?user=' + item.user_id +
+                    '#!/video/' + item.snippet.resourceId.videoId;
 
                 items.push(template(tplVideo, item));
 
@@ -287,11 +292,11 @@ var get_hash = function() {
             parameters.game = filterGame;
         }
 
-        $.getJSON(server+'gamesdata?'+$.param(parameters), function(results) {
+        $.getJSON(server + 'gamesdata?' + $.param(parameters), function(results) {
             page_data = results;
             render_page();
         }).done(function() {
-            var context = $('.species a[data-console='+cons+']');
+            var context = $('.species a[data-console=' + cons + ']');
             context.parent().siblings().removeClass('current');
             context.parent().addClass('current');
         });
