@@ -1,5 +1,5 @@
+'use strict';
 utilLogin.show();
-
 $(window)
     .on('login-success', function (e) {
         $.ajax({
@@ -13,8 +13,6 @@ $(window)
                     return alert('no earnings found');
                 }
 
-                console.log(earnings[0])
-
                 $("#earnings")
                     .html('$' + earnings[1]);
                 $("#clicks")
@@ -26,4 +24,3 @@ $(window)
                 alert('no earnings found');
             });
     });
-

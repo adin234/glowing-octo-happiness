@@ -1,3 +1,5 @@
+var searchId = false,
+    searchBox = '';
 var template = function (templateHTML, data) {
     for (var x in data) {
         var torep = new RegExp('{{' + x + '}}', 'gi');
@@ -7,7 +9,6 @@ var template = function (templateHTML, data) {
                     data[x] == null ? '' : data[x]);
         }
     }
-
     return templateHTML;
 };
 
@@ -128,13 +129,6 @@ var utilLogin = {
     }
 };
 
-var getTwitch = function (data) {
-    return data.split(',')
-        .map(function (item) {
-            return item.trim();
-        })[0];
-}
-
 var utilCookie = {
     set: function (cname, cvalue, exdays) {
         var d = new Date();
@@ -226,51 +220,23 @@ var utilHash = {
     },
     'removeHash': function (string, apply) {
         apply = typeof apply == 'undefined' ? true : false;
-
-        var hash = window.location.hash;
-
-        var hash_string = hash.replace('/' + string, '');
+        var hash = window.location.hash,
+            hash_string = hash.replace('/' + string, '');
         if (apply) {
             window.location.hash = hash_string;
         }
-
         return hash_string;
     },
     'buildHash': function (hashArr) {
         hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
-
         return '#!/' + hashArr.join('/');
     }
 };
-
-var updateTwitch = function () {
-    var streamerCount = $('#number-of-streamers');
-    if (streamerCount) {
-        $.getJSON(server + 'streamers', function (result) {
-            streamerCount.html(result.streamers.length);
-            if (typeof page_data.streamers != 'undefined') {
-                var ids = [];
-                var streamers = page_data.streamers;
-                streamers.forEach(function (item) {
-                    ids.push(item.user_id);
-                });
-
-                result.streamers.forEach(function (item) {
-                    if (!~ids.indexOf(item.user_id)) {
-                        page_data.streamers.push(item);
-                    }
-                });
-            }
-        });
-    }
-};
-
 var utilArray = {
     intersect: function (a, b) {
         var ai = 0,
-            bi = 0;
-        var result = new Array();
-
+            bi = 0,
+            result = new Array();
         while (ai < a.length && bi < b.length) {
             if (a[ai] < b[bi]) {
                 ai++;
@@ -278,13 +244,12 @@ var utilArray = {
             else if (a[ai] > b[bi]) {
                 bi++;
             }
-            else /* they're equal */ {
+            else {
                 result.push(a[ai]);
                 ai++;
                 bi++;
             }
         }
-
         return result;
     }
 };
@@ -295,32 +260,21 @@ var fixErrorImg = function (item) {
     return true;
 };
 
-// $('body').on('error', 'img.safeloading', function(e) {
-//     $(this).attr(
-//         'src',
-//         'http://community.gamers.tm/zh/styles/default/xenforo/'
-//             +'avatars/avatar_male_l.png'
-//         )
-// });
-var searchId = false;
-var searchBox = '';
-
-function redirect_to_youtuber(id) {
+var redirect_to_youtuber = function (id) {
     window.location.href = origin + 'youtuber/?user=' + id
 }
 
-function redirect_to_gamer(id) {
+var redirect_to_gamer = function (id) {
     window.location.href = origin + 'game/?game=' + id;
 }
 
-function redirect_to_youtubers(id) {
+var redirect_to_youtubers = function (id) {
     window.location.href = origin + 'youtubers/?user' + id;
 }
 
-function searchBoxInit() {
+var searchBoxInit = function () {
     options = {
         serviceUrl: server + 'youtubers/search',
-        // minChars: 3,
         zIndex: 9999,
         onSelect: function (value) {
             switch (value.typeid) {
@@ -331,7 +285,6 @@ function searchBoxInit() {
                 redirect_to_youtuber(value.data.user_id);
                 break;
             }
-
         }
     };
     var searchDom = $('#query');
@@ -353,24 +306,23 @@ function searchBoxInit() {
 }
 var gamesAutocompleteArray = [];
 
-function searchGamesBoxInit() {
-    if (!gamesAutocompleteArray.length) return;
-
+var searchGamesBoxInit = function () {
+    if (!gamesAutocompleteArray.length) {
+        return;
+    }
     optionGames = {
         lookup: gamesAutocompleteArray,
         onSelect: function (suggestion) {
             filter_game(this);
         }
     }
-
     $('#txtbox-search-games')
         .autocomplete(optionGames);
 }
 
-function youtuberSearch() {
+var youtuberSearch = function () {
     options = {
         serviceUrl: server + 'youtubers/search',
-        // minChars: 3,
         zIndex: 9999,
         onSelect: function (value) {
             redirect_to_youtuber(value.data.user_id);
@@ -394,10 +346,9 @@ function youtuberSearch() {
     }
 }
 
-function youtuberUserSearch() {
+var youtuberUserSearch = function () {
     options = {
         serviceUrl: server + 'youtubers/search_youtubers',
-        // minChars: 3,
         zIndex: 9999,
         onSelect: function (value) {
             var searchDom = $('#txtbox-search-videos');
@@ -419,8 +370,8 @@ function youtuberUserSearch() {
 }
 
 function streamersSearch() {
-    var streamers = [];
-    var searchDom = $('#txtbox-search-videos');
+    var streamers = [],
+        searchDom = $('#txtbox-search-videos');
 
     if (typeof page_data.streamers != 'undefined' && page_data.streamers.length) {
         for (var i = 0; i < page_data.streamers.length; i++) {
@@ -453,7 +404,6 @@ function streamersSearch() {
         }
     }
     else {
-
         var sdata = {
             sname: 'streamer',
             s_id: -1
@@ -464,13 +414,9 @@ function streamersSearch() {
             data: sdata
         });
     }
-
-    //console.log(streamers);
-
     var options = {
         lookup: streamers,
         onSelect: function (value) {
-            //console.log(value);
             searchDom.val(value.value);
             filter_videos(value.value);
         }
@@ -480,7 +426,6 @@ function streamersSearch() {
         searchBox = searchDom.autocomplete(options);
         searchDom.on('keypress', function (e) {
             if (e.which == 13) {
-                //searchDom.val(value.value);
                 filter_videos(searchDom);
             }
         });
@@ -497,7 +442,7 @@ var streaming = [],
     streamingLan = 0,
     streamTimeout = 60000;
 
-function get_streamers(first) {
+var get_streamers = function (first) {
     streamingLan = 0;
     streamingNew = [];
     $.get(server + 'streamers', function (result) {
@@ -533,7 +478,7 @@ function get_streamers(first) {
         });
 }
 
-function get_youtube_streamers(first) {
+var get_youtube_streamers = function (first) {
     $.get(server + 'streamers/youtube', function (result) {
             result.streamers.forEach(function (item) {
                 //  console.log(item);
@@ -588,7 +533,7 @@ function get_youtube_streamers(first) {
         });
 }
 
-function get_hitbox_streamers(first) {
+var get_hitbox_streamers = function (first) {
     $.get(server + 'streamers/hitbox', function (result) {
             result.streamers.forEach(function (item) {
                 if ((item.user_group_id === 5 || (
@@ -638,7 +583,6 @@ function get_hitbox_streamers(first) {
                 $("a[href='/lanparty_stream_multi']")
                     .html('直播<sup>' + streamingLanCount + '</sup>');
             }
-
 
             streaming = streamingNew;
             get_streamers();
@@ -691,7 +635,6 @@ $(function () {
                 $('li.login')
                     .html(link)
                     .append(links.join(''));
-                // $('li.login').html(link);
             }
             else {
                 utilCookie.set('user', '', 0)
@@ -704,12 +647,6 @@ $(function () {
         $('li.login')
             .css('visibility', 'visible');
     }, 100);
-});
-
-$(function () {
-    // if($('body').hasClass('stream-gritter')) {
-    //get_streamers(true);
-    // }
 });
 
 (function (i, s, o, g, r, a, m) {

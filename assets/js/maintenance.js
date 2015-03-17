@@ -1,8 +1,4 @@
-
-$(function() {
-    $('#gamers-link').css('display','none'); 
-    isUnderMaintenance();
-});
+'use strict';
 
 var isUnderMaintenance = function() {
     $.ajax(server + 'streamers', function(data) {
@@ -37,3 +33,8 @@ var checker = setInterval(function() {
     
 
 }, 5000);
+
+$(function() {
+    $('#gamers-link').css('display','none');
+    isUnderMaintenance();
+});

@@ -1,60 +1,99 @@
-var liveStreamLink = false;
-var filterConsole = 'all';
+'use strict';
 
-var add_filter_category = function (string, context) {
-    utilHash.changeHashVal('console', string);
-}
+var liveStreamLink = false,
+    filterConsole = 'all',
 
-function filter_category(gameConsole) {
-    var videos = [];
-    var context = $('.species a[data-console=' + gameConsole + ']');
+    add_filter_category = function (string, context) {
+        utilHash.changeHashVal('console', string);
+    },
 
-    if (gameConsole == filterConsole) {
-        return;
-    }
+    renderGame = function () {
+        var html = [];
+        page_data.games_cast.forEach(function (item) {
+            item.consoles = item.consoles || [];
+            if (!~item.consoles.indexOf(filterConsole)) {
+                return;
+            }
+            html.push(template(
+                $('#gamesCastTpl').html(), item));
+        });
+        $('#tab-4').mCustomScrollbar({
+            theme: 'inset-2'
+        });
 
-    context.parent().siblings().removeClass('current');
-    context.parent().addClass('current');
+        if (!html.length) {
+            html.push('目前沒有遊戲');
+        }
 
-    filterConsole = gameConsole;
+        $('#tab-4 .mCSB_container ul').html(html.join(''));
+        $('.tooltip').tooltipster({
+            contentAsHTML: true
+        });
+    },
 
-    if (gameConsole != 'vlogs') {
-        renderGame();
-    }
-    else {
-        filter_vlogs();
-    }
+    filter_category = function (gameConsole) {
+        var videos = [],
+            context = $('.species a[data-console=' + gameConsole + ']');
 
-    videos = page_data.videos.filter(function (item) {
-        return ~(item.snippet.meta.tags.indexOf('anytv_console_' + filterConsole));
-    });
+        if (gameConsole === filterConsole) {
+            return;
+        }
 
-    $('#videosToggle').trigger('click');
+        context.parent().siblings().removeClass('current');
+        context.parent().addClass('current');
 
-    update_videos(videos);
-}
+        filterConsole = gameConsole;
 
-function renderGame() {
-    html = [];
-    page_data.games_cast.forEach(function (item) {
-        item.consoles = item.consoles || [];
-        if (!~item.consoles.indexOf(filterConsole)) return;
-        html.push(template($('#gamesCastTpl').html(), item));
-    });
-    $('#tab-4').mCustomScrollbar({
-        theme: 'inset-2'
-    });
+        if (gameConsole !== 'vlogs') {
+            renderGame();
+        }
+        else {
+            filter_vlogs();
+        }
 
-    if (!html.length) {
-        html.push('目前沒有遊戲');
-    }
+        videos = page_data.videos.filter(function (item) {
+            return ~(item.snippet.meta.tags.indexOf('anytv_console_' + filterConsole));
+        });
 
-    $('#tab-4 .mCSB_container ul').html(html.join(''));
-    $('.tooltip').tooltipster({
-        contentAsHTML: true
-    });
+        $('#videosToggle').trigger('click');
 
-}
+        update_videos(videos);
+    },
+    
+    add_buttons = function () {
+        var inner = '';
+        //ADD YOUTUBE BUTTON
+        var youtube_channel = page_data.config.channel;
+        if (youtube_channel) {
+            inner = '<div class="g-ytsubscribe" data-channelid="' + youtube_channel +
+                '" data-layout="default" data-theme="dark" ' + 'data-count="hidden" data-onytevent="onYtEvent"></div>';
+            $('#youtube-subscribe').html(inner);
+        }
+        else {
+            $('youtube-subscribe').remove();
+        }
+        //ADD FACEBOOK BUTTON
+        var facebook = page_data.user.custom_fields.facebook;
+        if (facebook) {
+            inner = '<div class="fb-like" ' + 'data-href="https://www.facebook.com/' + facebook +
+                '" data-layout="button" ' + ' data-action="like" </div>';
+            $('#facebook-like').html(inner);
+        }
+        else {
+            $('a.facebook-like-button').remove();
+        }
+        //ADD TWITTER BUTTON
+        var twitter = page_data.user.custom_fields.twitter;
+        if (twitter) {
+            inner = '<a href="https://twitter.com/' + twitter + '" class="twitter-follow-button" ' +
+                'data-show-count="false" data-size="large"></a>';
+            $('#twitter-follow').html(inner);
+            twitter.widgets && twttr.widgets.load();
+        }
+        else {
+            $('#twitter-follow').remove();
+        }
+    };
 
 renderGame();
 
@@ -84,59 +123,6 @@ $.get(server + 'streamers/youtube?user=' + page_data.user.user_id, function (res
         $('.live-button').attr('href', liveStreamLink).show();
     }
 });
-
-// $('#responsive-menu-button').sidr({
-//  name: 'sidr-main',
-//  source: '#navigation',
-//  renaming: false
-// });
-
-// if ($(window).width() < 1024) {
-//   $(".videoHeading").insertBefore($(".videoList"));
-//   $(".channel").insertBefore($(".playFunctionBtn"));
-// }
-
-var add_buttons = function () {
-    var inner = "";
-    //ADD YOUTUBE BUTTON
-    var youtube_channel = page_data.config.channel;
-    if (youtube_channel) {
-        inner = '<div class="g-ytsubscribe" data-channelid="' + youtube_channel +
-            '" data-layout="default" data-theme="dark" ' + 'data-count="hidden" data-onytevent="onYtEvent"></div>';
-        $("#youtube-subscribe").html(inner);
-        console.log("ADD");
-    }
-    else {
-        console.log("DON'T ADD");
-        $("youtube-subscribe").remove();
-    }
-    //ADD FACEBOOK BUTTON
-    var facebook = page_data.user.custom_fields.facebook;
-    var inner = "";
-    if (facebook) {
-        console.log("ADD");
-        inner = '<div class="fb-like" ' + 'data-href="https://www.facebook.com/' + facebook +
-            '" data-layout="button" ' + ' data-action="like" </div>';
-        $("#facebook-like").html(inner);
-    }
-    else {
-        console.log("DON'T ADD");
-        $("a.facebook-like-button").remove();
-    }
-    //ADD TWITTER BUTTON
-    var twitter = page_data.user.custom_fields.twitter;
-    if (twitter) {
-        console.log("ADD");
-        inner = '<a href="https://twitter.com/' + twitter + '" class="twitter-follow-button" ' +
-            'data-show-count="false" data-size="large"></a>';
-        $("#twitter-follow").html(inner);
-        twitter.widgets && twttr.widgets.load();
-    }
-    else {
-        console.log("DON'T ADD");
-        $("#twitter-follow").remove();
-    }
-}
 
 add_buttons();
 
