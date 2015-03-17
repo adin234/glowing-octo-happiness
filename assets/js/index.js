@@ -1,4 +1,5 @@
-/*global $, server, origin, community, attachments_server, socket_server, template, utilHash, io*/
+/*global $, server, origin, community, attachments_server, socket_server, template, utilHash, io, JST*/
+
 'use strict';
 
 var index_data,
@@ -164,7 +165,7 @@ var index_data,
                         item.imgsrc = found_games[0].image;
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
-                        group.push(template($('#gameTpl').html(), item));
+                        group.push(template(JST['gameTpl.html'](), item));
                         if (group.length == 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
@@ -205,7 +206,7 @@ var index_data,
                     item.game = item.name;
                     group2.push(
                         template(
-                            $('#gameTpl').html(),
+                            JST['gameTpl.html'](),
                             item
                         )
                     );
@@ -255,7 +256,7 @@ var index_data,
                         item.imgsrc = found_games[0].image;
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
-                        group.push(template($('#gameTpl').html(), item));
+                        group.push(template(JST['gameTpl.html'](), item));
                         if (group.length == 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
@@ -300,7 +301,7 @@ var index_data,
                 shuffled_latest.forEach(function (item) {
                     item.imgsrc = item.image;
                     item.game = item.name;
-                    group2.push(template($('#gameTpl').html(), item));
+                    group2.push(template(JST['gameTpl.html'](), item));
                     if (group2.length == 5) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
@@ -380,7 +381,7 @@ var index_data,
                 item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
                     .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
                 item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
-                html.push(template($('#sliderTpl').html(), item));
+                html.push(template(JST['sliderTpl.html'](), item));
             });
             $('#imageSlider').html(html.join(''));
             $('.bxslider').bxSlider({
@@ -664,7 +665,7 @@ var index_data,
                             item.title = item.snippet.title;
                             item.link = '/news/#!/playlist/' + playlist.id + '/video/' +
                                 item.snippet.resourceId.videoId;
-                            newsShowsTpl = $('#newsShowsTpl').html() || '';
+                            newsShowsTpl = JST['newsShowsTpl.html']() || '';
                             newsShows = template(newsShowsTpl, item);
                             $('#tab-news-playlist-' + index + ' ul').append(newsShows);
                             ctr++;
@@ -711,9 +712,7 @@ var index_data,
                                 playlist.id + '/video/' +
                                 item.snippet.resourceId.videoId;
                             $('#tab-shows-playlist-' + index + ' ul').
-                                append(template($(
-                                    '#newsShowsTpl').html(), item)
-                                );
+                                append(template(JST['newsShowsTpl.html'](), item));
                             ctr++;
                         }
                     });
