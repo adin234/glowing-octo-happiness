@@ -1,7 +1,6 @@
-
-function checkIfOnline(userId) {
+'use strict';
+var checkIfOnline = function (userId) {
     var found = false;
-
     $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
         e.streamers.forEach(function(item) {
                 found = true;
@@ -15,38 +14,38 @@ function checkIfOnline(userId) {
 			setTimeout(function() {
                 checkIfOnline(userId);
             }, 30000);
-        } else {
+        }
+        else {
             $('#twitchStream')
                 .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
-
             setTimeout(function() {
                 checkIfOnline(userId);
             }, 30000);
         }
     });
-}
+};
 
 $(function() {
     var streamType = '';
     var streamId = '';
     var viewers;
-	
+
 	$.ajax(server + 'streamers', function(data) {
-        
     }).fail(function() {
       window.location.assign(page_maintenance);  
     });
 
     var information_masonry = function() {
-        $('#tab-2').width($('#streamArea aside').width()-$('.streamer').width() - 40);
+        $('#tab-2').width($('#streamArea aside').width() - $('.streamer').width() - 40);
 
         var msnry = new Masonry( '#tab-2', {
           columnWidth: 350,
           itemSelector: '.panel'
         });
-    }
+    };
 
-    page_data = $.parseJSON(page_data);
+    page_data =JSON.parse(page_data);
+
     $(".bxslider").bxSlider({
 		infiniteLoop: false,
 		hideControlOnEnd: true,
@@ -69,7 +68,7 @@ $(function() {
         resize_video_stream();
     });
 
-    function resize_video_stream() {
+    var resize_video_stream = function () {
         var size = $('#view-resize').val();
         if(size == 'x3') {
             $('embed').height($('#streamView').height());
@@ -78,16 +77,16 @@ $(function() {
             $('embed').height('100%');
             $('object').height('100%');
         }
-    }
+    },
 
-    function getViewersCount(url) {
+    getViewersCount = function (url) {
         $.getJSON(url, function(e) {
             if(e && e.stream && e.stream.viewers) {
                 viewers = e.stream.viewers;
                 $('#twitchStream .views').html(e.stream.viewers+' Views');
             }
         });
-    }
+    };
 
     $(window).on('resize', function() {
         resize_video_stream();
@@ -97,33 +96,31 @@ $(function() {
     streamId = twitch.substr(2);
 
     if(streamType == 'TW') {
-
         getViewersCount(server+'get_views/'+twitch);
 
         $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
-        .html(),{twitchid: streamId, number: viewers}))
+            .html(),{twitchid: streamId, number: viewers}));
         $('#twitchTalk').html(template($('#twitch-chat-tpl')
             .html(),{
                 twitchid: streamId,
-                advert: page_data.custom_fields
-                    && page_data.custom_fields.advertisement
+                advert: page_data.custom_fields &&
+                    page_data.custom_fields.advertisement
             }
         ));
-
-        $('object').height($('#streamView').height());
+        $('object').height(
+            $('#streamView').height()
+        );
     }
 
     if(streamType == 'HB') {
-
-        getViewersCount(server+'get_hitbox_views/'+streamId);
-
+        getViewersCount(server + 'get_hitbox_views/' + streamId);
         $('#twitchStream').replaceWith(template($('#hitbox-stream-tpl')
-        .html(),{twitchid: streamId, number: viewers}))
+            .html(),{twitchid: streamId, number: viewers}));
         $('#twitchTalk').html(template($('#hitbox-chat-tpl')
             .html(),{
                 twitchid: streamId,
-                advert: page_data.custom_fields
-                    && page_data.custom_fields.advertisement
+                advert: page_data.custom_fields &&
+                    page_data.custom_fields.advertisement
             }
         ));
 
@@ -141,15 +138,11 @@ $(function() {
     }
 
     if(streamType == 'YT') {
-
         getViewersCount(server+'get_views/'+twitch);
-
-        var found = false;
-        var userId = params.user.replace('/', '');
+        var found = false,
+            userId = params.user.replace('/', '');
 
         $.getJSON(server+'streamers/youtube/?user='+userId, function(e) {
-
-
             var streamerId = '';
             e.streamers.forEach(function(item) {
                 found = true;
@@ -175,8 +168,8 @@ $(function() {
             $('#tab-2').html(page_data.custom_fields.youtube_activity);
         });
 
-		var userinfo = '';
-		var channelinfo = {"id":twitch, "title" : twitch};
+		var userinfo = '',
+            channelinfo = {'id':twitch, 'title' : twitch};
 
 		if(utilCookie.get('user').length > 0){
 			userinfo = $.parseJSON(utilCookie.get('user'));
@@ -204,56 +197,56 @@ $(function() {
 
     $('#monSched').html(sched_template(page_data.custom_fields.mondaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.mondaySchedule
-			|| !page_data.custom_fields.mondaySchedule.trim().length) {
+        if(!page_data.custom_fields.mondaySchedule ||
+                !page_data.custom_fields.mondaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#tueSched').html(sched_template(page_data.custom_fields.tuesdaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.tuesdaySchedule
-			|| !page_data.custom_fields.tuesdaySchedule.trim().length) {
+        if(!page_data.custom_fields.tuesdaySchedule ||
+			!page_data.custom_fields.tuesdaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#wedSched').html(sched_template(page_data.custom_fields.wednesdaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.wednesdaySchedule
-			|| !page_data.custom_fields.wednesdaySchedule.trim().length) {
+        if(!page_data.custom_fields.wednesdaySchedule ||
+			!page_data.custom_fields.wednesdaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#thuSched').html(sched_template(page_data.custom_fields.thursdaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.thursdaySchedule
-			|| !page_data.custom_fields.thursdaySchedule.trim().length) {
+        if(!page_data.custom_fields.thursdaySchedule ||
+                !page_data.custom_fields.thursdaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#friSched').html(sched_template(page_data.custom_fields.fridaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.fridaySchedule
-			|| !page_data.custom_fields.fridaySchedule.trim().length) {
+        if(!page_data.custom_fields.fridaySchedule ||
+			!page_data.custom_fields.fridaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#satSched').html(sched_template(page_data.custom_fields.saturdaySchedule))
         .promise().done(function(e){
-        if(!page_data.custom_fields.saturdaySchedule
-			|| !page_data.custom_fields.saturdaySchedule.trim().length) {
+        if(!page_data.custom_fields.saturdaySchedule ||
+			!page_data.custom_fields.saturdaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
     });
     $('#sunSched').html(sched_template(page_data.custom_fields.sundaySchedule ))
         .promise().done(function(e){
-        if(!page_data.custom_fields.sundaySchedule
-			|| !page_data.custom_fields.sundaySchedule.trim().length) {
+        if(!page_data.custom_fields.sundaySchedule ||
+			!page_data.custom_fields.sundaySchedule.trim().length) {
             countEmpty++;
             $(this).parent().hide();
         }
@@ -265,90 +258,108 @@ $(function() {
     }
     $('#youtuber-link').attr('href', '/youtuber/?user='+page_data.user_id);
     $('#streamArea').mCustomScrollbar({
-      theme:"inset-2",
+      theme:'inset-2',
     });
     
-    if(typeof page_data.custom_fields !== 'undefined' && typeof page_data.custom_fields.streamingImage !== 'undefined' && page_data.custom_fields.streamingImage !== ''){
-        $("meta[property='og\\:image']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
-        $("meta[name='twitter\\:image\\:src']").attr("content", community+'data/streaming/'+page_data.user_id+'/'+page_data.custom_fields.streamingImage);
+    if(typeof page_data.custom_fields !== 'undefined' && 
+        typeof page_data.custom_fields.streamingImage !== 'undefined' &&
+        page_data.custom_fields.streamingImage !== ''){
+        $('meta[property=\'og\\:image\']')
+            .attr('content', community +
+                'data/streaming/' +
+                page_data.user_id +
+                '/' +
+                page_data.custom_fields.streamingImage
+            );
+        $('meta[name=\'twitter\\:image\\:src\']')
+            .attr('content', community +
+                'data/streaming/' +
+                page_data.user_id +
+                '/' +
+                page_data.custom_fields.streamingImage
+            );
     }
 });
 
 var sched_template = function(string) {
-    var list = string.split(/<br ?\/?>/).filter(function(e) {
-        return e.trim().length;
-    }).map(function(e) {
-        return e+'<br/>';
-    });
+        var list = string.split(/<br ?\/?>/).filter(function(e) {
+            return e.trim().length;
+        }).map(function(e) {
+            return e+'<br/>';
+        });
+        return $('<li/>', {html:list.join('')})[0].outerHTML;
+    },
 
-    return $('<li/>', {html:list.join('')})[0].outerHTML;
-}
+    toggleChat = function () {
+        var advertisementContainer = $('#advertisement-container');
+        var twitchContainer = $('#twitch-container');
+        var size = advertisementContainer.attr('data-status');
+        var toggleButton = advertisementContainer.children('.minify-advert');
 
-var toggleChat = function() {
-    var advertisementContainer = $('#advertisement-container');
-    var twitchContainer = $('#twitch-container');
-    var size = advertisementContainer.attr('data-status');
-    var toggleButton = advertisementContainer.children('.minify-advert');
+        if(size !== 'full') {
+            twitchContainer.height(
+                twitchContainer.parent().height() - 250
+            );
 
-    if(size !== 'full') {
-        twitchContainer.height(
-            twitchContainer.parent().height()
-            -250
-        );
+            advertisementContainer
+                .css('overflow', 'auto')
+                .css('height', '')
+                .attr('data-status', 'full');
 
-        advertisementContainer
-            .css('overflow', 'auto')
-            .css('height', '')
-            .attr('data-status', 'full');
+            twitchContainer.height(
+                twitchContainer.parent().height() - 250
+            );
 
-        twitchContainer.height(
-            twitchContainer.parent().height()
-            -250
-        );
+            toggleButton.html('縮小');
 
-        toggleButton.html('縮小');
+        } else {
+            advertisementContainer
+                .css('overflow', 'hidden')
+                .css('height', '100')
+                .attr('data-status', 'minified');
 
-    } else {
-        advertisementContainer
-            .css('overflow', 'hidden')
-            .css('height', '100')
-            .attr('data-status', 'minified');
+            twitchContainer.height(
+                twitchContainer.parent().height() - 50
+            );
 
-        twitchContainer.height(
-            twitchContainer.parent().height()
-            -50
-        );
+            toggleButton.html('增大');
+        }
 
-        toggleButton.html('增大');
-    }
+        advertisementContainer.show();
+    },
 
-    advertisementContainer.show();
-}
+    checker = setInterval(function(){
+    	var found = false;
+    	if (twitch.substr(0,2) === 'YT') {
+    		$.getJSON(server + 'streamers/youtube/?user=' + page_data.user_id, function(e) {
+    			e.streamers.forEach(function(item) {
+    					found = true;
+    					streamerId = item.youtube.id;
+    					$('.streamer #about-streamer').html(
+                            item.youtube.snippet.description.
+                                replace(/(?:\r\n|\r|\n)/g, '<br />')
+                        );
+    					$('embed').height($('#streamView').height());
+    			});
 
-var checker = setInterval(function(){
-	var found = false;
-	if (twitch.substr(0,2) === 'YT') {
-		$.getJSON(server+'streamers/youtube/?user='+page_data.user_id, function(e) {
-			e.streamers.forEach(function(item) {
-					found = true;
-					streamerId = item.youtube.id;
-					$('.streamer #about-streamer').html(item.youtube.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-					$('embed').height($('#streamView').height());
-			});
-			
-			if (!found) {
-				if ($('div .videoWrapper').length > 0) {
-					$('#twitchStream').replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>').fadeTo('slow');
-				} 
-			} else {
-				if ($('div .videoWrapper').length === 0) {
-					$('#twitchStream').replaceWith(template($('#youtube-stream-tpl').html(),{youtubeid: streamerId})).fadeIn('slow');
-				}
-			}
-		});		
-	}
-}, 5000);
-
-
-
-
+    			if (!found) {
+    				if ($('div .videoWrapper').length > 0) {
+    					$('#twitchStream').replaceWith(
+                            '<div id="twitchStream">' +
+                            '<img class="offline-placeholder" ' +
+                            'src="/assets/images/streamer-offline.png"/>' +
+                            '</div>').fadeTo('slow');
+    				} 
+    			} else {
+    				if ($('div .videoWrapper').length === 0) {
+    					$('#twitchStream').replaceWith(
+                            template(
+                                $('#youtube-stream-tpl').html(),
+                                    {youtubeid: streamerId}
+                            )
+                        ).fadeIn('slow');
+    				}
+    			}
+    		});		
+    	}
+    }, 5000);

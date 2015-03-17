@@ -61,5 +61,3 @@
 
     check_env();
 })(window);
-
-

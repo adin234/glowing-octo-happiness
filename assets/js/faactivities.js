@@ -1,8 +1,6 @@
 'use strict';
-var all_events = [];
-
-function get_user_info() {
-
+var all_events = [],
+get_user_info = function () {
     var userinfo = $.parseJSON(utilCookie.get('user'));
     var user_id = userinfo.user_id;
 
@@ -13,13 +11,10 @@ function get_user_info() {
     else {
         get_data();
     }
-}
+},
 
-function addEventForm() {
-
-
+addEventForm = function () {
     var html = [];
-
     html.push('<div id="add_event_header">Add an Event</div>');
     html.push('<div id="addForm"><form>');
     html.push(
@@ -46,25 +41,17 @@ function addEventForm() {
         'placeholder="Event End Time" id="event_end_time" required>'
     );
     html.push('<p id="e_desc">Event Description</p>');
-
     html.push('<textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea>');
     html.push('<button onclick="add_event()">ADD EVENT</button>');
     html.push(
         '</form><button onclick="get_events()">' +
         'SHOW EVENTS</button>'
     );
-
     $('.add_events_form').html(html.join(''));
+},
 
-
-
-}
-
-
-function add_event() {
-
+add_event = function () {
     $.ajax({
-
         url: server + 'freedom_events/add',
         type: 'post',
         data: {
@@ -76,7 +63,6 @@ function add_event() {
             'end_time': $('#event_end_time').val(),
             'e_description': $('#event_desc').val()
         }
-
     }).success(function (data) {
         console.log(data);
         console.log('success');
@@ -85,10 +71,9 @@ function add_event() {
         console.log('Fail');
     });
 
-}
+},
 
-function get_data() {
-
+get_data = function () {
     $.ajax({
         dataType: 'json',
         url: server + 'freedom_events',
@@ -107,11 +92,9 @@ function get_data() {
         console.log(data);
         console.log('failure');
     });
-}
+},
 
-function get_events() {
-
-
+get_events = function () {
     var html = [];
     html.push('<div id="backButton">' + '<a href="' + origin + 'freedom/#tab-4-1">' +
         '<img src="/assets/images/back_button.png"></a>' + '</div>');
@@ -134,17 +117,9 @@ function get_events() {
     $('#editEvent').html('<div id="edit_event">' +
         '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' + '</div>'
     );
-}
+},
 
-function delete_events(eventTitle) {
-
-
-
-
-}
-
-function search_events(eventTitle) {
-
+search_events = function (eventTitle) {
     var search_query = [];
 
     $.ajax({
@@ -164,18 +139,9 @@ function search_events(eventTitle) {
     }).fail(function (data) {
 
     });
+},
 
-    console.log(search_query);
-}
-
-function edit_events(eventTitle) {
-
-
-
-}
-
-
-var get_date_diff = function (sched, time) {
+get_date_diff = function (sched, time) {
 
     var today = new Date(),
         currdate = today.toJSON().substr(0, 10),
@@ -198,13 +164,10 @@ var get_date_diff = function (sched, time) {
         return 'Ended';
     }
 
-}
+},
 
-
-function schedule_template() {
-
+schedule_template = function () {
     var html = [];
-
     all_events.fetched_data.forEach(function (item) {
 
         if (get_date_diff(item.end_date, item.end_time) === 'Ongoing') {
@@ -219,7 +182,6 @@ function schedule_template() {
                 'color': '#FFFFFF'
             });
         }
-
 
         html.push('<div class="activity">');
         html.push('<div class="left">');
@@ -236,28 +198,23 @@ function schedule_template() {
         html.push('</div>');
         html.push('</div>');
 
-
     });
 
     return html;
+},
 
-}
-
-function get_schedule() {
-
+get_schedule = function () {
     var html = [];
     html = schedule_template();
+    $('#all_schedule').html(
+        html.join('')
+    );
+},
 
-    $('#all_schedule').html(html.join(''));
-
-}
-
-function get_archive() {
-
+get_archive = function () {
     var html = [];
     html = schedule_template();
-
-    $('#archive_schedule').html(html.join(''));
-
+    $('#archive_schedule').html(
+        html.join('')
+    );
 }
-

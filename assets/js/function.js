@@ -10,4 +10,3 @@ $(document).ready(function () {
         $(".angle").css("background-position", "0 -315px");
     });
 })
-
