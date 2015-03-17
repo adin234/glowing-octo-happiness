@@ -243,12 +243,12 @@ var filter_category = function (cnsl) {
         var context = $('.species a[data-console=' + cnsl + ']');
         context.parent().siblings().removeClass('current');
         context.parent().addClass('current');
-        if (cnsl !== 'all') {
-            $('#imageSlider').parent().parent().hide();
-        }
-        else {
-            $('#imageSlider').parent().parent().show();
-        }
+        // if (cnsl !== 'all') {
+        //     $('#imageSlider').parent().parent().hide();
+        // }
+        // else {
+        //     $('#imageSlider').parent().parent().show();
+        // }
         index_data = data;
         update_index(data);
     });
