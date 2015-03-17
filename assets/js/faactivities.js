@@ -5,15 +5,10 @@ $.get(server + "freedom_events", function (data) {
     add_events(data);
 });
 
-
-
 var get_date_diff = function (sched, time) {
-
     var today = new Date(),
-        currdate = today.toJSON()
-        .substr(0, 10),
-        currtime = today.toTimeString()
-        .substr(0, 5),
+        currdate = today.toJSON().substr(0, 10),
+        currtime = today.toTimeString().substr(0, 5),
         result = currdate.localeCompare(sched),
         result2 = currtime.localeCompare(time);
 
@@ -31,14 +26,10 @@ var get_date_diff = function (sched, time) {
     else {
         return 'Ended';
     }
-
 };
 
-
 var sched_template = function (all_events) {
-
     var html = [];
-
     all_events.forEach(function (item) {
         html.push('<div class="activity">');
         html.push('<div class="left">');
@@ -58,13 +49,10 @@ var sched_template = function (all_events) {
         html.push('</div>');
         html.push('</div>');
     });
-
     return html;
-
-}
+};
 
 var add_event = function () {
-
     $.ajax({
 
         url: server + 'freedom_events/add',
@@ -77,15 +65,7 @@ var add_event = function () {
             'end_time': $('#event_end_time').val(),
             'e_description': $('#event_desc').val()
         }
-
-    }).success(function (data) {
-        console.log(data);
-        console.log('success');
-    }).fail(function (data) {
-        console.log(data);
-        console.log('Fail');
     });
-
 };
 
 var show_events = function (all_events) {
@@ -94,19 +74,14 @@ var show_events = function (all_events) {
                 item.end_time) === 'Ended')) {
             var html_content_sched = sched_template(all_events);
             $('#all_schedule').html(html_content_sched.join(''));
-            console.log('schedule added');
         }
     });
-
     all_events.forEach(function (item) {
         if (get_date_diff(item.end_date, item.end_time) === 'Ended') {
             var html_content_archive = sched_template(all_events);
             $('#archive_schedule').html(html_content_archive.join(''));
-            console.log('archive added');
         }
     });
-
-
 };
 
 var checkAdminUser = function () {
@@ -117,16 +92,12 @@ var checkAdminUser = function () {
         return true;
     }
     else {
-        console.log('not admin');
         return false;
     }
 };
 
-
 var add_event_form = function () {
-
     var html = [];
-
     html.push('<div id="add_event_header">Add an Event</div>');
     html.push('<div id="addForm"><form>');
     html.push(
@@ -158,22 +129,14 @@ var add_event_form = function () {
         '<textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea>'
     );
     html.push('<button onclick="add_event()">ADD EVENT</button>');
-
-
     $('.add_events_form').html(html.join(''));
-
 };
 
 var show_all_events = function (events) {
-
     var html = [];
-
-
     html.push('<div id="backButton">' + '<a href="' + origin + 'freedom/#tab-4-1">' +
         '<img src="/assets/images/back_button.png"></a>' + '</div>');
-
     events.forEach(function (item) {
-
         html.push('<div id="title">' + item.event_title + '</div>');
         html.push('<div id="startDate">' + item.start_date + '</div>');
         html.push('<div id="endDate">' + item.end_date + '</div>');
@@ -186,8 +149,6 @@ var show_all_events = function (events) {
         html.push('<div id="join-link">' + '<p>ENTER JOIN EVENT LINK</p>' +
             '<input type="text" name="event_link" id="event_link">' + '</div>');
     });
-
-
     $('#show_events').html(html.join(''));
     $('#editEvent').html('<div id="edit_event">' +
         '<button onclick="update_events()"><img src="/assets/images/pencil.jpg">EDIT EVENT</button>' +
@@ -196,7 +157,6 @@ var show_all_events = function (events) {
 };
 
 var add_events = function (all_events) {
-
     if (checkAdminUser() === true) {
         add_event_form();
     }
