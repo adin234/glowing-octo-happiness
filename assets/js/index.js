@@ -55,9 +55,9 @@ var filterAction = function (action) {
     case 'console':
         filter_category(hash.shift());
         filterAction(hash.shift());
-        $('html, body').animate({
-            scrollTop: 0
-        });
+        // $('html, body').animate({
+        //     scrollTop: 0
+        // });
         break;
     }
 }
