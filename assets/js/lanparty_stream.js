@@ -174,3 +174,7 @@ $(function () {
 window.setInterval(function () {
     get_streamers();
 }, 5000);
+
+$(document).ready(function(){
+    $('.sf-menu').superfish();
+});

@@ -8,6 +8,7 @@ var eventsHtml = [],
 	daysOfWeek = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thur.', 'Fri.', 'Sat.'],
 	monthName = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 	schedules = {},
+	tab,
 
 	get24Hour = function (time) {
 		var x = time.substr(-2);
@@ -70,7 +71,7 @@ for (var key in schedules) {
 		};
 
 		timeHtml.push(template(
-			$('#eventItemTime').html(), tempdata)
+			JST['eventItemTime.html'](), tempdata)
 		);
 	});
 
@@ -80,7 +81,7 @@ for (var key in schedules) {
 	};
 
 	eventsHtml.push(template(
-		$('#eventItemTpl').html(), tempdata)
+		JST['eventItemTpl.html'](), tempdata)
 	);
 }
 
@@ -97,3 +98,13 @@ $('#event-container').mCustomScrollbar({
 	advanced: { updateOnContentResize: true, updateOnBrowserResize: true },
 	theme: 'dark'
 });
+
+$(document).ready(function() {
+	$('.sf-menu').superfish();
+});
+
+$('.tabs').tabslet();
+tab = utilHash.getHash();
+if (tab !== '') {
+	$('[href=' + tab + ']').trigger('click');
+}

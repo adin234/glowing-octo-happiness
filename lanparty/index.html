@@ -24,10 +24,8 @@
     <link href="/assets/css/jquery.mCustomScrollbar.css?ver=22" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css?ver=22" />
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
-    <script type="text/javascript" src="/assets/js/config.js?ver=22">
-    </script>
-    <script type="text/javascript" src="/assets/js/get.lanparty.data.js?ver=22">
-    </script>
+    <script src="/assets/js/config.js?ver=22"></script>
+    <script src="/assets/js/get.lanparty.data.js?ver=22"></script>
   </head>
   <body class="lang_zh_tw switch-menu stream-gritter lanparty">
     <div id="wrapper">
@@ -519,19 +517,6 @@
         </footer>
       </div>
     </div>
-    <script type="text/html" id="eventItemTpl">
-      <div class="event-item">
-        <h3 class="event_date">{{DATE}}</h3> {{TIME}}
-      </div>
-    </script>
-    <script type="text/html" id="eventItemTime">
-      <div class="event_title" style="top:{{TOP}}; height:{{HEIGHT}}" title="{{DATE}} : {{START}} - {{END}}">
-        <p>
-          {{TITLE}}
-        </p>
-      </div>
-    </script>
-
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js?ver=22"></script>
     <script src="/assets/js/libs/superfish.js?ver=22"></script>
@@ -545,21 +530,8 @@
     <script src="/assets/js/libs/jquery.tooltipster.min.js?ver=22"></script>
     <script src="/assets/js/libs/autolinker.js?ver=22"></script>
     <script src="/assets/js/libs/jquery.gritter.min.js?ver=22"></script>
+    <script src="/assets/templates/lanparty/templates.js?ver=22"></script>
     <script src="/assets/js/util.js?ver=22"></script>
     <script src="/assets/js/lanparty.js?ver=22"></script>
-    
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $(".sf-menu").superfish();
-      });
-    </script>
-    <script>
-      $('.tabs').tabslet();
-      var tab = utilHash.getHash();
-      if (tab !== '') {
-        $('[href=' + tab + ']').trigger('click');
-      }
-    </script>
   </body>
->>>>>>> 50eccf8a3a204cda96325849ee547ae187188da0
 </html>
