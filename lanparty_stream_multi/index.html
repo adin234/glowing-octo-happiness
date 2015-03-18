@@ -116,112 +116,6 @@
       </div>
     </div>
   </body>
-  <script type="text/html" id="streamlist-item-tpl">
-    <li>
-      <a href="javascript:;" class="{{class}}" title="{{TITLE}}" data-id="{{ID}}">
-        <img src="{{THUMB}}" width="110" height="62" al t="{{TITLE}}">
-        <h3>
-          {{TITLE}}
-        </h3>
-      </a>
-    </li>
-  </script>
-  <script type="text/html" id="twitch-stream-tpl">
-    <div id="twitchStream" class="stream-item">
-      <div class="videoWrapper">
-        <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-          <param name="allowFullScreen" value="true" />
-          <param name="allowScriptAccess" value="always" />
-          <param name="allowNetworking" value="all" />
-          <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-          <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=25" />
-        </object>
-        <a href="javascript:;" class="close remove-stream" data-id="TW{{TWITCHID}}" title="Close">
-          Close
-        </a>
-      </div>
-    </div>
-  </script>
-  <script type="text/html" id="youtube-stream-tpl">
-    <div id="twitchStream" class="stream-item">
-      <div class="videoWrapper">
-        <object height="100%" width="100%" id="live_embed_player_flash"><param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-        <a href="javascript:;" class="close remove-stream" data-id="YT{{YOUTUBEID}}" title="Close">
-          Close
-        </a>
-      </div>
-    </div>
-  </script>
-  <script type="text/html" id="twitch-chat-tab-tpl">
-    <li class="chat-{{TWITCHID}}">
-      <a href="#tab-chat-{{TWITCHID}}">
-        {{TWITCHID}}
-      </a>
-    </li>
-  </script>
-  <script type="text/html" id="twitch-chat-tpl">
-    <div class="chat-{{TWITCHID}}" id="tab-chat-{{TWITCHID}}">
-      <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" width="100%" height="640px">
-      </iframe>
-    </div>
-  </script>
-  <script type="text/html" id="gchat-tab-tpl">
-    <li class="chat-{{ChannelId}}">
-      <a href="#gchat-{{ChannelId}}">
-        {{ChannelId}}
-      </a>
-  </li>
-  </script>
-  <script type="text/html" id="gchat-tpl">
-    <div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>
-  </script>
-  <script type="text/html" id="chatui">
-    <div id="chid-{cid}" class="chid">
-      {cid}
-    </div>
-    <div id="chcontainer-{cid}" class="chcontainer">
-      <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
-      </table>
-    </div>
-    <div id="chatinputs-{cid}" class="chatinputs">
-      <input type="text" id="msgs-{cid}" class="msgs">
-      <button id="btn-{cid}" class="btnSend">SEND</button>
-    </div>
-    <div id="notifylogin-{cid}" class="chatinputs" style="display:none;">
-      <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
-    </div>
-  </script>
-  <script type="text/html" id="gchatnotify">
-    <tr id="trnotify-{cid}">
-      <td>
-        <div class="notifier">
-          <p id="notifymsg-{cid}" class="message">
-            {gchat-message}
-          </p>
-        </div>
-      </td>
-    </tr>
-  </script>
-  <script type="text/html" id="chatms">
-    <tr id="trms-{cid}">
-      <td>
-        <div id="usericon-{cid}" class="usericon">
-          <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
-        </div>
-        <div id="chat-message-{cid}" class="chat-message">
-          <label id="uname">
-            {username}
-          </label>
-          <p id="imsg" class="message">
-            {message}
-          </p>
-          <label id="timestamp-{cid}" class="timestamp">
-            {timesent}
-          </label>
-        </div>
-      </td>
-    </tr>
-  </script>
   <script src="/assets/js/libs/jquery.min.js"></script>
   <script src="/assets/js/libs/jquery.gritter.min.js"></script>
   <script src="/assets/js/libs/jquery.bxslider.min.js?ver=22"></script>
@@ -231,6 +125,7 @@
   <script src="/assets/js/util.js?ver=22"></script>
   <script src="/assets/js/libs/socketio.js"></script>
   <script src="/assets/js/gchatv2.js"></script>
+  <script src="/assets/templates/lanparty_stream_multi/templates.js"></script>
   <script src="/assets/js/lanparty_stream.js?ver=22"></script>
   <script type="text/javascript">
   </script>

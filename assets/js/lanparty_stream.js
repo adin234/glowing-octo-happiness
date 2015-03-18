@@ -50,12 +50,12 @@ var streamers_list = {},
 
         streamers_list.youtube.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(template(JST['streamlist-item-tpl.html'](), item));
         });
 
         streamers_list.twitch.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(template(JST['streamlist-item-tpl.html'](), item));
         });
 
         $('#streamContainer').html(html.join(''));
@@ -78,13 +78,13 @@ var streamers_list = {},
         var streamType = item.substr(0, 2);
         var streamId = item.substr(2);
         if (streamType === 'TW') {
-            $('#twitchStreamContainer').append(template($('#twitch-stream-tpl').html(), {
+            $('#twitchStreamContainer').append(template(JST['twitch-stream-tpl.html'](), {
                 twitchid: streamId
             }));
-            $('#twitch-chat-frame-container').append(template($('#twitch-chat-tpl').html(), {
+            $('#twitch-chat-frame-container').append(template(JST['twitch-chat-tpl.html'](), {
                 twitchid: streamId
             }));
-            $('#twitch-chat-tab-container').append(template($('#twitch-chat-tab-tpl').html(), {
+            $('#twitch-chat-tab-container').append(template(JST['twitch-chat-tab-tpl.html'](), {
                 twitchid: streamId
             }));
             $('.tabs').tabslet({
@@ -92,13 +92,13 @@ var streamers_list = {},
             });
         }
         if (streamType === 'YT') {
-            $('#twitchStreamContainer').append(template($('#youtube-stream-tpl').html(), {
+            $('#twitchStreamContainer').append(template(JST['youtube-stream-tpl.html'](), {
                 youtubeid: streamId
             }));
-            $('#twitch-chat-frame-container').append(template($('#gchat-tpl').html(), {
+            $('#twitch-chat-frame-container').append(template(JST['gchat-tpl.html'](), {
                 ChannelId: streamId
             }));
-            $('#twitch-chat-tab-container').append(template($('#gchat-tab-tpl').html(), {
+            $('#twitch-chat-tab-container').append(template(JST['gchat-tab-tpl.html'](), {
                 ChannelId: streamId
             }));
 
