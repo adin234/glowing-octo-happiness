@@ -352,28 +352,6 @@
         </div>
       </div>
     </div>
-    <script type="text/html" id="gameTpl">
-      <li class="game-item {{CLASS}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}" onClick="javascript:utilHash.changeHashVal('game', '{{ID}}');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" style="cursor:pointer;"/></li>
-    </script>
-    <script type="text/html" id="gameContainerTpl">
-      <ul class="game clearFix"> {{ITEMS}} </ul>
-    </script>
-    <script type="text/html" id="videoTpl">
-      <li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/?user={{USER_ID}}';">
-        <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot">
-        </a>
-        <h3>
-          <a href="javascript:void(0);" title="{{TITLE}}">
-            {{TITLE}}
-          </a>
-        </h3>
-        <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}" onError="fixErrorImg(this);"></a>
-      </li>
-    </script>
-    <script type="text/html" id="videoContainerTpl">
-      <ul class="list clearFix"> {{ITEMS}} </ul>
-    </script>
-
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js"></script>
     <script src="/assets/js/libs/superfish.js"></script>
@@ -387,13 +365,7 @@
     <script src="/assets/js/libs/autolinker.js"></script>
     <script src="/assets/js/libs/jquery.gritter.min.js"></script>
     <script src="/assets/js/util.js"></script>
-    <script type="text/javascript" src="/assets/js/youtubers.js"></script>
-
-    
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $(".sf-menu").superfish();
-      });
-    </script>
+    <script src="/assets/templates/youtubers/templates.js?ver=22"></script>
+    <script src="/assets/js/youtubers.js"></script>
   </body>
 </html>

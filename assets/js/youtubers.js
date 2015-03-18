@@ -6,6 +6,7 @@ var popularSlider,
     filterConsole = '',
     filterGame = '',
     gameNames = [],
+    hash,
     popularSlider = $('.bxslider.videos.popular').bxSlider({
         infiniteLoop: false,
         hideControlOnEnd: true
@@ -36,8 +37,8 @@ var popularSlider,
         var html = [];
         var items = [];
         var ids = [];
-        var tplVideo = $('#videoTpl').html();
-        var tplVideoContainer = $('#videoContainerTpl').html();
+        var tplVideo = JST['videoTpl.html']();
+        var tplVideoContainer = JST['videoContainerTpl.html']();
         filter =  new RegExp(filter, 'i');
 
         page_data.new_youtubers.forEach(function (item, i) {
@@ -81,8 +82,8 @@ var popularSlider,
         var html = [];
         var items = [];
         var ids = [];
-        var tplVideo = $('#videoTpl').html();
-        var tplVideoContainer = $('#videoContainerTpl').html();
+        var tplVideo = JST['videoTpl.html']();
+        var tplVideoContainer = JST['videoContainerTpl.html']();
         filter =  new RegExp(filter, 'i');
 
         page_data.youtubers.forEach(function (item, i) {
@@ -127,8 +128,8 @@ var popularSlider,
         var html = [];
         var items = [];
         var ids = [];
-        var tplVideo = $('#videoTpl').html();
-        var tplVideoContainer = $('#videoContainerTpl').html();
+        var tplVideo = JST['videoTpl.html']();
+        var tplVideoContainer = JST['videoContainerTpl.html']();
         filter =  new RegExp(filter, 'i');
 
         page_data.popular_youtubers.forEach(function (item, i) {
@@ -195,11 +196,11 @@ var popularSlider,
             }
             item.game = item.name;
             item.id = item.id.trim();
-            items.push(template($('#gameTpl').html(), item));
+            items.push(template(JST['gameTpl.html'](), item));
             if(items.length === 12) {
                 html.push(
                     template(
-                        $('#gameContainerTpl').html(), {'items' : items.join('')}
+                        JST['gameContainerTpl.html'](), {'items' : items.join('')}
                     )
                 );
                 items = [];
@@ -209,7 +210,7 @@ var popularSlider,
         if(items.length !== 0) {
             html.push(
                 template(
-                    $('#gameContainerTpl').html(), {'items' : items.join('')}
+                    JST['gameContainerTpl.html'](), {'items' : items.join('')}
                 )
             );
         }
@@ -238,11 +239,11 @@ var popularSlider,
             }
             item.id = item.id.trim();
 
-            items.push(template($('#gameTpl').html(), item));
+            items.push(template(JST['gameTpl.html'](), item));
             if(items.length === 12) {
                 html.push(
                     template(
-                        $('#gameContainerTpl').html(), {'items' : items.join('')}
+                        JST['gameContainerTpl.html'](), {'items' : items.join('')}
                     )
                 );
                 items = [];
@@ -252,7 +253,7 @@ var popularSlider,
         if(items.length !== 0) {
             html.push(
                 template(
-                    $('#gameContainerTpl').html(), {'items' : items.join('')}
+                    JST['gameContainerTpl.html'](), {'items' : items.join('')}
                 )
             );
         }
@@ -441,3 +442,7 @@ $(function() {
 });
 
 render_page();
+
+$(document).ready(function(){
+    $(".sf-menu").superfish();
+});
