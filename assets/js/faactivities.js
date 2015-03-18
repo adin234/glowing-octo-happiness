@@ -1,6 +1,7 @@
 'use strict';
 
 var all_events = [],
+    tab,
 
     addEventForm = function () {
         var html = [];
@@ -220,3 +221,17 @@ var all_events = [],
             html.join('')
         );
     };
+
+$(document).ready(function() {
+    $(".sf-menu").superfish();
+});
+
+$('.tabs').tabslet();
+tab = utilHash.getHash();
+if (tab !== '') {
+    $('[href=' + tab + ']').trigger('click');
+}
+
+$().click(function() {
+    $().slideDown();
+});

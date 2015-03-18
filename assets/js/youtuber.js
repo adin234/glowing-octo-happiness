@@ -2,6 +2,8 @@
 
 var liveStreamLink = false,
     filterConsole = 'all',
+    twitchId,
+    youtubeId,
 
     add_filter_category = function (string, context) {
         utilHash.changeHashVal('console', string);
