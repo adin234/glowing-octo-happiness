@@ -24,10 +24,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
     <link rel="stylesheet" type="text/css" href="/assets/css/gchatv2.css?ver=22" />
     <link rel="stylesheet" type="text/css" href="/assets/css/xbbcode.css?ver=22" />
-    <script type="text/javascript" src="/assets/js/config.js">
-    </script>
-    <script type="text/javascript" src="/assets/js/get.gamer_stream.data.js">
-    </script>
+    <script src="/assets/js/config.js"></script>
+    <script src="/assets/js/get.gamer_stream.data.js"></script>
     <style type="text/css">
       sup {
         display:none;
@@ -189,128 +187,6 @@
           </div>
         </div>
       </div>
-      <script type="text/html" id="twitch-stream-tpl">
-        <div id="twitchStream">
-          <div class="videoWrapper">
-            <object type="application/x-shockwave-flash" height="100%" width="100%" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel={{TWITCHID}}" bgcolor="#000000">
-              <param name="allowFullScreen" value="true" />
-              <param name="allowScriptAccess" value="always" />
-              <param name="allowNetworking" value="all" />
-              <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" />
-              <param name="flashvars" value="hostname=www.twitch.tv&channel={{TWITCHID}}&auto_play=true&start_volume=70" />
-            </object>
-          </div>
-          <span class="views">
-          {{NUMBER}} VIEWERS
-          </span>
-        </div>
-      </script>
-      <script type="text/html" id="hitbox-stream-tpl">
-        <div id="twitchStream">
-          <div class="videoWrapper">
-            <iframe width="100%" height="97%" src="http://hitbox.tv/#!/embed/{{TWITCHID}}?autoplay=true" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <span class="views">
-            {{NUMBER}} VIEWERS
-          </span>
-        </div>
-      </script>
-      <script type="text/html" id="hitbox-chat-tpl">
-        <div id="twitch-container">
-            <iframe src="http://www.hitbox.tv/embedchat/{{TWITCHID}}?autoconnect=true" onload="toggleChat()" width="100%" height="100%" allowfullscreen>
-            </iframe>
-        </div>
-        <div class="advert" id="advertisement-container" data-size="minified" data-status="full">
-            {{ADVERT}}
-            <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert">MINIFY</a>
-        </div>
-      </script>
-      <script type="text/html" id="youtube-stream-tpl">
-        <div id="twitchStream">
-          <div class="videoWrapper">
-            <object width="100%" height="100%">
-              <param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param>
-              <param name="allowFullScreen" value="true"></param>
-              <param name="allowscriptaccess" value="always"></param>
-              <embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="98%" allowscriptaccess="always" allowfullscreen="true"></embed>
-            </object>
-          </div>
-        </div>
-      </script>
-      <script type="text/html" id="panelTpl">
-        <div class="panel">
-          <a href="{{LINK}}"><img src="{{IMAGE}}" alt="{{DESCRIPTION}}" /></a>
-          <div class="desc">
-            {{HTML}}
-          </div>
-        </div>
-      </script>
-      <script type="text/html" id="twitch-chat-tpl">
-        <div id="twitch-container">
-          <iframe src="http://www.twitch.tv/{{TWITCHID}}/chat?popout=true" onload="toggleChat()" width="100%" height="100%">
-          </iframe>
-        </div>
-        <div class="advert" id="advertisement-container" data-size="minified" data-status="full">
-            {{ADVERT}}
-          <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert">MINIFY</a>
-        </div>
-      </script>
-      <script type="text/html" id="chatui">
-        <div id="chid-{cid}" class="chid">
-          {cid}
-        </div>
-        <div id="chcontainer-{cid}" class="chcontainer_single">
-          <table id="tblchatmsgs-{cid}" class="tblchatmsgs">
-          </table>
-        </div>
-        <div id="chatinputs-{cid}" class="chatinputs_single">
-          <input type="text" id="msgs-{cid}" class="msgs">
-          <button id="btn-{cid}" class="btnSend">
-            SEND
-          </button>
-        </div>
-        <div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">
-          <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>
-        </div>
-        <div class="advert" id="advertisement-container-yt" data-size="minified" data-status="full" style="background-color: black;">
-          <div id="close-advert">
-            <a id="close-advert-link" onclick="javascript: closeAdvert();">X</a>
-          </div>
-            {ADVERT}
-          <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>
-        </div>
-      </script>
-      <script type="text/html" id="gchatnotify">
-        <tr id="trnotify-{cid}">
-          <td>
-            <div class="notifier">
-              <p id="notifymsg-{cid}" class="message">{
-                gchat-message}
-              </p>
-            </div>
-          </td>
-        </tr>
-      </script>
-        <script type="text/html" id="chatms">
-          <tr id="trms-{cid}">
-            <td>
-              <div id="usericon-{cid}" class="usericon">
-                <img id="uavatar-{cid}" class="uavatar" alt="userimage" height="46px" width="46px" src="{avatar}">
-              </div>
-              <div id="chat-message-{cid}" class="chat-message">
-                <label id="uname">
-                  {username}
-                </label>
-                <p id="imsg" class="message">
-                  {message}
-                </p>
-                <label id="timestamp-{cid}" class="timestamp">
-                  {timesent}
-                </label>
-              </div>
-            </td>
-          </tr>
-      </script>
       <script src="/assets/js/libs/jquery.min.js"></script>
       <script src="/assets/js/libs/hoverIntent.js"></script>
       <script src="/assets/js/libs/superfish.js"></script>
@@ -324,17 +200,12 @@
       <script src="/assets/js/libs/autolinker.js"></script>
       <script src="/assets/js/libs/jquery.gritter.min.js"></script>
       <script src="/assets/js/util.js"></script>
-      <!-- Chat plugin 10.28.2014-->
       <script src="/assets/js/libs/jquery.linkify.1.1.7.min.js"></script>
       <script src="/assets/js/libs/socketio.js?ver=22"></script>
-      <script type="text/javascript" src="/assets/js/gchatv2.js?ver=22"></script>
-      <script type="text/javascript" src="/assets/js/libs/xbbcode.js?ver=22"></script>
-      <script type="text/javascript" src="/assets/js/gamer_stream.js?ver=22"></script>
-      <script type="text/javascript">
-        $(document).ready(function(){
-          $(".sf-menu").superfish();
-        });
-      </script>
+      <script src="/assets/templates/gamer_stream/templates.js?ver=22"></script>
+      <script src="/assets/js/gchatv2.js?ver=22"></script>
+      <script src="/assets/js/libs/xbbcode.js?ver=22"></script>
+      <script src="/assets/js/gamer_stream.js?ver=22"></script>
       <style id="forceStyle">
       </style>
     </body>

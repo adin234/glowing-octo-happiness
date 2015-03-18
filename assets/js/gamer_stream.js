@@ -99,7 +99,7 @@ var sched_template = function(string) {
     				if ($('div .videoWrapper').length === 0) {
     					$('#twitchStream').replaceWith(
                             template(
-                                $('#youtube-stream-tpl').html(),
+                                JST['youtube-stream-tpl.html'](),
                                     {youtubeid: streamerId}
                             )
                         ).fadeIn('slow');
@@ -182,10 +182,12 @@ $(function() {
     if(streamType === 'TW') {
         getViewersCount(server + 'get_views/' + twitch);
 
-        $('#twitchStream').replaceWith(template($('#twitch-stream-tpl')
-            .html(),{twitchid: streamId, number: viewers}));
-        $('#twitchTalk').html(template($('#twitch-chat-tpl')
-            .html(),{
+        $('#twitchStream').replaceWith(template(
+            JST['twitch-stream-tpl.html'](), {twitchid: streamId, number: viewers})
+        );
+        $('#twitchTalk').html(template(
+            JST['twitch-chat-tpl'](),
+            {
                 twitchid: streamId,
                 advert: page_data.custom_fields &&
                     page_data.custom_fields.advertisement
@@ -198,10 +200,12 @@ $(function() {
 
     if(streamType === 'HB') {
         getViewersCount(server + 'get_hitbox_views/' + streamId);
-        $('#twitchStream').replaceWith(template($('#hitbox-stream-tpl')
-            .html(),{twitchid: streamId, number: viewers}));
-        $('#twitchTalk').html(template($('#hitbox-chat-tpl')
-            .html(),{
+        $('#twitchStream').replaceWith(template(
+            JST['hitbox-stream-tpl.html'](), {twitchid: streamId, number: viewers})
+        );
+        $('#twitchTalk').html(template(
+            JST['hitbox-chat-tpl.html'](),
+            {
                 twitchid: streamId,
                 advert: page_data.custom_fields &&
                     page_data.custom_fields.advertisement
@@ -213,7 +217,7 @@ $(function() {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
                 item.data.link = item.data.link || '';
-                $('#tab-2').append(template($('#panelTpl').html(), item.data));
+                $('#tab-2').append(template(JST['panelTpl'](), item.data));
             });
             setTimeout(function(){
                 $('img[src=""]').hide();
@@ -240,11 +244,13 @@ $(function() {
 
             if(found) {
                 $('#twitchStream')
-                    .replaceWith(template($('#youtube-stream-tpl')
-                    .html(),{youtubeid: streamerId}));
+                    .replaceWith(template(
+                        JST['youtube-stream-tpl.html'](), {youtubeid: streamerId})
+                    );
             } else {
                 $('#twitchStream')
-                    .replaceWith('<div id="twitchStream"><img class="offline-placeholder" src="/assets/images/streamer-offline.png"/></div>');
+                    .replaceWith('<div id="twitchStream"><img class="offline-placeholder" ' +
+                        'src="/assets/images/streamer-offline.png"/></div>');
             }
 
             if(!found) {
@@ -365,4 +371,8 @@ $(function() {
                 page_data.custom_fields.streamingImage
             );
     }
+});
+
+$(document).ready(function(){
+    $('.sf-menu').superfish();
 });
