@@ -69,17 +69,17 @@ var stream_slider = $('.bxslider').bxSlider({
 
         streamers_list.youtube.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(template(JST['streamlist-item-tpl.html'](), item));
         });
 
         streamers_list.hitbox.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(template(JST['streamlist-item-tpl.html'](), item));
         });
 
         streamers_list.twitch.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(template(JST['streamlist-item-tpl.html'](), item));
         });
         $('#lightSlider').html(html.join(''));
         $('#streamContainer').html(html.join(''));
@@ -101,21 +101,21 @@ var stream_slider = $('.bxslider').bxSlider({
         if (streamType === 'TW') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#twitch-stream-tpl').html(), {
+                    JST['twitch-stream-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#twitch-chat-tpl').html(), {
+                    JST['twitch-chat-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#twitch-chat-tab-tpl').html(), {
+                    JST['twitch-chat-tab-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
@@ -128,21 +128,21 @@ var stream_slider = $('.bxslider').bxSlider({
         if (streamType === 'HB') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#hitbox-stream-tpl').html(), {
+                    JST['hitbox-stream-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#hitbox-chat-tpl').html(), {
+                    JST['hitbox-chat-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#hitbox-chat-tab-tpl').html(), {
+                    JST['hitbox-chat-tab-tpl.html'](), {
                         twitchid: streamId
                     }
                 )
@@ -155,21 +155,21 @@ var stream_slider = $('.bxslider').bxSlider({
         if (streamType === 'YT') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#youtube-stream-tpl').html(), {
+                    JST['youtube-stream-tpl.html'](), {
                         youtubeid: streamId
                     }
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#gchat-tpl').html(), {
+                    JST['gchat-tpl.html'](), {
                         ChannelId: streamId
                     }
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#gchat-tab-tpl').html(), {
+                    JST['gchat-tab-tpl.html'](), {
                         ChannelId: streamId
                     }
                 )

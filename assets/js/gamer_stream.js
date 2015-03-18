@@ -186,7 +186,7 @@ $(function() {
             JST['twitch-stream-tpl.html'](), {twitchid: streamId, number: viewers})
         );
         $('#twitchTalk').html(template(
-            JST['twitch-chat-tpl'](),
+            JST['twitch-chat-tpl.html'](),
             {
                 twitchid: streamId,
                 advert: page_data.custom_fields &&
@@ -217,7 +217,7 @@ $(function() {
             e.forEach(function(item) {
                 item.data.html = item.html_description;
                 item.data.link = item.data.link || '';
-                $('#tab-2').append(template(JST['panelTpl'](), item.data));
+                $('#tab-2').append(template(JST['panelTpl.html'](), item.data));
             });
             setTimeout(function(){
                 $('img[src=""]').hide();
