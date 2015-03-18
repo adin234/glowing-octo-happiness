@@ -413,133 +413,6 @@
         </div>
       </div>
     </div>
-    <script type="text/html" id="playlistTpl">
-      <li class="playlistItem" id="{{ID}}">
-        <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-          <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <p>
-            {{DESC}}
-          </p>
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="categoriesTpl">
-      <li>
-        <a href="{{LINK}}" title="{{TITLE}}">
-          {{TITLE}}
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="recommendedTpl">
-      <li class="list clearFix">
-        <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <ul>
-            <li>
-              <cite>{{USERNAME}}</cite> 上傳
-            </li>
-            <li>
-              {{VIEWS}} Views
-            </li>
-          </ul>
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="videosTpl">
-      <li class="ytVideo videoItem" id="{{ID}}">
-        <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-          <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <p>
-            {{DESC}}
-          </p>
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="categoriesTpl">
-      <li>
-        <a href="{{LINK}}" title="{{TITLE}}">
-          {{TITLE}}
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="commentItemTpl">
-      <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}" onError="fixErrorImg(this);">
-        <cite>
-          {{USERNAME}}
-        </cite>
-        <span>．
-          <date datetime="{{DATE}}">
-            {{DATE}}
-          </date>
-        </span>
-        <div class="replyContent">
-          <p>
-            {{COMMENT}}
-          </p>
-        </div>
-      </article>
-    </script>
-    <script type="text/html" id="commentsTpl">
-        <div class="comments-list">
-          <a href="javascript:;">
-            所有留言 ({{COUNT}})
-          </a>
-          <div>
-            <div class="yourDiscussion"> <img class="userImg" src="/assets/images/uploader.jpg" width="65" height="65" alt="{使用者帳號}" onError="fixErrorImg(this);">
-              <div class="angle">
-              </div>
-              <textarea id="commentArea" placeholder="分享您的想法"></textarea>
-            </div>
-            <button id="postComment" data-video='{{VIDEO}}'>Post</button>
-          </div>
-          <div class="type clearFix"><span>類型：</span>
-            <ul>
-              <li class="{{SORTLATEST}}">
-                <a href="javascript:;" class="sort-comments latest">
-                  最新留言
-                </a>
-              </li>
-              <li class="{{SORTLAST}}">
-                <a href="javascript:;" class="sort-comments last">
-                  由舊到新
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="discussions">
-            {{COMMENTS}}
-          </div>
-        </div>
-      </script>
-      <script type="text/html" id="recommendedTpl">
-        <li class="list clearFix">
-          <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
-            <h3>
-              {{TITLE}}
-            </h3>
-          <ul>
-            <li>
-              by
-              <cite>
-                {{USERNAME}}
-              </cite>
-            </li>
-            <li>
-              {{VIEWS}} Views
-            </li>
-          </ul>
-          </a>
-        </li>
-      </script>
-      
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js"></script>
     <script src="/assets/js/libs/superfish.js"></script>
@@ -551,12 +424,12 @@
     <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
     <script src="/assets/js/libs/autolinker.js"></script>
     <script src="/assets/js/libs/jquery.gritter.min.js"></script>
+    <script src="/assets/templates/news/templates.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/media.js"></script>
-
       <script type="text/javascript">
         $(document).ready(function() {
-          $(".sf-menu").superfish();
+          $('.sf-menu').superfish();
         });
       </script>
   </body>
