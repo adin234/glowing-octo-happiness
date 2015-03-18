@@ -104,7 +104,7 @@ var update_videos = function (videos, append, initial) {
                     desc: item.snippet.description
                 };
 
-                html.push(template($('#videosTpl').html(), tempdata));
+                html.push(template(JST['videosTpl.html'](), tempdata));
             }
         }
     }
@@ -126,22 +126,24 @@ var willPlay = function () {
 };
 
 var update_playlists = function (playlists) {
-    html = [];
-    var ids = [];
-    var cons = '';
-    var source = $('#playlistTpl').html();
+    var ids = [],
+        cons = '',
+        source = JST['playlistTpl.html'](),
+        html = [];
+
     if ($('body').hasClass('news') || $('body').hasClass('shows')) {
-        source = $('#categoriesTpl').html();
+        source = JST['categoriesTpl.html']();
     }
-    var visible_playlists = (typeof page_data.visible_playlists != 'undefined') ? page_data.visible_playlists.split(
-        ',') : [];
+
+    var visible_playlists = (typeof page_data.visible_playlists !== 'undefined') ?
+        page_data.visible_playlists.split(',') :
+        [];
 
     if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
         cons = 'console/' + filterConsole + '/';
     }
 
     playlists.forEach(function (item, i) {
-        //console.log('playlist = '+item.id);
         if (~ids.indexOf(item.id)) {
             return;
         }
@@ -153,7 +155,6 @@ var update_playlists = function (playlists) {
         }
 
         ids.push(item.id);
-        // if(filterTags && playlistIds.indexOf(item.id) < 0) return;
         if (!item.snippet.thumbnails) {
             return;
         }
@@ -169,9 +170,6 @@ var update_playlists = function (playlists) {
 
         html.push(template(source, tempdata));
     });
-
-    //console.log(html.length);
-
 
     if (!html.length) {
         html.push('請將影片加至您的"我的最愛"播放清單!');
@@ -189,7 +187,6 @@ var update_playlists = function (playlists) {
     else {
         $('.game_page .listSwitch').removeClass('no-playlist');
     }
-
 
     if ($('body').hasClass('news') || $('body').hasClass('shows')) {
         $('.listSwitch').addClass('no-playlist');
@@ -364,14 +361,14 @@ var getComments = function (videoId, sort) {
         });
 
         var commentsHTML = comments.map(function (item) {
-            return template($('#commentItemTpl').html(), item);
+            return template(JST['commentItemTpl.html'](), item);
         }).join('');
 
         page_data.commentsLength = comments.length;
         console.log(sort);
         $('#tab-2 .mCSB_container')
             .html(template(
-                $('#commentsTpl').html(), {
+                JST['commentsTpl.html'](), {
                     count: e.length,
                     video: videoId,
                     comments: commentsHTML,
@@ -544,7 +541,7 @@ var updateSuggestions = function (suggestions) {
                 views: item.snippet.meta.statistics.viewCount
             }
 
-            html.push(template($('#recommendedTpl').html(), tempdata));
+            html.push(template(JST['recommendedTpl.html'](), tempdata));
         }
     });
     $('aside.recommend > ul .mCSB_container').html(html.join(''));
@@ -634,7 +631,7 @@ $(document).on('load-page', function () {
     }
 
     page_data.categories.forEach(function (item, i) {
-        html.push(template($('#categoriesTpl').html(), item));
+        html.push(template(JST['categoriesTpl.html'](), item));
     });
     if (!html.length) {
         html.push('No Category Available');
@@ -700,7 +697,7 @@ $(document).on('load-page', function () {
 
                 $('#tab-2 .discussions')
                     .prepend(template(
-                        template($('#commentItemTpl').html(), {
+                        template(JST['commentItemTpl.html'](), {
                             userimage: attachments_server + 'avatar.php?userid=' + data.user_id +
                                 '.jpg',
                             userprofile: community + 'index.php?members/' + data.username +

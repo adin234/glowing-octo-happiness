@@ -15,7 +15,7 @@ var liveStreamLink = false,
                 return;
             }
             html.push(template(
-                $('#gamesCastTpl').html(), item));
+                JST['gamesCastTpl.html'](), item));
         });
         $('#tab-4').mCustomScrollbar({
             theme: 'inset-2'
@@ -126,3 +126,6 @@ $.get(server + 'streamers/youtube?user=' + page_data.user.user_id, function (res
 
 add_buttons();
 
+$(document).ready(function() {
+    $(".sf-menu").superfish();
+});
