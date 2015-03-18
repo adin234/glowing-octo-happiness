@@ -24,10 +24,10 @@ var slider = {},
             }
 
             item.game = item.name;
-            items.push(template($('#gameTpl').html(), item));
+            items.push(template(JST['gameTpl.html'](), item));
 
             if (items.length === 12) {
-                html.push(template($('#gameContainerTpl').html(), {
+                html.push(template(JST['gameContainerTpl.html'](), {
                     'items': items.join('')
                 }));
                 items = [];
@@ -35,7 +35,7 @@ var slider = {},
         });
 
         if (items.length !== 0) {
-            html.push(template($('#gameContainerTpl').html(), {
+            html.push(template(JST['gameContainerTpl.html'](), {
                 'items': items.join('')
             }));
         }
@@ -65,11 +65,11 @@ var slider = {},
             }
             items.push(
                 template(
-                    $('#gameTpl').html(), item
+                    JST['gameTpl.html'](), item
                 )
             );
             if (items.length === 12) {
-                html.push(template($('#gameContainerTpl').html(), {
+                html.push(template(JST['gameContainerTpl.html'](), {
                     'items': items.join('')
                 }));
                 items = [];
@@ -77,7 +77,7 @@ var slider = {},
         });
 
         if (items.length !== 0) {
-            html.push(template($('#gameContainerTpl').html(), {
+            html.push(template(JST['gameContainerTpl.html'](), {
                 'items': items.join('')
             }));
         }
@@ -143,8 +143,8 @@ var slider = {},
             ids = [],
             flags = [],
             recent_videos,
-            tplVideo = $('#videoTpl').html(),
-            tplVideoContainer = $('#videoContainerTpl').html(),
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html'](),
             activeMultiView = get_active_for_multiview(),
             filterRegExp = new RegExp(filter, 'i'),
             filterGame = (
@@ -406,7 +406,7 @@ var slider = {},
 
     add_to_multiview = function () {
         var id = $(this).attr('data-streamidraw'),
-            tplVideo = $('#videoMultiTpl').html(),
+            tplVideo = JST['videoMultiTpl.html'](),
             multiview_item,
             streamer = page_data.streamers.filter(function (item) {
                 if (typeof item.twitchid !== 'undefined' && item.twitchid === id) {
@@ -614,3 +614,7 @@ slider.container_lanparty = $('#container-lanparty').bxSlider({
 streamersSearch();
 checker();
 render_page();
+
+$(document).ready(function(){
+    $('.sf-menu').superfish();
+});

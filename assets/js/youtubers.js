@@ -444,5 +444,5 @@ $(function() {
 render_page();
 
 $(document).ready(function(){
-    $(".sf-menu").superfish();
+    $('.sf-menu').superfish();
 });

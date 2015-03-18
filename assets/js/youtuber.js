@@ -127,5 +127,5 @@ $.get(server + 'streamers/youtube?user=' + page_data.user.user_id, function (res
 add_buttons();
 
 $(document).ready(function() {
-    $(".sf-menu").superfish();
+    $('.sf-menu').superfish();
 });
