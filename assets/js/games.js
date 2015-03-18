@@ -40,12 +40,12 @@ var get_hash = function() {
             item.game = item.name;
              item.id = item.id.trim();
             items.push(template(
-                $('#gameTpl').html(), item)
+                JST['gameTpl.html'](), item)
             );
             if(items.length === 12) {
                 html.push(
                     template(
-                        $('#gameContainerTpl').html(), {'items' : items.join('')}
+                        JST['gameContainerTpl.html'](), {'items' : items.join('')}
                     )
                 );
                 items = [];
@@ -55,7 +55,7 @@ var get_hash = function() {
         if(items.length !== 0) {
             html.push(
                 template(
-                    $('#gameContainerTpl').html(), {'items' : items.join('')}
+                    JST['gameContainerTpl.html'](), {'items' : items.join('')}
                 )
             );
         }
@@ -85,13 +85,13 @@ var get_hash = function() {
                 item.class = 'active';
             }
             items.push(template(
-                $('#gameTpl').html(), item)
+                JST['gameTpl.html'](), item)
             );
             item.id = item.id.trim();
             if(items.length === 12) {
                 html.push(
                     template(
-                        $('#gameContainerTpl').html(), {'items' : items.join('')}
+                        JST['gameContainerTpl.html'](), {'items' : items.join('')}
                     )
                 );
                 items = [];
@@ -100,7 +100,7 @@ var get_hash = function() {
 
         if(items.length !== 0) {
             html.push(template(
-                $('#gameContainerTpl').html(), {'items' : items.join('')})
+                JST['gameContainerTpl.html'](), {'items' : items.join('')})
             );
         }
 
@@ -121,8 +121,8 @@ var get_hash = function() {
             items = [],
             page = Math.floor(slider.container_videos.getSlideCount() / 2),
             nextPage = page + 1,
-            tplVideo = $('#videoTpl').html(),
-            tplVideoContainer = $('#videoContainerTpl').html(),
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html'](),
             game = get_game(),
             filter = $('#txtbox-search-videos').val();
 
@@ -195,8 +195,8 @@ var get_hash = function() {
         var html = [];
         var items = [];
         var ids = [];
-        var tplVideo = $('#videoTpl').html();
-        var tplVideoContainer = $('#videoContainerTpl').html();
+        var tplVideo = JST['videoTpl.html']();
+        var tplVideoContainer = JST['videoContainerTpl.html']();
 
         page_data.videos.forEach(function (item, i) {
             item.anytv_comments = item.anytv_comment || 0;

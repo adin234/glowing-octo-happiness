@@ -17,7 +17,7 @@ window["JST"]["gameTpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<li class="game-item {{CLASS}}"><img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}" onClick="javascript:utilHash.changeHashVal(\'game\', \'{{ID}}\');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" style="cursor:pointer;"/></li>\r\n';
+__p += '<li class="game-item {{CLASS}}">\r\n  <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{CHINESE}}" onClick="javascript:utilHash.changeHashVal(\'game\', \'{{ID}}\');return false;" data-id="{{ID}}" data-name="{{NAME}}" data-chi="{{CHINESE}}" style="cursor:pointer;"/>\r\n</li>\r\n';
 
 }
 return __p
