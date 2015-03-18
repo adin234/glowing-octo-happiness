@@ -394,119 +394,6 @@
     </div>
     <div id="arrow" class="down">
     </div>
-    <script type="text/html" id="latestVideosTpl">
-      <li class="pointer">
-        <a href="{{LINK}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot"></a>
-          <h3>
-            <a href="{{LINK}}" title="{{TITLE}}">
-              {{TITLE}}
-            </a>
-          </h3>
-          <a href="{{LINK}}" title="{{TITLE}}">
-            <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader safeloading" onError="fixErrorImg(this);">
-          </a>
-          <ul>
-            <li>
-              {{USERNAME}}
-            </li>
-            <li>
-              <em>
-                觀看次數：
-              </em>
-              {{VIEWS}}
-            </li>
-          <li>
-            <a href="{{LINK}}/comments"><em>Replies: </em> {{ANYTV_COMMENT}}</a>
-          </li>
-        </ul>
-      </li>
-    </script>
-    <script type="text/html" id="gameConsoleTpl">
-      <li>
-        <a href="/game/?game={{ID}}">
-          <span id={{ID}} class="gamelabel capitalized">
-            {{GAMENAME}}
-          </span>
-          <img src="{{IMGSRC}}" width="160" height="94" alt="{{GAME}}" title="{{GAME}}" class="tooltip capitalized">
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="featuredUsersTpl">
-      <li class={{COUNT}}>
-        <div class="list">
-          <a href="/youtuber/?user={{USER_ID}}" class="link-white">
-            <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
-            <h3>
-              {{USERNAME}}
-            </h3>
-            <div class="listBg"></div>
-          </a>
-        </div> 
-      </li>
-    </script>
-    <script type="text/html" id="featureTpl">
-      <li class="{{COUNT}}">
-        <div class="list">
-          <a href="{{LINK}}" class="link-white">
-            <img src="{{IMAGE}}" width="44" height="43" alt="Viewer" class="safeloading" onError="fixErrorImg(this);">
-            <h3>
-              {{LABEL}}
-            </h3>
-            <div class="listBg"></div>
-          </a>
-        </div>
-      </li>
-    </script>
-    <script type="text/html" id="streamersTpl">
-      <li id="{{USERNAME}}" onClick="window.open('{{LINK}}','_blank')">
-        <div class="dynamic">
-          {{GAME}}{{USERNAME}}
-        </div>
-        <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="32" height="30" alt="{{GAME}} / {{USERNAME}}" class="safeloading" onError="fixErrorImg(this);">
-      </li>
-    </script>
-    <script type="text/html" id="recentForumTpl">
-      <div class="recent-forums">
-        <h3 class="forum-header"></h3>
-        <ul class="thread-list">
-          {{THREADS}}
-        </ul>
-      </div>
-    </script>
-    <script type="text/html" id="recentForumItemTpl">
-      <li class="thread">
-        <span class="icon" href="{{USERLINK}}">
-          <img src="{{POSTERIMAGE}}" width="50" height="50" class="safeloading" onError="fixErrorImg(this);"/>
-        </span>
-        <a class="title" href='{{LINK}}'>
-          {{TITLE}}
-        </a>
-        <div class="stats">
-          <dl>
-            <dt class="replies">
-              Replies
-            </dt>
-            <dd class="replies">
-              {{REPLIES}}
-            </dd>
-            <br/>
-            <dt class="views">
-              Views
-            </dt>
-            <dd class="views">
-              {{VIEWS}}
-            </dd>
-          </dl>
-        </div>
-        <span class="last-message"></span>
-      </li>
-    </script>
-    <script type="text/html" id="playerTpl">
-      <div class="video-player" style="position: fixed;top: 0;bottom: 0;left: 0;height: 100%;width: 100%;background-color: rgba(0,0,0,.4);z-index: 1000;">
-        <iframe src="{{VIDEO}}" frameborder="0" allowfullscreen="" style="width:80%; margin-left: 10%; height:90%; margin-top:5%"></iframe>
-        <a href="javascript:;" class="close remove-multiview" title="Close" style="margin-top:5%"></a>
-      </div>
-    </script>
     <script src="/assets/js/libs/jquery.gritter.min.js?ver=22"></script>
     <script src="/assets/js/util.js?ver=22"></script>
     <script src="/assets/js/libs/hoverIntent.js?ver=22"></script>
@@ -519,7 +406,7 @@
     <script src="/assets/js/libs/jquery.tabslet.min.js?ver=22"></script>
     <script src="/assets/js/libs/jquery.tooltipster.min.js?ver=22"></script>
     <script src="/assets/js/libs/socketio.js?ver=22"></script>
-    <script type="text/javascript" src="/assets/js/templates.js?ver=22"></script>
+    <script type="text/javascript" src="/assets/templates/index/templates.js?ver=22"></script>
     <script type="text/javascript" src="/assets/js/index.js?ver=22"></script>
   </body>
 </html>

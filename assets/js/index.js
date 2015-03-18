@@ -103,7 +103,7 @@ var index_data,
                     item.username = item.username.substr(0, 9) + '&#133;';
                 }
 
-                html.push(template($('#streamersTpl').html(), item));
+                html.push(template(JST['streamersTpl.html'](), item));
             });
         }
         else {
@@ -402,7 +402,7 @@ var index_data,
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
             item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
-            group.push(template($('#latestVideosTpl').html(), item));
+            group.push(template(JST['latestVideosTpl.html'](), item));
             if (group.length == 9) {
                 html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                 group = [];
@@ -443,7 +443,7 @@ var index_data,
                 item.link = '/youtuber/?user=' +
                     item.user_id + '/#!/video/' +
                     item.snippet.resourceId.videoId;
-                group.push(template($('#latestVideosTpl').html(), item));
+                group.push(template(JST['latestVideosTpl.html'](), item));
                 if (group.length == 9) {
                     html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                     group = [];
@@ -492,7 +492,7 @@ var index_data,
             item.link = '/youtuber/?user=' +
                 item.user_id + '/#!/video/' +
                 item.snippet.resourceId.videoId;
-            group.push(template($('#latestVideosTpl').html(), item));
+            group.push(template(JST['latestVideosTpl.html'](), item));
             if (group.length == 9) {
                 html.push(
                     '<ul class="list clearFix">' +
@@ -547,8 +547,9 @@ var index_data,
         if (index_data.feature_list.feature_list_active === '1') {
             $('.viewer > h2').html(index_data.feature_list.feature_list_header);
             index_data.feature_list.feature_list_items.forEach(function (item) {
-                html.push(template($('#featureTpl').html(), item));
+                html.push(template(JST['featureTpl.html'](), item));
             });
+
             if (!html.length) {
                 html.push('No feature available.');
             }
@@ -558,7 +559,7 @@ var index_data,
         else {
             index_data.featured_users.forEach(function (item) {
                 item.provider = attachments_server;
-                html.push(template($('#featuredUsersTpl').html(), item));
+                html.push(template(JST['featuredUsersTpl.html'](), item));
             });
             if (!html.length) {
                 html.push('No User Available');
@@ -577,7 +578,7 @@ var index_data,
                 views: item.view_count,
                 link: community + 'index.php?threads/' + item.thread_id + '/',
             };
-            html.push(template($('#recentForumItemTpl').html(), data));
+            html.push(template(JST['recentForumItemTpl.html'](), data));
         });
         if (!html.length) {
             html.push('No Recent Forum');
@@ -585,7 +586,7 @@ var index_data,
         var data = {
             threads: html.join('')
         };
-        html = template($('#recentForumTpl').html(), data);
+        html = template(JST['recentForumTpl.html'](), data);
         $('#forumSection').html(html);
 
         // hot forum
@@ -598,7 +599,7 @@ var index_data,
                 views: item.view_count,
                 link: community + 'index.php?threads/' + item.title + '.' + item.thread_id + '/',
             };
-            html.push(template($('#recentForumItemTpl').html(), data));
+            html.push(template(JST['recentForumItemTpl.html'](), data));
         });
         if (!html.length) {
             html.push('No Recent Forum');
@@ -606,7 +607,7 @@ var index_data,
         var data2 = {
             threads: html.join('')
         };
-        html = template($('#recentForumTpl').html(), data2);
+        html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
         $('.viewer .scroll, .streaming .scroll').mCustomScrollbar({
@@ -807,7 +808,7 @@ $(document).ready(function () {
         if (vid.trim().length) {
             vid = vid.split('?')[1].split('=');
             vid = vid[vid.indexOf('v') + 1].split('#')[0];
-            var html = template($('#playerTpl').html(), {
+            var html = template(JST['playerTpl.html'](), {
                 video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
             });
             $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
