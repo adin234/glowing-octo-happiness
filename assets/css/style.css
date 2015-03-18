@@ -5124,4 +5124,7 @@ div#news_shows_playlists_block {
     border-left: 1px solid #434343;
     right: 0 !important;
 }
+#news_shows_playlists_block div {
+    padding-left: 30px;
+}
 
