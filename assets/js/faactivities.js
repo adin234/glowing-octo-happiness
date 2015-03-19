@@ -1,6 +1,7 @@
 $.get(server + "freedom_events/checkAdmin", function (data) {
     'use strict';
     show_html(data); //data for admin use only
+
 });
 
 $.get(server + "freedom_events", function (data) {
@@ -12,10 +13,27 @@ $.get(server + "freedom_events", function (data) {
 var show_html = function (data) {
     'use strict';
     var html = [];
-    data.forEach(function (item) {
-        html.push(item);
-    });
-    $('.add_events_form').html(html.join(''));
+
+    $.ajax({
+            dataType: 'jsonp',
+            url: server + 'logged_user',
+            type: 'get'
+        })
+        .done(function (session) {
+            if (session.message === "Not logged in.") {
+                document.getElementById('all_events_form').innerHTML = "";
+            }
+            else {
+                $.get(server + "user/" + session.user_id, function (user) {
+                    if (user.is_admin === 1) {
+                        data.forEach(function (item) {
+                            html.push(item);
+                        });
+                        $('.add_events_form').html(html.join(''));
+                    }
+                });
+            }
+        });
 }
 
 
