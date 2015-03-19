@@ -1,0 +1,136 @@
+footer {
+    color: #c7c7c7;
+    background-color: #333333;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+    padding: 30px 60px 35px;
+    width: 1148px;
+    & > ul {
+        li {
+            a {
+                overflow: hidden;
+                text-indent: 100%;
+                white-space: nowrap;
+            }
+        }
+    }
+    a {
+        color: #c7c7c7;
+    }
+    strong {
+        color: white;
+    }
+    nav {
+        border-bottom: 1px solid #272727;
+        ul {
+            height: 45px;
+            li {
+                display: inline;
+                font-size: 1.07692em;
+                line-height: 45px;
+                vertical-align: middle;
+            }
+            li + li {
+                padding-left: 27px;
+                position: relative;
+                &:before {
+                    li + li {
+                        padding-left: 27px;
+                        position: relative;
+                    }
+                }
+            }
+        }
+        .en {
+            background: url("/assets/images/logo_en.png") no-repeat 0 -165px;
+            padding-left: 187px;
+        }
+        .zh_tw {
+            background: url("/assets/images/logo_tw.png") no-repeat 0 -173px;
+            padding-left: 128px;
+        }
+        & > ul {
+            position: absolute;
+            right: 60px;
+            top: 40px;
+            li {
+                float: left;
+                a {
+                    display: block;
+                    float: left;
+                    height: 18px;
+                    width: 25px;
+                }
+            }
+            li + li {
+                margin-left: 10px;
+            }
+            li:nth-child(1) {
+                a {
+                    background: url("/assets/images/sprite.png") no-repeat 7px -2025px;
+                }
+                a:hover, a:focus, a:active {
+                    background-position: 7px -2214px;
+                }
+            }
+            li:nth-child(2) {
+                a {
+                    background: url("/assets/images/sprite.png") no-repeat 0 -2072px;
+                }
+                a:hover, a:active, a:focus {
+                    background-position: 0 -2261px;
+                }
+            }
+            li:nth-child(3) {
+                a {
+                    background: url("/assets/images/sprite.png") no-repeat 0 -2120px;
+                }
+                a:hover, a:active, a:focus {
+                    background-position: 0 -2309px;
+                }
+            }
+            li:nth-child(4) {
+                a {
+                    background: url("/assets/images/sprite.png") no-repeat 0 -2168px;
+                }
+                a:hover, a:active, a:focus {
+                    background-position: 0 -2357px;
+                }
+            }
+        }
+    }
+    small {
+        border-top: 1px solid #3e3e3e;
+        display: block;
+        padding-top: 14px;
+    }
+    span {
+        position: absolute;
+        right: 60px;
+        top: 89px;
+        a {
+            color: white;
+        }
+    }
+    .selectLanguage {
+        background-color: black;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        bottom: 20px;
+        font-size: 0.85714em;
+        position: absolute;
+        right: 0;
+        width: 80px;
+        a {
+            color: inherit;
+            display: block;
+            padding: 5px 15px;
+        }
+        a:hover, a:active, a:focus {
+            color: #df0000;
+            text-decoration: none;
+        }
+    }
+}

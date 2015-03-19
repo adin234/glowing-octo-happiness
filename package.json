@@ -16,7 +16,8 @@
     "url": "https://github.com/adin234/glowing-octo-happiness/issues"
   },
   "homepage": "",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-cli": "^0.1.5",

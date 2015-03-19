@@ -1,0 +1,81 @@
+
+.about {
+    overflow: hidden;
+}
+.about > p, .about ol, .about ul {
+    margin-left: 96px;
+    margin-right: 96px;
+}
+.about > p {
+    display: block;
+    margin-top: 80px;
+}
+.about ol {
+    background: url("/assets/images/divider_h.png") repeat-x left bottom;
+    margin-top: 2em;
+    padding-bottom: 50px;
+}
+.about ol li {
+    list-style-type: decimal;
+    margin: 0 2em;
+}
+.about ul {
+    text-align: center;
+    width: 896px;
+}
+.about ul li {
+    display: block;
+    float: left;
+    height: 215px;
+    margin: 40px 40px 0 0;
+    width: 258px;
+}
+.about ul li h3 {
+    color: #c64136;
+    display: block;
+    line-height: 3em;
+    position: relative;
+}
+.about ul li h3:before {
+    background: url("/assets/images/symbol.png") no-repeat center 0;
+    content: "\00A0";
+    display: block;
+    height: 77px;
+    width: 100%;
+}
+.about ul li:nth-child(1) h3:before {
+    background-position: center 22px;
+}
+.about ul li:nth-child(2) h3:before {
+    background-position: center -69px;
+}
+.about ul li:nth-child(3) h3:before {
+    background-position: center -149px;
+}
+.about ul li:nth-child(4) h3:before {
+    background-position: center -239px;
+}
+.about ul li:nth-child(5) h3:before {
+    background-position: center -321px;
+}
+.about ul li:nth-child(6) h3:before {
+    background-position: center -420px;
+}
+.about ul li:nth-child(7) h3:before {
+    background-position: center -501px;
+}
+.about ul li:nth-child(8) h3:before {
+    background-position: center -601px;
+}
+.about ul li:nth-child(9) h3:before {
+    background-position: center -698px;
+}
+.about ul li:nth-child(10) h3:before {
+    background-position: center -805px;
+}
+.about ul li:nth-child(11) h3:before {
+    background-position: center -913px;
+}
+.about ul li:nth-child(12) h3:before {
+    background-position: center -1009px;
+}

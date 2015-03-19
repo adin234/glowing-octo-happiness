@@ -1,0 +1,88 @@
+
+.zoom2x #outContainer {
+    width: 1450px;
+}
+.zoom2x #outContainer .site {
+    padding-left: 385px;
+}
+.zoom2x #outContainer .en form {
+    right: 208px;
+}
+.zoom2x #outContainer .zh_tw form {
+    right: 227px;
+}
+.zoom2x #outContainer header, .zoom2x #outContainer footer {
+    width: 1450px;
+}
+/*.zoom2x #outContainer header .species ul {
+  padding-left: 458px !important;
+}*/
+/*.zoom2x #outContainer header h1 .en {
+  left: 200px;
+}
+.zoom2x #outContainer header h1 .zh_tw {
+  left: 170px;
+}*/
+
+.zoom2x #outContainer #container {
+    margin-top: 25px;
+}
+.zoom2x #outContainer #content {
+    margin: 0 25px;
+}
+.zoom2x #outContainer #content .heading {
+    background-image: none;
+    margin-top: 0;
+}
+.zoom2x #outContainer #content .heading h2 {
+    display: none;
+}
+.zoom2x #outContainer #content .channel {
+    top: -8px;
+}
+.zoom2x #outContainer #content .resize {
+    margin-top: 0;
+}
+.zoom2x #outContainer .playArea {
+    height: 748px;
+    width: 1130px;
+}
+.zoom2x #outContainer .videoList {
+    height: 748px;
+}
+.zoom2x #outContainer .playList {
+    height: 684px;
+}
+.zoom2x #outContainer .videoRelated {
+    margin: 0 auto;
+    width: 1048px;
+}
+.zoom2x #outContainer .member {
+    right: 220px;
+}
+.zoom2x #outContainer .profile {
+    margin-bottom: 14px;
+    width: 1400px;
+}
+.zoom2x .videoRelated .tabs {
+    min-height: 682px;
+}
+.zoom2x .videoRelated .gamesList {
+    width: 704px;
+}
+.zoom2x .videoRelated .gamesList li {
+    float: left;
+    padding: 0 16px 13px 0;
+}
+.zoom2x .videoRelated .gamesList img {
+    display: block;
+}
+
+.zoom a {
+    display: block;
+    height: 27px;
+    background: url("/assets/images/player_ui.png") no-repeat 0 1px;
+}
+.zoomOut a {
+    background: url("/assets/images/player_ui.png") no-repeat 0 -54px;
+}

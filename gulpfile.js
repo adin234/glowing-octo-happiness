@@ -20,11 +20,11 @@ gulp.task('image-compressed', function () {
 });
 
 gulp.task('sass', function () {
-    gulp.src('assets/css/scss/*.scss')
+    gulp.src('assets/css/scss/**/*.scss')
         .pipe(sass({
             errLogToConsole: true
         }))
-        .pipe(gulp.dest('assets/css/scss'));
+        .pipe(gulp.dest('assets/css'));
 });
 
 gulp.task('template-compile', function() {
@@ -37,4 +37,5 @@ gulp.task('template-compile', function() {
 
 gulp.task('dev', ['template-compile'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
+    gulp.watch('assets/css/scss/**/*', ['sass']);
 });
