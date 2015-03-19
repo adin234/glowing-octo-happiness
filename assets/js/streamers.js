@@ -1,3 +1,20 @@
+/* jshint unused: false */
+/* jshint scripturl:true */
+/* jshint -W100 */ 
+/* global
+    page_data: true,
+    template,
+    JST,
+    utilHash,
+    origin,
+    attachments_server,
+    server,
+    io,
+    socket_server,
+    page_maintenance,
+    streamersSearch
+*/
+
 'use strict';
 
 var slider = {},
@@ -10,6 +27,7 @@ var slider = {},
     first = true,
     multiview_items = [],
     hash,
+
     render_featured_games = function (filter) {
         var html = [],
             items = [];
@@ -23,20 +41,31 @@ var slider = {},
             }
 
             item.game = item.name;
-            items.push(template($('#gameTpl').html(), item));
+            items.push(
+                template(
+                    JST['gameTpl.html'](),
+                    item
+                )
+            );
 
             if (items.length === 12) {
-                html.push(template($('#gameContainerTpl').html(), {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        JST['gameContainerTpl.html'](),
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });
 
         if (items.length !== 0) {
-            html.push(template($('#gameContainerTpl').html(), {
-                'items': items.join('')
-            }));
+            html.push(
+                template(
+                    JST['gameContainerTpl.html'](), 
+                    {'items': items.join('')}
+                )
+            );
         }
 
         if (!html.length) {
@@ -62,23 +91,32 @@ var slider = {},
             if (item.name.search(filter) === -1) {
                 return;
             }
+
             items.push(
                 template(
-                    $('#gameTpl').html(), item
+                    JST['gameTpl.html'](),
+                    item
                 )
             );
+
             if (items.length === 12) {
-                html.push(template($('#gameContainerTpl').html(), {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        JST['gameContainerTpl.html'](),
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });
 
         if (items.length !== 0) {
-            html.push(template($('#gameContainerTpl').html(), {
-                'items': items.join('')
-            }));
+            html.push(
+                template(
+                    JST['gameContainerTpl.html'](),
+                    {'items': items.join('')}
+                )
+            );
         }
 
         if (!html.length) {
@@ -108,8 +146,8 @@ var slider = {},
     },
 
     get_active_for_multiview = function () {
-        var videos = $('#container-multiview ul.list > li');
-        var ids = [];
+        var videos = $('#container-multiview ul.list > li'),
+            ids = [];
 
         videos.each(function (i, item) {
             ids.push($(item).attr('data-streamid'));
@@ -119,10 +157,10 @@ var slider = {},
     },
 
     update_watch_multiview = function () {
-        var ids = get_active_for_multiview();
-        var stream_link = '/gamer_stream_multi/';
-        var watch_now_button = $('#watch-now-link');
-        var videos = $('#container-multiview ul.list > li');
+        var ids = get_active_for_multiview(),
+            stream_link = '/gamer_stream_multi/',
+            watch_now_button = $('#watch-now-link'),
+            videos = $('#container-multiview ul.list > li');
 
         if (videos.length) {
             watch_now_button.removeClass('disabled');
@@ -142,8 +180,8 @@ var slider = {},
             ids = [],
             flags = [],
             recent_videos,
-            tplVideo = $('#videoTpl').html(),
-            tplVideoContainer = $('#videoContainerTpl').html(),
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html'](),
             activeMultiView = get_active_for_multiview(),
             filterRegExp = new RegExp(filter, 'i'),
             filterGame = (
@@ -250,9 +288,12 @@ var slider = {},
             }
 
             if (items.length === 9) {
-                html.push(template(tplVideoContainer, {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        tplVideoContainer,
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });
@@ -268,7 +309,6 @@ var slider = {},
         }
 
         if (first && html.length) {
-            console.log('is first', html);
             $('#container-videos').html(html.join('')).promise()
                 .done(function () {
                     activeSlider.reloadSlider({
@@ -313,7 +353,6 @@ var slider = {},
             if (!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('ç„¡æ³•æ‰¾åˆ°ä½ æŒ‡å®šçš„å¯¦æ³ä¸»');
                 if (!lanparty) {
-                    console.log('render here2');
                     $('#container-videos').html(html.join('')).promise()
                         .done(function () {
                             activeSlider.reloadSlider({
@@ -332,7 +371,6 @@ var slider = {},
             if (!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('ç›®å‰æ²’æœ‰æ­£åœ¨ç›´æ’­çš„å¯¦æ³ä¸»');
                 if (!lanparty) {
-                    console.log('render here3');
                     $('#container-videos').html(html.join('')).promise()
                         .done(function () {
                             activeSlider.reloadSlider({
@@ -379,9 +417,9 @@ var slider = {},
     },
 
     filter_videos = function (input) {
-        var $this = $('#txtbox-search-videos');
-        var filterString = $this.val();
-        var game = get_game();
+        var $this = $('#txtbox-search-videos'),
+            filterString = $this.val(),
+            game = get_game();
         render_videos(filterString, game);
     },
 
@@ -392,9 +430,9 @@ var slider = {},
         $(window).trigger('hashchange');
     },
 
-    filter_category = function (console, context) {
-        con = console;
-        $.getJSON(server + 'streamersdata?console=' + console, function (results) {
+    filter_category = function (_console, context) {
+        con = _console;
+        $.getJSON(server + 'streamersdata?console=' + _console, function (results) {
             page_data = results;
             render_page();
         }).done(function () {
@@ -405,7 +443,7 @@ var slider = {},
 
     add_to_multiview = function () {
         var id = $(this).attr('data-streamidraw'),
-            tplVideo = $('#videoMultiTpl').html(),
+            tplVideo = JST['videoMultiTpl.html'](),
             multiview_item,
             streamer = page_data.streamers.filter(function (item) {
                 if (typeof item.twitchid !== 'undefined' && item.twitchid === id) {
@@ -495,7 +533,6 @@ var slider = {},
         HBStreamers.forEach(function (item) {
             onlineStreamers.push(item);
         });
-        console.log(onlineStreamers);
         if ($('a[href$="/streamers"] > sup').text().length > 0) {
             streamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
@@ -613,3 +650,7 @@ slider.container_lanparty = $('#container-lanparty').bxSlider({
 streamersSearch();
 checker();
 render_page();
+
+$(document).ready(function() {
+    $('.sf-menu').superfish();
+});

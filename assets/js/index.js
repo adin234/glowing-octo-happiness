@@ -1,10 +1,18 @@
-/*global $, server, origin, community, attachments_server, socket_server, template, utilHash, io, JST*/
+/* jshint unused: false */
+/* global 
+    utilHash,
+    server,
+    template,
+    JST,
+    origin,
+    attachments_server,
+    community
+*/
 
 'use strict';
 
 var index_data,
     slider_loaded = 0,
-    online_streamers = [],
     random_featured_vids = [],
     hash = '',
     slider = {},
@@ -23,123 +31,9 @@ var index_data,
         $('.load-more[data-selector="' + selector + '"]').attr('data-per-page', per_page);
     },
 
-    filterAction = function (action) {
-        switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            $('html, body').animate({
-                scrollTop: 0
-            });
-            break;
-        }
-    },
-
-    index_show_streamers = function (streamers_list) {
-        var html = [];
-        if (streamers_list.length > 0) {
-            if ($('#noonline').length > 0) {
-                $('#noonline').remove();
-            }
-
-            streamers_list.forEach(function (item) {
-                if (typeof item.twitch != 'undefined') {
-                    item.twitchid = item.field_value[
-                        item.field_value.length - 1
-                    ];
-                    item.id = 'TW' + item.twitchid;
-                    item.idraw = item.twitchid;
-                    item.live = 'live';
-                    item.game = item.twitch.game;
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user_id + '/#!/' + item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.twitch.preview.large;
-                    item.title = item.twitch.channel.status;
-                    item.bust = 1;
-                    item.views = item.twitch.viewers;
-                }
-                else if (typeof item.hitbox != 'undefined') {
-                    item.hitboxid = item.hitbox.media_name;
-                    item.id = 'HB' + item.hitboxid;
-                    item.game = item.hitbox.livestream[0].category_name;
-                    item.username = item.user.username;
-                    item.user_id = item.user.user_id;
-                    item.idraw = item.hitboxid;
-                    item.live = 'live';
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user.user_id + '/#!/HB' +
-                        item.hitbox.livestream[0].media_user_name;
-                    item.provider = attachments_server;
-                    item.thumb = 'http://edge.sf.hitbox.tv/' +
-                        item.hitbox.media_thumbnail_large;
-                    item.title = item.hitbox.media_status;
-                    item.bust = 1;
-                    item.type = 'HB';
-                    item.views = item.hitbox.media_views;
-                    item.provider = attachments_server;
-                }
-                else {
-                    item.id = 'YT' + item.username;
-                    item.idraw = item.username;
-                    item.live = 'live';
-                    item.game = '';
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user_id + '/#!/' + item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.youtube.snippet.thumbnails.high.url;
-                    item.title = item.youtube.snippet.title;
-                    item.bust = 1;
-                    item.views = '0';
-                }
-
-                item.game = item.game === null ? '' : item.game + ' / ';
-
-                if (item.game.length > 10) {
-                    item.game = item.game.substr(0, 9) + '&#133;' + ' / ';
-                }
-
-                if (item.username !== null && item.username.length > 10) {
-                    item.username = item.username.substr(0, 9) + '&#133;';
-                }
-
-                html.push(template($('#streamersTpl').html(), item));
-            });
-        }
-        else {
-            html.push('<p id="noonline"> 目前沒有人直播 </p>');
-        }
-
-        $('#streamers').html(html.join(''));
-        load_more('#streamers > li', 1, 5);
-    },
-
-    add_filter_category = function (string) {
-        utilHash.changeHashVal('console', string);
-        renderFeaturedGames(string);
-    },
-
-    filter_category = function (cnsl) {
-        $.ajax({
-            async: false,
-            type: 'GET',
-            dataType: 'json',
-            url: server + 'index?console=' + cnsl,
-        }).done(function (data) {
-            var context = $('.species a[data-console=' + cnsl + ']');
-            context.parent().siblings().removeClass('current');
-            context.parent().addClass('current');
-            if (cnsl !== 'all') {
-                $('#imageSlider').parent().parent().hide();
-            }
-            else {
-                $('#imageSlider').parent().parent().show();
-            }
-            index_data = data;
-            update_index(data);
-        });
-
-        return false;
+    shuffle = function (o) {
+        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
+        return o;
     },
 
     renderFeaturedGames = function (string, trigger) {
@@ -166,7 +60,7 @@ var index_data,
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
                         group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length == 5) {
+                        if (group.length === 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
@@ -210,7 +104,7 @@ var index_data,
                             item
                         )
                     );
-                    if (group2.length == 5) {
+                    if (group2.length === 5) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
@@ -257,7 +151,7 @@ var index_data,
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
                         group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length == 5) {
+                        if (group.length === 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
@@ -302,7 +196,7 @@ var index_data,
                     item.imgsrc = item.image;
                     item.game = item.name;
                     group2.push(template(JST['gameTpl.html'](), item));
-                    if (group2.length == 5) {
+                    if (group2.length === 5) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
@@ -361,12 +255,12 @@ var index_data,
         }
     },
 
-    update_index = function (index_data) {
+    update_index = function (_index_data) {
         var html = [];
         var group = [];
 
         if (!slider_loaded) {
-            index_data.slider.forEach(function (item) {
+            _index_data.slider.forEach(function (item) {
                 item.onclick = 
                     item.header_location ?
                         'window.location=\'' +
@@ -392,7 +286,7 @@ var index_data,
         }
 
         html = [];
-        random_featured_vids = shuffle(index_data.featured_videos);
+        random_featured_vids = shuffle(_index_data.featured_videos);
         random_featured_vids.forEach(function (item) {
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
@@ -402,8 +296,8 @@ var index_data,
             item.comments = item.snippet.meta.statistics.commentCount;
             item.views = item.snippet.meta.statistics.viewCount;
             item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
-            group.push(template($('#latestVideosTpl').html(), item));
-            if (group.length == 9) {
+            group.push(template(JST['latestVideosTpl.html'](), item));
+            if (group.length === 9) {
                 html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                 group = [];
             }
@@ -427,7 +321,7 @@ var index_data,
         group = [];
         var flag = {};
 
-        index_data.latest_videos.forEach(function (item) {
+        _index_data.latest_videos.forEach(function (item) {
             var date = item.snippet.publishedAt.substr(0, 10);
             if (!flag[date]) {
                 flag[date] = [];
@@ -443,8 +337,8 @@ var index_data,
                 item.link = '/youtuber/?user=' +
                     item.user_id + '/#!/video/' +
                     item.snippet.resourceId.videoId;
-                group.push(template($('#latestVideosTpl').html(), item));
-                if (group.length == 9) {
+                group.push(template(JST['latestVideosTpl.html'](), item));
+                if (group.length === 9) {
                     html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                     group = [];
                 }
@@ -472,7 +366,7 @@ var index_data,
         group = [];
         var ids = {};
 
-        index_data.most_viewed.forEach(function (item) {
+        _index_data.most_viewed.forEach(function (item) {
             ids[item.user_id] = 
                 typeof ids[item.user_id] === 'undefined' ?
                     1 :
@@ -492,8 +386,8 @@ var index_data,
             item.link = '/youtuber/?user=' +
                 item.user_id + '/#!/video/' +
                 item.snippet.resourceId.videoId;
-            group.push(template($('#latestVideosTpl').html(), item));
-            if (group.length == 9) {
+            group.push(template(JST['latestVideosTpl.html'](), item));
+            if (group.length === 9) {
                 html.push(
                     '<ul class="list clearFix">' +
                     group.join('') + '</ul>'
@@ -523,7 +417,7 @@ var index_data,
         var shuffleTrigger = 0,
             tCounterCorrect = 0,
             tCounterWrong = 0;
-        window.setInterval(function(){
+        window.setInterval(function() {
             var date = new Date();
             if (date.getHours() === 24 &&
                 date.getMinutes() === 0 &&
@@ -544,11 +438,12 @@ var index_data,
         }, 1000);
 
         html = [];
-        if (index_data.feature_list.feature_list_active === '1') {
-            $('.viewer > h2').html(index_data.feature_list.feature_list_header);
-            index_data.feature_list.feature_list_items.forEach(function (item) {
-                html.push(template($('#featureTpl').html(), item));
+        if (_index_data.feature_list.feature_list_active === '1') {
+            $('.viewer > h2').html(_index_data.feature_list.feature_list_header);
+            _index_data.feature_list.feature_list_items.forEach(function (item) {
+                html.push(template(JST['featureTpl.html'](), item));
             });
+
             if (!html.length) {
                 html.push('No feature available.');
             }
@@ -556,9 +451,9 @@ var index_data,
             $('#featuredUsers').html(html.join(''));
         }
         else {
-            index_data.featured_users.forEach(function (item) {
+            _index_data.featured_users.forEach(function (item) {
                 item.provider = attachments_server;
-                html.push(template($('#featuredUsersTpl').html(), item));
+                html.push(template(JST['featuredUsersTpl.html'](), item));
             });
             if (!html.length) {
                 html.push('No User Available');
@@ -567,7 +462,7 @@ var index_data,
         }
 
         html = [];
-        index_data.recent_threads.forEach(function (item) {
+        _index_data.recent_threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server +
                     'avatar.php?userid=' +
@@ -577,7 +472,7 @@ var index_data,
                 views: item.view_count,
                 link: community + 'index.php?threads/' + item.thread_id + '/',
             };
-            html.push(template($('#recentForumItemTpl').html(), data));
+            html.push(template(JST['recentForumItemTpl.html'](), data));
         });
         if (!html.length) {
             html.push('No Recent Forum');
@@ -585,20 +480,20 @@ var index_data,
         var data = {
             threads: html.join('')
         };
-        html = template($('#recentForumTpl').html(), data);
+        html = template(JST['recentForumTpl.html'](), data);
         $('#forumSection').html(html);
 
         // hot forum
         html = [];
-        index_data.threads.forEach(function (item) {
-            var data = {
+        _index_data.threads.forEach(function (item) {
+            var _data = {
                 posterimage: attachments_server + 'avatar.php?userid=' + item.last_post_user_id + '.jpg',
                 title: item.title,
                 replies: item.reply_count,
                 views: item.view_count,
                 link: community + 'index.php?threads/' + item.title + '.' + item.thread_id + '/',
             };
-            html.push(template($('#recentForumItemTpl').html(), data));
+            html.push(template(JST['recentForumItemTpl.html'](), _data));
         });
         if (!html.length) {
             html.push('No Recent Forum');
@@ -606,7 +501,7 @@ var index_data,
         var data2 = {
             threads: html.join('')
         };
-        html = template($('#recentForumTpl').html(), data2);
+        html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
         $('.viewer .scroll, .streaming .scroll').mCustomScrollbar({
@@ -619,24 +514,64 @@ var index_data,
         });
     },
 
+    filter_category = function (cnsl) {
+        $.ajax({
+            async: false,
+            type: 'GET',
+            dataType: 'json',
+            url: server + 'index?console=' + cnsl,
+        }).done(function (data) {
+            var context = $('.species a[data-console=' + cnsl + ']');
+            context.parent().siblings().removeClass('current');
+            context.parent().addClass('current');
+            if (cnsl !== 'all') {
+                $('#imageSlider').parent().parent().hide();
+            }
+            else {
+                $('#imageSlider').parent().parent().show();
+            }
+            index_data = data;
+            update_index(data);
+        });
+
+        return false;
+    },
+
+    filterAction = function (action) {
+        switch (action) {
+        case 'console':
+            filter_category(hash.shift());
+            filterAction(hash.shift());
+            $('html, body').animate({
+                scrollTop: 0
+            });
+            break;
+        }
+    },
+
+    add_filter_category = function (string) {
+        utilHash.changeHashVal('console', string);
+        renderFeaturedGames(string);
+    },
+
     news_shows_playlists = function () {
         var html = [],
             blocks = '',
             max_items = 4,
             ctr = 1,
             visible_news_playlists = (
-                (typeof index_data.visible_news_playlists != 'undefined') ?
+                (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
                     []
             ),
             visible_shows_playlists = (
-                (typeof index_data.visible_shows_playlists != 'undefined') ?
+                (typeof index_data.visible_shows_playlists !== 'undefined') ?
                     index_data.visible_shows_playlists.split(',') :
                     []
             );
 
         index_data.news_playlists.forEach(function (playlist, index) {
-            if (visible_news_playlists.indexOf(playlist.id) == -1) {
+            if (visible_news_playlists.indexOf(playlist.id) === -1) {
                 return;
             }
             blocks = '<div id="tab-news-playlist-' + index + '"><ul class="list clearFix">';
@@ -655,7 +590,9 @@ var index_data,
                     result.items.forEach(function (item) {
                         var newsShows, newsShowsTpl;
                         if (item.status.privacyStatus === 'public') {
-                            if (ctr > max_items) return;
+                            if (ctr > max_items) {
+                                return;
+                            }
                             if (typeof item.snippet.thumbnails !== 'undefined') {
                                 item.thumb = item.snippet.thumbnails.medium.url;
                             }
@@ -680,7 +617,7 @@ var index_data,
         });
 
         index_data.shows_playlists.forEach(function (playlist, index) {
-            if (visible_shows_playlists.indexOf(playlist.id) == -1) {
+            if (visible_shows_playlists.indexOf(playlist.id) === -1) {
                 return;
             }
 
@@ -700,7 +637,9 @@ var index_data,
                     ctr = 1;
                     result.items.forEach(function (item) {
                         if (item.status.privacyStatus === 'public') {
-                            if (ctr > max_items) return;
+                            if (ctr > max_items) {
+                                return;
+                            }
                             if (typeof item.snippet.thumbnails !== 'undefined') {
                                 item.thumb = item.snippet.thumbnails.medium.url;
                             }
@@ -740,127 +679,94 @@ var index_data,
         });
     },
 
-    checker_index = function () {
-        var socket = io.connect(socket_server);
-        socket.on('message', function (e) {
-            online_streamers = [];
-            online_streamers = online_streamers.concat(
-                e.streamers.youtube.concat(
-                    e.streamers.twitch.concat(
-                        e.streamers.hitbox
-                    )
-                )
-            );
-            index_show_streamers(online_streamers);
+    init_doc_listeners = function() {
+        
+        slider.most_viewed = $('#mostViewed').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        slider.latest_video = $('#latestVideos').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        slider.featured_video = $('#featuredVideos').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        slider.featured_games = $('#featuredGames').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        slider.latest_games = $('#latestGames').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                dataType: 'json',
+                url: server + 'index?console=all',
+            }).done(function (data) {
+                index_data = data;
+                update_index(index_data);
+            });
+
+            $(document).on('click', '.slider-item .play', function () {
+                var vid = $(this).attr('data-vid');
+                if (vid.trim().length) {
+                    vid = vid.split('?')[1].split('=');
+                    vid = vid[vid.indexOf('v') + 1].split('#')[0];
+                    var html = template(JST['playerTpl.html'](), {
+                        video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
+                    });
+                    $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
+                        $('.bx-wrapper .video-player iframe').css('margin-top',(
+                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
+                        );
+                        $('.bx-wrapper .video-player .close').css('margin-top', (
+                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
+                        );
+                    });
+                }
+            });
+
+            $(document).on('click', '.bx-wrapper .close', function () {
+                $('#container .bx-wrapper .video-player').remove();
+            });
+
+            
+
+            $('html').on('click', '.load-more', function () {
+                var e = $(this);
+                var selector = e.attr('data-selector');
+                var page = e.attr('data-page');
+                var per_page = e.attr('data-per-page');
+                load_more(selector, page, per_page);
+            });
+
+            $(window).on('hashchange', function () {
+                hash = window.location.hash.replace('#!/', '');
+                hash = hash.split('/');
+                filterAction(hash.shift());
+            });
+
+            news_shows_playlists();
         });
     },
 
-    shuffle = function (o) {
-        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
+    start = function() {
+            init_doc_listeners();
     };
 
-
-slider.most_viewed = $('#mostViewed').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.latest_video = $('#latestVideos').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.featured_video = $('#featuredVideos').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.featured_games = $('#featuredGames').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.latest_games = $('#latestGames').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-$(document).ready(function () {
-    $.ajax({
-        async: false,
-        type: 'GET',
-        dataType: 'json',
-        url: server + 'index?console=all',
-    }).done(function (data) {
-        index_data = data;
-        update_index(index_data);
-    });
-
-    $(document).on('click', '.slider-item .play', function () {
-        var vid = $(this).attr('data-vid');
-        if (vid.trim().length) {
-            vid = vid.split('?')[1].split('=');
-            vid = vid[vid.indexOf('v') + 1].split('#')[0];
-            var html = template($('#playerTpl').html(), {
-                video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
-            });
-            $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
-                $('.bx-wrapper .video-player iframe').css('margin-top',(
-                    $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                );
-                $('.bx-wrapper .video-player .close').css('margin-top', (
-                    $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                );
-            });
-        }
-    });
-
-    $(document).on('click', '.bx-wrapper .close', function () {
-        $('#container .bx-wrapper .video-player').remove();
-    });
-
-    $(window).scroll(function () {
-        if ($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
-            $('#arrow').removeClass('down').addClass('up');
-        }
-        else {
-            $('#arrow').removeClass('up').addClass('down');
-        }
-    });
-
-    $('body').on('click', '#arrow.down', function () {
-        $('html, body').animate({
-            scrollTop: $(document).height()
-        });
-    });
-
-    $('body').on('click', '#arrow.up', function () {
-        $('html, body').animate({
-            scrollTop: 0
-        });
-    });
-
-    $('html').on('click', '.load-more', function () {
-        var e = $(this);
-        var selector = e.attr('data-selector');
-        var page = e.attr('data-page');
-        var per_page = e.attr('data-per-page');
-        load_more(selector, page, per_page);
-    });
-
-    $(window).on('hashchange', function () {
-        hash = window.location.hash.replace('#!/', '');
-        hash = hash.split('/');
-        filterAction(hash.shift());
-    });
-
-    news_shows_playlists();
-});
-
-checker_index();
+start();

@@ -1,27 +1,27 @@
+/* jshint unused: false */
+/* global
+    utilCookie,
+    server,
+    origin,
+    utilHash
+*/
 'use strict';
-var all_events = [],
-    get_user_info = function () {
-        var userinfo = $.parseJSON(utilCookie.get('user')),
-            user_id = userinfo.user_id;
 
-        if (user_id === 18) {
-            addEventForm();
-            get_data();
-        }
-        else {
-            get_data();
-        }
-    },
+var all_events = [],
+    tab,
 
     addEventForm = function () {
         var html = [];
         html.push('<div id="add_event_header">Add an Event</div>');
         html.push('<div id="addForm"><form>');
         html.push(
-            '<p id="e_title">Title</p> <input type="text" name="event_name" placeholder="Event Title" id="event_name" required>'
+            '<p id="e_title">Title</p> ' +
+            '<input type="text" name="event_name" ' +
+            'placeholder="Event Title" id="event_name" required>'
         );
         html.push(
-            '<p id="e_s_date">Start Date</p> <input type = "date" name = "event_start_date"' +
+            '<p id="e_s_date">Start Date</p> ' +
+            '<input type = "date" name = "event_start_date"' +
             'placeholder = "Event Start Date"' +
             'id = "event_start_date" required>'
         );
@@ -41,36 +41,14 @@ var all_events = [],
             'placeholder="Event End Time" id="event_end_time" required>'
         );
         html.push('<p id="e_desc">Event Description</p>');
-        html.push('<textarea id="event_desc" name="event_desc" placeholder="Event Description"></textarea>');
+        html.push('<textarea id="event_desc" name="event_desc" ' +
+            'placeholder="Event Description"></textarea>');
         html.push('<button onclick="add_event()">ADD EVENT</button>');
         html.push(
             '</form><button onclick="get_events()">' +
             'SHOW EVENTS</button>'
         );
         $('.add_events_form').html(html.join(''));
-    },
-
-    add_event = function () {
-        $.ajax({
-            url: server + 'freedom_events/add',
-            type: 'post',
-            data: {
-
-                'event_title': $('#event_name').val(),
-                'start_date': $('#event_start_date').val(),
-                'end_date': $('#event_end_date').val(),
-                'start_time': $('#event_start_time').val(),
-                'end_time': $('#event_end_time').val(),
-                'e_description': $('#event_desc').val()
-            }
-        }).success(function (data) {
-            console.log(data);
-            console.log('success');
-        }).fail(function (data) {
-            console.log(data);
-            console.log('Fail');
-        });
-
     },
 
     get_data = function () {
@@ -89,9 +67,42 @@ var all_events = [],
         }).success(function (data) {
             all_events.fetched_data = data;
         }).fail(function (data) {
-            console.log(data);
-            console.log('failure');
+
         });
+    },
+
+    get_user_info = function () {
+        var userinfo = $.parseJSON(utilCookie.get('user')),
+            user_id = userinfo.user_id;
+
+        if (user_id === 18) {
+            addEventForm();
+            get_data();
+        }
+        else {
+            get_data();
+        }
+    },
+
+    add_event = function () {
+        $.ajax({
+            url: server + 'freedom_events/add',
+            type: 'post',
+            data: {
+
+                'event_title': $('#event_name').val(),
+                'start_date': $('#event_start_date').val(),
+                'end_date': $('#event_end_date').val(),
+                'start_time': $('#event_start_time').val(),
+                'end_time': $('#event_end_time').val(),
+                'e_description': $('#event_desc').val()
+            }
+        }).success(function (data) {
+
+        }).fail(function (data) {
+
+        });
+
     },
 
     get_events = function () {
@@ -168,8 +179,8 @@ var all_events = [],
 
     schedule_template = function () {
         var html = [];
-        all_events.fetched_data.forEach(function (item) {
 
+        all_events.fetched_data.forEach(function (item) {
             if (get_date_diff(item.end_date, item.end_time) === 'Ongoing') {
                 $('#eventStatus').css({
                     'background': '#FFE10E',
@@ -185,9 +196,11 @@ var all_events = [],
 
             html.push('<div class=\'activity\'>');
             html.push('<div class="left">');
-            html.push('<div id="startEventDate">' + item.start_date + '</div>' + '<p> - </p>' +
+            html.push('<div id="startEventDate">' + item.start_date +
+                '</div>' + '<p> - </p>' +
                 '<div id="endEventDate">' + item.end_date + '</div>');
-            html.push('<div id="startEventTime">' + item.start_time + '</div>' + '<p> - </p>' +
+            html.push('<div id="startEventTime">' + item.start_time +
+                '</div>' +'<p> - </p>' +
                 '<div id="endEventTime">' + item.end_time + '</div>');
             html.push('</div>');
             html.push('<div class="center">');
@@ -218,3 +231,17 @@ var all_events = [],
             html.join('')
         );
     };
+
+$(document).ready(function() {
+    $('.sf-menu').superfish();
+});
+
+$('.tabs').tabslet();
+tab = utilHash.getHash();
+if (tab !== '') {
+    $('[href=' + tab + ']').trigger('click');
+}
+
+$().click(function() {
+    $().slideDown();
+});

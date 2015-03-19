@@ -1,12 +1,24 @@
+/* jshint unused: false */
+/* global
+    attachments_server,
+    template,
+    JST,
+    io,
+    socket_server,
+    utilCookie,
+    utilHash
+*/
+
 'use strict';
-var streamers_list = {},
-    active_streams = [];
 
-streamers_list.youtube = [];
-streamers_list.twitch = [];
-streamers_list.hitbox = [];
+var streamers_list = {
+        youtube : [],
+        twitch : [],
+        hitbox : []
+    },
+    active_streams = [],
 
-var stream_slider = $('.bxslider').bxSlider({
+    stream_slider = $('.bxslider').bxSlider({
         infiniteLoop: false,
         hideControlOnEnd: true,
         minSlides: 2,
@@ -14,19 +26,10 @@ var stream_slider = $('.bxslider').bxSlider({
         slideWidth: 329.5,
     }),
 
-    get_streamers = function () {
-        var socket_streamers = io.connect(socket_server);
-        socket_streamers.on('message', function (e) {
-            streamers_list = e.streamers;
-            render_streamers();
-        });
-    },
-
     format_stream_item = function (item) {
         item.class = '';
-        if (typeof item.twitch != 'undefined') {
+        if (typeof item.twitch !== 'undefined') {
             item.twitchid = item.field_value[0];
-            // dont render if already active
             item.id = 'TW' + item.twitchid;
             item.idraw = item.twitchid;
             item.live = 'live';
@@ -39,7 +42,6 @@ var stream_slider = $('.bxslider').bxSlider({
         }
         else if (typeof item.hitbox !== 'undefined') {
             var hitboxData = item.hitbox.livestream[0];
-
             item.id = 'HB' + hitboxData.media_name;
             item.idraw = item.hitboxid;
             item.live = 'live';
@@ -71,52 +73,74 @@ var stream_slider = $('.bxslider').bxSlider({
     },
 
     render_streamers = function () {
-        var html = [];
-        var streamer_container = $('#streamContainer').html('');
+        var html = [],
+            streamer_container = $('#streamContainer').html('');
 
         streamers_list.youtube.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(
+                template(
+                    JST['streamlist-item-tpl.html'](),
+                    item
+                )
+            );
         });
 
         streamers_list.hitbox.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(
+                template(
+                    JST['streamlist-item-tpl.html'](),
+                    item
+                )
+            );
         });
 
         streamers_list.twitch.forEach(function (item) {
             item = format_stream_item(item);
-            html.push(template($('#streamlist-item-tpl').html(), item));
+            html.push(
+                template(
+                    JST['streamlist-item-tpl.html'](),
+                    item
+                )
+            );
         });
+
         $('#lightSlider').html(html.join(''));
         $('#streamContainer').html(html.join(''));
         stream_slider.reloadSlider();
     },
 
+    get_streamers = function () {
+        var socket_streamers = io.connect(socket_server);
+        socket_streamers.on('message', function (e) {
+            streamers_list = e.streamers;
+            render_streamers();
+        });
+    },
+
     render_stream_video = function (item) {
+        var streamType = item.substr(0, 2),
+            streamId = item.substr(2);
+
         active_streams.push(item);
-        var streamType = item.substr(0, 2);
-        var streamId = item.substr(2);
-        if (streamType == 'TW') {
+        if (streamType === 'TW') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#twitch-stream-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['twitch-stream-tpl.html'](),
+                    {twitchid : streamId}
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#twitch-chat-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['twitch-chat-tpl.html'](), 
+                    {twitchid : streamId}
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#twitch-chat-tab-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['twitch-chat-tab-tpl.html'](),
+                    {twitchid : streamId}
                 )
             );
             $('.tabs').tabslet({
@@ -124,26 +148,23 @@ var stream_slider = $('.bxslider').bxSlider({
             });
         }
 
-        if (streamType == 'HB') {
+        if (streamType === 'HB') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#hitbox-stream-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['hitbox-stream-tpl.html'](),
+                    {twitchid : streamId}
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#hitbox-chat-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['hitbox-chat-tpl.html'](),
+                    {twitchid : streamId}
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#hitbox-chat-tab-tpl').html(), {
-                        twitchid: streamId
-                    }
+                    JST['hitbox-chat-tab-tpl.html'](),
+                    {twitchid : streamId}
                 )
             );
             $('.tabs').tabslet({
@@ -151,35 +172,32 @@ var stream_slider = $('.bxslider').bxSlider({
             });
         }
 
-        if (streamType == 'YT') {
+        if (streamType === 'YT') {
             $('#twitchStreamContainer').append(
                 template(
-                    $('#youtube-stream-tpl').html(), {
-                        youtubeid: streamId
-                    }
+                    JST['youtube-stream-tpl.html'](),
+                    {youtubeid : streamId}
                 )
             );
             $('#twitch-chat-frame-container').append(
                 template(
-                    $('#gchat-tpl').html(), {
-                        ChannelId: streamId
-                    }
+                    JST['gchat-tpl.html'](),
+                    {ChannelId : streamId}
                 )
             );
             $('#twitch-chat-tab-container').append(
                 template(
-                    $('#gchat-tab-tpl').html(), {
-                        ChannelId: streamId
-                    }
+                    JST['gchat-tab-tpl.html'](),
+                    {ChannelId: streamId}
                 )
             );
 
-            var userinfo = '';
-            var channelinfo = {
-                'id': streamId,
-                'title': streamId
-            };
-            var parentHt = $('#side-container').css('height');
+            var userinfo = '',
+                parentHt = $('#side-container').css('height'),
+                channelinfo = {
+                    'id': streamId,
+                    'title': streamId
+                };
 
             if (utilCookie.get('user').length > 0) {
                 userinfo = $.parseJSON(utilCookie.get('user'));

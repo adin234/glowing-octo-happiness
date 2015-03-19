@@ -24,10 +24,8 @@
     <link href="/assets/css/jquery.mCustomScrollbar.css?ver=22" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css?ver=22" />
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css?ver=22" />
-    <script type="text/javascript" src="/assets/js/config.js?ver=22">
-    </script>
-    <script type="text/javascript" src="/assets/js/get.lanparty.data.js?ver=22">
-    </script>
+    <script src="/assets/js/config.js?ver=22"></script>
+    <script src="/assets/js/get.lanparty.data.js?ver=22"></script>
   </head>
   <body class="lang_zh_tw switch-menu stream-gritter">
     <div id="wrapper">
@@ -380,110 +378,6 @@
         </div>
       </div>
     </div>
-    <script type="text/html" id="categoriesTpl">
-      <li>
-        <a href="#" onclick="filter('{{ID}}'); return false;" title="{{NAME}}">
-          {{NAME}}
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="playlistTpl">
-      <li class="playlistItem" id="{{ID}}">
-        <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-          <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <p>
-            {{DESC}}
-          </p>
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="videosTpl">
-      <li class="ytVideo videoItem" id="{{ID}}">
-        <a href="{{LINK}}" title="{{TITLE}}" class="clearFix">
-          <img src="{{THUMB}}" alt="{影片名稱}" width="79" height="52">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <p>
-            {{DESC}}
-          </p>
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="categoriesTpl">
-      <li>
-        <a href="" onClick="filter('{{ID}}'); return false;" title="{{NAME}}">
-          {{NAME}}
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="gamesCastTpl">
-      <li class="game-item">
-        <a href="javascript:void(0);" data-id="{{ID}}" onClick="filterGame('{{ID}}'); return false;" title="{{NAME}}">
-          <img src="{{IMAGE}}" width="160" height="94" alt="{{NAME}}"  class="tooltip"  title="{{NAME}}&lt;/br&gt;{{NAME}}">
-        </a>
-      </li>
-    </script>
-    <script type="text/html" id="commentItemTpl">
-      <article class="clearFix"><img src="{{USERIMAGE}}" width="56" height="56" alt="{USERNAME}">
-        <cite>
-          {{USERNAME}}
-        </cite>
-        <span>．
-          <date datetime="{{DATE}}">
-            {{DATE}}
-          </date>
-        </span>
-        <div class="replyContent">
-          <p>
-            {{COMMENT}}
-          </p>
-        </div>
-      </article>
-    </script>
-    <script type="text/html" id="commentsTpl">
-      <div class="comments-list">
-        <a href="javascript:;">所有留言 ({{COUNT}})</a>
-        <div class="yourDiscussion"> <img class="userImg"src="/assets/images/uploader.jpg" width="65" height="65" alt="{使用者帳號}">
-          <div>
-          <div class="angle">
-          </div>
-          <textarea id="commentArea" placeholder="分享您的想法"></textarea>
-          </div>
-          <button id="postComment" data-video='{{VIDEO}}'>Post</button>
-        </div>
-        <div class="type clearFix">
-          <span>類型：</span>
-          <ul>
-            <li class="{{SORTLATEST}}"><a href="javascript:;" class="sort-comments latest">最新留言</a></li>
-            <li class="{{SORTLAST}}"><a href="javascript:;" class="sort-comments last">由舊到新</a></li>
-          </ul>
-        </div>
-        <div class="discussions">
-          {{COMMENTS}}
-        </div>
-      </div>
-    </script>
-    <script type="text/html" id="recommendedTpl">
-      <li class="list clearFix">
-        <a href="{{LINK}}" title="{影片名稱}"> <img src="{{THUMB}}" width="109" height="67" alt="{影片名稱}">
-          <h3>
-            {{TITLE}}
-          </h3>
-          <ul>
-            <li><cite>
-              {{USERNAME}}
-              </cite> 上傳</li>
-            <li>
-              {{VIEWS}} Views
-            </li>
-          </ul>
-        </a>
-      </li>
-    </script>
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js?ver=22"></script>
     <script src="/assets/js/libs/superfish.js?ver=22"></script>
@@ -495,13 +389,13 @@
     <script src="/assets/js/libs/jquery.fixed.menu.js?ver=22"></script>
     <script src="/assets/js/libs/autolinker.js?ver=22"></script>
     <script src="/assets/js/libs/jquery.gritter.min.js?ver=22"></script>
+    <script src="/assets/templates/lanparty_videos/templates.js?ver=22"></script>
     <script src="/assets/js/util.js?ver=22"></script>
     <script src="/assets/js/media.js?ver=22"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        $(".sf-menu").superfish();
+        $('.sf-menu').superfish();
       });
     </script>
   </body>
->>>>>>> 50eccf8a3a204cda96325849ee547ae187188da0
 </html>

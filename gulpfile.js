@@ -1,5 +1,7 @@
-var install = require("gulp-install"),
-    gulp = require("gulp"),
+'use strict';
+
+var gulp = require("gulp"),
+    fs = require('fs'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     template = require('gulp-template-compile'),
@@ -28,11 +30,18 @@ gulp.task('sass', function () {
 });
 
 gulp.task('template-compile', function() {
-    return gulp.src('assets/templates/**/*.html')
-        .pipe(template())
-        .pipe(concat('templates.js'))
-        .pipe(replace(/_.escape/g, '\'\''))
-        .pipe(gulp.dest('assets/js'));
+    var path = 'assets/templates/',
+        dirs = fs.readdirSync(path).filter(function (file) {
+            return fs.statSync(path+file).isDirectory();
+        });
+
+    return dirs.forEach(function(dir) {
+        gulp.src(path + dir + '/**/*.html')
+            .pipe(template())
+            .pipe(concat('templates.js'))
+            .pipe(replace(/_.escape/g, '\'\''))
+            .pipe(gulp.dest(path + dir));
+    });
 });
 
 gulp.task('dev', ['template-compile'], function() {

@@ -1,0 +1,38 @@
+{
+  "predef": [
+    "phantom",
+    "module",
+    "require",
+    "__dirname",
+    "process",
+    "console",
+    "it",
+    "describe",
+    "before",
+    "beforeEach",
+    "after",
+    "should",
+    "rewire",
+    "$"
+  ],
+
+  "browser": true,
+  "esnext": true,
+  "globals": {},
+  "globalstrict": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "node": true,
+  "mocha": true,
+  "laxbreak" : true,
+  "curly" : true,
+  "eqeqeq" : true,
+  "latedef" : true,
+  "immed" : true,
+  "maxdepth" : 4,
+  "maxlen" : 120,
+  "shadow" : "outer",
+  "es5" : false,
+  "jquery" : true
+}
