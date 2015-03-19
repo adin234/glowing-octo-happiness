@@ -220,7 +220,6 @@ var html = [],
             }).join('');
 
             page_data.commentsLength = comments.length;
-            console.log(sort);
             $('#tab-2 .mCSB_container')
                 .html(template(
                     JST['commentsTpl.html'](), {
@@ -256,7 +255,6 @@ var html = [],
     },
 
     filterAction = function (action) {
-        console.log('action', action);
         switch (action) {
         case 'playlist':
             showPlaylist(hash.shift(), hash.shift());
@@ -555,7 +553,6 @@ var html = [],
     },
 
     deleteComment = function (data, context) {
-        console.log($(context).parent().parent());
         var videoId = $('#postComment').attr('data-video'),
             url = server + 'youtubers/videos/' + videoId + '/comment/' + data + '/delete',
             user_id = utilUser.get().user_id;

@@ -1,7 +1,7 @@
 /* jshint unused: false */
 /* global
     JST,
-    page_data,
+    page_data: true,
     attachments_server,
     template,
     server,

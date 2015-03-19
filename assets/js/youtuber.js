@@ -1,3 +1,17 @@
+/* jshint unused: false */
+/* global
+    utilHash,
+    page_data,
+    template,
+    JST,
+    filter_vlogs,
+    update_videos,
+    twttr,
+    community,
+    attachments_server,
+    server
+*/
+
 'use strict';
 
 var liveStreamLink = false,
@@ -90,7 +104,9 @@ var liveStreamLink = false,
             inner = '<a href="https://twitter.com/' + twitter + '" class="twitter-follow-button" ' +
                 'data-show-count="false" data-size="large"></a>';
             $('#twitter-follow').html(inner);
-            twitter.widgets && twttr.widgets.load();
+            if (twitter.widgets) {
+                twttr.widgets.load();
+            }
         }
         else {
             $('#twitter-follow').remove();
@@ -100,14 +116,15 @@ var liveStreamLink = false,
 renderGame();
 
 $('#banner .info > cite').html(page_data.user.username);
-$('#banner .info > a').attr('href', community + 'index.php?members/' + page_data.user.username + '.' + page_data.user.user_id);
+$('#banner .info > a').attr('href', community + 'index.php?members/' +
+    page_data.user.username + '.' + page_data.user.user_id);
 $('#banner .info > img').attr('src', attachments_server + 'avatar.php?userid=' + page_data.user.user_id + '.jpg');
 twitchId = page_data.user.custom_fields.twitchStreams || null;
 youtubeId = page_data.user.custom_fields.youtube_id || null;
 $.get(server + 'streamers?user=' + page_data.user.user_id, function (result) {
     if (result.streamers.length) {
         liveStreamLink = '/gamer_stream/?user=' + page_data.user.user_id + '/#!/' + 'TW' + result.streamers[0].twitch
-            .channel.name
+            .channel.name;
     }
 
     if (liveStreamLink) {
