@@ -355,13 +355,13 @@ var renderFeaturedGames = function (string, trigger) {
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
                     if (group.length == 12) {
-                        html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
+                        html.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group.join('') + '</ul>');
                         group = [];
                     }
                 }
             });
             if (group.length >= 1) {
-                html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
+                html.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group.join('') + '</ul>')
             }
             if (!html.length) {
                 html.push('目前沒有遊戲');
@@ -388,12 +388,12 @@ var renderFeaturedGames = function (string, trigger) {
                 item.game = item.name;
                 group2.push(template($('#gameTpl').html(), item));
                 if (group2.length == 12) {
-                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
+                    html2.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group2.join('') + '</ul>');
                     group2 = [];
                 }
             });
             if (group2.length >= 1) {
-                html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>')
+                html2.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group2.join('') + '</ul>')
             }
             if (!html2.length) {
                 html2.push('目前沒有遊戲');
@@ -434,13 +434,13 @@ var renderFeaturedGames = function (string, trigger) {
                     item.chinese = found_games[0].chinese;
                     group.push(template($('#gameTpl').html(), item));
                     if (group.length == 6) {
-                        html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
+                        html.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group.join('') + '</ul>');
                         group = [];
                     }
                 }
             });
             if (group.length >= 1) {
-                html.push('<ul class="game clearFix">' + group.join('') + '</ul>')
+                html.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group.join('') + '</ul>')
             }
             if (!html.length) {
                 html.push('目前沒有遊戲');
@@ -467,12 +467,12 @@ var renderFeaturedGames = function (string, trigger) {
                 item.game = item.name;
                 group2.push(template($('#gameTpl').html(), item));
                 if (group2.length == 6) {
-                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
+                    html2.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group2.join('') + '</ul>');
                     group2 = [];
                 }
             });
             if (group2.length >= 1) {
-                html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>')
+                html2.push('<ul class="game clearFix" style="padding-left: 15px !important;">' + group2.join('') + '</ul>')
             }
             if (!html2.length) {
                 html2.push('目前沒有遊戲');
