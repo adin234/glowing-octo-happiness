@@ -1,3 +1,11 @@
+/* global
+    attachments_server,
+    template,
+    JST,
+    server,
+    utilCookie,
+    utilHash
+*/
 'use strict';
 
 var streamers_list = {},
@@ -15,7 +23,6 @@ var streamers_list = {},
         item.class = '';
         if (typeof item.twitch !== 'undefined') {
             item.twitchid = item.field_value[0];
-            // dont render if already active
             item.id = 'TW' + item.twitchid;
             item.idraw = item.twitchid;
             item.live = 'live';
@@ -75,8 +82,15 @@ var streamers_list = {},
 
     render_stream_video = function (item) {
         active_streams.push(item);
-        var streamType = item.substr(0, 2);
-        var streamId = item.substr(2);
+        var streamType = item.substr(0, 2),
+            streamId = item.substr(2),
+            parentHt = $('#side-container').css('height'),
+            userinfo = '',
+            channelinfo = {
+                'id': streamId,
+                'title': streamId
+            };
+
         if (streamType === 'TW') {
             $('#twitchStreamContainer').append(template(JST['twitch-stream-tpl.html'](), {
                 twitchid: streamId
@@ -91,6 +105,7 @@ var streamers_list = {},
                 animation: true,
             });
         }
+
         if (streamType === 'YT') {
             $('#twitchStreamContainer').append(template(JST['youtube-stream-tpl.html'](), {
                 youtubeid: streamId
@@ -101,13 +116,6 @@ var streamers_list = {},
             $('#twitch-chat-tab-container').append(template(JST['gchat-tab-tpl.html'](), {
                 ChannelId: streamId
             }));
-
-            var userinfo = '';
-            var channelinfo = {
-                'id': streamId,
-                'title': streamId
-            };
-            var parentHt = $('#side-container').css('height');
 
             if (utilCookie.get('user').length > 0) {
                 userinfo = $.parseJSON(utilCookie.get('user'));
@@ -124,7 +132,6 @@ var streamers_list = {},
             });
         }
     };
-
 
 streamers_list.youtube = [];
 streamers_list.twitch = [];
@@ -149,8 +156,7 @@ $(function () {
     });
 
     $('body').on('change', '#view-resize', function () {
-        var size = $(this).val();
-        $('body').removeClass('x1 x2 x3').addClass(size);
+        $('body').removeClass('x1 x2 x3').addClass($(this).val());
     });
 
     $('body').on('click', '.remove-stream', function () {
@@ -162,8 +168,8 @@ $(function () {
     });
 
     $('#streamContainer').on('click', 'li a:not(.current)', function () {
-        $(this).addClass('current');
         var id = $(this).attr('data-id');
+        $(this).addClass('current');
         utilHash.addHash(id);
         render_stream_video(id);
     });
@@ -175,6 +181,6 @@ window.setInterval(function () {
     get_streamers();
 }, 5000);
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.sf-menu').superfish();
 });

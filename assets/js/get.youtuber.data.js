@@ -1,3 +1,6 @@
+/* jshint unused: false */
+/* global server */
+
 'use strict';
 
 var params,
@@ -7,8 +10,8 @@ var params,
     loader = {},
 
 transformToAssocArray = function (prmstr) {
-    var params = {},
-        prmarr = prmstr.split('&');
+    var prmarr = prmstr.split('&');
+    params = {};
     for ( var i = 0; i < prmarr.length; i++) {
         var tmparr = prmarr[i].split('=');
         params[tmparr[0]] = tmparr[1];

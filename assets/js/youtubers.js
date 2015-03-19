@@ -1,4 +1,17 @@
+/* jshint unused: false */
+/* global
+    JST,
+    page_data: true,
+    attachments_server,
+    template,
+    server,
+    gamesAutocompleteArray,
+    utilHash,
+    youtuberUserSearch
+*/
+
 'use strict';
+
 var popularSlider,
     newSlider,
     gamesSlider,
@@ -23,9 +36,9 @@ var popularSlider,
     }),
 
     get_hash = function() {
-        var hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
-        hash = hash.split('/');
-        return hash;
+        var _hash = window.location.hash.replace('#!/', '').replace(/#tab-\d-\d/i, '');
+        _hash = _hash.split('/');
+        return _hash;
     },
 
     get_game = function() {

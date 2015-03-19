@@ -1,3 +1,10 @@
+/* jshint unused: false */
+/* global
+    utilLogin,
+    server,
+    utilCookie,
+    alert
+*/
 'use strict';
 
 utilLogin.show();
@@ -15,12 +22,9 @@ $(window)
                     return alert('no earnings found');
                 }
 
-                $('#earnings')
-                    .html('$' + earnings[1]);
-                $('#clicks')
-                    .html(earnings[2]);
-                $('#views')
-                    .html(earnings[3]);
+                $('#earnings').html('$' + earnings[1]);
+                $('#clicks').html(earnings[2]);
+                $('#views').html(earnings[3]);
             })
             .fail(function () {
                 alert('no earnings found');
