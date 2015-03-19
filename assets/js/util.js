@@ -6,7 +6,8 @@
     filter_videos,
     page_data,
     socket_server,
-    io
+    io,
+    value
 */
 
 'use strict';
@@ -20,6 +21,7 @@ var searchId = false,
     streamTimeout = 60000,
     optionGames = {},
     options = {},
+    get_hitbox_streamers,
 
     utilCookie = {
         set: function (cname, cvalue, exdays) {
@@ -148,9 +150,6 @@ var searchId = false,
             return hash;
         },
         'changeHashVal': function (key, string, apply) {
-
-            console.log(key + ' // ' + string + ' // ' + apply);
-
             apply = typeof apply === 'undefined' ? true : false;
             var hash = window.location.hash.replace('#!/', '');
             var hashObj = {};
@@ -180,14 +179,12 @@ var searchId = false,
                 window.location.hash = hash_string;
             }
 
-            console.log(hash_string);
             return hash_string;
         },
         'addHash': function (string, apply) {
-            apply = typeof apply === 'undefined' ? true : false;
-
             var hash = window.location.hash;
-            console.log(hash, hash[1] !== '!');
+
+            apply = typeof apply === 'undefined' ? true : false;
             if (hash[1] !== '!') {
                 hash = hash.replace('#', '#!');
             }
@@ -487,7 +484,6 @@ var searchId = false,
     get_youtube_streamers = function (first) {
         $.get(server + 'streamers/youtube', function (result) {
                 result.streamers.forEach(function (item) {
-                    //  console.log(item);
                     if ((item.user_group_id === 5 ||
                             (item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5))) && ~item.youtube
                         .snippet.title.toLowerCase()
@@ -574,7 +570,7 @@ var searchId = false,
             .always(function () {
                 get_youtube_streamers(first);
             });
-    },
+    };
 
     get_hitbox_streamers = function (first) {
         $.get(server + 'streamers/hitbox', function (result) {
@@ -651,7 +647,6 @@ $(function () {
             type: 'get'
         })
         .done(function (session) {
-            console.log(session);
             if (session.username) {
                 var links = [];
                 links.push('<ul class="user-links">');

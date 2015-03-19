@@ -2,7 +2,7 @@
 /*jshint scripturl:true*/
 /* global
     YT,
-    page_data,
+    page_data: true,
     filterConsole,
     utilArray,
     template,
@@ -39,6 +39,9 @@ var html = [],
     indices,
     data_cache,
     tempdata,
+    showVideo,
+    showPlaylist,
+    show,
 
     cachePlaylist = function (playlistId) {
 
@@ -302,7 +305,8 @@ var html = [],
             if (item.snippet.thumbnails) {
                 tempdata = {
                     id: 'video-' + item.snippet.resourceId.videoId,
-                    link: '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId,
+                    link: '/youtuber/?user=' + item.user_id +
+                        '#!/video/' + item.snippet.resourceId.videoId,
                     title: item.snippet.title,
                     thumb: item.snippet.thumbnails.default.url,
                     desc: item.snippet.description,

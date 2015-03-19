@@ -1,3 +1,20 @@
+/* jshint unused: false */
+/* jshint scripturl:true */
+/* jshint -W100 */ 
+/* global
+    page_data: true,
+    template,
+    JST,
+    utilHash,
+    origin,
+    attachments_server,
+    server,
+    io,
+    socket_server,
+    page_maintenance,
+    streamersSearch
+*/
+
 'use strict';
 
 var slider = {},
@@ -269,7 +286,6 @@ var slider = {},
         }
 
         if (first && html.length) {
-            console.log('is first', html);
             $('#container-videos').html(html.join('')).promise()
                 .done(function () {
                     activeSlider.reloadSlider({
@@ -314,7 +330,6 @@ var slider = {},
             if (!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('ç„¡æ³•æ‰¾åˆ°ä½ æŒ‡å®šçš„å¯¦æ³ä¸»');
                 if (!lanparty) {
-                    console.log('render here2');
                     $('#container-videos').html(html.join('')).promise()
                         .done(function () {
                             activeSlider.reloadSlider({
@@ -333,7 +348,6 @@ var slider = {},
             if (!html.length && $('#container-videos').html().trim().length === 0) {
                 html.push('ç›®å‰æ²’æœ‰æ­£åœ¨ç›´æ’­çš„å¯¦æ³ä¸»');
                 if (!lanparty) {
-                    console.log('render here3');
                     $('#container-videos').html(html.join('')).promise()
                         .done(function () {
                             activeSlider.reloadSlider({
@@ -393,9 +407,9 @@ var slider = {},
         $(window).trigger('hashchange');
     },
 
-    filter_category = function (console, context) {
-        con = console;
-        $.getJSON(server + 'streamersdata?console=' + console, function (results) {
+    filter_category = function (_console, context) {
+        con = _console;
+        $.getJSON(server + 'streamersdata?console=' + _console, function (results) {
             page_data = results;
             render_page();
         }).done(function () {
@@ -496,7 +510,6 @@ var slider = {},
         HBStreamers.forEach(function (item) {
             onlineStreamers.push(item);
         });
-        console.log(onlineStreamers);
         if ($('a[href$="/streamers"] > sup').text().length > 0) {
             streamCount = parseInt($('a[href$="/streamers"] > sup').text());
         }
