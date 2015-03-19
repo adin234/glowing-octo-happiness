@@ -288,9 +288,12 @@ var slider = {},
             }
 
             if (items.length === 9) {
-                html.push(template(tplVideoContainer, {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        tplVideoContainer,
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });

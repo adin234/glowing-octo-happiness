@@ -1,4 +1,13 @@
-/*global $, server, origin, community, attachments_server, template, utilHash, JST*/
+/* jshint unused: false */
+/* global 
+    utilHash,
+    server,
+    template,
+    JST,
+    origin,
+    attachments_server,
+    community
+*/
 
 'use strict';
 
@@ -22,44 +31,9 @@ var index_data,
         $('.load-more[data-selector="' + selector + '"]').attr('data-per-page', per_page);
     },
 
-    filterAction = function (action) {
-        switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            $('html, body').animate({
-                scrollTop: 0
-            });
-            break;
-        }
-    },
-
-    add_filter_category = function (string) {
-        utilHash.changeHashVal('console', string);
-        renderFeaturedGames(string);
-    },
-
-    filter_category = function (cnsl) {
-        $.ajax({
-            async: false,
-            type: 'GET',
-            dataType: 'json',
-            url: server + 'index?console=' + cnsl,
-        }).done(function (data) {
-            var context = $('.species a[data-console=' + cnsl + ']');
-            context.parent().siblings().removeClass('current');
-            context.parent().addClass('current');
-            if (cnsl !== 'all') {
-                $('#imageSlider').parent().parent().hide();
-            }
-            else {
-                $('#imageSlider').parent().parent().show();
-            }
-            index_data = data;
-            update_index(data);
-        });
-
-        return false;
+    shuffle = function (o) {
+        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
+        return o;
     },
 
     renderFeaturedGames = function (string, trigger) {
@@ -86,7 +60,7 @@ var index_data,
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
                         group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length == 5) {
+                        if (group.length === 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
@@ -130,7 +104,7 @@ var index_data,
                             item
                         )
                     );
-                    if (group2.length == 5) {
+                    if (group2.length === 5) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
@@ -177,7 +151,7 @@ var index_data,
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
                         group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length == 5) {
+                        if (group.length === 5) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
@@ -222,7 +196,7 @@ var index_data,
                     item.imgsrc = item.image;
                     item.game = item.name;
                     group2.push(template(JST['gameTpl.html'](), item));
-                    if (group2.length == 5) {
+                    if (group2.length === 5) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
@@ -281,12 +255,12 @@ var index_data,
         }
     },
 
-    update_index = function (index_data) {
+    update_index = function (_index_data) {
         var html = [];
         var group = [];
 
         if (!slider_loaded) {
-            index_data.slider.forEach(function (item) {
+            _index_data.slider.forEach(function (item) {
                 item.onclick = 
                     item.header_location ?
                         'window.location=\'' +
@@ -312,7 +286,7 @@ var index_data,
         }
 
         html = [];
-        random_featured_vids = shuffle(index_data.featured_videos);
+        random_featured_vids = shuffle(_index_data.featured_videos);
         random_featured_vids.forEach(function (item) {
             item.provider = attachments_server;
             item.thumb = item.snippet.thumbnails.medium.url;
@@ -323,7 +297,7 @@ var index_data,
             item.views = item.snippet.meta.statistics.viewCount;
             item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
             group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length == 9) {
+            if (group.length === 9) {
                 html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                 group = [];
             }
@@ -347,7 +321,7 @@ var index_data,
         group = [];
         var flag = {};
 
-        index_data.latest_videos.forEach(function (item) {
+        _index_data.latest_videos.forEach(function (item) {
             var date = item.snippet.publishedAt.substr(0, 10);
             if (!flag[date]) {
                 flag[date] = [];
@@ -364,7 +338,7 @@ var index_data,
                     item.user_id + '/#!/video/' +
                     item.snippet.resourceId.videoId;
                 group.push(template(JST['latestVideosTpl.html'](), item));
-                if (group.length == 9) {
+                if (group.length === 9) {
                     html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
                     group = [];
                 }
@@ -392,7 +366,7 @@ var index_data,
         group = [];
         var ids = {};
 
-        index_data.most_viewed.forEach(function (item) {
+        _index_data.most_viewed.forEach(function (item) {
             ids[item.user_id] = 
                 typeof ids[item.user_id] === 'undefined' ?
                     1 :
@@ -413,7 +387,7 @@ var index_data,
                 item.user_id + '/#!/video/' +
                 item.snippet.resourceId.videoId;
             group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length == 9) {
+            if (group.length === 9) {
                 html.push(
                     '<ul class="list clearFix">' +
                     group.join('') + '</ul>'
@@ -443,7 +417,7 @@ var index_data,
         var shuffleTrigger = 0,
             tCounterCorrect = 0,
             tCounterWrong = 0;
-        window.setInterval(function(){
+        window.setInterval(function() {
             var date = new Date();
             if (date.getHours() === 24 &&
                 date.getMinutes() === 0 &&
@@ -464,9 +438,9 @@ var index_data,
         }, 1000);
 
         html = [];
-        if (index_data.feature_list.feature_list_active === '1') {
-            $('.viewer > h2').html(index_data.feature_list.feature_list_header);
-            index_data.feature_list.feature_list_items.forEach(function (item) {
+        if (_index_data.feature_list.feature_list_active === '1') {
+            $('.viewer > h2').html(_index_data.feature_list.feature_list_header);
+            _index_data.feature_list.feature_list_items.forEach(function (item) {
                 html.push(template(JST['featureTpl.html'](), item));
             });
 
@@ -477,7 +451,7 @@ var index_data,
             $('#featuredUsers').html(html.join(''));
         }
         else {
-            index_data.featured_users.forEach(function (item) {
+            _index_data.featured_users.forEach(function (item) {
                 item.provider = attachments_server;
                 html.push(template(JST['featuredUsersTpl.html'](), item));
             });
@@ -488,7 +462,7 @@ var index_data,
         }
 
         html = [];
-        index_data.recent_threads.forEach(function (item) {
+        _index_data.recent_threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server +
                     'avatar.php?userid=' +
@@ -511,15 +485,15 @@ var index_data,
 
         // hot forum
         html = [];
-        index_data.threads.forEach(function (item) {
-            var data = {
+        _index_data.threads.forEach(function (item) {
+            var _data = {
                 posterimage: attachments_server + 'avatar.php?userid=' + item.last_post_user_id + '.jpg',
                 title: item.title,
                 replies: item.reply_count,
                 views: item.view_count,
                 link: community + 'index.php?threads/' + item.title + '.' + item.thread_id + '/',
             };
-            html.push(template(JST['recentForumItemTpl.html'](), data));
+            html.push(template(JST['recentForumItemTpl.html'](), _data));
         });
         if (!html.length) {
             html.push('No Recent Forum');
@@ -540,24 +514,64 @@ var index_data,
         });
     },
 
+    filter_category = function (cnsl) {
+        $.ajax({
+            async: false,
+            type: 'GET',
+            dataType: 'json',
+            url: server + 'index?console=' + cnsl,
+        }).done(function (data) {
+            var context = $('.species a[data-console=' + cnsl + ']');
+            context.parent().siblings().removeClass('current');
+            context.parent().addClass('current');
+            if (cnsl !== 'all') {
+                $('#imageSlider').parent().parent().hide();
+            }
+            else {
+                $('#imageSlider').parent().parent().show();
+            }
+            index_data = data;
+            update_index(data);
+        });
+
+        return false;
+    },
+
+    filterAction = function (action) {
+        switch (action) {
+        case 'console':
+            filter_category(hash.shift());
+            filterAction(hash.shift());
+            $('html, body').animate({
+                scrollTop: 0
+            });
+            break;
+        }
+    },
+
+    add_filter_category = function (string) {
+        utilHash.changeHashVal('console', string);
+        renderFeaturedGames(string);
+    },
+
     news_shows_playlists = function () {
         var html = [],
             blocks = '',
             max_items = 4,
             ctr = 1,
             visible_news_playlists = (
-                (typeof index_data.visible_news_playlists != 'undefined') ?
+                (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
                     []
             ),
             visible_shows_playlists = (
-                (typeof index_data.visible_shows_playlists != 'undefined') ?
+                (typeof index_data.visible_shows_playlists !== 'undefined') ?
                     index_data.visible_shows_playlists.split(',') :
                     []
             );
 
         index_data.news_playlists.forEach(function (playlist, index) {
-            if (visible_news_playlists.indexOf(playlist.id) == -1) {
+            if (visible_news_playlists.indexOf(playlist.id) === -1) {
                 return;
             }
             blocks = '<div id="tab-news-playlist-' + index + '"><ul class="list clearFix">';
@@ -576,7 +590,9 @@ var index_data,
                     result.items.forEach(function (item) {
                         var newsShows, newsShowsTpl;
                         if (item.status.privacyStatus === 'public') {
-                            if (ctr > max_items) return;
+                            if (ctr > max_items) {
+                                return;
+                            }
                             if (typeof item.snippet.thumbnails !== 'undefined') {
                                 item.thumb = item.snippet.thumbnails.medium.url;
                             }
@@ -601,7 +617,7 @@ var index_data,
         });
 
         index_data.shows_playlists.forEach(function (playlist, index) {
-            if (visible_shows_playlists.indexOf(playlist.id) == -1) {
+            if (visible_shows_playlists.indexOf(playlist.id) === -1) {
                 return;
             }
 
@@ -621,7 +637,9 @@ var index_data,
                     ctr = 1;
                     result.items.forEach(function (item) {
                         if (item.status.privacyStatus === 'public') {
-                            if (ctr > max_items) return;
+                            if (ctr > max_items) {
+                                return;
+                            }
                             if (typeof item.snippet.thumbnails !== 'undefined') {
                                 item.thumb = item.snippet.thumbnails.medium.url;
                             }
@@ -661,14 +679,6 @@ var index_data,
         });
     },
 
-    shuffle = function (o) {
-        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
-    };
-
-var start = function() {
-        init_doc_listeners();
-    },
     init_doc_listeners = function() {
         
         slider.most_viewed = $('#mostViewed').bxSlider({
@@ -753,6 +763,10 @@ var start = function() {
 
             news_shows_playlists();
         });
+    },
+
+    start = function() {
+            init_doc_listeners();
     };
 
 start();

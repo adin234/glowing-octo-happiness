@@ -25,14 +25,15 @@ var searchId = false,
 
     utilCookie = {
         set: function (cname, cvalue, exdays) {
-            var d = new Date();
+            var expires,
+                d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = 'expires=' + d.toUTCString();
+            expires = 'expires=' + d.toUTCString();
             document.cookie = cname + '=' + cvalue + '; ' + expires + '; path=/';
         },
         get: function (cname) {
-            var name = cname + '=';
-            var ca = document.cookie.split(';');
+            var name = cname + '=',
+                ca = document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
                 while (c.charAt(0) === ' ') {
@@ -54,45 +55,45 @@ var searchId = false,
 
     utilLogin = {
         show: function (message) {
-            var msg = message || '要留言請您先登入';
-            var loginMenu = document.createElement('div');
+            var msg = message || '要留言請您先登入',
+                loginMenu = document.createElement('div'),
+                username = $('<input/>', {
+                    type: 'text',
+                    class: 'username-field',
+                    name: 'username',
+                    placeholder: '用戶名'
+                }),
+                password = $('<input/>', {
+                    type: 'password',
+                    class: 'password-field',
+                    name: 'password',
+                    placeholder: '密碼'
+                }),
+                label = $('<span/>', {
+                    class: 'login-label',
+                    text: msg
+                }),
+                loginBtn = $('<button/>', {
+                    class: 'login-button',
+                    text: '登入'
+                }),
+                loginWithSocialMedia = $('<a/>', {
+                    class: 'social-login',
+                    text: '用Facebook或Google+登入',
+                    href: '//community.gamers.tm/zh/index.php?login&front=1'
+                }),
+                loginDiv = document.createElement('div');
+            
             loginMenu.classname = 'full-overlay';
             loginMenu.id = 'loginMenu';
             loginMenu.addEventListener('click', function (e) {
                 switch (e.target.classname) {
-                case 'login-container':
-                case 'full-overlay':
-                    utilLogin.hide();
-                    break;
+                    case 'login-container':
+                    case 'full-overlay':
+                        utilLogin.hide();
+                        break;
                 }
             }, false);
-            var loginDiv = document.createElement('div');
-            loginDiv.className = 'login-container';
-            var username = $('<input/>', {
-                type: 'text',
-                class: 'username-field',
-                name: 'username',
-                placeholder: '用戶名'
-            });
-            var password = $('<input/>', {
-                type: 'password',
-                class: 'password-field',
-                name: 'password',
-                placeholder: '密碼'
-            });
-            var label = $('<span/>', {
-                class: 'login-label',
-                text: msg
-            });
-            var loginBtn = $('<button/>', {
-                class: 'login-button',
-                text: '登入'
-            });
-            var loginWithSocialMedia = $('<a/>', {
-                class: 'social-login',
-                text: '用Facebook或Google+登入',
-                href: '//community.gamers.tm/zh/index.php?login&front=1'
-            });
 
             loginBtn[0].addEventListener('click', function (e) {
                 $.post(server + 'login', {
@@ -125,6 +126,8 @@ var searchId = false,
                             .html(__e.responseJSON.message);
                     });
             }, false);
+
+            loginDiv.className = 'login-container';
             loginDiv.appendChild(label[0]);
             loginDiv.appendChild(username[0]);
             loginDiv.appendChild(password[0]);
@@ -151,9 +154,9 @@ var searchId = false,
         },
         'changeHashVal': function (key, string, apply) {
             apply = typeof apply === 'undefined' ? true : false;
-            var hash = window.location.hash.replace('#!/', '');
-            var hashObj = {};
-            var hashArr = [];
+            var hash = window.location.hash.replace('#!/', ''),
+                hashObj = {},
+                hashArr = [];
             hash = hash.split('/');
             for (var i = 0; i < hash.length; i++) {
                 if (hash[i].trim()
