@@ -273,36 +273,36 @@ var redirect_to_youtubers = function (id) {
 }
 
 var searchBoxInit = function () {
-    options = {
-        serviceUrl: server + 'youtubers/search',
-        zIndex: 9999,
-        onSelect: function (value) {
-            switch (value.typeid) {
-            case 'G':
-                redirect_to_gamer(value.data.game_id);
-                break;
-            default:
-                redirect_to_youtuber(value.data.user_id);
-                break;
-            }
-        }
-    };
-    var searchDom = $('#query');
-    if (searchDom.length) {
-        searchBox = searchDom.autocomplete(options);
-        searchDom.on('keypress', function (e) {
-            if (e.which == 13) {
-                if (typeof searchBox.data()
-                    .suggestions[0] != 'undefined') {
-                    redirect_to_youtuber(searchBox.data()
-                        .suggestions[0].data.user_id);
-                }
-                else {
-                    return false;
-                }
-            }
-        });
-    }
+    // options = {
+    //     serviceUrl: server + 'youtubers/search',
+    //     zIndex: 9999,
+    //     onSelect: function (value) {
+    //         switch (value.typeid) {
+    //         case 'G':
+    //             redirect_to_gamer(value.data.game_id);
+    //             break;
+    //         default:
+    //             redirect_to_youtuber(value.data.user_id);
+    //             break;
+    //         }
+    //     }
+    // };
+    // var searchDom = $('#query');
+    // if (searchDom.length) {
+    //     searchBox = searchDom.autocomplete(options);
+    //     searchDom.on('keypress', function (e) {
+    //         if (e.which == 13) {
+    //             if (typeof searchBox.data()
+    //                 .suggestions[0] != 'undefined') {
+    //                 redirect_to_youtuber(searchBox.data()
+    //                     .suggestions[0].data.user_id);
+    //             }
+    //             else {
+    //                 return false;
+    //             }
+    //         }
+    //     });
+    // }
 }
 var gamesAutocompleteArray = [];
 
