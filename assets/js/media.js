@@ -53,9 +53,9 @@ var html = [],
 
     onPlayerStateChange = function () {
         if (event.data === YT.PlayerState.UNSTARTED) {
-            var videoId = event.target.getVideoData().video_id;
-            var index = event.target.getPlaylistIndex();
-            var context = $('img[data-index=' + index + ']');
+            var videoId = event.target.getVideoData().video_id,
+                index = event.target.getPlaylistIndex(),
+                context = $('img[data-index=' + index + ']');
         }
     },
 
@@ -86,16 +86,16 @@ var html = [],
     },
 
     update_videos = function (videos, append, initial) {
+        var link = '#!/',
+            cons = '',
+            start = $('li.ytVideo.videoItem').length;
+
         html = [];
-        var link = '#!/';
-        var cons = '';
+        playlistIds = [];
+
         if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
             cons = 'console/' + filterConsole + '/';
         }
-
-        playlistIds = [];
-
-        var start = $('li.ytVideo.videoItem').length;
 
         if (!append || typeof append === 'undefined') {
             if (!initial) {
@@ -125,14 +125,15 @@ var html = [],
             }
 
             playlistIds.push(item.snippet.playlistId);
+
             if (item.snippet.thumbnails) {
                 item = getVideo(item.snippet.resourceId.videoId) || item;
                 if (typeof item.snippet.thumbnails !== 'undefined') {
                     tempdata = {
                         id: 'video-' + item.snippet.resourceId.videoId,
                         link: link + cons + 'video/' + item.snippet.resourceId.videoId,
-                        link_user: '/youtuber/?user=' + item.user_id + '/#!/video/' + item.snippet.resourceId.videoId ||
-                            '',
+                        link_user: '/youtuber/?user=' + item.user_id +
+                            '/#!/video/' + item.snippet.resourceId.videoId || '',
                         user: item.username || '',
                         title: item.snippet.title,
                         thumb: item.snippet.thumbnails.default.url,
@@ -198,37 +199,51 @@ var html = [],
                     that_class = 'hide';
                 }
                 return {
-                    userimage: attachments_server + 'avatar.php?userid=' + item.user_id + '.jpg',
-                    userprofile: community + 'index.php?members/' + item.username + '.' + item.user_id +
-                        '/',
+                    userimage: attachments_server + 'avatar.php?userid=' +
+                        item.user_id + '.jpg',
+                    userprofile: community + 'index.php?members/' +
+                        item.username + '.' + item.user_id +'/',
                     username: item.username,
                     comment: item.message,
-                    share_link: encodeURIComponent(window.location.href.replace(window.location.hash,
-                        '') + '#!' + hashes.join(
-                        '/')),
+                    share_link: encodeURIComponent(
+                        window.location.href.replace(
+                            window.location.hash,
+                            ''
+                        ) +
+                        '#!' + hashes.join('/')
+                    ),
                     date: formatDate(item.date * 1000),
                     comment_id: item.comment_id,
                     user_access_class: that_class,
-                    image_link: encodeURIComponent('https://i.ytimg.com/vi/' + videoId +
-                        '/mqdefault.jpg'),
+                    image_link: encodeURIComponent(
+                        'https://i.ytimg.com/vi/' +
+                        videoId + '/mqdefault.jpg'
+                    ),
                     current_url: encodeURIComponent(currUrl)
                 };
             });
 
             var commentsHTML = comments.map(function (item) {
-                return template(JST['commentItemTpl.html'](), item);
+                return template(
+                    JST['commentItemTpl.html'](),
+                    item
+                );
             }).join('');
 
             page_data.commentsLength = comments.length;
             $('#tab-2 .mCSB_container')
-                .html(template(
-                    JST['commentsTpl.html'](), {
-                        count: e.length,
-                        video: videoId,
-                        comments: commentsHTML,
-                        sortlatest: sort === 'latest' ? 'current' : '',
-                        sortlast: sort === 'last' ? 'current' : ''
-                    }))
+                .html(
+                    template(
+                        JST['commentsTpl.html'](),
+                        {
+                            count: e.length,
+                            video: videoId,
+                            comments: commentsHTML,
+                            sortlatest: sort === 'latest' ? 'current' : '',
+                            sortlast: sort === 'last' ? 'current' : ''
+                        }
+                    )
+                )
                 .promise()
                 .done(function () {
                     if (utilUser.get()) {
@@ -283,9 +298,9 @@ var html = [],
     },
 
     updatePrevNext = function () {
-        var current = $('.videoItem.current');
-        var prevLink = current.prev().children('a').first().attr('href');
-        var nextLink = current.next().children('a').first().attr('href');
+        var current = $('.videoItem.current'),
+            prevLink = current.prev().children('a').first().attr('href'),
+            nextLink = current.next().children('a').first().attr('href');
 
         $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
         $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
@@ -320,9 +335,9 @@ var html = [],
     showVideo = function (videoId) {
         var video = getVideo(videoId);
         if (video) {
-            var likeButton = '';
-            var text = '加入至我的最愛';
-            var active = '';
+            var likeButton = '',
+                text = '加入至我的最愛',
+                active = '';
 
             if (typeof page_data.favorites === 'undefined') {
                 page_data.favorites = [];
@@ -334,16 +349,23 @@ var html = [],
                     text = '從我的最愛移除';
                     active = 'active';
                 }
-                likeButton = '<button id="like" class="like ' + active + '" alt="like" data-id="' + videoId + '">' +
-                    text + '</button>';
+
+                likeButton = '<button id="like" class="like ' + active +
+                    '" alt="like" data-id="' + videoId +
+                    '">' + text + '</button>';
             }
             $('.videoHeading h3').html(video.snippet.title + likeButton);
-            $('#tab-1 .mCSB_container').html(Autolinker.link(video.snippet.description.replace(/(?:\r\n|\r|\n)/g,
-                '<br />')));
+            $('#tab-1 .mCSB_container').html(
+                Autolinker.link(
+                    video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
+                )
+            );
             $('.videoItem').removeClass('current');
             $('#video-' + videoId).addClass('current');
-            $('#ytplayer').attr('src', 'https://www.youtube.com/embed/' + videoId + (active_playlist ? '/?list=' +
-                active_playlist + '&' : '?') + 'autoplay=true&enablejsapi=1&origin=' + origin);
+            $('#ytplayer').attr('src', 'https://www.youtube.com/embed/' +
+                videoId + (active_playlist ? '/?list=' + active_playlist +
+                '&' : '?') + 'autoplay=true&enablejsapi=1&origin=' + origin
+            );
 
             $.get(server + 'vid_suggestions', {
                     search: video.engtitle || video.snippet.title

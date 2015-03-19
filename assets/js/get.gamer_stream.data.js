@@ -1,3 +1,5 @@
+/* global server */
+
 'use strict';
 
 var page_data,
@@ -9,8 +11,9 @@ var page_data,
     url = window.location.href,
 
     transformToAssocArray = function (prmstr) {
-        var params = {},
-            prmarr = prmstr.split('&');
+        var prmarr = prmstr.split('&');
+        params = {};
+
         for ( var i = 0; i < prmarr.length; i++) {
             var tmparr = prmarr[i].split('=');
             params[tmparr[0]] = tmparr[1];
@@ -27,11 +30,11 @@ if (url.indexOf('%2F&_escaped_fragment_=%2F') !== -1) {
     url = url.replace('%2F&_escaped_fragment_=%2F', '/#!/');
     window.location.href = url;
 }
-else if(url.indexOf('%2F/#!') !== -1){
+else if(url.indexOf('%2F/#!') !== -1) {
     url = url.replace('%2F/#!', '/#!');
     window.location.href = url;
 }
-else if(url.indexOf('%2F#!') !== -1){
+else if(url.indexOf('%2F#!') !== -1) {
     url = url.replace('%2F#!', '/#!');
     window.location.href = url;
 }
