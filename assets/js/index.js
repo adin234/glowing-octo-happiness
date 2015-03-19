@@ -1,10 +1,9 @@
-/*global $, server, origin, community, attachments_server, socket_server, template, utilHash, io, JST*/
+/*global $, server, origin, community, attachments_server, template, utilHash, JST*/
 
 'use strict';
 
 var index_data,
     slider_loaded = 0,
-    online_streamers = [],
     random_featured_vids = [],
     hash = '',
     slider = {},
@@ -33,85 +32,6 @@ var index_data,
             });
             break;
         }
-    },
-
-    index_show_streamers = function (streamers_list) {
-        var html = [];
-        if (streamers_list.length > 0) {
-            if ($('#noonline').length > 0) {
-                $('#noonline').remove();
-            }
-
-            streamers_list.forEach(function (item) {
-                if (typeof item.twitch != 'undefined') {
-                    item.twitchid = item.field_value[
-                        item.field_value.length - 1
-                    ];
-                    item.id = 'TW' + item.twitchid;
-                    item.idraw = item.twitchid;
-                    item.live = 'live';
-                    item.game = item.twitch.game;
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user_id + '/#!/' + item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.twitch.preview.large;
-                    item.title = item.twitch.channel.status;
-                    item.bust = 1;
-                    item.views = item.twitch.viewers;
-                }
-                else if (typeof item.hitbox != 'undefined') {
-                    item.hitboxid = item.hitbox.media_name;
-                    item.id = 'HB' + item.hitboxid;
-                    item.game = item.hitbox.livestream[0].category_name;
-                    item.username = item.user.username;
-                    item.user_id = item.user.user_id;
-                    item.idraw = item.hitboxid;
-                    item.live = 'live';
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user.user_id + '/#!/HB' +
-                        item.hitbox.livestream[0].media_user_name;
-                    item.provider = attachments_server;
-                    item.thumb = 'http://edge.sf.hitbox.tv/' +
-                        item.hitbox.media_thumbnail_large;
-                    item.title = item.hitbox.media_status;
-                    item.bust = 1;
-                    item.type = 'HB';
-                    item.views = item.hitbox.media_views;
-                    item.provider = attachments_server;
-                }
-                else {
-                    item.id = 'YT' + item.username;
-                    item.idraw = item.username;
-                    item.live = 'live';
-                    item.game = '';
-                    item.link = origin + 'gamer_stream/?user=' +
-                        item.user_id + '/#!/' + item.id;
-                    item.provider = attachments_server;
-                    item.thumb = item.youtube.snippet.thumbnails.high.url;
-                    item.title = item.youtube.snippet.title;
-                    item.bust = 1;
-                    item.views = '0';
-                }
-
-                item.game = item.game === null ? '' : item.game + ' / ';
-
-                if (item.game.length > 10) {
-                    item.game = item.game.substr(0, 9) + '&#133;' + ' / ';
-                }
-
-                if (item.username !== null && item.username.length > 10) {
-                    item.username = item.username.substr(0, 9) + '&#133;';
-                }
-
-                html.push(template(JST['streamersTpl.html'](), item));
-            });
-        }
-        else {
-            html.push('<p id="noonline"> 目前沒有人直播 </p>');
-        }
-
-        $('#streamers').html(html.join(''));
-        load_more('#streamers > li', 1, 5);
     },
 
     add_filter_category = function (string) {
@@ -741,127 +661,98 @@ var index_data,
         });
     },
 
-    checker_index = function () {
-        var socket = io.connect(socket_server);
-        socket.on('message', function (e) {
-            online_streamers = [];
-            online_streamers = online_streamers.concat(
-                e.streamers.youtube.concat(
-                    e.streamers.twitch.concat(
-                        e.streamers.hitbox
-                    )
-                )
-            );
-            index_show_streamers(online_streamers);
-        });
-    },
-
     shuffle = function (o) {
         for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
         return o;
     };
 
-
-slider.most_viewed = $('#mostViewed').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.latest_video = $('#latestVideos').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.featured_video = $('#featuredVideos').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.featured_games = $('#featuredGames').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-slider.latest_games = $('#latestGames').bxSlider({
-    startSlide: 0,
-    infiniteLoop: false,
-    hideControlOnEnd: true
-});
-
-$(document).ready(function () {
-    $.ajax({
-        async: false,
-        type: 'GET',
-        dataType: 'json',
-        url: server + 'index?console=all',
-    }).done(function (data) {
-        index_data = data;
-        update_index(index_data);
-    });
-
-    $(document).on('click', '.slider-item .play', function () {
-        var vid = $(this).attr('data-vid');
-        if (vid.trim().length) {
-            vid = vid.split('?')[1].split('=');
-            vid = vid[vid.indexOf('v') + 1].split('#')[0];
-            var html = template(JST['playerTpl.html'](), {
-                video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
-            });
-            $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
-                $('.bx-wrapper .video-player iframe').css('margin-top',(
-                    $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                );
-                $('.bx-wrapper .video-player .close').css('margin-top', (
-                    $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                );
-            });
-        }
-    });
-
-    $(document).on('click', '.bx-wrapper .close', function () {
-        $('#container .bx-wrapper .video-player').remove();
-    });
-
-    $(window).scroll(function () {
-        if ($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
-            $('#arrow').removeClass('down').addClass('up');
-        }
-        else {
-            $('#arrow').removeClass('up').addClass('down');
-        }
-    });
-
-    $('body').on('click', '#arrow.down', function () {
-        $('html, body').animate({
-            scrollTop: $(document).height()
+var start = function() {
+        init_doc_listeners();
+    },
+    init_doc_listeners = function() {
+        
+        slider.most_viewed = $('#mostViewed').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
         });
-    });
 
-    $('body').on('click', '#arrow.up', function () {
-        $('html, body').animate({
-            scrollTop: 0
+        slider.latest_video = $('#latestVideos').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
         });
-    });
 
-    $('html').on('click', '.load-more', function () {
-        var e = $(this);
-        var selector = e.attr('data-selector');
-        var page = e.attr('data-page');
-        var per_page = e.attr('data-per-page');
-        load_more(selector, page, per_page);
-    });
+        slider.featured_video = $('#featuredVideos').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
 
-    $(window).on('hashchange', function () {
-        hash = window.location.hash.replace('#!/', '');
-        hash = hash.split('/');
-        filterAction(hash.shift());
-    });
+        slider.featured_games = $('#featuredGames').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
 
-    news_shows_playlists();
-});
+        slider.latest_games = $('#latestGames').bxSlider({
+            startSlide: 0,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
 
-checker_index();
+        $(document).ready(function () {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                dataType: 'json',
+                url: server + 'index?console=all',
+            }).done(function (data) {
+                index_data = data;
+                update_index(index_data);
+            });
+
+            $(document).on('click', '.slider-item .play', function () {
+                var vid = $(this).attr('data-vid');
+                if (vid.trim().length) {
+                    vid = vid.split('?')[1].split('=');
+                    vid = vid[vid.indexOf('v') + 1].split('#')[0];
+                    var html = template(JST['playerTpl.html'](), {
+                        video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
+                    });
+                    $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
+                        $('.bx-wrapper .video-player iframe').css('margin-top',(
+                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
+                        );
+                        $('.bx-wrapper .video-player .close').css('margin-top', (
+                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
+                        );
+                    });
+                }
+            });
+
+            $(document).on('click', '.bx-wrapper .close', function () {
+                $('#container .bx-wrapper .video-player').remove();
+            });
+
+            
+
+            $('html').on('click', '.load-more', function () {
+                var e = $(this);
+                var selector = e.attr('data-selector');
+                var page = e.attr('data-page');
+                var per_page = e.attr('data-per-page');
+                load_more(selector, page, per_page);
+            });
+
+            $(window).on('hashchange', function () {
+                hash = window.location.hash.replace('#!/', '');
+                hash = hash.split('/');
+                filterAction(hash.shift());
+            });
+
+            news_shows_playlists();
+        });
+    };
+
+start();
