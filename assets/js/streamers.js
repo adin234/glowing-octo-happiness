@@ -41,20 +41,31 @@ var slider = {},
             }
 
             item.game = item.name;
-            items.push(template(JST['gameTpl.html'](), item));
+            items.push(
+                template(
+                    JST['gameTpl.html'](),
+                    item
+                )
+            );
 
             if (items.length === 12) {
-                html.push(template(JST['gameContainerTpl.html'](), {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        JST['gameContainerTpl.html'](),
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });
 
         if (items.length !== 0) {
-            html.push(template(JST['gameContainerTpl.html'](), {
-                'items': items.join('')
-            }));
+            html.push(
+                template(
+                    JST['gameContainerTpl.html'](), 
+                    {'items': items.join('')}
+                )
+            );
         }
 
         if (!html.length) {
@@ -80,23 +91,32 @@ var slider = {},
             if (item.name.search(filter) === -1) {
                 return;
             }
+
             items.push(
                 template(
-                    JST['gameTpl.html'](), item
+                    JST['gameTpl.html'](),
+                    item
                 )
             );
+
             if (items.length === 12) {
-                html.push(template(JST['gameContainerTpl.html'](), {
-                    'items': items.join('')
-                }));
+                html.push(
+                    template(
+                        JST['gameContainerTpl.html'](),
+                        {'items': items.join('')}
+                    )
+                );
                 items = [];
             }
         });
 
         if (items.length !== 0) {
-            html.push(template(JST['gameContainerTpl.html'](), {
-                'items': items.join('')
-            }));
+            html.push(
+                template(
+                    JST['gameContainerTpl.html'](),
+                    {'items': items.join('')}
+                )
+            );
         }
 
         if (!html.length) {
@@ -126,8 +146,8 @@ var slider = {},
     },
 
     get_active_for_multiview = function () {
-        var videos = $('#container-multiview ul.list > li');
-        var ids = [];
+        var videos = $('#container-multiview ul.list > li'),
+            ids = [];
 
         videos.each(function (i, item) {
             ids.push($(item).attr('data-streamid'));
@@ -137,10 +157,10 @@ var slider = {},
     },
 
     update_watch_multiview = function () {
-        var ids = get_active_for_multiview();
-        var stream_link = '/gamer_stream_multi/';
-        var watch_now_button = $('#watch-now-link');
-        var videos = $('#container-multiview ul.list > li');
+        var ids = get_active_for_multiview(),
+            stream_link = '/gamer_stream_multi/',
+            watch_now_button = $('#watch-now-link'),
+            videos = $('#container-multiview ul.list > li');
 
         if (videos.length) {
             watch_now_button.removeClass('disabled');
@@ -394,9 +414,9 @@ var slider = {},
     },
 
     filter_videos = function (input) {
-        var $this = $('#txtbox-search-videos');
-        var filterString = $this.val();
-        var game = get_game();
+        var $this = $('#txtbox-search-videos'),
+            filterString = $this.val(),
+            game = get_game();
         render_videos(filterString, game);
     },
 
@@ -628,6 +648,6 @@ streamersSearch();
 checker();
 render_page();
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.sf-menu').superfish();
 });

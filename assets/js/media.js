@@ -140,7 +140,12 @@ var html = [],
                         desc: item.snippet.description
                     };
 
-                    html.push(template(JST['videosTpl.html'](), tempdata));
+                    html.push(
+                        template(
+                            JST['videosTpl.html'](),
+                            tempdata
+                        )
+                    );
                 }
             }
         }
@@ -252,7 +257,7 @@ var html = [],
 
                     if (showComment) {
                         showComment = document.getElementById(showComment);
-                        if(showComment) {
+                        if (showComment) {
                             document.getElementById(showComment).scrollIntoView();    
                         }
                     }
@@ -326,7 +331,12 @@ var html = [],
                     username: item.username,
                     views: item.snippet.meta.statistics.viewCount
                 };
-                html.push(template(JST['recommendedTpl.html'](), tempdata));
+                html.push(
+                    template(
+                        JST['recommendedTpl.html'](),
+                        tempdata
+                    )
+                );
             }
         });
         $('aside.recommend > ul .mCSB_container').html(html.join(''));
@@ -745,7 +755,12 @@ $(document).on('load-page', function () {
     }
 
     page_data.categories.forEach(function (item, i) {
-        html.push(template(JST['categoriesTpl.html'](), item));
+        html.push(
+            template(
+                JST['categoriesTpl.html'](),
+                item
+            )
+        );
     });
     if (!html.length) {
         html.push('No Category Available');
@@ -811,20 +826,24 @@ $(document).on('load-page', function () {
 
                 $('#tab-2 .discussions')
                     .prepend(template(
-                        template(JST['commentItemTpl.html'](), {
-                            userimage: attachments_server + 'avatar.php?userid=' + data.user_id +
-                                '.jpg',
-                            userprofile: community + 'index.php?members/' + data.username +
-                                '.' + data.user_id + '/',
-                            username: data.username,
-                            comment: data.message,
-                            date: formatDate(+new Date()),
-                            user_access_class: 'deleteComment',
-                            share_link: encodeURIComponent(window.location.href),
-                            image_link: encodeURIComponent('https://i.ytimg.com/vi/' +
-                                videoId +
-                                '/mqdefault.jpg')
-                        })
+                        template(
+                            JST['commentItemTpl.html'](),
+                            {
+                                userimage: attachments_server + 'avatar.php?userid=' +
+                                    data.user_id + '.jpg',
+                                userprofile: community + 'index.php?members/' + data.username +
+                                    '.' + data.user_id + '/',
+                                username: data.username,
+                                comment: data.message,
+                                date: formatDate(+new Date()),
+                                user_access_class: 'deleteComment',
+                                share_link: encodeURIComponent(window.location.href),
+                                image_link: encodeURIComponent(
+                                        'https://i.ytimg.com/vi/' +
+                                        videoId + '/mqdefault.jpg'
+                                    )
+                            }
+                        )
                     ));
                 $('#commentArea').val('');
             }).fail(function (e) {
