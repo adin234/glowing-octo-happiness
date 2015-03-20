@@ -6,6 +6,7 @@
     utilCookie,
     utilHash
 */
+
 'use strict';
 
 var streamers_list = {},

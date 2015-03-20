@@ -4,6 +4,7 @@
     JST,
     utilHash
 */
+
 'use strict';
 
 var eventsHtml = [],

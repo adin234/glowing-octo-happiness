@@ -5,6 +5,7 @@
     utilCookie,
     alert
 */
+
 'use strict';
 
 utilLogin.show();

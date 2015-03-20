@@ -1,6 +1,5 @@
-/* global
-    server
-*/
+/* global server */
+
 'use strict';
 
     var show_html = function (data) {
@@ -38,9 +37,9 @@
         else {
             return 'Ended';
         }
-    };
+    },
 
-    var show_events = function (data) {
+    show_events = function (data) {
         var html = [];
 
         data.forEach(function (item) {
@@ -68,11 +67,10 @@
 
     filter_display_events = function (all_events) {
         all_events.forEach(function (item) {
-            if ((get_date_diff(item.end_date, item.end_time) === 'Ongoing') || (get_date_diff(item.end_date,
-                    item.end_time) === 'Ended')) {
+            if ((get_date_diff(item.end_date, item.end_time) === 'Ongoing') ||
+                (get_date_diff(item.end_date, item.end_time) === 'Ended')) {
                 var html_content_sched = show_events(all_events);
-                $('#all_schedule')
-                    .html(html_content_sched.join(''));
+                $('#all_schedule').html(html_content_sched.join(''));
             }
         });
         all_events.forEach(function (item) {

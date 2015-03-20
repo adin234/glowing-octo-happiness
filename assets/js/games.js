@@ -8,6 +8,7 @@
     gamesAutocompleteArray,
     utilHash
 */
+
 'use strict';
 
 var slider = {}, 

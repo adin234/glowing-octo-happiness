@@ -5,6 +5,7 @@
  * Defines global variables
  *
  */
+ 
 (function (window) {
     'use strict';
 

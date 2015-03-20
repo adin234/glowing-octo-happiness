@@ -1,4 +1,5 @@
 /* global server */
+
 'use strict';
 
 var page_data,

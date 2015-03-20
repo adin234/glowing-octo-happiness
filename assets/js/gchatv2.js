@@ -1,32 +1,38 @@
-$.fn.initChatBox = function (chl, usr, sender) {
-    var chatUI;
-    var msgNotify;
-    var msgChat;
+/* jshint unused: false */
+/* global
+    io,
+    page_data,
+    msgbox: true
+*/
 
-    var socket;
-    /* User Information */
-    var uid, uname, avatar, detail, acode;
-    /* Channel Information */
-    var chid, chname;
-    /* Date Params */
-    var dt;
-    var btnname, txtname, txtctrl, inputctrl, gchatdiv;
-    var ud;
-    var notify = '';
+'use strict';
+
+$.fn.initChatBox = function (chl, usr, sender) {
+    var chatUI,
+        msgNotify,
+        msgChat,
+        socket,
+        uid, 
+        uname, 
+        avatar, 
+        detail, 
+        acode,
+        chid, 
+        chname,
+        dt,
+        btnname,
+        txtname,
+        txtctrl,
+        inputctrl,
+        gchatdiv,
+        ud,
+        notify = '',
+        x;
 
     dt = new Date();
-
     socket = io.connect('http://52.74.64.71:3000');
 
-    /* Checking if templates are properly loaded
-        alert(chatUI);
-        alert(msgNotify);
-        alert(msgChat);
-    */
-    ;
-
-
-    if (typeof chl.id == 'undefined' && typeof chl.title == 'undefined') {
+    if (typeof chl.id === 'undefined' && typeof chl.title === 'undefined') {
         chid = '1';
         chname = 'Chat Room ' + chid;
     }
@@ -37,6 +43,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
 
     if (typeof (sender) === 'undefined') {
         console.log('I\'m at option 1');
+        console.log($('#chatui').html());
         chatUI = $('#chatui').html().replace(/{cid}/ig, chid);
     }
     else {
@@ -47,10 +54,6 @@ $.fn.initChatBox = function (chl, usr, sender) {
 
     msgNotify = $('#gchatnotify').html().replace(/{cid}/ig, chid);
     msgChat = $('#chatms').html().replace(/{cid}/ig, chid);
-
-    /*
-        2015-01-09 : Bug fix for user object returns null causing chat plugin not to display
-    */
 
     if (!jQuery.isEmptyObject(usr) && typeof (usr) !== 'undefined') {
         if (usr.user_id && usr.access_code) {
@@ -82,7 +85,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
         location.reload(5);
     });
 
-    $(gchatdiv).on("click", btnname, function () {
+    $(gchatdiv).on('click', btnname, function () {
         txtctrl = '#msgs-' + chid;
         ud = {
             userid: uid,
@@ -94,7 +97,6 @@ $.fn.initChatBox = function (chl, usr, sender) {
             cname: chl.title,
             msg: $(txtctrl).val()
         };
-        /* 12-12-2014 : Added condition if user tries to send empty message to chat  */
         if ($(txtctrl).val().length > 0) {
             socket.emit('send-gm', ud);
             $(txtctrl).val('');
@@ -102,8 +104,8 @@ $.fn.initChatBox = function (chl, usr, sender) {
         }
     });
 
-    $(gchatdiv).on("keypress", txtname, function (evt) {
-        if (evt.which == 13) {
+    $(gchatdiv).on('keypress', txtname, function (evt) {
+        if (evt.which === 13) {
             txtctrl = '#msgs-' + chid;
             ud = {
                 userid: uid,
@@ -115,7 +117,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
                 cname: chl.title,
                 msg: $(txtctrl).val()
             };
-            /* 12-12-2014 : Added condition if user tries to send empty message to chat  */
+
             if ($(txtctrl).val().length > 0) {
                 socket.emit('send-gm', ud);
                 $(txtctrl).val('');
@@ -138,7 +140,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
     });
 
     socket.on('allow-chat-input', function (sd) {
-        if (sd.allow == false) {
+        if (sd.allow === false) {
             $('#chatinputs-' + sd.cid).css({
                 display: 'none',
                 zIndex: -1
@@ -163,21 +165,21 @@ $.fn.initChatBox = function (chl, usr, sender) {
 
     socket.on('update-ui', function (sd) {
 
-        var today = new Date();
-        var tinmins;
-        var timesent, elem;
+        var today = new Date(),
+            tinmins,
+            timesent,
+            elem;
 
-        if (sd.cid == chl.id) {
-            if (sd.msgtype == 'notification') {
+        if (sd.cid === chl.id) {
+            if (sd.msgtype === 'notification') {
                 msgbox = '#tblchatmsgs-' + sd.cid;
                 $(msgbox).append(msgNotify.replace(/{gchat-message}/ig, sd.msg));
             }
             else {
 
-                /* 12-12-2014 : Added condition if user sends empty message  */
                 if (sd.msg.length > 0) {
                     if (today.getMinutes() < 10) {
-                        tinmins = '0' + today.getMinutes()
+                        tinmins = '0' + today.getMinutes();
                     }
                     else {
                         tinmins = today.getMinutes();
@@ -212,13 +214,13 @@ $.fn.initChatBox = function (chl, usr, sender) {
         socket.emit('newroom', {
             username: user,
             channel: newchannel
-        })
+        });
     });
 
     socket.on('leaveroom', function (user) {
         socket.emit('leaveroom', {
             username: user
-        })
+        });
     });
 
     this.append(chatUI);
@@ -230,4 +232,3 @@ var closeAdvert = function () {
     $('div .chatinputs_single').removeClass('chatinputs_single').addClass('chatinputs_single_noadvert');
     $('div .chcontainer_single').removeClass('chcontainer_single').addClass('chcontainer_single_noadvert');
 };
-

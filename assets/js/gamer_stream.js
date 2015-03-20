@@ -13,6 +13,7 @@
     XBBCODE,
     community
 */
+
 'use strict';
 
 var check_if_online = function (userId) {
