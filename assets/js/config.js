@@ -1,6 +1,5 @@
 /* global window */
 
-
 /**
  * Global configuration
  * Defines global variables
@@ -70,4 +69,3 @@
 
     check_env();
 })(window);
-

@@ -3385,7 +3385,7 @@ body:nth-child(3) {
 }
 #main-container .watchList .bx-wrapper {
     max-width: inherit !important;
-    padding: 0 65px 0 30px;
+    padding: 0 65px 0 50px;
     position: relative;
 }
 #main-container .watchList .bx-pager-item {
@@ -5124,4 +5124,6 @@ div#news_shows_playlists_block {
     border-left: 1px solid #434343;
     right: 0 !important;
 }
-
+#news_shows_playlists_block div {
+    padding-left: 30px;
+}

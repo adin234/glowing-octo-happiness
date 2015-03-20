@@ -18,6 +18,8 @@ var index_data,
     slider = {},
     shuffled_games = [],
     shuffled_latest = [],
+    shuffledGames = [],
+    shuffledLatest = [],
 
     load_more = function (selector, page, per_page) {
         $(selector).slice(0, page * per_page).show();
@@ -37,22 +39,69 @@ var index_data,
     },
 
     renderFeaturedGames = function (string, trigger) {
-        document.getElementById('featuredGames').innerHTML = '';
         if (string === 'all') {
             $.ajax({
                 url: server + 'gamesdata?console=all'
             }).done(function(res) {
+                var axbox360 = [],
+                    axbox1 = [],
+                    aps3 = [],
+                    aps4 = [],
+                    apc = [],
+                    amobile = [],
+                    html = [],
+                    group = [];
 
                 if (trigger === 1) {
-                    shuffled_games = shuffle(res.featured_games);
-                } else {
-                    shuffled_games = res.featured_games;
+                    shuffledGames = shuffle(res.games);
+                }
+                else {
+                    shuffledGames = res.games;
                 }
 
-                var html = [],
-                    group = [];
-                shuffled_games.forEach(function (item) {
-                    var found_games = shuffled_games.filter(function (game) {
+                shuffledGames.forEach(function (item, i) {
+
+                    if (axbox360.length <= 5) {
+                        if (item.consoles.indexOf('xbox360') > -1) {
+                            axbox360.push(item);
+                        }
+                    }
+
+                    if (axbox1.length <= 5) {
+                        if (item.consoles.indexOf('xbox1') > -1) {
+                            axbox1.push(item);
+                        }
+                    }
+
+                    if (aps3.length <= 5) {
+                        if (item.consoles.indexOf('ps3') > -1) {
+                            aps3.push(item);
+                        }
+                    }
+
+                    if (aps4.length <= 5) {
+                        if (item.consoles.indexOf('ps4') > -1) {
+                            aps4.push(item);
+                        }
+                    }
+
+                    if (apc.length <= 5) {
+                        if (item.consoles.indexOf('pc') > -1) {
+                            apc.push(item);
+                        }
+                    }
+
+                    if (amobile.length <= 5) {
+                        if (item.consoles.indexOf('mobile_app') > -1) {
+                            amobile.push(item);
+                        }
+                    }
+                });
+
+                var sarray = axbox360.concat(axbox1, aps3, aps4, apc, amobile);
+
+                sarray.forEach(function (item, i) {
+                    var found_games = sarray.filter(function (game) {
                         return game.id === item.id;
                     });
                     if (found_games.length === 1) {
@@ -60,17 +109,14 @@ var index_data,
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
                         group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length === 5) {
+                        if (group.length === 12) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
                     }
                 });
                 if (group.length >= 1) {
-                    html.push(
-                        '<ul class="game clearFix">' +
-                        group.join('') + '</ul>'
-                    );
+                    html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                 }
                 if (!html.length) {
                     html.push('目前沒有遊戲');
@@ -89,38 +135,23 @@ var index_data,
                 var html2 = [],
                     group2 = [];
 
-                if (trigger === 1) {
-                    shuffled_latest = shuffle(shuffled_games);
-                } else {
-                    shuffled_latest = shuffled_games;
-                }
+                shuffledLatest = shuffle(sarray);
 
-                shuffled_latest.forEach(function (item) {
+                shuffledLatest.forEach(function (item, i) {
                     item.imgsrc = item.image;
                     item.game = item.name;
-                    group2.push(
-                        template(
-                            JST['gameTpl.html'](),
-                            item
-                        )
-                    );
-                    if (group2.length === 5) {
+                    group2.push(template(JST['gameTpl.html'](), item));
+                    if (group2.length === 12) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
                 });
-
                 if (group2.length >= 1) {
-                    html2.push(
-                        '<ul class=\'game clearFix\'>' +
-                        group2.join('') + '</ul>'
-                    );
+                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                 }
-
                 if (!html2.length) {
                     html2.push('目前沒有遊戲');
                 }
-
                 $('#latestGames').html(html2.join(''));
                 slider.latest_games.reloadSlider({
                     startSlide: 0,
@@ -129,29 +160,42 @@ var index_data,
                 });
 
             });
-        }
-        else {
+
+        } else {
+
             $.ajax({
                 url: server + 'gamesdata?console=' + string
             }).done(function(res) {
+                var spec_game = [],
+                    html = [],
+                    group = [];
 
                 if (trigger === 1) {
-                    shuffled_games = shuffle(res.games);
+                    shuffledGames = shuffle(res.games);
                 } else {
-                    shuffled_games = res.games;
+                    shuffledGames = res.games;
                 }
-                var html = [],
-                    group = [];
-                shuffled_games.forEach(function (item) {
-                    var found_games = shuffled_games.filter(function (game) {
+
+                shuffledGames.forEach(function (item, i) {
+
+                    if (spec_game.length <= 5) {
+                        spec_game.push(item);
+                    }
+
+                    var found_games = spec_game.filter(function (game) {
                         return game.id === item.id;
                     });
+
                     if (found_games.length === 1) {
                         item.imgsrc = found_games[0].image;
                         item.game = found_games[0].name;
                         item.chinese = found_games[0].chinese;
-                        group.push(template(JST['gameTpl.html'](), item));
-                        if (group.length === 5) {
+                        group.push(
+                            template(
+                                JST['gameTpl.html'](), item
+                            )
+                        );
+                        if (group.length === 6) {
                             html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                             group = [];
                         }
@@ -159,10 +203,7 @@ var index_data,
                 });
 
                 if (group.length >= 1) {
-                    html.push(
-                        '<ul class=\'game clearFix\'>' +
-                        group.join('') + '</ul>'
-                    );
+                    html.push('<ul class="game clearFix">' + group.join('') + '</ul>');
                 }
 
                 if (!html.length) {
@@ -170,7 +211,6 @@ var index_data,
                 }
 
                 $('#featuredGames').html(html.join(''));
-
                 slider.featured_games.reloadSlider({
                     startSlide: 0,
                     infiniteLoop: false,
@@ -185,27 +225,19 @@ var index_data,
                 var html2 = [],
                     group2 = [];
 
-                if (trigger === 1) {
-                    shuffled_latest = shuffle(shuffled_games);
-                }
-                else {
-                    shuffled_latest = shuffled_games;
-                }
+                shuffledLatest = shuffle(spec_game);
 
-                shuffled_latest.forEach(function (item) {
+                shuffledLatest.forEach(function (item, i) {
                     item.imgsrc = item.image;
                     item.game = item.name;
                     group2.push(template(JST['gameTpl.html'](), item));
-                    if (group2.length === 5) {
+                    if (group2.length === 6) {
                         html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                         group2 = [];
                     }
                 });
-
                 if (group2.length >= 1) {
-                    html2.push(
-                        '<ul class=\'game clearFix\'>' +
-                        group2.join('') + '</ul>');
+                    html2.push('<ul class="game clearFix">' + group2.join('') + '</ul>');
                 }
 
                 if (!html2.length) {
@@ -542,9 +574,6 @@ var index_data,
         case 'console':
             filter_category(hash.shift());
             filterAction(hash.shift());
-            $('html, body').animate({
-                scrollTop: 0
-            });
             break;
         }
     },
