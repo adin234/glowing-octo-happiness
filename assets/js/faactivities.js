@@ -1,5 +1,6 @@
 $.get(server + "freedom_events/checkAdmin", function (data) {
     'use strict';
+    console.log(data);
     show_html(data); //data for admin use only
 
 });
