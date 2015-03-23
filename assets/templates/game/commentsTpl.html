@@ -1,0 +1,27 @@
+<div class="comments-list">
+  <a href="javascript:;">所有留言 ({{COUNT}})</a>
+  <div class="yourDiscussion"> <img class="userImg" src="/assets/images/uploader.jpg" width="65" height="65" alt="{使用者帳號}" onerror="fixErrorImg(this);">
+    <div>
+      <div class="angle"></div>
+      <textarea id="commentArea" placeholder="分享您的想法"></textarea>
+    </div>
+    <button id="postComment" data-video='{{VIDEO}}'>Post</button>
+  </div>
+  <div class="type clearFix"><span>類型：</span>
+    <ul>
+      <li class="{{SORTLATEST}}">
+        <a href="javascript:;" class="sort-comments latest">
+          最新留言
+        </a>
+      </li>
+      <li class="{{SORTLAST}}">
+        <a href="javascript:;" class="sort-comments last">
+          由舊到新
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="discussions">
+   {{COMMENTS}}
+  </div>
+</div>

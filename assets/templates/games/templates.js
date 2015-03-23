@@ -1,6 +1,18 @@
 (function() {
 window["JST"] = window["JST"] || {};
 
+window["JST"]["categoriesTpl.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = '';
+with (obj) {
+__p += '<li>\r\n  <a href="" onClick="filter(\'{{ID}}\'); return false;" title="{{NAME}}">\r\n    {{NAME}}\r\n  </a>\r\n</li>\r\n';
+
+}
+return __p
+}})();
+(function() {
+window["JST"] = window["JST"] || {};
+
 window["JST"]["gameContainerTpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
