@@ -84,7 +84,7 @@ var show_events = function (all_events) {
     });
 };
 
-var checkAdminUser = function () {
+var check_admin_user = function () {
     var userinfo = $.parseJSON(utilCookie.get('user'));
     var user_id = userinfo.user_id;
 
@@ -157,10 +157,10 @@ var show_all_events = function (events) {
 };
 
 var add_events = function (all_events) {
-    if (checkAdminUser() === true) {
+    if (check_admin_user() === true) {
         add_event_form();
     }
-    else if (checkAdminUser() === false) {
+    else if (check_admin_user() === false) {
         show_all_events(all_events);
     }
 };
