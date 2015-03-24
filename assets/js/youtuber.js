@@ -16,8 +16,8 @@
 
 var liveStreamLink = false,
     filterConsole = 'all',
-    twitchId,
-    youtubeId,
+    twitchId = page_data.user.custom_fields.twitchStreams || null,
+    youtubeId = page_data.user.custom_fields.youtube_id || null,
 
     add_filter_category = function (string, context) {
         utilHash.changeHashVal('console', string);
@@ -74,80 +74,4 @@ var liveStreamLink = false,
         $('#videosToggle').trigger('click');
 
         update_videos(videos);
-    },
-    
-    add_buttons = function () {
-        var inner = '',
-            youtube_channel = page_data.config.channel,
-            facebook = page_data.user.custom_fields.facebook,
-            twitter = page_data.user.custom_fields.twitter;
-
-        if (youtube_channel) {
-            inner = '<div class="g-ytsubscribe" data-channelid="' + youtube_channel +
-                '" data-layout="default" data-theme="dark" ' + 'data-count="hidden" data-onytevent="onYtEvent"></div>';
-            $('#youtube-subscribe').html(inner);
-        }
-        else {
-            $('youtube-subscribe').remove();
-        }
-
-        if (facebook) {
-            inner = '<div class="fb-like" ' + 'data-href="https://www.facebook.com/' + facebook +
-                '" data-layout="button" ' + ' data-action="like" </div>';
-            $('#facebook-like').html(inner);
-        }
-        else {
-            $('a.facebook-like-button').remove();
-        }
-
-        if (twitter) {
-            inner = '<a href="https://twitter.com/' + twitter + '" class="twitter-follow-button" ' +
-                'data-show-count="false" data-size="large"></a>';
-            $('#twitter-follow').html(inner);
-            if (twitter.widgets) {
-                twttr.widgets.load();
-            }
-        }
-        else {
-            $('#twitter-follow').remove();
-        }
     };
-
-renderGame();
-
-$('#banner .info > cite').html(page_data.user.username);
-$('#banner .info > a').attr('href', community + 'index.php?members/' +
-    page_data.user.username + '.' + page_data.user.user_id);
-$('#banner .info > img').attr('src', attachments_server + 'avatar.php?userid=' +
-    page_data.user.user_id + '.jpg');
-
-twitchId = page_data.user.custom_fields.twitchStreams || null;
-youtubeId = page_data.user.custom_fields.youtube_id || null;
-
-$.get(server + 'streamers?user=' + page_data.user.user_id, function (result) {
-    if (result.streamers.length) {
-        liveStreamLink = '/gamer_stream/?user=' + page_data.user.user_id + '/#!/' + 'TW' + result.streamers[0].twitch
-            .channel.name;
-    }
-
-    if (liveStreamLink) {
-        $('.live-button').attr('href', liveStreamLink).show();
-    }
-});
-
-$.get(server + 'streamers/youtube?user=' + page_data.user.user_id, function (result) {
-    if (result.streamers.length) {
-        liveStreamLink = '/gamer_stream/?user=' + page_data.user.user_id +
-            '/#!/' + 'YT' + result.streamers[0].youtube.id;
-    }
-
-    if (liveStreamLink) {
-        $('.live-button').attr('href', liveStreamLink).show();
-    }
-});
-
-add_buttons();
-
-$(document).ready(function() {
-    $('.sf-menu').superfish();
-});
