@@ -614,136 +614,10 @@ data_cache = {
     video: {}
 };
 
-$('#tab-1').mCustomScrollbar({
-    theme: 'inset-2'
-});
-$('#tab-2').mCustomScrollbar({
-    theme: 'inset-2'
-});
-$('.playList').mCustomScrollbar({
-    theme: 'inset-2',
-    callbacks: {
-        onScroll: function () {
-            if (this.mcs.topPct >= 75) {
-                update_videos(activeVideos, true);
-            }
-        }
-    }
-});
-$('aside.recommend > ul').mCustomScrollbar({
-    theme: 'inset-2'
-});
-
 tag.src = 'https://www.youtube.com/iframe_api';
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-$('body').on('click', 'button#like', function (item, x) {
-    if (utilUser.get() === null) {
-        utilLogin.show();
-        return;
-    }
-
-    var $elem = $('button#like');
-    var isActive = $elem.hasClass('active');
-    var videoId = $elem.attr('data-id');
-
-    var url = server + 'fav/' + videoId;
-    if (isActive) {
-        $elem.removeClass('active');
-        $elem.html('加入至我的最愛');
-        url = server + 'unfav/' + videoId;
-        page_data.favorites = page_data.favorites.filter(function (item_inner) {
-            return item_inner !== videoId;
-        });
-        if ($('body').hasClass('favorites')) {
-            $('li[id=video-' + videoId + ']').hide();
-        }
-    }
-    else {
-        $elem.addClass('active');
-        $elem.html('從我的最愛移除');
-        page_data.favorites.push(videoId);
-        $('li[id=video-' + videoId + ']').show();
-    }
-
-    $.ajax({
-        dataType: 'jsonp',
-        url: url,
-        crossDomain: true,
-        type: 'get'
-    });
-});
-
-$('body').on('click', 'button#like', function (item, x) {
-    if (utilUser.get() === null) {
-        utilLogin.show();
-        return;
-    }
-
-    var $elem = $('button#like');
-    var isActive = $elem.hasClass('active');
-    var videoId = $elem.attr('data-id');
-
-    var url = server + 'fav/' + videoId;
-    if (isActive) {
-        $elem.removeClass('active');
-        $elem.html('加入至我的最愛');
-        url = server + 'unfav/' + videoId;
-        page_data.favorites = page_data.favorites.filter(function (item_inner) {
-            return item_inner !== videoId;
-        });
-        if ($('body').hasClass('favorites')) {
-            $('li[id=video-' + videoId + ']').hide();
-        }
-    }
-    else {
-        $elem.addClass('active');
-        $elem.html('從我的最愛移除');
-        page_data.favorites.push(videoId);
-        $('li[id=video-' + videoId + ']').show();
-    }
-
-    $.ajax({
-        dataType: 'jsonp',
-        url: url,
-        crossDomain: true,
-        type: 'get'
-    });
-});
-
 $(document).on('load-page', function () {
-    $('.sf-menu').superfish();
-    $('.tabs').tabslet({
-        animation: true,
-        active: 1
-    }).promise().done(function (e) {
-        if (active_comments) {
-            $('#tab-2').click();
-        }
-    });
-    $('ul.resize').click(function () {
-        var $body = $('body'),
-            $zoom = $('.zoom'),
-            $resize = $('ul.resize li:first-child');
-        $body.toggleClass('zoom2x');
-        if ($body.hasClass('zoom2x')) {
-            $resize.html('X2');
-        }
-        else {
-            $resize.html('X1');
-        }
-
-        $zoom.toggleClass('zoomOut');
-    });
-
-    $('.listSwitch li').click(function () {
-        if (!$(this).hasClass('current')) {
-            $('.listSwitch li').toggleClass('current');
-            $('.playList.toggleList').toggleClass('current');
-        }
-        else if ($(this).attr('id') === 'videosToggle' && !hash.length) {
-        }
-    });
 
     if ($('body').hasClass('game_page')) {
         var name = page_data.game_name.name ? page_data.game_name.name : '';
@@ -788,70 +662,7 @@ $(document).on('load-page', function () {
 
     update_playlists(page_data.playlists);
 
-    $(window).on('hashchange', function () {
-        hash = window.location.hash.replace('#!/', '');
-
-        if (!hash && page_data.playlists.length) {
-            window.location.hash = '#!/playlist/' + page_data.config.playlist;
-        }
-        hash = hash.split('/');
-        filterAction(hash.shift());
-    });
-
-    $('body').on('focus', '#commentArea', function () {
-        if (!utilCookie.get('user')) {
-            utilLogin.show();
-        }
-    });
-
-    $('body').on('click', '#postComment', function () {
-        var data = {
-                access_token: utilUser.get().access_code,
-                user_id: utilUser.get().user_id,
-                username: utilUser.get().username,
-                message: $('#commentArea').val()
-            },
-            videoId = $(this).attr('data-video');
-
-        if (!$('#commentArea').val().trim().length) {
-            return;
-        }
-        $.post(server + 'youtubers/videos/' + videoId + '/comment',
-            data,
-            function (e) {
-
-                page_data.commentsLength++;
-
-                $('.comments-list > a:first-child').html('所有留言 (' + page_data.commentsLength + ')');
-
-                $('#tab-2 .discussions')
-                    .prepend(template(
-                        template(
-                            JST['commentItemTpl.html'](),
-                            {
-                                userimage: attachments_server + 'avatar.php?userid=' +
-                                    data.user_id + '.jpg',
-                                userprofile: community + 'index.php?members/' + data.username +
-                                    '.' + data.user_id + '/',
-                                username: data.username,
-                                comment: data.message,
-                                date: formatDate(+new Date()),
-                                user_access_class: 'deleteComment',
-                                share_link: encodeURIComponent(window.location.href),
-                                image_link: encodeURIComponent(
-                                        'https://i.ytimg.com/vi/' +
-                                        videoId + '/mqdefault.jpg'
-                                    )
-                            }
-                        )
-                    ));
-                $('#commentArea').val('');
-            }).fail(function (e) {
-            utilLogin.show('An error occured, please login to continue');
-            utilCookie.set('user', '', 0);
-        });
-    });
-
+    
     if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {
         $.ajax({
                 dataType: 'jsonp',
@@ -863,31 +674,12 @@ $(document).on('load-page', function () {
                 page_data.favorites = result;
                 $(window).trigger('hashchange');
             });
+
         return;
     }
+
+    
     $(window).trigger('hashchange');
 });
 
-$('li#playlistsToggle').on('click', function () {
-    $('.playFunctionBtn li').css({
-        'visibility': 'hidden'
-    });
-});
 
-$('li#videosToggle').on('click', function () {
-    $('.playFunctionBtn li').css({
-        'visibility': 'visible'
-    });
-});
-
-$(document).ready(function () {
-    if (!$('body').hasClass('favorites')) {
-        $(document).trigger('load-page');
-    }
-});
-
-$(document).on('click', '.sort-comments', function () {
-    var el = $(this);
-    var sort = el.hasClass('last') ? 'last' : 'latest';
-    getComments(page_data.videoId, sort);
-});
