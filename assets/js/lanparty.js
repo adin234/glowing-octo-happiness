@@ -1,8 +1,7 @@
 /* global
     page_data: true,
     template,
-    JST,
-    utilHash
+    JST
 */
 
 'use strict';
@@ -15,7 +14,6 @@ var eventsHtml = [],
     daysOfWeek = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thur.', 'Fri.', 'Sat.'],
     monthName = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
     schedules = {},
-    tab,
     itemDate,
     timeHtml,
 
@@ -64,18 +62,6 @@ var eventsHtml = [],
 
 page_data = $.parseJSON(page_data);
 
-$('#lanparty_content').html(
-        page_data.lanparty_what.
-            replace(/\r/g, '<br>').
-            replace(/\n/g, '<br>')
-);
-
-$('#lanparty_activities').html(
-    page_data.lanparty_activities.
-        replace(/\r/g, '<br>').
-        replace(/\n/g, '<br>')
-);
-
 page_data.lanparty_schedule.forEach(function(item) {
     var index = item.date_day+''+item.date_month+''+item.date_year;
     if (typeof schedules[index] === 'undefined') {
@@ -100,29 +86,4 @@ for (var key in schedules) {
     eventsHtml.push(template(
         JST['eventItemTpl.html'](), tempdata)
     );
-}
-
-$('#lanparty_event').html(
-    eventsHtml.join('')
-);
-
-$('#lanparty_event').css(
-    'width', (Object.keys(schedules).length * 211 + 150) + 'px'
-);
-
-$('#event-container').mCustomScrollbar({
-    horizontalScroll: true,
-    advanced: { updateOnContentResize: true, updateOnBrowserResize: true },
-    theme: 'dark'
-});
-
-$(document).ready(function() {
-    $('.sf-menu').superfish();
-});
-
-$('.tabs').tabslet();
-tab = utilHash.getHash();
-
-if (tab !== '') {
-    $('[href=' + tab + ']').trigger('click');
 }
