@@ -12,14 +12,14 @@
 
 'use strict';
 
-var popularSlider,
-    newSlider,
+var newSlider,
     gamesSlider,
     slider = {},
     filterConsole = '',
     filterGame = '',
     gameNames = [],
     hash,
+
     popularSlider = $('.bxslider.videos.popular').bxSlider({
         infiniteLoop: false,
         hideControlOnEnd: true
@@ -44,154 +44,6 @@ var popularSlider,
     get_game = function() {
         var game = get_hash()[0];
          return game === '' ? 'all' : game;
-    },
-
-    render_new_members = function(filter) {
-        var html = [];
-        var items = [];
-        var ids = [];
-        var tplVideo = JST['videoTpl.html']();
-        var tplVideoContainer = JST['videoContainerTpl.html']();
-        filter =  new RegExp(filter, 'i');
-
-        page_data.new_youtubers.forEach(function (item, i) {
-            if(typeof item.video === 'undefined') {
-                return;
-            }
-            if(item.video.snippet.title.search(filter) === -1 &&
-               item.video.snippet.channelTitle.search(filter) === -1) {
-                return;
-            }
-            item.user_id = item.userId;
-            item.title = item.video.snippet.title;
-            item.thumb = item.video.snippet.thumbnails.medium.url;
-            item.view = item.video.snippet.meta.statistics.viewCount;
-            item.comment = item.video.snippet.meta.statistics.commentCount;
-            item.channelid = item.youtube_id;
-            item.live = '';
-
-            item.provider = attachments_server;
-            item.videoid = item.video.snippet.resourceId.videoId;
-            item.bust = 1;
-
-            items.push(template(tplVideo, item));
-            ids.push(item.youtube_id);
-            if(items.length === 16) {
-                html.push(template(tplVideoContainer, {'items' : items.join('')}));
-                items = [];
-            }
-        });
-
-        if(items.length !== 0) {
-            html.push(template(tplVideoContainer, {'items' : items.join('')}));
-        }
-
-        if(!html.length) { html.push('沒有此實況主'); }
-        $('#container-new-member').html(html.join(''));
-        allSlider.reloadSlider();
-    },
-
-    render_all_members = function(filter) {
-        var html = [];
-        var items = [];
-        var ids = [];
-        var tplVideo = JST['videoTpl.html']();
-        var tplVideoContainer = JST['videoContainerTpl.html']();
-        filter =  new RegExp(filter, 'i');
-
-        page_data.youtubers.forEach(function (item, i) {
-            if(typeof item.video === 'undefined') {
-                return;
-            }
-            if(item.video.snippet.title.search(filter) === -1 &&
-                item.video.snippet.channelTitle.search(filter) === -1 &&
-                item.video.username.search(filter) === -1) {
-                return;
-            }
-            item.user_id = item.userId;
-            item.title = item.video.snippet.title;
-            item.thumb = item.video.snippet.thumbnails.medium.url;
-            item.view = item.video.snippet.meta.statistics.viewCount;
-            item.comment = item.video.snippet.meta.statistics.commentCount;
-            item.channelid = item.youtube_id;
-            item.live = '';
-
-            item.provider = attachments_server;
-            item.videoid = item.video.snippet.resourceId.videoId;
-            item.bust = 1;
-
-            items.push(template(tplVideo, item));
-            ids.push(item.youtube_id);
-            if(items.length === 16) {
-                html.push(template(tplVideoContainer, {'items' : items.join('')}));
-                items = [];
-            }
-        });
-
-        if(items.length !== 0) {
-            html.push(template(tplVideoContainer, {'items' : items.join('')}));
-        }
-
-        if(!html.length) { html.push('沒有此實況主'); }
-        $('#container-all-member').html(html.join(''));
-        allSlider.reloadSlider();
-    },
-
-    render_popular_members = function(filter) {
-        var html = [];
-        var items = [];
-        var ids = [];
-        var tplVideo = JST['videoTpl.html']();
-        var tplVideoContainer = JST['videoContainerTpl.html']();
-        filter =  new RegExp(filter, 'i');
-
-        page_data.popular_youtubers.forEach(function (item, i) {
-            if(typeof item.video === 'undefined') {
-                return;
-            }
-            if(item.video.snippet.title.search(filter) === -1 &&
-               item.video.snippet.channelTitle.search(filter) === -1 &&
-               item.video.username.search(filter) === -1) {
-                return;
-            }
-            item.user_id = item.userId;
-            item.title = item.video.snippet.title;
-            item.thumb = item.video.snippet.thumbnails.medium.url;
-            item.view = item.video.snippet.meta.statistics.viewCount;
-            item.comment = item.video.snippet.meta.statistics.commentCount;
-            item.channelid = item.youtube_id;
-            item.live = '';
-
-            item.provider = attachments_server;
-            item.videoid = item.video.snippet.resourceId.videoId;
-            item.bust = 1;
-
-            items.push(template(tplVideo, item));
-            ids.push(item.youtube_id);
-            if(items.length === 16) {
-                html.push(
-                    template(
-                        tplVideoContainer, {'items' : items.join('')}
-                    )
-                );
-                items = [];
-            }
-        });
-
-        if(items.length !== 0) {
-            html.push(
-                template(
-                    tplVideoContainer, {'items' : items.join('')}
-                )
-            );
-        }
-
-        if(!html.length) {
-            html.push('沒有此實況主');
-        }
-        $('#container-popular-member').html(html.join(''));
-
-        popularSlider.reloadSlider();
     },
 
     render_featured_games = function (filter) {
@@ -282,11 +134,163 @@ var popularSlider,
     },
 
     filter_game = function(input) {
-        var $this = $(input);
-        var filterString = $this.val();
+        var $this = $(input),
+            filterString = $this.val();
+
         render_featured_games(filterString);
         render_latest_games(filterString);
         $('.tooltip').tooltipster({contentAsHTML: true});
+    },
+
+    render_new_members = function(filter) {
+        var html = [],
+            items = [],
+            ids = [],
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html']();
+
+        filter =  new RegExp(filter, 'i');
+
+        page_data.new_youtubers.forEach(function (item, i) {
+            if(typeof item.video === 'undefined') {
+                return;
+            }
+            if(item.video.snippet.title.search(filter) === -1 &&
+               item.video.snippet.channelTitle.search(filter) === -1) {
+                return;
+            }
+            item.user_id = item.userId;
+            item.title = item.video.snippet.title;
+            item.thumb = item.video.snippet.thumbnails.medium.url;
+            item.view = item.video.snippet.meta.statistics.viewCount;
+            item.comment = item.video.snippet.meta.statistics.commentCount;
+            item.channelid = item.youtube_id;
+            item.live = '';
+
+            item.provider = attachments_server;
+            item.videoid = item.video.snippet.resourceId.videoId;
+            item.bust = 1;
+
+            items.push(template(tplVideo, item));
+            ids.push(item.youtube_id);
+            if(items.length === 16) {
+                html.push(template(tplVideoContainer, {'items' : items.join('')}));
+                items = [];
+            }
+        });
+
+        if(items.length !== 0) {
+            html.push(template(tplVideoContainer, {'items' : items.join('')}));
+        }
+
+        if(!html.length) { html.push('沒有此實況主'); }
+        $('#container-new-member').html(html.join(''));
+        allSlider.reloadSlider();
+    },
+
+    render_all_members = function(filter) {
+        var html = [],
+            items = [],
+            ids = [],
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html']();
+
+        filter =  new RegExp(filter, 'i');
+
+        page_data.youtubers.forEach(function (item, i) {
+            if(typeof item.video === 'undefined') {
+                return;
+            }
+            if(item.video.snippet.title.search(filter) === -1 &&
+                item.video.snippet.channelTitle.search(filter) === -1 &&
+                item.video.username.search(filter) === -1) {
+                return;
+            }
+            item.user_id = item.userId;
+            item.title = item.video.snippet.title;
+            item.thumb = item.video.snippet.thumbnails.medium.url;
+            item.view = item.video.snippet.meta.statistics.viewCount;
+            item.comment = item.video.snippet.meta.statistics.commentCount;
+            item.channelid = item.youtube_id;
+            item.live = '';
+
+            item.provider = attachments_server;
+            item.videoid = item.video.snippet.resourceId.videoId;
+            item.bust = 1;
+
+            items.push(template(tplVideo, item));
+            ids.push(item.youtube_id);
+            if(items.length === 16) {
+                html.push(template(tplVideoContainer, {'items' : items.join('')}));
+                items = [];
+            }
+        });
+
+        if(items.length !== 0) {
+            html.push(template(tplVideoContainer, {'items' : items.join('')}));
+        }
+
+        if(!html.length) { html.push('沒有此實況主'); }
+        $('#container-all-member').html(html.join(''));
+        allSlider.reloadSlider();
+    },
+
+    render_popular_members = function(filter) {
+        var html = [],
+            items = [],
+            ids = [],
+            tplVideo = JST['videoTpl.html'](),
+            tplVideoContainer = JST['videoContainerTpl.html']();
+
+        filter =  new RegExp(filter, 'i');
+
+        page_data.popular_youtubers.forEach(function (item, i) {
+            if(typeof item.video === 'undefined') {
+                return;
+            }
+            if(item.video.snippet.title.search(filter) === -1 &&
+               item.video.snippet.channelTitle.search(filter) === -1 &&
+               item.video.username.search(filter) === -1) {
+                return;
+            }
+            item.user_id = item.userId;
+            item.title = item.video.snippet.title;
+            item.thumb = item.video.snippet.thumbnails.medium.url;
+            item.view = item.video.snippet.meta.statistics.viewCount;
+            item.comment = item.video.snippet.meta.statistics.commentCount;
+            item.channelid = item.youtube_id;
+            item.live = '';
+
+            item.provider = attachments_server;
+            item.videoid = item.video.snippet.resourceId.videoId;
+            item.bust = 1;
+
+            items.push(template(tplVideo, item));
+            ids.push(item.youtube_id);
+            if(items.length === 16) {
+                html.push(
+                    template(
+                        tplVideoContainer, {'items' : items.join('')}
+                    )
+                );
+                items = [];
+            }
+        });
+
+        if(items.length !== 0) {
+            html.push(
+                template(
+                    tplVideoContainer, {'items' : items.join('')}
+                )
+            );
+        }
+
+        if(!html.length) {
+            html.push('沒有此實況主');
+        }
+        $('#container-popular-member').html(html.join(''));
+
+        popularSlider.reloadSlider();
     },
 
     render_page = function() {
@@ -393,7 +397,7 @@ var popularSlider,
     },
 
     add_filter_category = function(string, context) {
-        window.location.hash = '!/console/'+string;
+        window.location.hash = '!/console/' + string;
     },
 
     filter_videos = function(input) {
@@ -403,59 +407,3 @@ var popularSlider,
         render_all_members(filterString);
         render_popular_members(filterString);
     };
-
-page_data = $.parseJSON(page_data);
-
-slider.featured_games = $('#container-featured-games').bxSlider();
-slider.latest_games = $('#container-latest-games').bxSlider();
-
-page_data.games.forEach(function(item) {
-    gamesAutocompleteArray.push({value: item.name, data: item});
-    gameNames.push(item.name);
-    if(!~gameNames.indexOf(item.chinese)) {
-        gamesAutocompleteArray.push({value: item.chinese, data: item});
-    }
-});
-
-$(window).on('hashchange', function(){
-    hash = window.location.hash.replace('#!/', '');
-    hash = hash.split('/');
-    if(!~hash.indexOf('game')) {
-        filterGame = '';
-        render_new_members();
-        render_all_members();
-        render_popular_members();
-    }
-    filterAction(hash.shift());
-});
-
-$('body').on('keydown', '#txtbox-search-games', function(e) {
-    if (e.keyCode === 13) {
-        filter_game(this);
-    }
-});
-
-$('body').on('keydown', '#txtbox-search-videos', function(e) {
-    if (e.keyCode === 13) {
-        filter_videos(this);
-    }
-});
-
-$(function() {
-    $('.sf-menu').superfish();
-    $('.tabs').tabslet({ animation: true });
-    $('.games .tab li a').on('click', function() {
-        var search = $('#txtbox-search-games');
-        search.val('');
-        filter_game(search);
-        utilHash.changeHashVal('console', filterConsole || 'all');
-    });
-    youtuberUserSearch();
-    $(window).trigger('hashchange');
-});
-
-render_page();
-
-$(document).ready(function(){
-    $('.sf-menu').superfish();
-});
