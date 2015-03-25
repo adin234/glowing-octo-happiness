@@ -708,38 +708,7 @@ var index_data,
         });
     },
 
-    init_doc_listeners = function() {
-        
-        slider.most_viewed = $('#mostViewed').bxSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
-        slider.latest_video = $('#latestVideos').bxSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
-        slider.featured_video = $('#featuredVideos').bxSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
-        slider.featured_games = $('#featuredGames').bxSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
-        slider.latest_games = $('#latestGames').bxSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
-
+    start = function() {
         $(document).ready(function () {
             $.ajax({
                 async: false,
@@ -750,52 +719,7 @@ var index_data,
                 index_data = data;
                 update_index(index_data);
             });
-
-            $(document).on('click', '.slider-item .play', function () {
-                var vid = $(this).attr('data-vid');
-                if (vid.trim().length) {
-                    vid = vid.split('?')[1].split('=');
-                    vid = vid[vid.indexOf('v') + 1].split('#')[0];
-                    var html = template(JST['playerTpl.html'](), {
-                        video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
-                    });
-                    $('#container .bx-wrapper:first').prepend(html).promise().done(function () {
-                        $('.bx-wrapper .video-player iframe').css('margin-top',(
-                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                        );
-                        $('.bx-wrapper .video-player .close').css('margin-top', (
-                            $(window).height() - $('.bx-wrapper iframe').height()) / 2
-                        );
-                    });
-                }
-            });
-
-            $(document).on('click', '.bx-wrapper .close', function () {
-                $('#container .bx-wrapper .video-player').remove();
-            });
-
             
-
-            $('html').on('click', '.load-more', function () {
-                var e = $(this);
-                var selector = e.attr('data-selector');
-                var page = e.attr('data-page');
-                var per_page = e.attr('data-per-page');
-                load_more(selector, page, per_page);
-            });
-
-            $(window).on('hashchange', function () {
-                hash = window.location.hash.replace('#!/', '');
-                hash = hash.split('/');
-                filterAction(hash.shift());
-            });
-
             news_shows_playlists();
         });
-    },
-
-    start = function() {
-            init_doc_listeners();
     };
-
-start();
