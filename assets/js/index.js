@@ -291,31 +291,31 @@ var index_data,
         var html = [];
         var group = [];
 
-        if (!slider_loaded) {
-            _index_data.slider.forEach(function (item) {
-                item.onclick = 
-                    item.header_location ?
-                        'window.location=\'' +
-                            item.header_location + '\'' :
-                        '';
-                item.provider = attachments_server;
-                item.style = item.youtube_link ? '' : 'display:none';
-                item.youtube_link = item.youtube_link ? item.youtube_link : '';
-                item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace(
-                    'https://www.youtube.com/watch?v=', '') + '/default.jpg';
-                var date = new Date(item.upload_date * 1000);
-                item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
-                    .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
-                item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
-                html.push(template(JST['sliderTpl.html'](), item));
-            });
-            $('#imageSlider').html(html.join(''));
-            $('.bxslider').bxSlider({
-                captions: true,
-                auto: true
-            });
-            slider_loaded = 1;
-        }
+        // if (!slider_loaded) {
+        //     _index_data.slider.forEach(function (item) {
+        //         item.onclick = 
+        //             item.header_location ?
+        //                 'window.location=\'' +
+        //                     item.header_location + '\'' :
+        //                 '';
+        //         item.provider = attachments_server;
+        //         item.style = item.youtube_link ? '' : 'display:none';
+        //         item.youtube_link = item.youtube_link ? item.youtube_link : '';
+        //         item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace(
+        //             'https://www.youtube.com/watch?v=', '') + '/default.jpg';
+        //         var date = new Date(item.upload_date * 1000);
+        //         item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
+        //             .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
+        //         item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
+        //         html.push(template(JST['sliderTpl.html'](), item));
+        //     });
+        //     $('#imageSlider').html(html.join(''));
+        //     $('.bxslider').bxSlider({
+        //         captions: true,
+        //         auto: true
+        //     });
+        //     slider_loaded = 1;
+        // }
 
         html = [];
         random_featured_vids = shuffle(_index_data.featured_videos);
@@ -342,12 +342,12 @@ var index_data,
         if (!html.length) {
             html.push('目前沒有影片');
         }
-        $('#featuredVideos').html(html.join(''));
-        slider.featured_video.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
+        // $('#featuredVideos').html(html.join(''));
+        // slider.featured_video.reloadSlider({
+        //     startSlide: 0,
+        //     infiniteLoop: false,
+        //     hideControlOnEnd: true
+        // });
 
         html = [];
         group = [];
@@ -387,12 +387,12 @@ var index_data,
             html.push('目前沒有影片');
         }
 
-        $('#latestVideos').html(html.join(''));
-        slider.latest_video.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
+        // $('#latestVideos').html(html.join(''));
+        // slider.latest_video.reloadSlider({
+        //     startSlide: 0,
+        //     infiniteLoop: false,
+        //     hideControlOnEnd: true
+        // });
 
         html = [];
         group = [];
@@ -439,12 +439,12 @@ var index_data,
             html.push('目前沒有影片');
         }
 
-        $('#mostViewed').html(html.join(''));
-        slider.most_viewed.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
+        // $('#mostViewed').html(html.join(''));
+        // slider.most_viewed.reloadSlider({
+        //     startSlide: 0,
+        //     infiniteLoop: false,
+        //     hideControlOnEnd: true
+        // });
 
         var shuffleTrigger = 0,
             tCounterCorrect = 0,
@@ -697,15 +697,15 @@ var index_data,
         $('#news_shows_playlists').html(html.join(''));
 
         $('.sf-menu').superfish();
-        $('.tabs').tabslet({
-            animation: true,
-        }).on('_before', function () {
-            slider.most_viewed.reloadSlider();
-            slider.featured_video.reloadSlider();
-            slider.latest_video.reloadSlider();
-            slider.featured_games.reloadSlider();
-            slider.latest_games.reloadSlider();
-        });
+        // $('.tabs').tabslet({
+        //     animation: true,
+        // }).on('_before', function () {
+        //     slider.most_viewed.reloadSlider();
+        //     slider.featured_video.reloadSlider();
+        //     slider.latest_video.reloadSlider();
+        //     slider.featured_games.reloadSlider();
+        //     slider.latest_games.reloadSlider();
+        // });
     },
 
     start = function() {

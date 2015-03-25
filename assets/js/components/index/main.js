@@ -1,11 +1,17 @@
-/*global requirejs*/
+/*global
+    requirejs,
+    index_data,
+    shuffle
+*/
 
 'use strict';
 
 requirejs.config({
     baseUrl: '/assets/js',
     paths: {
-        'jquery': 'libs/jquery.min'
+        'jquery': 'libs/jquery.min',
+        'text': 'libs/text',
+        'common': 'components/common'
     },
     shim: {
         'util'                          : ['jquery'],
@@ -24,8 +30,27 @@ requirejs.config({
 });
 
 requirejs([
-    'jquery',
-    'libs/jquery.autocomplete.min',
+    'common/tabs',
     'components/index/scroller',
-    'components/index/streamers_counter'
-]);
+    'components/index/Main_Slider',
+    'common/Videos_Slider',
+    'common/nav-header'
+], function(tabs, scroller, index_slider, Videos_Slider) {
+    var featured_videos = new Videos_Slider();
+
+
+    featured_videos
+        .init(shuffle(index_data.featured_videos))
+        .mount($('<div id="featuredVideos"/>'));
+
+    index_slider
+        .init(index_data.slider)
+        .mount($('#imageSlider'));
+
+    tabs
+        .init()
+        .addTab('tab-1-2', '精選影片', featured_videos.$el)
+        .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
+        .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
+        .mount($('#main-videos'));
+});

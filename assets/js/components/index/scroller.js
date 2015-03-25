@@ -2,7 +2,7 @@
 
 'use strict';
 
-define(['jquery'], function($) {
+define([], function() {
 
     $(window).scroll(function () {
         if ($('body')[0].scrollHeight - $(window).scrollTop() - 50 <= $(window).height()) {
