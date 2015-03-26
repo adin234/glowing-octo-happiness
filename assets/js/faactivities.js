@@ -1,17 +1,16 @@
-$.get(server + "freedom_events/checkAdmin", function (data) {
-    'use strict';
-    show_html(data); //data for admin use only
+'use strict';
+/*global $,server,console*/
 
+$.get(server + 'freedom_events/checkAdmin', function(data) {
+    show_html(data); //data for admin use only
 });
 
-$.get(server + "freedom_events", function (data) {
-    'use strict';
+$.get(server + 'freedom_events', function(data) {
     filter_display_events(data);
 });
 
+var show_html = function(data) {
 
-var show_html = function (data) {
-    'use strict';
     var html = [];
 
     $.ajax({
@@ -19,14 +18,14 @@ var show_html = function (data) {
             url: server + 'logged_user',
             type: 'get'
         })
-        .done(function (session) {
-            if (session.message === "Not logged in.") {
-                document.getElementById('all_events_form').innerHTML = "";
-            }
-            else {
-                $.get(server + "user/" + session.user_id, function (user) {
+        .done(function(session) {
+            if (session.message === 'Not logged in.') {
+                document.getElementById('all_events_form').innerHTML = '';
+            } else {
+                $.get(server + 'user/' + session.user_id, function(user) {
                     if (user.is_admin === 1) {
-                        data.forEach(function (item) {
+                        data.forEach(function(item) {
+
                             html.push(item);
                         });
                         $('.add_events_form').html(html.join(''));
@@ -34,10 +33,10 @@ var show_html = function (data) {
                 });
             }
         });
-}
+};
 
 
-var get_date_diff = function (sched, time) {
+var get_date_diff = function(sched, time) {
     var today = new Date(),
         currdate = today.toJSON()
         .substr(0, 10),
@@ -48,26 +47,24 @@ var get_date_diff = function (sched, time) {
 
     if (result < 0) {
         return 'Ongoing';
-    }
-    else if (result === 0) {
+    } else if (result === 0) {
         if (result2 <= 0) {
             return 'Ongoing';
-        }
-        else {
+        } else {
             return 'Ended';
         }
-    }
-    else {
+    } else {
         return 'Ended';
     }
 };
 
-var show_events = function (data) {
+var show_events = function(data) {
 
-    'use strict';
     var html = [];
 
-    data.forEach(function (item) {
+    data.forEach(function(item) {
+
+
         html.push('<div class="activity">');
         html.push('<div class="left">');
         html.push('<div id="startEventDate">' + item.start_date + '</div>' +
@@ -89,13 +86,13 @@ var show_events = function (data) {
 
     return html;
 
-}
+};
 
 
-var filter_display_events = function (all_events) {
+var filter_display_events = function(all_events) {
 
-    'use strict';
-    all_events.forEach(function (item) {
+
+    all_events.forEach(function(item) {
         if ((get_date_diff(item.end_date, item.end_time) === 'Ongoing') || (get_date_diff(item.end_date,
                 item.end_time) === 'Ended')) {
             var html_content_sched = show_events(all_events);
@@ -103,7 +100,7 @@ var filter_display_events = function (all_events) {
                 .html(html_content_sched.join(''));
         }
     });
-    all_events.forEach(function (item) {
+    all_events.forEach(function(item) {
         if (get_date_diff(item.end_date, item.end_time) === 'Ended') {
             var html_content_archive = show_events(all_events);
             $('#archive_schedule')
@@ -112,4 +109,37 @@ var filter_display_events = function (all_events) {
     });
 
 
-}
+};
+
+var search_events = function(event_title) {
+    $.get(server + 'freedom_events/search' + event_title, function(data) {
+        return data;
+    });
+};
+
+$('#seachEvent').on('click', function() {
+    var event_title = $('#search_input').val(),
+        search_result = search_events(event_title);
+});
+
+
+var add_event = function() {
+    $.ajax({
+        url: server + 'freedom_events/add',
+        type: 'post',
+        data: {
+            'event_title': $('#event_name')
+                .val(),
+            'start_date': $('#event_start_date')
+                .val(),
+            'end_date': $('#event_end_date')
+                .val(),
+            'start_time': $('#event_start_time')
+                .val(),
+            'end_time': $('#event_end_time')
+                .val(),
+            'e_description': $('#event_desc')
+                .val()
+        }
+    });
+};
