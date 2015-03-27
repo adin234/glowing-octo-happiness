@@ -61,6 +61,11 @@
     border-bottom: 4px solid #a40000; }
   .lang_en #streamView header {
     font-size: 0.92308em; }
+    .lang_en #streamView header h1 {
+      background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
+      background-size: 98px auto; }
+    .lang_en #streamView header > a:before {
+      background: url("/assets/images/sprite.png") no-repeat 27px -905px; }
   .lang_en .watchList h2 {
     font-size: 1.38462em;
     font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif; }
@@ -148,15 +153,20 @@
   .lang_zh_tw #streamView header h1 {
     overflow: hidden;
     text-indent: 100%;
-    white-space: nowrap; }
+    white-space: nowrap;
+    background: url("/assets/images/logo_tw.png") no-repeat 7px -232px; }
   .lang_zh_tw #streamView header > a {
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap; }
+    .lang_zh_tw #streamView header > a:before {
+      background: url("/assets/images/sprite.png") no-repeat 27px -949px; }
   .lang_zh_tw #streamView h1 {
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap; }
+  .lang_zh_tw #streamView select {
+    margin-left: 8px; }
   .lang_zh_tw .watchList h2 {
     font-size: 1.28571em;
     font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif; }

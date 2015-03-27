@@ -104,6 +104,13 @@
         }
         header {
             font-size: 0.92308em;
+            h1 {
+                background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
+                background-size: 98px auto;
+            }
+            & > a:before {
+                background: url("/assets/images/sprite.png") no-repeat 27px -905px;
+            }
         }
     }
     .watchList {
@@ -233,17 +240,25 @@
                 overflow: hidden;
                 text-indent: 100%;
                 white-space: nowrap;
+                background: url("/assets/images/logo_tw.png") no-repeat 7px -232px;
+
             }
             & > a {
                 overflow: hidden;
                 text-indent: 100%;
                 white-space: nowrap;
+                &:before {
+                    background: url("/assets/images/sprite.png") no-repeat 27px -949px;
+                }
             }
         }
         h1 {
             overflow: hidden;
             text-indent: 100%;
             white-space: nowrap;
+        }
+        select {
+            margin-left: 8px;
         }
     }
     .watchList {
