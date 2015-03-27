@@ -34,13 +34,14 @@ requirejs([
     'components/index/scroller',
     'components/index/Main_Slider',
     'common/Videos_Slider',
-    'common/nav-header',
-    'sass!path/to/csss/file'
+    'common/nav-header'
 ], function(Tabs, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
         main_tab = new Tabs(),
-        featured_videos = new Videos_Slider();
+        featured_videos = new Videos_Slider(),
+        latest_videos = new Videos_Slider(),
+        most_viewed = new Videos_Slider();
 
     main_slider
         .init( index_data.slider )
@@ -49,12 +50,20 @@ requirejs([
     main_tab
         .init()
         .addTab('tab-1-2', '精選影片', $('<div id="featuredVideos"/>'))
-    // //     .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
-    // //     .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
+        .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
+        .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
         .mount($('#main-videos'));
 
 
     featured_videos
         .init(shuffle(index_data.featured_videos))
-        .mount($('#featuredVideos'));
+        .mount( $('#featuredVideos') );
+
+    latest_videos
+        .init(shuffle(index_data.latest_videos))
+        .mount( $('#latestVideos') );
+
+    most_viewed
+        .init(shuffle(index_data.most_viewed))
+        .mount( $('#mostViewed') );
 });
