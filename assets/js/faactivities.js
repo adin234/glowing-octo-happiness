@@ -1,15 +1,23 @@
 'use strict';
-/*global server, $*/
-$.get(server + 'freedom_events/checkAdmin', function(data) {
-    show_html(data); //data for admin use only
-});
+/*global $,server,console*/
+
 $.get(server + 'freedom_events', function(data) {
     filter_display_events(data);
 });
 
+$.ajax({
+    dataType: 'jsonp',
+    url: server + 'freedom_events/checkAdmin',
+    type: 'get'
+
+}).success(function(data) {
+    show_html(data);
+}).fail(function(data) {});
 
 var show_html = function(data) {
+
     var html = [];
+
     $.ajax({
             dataType: 'jsonp',
             url: server + 'logged_user',
@@ -30,6 +38,7 @@ var show_html = function(data) {
             }
         });
 };
+
 
 var get_date_diff = function(sched, time) {
     var today = new Date(),
@@ -58,6 +67,8 @@ var show_events = function(data) {
     var html = [];
 
     data.forEach(function(item) {
+
+
         html.push('<div class="activity">');
         html.push('<div class="left">');
         html.push('<div id="startEventDate">' + item.start_date + '</div>' +
@@ -98,6 +109,41 @@ var filter_display_events = function(all_events) {
             var html_content_archive = show_events(all_events);
             $('#archive_schedule')
                 .html(html_content_archive.join(''));
+        }
+    });
+
+
+};
+
+var search_events = function(event_title) {
+    $.get(server + 'freedom_events/search' + event_title, function(data) {
+        return data;
+    });
+};
+
+$('#seachEvent').on('click', function() {
+    var event_title = $('#search_input').val(),
+        search_result = search_events(event_title);
+});
+
+
+var add_event = function() {
+    $.ajax({
+        url: server + 'freedom_events/add',
+        type: 'post',
+        data: {
+            'event_title': $('#event_name')
+                .val(),
+            'start_date': $('#event_start_date')
+                .val(),
+            'end_date': $('#event_end_date')
+                .val(),
+            'start_time': $('#event_start_time')
+                .val(),
+            'end_time': $('#event_end_time')
+                .val(),
+            'e_description': $('#event_desc')
+                .val()
         }
     });
 };
