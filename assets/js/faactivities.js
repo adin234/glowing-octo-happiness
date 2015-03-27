@@ -1,13 +1,18 @@
 'use strict';
 /*global $,server,console*/
 
-$.get(server + 'freedom_events/checkAdmin', function(data) {
-    show_html(data); //data for admin use only
-});
-
 $.get(server + 'freedom_events', function(data) {
     filter_display_events(data);
 });
+
+$.ajax({
+    dataType: 'jsonp',
+    url: server + 'freedom_events/checkAdmin',
+    type: 'get'
+
+}).success(function(data) {
+    show_html(data);
+}).fail(function(data) {});
 
 var show_html = function(data) {
 
@@ -25,7 +30,6 @@ var show_html = function(data) {
                 $.get(server + 'user/' + session.user_id, function(user) {
                     if (user.is_admin === 1) {
                         data.forEach(function(item) {
-
                             html.push(item);
                         });
                         $('.add_events_form').html(html.join(''));
