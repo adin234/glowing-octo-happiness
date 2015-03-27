@@ -288,141 +288,10 @@ var index_data,
     },
 
     update_index = function (_index_data) {
-        var html = [];
-        var group = [];
-
-        html = [];
-        random_featured_vids = shuffle(_index_data.featured_videos);
-        random_featured_vids.forEach(function (item) {
-            item.provider = attachments_server;
-            item.thumb = item.snippet.thumbnails.medium.url;
-            item.title = item.snippet.title;
-            item.bust = 1;
-            item.anytv_comment = item.anytv_comment || 0;
-            item.comments = item.snippet.meta.statistics.commentCount;
-            item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
-            group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length === 9) {
-                html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-                group = [];
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-        // $('#featuredVideos').html(html.join(''));
-        // slider.featured_video.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
-        html = [];
-        group = [];
-        var flag = {};
-
-        _index_data.latest_videos.forEach(function (item) {
-            var date = item.snippet.publishedAt.substr(0, 10);
-            if (!flag[date]) {
-                flag[date] = [];
-            }
-            if (!~flag[date].indexOf(item.user_id)) {
-                item.provider = attachments_server;
-                item.thumb = item.snippet.thumbnails.medium.url;
-                item.title = item.snippet.title;
-                item.bust = 1;
-                item.anytv_comment = item.anytv_comment || 0;
-                item.comments = item.snippet.meta.statistics.commentCount;
-                item.views = item.snippet.meta.statistics.viewCount;
-                item.link = '/youtuber/?user=' +
-                    item.user_id + '/#!/video/' +
-                    item.snippet.resourceId.videoId;
-                group.push(template(JST['latestVideosTpl.html'](), item));
-                if (group.length === 9) {
-                    html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-                    group = [];
-                }
-                flag[date].push(item.user_id);
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push('<ul class="list clearFix">' +
-                group.join('') + '</ul>');
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-
-        // $('#latestVideos').html(html.join(''));
-        // slider.latest_video.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
-        html = [];
-        group = [];
-        var ids = {};
-
-        _index_data.most_viewed.forEach(function (item) {
-            ids[item.user_id] = 
-                typeof ids[item.user_id] === 'undefined' ?
-                    1 :
-                    ids[item.user_id] + 1;
-
-            if (ids[item.user_id] > 2) {
-                return;
-            }
-
-            item.provider = attachments_server;
-            item.thumb = item.snippet.thumbnails.medium.url;
-            item.title = item.snippet.title;
-            item.bust = 1;
-            item.anytv_comment = item.anytv_comment || 0;
-            item.comments = item.snippet.meta.statistics.commentCount;
-            item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/?user=' +
-                item.user_id + '/#!/video/' +
-                item.snippet.resourceId.videoId;
-            group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length === 9) {
-                html.push(
-                    '<ul class="list clearFix">' +
-                    group.join('') + '</ul>'
-                );
-                group = [];
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push(
-                '<ul class="list clearFix">' +
-                group.join('') + '</ul>'
-            );
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-
-        // $('#mostViewed').html(html.join(''));
-        // slider.most_viewed.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
         var shuffleTrigger = 0,
             tCounterCorrect = 0,
-            tCounterWrong = 0;
+            tCounterWrong = 0,
+            html = [];
         window.setInterval(function() {
             var date = new Date();
             if (date.getHours() === 24 &&
@@ -566,11 +435,6 @@ var index_data,
                 (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
                     []
-            ),
-            visible_shows_playlists = (
-                (typeof index_data.visible_shows_playlists !== 'undefined') ?
-                    index_data.visible_shows_playlists.split(',') :
-                    []
             );
 
         index_data.news_playlists.forEach(function (playlist, index) {
@@ -671,15 +535,6 @@ var index_data,
         $('#news_shows_playlists').html(html.join(''));
 
         $('.sf-menu').superfish();
-        // $('.tabs').tabslet({
-        //     animation: true,
-        // }).on('_before', function () {
-        //     slider.most_viewed.reloadSlider();
-        //     slider.featured_video.reloadSlider();
-        //     slider.latest_video.reloadSlider();
-        //     slider.featured_games.reloadSlider();
-        //     slider.latest_games.reloadSlider();
-        // });
     },
 
     start = function() {
