@@ -21,18 +21,6 @@ var index_data,
     shuffledGames = [],
     shuffledLatest = [],
 
-    load_more = function (selector, page, per_page) {
-        $(selector).slice(0, page * per_page).show();
-        if ($(selector).length <= page * per_page) {
-            $('.load-more[data-selector="' + selector + '"]').hide();
-        }
-        else {
-            $('.load-more[data-selector="' + selector + '"]').show();
-        }
-        $('.load-more[data-selector="' + selector + '"]').attr('data-page', parseInt(page) + 1);
-        $('.load-more[data-selector="' + selector + '"]').attr('data-per-page', per_page);
-    },
-
     shuffle = function (o) {
         for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
         return o;
@@ -389,48 +377,12 @@ var index_data,
         });
     },
 
-    filter_category = function (cnsl) {
-        $.ajax({
-            async: false,
-            type: 'GET',
-            dataType: 'json',
-            url: server + 'index?console=' + cnsl,
-        }).done(function (data) {
-            var context = $('.species a[data-console=' + cnsl + ']');
-            context.parent().siblings().removeClass('current');
-            context.parent().addClass('current');
-            if (cnsl !== 'all') {
-                $('#imageSlider').parent().parent().hide();
-            }
-            else {
-                $('#imageSlider').parent().parent().show();
-            }
-            index_data = data;
-            update_index(data);
-        });
-
-        return false;
-    },
-
-    filterAction = function (action) {
-        switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            break;
-        }
-    },
-
-    add_filter_category = function (string) {
-        utilHash.changeHashVal('console', string);
-        renderFeaturedGames(string);
-    },
-
     news_shows_playlists = function () {
         var html = [],
             blocks = '',
             max_items = 4,
             ctr = 1,
+            visible_shows_playlists = [],
             visible_news_playlists = (
                 (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
