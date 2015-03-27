@@ -3,6 +3,8 @@
     "phantom",
     "module",
     "require",
+    "requirejs",
+    "define",
     "__dirname",
     "process",
     "console",

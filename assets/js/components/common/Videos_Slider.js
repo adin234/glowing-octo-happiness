@@ -8,18 +8,22 @@
 
 define(
     [
+        'common/jquery.method.events',
         'text!common/templates/video-slide.html'
     ],
-    function(video_tpl) {
+    function(listen_to, video_tpl) {
 
         return function(opts) {
 
             var items = [],
-                options = $.extend({}, {
+                defaults = {
                     max_items: 9
-                }, opts);
+                },
+                options = $.extend({}, defaults, opts);
 
             return {
+
+                $el: null,
 
                 init: function(data) {
                     data = data || [];
@@ -43,12 +47,15 @@ define(
 
 
                 mount: function($container) {
-                    $container.html(items);
-                    // $container.bxSlider({
-                    //     captions: true,
-                    //     auto: true
-                    // });
+
                     this.$el = $container;
+
+                    this.$el.html(items);
+
+                    this.$el.bxSlider({
+                        captions: true,
+                        auto: true
+                    });
 
                     return this;
                 }

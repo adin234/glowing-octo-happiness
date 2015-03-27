@@ -1,5 +1,4 @@
 /*global
-    define,
     template
 */
 
@@ -10,44 +9,56 @@ define(
         'text!common/templates/tab-nav.html'
     ],
     function(tab_nav_tpl) {
+
         var nav_el = null,
-            contents = [];
-        
-        return {
-            init: function() {
-                nav_el = $('<ul class="tab clearFix"/>');
-                return this;
-            },
+            contents = {};
 
-            addTab: function(id, label, $content) {
+        return function Tabs() {
 
-                nav_el.append(
-                    template(tab_nav_tpl, {
-                        id: id,
-                        label: label
-                    })
-                );
+            return {
 
-                contents.push(
-                    $('<div id="'+id+'"/>').append($content)
-                );
-                return this;
-            },
+                $el: null,
 
-            mount: function($container) {
-                if (!nav_el) {
-                    this.init();
+                init: function() {
+                    nav_el = $('<ul class="tab clearFix"/>');
+                    return this;
+                },
+
+                addTab: function(id, label, $content) {
+
+                    nav_el.append(
+                        template(tab_nav_tpl, {
+                            id: id,
+                            label: label
+                        })
+                    );
+
+                    contents[id] = $('<div id="'+id+'"/>').append($content);
+
+                    return this;
+                },
+
+
+                mount: function($container) {
+                    this.$el = $container;
+
+                    if (!nav_el) {
+                        this.init();
+                    }
+
+                    this.$el.append(nav_el);
+
+                    for (var i in contents) {
+                        this.$el.append(contents[i]);
+                    }
+
+                    this.$el.tabslet({animation: true});
+
+                    return this;
                 }
 
-                $container.append(nav_el);
-                contents.forEach(function(el) {
-                    $container.append(el);
-                });
+            };
 
-                $container.tabslet({animation: true});
-
-                return this;
-            }
         };
     }
 );
