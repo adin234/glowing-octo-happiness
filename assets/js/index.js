@@ -291,32 +291,6 @@ var index_data,
         var html = [];
         var group = [];
 
-        // if (!slider_loaded) {
-        //     _index_data.slider.forEach(function (item) {
-        //         item.onclick = 
-        //             item.header_location ?
-        //                 'window.location=\'' +
-        //                     item.header_location + '\'' :
-        //                 '';
-        //         item.provider = attachments_server;
-        //         item.style = item.youtube_link ? '' : 'display:none';
-        //         item.youtube_link = item.youtube_link ? item.youtube_link : '';
-        //         item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace(
-        //             'https://www.youtube.com/watch?v=', '') + '/default.jpg';
-        //         var date = new Date(item.upload_date * 1000);
-        //         item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
-        //             .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
-        //         item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
-        //         html.push(template(JST['sliderTpl.html'](), item));
-        //     });
-        //     $('#imageSlider').html(html.join(''));
-        //     $('.bxslider').bxSlider({
-        //         captions: true,
-        //         auto: true
-        //     });
-        //     slider_loaded = 1;
-        // }
-
         html = [];
         random_featured_vids = shuffle(_index_data.featured_videos);
         random_featured_vids.forEach(function (item) {

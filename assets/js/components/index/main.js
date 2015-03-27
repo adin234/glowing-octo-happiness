@@ -8,9 +8,15 @@
 
 requirejs.config({
     baseUrl: '/assets/js',
+    map: {
+        '*': {
+            'less': 'libs/require-less/less'
+        }
+    },
     paths: {
         'jquery': 'libs/jquery.min',
         'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -34,7 +40,8 @@ requirejs([
     'components/index/scroller',
     'components/index/Main_Slider',
     'common/Videos_Slider',
-    'common/nav-header'
+    'common/nav-header',
+    'less!css/less/main'
 ], function(Tabs, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
