@@ -1,12 +1,12 @@
-var server = 'http://api.gamers.tm/';
-var origin = 'http://localhost:8000/';
+var server = 'http://api.gamers.tm/'; //'http://dev.gamers.tm:3000/'; //
+var origin = 'http://www.gamers.tm/'; //'http://dev.gamers.tm:8000/'; //
 var socket_server = 'http://api.gamers.tm:3001/';
 var attachments_server = 'http://community.gamers.tm/zh/';
 var community = 'http://community.gamers.tm/zh/';
 var page_maintenance = origin + 'maintenance.html';
 
 var utilLoader = {
-    show: function (loader) {
+    show: function(loader) {
         var loaderDiv = document.createElement('div');
         loaderDiv.id = 'loaderIcn';
         loaderDiv.className = 'full-overlay';
@@ -23,11 +23,10 @@ var utilLoader = {
         loaderDiv.appendChild(container);
         document.body.appendChild(loaderDiv);
     },
-    hide: function () {
+    hide: function() {
         var loaderIcn = document.getElementById('loaderIcn');
         if (loaderIcn && typeof loaderIcn != 'undefined') {
             loaderIcn.remove();
         }
     }
 };
-
