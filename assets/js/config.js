@@ -6,7 +6,7 @@ var community = 'http://community.gamers.tm/zh/';
 var page_maintenance = origin + 'maintenance.html';
 
 var utilLoader = {
-    show: function (loader) {
+    show: function(loader) {
         var loaderDiv = document.createElement('div');
         loaderDiv.id = 'loaderIcn';
         loaderDiv.className = 'full-overlay';
@@ -23,11 +23,10 @@ var utilLoader = {
         loaderDiv.appendChild(container);
         document.body.appendChild(loaderDiv);
     },
-    hide: function () {
+    hide: function() {
         var loaderIcn = document.getElementById('loaderIcn');
         if (loaderIcn && typeof loaderIcn != 'undefined') {
             loaderIcn.remove();
         }
     }
 };
-
