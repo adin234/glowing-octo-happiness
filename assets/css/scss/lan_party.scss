@@ -1,0 +1,283 @@
+/*lan party*/
+#container_lanparty {
+    background: url("../images/lanpartybg.jpg");
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+    margin-top: 56px;
+    min-height: 900px;
+    padding: 40px 40px 80px 40px;
+    .lanparty_title {
+        font-weight: bold;
+        display: inline-block;
+        margin: 100px 80px 0px; 
+    }
+    .lanparty_content {
+        color: #00b8e6;
+        width: 85%;
+        position: relative;
+        margin: 80px auto;
+        p {
+            margin: 20px 0px;
+            line-height: 1.75;
+        }
+    }
+    .lanparty_timetable {
+        color: #00b8e6;
+        width: 85%;
+        position: relative;
+        margin: 51px auto 80px;
+        min-width: 1047px;
+        min-height: 829px;
+        border-top: #00c7f9 solid 1px;
+    }
+    .hour_time {
+        display: inline-block;
+        width: 105px;
+        color: #FFFFFF;
+        font-size: large;
+        margin: 0px 5px 0px 40px;
+        height: 36px;
+        li {
+            margin: 0px 5px 0px 40px;
+            height: 36px;
+            &:last-child {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.lanparty_content {
+    display: none;
+}
+
+.lanparty {
+    .tabs {
+        color: #fff;
+    }
+    .recommend {
+        & > h2 {
+            color: #999;
+        }
+    }
+    .videoHeading h3 {
+        color: #fff;
+    }
+}
+
+.lanparty-nav {
+    .lanparty_type1 {
+        float: left;
+         li.active, li:hover {
+            & > a{
+               color: #00b8e6;
+                border-top: 2px solid #00b8e6; 
+            }            
+        }
+    }
+    .lanparty_type2 {
+        float: right;
+        & > li {
+            & > a:hover {
+                color: #eee;
+                text-decoration: none;
+            }
+            &:nth-child(1) {
+                background: url("../images/sprite.png") no-repeat 0 -1279px;
+            }
+            &:nth-child(2) {
+                margin-left: 20px;
+                background: url("../images/icon_fire_grey.png") no-repeat;
+                position: relative;
+                top: 1px;
+                vertical-align: middle;
+            }
+        }
+    }
+    .lanparty_menu {
+        border-top: 1px solid #434343;
+        padding: 10px;
+    }
+    & > hr.line {
+        height: 1px;
+        border-top: 1px solid #434343;
+        margin-bottom: 9px;
+    }
+    & > ul {
+        li:not(:last-child) {
+            border-right: 1px solid #434343;
+        }
+    }
+    li {
+        display: inline-block;
+        padding: 0px 20px;
+        vertical-align: middle;
+        & > a {
+            color: #868686;
+            text-decoration: none;
+            padding: 15px 10px;
+            position: relative;
+            top: -1px;
+        }
+        &.current > a {
+            color: #00b8e6;
+            border-top: 2px solid #00b8e6;
+        }
+    }
+}
+
+#container {
+    .lanparty-nav {
+        margin: -34px -50px 25px;
+        padding: 20px 50px;
+    }
+    .lanparty-nav-green {
+        margin: -34px -50px 25px;
+        padding: 20px 50px;
+    }
+    &.lanparty-nav{
+        .videoRelated {
+            background: none;
+            border-top: 1px solid #4d4d4d;
+            [id^="tab-"] {
+                border-bottom: none;
+            }
+            .recommend h3 {
+                color: #fff;
+            }
+        }
+        .main .video + * {
+            background: none;
+            border-left: 1px solid #4d4d4d;
+        }
+        .tabs {
+            & + * {
+                background: none;
+                border-left: 1px solid #4d4d4d;
+            }
+            .tab {
+                margin-top: -2px;
+            }
+        }
+        .listSwitch li {
+            background: #000;
+            border: 1px solid #00b8e6;
+        }
+    }    
+}
+
+.lanparty-nav-green {
+    .lanparty_type1 {
+        li.active, li:hover {
+            & > a{
+                color: #00ff54;
+                border-top: 2px solid #00ff54;
+            }            
+        }
+    }
+    .lanparty_type2 {
+        float: right;
+        & > li {
+            & > a:hover {
+                color: #eee;
+                text-decoration: none;
+            }
+            &:nth-child(1) {
+                background: url("../images/sprite.png") no-repeat 0 -1279px;
+            }
+            &:nth-child(2) {
+                margin-left: 20px;
+                background: url("../images/icon_fire_grey.png") no-repeat;
+                position: relative;
+                top: 1px;
+                vertical-align: middle;
+            }
+        }
+    }
+    .lanparty_menu {
+        border-top: 1px solid #434343;
+        padding: 10px;
+    }
+    li {
+        display: inline-block;
+        padding: 0px 20px;
+        vertical-align: middle;
+        & > a {
+            color: #868686;
+            text-decoration: none;
+            /*outline: 1px solid red;*/
+            
+            padding: 15px 10px;
+            position: relative;
+            top: -1px;
+        }
+        &.current > a {
+            color: #00b8e6;
+            border-top: 2px solid #00b8e6;
+        }
+    }
+    & > ul {
+        li:not(:last-child) {
+            border-right: 1px solid #434343;
+        }
+    }
+}
+
+.scheduler {
+    background: url(../images/bg_grid.jpg) repeat-x;
+    width: 941px;
+    height: 863px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#container_lanparty_green {
+    background: url("../images/lanparty_bg_3.png");
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+    margin-top: 56px;
+    min-height: 900px;
+    padding: 40px 40px 80px 40px;
+    .lanparty_title {
+        display: inline-block;
+        margin: 100px 80px 0px;
+    }
+    .lanparty_content {
+        color: #acacac;
+        width: 100%;
+        position: relative;
+        height: 900px;
+        margin-right: 50px;
+    }
+    .lanparty_timetable {
+        color: #acacac;
+        width: 85%;
+        position: relative;
+        margin: 51px auto 80px;
+        background: url(../images/lanparty_grid_bg.png);
+        min-width: 940px;
+        min-height: 829px;
+        padding-top: 40px;
+    }
+    .hour_time {
+        display: inline-block;
+        width: 155px;
+        color: #00ff54;
+        padding-top: 60px;
+        li {
+            border-top: 1px dotted #00ff54;
+            margin: 0px 5px 0px 40px;
+            height: 36px;
+            &:last-child {
+                border-bottom: 1px dotted #00ff54;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.lanparty_type2 sup {
+    color: red;
+    left: 1px;
+    position: relative;
+    top: -5px;
+    width: 1em;
+}

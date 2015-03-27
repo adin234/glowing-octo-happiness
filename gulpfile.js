@@ -22,7 +22,7 @@ gulp.task('image-compressed', function () {
 });
 
 gulp.task('sass', function () {
-    gulp.src('assets/css/scss/**/*.scss')
+    return gulp.src('assets/css/scss/**/*.scss')
         .pipe(sass({
             errLogToConsole: true
         }))
@@ -44,7 +44,7 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile'], function() {
+gulp.task('dev', ['template-compile', 'sass'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
 });
