@@ -102,7 +102,12 @@ define(function() {
         }
 
         $('#streamers').html(html.join(''));
+        
         // load_more('#streamers > li', 1, 5);
+        
+        $('.streaming .scroll').mCustomScrollbar({
+            theme: 'inset-2'
+        });
     };
 
 });

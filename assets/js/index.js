@@ -343,10 +343,6 @@ var index_data,
         html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
-        $('.streaming .scroll').mCustomScrollbar({
-            theme: 'inset-2'
-        });
-
         $('.tooltip').tooltipster({
             contentAsHTML: true,
             position: 'top'
