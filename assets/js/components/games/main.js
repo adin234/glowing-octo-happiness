@@ -1,5 +1,4 @@
 /*global
-    requirejs,
     index_data,
     shuffle
 */
@@ -41,8 +40,7 @@ requirejs([
     'components/index/Main_Slider',
     'common/Videos_Slider',
     'common/nav-header',
-    'components/index/viewer',
-    'components/index/streamers'
+    'less!css/less/main'
 ], function(Tabs, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
@@ -51,18 +49,17 @@ requirejs([
         latest_videos = new Videos_Slider(),
         most_viewed = new Videos_Slider();
 
-
     main_slider
         .init( index_data.slider )
         .mount( $('#imageSlider') );
 
-    // index main page
     main_tab
         .init()
         .addTab('tab-1-2', '精選影片', $('<div id="featuredVideos"/>'))
         .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
         .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
         .mount($('#main-videos'));
+
 
     featured_videos
         .init(shuffle(index_data.featured_videos))
@@ -75,5 +72,4 @@ requirejs([
     most_viewed
         .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
-
 });

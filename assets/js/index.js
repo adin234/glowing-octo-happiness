@@ -21,18 +21,6 @@ var index_data,
     shuffledGames = [],
     shuffledLatest = [],
 
-    load_more = function (selector, page, per_page) {
-        $(selector).slice(0, page * per_page).show();
-        if ($(selector).length <= page * per_page) {
-            $('.load-more[data-selector="' + selector + '"]').hide();
-        }
-        else {
-            $('.load-more[data-selector="' + selector + '"]').show();
-        }
-        $('.load-more[data-selector="' + selector + '"]').attr('data-page', parseInt(page) + 1);
-        $('.load-more[data-selector="' + selector + '"]').attr('data-per-page', per_page);
-    },
-
     shuffle = function (o) {
         for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
         return o;
@@ -288,167 +276,10 @@ var index_data,
     },
 
     update_index = function (_index_data) {
-        var html = [];
-        var group = [];
-
-        // if (!slider_loaded) {
-        //     _index_data.slider.forEach(function (item) {
-        //         item.onclick = 
-        //             item.header_location ?
-        //                 'window.location=\'' +
-        //                     item.header_location + '\'' :
-        //                 '';
-        //         item.provider = attachments_server;
-        //         item.style = item.youtube_link ? '' : 'display:none';
-        //         item.youtube_link = item.youtube_link ? item.youtube_link : '';
-        //         item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace(
-        //             'https://www.youtube.com/watch?v=', '') + '/default.jpg';
-        //         var date = new Date(item.upload_date * 1000);
-        //         item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
-        //             .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
-        //         item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
-        //         html.push(template(JST['sliderTpl.html'](), item));
-        //     });
-        //     $('#imageSlider').html(html.join(''));
-        //     $('.bxslider').bxSlider({
-        //         captions: true,
-        //         auto: true
-        //     });
-        //     slider_loaded = 1;
-        // }
-
-        html = [];
-        random_featured_vids = shuffle(_index_data.featured_videos);
-        random_featured_vids.forEach(function (item) {
-            item.provider = attachments_server;
-            item.thumb = item.snippet.thumbnails.medium.url;
-            item.title = item.snippet.title;
-            item.bust = 1;
-            item.anytv_comment = item.anytv_comment || 0;
-            item.comments = item.snippet.meta.statistics.commentCount;
-            item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
-            group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length === 9) {
-                html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-                group = [];
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-        // $('#featuredVideos').html(html.join(''));
-        // slider.featured_video.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
-        html = [];
-        group = [];
-        var flag = {};
-
-        _index_data.latest_videos.forEach(function (item) {
-            var date = item.snippet.publishedAt.substr(0, 10);
-            if (!flag[date]) {
-                flag[date] = [];
-            }
-            if (!~flag[date].indexOf(item.user_id)) {
-                item.provider = attachments_server;
-                item.thumb = item.snippet.thumbnails.medium.url;
-                item.title = item.snippet.title;
-                item.bust = 1;
-                item.anytv_comment = item.anytv_comment || 0;
-                item.comments = item.snippet.meta.statistics.commentCount;
-                item.views = item.snippet.meta.statistics.viewCount;
-                item.link = '/youtuber/?user=' +
-                    item.user_id + '/#!/video/' +
-                    item.snippet.resourceId.videoId;
-                group.push(template(JST['latestVideosTpl.html'](), item));
-                if (group.length === 9) {
-                    html.push('<ul class="list clearFix">' + group.join('') + '</ul>');
-                    group = [];
-                }
-                flag[date].push(item.user_id);
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push('<ul class="list clearFix">' +
-                group.join('') + '</ul>');
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-
-        // $('#latestVideos').html(html.join(''));
-        // slider.latest_video.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
-        html = [];
-        group = [];
-        var ids = {};
-
-        _index_data.most_viewed.forEach(function (item) {
-            ids[item.user_id] = 
-                typeof ids[item.user_id] === 'undefined' ?
-                    1 :
-                    ids[item.user_id] + 1;
-
-            if (ids[item.user_id] > 2) {
-                return;
-            }
-
-            item.provider = attachments_server;
-            item.thumb = item.snippet.thumbnails.medium.url;
-            item.title = item.snippet.title;
-            item.bust = 1;
-            item.anytv_comment = item.anytv_comment || 0;
-            item.comments = item.snippet.meta.statistics.commentCount;
-            item.views = item.snippet.meta.statistics.viewCount;
-            item.link = '/youtuber/?user=' +
-                item.user_id + '/#!/video/' +
-                item.snippet.resourceId.videoId;
-            group.push(template(JST['latestVideosTpl.html'](), item));
-            if (group.length === 9) {
-                html.push(
-                    '<ul class="list clearFix">' +
-                    group.join('') + '</ul>'
-                );
-                group = [];
-            }
-        });
-
-        if (group.length >= 1) {
-            html.push(
-                '<ul class="list clearFix">' +
-                group.join('') + '</ul>'
-            );
-        }
-
-        if (!html.length) {
-            html.push('目前沒有影片');
-        }
-
-        // $('#mostViewed').html(html.join(''));
-        // slider.most_viewed.reloadSlider({
-        //     startSlide: 0,
-        //     infiniteLoop: false,
-        //     hideControlOnEnd: true
-        // });
-
         var shuffleTrigger = 0,
             tCounterCorrect = 0,
-            tCounterWrong = 0;
+            tCounterWrong = 0,
+            html = [];
         window.setInterval(function() {
             var date = new Date();
             if (date.getHours() === 24 &&
@@ -468,30 +299,6 @@ var index_data,
                 }
             }
         }, 1000);
-
-        html = [];
-        if (_index_data.feature_list.feature_list_active === '1') {
-            $('.viewer > h2').html(_index_data.feature_list.feature_list_header);
-            _index_data.feature_list.feature_list_items.forEach(function (item) {
-                html.push(template(JST['featureTpl.html'](), item));
-            });
-
-            if (!html.length) {
-                html.push('No feature available.');
-            }
-
-            $('#featuredUsers').html(html.join(''));
-        }
-        else {
-            _index_data.featured_users.forEach(function (item) {
-                item.provider = attachments_server;
-                html.push(template(JST['featuredUsersTpl.html'](), item));
-            });
-            if (!html.length) {
-                html.push('No User Available');
-            }
-            $('#featuredUsers').html('<ul>' + html.join('') + '</ul>');
-        }
 
         html = [];
         _index_data.recent_threads.forEach(function (item) {
@@ -536,7 +343,7 @@ var index_data,
         html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
-        $('.viewer .scroll, .streaming .scroll').mCustomScrollbar({
+        $('.streaming .scroll').mCustomScrollbar({
             theme: 'inset-2'
         });
 
@@ -546,56 +353,15 @@ var index_data,
         });
     },
 
-    filter_category = function (cnsl) {
-        $.ajax({
-            async: false,
-            type: 'GET',
-            dataType: 'json',
-            url: server + 'index?console=' + cnsl,
-        }).done(function (data) {
-            var context = $('.species a[data-console=' + cnsl + ']');
-            context.parent().siblings().removeClass('current');
-            context.parent().addClass('current');
-            if (cnsl !== 'all') {
-                $('#imageSlider').parent().parent().hide();
-            }
-            else {
-                $('#imageSlider').parent().parent().show();
-            }
-            index_data = data;
-            update_index(data);
-        });
-
-        return false;
-    },
-
-    filterAction = function (action) {
-        switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            break;
-        }
-    },
-
-    add_filter_category = function (string) {
-        utilHash.changeHashVal('console', string);
-        renderFeaturedGames(string);
-    },
-
     news_shows_playlists = function () {
         var html = [],
             blocks = '',
             max_items = 4,
             ctr = 1,
+            visible_shows_playlists = [],
             visible_news_playlists = (
                 (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
-                    []
-            ),
-            visible_shows_playlists = (
-                (typeof index_data.visible_shows_playlists !== 'undefined') ?
-                    index_data.visible_shows_playlists.split(',') :
                     []
             );
 
@@ -697,15 +463,6 @@ var index_data,
         $('#news_shows_playlists').html(html.join(''));
 
         $('.sf-menu').superfish();
-        // $('.tabs').tabslet({
-        //     animation: true,
-        // }).on('_before', function () {
-        //     slider.most_viewed.reloadSlider();
-        //     slider.featured_video.reloadSlider();
-        //     slider.latest_video.reloadSlider();
-        //     slider.featured_games.reloadSlider();
-        //     slider.latest_games.reloadSlider();
-        // });
     },
 
     start = function() {
@@ -721,5 +478,6 @@ var index_data,
             });
             
             news_shows_playlists();
+            showSocialButtons();
         });
     };
