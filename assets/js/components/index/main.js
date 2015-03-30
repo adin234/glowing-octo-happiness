@@ -56,13 +56,15 @@ requirejs([
         .init( index_data.slider )
         .mount( $('#imageSlider') );
 
-    // index main page
+    // index main page 1
     main_tab
         .init()
         .addTab('tab-1-2', '精選影片', $('<div id="featuredVideos"/>'))
         .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
         .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
         .mount($('#main-videos'));
+
+    // index main page 2
 
     featured_videos
         .init(shuffle(index_data.featured_videos))
