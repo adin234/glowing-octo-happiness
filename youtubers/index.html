@@ -184,36 +184,9 @@
                 <div>
                 </div>
                 <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
-                <div class="games tabs">
-                  <ul class="tab clearFix">
-                    <li>
-                      <h2>
-                        <a href="#tab-1-1">
-                          最新遊戲
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-1-2">
-                          精選遊戲
-                        </a>
-                      </h2>
-                    </li>
-                  </ul>
-                  <div id="tab-1-1">
-                    <div class="collection">
-                      <div class="bxslider games" id="container-latest-games">
-                      </div>
-                    </div>
-                  </div>
-                  <div id="tab-1-2">
-                    <div class="collection">
-                      <div class="bxslider games" id="container-featured-games">
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                <div class="games tabs" id="games-tabs"></div>
+                
               </div>
               <div method="post" class="search">
                 <div>
@@ -366,6 +339,10 @@
     <script src="/assets/templates/youtubers/templates.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/youtubers.js"></script>
+
+    <script data-main="/assets/js/components/youtubers/main" src="/assets/js/libs/require.js"></script>
+
+
     <script src="/assets/js/components/youtubers/init_page_data.js"></script>
     <script src="/assets/js/components/youtubers/init_youtubers_display.js"></script>
     <script src="/assets/js/components/youtubers/hashchange.js"></script>

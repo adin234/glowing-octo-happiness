@@ -82,11 +82,11 @@ var newSlider,
         if(!html.length) { html.push('目前沒有遊戲'); }
         $('#container-featured-games').html(html.join(''));
 
-        slider.featured_games.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
+        // slider.featured_games.reloadSlider({
+        //     startSlide: 0,
+        //     infiniteLoop: false,
+        //     hideControlOnEnd: true
+        // });
     },
 
     render_latest_games = function(filter) {
@@ -126,11 +126,11 @@ var newSlider,
         if(!html.length) { html.push('目前沒有遊戲'); }
         $('#container-latest-games').html(html.join(''));
 
-        slider.latest_games.reloadSlider({
-            startSlide: 0,
-            infiniteLoop: false,
-            hideControlOnEnd: true
-        });
+        // slider.latest_games.reloadSlider({
+        //     startSlide: 0,
+        //     infiniteLoop: false,
+        //     hideControlOnEnd: true
+        // });
     },
 
     filter_game = function(input) {
