@@ -68,15 +68,4 @@ requirejs([
         .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
 
-
-
-    // freedom activity page
-    main_tab
-        .initFreedom()
-        .addTabFreedom('tab-4-1', 'Freedom! 活動時間', 'FreedomSchedule', $('<li />'))
-        .addTabFreedom('tab-4-2', '最新發文', 'FreedomEvents', $('<li />'))
-        .addTabFreedom('tab-4-3', 'Freedom!活動紀錄', 'FreedomArchive', $('<li />'))
-        .mount($('#freedom-tabs'));
-
-
 });

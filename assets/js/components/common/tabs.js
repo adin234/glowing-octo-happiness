@@ -39,7 +39,8 @@ define(
                         template(options.template, {
                             href: href,
                             title: title,
-                            id: id
+                            id: id,
+                            label: title
                         })
                     );
 
