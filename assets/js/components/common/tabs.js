@@ -1,5 +1,6 @@
 /*global
-    template
+    template,
+    utilHash
 */
 
 'use strict';
@@ -15,10 +16,10 @@ define(
             
         var nav_el = null,
             contents = {},
-            tpl = '',
             defaults = {
                 className: 'tab clearFix',
-                template: tab_nav_tpl
+                template: tab_nav_tpl,
+                hash_change: true
             },
             options = $.extend({}, defaults, opts),
             hashLocation = utilHash.getHash();
@@ -73,9 +74,13 @@ define(
                 },
 
                 add_listeners: function() {
-                    nav_el.find('a').on('click', function() {
-                        window.location.hash = $(this).attr('href');
-                    });
+
+                    if (options.hash_change) {
+                        nav_el.find('a').on('click', function() {
+                            window.location.hash = $(this).attr('href');
+                        });
+                    }
+
                 }
 
             };
