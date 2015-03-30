@@ -43,17 +43,18 @@ requirejs([
         latest_videos = new Videos_Slider(),
         most_viewed = new Videos_Slider();
 
+
     main_slider
         .init( index_data.slider )
         .mount( $('#imageSlider') );
 
+    // index main page
     main_tab
         .init()
         .addTab('tab-1-2', '精選影片', $('<div id="featuredVideos"/>'))
         .addTab('tab-1-3', '最新影片', $('<div id="latestVideos"/>'))
         .addTab('tab-1-1', '最多觀賞', $('<div id="mostViewed"/>'))
         .mount($('#main-videos'));
-
 
     featured_videos
         .init(shuffle(index_data.featured_videos))
@@ -66,4 +67,16 @@ requirejs([
     most_viewed
         .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
+
+
+
+    // freedom activity page
+    main_tab
+        .initFreedom()
+        .addTabFreedom('tab-4-1', 'Freedom! 活動時間', 'FreedomSchedule', $('<li />'))
+        .addTabFreedom('tab-4-2', '最新發文', 'FreedomEvents', $('<li />'))
+        .addTabFreedom('tab-4-3', 'Freedom!活動紀錄', 'FreedomArchive', $('<li />'))
+        .mount($('#freedom-tabs'));
+
+
 });

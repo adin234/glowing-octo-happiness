@@ -10,30 +10,38 @@ define(
     ],
     function(tab_nav_tpl) {
 
-        var nav_el = null,
-            contents = {};
 
-        return function Tabs() {
+        return function Tabs(opts) {
+            
+        var nav_el = null,
+            contents = {},
+            tpl = '',
+            defaults = {
+                className: 'tab clearFix',
+                template: tab_nav_tpl
+            },
+            options = $.extend({}, defaults, opts),
+            hashLocation = utilHash.getHash();
 
             return {
 
                 $el: null,
 
                 init: function() {
-                    nav_el = $('<ul class="tab clearFix"/>');
+                    nav_el = $('<ul class="'+options.className+'"/>');
                     return this;
                 },
 
-                addTab: function(id, label, $content) {
+                addTab: function(href, title, id, content) {
+                    contents[href] = $('<div id="'+href+'"/>').html(content);
 
                     nav_el.append(
-                        template(tab_nav_tpl, {
-                            id: id,
-                            label: label
+                        template(options.template, {
+                            href: href,
+                            title: title,
+                            id: id
                         })
                     );
-
-                    contents[id] = $('<div id="'+id+'"/>').append($content);
 
                     return this;
                 },
@@ -53,8 +61,20 @@ define(
                     }
 
                     this.$el.tabslet({animation: true});
+                    
+                    if (hashLocation !== '') {
+                        $('[href=' + hashLocation + ']', this.$el).trigger('click');
+                    }
+
+                    this.add_listeners();
 
                     return this;
+                },
+
+                add_listeners: function() {
+                    nav_el.find('a').on('click', function() {
+                        window.location.hash = $(this).attr('href');
+                    });
                 }
 
             };
