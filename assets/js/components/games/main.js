@@ -1,5 +1,4 @@
 /*global
-    requirejs,
     index_data,
     shuffle
 */
@@ -41,8 +40,7 @@ requirejs([
     'components/index/Main_Slider',
     'common/Videos_Slider',
     'common/nav-header',
-    'components/index/viewer',
-    'components/index/streamers'
+    'less!css/less/main'
 ], function(Tabs, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),

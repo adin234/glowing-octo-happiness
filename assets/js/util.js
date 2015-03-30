@@ -707,15 +707,15 @@ ga('create', 'UA-46773919-11', 'auto');
 ga('send', 'pageview');
 /* jshint ignore:end */
 
-$.getScript('/assets/js/libs/socketio.js', function(){
-    var socket = io.connect(socket_server);
-    socket.on('message', function(e) {
-        var count = e.streamers.youtube.length
-                + e.streamers.twitch.length
-                + e.streamers.hitbox.length,
-            streamerCount = $('#number-of-streamers');
-        if (streamerCount) {
-            streamerCount.html(count);
-        }
-    });
-});
+// $.getScript('/assets/js/libs/socketio.js', function(){
+//     var socket = io.connect(socket_server);
+//     socket.on('message', function(e) {
+//         var count = e.streamers.youtube.length
+//                 + e.streamers.twitch.length
+//                 + e.streamers.hitbox.length,
+//             streamerCount = $('#number-of-streamers');
+//         if (streamerCount) {
+//             streamerCount.html(count);
+//         }
+//     });
+// });

@@ -301,30 +301,6 @@ var index_data,
         }, 1000);
 
         html = [];
-        if (_index_data.feature_list.feature_list_active === '1') {
-            $('.viewer > h2').html(_index_data.feature_list.feature_list_header);
-            _index_data.feature_list.feature_list_items.forEach(function (item) {
-                html.push(template(JST['featureTpl.html'](), item));
-            });
-
-            if (!html.length) {
-                html.push('No feature available.');
-            }
-
-            $('#featuredUsers').html(html.join(''));
-        }
-        else {
-            _index_data.featured_users.forEach(function (item) {
-                item.provider = attachments_server;
-                html.push(template(JST['featuredUsersTpl.html'](), item));
-            });
-            if (!html.length) {
-                html.push('No User Available');
-            }
-            $('#featuredUsers').html('<ul>' + html.join('') + '</ul>');
-        }
-
-        html = [];
         _index_data.recent_threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server +
@@ -367,7 +343,7 @@ var index_data,
         html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
-        $('.viewer .scroll, .streaming .scroll').mCustomScrollbar({
+        $('.streaming .scroll').mCustomScrollbar({
             theme: 'inset-2'
         });
 
@@ -502,5 +478,6 @@ var index_data,
             });
             
             news_shows_playlists();
+            showSocialButtons();
         });
     };
