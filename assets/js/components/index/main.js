@@ -37,16 +37,17 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
+    'common/Footer',
+    'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
     'common/Videos_Slider',
     'common/nav-header',
-    'less!css/less/main',
     'less!css/less/footer',
-    'less!css/less/outcontainer'
+    'less!css/less/outcontainer',
     'components/index/viewer',
     'components/index/streamers'
-], function(Tabs, scroller, Main_Slider, Videos_Slider) {
+], function(Tabs, Footer, FooterTpl, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider     = new Main_Slider(),
         main_tab        = new Tabs({hash_change: false}),
@@ -55,7 +56,9 @@ requirejs([
 
         featured_videos = new Videos_Slider(),
         latest_videos   = new Videos_Slider(),
-        most_viewed     = new Videos_Slider();
+        most_viewed     = new Videos_Slider(),
+
+        page_footer     = new Footer();
         // featured_games  = new Videos_Slider(),
         // latest_games    = new Videos_Slider();
 
@@ -79,6 +82,8 @@ requirejs([
         .addTab('tab-2-2', '最新遊戲', 'tab-2-2', $('<div id="latestGames"/>'))
         .mount($('#games-tabs'));
 
+
+
     // news_shows_tabs
     //     .init()
     //     .addTab('tab-news-playlist-1', '實況咖NEWS', 'tab-news-playlist-1', $('<ul/>'))
@@ -98,6 +103,9 @@ requirejs([
     most_viewed
         .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
+
+
+    $('#footer-container').html(FooterTpl);
 
 
 });
