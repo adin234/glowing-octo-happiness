@@ -51,8 +51,10 @@ define([], function() {
             reload: function(data) {
 
                 var old_cont = this.$el;
-                
+
                 this.$el.empty();
+
+                this.$el = $('<div/>');
 
                 this.init(data);
 

@@ -98,13 +98,17 @@ requirejs([
         new_members     = transform_youtubers(page_data.new_youtubers),
         all_members     = transform_youtubers(page_data.youtubers),
         filter_page = function() {
-            $.getJSON(server + 'youtubers?' + $.param({console: console_filter}), function(result) {
-                latest_games_slider.reload(transform_games(result.games));
-                featured_games_slider.reload(transform_games(result.featured_games));
-                popular_members_slider.reload(transform_youtubers(result.popular_youtubers));
-                new_members_slider.reload(transform_youtubers(result.new_youtubers));
-                all_members_slider.reload(transform_youtubers(result.youtubers));
-            });
+            $.getJSON(server + 'youtubers?' + $.param({
+                    console: console_filter,
+                    game: game_filter
+                }), function(result) {
+                    latest_games_slider.reload(transform_games(result.games));
+                    featured_games_slider.reload(transform_games(result.featured_games));
+                    popular_members_slider.reload(transform_youtubers(result.popular_youtubers));
+                    new_members_slider.reload(transform_youtubers(result.new_youtubers));
+                    all_members_slider.reload(transform_youtubers(result.youtubers));
+                }
+            );
         },
         global_filter = new Global_Filter({
             onChange: function(filter) {
@@ -112,7 +116,8 @@ requirejs([
                 filter_page();
             }
         }),
-        console_filter = '';
+        console_filter = 'all',
+        game_filter = '';
 
 
     global_filter
@@ -151,4 +156,11 @@ requirejs([
     all_members_slider
         .init(all_members)
         .mount($('#container-all-member'));
+
+    $(window).on('hashchange', function(){
+        if(!!~window.location.hash.indexOf('game')) {
+            game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
+            filter_page();
+        }
+    });
 });
