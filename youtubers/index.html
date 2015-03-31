@@ -192,31 +192,12 @@
                 <div>
                 </div>
                 <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-                <div class="video tabs">
-                  <ul class="tab clearFix">
-                    <li>
-                      <h2>
-                        <a href="#tab-2-1" onClick="popularSlider.reloadSlider();">
-                          熱門YouTuber
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-2-2" onClick="newSlider.reloadSlider();">
-                          新實況咖成員
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-2-3" onClick="allSlider.reloadSlider();">
-                          All
-                        </a>
-                      </h2>
-                    </li>
-                  </ul>
-                  <div id="tab-2-1">
+                <div id="video-tabs" class="video tabs">
+
+
+
+
+<!--                   <div id="tab-2-1">
                     <div class="collection">
                       <div class="bxslider videos popular" id="container-popular-member">
                       </div>
@@ -233,7 +214,10 @@
                       <div class="bxslider videos all" id="container-all-member">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
+
+
+
                 </div>
               </div>
             </div>
@@ -347,5 +331,6 @@
     <script src="/assets/js/components/youtubers/init_youtubers_display.js"></script>
     <script src="/assets/js/components/youtubers/hashchange.js"></script>
     <script src="/assets/js/components/youtubers/textbox.js"></script>
+    <script data-main="/assets/js/components/youtubers/main" src="/assets/js/libs/require.js"></script>
   </body>
 </html>

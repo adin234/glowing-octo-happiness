@@ -14,36 +14,49 @@ define([], function() {
                 $list_container: $('<ul class="game clearFix"/>')
             },
             options = $.extend({}, defaults, opts),
-            chunk = function(array, size) {
+            array_chunk = function(array, size) {
                 var result = [];
-
                 while(array.length) {
-                    result.push(array.splice(0, array.length));
+                    result.push(array.splice(0, size));
                 }
-
                 return result;
             };
 
 
         return {
 
-            $el: null,
+            $el: $('<div/>'),
 
             init: function(collection) {
 
-                collection.forEach(function(item) {
-                    item.game = item.name;
-                    item.id = item.id.trim();
-                    options.$list_container.append(template(JST['gameTpl.html'](), item));
+                var self = this,
+                    temp_list = null;
+
+                collection = array_chunk(collection, options.per_slider);
+
+                collection.forEach(function(chunk) {
+
+                    temp_list = options.$list_container.clone();
+
+                    chunk.forEach(function(item) {
+                        item.game = item.name;
+                        item.id = item.id.trim();
+                        temp_list
+                            .append(template(JST['gameTpl.html'](), item))
+                            .appendTo(self.$el);
+                    });
                 });
 
                 return this;
             },
 
             mount: function($container) {
+
+                this.$el.children().appendTo($container);
+
                 this.$el = $container;
 
-                this.$el.append(options.$list_container);
+                this.$el.find('li > img').tooltipster({contentAsHTML: true});
 
                 this.$el.bxSlider({
                     startSlide: 0,

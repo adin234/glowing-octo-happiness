@@ -39,8 +39,9 @@ requirejs([
     'common/nav-header'
 ], function(Tabs, List_Slider) {
 
-    var games_tab       = new Tabs({hash_change: false}),
-        games_slider    = new List_Slider();
+    var games_tab               = new Tabs({hash_change: false}),
+        latest_games_slider     = new List_Slider(),
+        featured_games_slider   = new List_Slider();
 
     games_tab
         .init()
@@ -48,7 +49,11 @@ requirejs([
         .addTab('tab-2-2', '精選遊戲', 'tab-2-2', $('<div id="featuredGames" class="collection"/>'))
         .mount($('#games-tabs'));
 
-    games_slider
+    latest_games_slider
         .init(page_data.games)
         .mount($('#latestGames'));
+
+    featured_games_slider
+        .init(page_data.featured_games)
+        .mount($('#featuredGames'));
 });

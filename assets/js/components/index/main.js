@@ -61,7 +61,7 @@ requirejs([
         .init( index_data.slider )
         .mount( $('#imageSlider') );
 
-    // index main page
+    // index main page 1
     main_tab
         .init()
         .addTab('tab-1-2', '精選影片', 'tab-1-2', $('<div id="featuredVideos"/>'))
@@ -69,6 +69,7 @@ requirejs([
         .addTab('tab-1-1', '最多觀賞', 'tab-1-1', $('<div id="mostViewed"/>'))
         .mount($('#main-videos'));
 
+    // index main page 2
     games_tab
         .init()
         .addTab('tab-2-1', '精選遊戲', 'tab-2-1', $('<div id="featuredGames"/>'))

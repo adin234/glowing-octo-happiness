@@ -185,7 +185,7 @@ var newSlider,
 
         if(!html.length) { html.push('沒有此實況主'); }
         $('#container-new-member').html(html.join(''));
-        allSlider.reloadSlider();
+        // allSlider.reloadSlider();
     },
 
     render_all_members = function(filter) {
@@ -232,7 +232,7 @@ var newSlider,
 
         if(!html.length) { html.push('沒有此實況主'); }
         $('#container-all-member').html(html.join(''));
-        allSlider.reloadSlider();
+        // allSlider.reloadSlider();
     },
 
     render_popular_members = function(filter) {
