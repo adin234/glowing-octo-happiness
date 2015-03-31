@@ -1,4 +1,11 @@
-/*global define, io*/
+/*global 
+    io,
+    socket_server,
+    attachments_server,
+    origin,
+    template,
+    JST
+*/
 
 'use strict';
 
@@ -27,7 +34,7 @@ define(function() {
             }
 
             streamers_list.forEach(function (item) {
-                if (typeof item.twitch != 'undefined') {
+                if (typeof item.twitch !== 'undefined') {
                     item.twitchid = item.field_value[
                         item.field_value.length - 1
                     ];
@@ -43,7 +50,7 @@ define(function() {
                     item.bust = 1;
                     item.views = item.twitch.viewers;
                 }
-                else if (typeof item.hitbox != 'undefined') {
+                else if (typeof item.hitbox !== 'undefined') {
                     item.hitboxid = item.hitbox.media_name;
                     item.id = 'HB' + item.hitboxid;
                     item.game = item.hitbox.livestream[0].category_name;
@@ -95,7 +102,12 @@ define(function() {
         }
 
         $('#streamers').html(html.join(''));
+        
         // load_more('#streamers > li', 1, 5);
+        
+        $('.streaming .scroll').mCustomScrollbar({
+            theme: 'inset-2'
+        });
     };
 
 });

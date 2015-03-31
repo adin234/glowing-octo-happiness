@@ -179,68 +179,9 @@
         </div>
         <div id="container_lanparty_green" class="tabs lanparty-nav-green">
           <hr class="line">
-          <ul class="lanparty_type1 adjust_line_green">
-            <li>
-              <a href="#tab-4-1" title="Freedom! 活動時間" id="FreedomSchedule">
-                Freedom! 活動時間
-              </a>
-            </li>
-            <li onclick="window.location.hash='tab-4-2';">
-              <a href="#tab-4-2" title="最新發文" id="FreedomEvents">
-                活動內容
-              </a>
-            </li>
-            <li>
-              <a href="#tab-4-3" id="FreedomArchive">
-                Freedom!活動紀錄
-              </a>
-            </li>
-          </ul>
-          <div id="tab-4-1">
-            <div class="lanparty_title">
-              <img src="/assets/images/freedom_schedule.png" alt="">
-            </div>
-            <div id="scheduler">
-              <div id="year">
-                <p>
-                  2015
-                </p>
-                <img src="/assets/images/border-top-green.png">
-              </div>
-              <div id="freedom_schedule">
-                <div id="all_schedule">
-                </div>
-                <div id="getSchedules">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="tab-4-2">
-            <div class="lanparty_title">
-              <img src="/assets/images/freedom_activities.png" alt="">
-            </div>
-            <div class="lanparty_content" id="lanparty_content">
-            </div>
-            <div class="add_events_form">
-            </div>
-            <div id="show_events">
-            </div>
-            <div id="editEvent">
-            </div>
-          </div>
-          <div id="tab-4-3">
-            <div class="lanparty_title">
-              <img src="/assets/images/freedom_archive.png" alt="">
-            </div>
-            <div class="lanparty_content" id="lanparty_archive">
-            </div>
-            <div id="archive_schedule">
-            </div>
-            <div id="getArchive">
-            </div>
-            <div id="activity_container">
-            </div>
-          </div>
+
+          <div id="freedom-tabs"></div>
+          
         </div>
         <footer class="clearFix">
           <nav>
@@ -343,19 +284,12 @@
     <script src="/assets/templates/freedom/templates.js?ver=22"></script>
     <script src="/assets/js/util.js?ver=22"></script>
     <script src="/assets/js/faactivities.js?ver=22"></script>
+    <script data-main="/assets/js/components/freedom_activities/main" src="/assets/js/libs/require.js"></script>
     
     <script type="text/javascript">
       $(document).ready(function() {
         $('.sf-menu').superfish();
       });
-    </script>
-    
-    <script>
-      $('.tabs').tabslet();
-      var tab = utilHash.getHash();
-      if (tab !== '') {
-        $('[href=' + tab + ']').trigger('click');
-      }
     </script>
     
     <script>

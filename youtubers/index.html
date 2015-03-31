@@ -39,50 +39,7 @@
                   Gamers
                 </a>
               </h1>
-              <nav class="species">
-                <ul class="clearFix">
-                  <li class="current">
-                    <a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">
-                      All
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">
-                      Xbox 360
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">
-                      Xbox One
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">
-                      PS3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">
-                      PS4
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">
-                      PC
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">
-                      Mobile Game
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" data-console='vlogs' onClick="add_filter_category('vlogs', this); return false;" title="Vlogs">
-                      Vlogs
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <nav class="species" id="global-filter"></nav>
             </div>
             <nav class="site sf-menu">
               <ul class="clearFix">
@@ -184,84 +141,15 @@
                 <div>
                 </div>
                 <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
-                <div class="games tabs">
-                  <ul class="tab clearFix">
-                    <li>
-                      <h2>
-                        <a href="#tab-1-1">
-                          最新遊戲
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-1-2">
-                          精選遊戲
-                        </a>
-                      </h2>
-                    </li>
-                  </ul>
-                  <div id="tab-1-1">
-                    <div class="collection">
-                      <div class="bxslider games" id="container-latest-games">
-                      </div>
-                    </div>
-                  </div>
-                  <div id="tab-1-2">
-                    <div class="collection">
-                      <div class="bxslider games" id="container-featured-games">
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                <div class="games tabs" id="games-tabs"></div>
+                
               </div>
               <div method="post" class="search">
                 <div>
                 </div>
                 <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-                <div class="video tabs">
-                  <ul class="tab clearFix">
-                    <li>
-                      <h2>
-                        <a href="#tab-2-1" onClick="popularSlider.reloadSlider();">
-                          熱門YouTuber
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-2-2" onClick="newSlider.reloadSlider();">
-                          新實況咖成員
-                        </a>
-                      </h2>
-                    </li>
-                    <li>
-                      <h2>
-                        <a href="#tab-2-3" onClick="allSlider.reloadSlider();">
-                          All
-                        </a>
-                      </h2>
-                    </li>
-                  </ul>
-                  <div id="tab-2-1">
-                    <div class="collection">
-                      <div class="bxslider videos popular" id="container-popular-member">
-                      </div>
-                    </div>
-                  </div>
-                  <div id="tab-2-2">
-                    <div class="collection">
-                      <div class="bxslider videos new" id="container-new-member">
-                      </div>
-                    </div>
-                  </div>
-                  <div id="tab-2-3">
-                    <div class="collection">
-                      <div class="bxslider videos all" id="container-all-member">
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div id="video-tabs" class="video tabs"></div>
               </div>
             </div>
           </div>
@@ -366,9 +254,14 @@
     <script src="/assets/templates/youtubers/templates.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/youtubers.js"></script>
+
+    <script data-main="/assets/js/components/youtubers/main" src="/assets/js/libs/require.js"></script>
+
+
     <script src="/assets/js/components/youtubers/init_page_data.js"></script>
     <script src="/assets/js/components/youtubers/init_youtubers_display.js"></script>
     <script src="/assets/js/components/youtubers/hashchange.js"></script>
     <script src="/assets/js/components/youtubers/textbox.js"></script>
+    <script data-main="/assets/js/components/youtubers/main" src="/assets/js/libs/require.js"></script>
   </body>
 </html>

@@ -21,18 +21,6 @@ var index_data,
     shuffledGames = [],
     shuffledLatest = [],
 
-    load_more = function (selector, page, per_page) {
-        $(selector).slice(0, page * per_page).show();
-        if ($(selector).length <= page * per_page) {
-            $('.load-more[data-selector="' + selector + '"]').hide();
-        }
-        else {
-            $('.load-more[data-selector="' + selector + '"]').show();
-        }
-        $('.load-more[data-selector="' + selector + '"]').attr('data-page', parseInt(page) + 1);
-        $('.load-more[data-selector="' + selector + '"]').attr('data-per-page', per_page);
-    },
-
     shuffle = function (o) {
         for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
         return o;
@@ -313,30 +301,6 @@ var index_data,
         }, 1000);
 
         html = [];
-        if (_index_data.feature_list.feature_list_active === '1') {
-            $('.viewer > h2').html(_index_data.feature_list.feature_list_header);
-            _index_data.feature_list.feature_list_items.forEach(function (item) {
-                html.push(template(JST['featureTpl.html'](), item));
-            });
-
-            if (!html.length) {
-                html.push('No feature available.');
-            }
-
-            $('#featuredUsers').html(html.join(''));
-        }
-        else {
-            _index_data.featured_users.forEach(function (item) {
-                item.provider = attachments_server;
-                html.push(template(JST['featuredUsersTpl.html'](), item));
-            });
-            if (!html.length) {
-                html.push('No User Available');
-            }
-            $('#featuredUsers').html('<ul>' + html.join('') + '</ul>');
-        }
-
-        html = [];
         _index_data.recent_threads.forEach(function (item) {
             var data = {
                 posterimage: attachments_server +
@@ -379,51 +343,10 @@ var index_data,
         html = template(JST['recentForumTpl.html'](), data2);
         $('#hotForumSection').html(html);
 
-        $('.viewer .scroll, .streaming .scroll').mCustomScrollbar({
-            theme: 'inset-2'
-        });
-
         $('.tooltip').tooltipster({
             contentAsHTML: true,
             position: 'top'
         });
-    },
-
-    filter_category = function (cnsl) {
-        $.ajax({
-            async: false,
-            type: 'GET',
-            dataType: 'json',
-            url: server + 'index?console=' + cnsl,
-        }).done(function (data) {
-            var context = $('.species a[data-console=' + cnsl + ']');
-            context.parent().siblings().removeClass('current');
-            context.parent().addClass('current');
-            if (cnsl !== 'all') {
-                $('#imageSlider').parent().parent().hide();
-            }
-            else {
-                $('#imageSlider').parent().parent().show();
-            }
-            index_data = data;
-            update_index(data);
-        });
-
-        return false;
-    },
-
-    filterAction = function (action) {
-        switch (action) {
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            break;
-        }
-    },
-
-    add_filter_category = function (string) {
-        utilHash.changeHashVal('console', string);
-        renderFeaturedGames(string);
     },
 
     news_shows_playlists = function () {
@@ -431,6 +354,7 @@ var index_data,
             blocks = '',
             max_items = 4,
             ctr = 1,
+            visible_shows_playlists = [],
             visible_news_playlists = (
                 (typeof index_data.visible_news_playlists !== 'undefined') ?
                     index_data.visible_news_playlists.split(',') :
@@ -550,5 +474,6 @@ var index_data,
             });
             
             news_shows_playlists();
+            showSocialButtons();
         });
     };
