@@ -35,18 +35,18 @@ requirejs.config({
 });
 
 requirejs([
+    'common/Global_Filter',
     'common/Tabs',
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
-    'text!components/youtubers/templates/video-tpl.html',
-    'common/nav-header'
-], function(Tabs, List_Slider, game_tpl, video_tpl) {
+    'text!components/youtubers/templates/video-tpl.html'
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl) {
 
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
             per_slider: 12,
-            template: game_tpl,
+            template : game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         featured_games_slider   = new List_Slider({
@@ -87,12 +87,20 @@ requirejs([
             item.bust       = 1;
             return item;
         },
-        latest_games            = page_data.games.map(transform_games),
-        featured_games          = page_data.featured_games.map(transform_games),
-        popular_members         = page_data.popular_youtubers.map(transform_youtubers),
-        new_members             = page_data.new_youtubers.map(transform_youtubers),
-        all_members             = page_data.youtubers.map(transform_youtubers);
+        latest_games    = page_data.games.map(transform_games),
+        featured_games  = page_data.featured_games.map(transform_games),
+        popular_members = page_data.popular_youtubers.map(transform_youtubers),
+        new_members     = page_data.new_youtubers.map(transform_youtubers),
+        all_members     = page_data.youtubers.map(transform_youtubers),
+        filter_data = function(value) {
+            console.log(value);
+        },
+        global_filter = new Global_Filter({onChange: filter_data});
 
+
+    global_filter
+        .init()
+        .mount($('#global-filter'));
 
     games_tab
         .init()
