@@ -1,6 +1,5 @@
 /*global
-    template,
-    JST
+    template
 */
 
 'use strict';
@@ -10,8 +9,9 @@ define([], function() {
     return function List_Slider(opts) {
 
         var defaults = {
+                template: '',
                 per_slider: 12,
-                $list_container: $('<ul class="game clearFix"/>')
+                $list_container: $('<ul />')
             },
             options = $.extend({}, defaults, opts),
             array_chunk = function(array, size) {
@@ -39,10 +39,8 @@ define([], function() {
                     temp_list = options.$list_container.clone();
 
                     chunk.forEach(function(item) {
-                        item.game = item.name;
-                        item.id = item.id.trim();
                         temp_list
-                            .append(template(JST['gameTpl.html'](), item))
+                            .append(template(options.template, item))
                             .appendTo(self.$el);
                     });
                 });
