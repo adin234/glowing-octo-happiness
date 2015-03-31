@@ -37,8 +37,8 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'components/youtubers/List_Slider',
-    'text!components/youtubers/game-tpl.html',
-    'text!components/youtubers/video-tpl.html',
+    'text!components/youtubers/templates/game-tpl.html',
+    'text!components/youtubers/templates/video-tpl.html',
     'common/nav-header'
 ], function(Tabs, List_Slider, game_tpl, video_tpl) {
 
@@ -55,6 +55,16 @@ requirejs([
             $list_container: $('<ul class="game clearFix"/>')
         }),
         popular_members_slider  = new List_Slider({
+            per_slider: 16,
+            template: video_tpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        new_members_slider  = new List_Slider({
+            per_slider: 16,
+            template: video_tpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        all_members_slider  = new List_Slider({
             per_slider: 16,
             template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
@@ -79,7 +89,9 @@ requirejs([
         },
         latest_games            = page_data.games.map(transform_games),
         featured_games          = page_data.featured_games.map(transform_games),
-        popular_members         = page_data.popular_youtubers.map(transform_youtubers);
+        popular_members         = page_data.popular_youtubers.map(transform_youtubers),
+        new_members             = page_data.new_youtubers.map(transform_youtubers),
+        all_members             = page_data.youtubers.map(transform_youtubers);
 
 
     games_tab
@@ -106,4 +118,12 @@ requirejs([
     popular_members_slider
         .init(popular_members)
         .mount($('#container-popular-member'));
+
+    new_members_slider
+        .init(new_members)
+        .mount($('#container-new-member'));
+
+    all_members_slider
+        .init(all_members)
+        .mount($('#container-all-member'));
 });
