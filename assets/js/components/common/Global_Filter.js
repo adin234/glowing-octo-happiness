@@ -1,5 +1,5 @@
 /*global
-    define
+    template
 */
 
 'use strict';
@@ -15,15 +15,42 @@ define(
             var defaults = {
                     onChange: function() {}
                 },
-                items = ['All', 'Xbox 360', 'Xbox One', 'PS3', 'PS4', 'PC', 'Mobile Game', 'Vlogs'],
+                items = [
+                    {
+                        id: 'all',
+                        label: 'All'
+                    },
+                    {
+                        id: 'xbox360',
+                        label: 'Xbox 360'
+                    },
+                    {
+                        id: 'xbox1',
+                        label: 'Xbox One'
+                    },
+                    {
+                        id: 'ps3',
+                        label: 'PS3'
+                    },
+                    {
+                        id: 'ps4',
+                        label: 'PS4'
+                    },
+                    {
+                        id: 'pc',
+                        label: 'PC'
+                    },
+                    {
+                        id: 'mobile_app',
+                        label: 'Mobile Game'
+                    },
+                    {
+                        id: 'vlogs',
+                        label: 'Vlogs'
+                    }
+                ],
                 options = $.extend({}, defaults, opts),
-                $list_container = $('<ul class="clearFix"/>'),
-                stringToSlug = function(str) {
-                    return str
-                        .toLowerCase()
-                        .replace(/[^\w ]+/g,'')
-                        .replace(/ +/g,'-');
-                };
+                $list_container = $('<ul class="clearFix"/>');
 
             return {
 
@@ -31,11 +58,18 @@ define(
 
                 init: function() {
 
-                    items.forEach(function(category) {
+                    items.forEach(function(item, i) {
+                        item._index = i;
                         $list_container.append(
-                            '<li>' +
-                                '<a href="#!/'+stringToSlug(category)+'" title="'+category+'">'+category+'</a>' +
-                            '</li>');
+                            template(
+                                '<li>' +
+                                    '<a href="#!/console/{{ID}}"" title="{{LABEL}}" data-index="{{_INDEX}}">'+
+                                        '{{LABEL}}'+
+                                    '</a>' +
+                                '</li>',
+                                item
+                            )
+                        );
                     });
 
                     return this;
@@ -61,7 +95,7 @@ define(
                         $list_container.find('li').removeClass('current');
                         $(this).parent().addClass('current');
                         window.location.hash = $(this).attr('href');
-                        options.onChange(this.title);
+                        options.onChange(items[$(this).data('index')]);
                     });
 
                 }

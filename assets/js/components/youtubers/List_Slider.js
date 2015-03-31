@@ -48,6 +48,17 @@ define([], function() {
                 return this;
             },
 
+            reload: function(data) {
+
+                var old_cont = this.$el;
+                
+                this.$el.empty();
+
+                this.init(data);
+
+                this.mount(old_cont);
+            },
+
             mount: function($container) {
 
                 this.$el.children().appendTo($container);
