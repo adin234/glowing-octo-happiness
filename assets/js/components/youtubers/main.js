@@ -37,8 +37,8 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'components/youtubers/List_Slider',
-    'text!components/youtubers/game-tpl.html',
-    'text!components/youtubers/video-tpl.html',
+    'text!components/templates/youtubers/game-tpl.html',
+    'text!components/templates/youtubers/video-tpl.html',
     'common/nav-header'
 ], function(Tabs, List_Slider, game_tpl, video_tpl) {
 
