@@ -1,3 +1,53 @@
-html {
-	color: red;
+@import "mixins";
+@import "language";
+/*@import "footer";
+@import "scheduler_days";
+@import "outcontainer";
+@import "video_games";
+@import "gamer_stream";
+@import "lan_party";
+@import "about";
+@import "stream";
+@import "shows_news_youtuber";
+@import "maincontainer";
+@import "outcontainer";
+@import "video_ratio"; */
+
+table {
+    border-collapse: collapse;
+    margin-top: 5px;
 }
+
+th, td {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+input[type="text"], textarea, select {
+	.all-zeroes;
+    resize: none;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+::selection {
+    .transparent;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: black;
+    color: black;
+}
+
+#wrapper {
+    background: url("@{wrapperBG}") no-repeat fixed center top;
+    background-size: 100% auto;
+    min-width: 1148px;
+}
+

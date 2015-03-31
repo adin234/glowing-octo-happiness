@@ -1,0 +1,135 @@
+@import "mixins";
+
+footer {
+    color: #c7c7c7;
+    background-color: #333333;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+    padding: 30px 60px 35px;
+    width: 1148px;
+    a {
+        color: #c7c7c7;
+    }
+    strong {
+        color: white;
+    }
+    nav {
+        border-bottom: 1px solid #272727;
+        ul {
+            height: 45px;
+            li {
+                display: inline;
+                font-size: 1.07692em;
+                line-height: 45px;
+                vertical-align: middle;
+                & + & {
+                    padding-left: 27px;
+                    position: relative;
+                    &:before {
+                        background: #a8a8a8;
+                        content: "\00A0";
+                        display: inline-block;
+                        height: 2px;
+                        left: 13.5px;
+                        position: absolute;
+                        top: 21.5px;
+                        width: 2px;
+                    }
+                }
+            }
+        }
+        .en {
+            background: url("@{logoEN}") no-repeat 0 -165px;
+            padding-left: 187px;
+        }
+        .zh_tw {
+            background: url("@{logoTW}") no-repeat 0 -173px;
+            padding-left: 128px;
+        }        
+    }
+    & > ul {
+        position: absolute;
+        right: 60px;
+        top: 40px;
+        li {
+            float: left;
+            a {
+                display: block;
+                float: left;
+                height: 18px;
+                width: 25px;
+                .text-hide;
+            }
+            & + & {
+                margin-left: 10px;
+            }
+            &:nth-child(1) {
+                a {
+                    background: url("@{sprite}") no-repeat 7px -2025px;
+                    &:hover, &:focus, &:active  {
+                        background-position: 7px -2214px;
+                    }
+                }
+            }
+            &:nth-child(2) {
+                a {
+                    background: url("@{sprite}") no-repeat 0 -2072px;
+                    &:hover, &:focus, &:active {
+                        background-position: 0 -2261px;
+                    }
+                }
+                
+            }
+            &:nth-child(3) {
+                a {
+                    background: url("@{sprite}") no-repeat 0 -2120px;
+                    &:hover, &:focus, &:active {
+                        background-position: 0 -2309px;
+                    }
+                }
+            }
+            &:nth-child(4) {
+                a {
+                    background: url("@{sprite}") no-repeat 0 -2168px;
+                    &:hover, &:focus, &:active {
+                        background-position: 0 -2357px;
+                    }
+                }
+            }
+        }
+    }
+    small {
+        border-top: 1px solid #3e3e3e;
+        display: block;
+        padding-top: 14px;
+    }
+    span {
+        position: absolute;
+        right: 60px;
+        top: 89px;
+        a {
+            color: white;
+        }
+    }
+    .selectLanguage {
+        background-color: black;
+        -moz-@{radius}: 5px;
+        -webkit-@{radius}: 5px;
+        @{radius}: 5px;
+        bottom: 20px;
+        font-size: 0.85714em;
+        position: absolute;
+        right: 0;
+        width: 80px;
+        a {
+            color: inherit;
+            display: block;
+            padding: 5px 15px;
+            &:hover, &:focus, &:active {
+                color: #df0000;
+                text-decoration: none;
+            }
+        }       
+    }
+}

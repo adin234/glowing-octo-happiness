@@ -1,0 +1,275 @@
+@import "mixins";
+
+.lang_en {
+    font: 0.8125em/1.5 Arial, Helvetica, Verdana, sans-serif;
+    .login {
+        padding-left: 25px;
+        font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+    }
+    .site {
+        font-size: 1.23077em;
+        padding-left: 235px;
+        ul {
+            ul {
+                margin-left: -25%;
+            }
+        }
+    }
+    .member {
+        font-size: 1.15385em;
+    }
+    input[type="text"] {
+        font: 0.8125em Arial, Helvetica, Verdana, sans-serif;
+    }
+    textarea {
+        line-height: 1.5;
+        font: 0.8125em Arial, Helvetica, Verdana, sans-serif;
+    }
+    .main {
+        .bx-caption {
+            font-size: 1.07692em;
+            line-height: 1.25;
+            font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif; 
+        }
+        &:first-line {
+            font-size: 1.53846em;
+        }
+    }
+    .search {
+        input[type="text"] {
+            font-size: 1em;
+        }
+    }
+    .live{
+        &:before {
+            background: url("@{icon-live}") no-repeat 0 0;
+        }
+    }
+    .video {
+        .list li {
+            font-size: 1.07692em;
+        }
+    }
+    .viewer {
+        .list {
+            font-size: 1.46154em;
+        }
+    }
+    .channel {
+        font-size: 1em;
+    }
+    footer small, footer span {
+        font-size: 0.92308em;
+    }
+    .resize:first-child {
+        font-size: 1.26923em;
+    }
+    .listSwitch {
+        font-size: 1.15385em;
+    }
+    .playList {
+        h3 {
+            font-size: 1.15385em;
+        }
+        p {
+            font-size: 0.92308em;
+        }
+    }
+    .videoHeading h3 {
+        font-size: 1.76923em;
+    }
+    .type, .discussions {
+        font-size: 1em;
+    }
+    .yourDiscussion textarea {
+        font-size: 1.23077em;
+    }
+    .recommend {
+        h3 {
+            font-size: 1.15385em;
+        }
+        .list li {
+            font-size: 0.92308em;
+        }
+    }
+    .watchNow {
+        font-size: 1.15385em;
+        font-weight: bold;
+        top: -58px;
+    }
+    .profile cite {
+        font-size: 1.84615em;
+    }
+     #streamView  {
+        header, select {
+            border-bottom: 4px solid #a40000;
+        }
+        header {
+            font-size: 0.92308em;
+            h1 {
+                background: url("@{logoEN}") no-repeat 0 -50px;
+                background-size: 98px auto;
+            }
+            & > a:before {
+                background: url("@{sprite}") no-repeat 27px -905px;
+            }
+        }
+    }
+    .watchList {
+        h2 {
+            font-size: 1.38462em;
+            font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+        }
+        li {
+            font-size: 0.76923em;
+        }
+    }
+    .information h2 {
+        font-size: 1.61538em;
+    }
+}
+
+.lang_zh_tw {
+    font: 0.875em/1.75 Arial, Helvetica, Verdana, "Heiti TC", "Microsoft JhengHei", sans-serif;
+    .species {
+        font-size: 1.14286em;
+    }
+    .site {
+        font-size: 1.14286em;
+        line-height: 1.5;
+        padding-left: 225px;
+    }
+    .member {
+        font-size: 1.07143em;
+    }
+    .login {
+        padding-left: 0;
+    }
+    input[type="text"], textarea {
+        font: 0.875em Arial, Helvetica, Verdana, "Heiti TC", "Microsoft JhengHei", sans-serif;
+    }
+    textarea {
+        line-height: 1.75;
+    }
+    .main .bx-caption {
+        font-size: 1em;
+        line-height: 1.35;
+        &:first-line {
+            font-size: 1.42857em;
+        }
+    }
+    #content h2 {
+        font-size: 1.5em;
+    }
+    .search input[type="text"] {
+        font-size: 1em;
+    }
+    .live:before {
+        background: url("@{icon-live}") no-repeat;
+    }
+    footer small, footer span {
+        font-size: 0.85714em;
+    }
+    .about p, .lang_zh_tw .about ol, .lang_zh_tw .about h3 {
+        font-size: 1.07143em;
+        ul p {
+            font-size: 0.85714em;
+        }
+    }
+    .channel {
+        font-size: 0.92857em;
+    }
+    .resize li:first-child {
+        font-size: 1.17857em;
+        cursor: pointer;
+    }
+    .listSwitch {
+        font-size: 1.07143em;
+    }
+    .playList {
+        h3 {
+            font-size: 1.07143em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p {
+            font-size: 0.92857em;
+            overflow: hidden;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+            height: 31px;
+            -webkit-line-clamp: 2;
+            -moz-line-clamp: 2;
+            line-clamp: 2;
+            text-align: center;
+            -webkit-box-orient: vertical;
+            -moz-box-orient: vertical;
+            box-orient: vertical;
+        }        
+    }
+    .videoHeading h3 {
+        font-size: 1.64286em;
+    }
+    .yourDiscussion textarea {
+        font-size: 1.14286em;
+        line-height: 1.4;
+    }
+    .type, .discussions {
+        font-size: 0.92857em;
+    }
+    .recommend {
+        h3 {
+            font-size: 1.07143em;
+        }
+        .list li {
+            font-size: 0.85714em;
+        }
+    }
+    .watchNow {
+        font-size: 1em;
+        top: -64px;
+    }
+    .profile cite {
+        font-size: 1.71429em;
+    }
+    #streamView {
+        header, select {
+            font-size: 1em;
+        }
+        header {
+            h1 {
+                .text-hide;
+                background: url("@{logoTW}") no-repeat 7px -232px;
+
+            }
+            & > a {
+                .text-hide;
+                &:before {
+                    background: url("@{sprite}") no-repeat 27px -949px;
+                }
+            }
+        }
+        h1 {
+            .text-hide;
+        }
+        select {
+            margin-left: 8px;
+        }
+    }
+    .watchList {
+        h2 {
+            font-size: 1.28571em;
+            font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+        }
+        li {
+            font-size: 0.71429em;
+        }
+        .bx-prev, .bx-next {
+            .text-hide;
+        }
+    }
+    .information h2 {
+        font-size: 1.5em;
+    }
+}
