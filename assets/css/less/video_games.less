@@ -1,0 +1,233 @@
+@import "mixins";
+
+.video, .games, .forum {
+    margin-top: 15px;
+    position: relative;
+}
+
+.video {
+    &:before {
+        content: "\00a0";
+        position: absolute;
+        height: 33px;
+        width: 93px;
+        right: 5px;
+        top: -4px;
+        z-index: 50;
+    }
+    .bx-pager-link {
+        display: none;
+    }
+    .bx-prev{
+        margin-top: 15.5px;
+        position: absolute;
+        height: 31px;
+        width: 21px;
+        top: 50%;
+        background: url("@{sprite}") no-repeat 23px -2403px;
+        left: -23px;
+        padding-right: 2px;
+        color: transparent;
+        .text-hide;
+    }
+    .bx-next{
+        margin-top: 15.5px;
+        position: absolute;
+        height: 31px;
+        width: 21px;
+        top: 50%;
+        background: url("@{sprite}") no-repeat -23px -2464px;
+        right: -23px;
+        padding-left: 2px;
+        .text-hide;
+    }
+    .bx-wrapper {
+        &:hover,&:active,&:focus {
+            .bx-prev, .bx-next {
+                transition: background-position 0.25s ease;
+                -webkit-transition: background-position 0.25s ease;
+            }
+            .bx-prev {
+                background-position: 0 -2403px;
+            }
+            .bx-next{
+                background-position: 2px -2464px;
+            }
+
+        }
+    }
+    [id^="tab-"] {
+        padding: 0 4px;
+        height: 850px;
+    }
+    .mCSB_container {
+        margin-right: 0 !important;
+    }
+    .list {
+        width: 1056px !important;
+        & > li {
+            float: left;
+            height: 175px;
+            width: 223px;
+            position: relative;
+            margin: 4px 18px 40px 0;
+            ul {
+                bottom: -24px;
+                position: absolute;
+                right: 5px;
+                text-transform: lowercase;
+            }
+            li {
+                color: #646464;
+                float: left;
+            }
+            li + li {
+                margin-left: 10px;
+                a {
+                    background: url("@{sprite}") no-repeat 0 -1893px;
+                    color: #646464;
+                    height: 16px;
+                    width: 15px;
+                    padding-left: 22px;
+                }
+                a:focus, a:hover, a:active {
+                    background-position: 0 -1939px;
+                    color: #d11010;
+                    text-decoration: none;
+                }
+                em {
+                    display: block;
+                    float: left;
+                    width: 0;
+                    .text-hide;
+                }
+            }
+            a:nth-child(2) {
+                color: inherit;
+                display: block;
+                height: 246px;
+                width: 334px;
+                text-decoration: none;
+            }
+            &:hover h3,&:active h3,&:focus h3{
+                -webkit-transition: all 0.5s ease;
+                transition: all 0.5s ease;
+                background-color: rgba(194, 58, 58, 0.75);
+            }
+            &:hover .uploader,&:active .uploader,&:focus .uploader {
+                -webkit-transition: all 0.5s ease;
+                transition: all 0.5s ease;
+                border: 6px solid rgba(229, 197, 197, 0.5);
+            }
+        }
+        h3, img {
+            position: absolute;
+        }
+        h3 {
+            background-color: rgba(131, 7, 7, 0.75);
+            bottom: 0;
+            color: white;
+            font-size: -0.38462em;
+            line-height: 1.1;
+            width: 100%;
+            a {
+                color: inherit;
+                display: -webkit-box;
+                display: block;
+                padding: 40px 25px 18px;
+                overflow: hidden;
+                text-decoration: none;
+                text-overflow: ellipsis;
+                line-height: 1.4;
+                height: 50px;
+                -webkit-line-clamp: 2;
+                -moz-line-clamp: 2;
+                line-clamp: 2;
+                text-align: center;
+                -webkit-box-orient: vertical;
+                -moz-box-orient: vertical;
+                box-orient: vertical;
+            }
+        }
+        .uploader {
+            border: 6px solid rgba(166, 142, 142, 0.5);
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            left: 50%;
+            top: 25px;
+            margin-left: -34px;
+        }
+    }
+    .bx-viewport {
+        height: 874px !important;
+    }
+}
+.games {
+    [id^="tab-"] {
+        overflow: hidden;
+        padding: 0 4px;
+    }
+    li {
+        float: left;
+        margin: 0 10px 5px 0;
+    }
+    img {
+        display: block;
+    }
+    .bx-prev, .bx-next {
+        .text-hide;
+    }
+    [id^="tab-"] {
+    }
+    .bx-pager-link {
+        display: none;
+    }
+    .bx-prev{
+        margin-top: 15.5px;
+        position: absolute;
+        height: 31px;
+        width: 21px;
+        top: 50%;
+        background: url("@{sprite}") no-repeat 23px -2403px;
+        left: -23px;
+        padding-right: 2px;
+        color: transparent;
+        .text-hide;
+    }
+    .bx-next{
+        margin-top: 15.5px;
+        position: absolute;
+        height: 31px;
+        width: 21px;
+        top: 50%;
+        background: url("@{sprite}") no-repeat -23px -2464px;
+        right: -23px;
+        padding-left: 2px;
+        .text-hide;
+    }
+    .bx-wrapper {
+        &:hover,&:active,&:focus {
+            .bx-prev, .bx-next {
+                transition: background-position 0.25s ease;
+                -webkit-transition: background-position 0.25s ease;
+            }
+            .bx-prev {
+                background-position: 0 -2403px;
+            }
+            .bx-next{
+                background-position: 2px -2464px;
+            }
+
+        }
+    }
+    .collection {
+        width: 1040px;
+        div {
+            margin: 0 auto;
+        }
+    }
+    .game {
+        width: 1056px !important;
+    }
+}

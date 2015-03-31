@@ -7,7 +7,10 @@ var gulp = require("gulp"),
     template = require('gulp-template-compile'),
     concat = require('gulp-concat'),
     replace = require('gulp-replace'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    watchLess = require('gulp-watch-less'),
+    less = require('gulp-less'),
+    minifyCSS = require('gulp-minify-css');
 
 gulp.task('image-compressed', function () {
     return gulp.src('assets/images/**/*.*')
@@ -47,4 +50,14 @@ gulp.task('template-compile', function() {
 gulp.task('dev', ['template-compile', 'sass'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
+    gulp.watch('assets/css/less/**/*', ['less']);
+});
+
+gulp.task('less', function () {
+    return gulp.src('assets/css/less/*.less')
+        .pipe(less({
+            errLogToConsole: true
+        }))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('assets/css/less/css/'));
 });
