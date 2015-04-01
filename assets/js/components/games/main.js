@@ -36,21 +36,24 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
     'common/Videos_Slider',
     'common/nav-header',
-    'less!css/less/main',
     'less!css/less/footer',
     'less!css/less/outcontainer',
-], function(Tabs, FooterTpl, scroller, Main_Slider, Videos_Slider) {
+    'less!css/less/main'
+], function(Tabs, Global_Filter, SubNavTpl, FooterTpl, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
         main_tab = new Tabs(),
         featured_videos = new Videos_Slider(),
         latest_videos = new Videos_Slider(),
-        most_viewed = new Videos_Slider();
+        most_viewed = new Videos_Slider(),
+        global_filter = new Global_Filter();
 
     main_slider
         // .init( index_data.slider )
@@ -76,7 +79,11 @@ requirejs([
         // .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
 
-        console.log('asdasdasdasdasdsad', FooterTpl);
+    global_filter
+        .init()
+        .mount($('#global-filter'))
 
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
+    
 });

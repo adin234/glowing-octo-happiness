@@ -41,9 +41,13 @@ requirejs([
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/footer'
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main'
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, Global_Filter, SubNavTpl, FooterTpl) {
 
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
@@ -72,6 +76,7 @@ requirejs([
             template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
+        global_filter = new Global_Filter(),
         transform_games = function(data) {
             return data.map(function(item) {
                 item.game = item.name;
@@ -159,6 +164,11 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
+    global_filter
+        .init()
+        .mount($('#global-filter'))
+
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
 
 });
