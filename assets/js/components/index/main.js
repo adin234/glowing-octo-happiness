@@ -44,7 +44,7 @@ requirejs([
     'common/Videos_Slider',
     'common/nav-header',
     'less!css/less/footer',
-    'less!css/less/outcontainer',
+    'less!css/less/main',
     'components/index/viewer',
     'components/index/streamers'
 ], function(Tabs, Footer, FooterTpl, scroller, Main_Slider, Videos_Slider) {
