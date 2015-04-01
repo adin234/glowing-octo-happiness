@@ -15,8 +15,8 @@ requirejs.config({
     },
     paths: {
         'jquery': 'libs/jquery.min',
-        'text'  : 'libs/text',
-        'css'   : '../css',
+        'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -41,12 +41,9 @@ requirejs([
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
-    'less!css/less/footer',
-    'less!css/less/outcontainer',
-    'less!css/less/main',
-
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl) {
-
+    'text!common/templates/footer.html',
+    'less!css/less/footer'
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
@@ -161,10 +158,6 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
-    // $(window).on('hashchange', function() {
-    //     if(!!~window.location.hash.indexOf('game')) {
-    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
-    //         filter_page();
-    //     }
-    // });
+    $('#footer-container').html(FooterTpl);
+
 });

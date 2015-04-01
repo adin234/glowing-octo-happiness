@@ -8,9 +8,15 @@
 
 requirejs.config({
     baseUrl: '/assets/js',
+    map: {
+        '*': {
+            'less': 'libs/require-less/less'
+        }
+    },
     paths: {
         'jquery': 'libs/jquery.min',
         'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -30,12 +36,16 @@ requirejs.config({
 });
 
 requirejs([
+    'less!css/less/footer',
+    'less!css/less/main',
+    'less!css/less/outcontainer',
     'common/Tabs',
     'text!common/templates/freedom-tab-nav.html',
     'text!components/freedom_activities/templates/tab1.html',
     'text!components/freedom_activities/templates/tab2.html',
-    'text!components/freedom_activities/templates/tab3.html'
-], function(Tabs, tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl) {
+    'text!components/freedom_activities/templates/tab3.html',
+    'text!common/templates/footer.html'
+], function(Tabs, tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, FooterTpl) {
 
     var main_tab = new Tabs({
         className: 'lanparty_type1 adjust_line_green',
@@ -49,6 +59,8 @@ requirejs([
         .addTab('tab-4-2', '最新發文', 'FreedomEvents', tab2_tpl)
         .addTab('tab-4-3', 'Freedom!活動紀錄', 'FreedomArchive', tab3_tpl)
         .mount($('#freedom-tabs'));
+
+    $('#footer-container').html(FooterTpl);
 
 
 });

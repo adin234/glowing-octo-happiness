@@ -36,12 +36,15 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
+    'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
     'common/Videos_Slider',
     'common/nav-header',
-    'less!css/less/main'
-], function(Tabs, scroller, Main_Slider, Videos_Slider) {
+    'less!css/less/main',
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+], function(Tabs, FooterTpl, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
         main_tab = new Tabs(),
@@ -50,7 +53,7 @@ requirejs([
         most_viewed = new Videos_Slider();
 
     main_slider
-        .init( index_data.slider )
+        // .init( index_data.slider )
         .mount( $('#imageSlider') );
 
     main_tab
@@ -62,14 +65,18 @@ requirejs([
 
 
     featured_videos
-        .init(shuffle(index_data.featured_videos))
+        // .init(shuffle(index_data.featured_videos))
         .mount( $('#featuredVideos') );
 
     latest_videos
-        .init(shuffle(index_data.latest_videos))
+        // .init(shuffle(index_data.latest_videos))
         .mount( $('#latestVideos') );
 
     most_viewed
-        .init(shuffle(index_data.most_viewed))
+        // .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
+
+        console.log('asdasdasdasdasdsad', FooterTpl);
+
+    $('#footer-container').html(FooterTpl);
 });

@@ -8,9 +8,15 @@
 
 requirejs.config({
     baseUrl: '/assets/js',
+    map: {
+        '*': {
+            'less': 'libs/require-less/less'
+        }
+    },
     paths: {
         'jquery': 'libs/jquery.min',
         'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -31,13 +37,17 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
+    'text!common/templates/footer.html',
     'text!common/templates/lanparty-tab-nav.html',
     'text!common/templates/lanparty-sidetab-nav.html',
     'text!components/lanparty/templates/tab1.html',
     'text!components/lanparty/templates/tab2.html',
     'text!components/lanparty/templates/tab3.html',
     'text!components/lanparty/templates/tab4.html',
-], function(Tabs, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main',
+], function(Tabs, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
 
     // lanparty page
     var main_tab = new Tabs({
@@ -63,5 +73,7 @@ requirejs([
         .addTab('tab-4-3', '活動內容', 'LanPartyActivities', tab3_tpl)
         .addTab('tab-4-4', 'Lan Party活動紀錄', 'Lan Party活動紀錄', tab3_tpl)
         .mount($('#container_lanparty'))
+
+    $('#footer-container').html(FooterTpl);
 
 });

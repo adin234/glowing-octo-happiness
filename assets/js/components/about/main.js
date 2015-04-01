@@ -36,36 +36,9 @@ requirejs.config({
 });
 
 requirejs([
-    'common/Tabs',
-    'text!common/templates/playlist-tab-nav.html',
-    'text!common/templates/tab-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/footer',
-    'less!css/less/outcontainer',
-    'less!css/less/main'
-], function(Tabs, tab_nav_tpl, tab_nav_tpl_2, FooterTpl) {
-
-    // shows page
-    var main_tab_1 = new Tabs({
-        className: 'listSwitch clearFix',
-        template: tab_nav_tpl
-    });
-
-    var main_tab_2 = new Tabs({
-        template: tab_nav_tpl_2
-    });
-
-    main_tab_1
-        .init()
-        .addTab('javascript:;', '播放清單', 'playlistsToggle')
-        .addTab('javascript:;', '影片', 'videosToggle')
-        .mount($('#videolist'))
-
-    main_tab_2
-        .init()
-        .addTab('#tab-1', '現在播放')
-        .addTab('#tab-2', '評論')
-        .mount($('#video-related-tabs'))
+    'less!css/less/footer'
+], function(FooterTpl) {
 
     $('#footer-container').html(FooterTpl);
 
