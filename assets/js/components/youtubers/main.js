@@ -40,7 +40,9 @@ requirejs([
     'common/Tabs',
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
-    'text!components/youtubers/templates/video-tpl.html'
+    'text!components/youtubers/templates/video-tpl.html',
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
 ], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl) {
 
     var games_tab               = new Tabs({hash_change: false}),
@@ -157,10 +159,10 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
-    // $(window).on('hashchange', function() {
-    //     if(!!~window.location.hash.indexOf('game')) {
-    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
-    //         filter_page();
-    //     }
-    // });
+    $(window).on('hashchange', function() {
+        if(!!~window.location.hash.indexOf('game')) {
+            game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
+            filter_page();
+        }
+    });
 });

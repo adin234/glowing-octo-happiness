@@ -14,7 +14,7 @@ define(
 
         return function Tabs(opts) {
             
-        var nav_el = null,
+        var $nav_el = null,
             contents = {},
             defaults = {
                 className: 'tab clearFix',
@@ -29,14 +29,14 @@ define(
                 $el: null,
 
                 init: function() {
-                    nav_el = $('<ul class="'+options.className+'"/>');
+                    $nav_el = $('<ul class="'+options.className+'"/>');
                     return this;
                 },
 
                 addTab: function(href, title, id, content) {
                     contents[href] = $('<div id="'+href+'"/>').html(content);
 
-                    nav_el.append(
+                    $nav_el.append(
                         template(options.template, {
                             href: href,
                             title: title,
@@ -52,20 +52,22 @@ define(
                 mount: function($container) {
                     this.$el = $container;
 
-                    if (!nav_el) {
+                    if (!$nav_el) {
                         this.init();
                     }
 
-                    this.$el.append(nav_el);
+                    this.$el.append($nav_el);
 
                     for (var i in contents) {
                         this.$el.append(contents[i]);
                     }
 
                     this.$el.tabslet({animation: true});
+
+                    // $nav_el.find('a').first().trigger('click');
                     
                     if (hashLocation !== '') {
-                        $('[href=' + hashLocation + ']', this.$el).trigger('click');
+                        $nav_el.find('a[href="' + hashLocation + '"]').trigger('click');
                     }
 
                     this.add_listeners();
@@ -76,7 +78,7 @@ define(
                 add_listeners: function() {
 
                     if (options.hash_change) {
-                        nav_el.find('a').on('click', function() {
+                        $nav_el.find('a').on('click', function() {
                             window.location.hash = $(this).attr('href');
                         });
                     }
