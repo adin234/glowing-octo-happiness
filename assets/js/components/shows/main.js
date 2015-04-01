@@ -8,9 +8,15 @@
 
 requirejs.config({
     baseUrl: '/assets/js',
+    map: {
+        '*': {
+            'less': 'libs/require-less/less'
+        }
+    },
     paths: {
         'jquery': 'libs/jquery.min',
         'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -33,7 +39,11 @@ requirejs([
     'common/Tabs',
     'text!common/templates/playlist-tab-nav.html',
     'text!common/templates/tab-nav.html',
-], function(Tabs, tab_nav_tpl, tab_nav_tpl_2) {
+    'text!common/templates/footer.html',
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main',
+], function(Tabs, tab_nav_tpl, tab_nav_tpl_2, FooterTpl) {
 
     // shows page
     var main_tab_1 = new Tabs({
@@ -56,5 +66,7 @@ requirejs([
         .addTab('#tab-1', '現在播放')
         .addTab('#tab-2', '評論')
         .mount($('#video-related-tabs'))
+
+    $('#footer-container').html(FooterTpl);
 
 });
