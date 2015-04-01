@@ -48,17 +48,27 @@ define([], function() {
                 return this;
             },
 
-            reload: function(data) {
+            reload: function(collection) {
 
-                var old_cont = this.$el;
+                var $old_cont = this.$el;
 
                 this.$el.empty();
 
                 this.$el = $('<div/>');
 
-                this.init(data);
+                this.init(collection);
 
-                this.mount(old_cont);
+                $old_cont.html(this.$el.html());
+
+                this.$el = $old_cont;
+
+                this.$el.find('li > img').tooltipster({contentAsHTML: true});
+
+                this.$el.reloadSlider({
+                    startSlide: 0,
+                    infiniteLoop: false,
+                    hideControlOnEnd: true
+                });
             },
 
             mount: function($container) {

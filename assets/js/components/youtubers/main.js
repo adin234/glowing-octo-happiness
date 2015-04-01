@@ -117,7 +117,7 @@ requirejs([
             }
         }),
         console_filter = 'all',
-        game_filter = '';
+        game_filter = 'all';
 
 
     global_filter
@@ -157,10 +157,10 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
-    $(window).on('hashchange', function(){
-        if(!!~window.location.hash.indexOf('game')) {
-            game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
-            filter_page();
-        }
-    });
+    // $(window).on('hashchange', function() {
+    //     if(!!~window.location.hash.indexOf('game')) {
+    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
+    //         filter_page();
+    //     }
+    // });
 });

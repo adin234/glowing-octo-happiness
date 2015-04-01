@@ -18,35 +18,43 @@ define(
                 items = [
                     {
                         id: 'all',
-                        label: 'All'
+                        label: 'All',
+                        href: '#!/console/all'
                     },
                     {
                         id: 'xbox360',
-                        label: 'Xbox 360'
+                        label: 'Xbox 360',
+                        href: '#!/console/xbox360'
                     },
                     {
                         id: 'xbox1',
-                        label: 'Xbox One'
+                        label: 'Xbox One',
+                        href: '#!/console/xbox1'
                     },
                     {
                         id: 'ps3',
-                        label: 'PS3'
+                        label: 'PS3',
+                        href: '#!/console/ps3'
                     },
                     {
                         id: 'ps4',
-                        label: 'PS4'
+                        label: 'PS4',
+                        href: '#!/console/ps4'
                     },
                     {
                         id: 'pc',
-                        label: 'PC'
+                        label: 'PC',
+                        href: '#!/console/pc'
                     },
                     {
                         id: 'mobile_app',
-                        label: 'Mobile Game'
+                        label: 'Mobile Game',
+                        href: '#!/console/mobile_app'
                     },
                     {
                         id: 'vlogs',
-                        label: 'Vlogs'
+                        label: 'Vlogs',
+                        href: '#!/console/vlogs'
                     }
                 ],
                 options = $.extend({}, defaults, opts),
@@ -63,7 +71,7 @@ define(
                         $list_container.append(
                             template(
                                 '<li>' +
-                                    '<a href="#!/console/{{ID}}"" title="{{LABEL}}" data-index="{{_INDEX}}">'+
+                                    '<a href="{{HREF}}" title="{{LABEL}}" data-index="{{_INDEX}}">'+
                                         '{{LABEL}}'+
                                     '</a>' +
                                 '</li>',
@@ -81,9 +89,11 @@ define(
 
                     this.$el.append($list_container);
 
-                    this.init_listeners();
-
                     $list_container.find('li').first().addClass('current');
+
+                    this.refresh_active();
+                    
+                    this.init_listeners();
 
                     return this;
                 },
@@ -92,12 +102,20 @@ define(
 
                     $list_container.find('li > a').on('click', function(e) {
                         e.preventDefault();
-                        $list_container.find('li').removeClass('current');
-                        $(this).parent().addClass('current');
                         window.location.hash = $(this).attr('href');
                         options.onChange(items[$(this).data('index')]);
                     });
 
+                    $(window).on('hashchange', this.refresh_active);
+                },
+
+                refresh_active: function() {
+                    var $active = $list_container.find('a[href="'+window.location.hash+'"]');
+
+                    if ($active.length) {
+                        $list_container.find('li').removeClass('current');
+                        $active.parent().addClass('current');
+                    }
                 }
             };
 
