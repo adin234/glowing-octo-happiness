@@ -38,40 +38,42 @@ requirejs.config({
 requirejs([
     'common/Global_Filter',
     'common/Tabs',
-    'components/youtubers/List_Slider',
+    'common/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main',
     'text!common/templates/footer.html',
-    'less!css/less/footer'
+    'less!css/less/outcontainer',
+    'less!css/less/footer',
+    'less!css/less/main'
 ], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
             per_slider: 12,
-            template: game_tpl,
+            item_template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         featured_games_slider   = new List_Slider({
             per_slider: 12,
-            template: game_tpl,
+            item_template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         popular_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         new_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         all_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         transform_games = function(data) {
@@ -161,6 +163,12 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
+    // $(window).on('hashchange', function() {
+    //     if(!!~window.location.hash.indexOf('game')) {
+    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
+    //         filter_page();
+    //     }
+    // });
+    
     $('#footer-container').html(FooterTpl);
-
 });

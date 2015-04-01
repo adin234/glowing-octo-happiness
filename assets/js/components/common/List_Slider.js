@@ -9,9 +9,12 @@ define([], function() {
     return function List_Slider(opts) {
 
         var defaults = {
-                template: '',
                 per_slider: 12,
-                $list_container: $('<ul />')
+                item_template: '',
+                $list_container: $('<ul />'),
+
+                // callbacks
+                after_mount: function() {}
             },
             options = $.extend({}, defaults, opts),
             array_chunk = function(array, size) {
@@ -40,7 +43,7 @@ define([], function() {
 
                     chunk.forEach(function(item) {
                         temp_list
-                            .append(template(options.template, item))
+                            .append(template(options.item_template, item))
                             .appendTo(self.$el);
                     });
                 });
@@ -62,7 +65,7 @@ define([], function() {
 
                 this.$el = $old_cont;
 
-                this.$el.find('li > img').tooltipster({contentAsHTML: true});
+                // this.$el.find('li > img').tooltipster({contentAsHTML: true});
 
                 this.$el.reloadSlider({
                     startSlide: 0,
@@ -77,7 +80,7 @@ define([], function() {
 
                 this.$el = $container;
 
-                this.$el.find('li > img').tooltipster({contentAsHTML: true});
+                // this.$el.find('li > img').tooltipster({contentAsHTML: true});
 
                 this.$el.bxSlider({
                     startSlide: 0,
