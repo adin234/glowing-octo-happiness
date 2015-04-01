@@ -41,14 +41,13 @@ requirejs([
     'common/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
-    'less!css/less/footer',
-    'less!css/less/outcontainer',
-    'less!css/less/main',
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/outcontainer',
     'less!css/less/footer',
+    'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, Global_Filter, SubNavTpl, FooterTpl) {
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
@@ -76,6 +75,7 @@ requirejs([
             item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
+        global_filter = new Global_Filter(),
         transform_games = function(data) {
             return data.map(function(item) {
                 item.game = item.name;
@@ -163,12 +163,10 @@ requirejs([
         .init(all_members)
         .mount($('#container-all-member'));
 
-    // $(window).on('hashchange', function() {
-    //     if(!!~window.location.hash.indexOf('game')) {
-    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
-    //         filter_page();
-    //     }
-    // });
-    
+    global_filter
+        .init()
+        .mount($('#global-filter'))
+
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
 });

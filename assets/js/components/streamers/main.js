@@ -38,16 +38,20 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'text!common/templates/tab-nav.html',
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
-    'less!css/less/main',
-], function(Tabs, tab_nav_tpl, FooterTpl) {
+    'less!css/less/main'
+], function(Tabs, tab_nav_tpl, Global_Filter, SubNavTpl, FooterTpl) {
 
     // streamers page
     var main_tab = new Tabs({
         template: tab_nav_tpl 
     });
+
+    var global_filter = new Global_filter();
 
     main_tab
         .init()
@@ -55,6 +59,10 @@ requirejs([
         .addTab('tab-2-2', 'Lan Party', 'game-title')
         .addTab('tab-2-3', '活動內容', 'game-title')
         .mount($('#video-stream-tabs'))
+
+    global_filter
+        .init()
+        .mount($('#global-filter'))
 
     $('#footer-container').html(FooterTpl);
 

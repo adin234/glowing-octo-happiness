@@ -36,10 +36,21 @@ requirejs.config({
 });
 
 requirejs([
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/footer'
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main'
 ], function(FooterTpl) {
 
+    var global_filter   = new Global_Filter();
+
+    global_filter
+        .init()
+        .mount($('#global-filter'))
+        
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
 
 });

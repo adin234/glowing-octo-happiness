@@ -37,6 +37,8 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
+    'common/Global_Filter',
+    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
     'text!common/templates/lanparty-tab-nav.html',
     'text!common/templates/lanparty-sidetab-nav.html',
@@ -46,8 +48,10 @@ requirejs([
     'text!components/lanparty/templates/tab4.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
-    'less!css/less/main',
-], function(Tabs, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
+    'less!css/less/main'
+], function(Tabs, Global_Filter, SubNavTpl, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
+
+    var global_filter = new Global_Filter();
 
     // lanparty page
     var main_tab = new Tabs({
@@ -74,6 +78,11 @@ requirejs([
         .addTab('tab-4-4', 'Lan Party活動紀錄', 'Lan Party活動紀錄', tab3_tpl)
         .mount($('#container_lanparty'))
 
+    global_filter
+        .init()
+        .mount($('#global-filter'))
+
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
 
 });
