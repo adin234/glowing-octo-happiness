@@ -100,11 +100,11 @@ define(
 
                 init_listeners: function() {
 
-                    $list_container.find('li > a').on('click', function(e) {
-                        e.preventDefault();
-                        window.location.hash = $(this).attr('href');
-                        options.onChange(items[$(this).data('index')]);
-                    });
+                    // $list_container.find('li > a').on('click', function(e) {
+                    //     e.preventDefault();
+                    //     window.location.hash = $(this).attr('href');
+                    //     options.onChange(items[$(this).data('index')]);
+                    // });
 
                     $(window).on('hashchange', this.refresh_active);
                 },
@@ -115,6 +115,7 @@ define(
                     if ($active.length) {
                         $list_container.find('li').removeClass('current');
                         $active.parent().addClass('current');
+                        options.onChange(items[$active.first().data('index')]);
                     }
                 }
             };

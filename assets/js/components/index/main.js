@@ -1,7 +1,8 @@
 /*global
     requirejs,
     index_data,
-    shuffle
+    shuffle,
+    attachments_server
 */
 
 'use strict';
@@ -38,6 +39,9 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'common/Footer',
+    'common/List_Slider',
+    'text!common/templates/video-slide.html',
+    'text!common/templates/game-slide.html',
     'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
@@ -52,16 +56,46 @@ requirejs([
     'less!css/less/main',
     'components/index/viewer',
     'components/index/streamers'
+
 ], function(Tabs, Footer, FooterTpl, scroller, Main_Slider, Videos_Slider, Global_Filter, SubNavTpl) {
 
     var main_slider     = new Main_Slider(),
         main_tab        = new Tabs({hash_change: false}),
         games_tab       = new Tabs({hash_change: false}),
         // news_shows_tabs = new Tabs({hash_change: false}),
-
-        featured_videos = new Videos_Slider(),
-        latest_videos   = new Videos_Slider(),
-        most_viewed     = new Videos_Slider(),
+        transform_videos = function(data) {
+            return data.map(function(item) {
+                item.provider = attachments_server;
+                item.thumb = item.snippet.thumbnails.medium.url;
+                item.title = item.snippet.title;
+                item.bust = 1;
+                item.anytv_comment = item.anytv_comment || 0;
+                item.comments = item.snippet.meta.statistics.commentCount;
+                item.views = item.snippet.meta.statistics.viewCount;
+                item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
+                return item;
+            });
+        },
+        featured_videos_slider = new List_Slider({
+            per_slider: 9,
+            item_template: video_slide_tpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        latest_videos_slider = new List_Slider({
+            per_slider: 9,
+            item_template: video_slide_tpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        most_viewed_slider = new List_Slider({
+            per_slider: 9,
+            item_template: video_slide_tpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        featured_game_slider = new List_Slider({
+            per_slider: 12,
+            item_template: game_slide_tpl,
+            $list_container: $('<ul class="game clearFix"/>')
+        })
 
         page_footer     = new Footer(),
         global_filter   = new Global_Filter();
@@ -98,16 +132,20 @@ requirejs([
     //     .addTab('tab-shows-playlist-3', 'Freedom!教學', 'tab-news-playlist-3', $('<ul/>'))
     //     .mount($('#news_shows_playlists_block'));
 
-    featured_videos
-        .init(shuffle(index_data.featured_videos))
+    featured_videos_slider
+        .init(transform_videos(shuffle(index_data.featured_videos)))
         .mount( $('#featuredVideos') );
 
-    latest_videos
-        .init(shuffle(index_data.latest_videos))
+    latest_videos_slider
+        .init(transform_videos(shuffle(index_data.latest_videos)))
         .mount( $('#latestVideos') );
 
-    most_viewed
-        .init(shuffle(index_data.most_viewed))
+    most_viewed_slider
+        .init(transform_videos(shuffle(index_data.most_viewed)))
+        .mount( $('#mostViewed') );
+
+    featured_game_slider
+        .init(transform_videos(shuffle(index_data.most_viewed)))
         .mount( $('#mostViewed') );
 
     global_filter
