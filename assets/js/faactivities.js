@@ -9,10 +9,9 @@ $.ajax({
     dataType: 'jsonp',
     url: server + 'freedom_events/checkAdmin',
     type: 'get'
-
 }).success(function(data) {
     show_html(data);
-}).fail(function(data) {});
+}).fail(function() {});
 
 var show_html = function(data) {
 
@@ -37,6 +36,7 @@ var show_html = function(data) {
                 });
             }
         });
+
 };
 
 
@@ -95,59 +95,74 @@ var show_events = function(data) {
 
 var filter_display_events = function(all_events) {
 
+    var all_ended = [];
 
-    all_events.forEach(function(item) {
-        if ((get_date_diff(item.end_date, item.end_time) === 'Ongoing') || (get_date_diff(item.end_date,
-                item.end_time) === 'Ended')) {
-            var html_content_sched = show_events(all_events);
-            $('#all_schedule')
-                .html(html_content_sched.join(''));
-        }
-    });
     all_events.forEach(function(item) {
         if (get_date_diff(item.end_date, item.end_time) === 'Ended') {
-            var html_content_archive = show_events(all_events);
-            $('#archive_schedule')
-                .html(html_content_archive.join(''));
+            all_ended.push(item);
         }
     });
 
+    var html_content_sched = show_events(all_events);
+    $('#all_schedule')
+        .html(html_content_sched.join(''));
 
+    var html_content_archive = show_events(all_ended);
+    $('#archive_schedule')
+        .html(html_content_archive.join(''));
 };
-
-var search_events = function(event_title) {
-    $.get(server + 'freedom_events/search' + event_title, function(data) {
-        return data;
-    });
-};
-
-$('#seachEvent').on('click', function() {
-    var event_title = $('#search_input').val(),
-        search_result = search_events(event_title);
-});
 
 
 var add_event = function() {
-    $.ajax({
-        url: server + 'freedom_events/add',
-        type: 'post',
-        data: {
-            'event_title': $('#event_name')
-                .val(),
-            'start_date': $('#event_start_date')
-                .val(),
-            'end_date': $('#event_end_date')
-                .val(),
-            'start_time': $('#event_start_time')
-                .val(),
-            'end_time': $('#event_end_time')
-                .val(),
-            'e_description': $('#event_desc')
-                .val()
-        }
-    });
+
+    var start = function() {
+            $.ajax({
+                dataType: 'jsonp',
+                url: server + 'freedom_events/validate',
+                type: 'get'
+            }).success(function(csrf_token) {
+                if (validate(csrf_token) === true) {
+                    post_event();
+                }
+            }).fail(function() {});
+        },
+
+        validate = function(csrf_token) {
+            var csrf_in_form = $('#csrftoken').val();
+            if (csrf_token === csrf_in_form) {
+                return true;
+            }
+        },
+
+        post_event = function() {
+            $.ajax({
+                url: server + 'freedom_events/add',
+                type: 'post',
+                data: {
+                    'event_title': $('#event_name')
+                        .val(),
+                    'start_date': $('#event_start_date')
+                        .val(),
+                    'end_date': $('#event_end_date')
+                        .val(),
+                    'start_time': $('#event_start_time')
+                        .val(),
+                    'end_time': $('#event_end_time')
+                        .val(),
+                    'e_description': $('#event_desc')
+                        .val()
+                }
+            });
+        };
+
+    start();
 };
 
-$('#event_form').submit(function(event) {
+
+$('body').on('click', '#add_event_button', function() {
+    add_event();
+});
+
+$('body').on('submit', '#event_form', function(event) {
     event.preventDefault();
 });
