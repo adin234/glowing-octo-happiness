@@ -1,4 +1,4 @@
-var template = function (templateHTML, data) {
+var template = function(templateHTML, data) {
     for (var x in data) {
         var torep = new RegExp('{{' + x + '}}', 'gi');
         if (torep && templateHTML) {
@@ -11,7 +11,7 @@ var template = function (templateHTML, data) {
     return templateHTML;
 };
 
-var showSocialButtons = function (_image, _description, _title) {
+var showSocialButtons = function(_image, _description, _title) {
     var link = document.location.href,
         clean = link.replace('#', '%23'),
         social = [],
@@ -41,17 +41,17 @@ var showSocialButtons = function (_image, _description, _title) {
 };
 
 var utilLogin = {
-    show: function (message) {
+    show: function(message) {
         var msg = message || '要留言請您先登入';
         var loginMenu = document.createElement('div');
         loginMenu.classname = 'full-overlay';
         loginMenu.id = 'loginMenu';
-        loginMenu.addEventListener('click', function (e) {
+        loginMenu.addEventListener('click', function(e) {
             switch (e.target.classname) {
-            case 'login-container':
-            case 'full-overlay':
-                utilLogin.hide();
-                break;
+                case 'login-container':
+                case 'full-overlay':
+                    utilLogin.hide();
+                    break;
             }
         }, false);
         var loginDiv = document.createElement('div');
@@ -82,13 +82,13 @@ var utilLogin = {
             href: '//community.gamers.tm/zh/index.php?login&front=1'
         });
 
-        loginBtn[0].addEventListener('click', function (e) {
+        loginBtn[0].addEventListener('click', function(e) {
             $.post(server + 'login', {
                     username: $('input[name=username]')
                         .val(),
                     password: $('input[name=password]')
                         .val()
-                }, function (e) {
+                }, function(e) {
                     var user = {
                         user_id: e.user_id,
                         username: e.username,
@@ -108,7 +108,7 @@ var utilLogin = {
                     $(window)
                         .trigger('login-success');
                 })
-                .fail(function (e) {
+                .fail(function(e) {
                     $('.login-label')
                         .html(e.responseJSON.message);
                 });
@@ -122,27 +122,27 @@ var utilLogin = {
 
         document.body.appendChild(loginMenu);
     },
-    hide: function () {
+    hide: function() {
         document.getElementById('loginMenu')
             .remove();
     }
 };
 
-var getTwitch = function (data) {
+var getTwitch = function(data) {
     return data.split(',')
-        .map(function (item) {
+        .map(function(item) {
             return item.trim();
         })[0];
 }
 
 var utilCookie = {
-    set: function (cname, cvalue, exdays) {
+    set: function(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
         var expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
     },
-    get: function (cname) {
+    get: function(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
@@ -155,21 +155,21 @@ var utilCookie = {
 };
 
 var utilUser = {
-    'get': function () {
+    'get': function() {
         return utilCookie.get('user') ? $.parseJSON(utilCookie.get('user')) : null;
     }
 };
 
 var utilHash = {
-    'getHash': function () {
+    'getHash': function() {
         return window.location.hash;
     },
-    'getHashArr': function () {
+    'getHashArr': function() {
         var hash = window.location.hash.replace('#!/', '');
         hash = hash.split('/');
         return hash;
     },
-    'changeHashVal': function (key, string, apply) {
+    'changeHashVal': function(key, string, apply) {
         var apply = typeof apply == 'undefined' ? true : false;
         var hash = window.location.hash.replace('#!/', '');
         var hashObj = {};
@@ -185,7 +185,7 @@ var utilHash = {
 
         Object.keys(hashObj)
             .sort()
-            .forEach(function (key) {
+            .forEach(function(key) {
                 hashArr.push(key);
                 if (hashObj[key] === undefined) {
                     return;
@@ -202,7 +202,7 @@ var utilHash = {
         console.log(hash_string);
         return hash_string;
     },
-    'addHash': function (string, apply) {
+    'addHash': function(string, apply) {
         apply = typeof apply == 'undefined' ? true : false;
 
         var hash = window.location.hash;
@@ -221,7 +221,7 @@ var utilHash = {
 
         return hash_string;
     },
-    'removeHash': function (string, apply) {
+    'removeHash': function(string, apply) {
         apply = typeof apply == 'undefined' ? true : false;
 
         var hash = window.location.hash;
@@ -233,26 +233,26 @@ var utilHash = {
 
         return hash_string;
     },
-    'buildHash': function (hashArr) {
+    'buildHash': function(hashArr) {
         hashArr = (hashArr instanceof Array) ? hashArr : [hashArr];
 
         return '#!/' + hashArr.join('/');
     }
 };
 
-var updateTwitch = function () {
+var updateTwitch = function() {
     var streamerCount = $('#number-of-streamers');
     if (streamerCount) {
-        $.getJSON(server + 'streamers', function (result) {
+        $.getJSON(server + 'streamers', function(result) {
             streamerCount.html(result.streamers.length);
             if (typeof page_data.streamers != 'undefined') {
                 var ids = [];
                 var streamers = page_data.streamers;
-                streamers.forEach(function (item) {
+                streamers.forEach(function(item) {
                     ids.push(item.user_id);
                 });
 
-                result.streamers.forEach(function (item) {
+                result.streamers.forEach(function(item) {
                     if (!~ids.indexOf(item.user_id)) {
                         page_data.streamers.push(item);
                     }
@@ -263,7 +263,7 @@ var updateTwitch = function () {
 };
 
 var utilArray = {
-    intersect: function (a, b) {
+    intersect: function(a, b) {
         var ai = 0,
             bi = 0;
         var result = new Array();
@@ -271,11 +271,9 @@ var utilArray = {
         while (ai < a.length && bi < b.length) {
             if (a[ai] < b[bi]) {
                 ai++;
-            }
-            else if (a[ai] > b[bi]) {
+            } else if (a[ai] > b[bi]) {
                 bi++;
-            }
-            else /* they're equal */ {
+            } else /* they're equal */ {
                 result.push(a[ai]);
                 ai++;
                 bi++;
@@ -286,7 +284,7 @@ var utilArray = {
     }
 };
 
-var fixErrorImg = function (item) {
+var fixErrorImg = function(item) {
     item.onerror = "";
     item.src = 'http://community.gamers.tm/zh/styles/default/xenforo/avatars/avatar_male_l.png';
     return true;
@@ -319,14 +317,14 @@ function searchBoxInit() {
         serviceUrl: server + 'youtubers/search',
         // minChars: 3,
         zIndex: 9999,
-        onSelect: function (value) {
+        onSelect: function(value) {
             switch (value.typeid) {
-            case 'G':
-                redirect_to_gamer(value.data.game_id);
-                break;
-            default:
-                redirect_to_youtuber(value.data.user_id);
-                break;
+                case 'G':
+                    redirect_to_gamer(value.data.game_id);
+                    break;
+                default:
+                    redirect_to_youtuber(value.data.user_id);
+                    break;
             }
 
         }
@@ -334,14 +332,13 @@ function searchBoxInit() {
     var searchDom = $('#query');
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
-        searchDom.on('keypress', function (e) {
+        searchDom.on('keypress', function(e) {
             if (e.which == 13) {
                 if (typeof searchBox.data()
                     .suggestions[0] != 'undefined') {
                     redirect_to_youtuber(searchBox.data()
                         .suggestions[0].data.user_id);
-                }
-                else {
+                } else {
                     return false;
                 }
             }
@@ -355,7 +352,7 @@ function searchGamesBoxInit() {
 
     optionGames = {
         lookup: gamesAutocompleteArray,
-        onSelect: function (suggestion) {
+        onSelect: function(suggestion) {
             filter_game(this);
         }
     }
@@ -369,21 +366,20 @@ function youtuberSearch() {
         serviceUrl: server + 'youtubers/search',
         // minChars: 3,
         zIndex: 9999,
-        onSelect: function (value) {
+        onSelect: function(value) {
             redirect_to_youtuber(value.data.user_id);
         }
     };
     var searchDom = $('#query');
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
-        searchDom.on('keypress', function (e) {
+        searchDom.on('keypress', function(e) {
             if (e.which == 13) {
                 if (typeof searchBox.data()
                     .suggestions[0] != 'undefined') {
                     redirect_to_youtuber(searchBox.data()
                         .suggestions[0].data.user_id);
-                }
-                else {
+                } else {
                     return false;
                 }
             }
@@ -396,7 +392,7 @@ function youtuberUserSearch() {
         serviceUrl: server + 'youtubers/search_youtubers',
         // minChars: 3,
         zIndex: 9999,
-        onSelect: function (value) {
+        onSelect: function(value) {
             var searchDom = $('#txtbox-search-videos');
             searchDom.val(value.value);
             filter_videos(searchDom);
@@ -405,7 +401,7 @@ function youtuberUserSearch() {
     var searchDom = $('#txtbox-search-videos');
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
-        searchDom.on('keypress', function (e) {
+        searchDom.on('keypress', function(e) {
             if (e.which == 13) {
                 var searchDom = $('#txtbox-search-videos');
                 searchDom.val(value.data.user_id);
@@ -434,7 +430,7 @@ function streamersSearch() {
                 });
             }
 
-            if (typeof (sd.title) !== 'undefined') {
+            if (typeof(sd.title) !== 'undefined') {
                 if (sd.title.indexOf(searchDom.val()) > -1) {
                     var sdata = {
                         sname: sd.title,
@@ -448,8 +444,7 @@ function streamersSearch() {
                 }
             }
         }
-    }
-    else {
+    } else {
 
         var sdata = {
             sname: 'streamer',
@@ -466,7 +461,7 @@ function streamersSearch() {
 
     var options = {
         lookup: streamers,
-        onSelect: function (value) {
+        onSelect: function(value) {
             //console.log(value);
             searchDom.val(value.value);
             filter_videos(value.value);
@@ -475,7 +470,7 @@ function streamersSearch() {
 
     if (searchDom.length) {
         searchBox = searchDom.autocomplete(options);
-        searchDom.on('keypress', function (e) {
+        searchDom.on('keypress', function(e) {
             if (e.which == 13) {
                 //searchDom.val(value.value);
                 filter_videos(searchDom);
@@ -484,7 +479,7 @@ function streamersSearch() {
     }
 }
 
-$(function () {
+$(function() {
     searchBoxInit();
     searchGamesBoxInit();
 });
@@ -497,8 +492,8 @@ var streaming = [],
 function get_streamers(first) {
     streamingLan = 0;
     streamingNew = [];
-    $.get(server + 'streamers', function (result) {
-            result.streamers.forEach(function (item) {
+    $.get(server + 'streamers', function(result) {
+            result.streamers.forEach(function(item) {
                 if ((item.user_group_id === 5 || ~item.secondary_group_ids.indexOf(5)) && item.twitch.channel
                     .status && ~item.twitch.channel.status.toLowerCase()
                     .indexOf('lan')) {
@@ -525,14 +520,14 @@ function get_streamers(first) {
                 streamingNew.push('TW' + item.twitch.channel.name);
             });
         })
-        .always(function () {
+        .always(function() {
             get_youtube_streamers(first);
         });
 }
 
 function get_youtube_streamers(first) {
-    $.get(server + 'streamers/youtube', function (result) {
-            result.streamers.forEach(function (item) {
+    $.get(server + 'streamers/youtube', function(result) {
+            result.streamers.forEach(function(item) {
                 //  console.log(item);
                 if ((item.user_group_id === 5 ||
                         (item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5))) && ~item.youtube
@@ -559,7 +554,7 @@ function get_youtube_streamers(first) {
                 streamingNew.push('YT' + item.youtube.id);
             });
         })
-        .always(function () {
+        .always(function() {
             if (streaming && typeof streaming.length !== undefined && $("a[href='/streamers']")
                 .length) {
                 var streamingLength = streaming.length || '';
@@ -586,8 +581,8 @@ function get_youtube_streamers(first) {
 }
 
 function get_hitbox_streamers(first) {
-    $.get(server + 'streamers/hitbox', function (result) {
-            result.streamers.forEach(function (item) {
+    $.get(server + 'streamers/hitbox', function(result) {
+            result.streamers.forEach(function(item) {
                 if ((item.user_group_id === 5 || (
                         item.secondary_group_ids && ~item.secondary_group_ids.indexOf(5))) && ~item.youtube
                     .snippet.title.toLowerCase()
@@ -614,7 +609,7 @@ function get_hitbox_streamers(first) {
                 streamingNew.push('HB' + item.hitbox.livestream[0].media_user_name);
             });
         })
-        .always(function () {
+        .always(function() {
             if (streaming && typeof streaming.length !== undefined && $("a[href='/streamers']")
                 .length) {
                 var streamingLength = streaming.length || '';
@@ -649,7 +644,7 @@ $.extend($.gritter.options, {
     time: 1000
 });
 
-var notify_stream = function (data) {
+var notify_stream = function(data) {
     $.gritter.add({
         title: '直播',
         text: '<a class="link" href="' + data.link + '">' + data.streamer + '</a>'
@@ -657,13 +652,13 @@ var notify_stream = function (data) {
 };
 
 // session
-$(function () {
+$(function() {
     $.ajax({
             dataType: 'jsonp',
             url: server + 'logged_user',
             type: 'get'
         })
-        .done(function (session) {
+        .done(function(session) {
             console.log(session);
             if (session.username) {
                 var links = [];
@@ -689,29 +684,28 @@ $(function () {
                     .html(link)
                     .append(links.join(''));
                 // $('li.login').html(link);
-            }
-            else {
+            } else {
                 utilCookie.set('user', '', 0)
             }
         });
 
     if ($('body')
         .hasClass('streams')) return;
-    setTimeout(function () {
+    setTimeout(function() {
         $('li.login')
             .css('visibility', 'visible');
     }, 100);
 });
 
-$(function () {
+$(function() {
     // if($('body').hasClass('stream-gritter')) {
     //get_streamers(true);
     // }
 });
 
-(function (i, s, o, g, r, a, m) {
+(function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
+    i[r] = i[r] || function() {
         (i[r].q = i[r].q || [])
         .push(arguments)
     }, i[r].l = 1 * new Date();
@@ -726,12 +720,10 @@ ga('create', 'UA-46773919-11', 'auto');
 ga('send', 'pageview');
 
 
-$.getScript("/assets/js/socketio.js", function(){
+$.getScript("/assets/js/socketio.js", function() {
     var socket = io.connect(socket_server);
     socket.on('message', function(e) {
-        var count = e.streamers.youtube.length
-                + e.streamers.twitch.length
-                + e.streamers.hitbox.length,
+        var count = e.streamers.youtube.length + e.streamers.twitch.length + e.streamers.hitbox.length,
             streamerCount = $('#number-of-streamers');
         if (streamerCount) {
             streamerCount.html(count);
