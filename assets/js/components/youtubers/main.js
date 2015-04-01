@@ -51,27 +51,27 @@ requirejs([
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
             per_slider: 12,
-            template: game_tpl,
+            item_template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         featured_games_slider   = new List_Slider({
             per_slider: 12,
-            template: game_tpl,
+            item_template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         popular_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         new_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         all_members_slider  = new List_Slider({
             per_slider: 16,
-            template: video_tpl,
+            item_template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         transform_games = function(data) {
