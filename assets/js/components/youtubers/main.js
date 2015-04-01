@@ -1,5 +1,6 @@
 /*global
     page_data,
+    server,
     attachments_server
 */
 
@@ -46,7 +47,7 @@ requirejs([
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
             per_slider: 12,
-            template : game_tpl,
+            template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
         featured_games_slider   = new List_Slider({
@@ -69,33 +70,54 @@ requirejs([
             template: video_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
-        transform_games = function(item) {
-            item.game   = item.name;
-            item.id     = item.id.trim();
-            return item;
+        transform_games = function(data) {
+            return data.map(function(item) {
+                item.game = item.name;
+                item.id = item.id.trim();
+                return item;
+            });
         },
-        transform_youtubers = function(item) {
-            item.user_id    = item.userId;
-            item.title      = item.video.snippet.title;
-            item.thumb      = item.video.snippet.thumbnails.medium.url;
-            item.view       = item.video.snippet.meta.statistics.viewCount;
-            item.comment    = item.video.snippet.meta.statistics.commentCount;
-            item.channelid  = item.youtube_id;
-            item.live       = '';
-            item.provider   = attachments_server;
-            item.videoid    = item.video.snippet.resourceId.videoId;
-            item.bust       = 1;
-            return item;
+        transform_youtubers = function(data) {
+            return data.map(function(item) {
+                item.user_id    = item.userId;
+                item.title      = item.video.snippet.title;
+                item.thumb      = item.video.snippet.thumbnails.medium.url;
+                item.view       = item.video.snippet.meta.statistics.viewCount;
+                item.comment    = item.video.snippet.meta.statistics.commentCount;
+                item.channelid  = item.youtube_id;
+                item.live       = '';
+                item.provider   = attachments_server;
+                item.videoid    = item.video.snippet.resourceId.videoId;
+                item.bust       = 1;
+                return item;
+            });
         },
-        latest_games    = page_data.games.map(transform_games),
-        featured_games  = page_data.featured_games.map(transform_games),
-        popular_members = page_data.popular_youtubers.map(transform_youtubers),
-        new_members     = page_data.new_youtubers.map(transform_youtubers),
-        all_members     = page_data.youtubers.map(transform_youtubers),
-        filter_data = function(value) {
-            console.log(value);
+        latest_games    = transform_games(page_data.games),
+        featured_games  = transform_games(page_data.featured_games),
+        popular_members = transform_youtubers(page_data.popular_youtubers),
+        new_members     = transform_youtubers(page_data.new_youtubers),
+        all_members     = transform_youtubers(page_data.youtubers),
+        filter_page = function() {
+            $.getJSON(server + 'youtubers?' + $.param({
+                    console: console_filter,
+                    game: game_filter
+                }), function(result) {
+                    latest_games_slider.reload(transform_games(result.games));
+                    featured_games_slider.reload(transform_games(result.featured_games));
+                    popular_members_slider.reload(transform_youtubers(result.popular_youtubers));
+                    new_members_slider.reload(transform_youtubers(result.new_youtubers));
+                    all_members_slider.reload(transform_youtubers(result.youtubers));
+                }
+            );
         },
-        global_filter = new Global_Filter({onChange: filter_data});
+        global_filter = new Global_Filter({
+            onChange: function(filter) {
+                console_filter = filter.id;
+                filter_page();
+            }
+        }),
+        console_filter = 'all',
+        game_filter = 'all';
 
 
     global_filter
@@ -134,4 +156,11 @@ requirejs([
     all_members_slider
         .init(all_members)
         .mount($('#container-all-member'));
+
+    // $(window).on('hashchange', function() {
+    //     if(!!~window.location.hash.indexOf('game')) {
+    //         game_filter = window.location.hash.substring(window.location.hash.indexOf('game') + 5);
+    //         filter_page();
+    //     }
+    // });
 });
