@@ -290,7 +290,7 @@ var shuffleTriggerFunction = function (trigger) {
 }
 
 var renderFeaturedGames = function (string, trigger) {
-    
+
     if (string === 'all') {
 
         $.ajax({
@@ -913,3 +913,32 @@ var displayGamesPerConsole = function (gl) {
 
 checker_index();
 
+var showAdvertisement = function () {
+        var img;
+
+        $('body').append(template(
+            $("#advertisementTpl").html(), {
+            })).promise().done(function() {
+                var img = new Image();
+                img.onload = function() {
+                    $('.modal-full img').css({
+                        height: $(window).height() - 30,
+                    }).promise().done(function() {
+                        $('.modal-full').css({
+                            'margin-left': (($(window).width() - $('.modal-full img').width())/2)
+                        });
+                    });
+                }
+
+                img.src = 'https://s3-ap-southeast-1.amazonaws.com/cdn.gamers.tm/gamers_assets/10days.png?asdf';
+                utilCookie.set('advertisementShown', '1', .5)
+                $('.modal-full img').replaceWith(img);
+            });
+    },
+    hideAdvertisement = function() {
+        $('.modal-full').remove();
+    };
+
+if (!utilCookie.get('advertisementShown')) {
+    showAdvertisement();
+}
