@@ -8,9 +8,15 @@
 
 requirejs.config({
     baseUrl: '/assets/js',
+    map: {
+        '*': {
+            'less': 'libs/require-less/less'
+        }
+    },
     paths: {
         'jquery': 'libs/jquery.min',
         'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -31,8 +37,12 @@ requirejs.config({
 
 requirejs([
     'common/Tabs',
-    'text!common/templates/tab-nav.html'
-], function(Tabs, tab_nav_tpl) {
+    'text!common/templates/tab-nav.html',
+    'text!common/templates/footer.html',
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main',
+], function(Tabs, tab_nav_tpl, FooterTpl) {
 
     // streamers page
     var main_tab = new Tabs({
@@ -45,5 +55,7 @@ requirejs([
         .addTab('tab-2-2', 'Lan Party', 'game-title')
         .addTab('tab-2-3', '活動內容', 'game-title')
         .mount($('#video-stream-tabs'))
+
+    $('#footer-container').html(FooterTpl);
 
 });

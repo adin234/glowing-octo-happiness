@@ -15,8 +15,8 @@ requirejs.config({
     },
     paths: {
         'jquery': 'libs/jquery.min',
-        'text'  : 'libs/text',
-        'css'   : '../css',
+        'text': 'libs/text',
+        'css': '../css',
         'common': 'components/common'
     },
     shim: {
@@ -40,8 +40,10 @@ requirejs([
     'common/Tabs',
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
-    'text!components/youtubers/templates/video-tpl.html'
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl) {
+    'text!components/youtubers/templates/video-tpl.html',
+    'text!common/templates/footer.html',
+    'less!css/less/footer'
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
 
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
@@ -151,4 +153,7 @@ requirejs([
     all_members_slider
         .init(all_members)
         .mount($('#container-all-member'));
+
+    $('#footer-container').html(FooterTpl);
+
 });
