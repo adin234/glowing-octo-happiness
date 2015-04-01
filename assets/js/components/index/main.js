@@ -41,6 +41,7 @@ requirejs([
     'common/Footer',
     'common/List_Slider',
     'text!common/templates/video-slide.html',
+    'text!common/templates/game-slide.html',
     'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
@@ -51,7 +52,17 @@ requirejs([
     'less!css/less/main',
     'components/index/viewer',
     'components/index/streamers'
-], function(Tabs, Footer, List_Slider, video_slide_tpl, FooterTpl, scroller, Main_Slider, Videos_Slider) {
+], function(
+    Tabs,
+    Footer,
+    List_Slider,
+    video_slide_tpl,
+    game_slide_tpl,
+    FooterTpl,
+    scroller,
+    Main_Slider,
+    Videos_Slider
+) {
 
     var main_slider     = new Main_Slider(),
         main_tab        = new Tabs({hash_change: false}),
@@ -85,6 +96,11 @@ requirejs([
             item_template: video_slide_tpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
+        featured_game_slider = new List_Slider({
+            per_slider: 12,
+            item_template: game_slide_tpl,
+            $list_container: $('<ul class="game clearFix"/>')
+        })
 
         page_footer     = new Footer();
         // featured_games  = new Videos_Slider(),
@@ -129,6 +145,10 @@ requirejs([
         .mount( $('#latestVideos') );
 
     most_viewed_slider
+        .init(transform_videos(shuffle(index_data.most_viewed)))
+        .mount( $('#mostViewed') );
+
+    featured_game_slider
         .init(transform_videos(shuffle(index_data.most_viewed)))
         .mount( $('#mostViewed') );
 
