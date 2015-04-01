@@ -1,0 +1,53 @@
+/* Streams */
+@import "mixins";
+
+body {
+    &.streams {
+        background: url("@{gamers-newBG}") no-repeat;
+        background-position: fixed center top;
+        background-size: cover;
+        #stream-container {
+            display: table;
+            min-width: 1200px;
+            height: 100%;
+            margin: auto;
+        }
+        &.x2 {
+            #stream-container {
+                width: 90%;
+                min-width: 1300px;
+            }
+        }
+        &.x3 {
+            #stream-container {
+                width: 100%;
+            }
+        }
+        #main-container {
+            display: table-cell;
+            height: 100%;
+            overflow-y: auto;
+            position: relative;
+        }
+        #streamArea {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 10px 0 15px 15px;
+            overflow: hidden;
+        }
+        #side-container {
+            display: table-cell;
+            width: 365px;
+            vertical-align: top;
+        }
+    }
+    &:nth-child(3) {
+        display: none;
+    }
+    #navigation {
+        display: none;
+    }
+}

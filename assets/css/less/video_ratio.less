@@ -1,0 +1,162 @@
+/* Video Ratio */
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+    iframe, object {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.single.streams.x3 {
+    .videoWrapper {
+        height: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+        iframe, object {
+            position: relative;
+        }
+    }
+     #twitchStream {
+        height: 100vh;
+    }
+}
+
+#side-container {
+    #streamView {
+        height: 100%;
+        display: block;
+    }
+}
+
+.autocomplete-suggestions {
+    margin-top: 5px;
+    background: rgba(0, 0, 0, .9);
+    border: 1px solid #434343;
+    padding: 0 5px 12px;
+    color: #fff;
+    overflow: hidden;
+    div {
+        padding: 2px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    strong {
+        font-weight: normal;
+        color: #e00;
+    }
+    &:hover, .selected {
+        background: rgba(255, 255, 255, .9);
+        color: #e00;
+    }
+}
+
+#youtubers {
+    .list.clearFix, #games .list.clearFix {
+        padding-left: 50px;
+        box-sizing: border-box;
+    }
+    #tab-2-2 .list .uploader {
+        top: 25px;
+    }
+}
+
+#streamers {
+    .video {
+        .list {
+            h3 {
+                background-color: rgba(131, 7, 7, 0.75);
+                bottom: 0;
+                color: white;
+                font-size: 1.61538em;
+                line-height: 1.1;
+                width: 100%;
+            }
+            & > li {
+                float: left;
+                height: 246px;
+                width: 334px;
+                position: relative;
+            }
+        }
+    }
+}
+.zoom2x {
+    #outContainer {
+        width: 1450px;
+        .site {
+            padding-left: 385px;
+        }
+        .en {
+            form {
+                right: 208px;
+            }
+        }
+        .zh_tw {
+            form {
+                right: 227px;
+            }
+        }
+        header {
+            width: 1450px;
+        }
+        footer {
+            width: 1450px;
+        }
+        .member {
+            right: 220px;
+        }
+        .profile {
+            margin-bottom: 14px;
+            width: 1400px;
+        }
+        .tabs {
+            min-height: 682px;
+        }
+        .gamesList {
+            width: 704px;
+            li {
+                float: left;
+                padding: 0 16px 13px 0;
+            }
+            img {
+                display: block;
+            }
+        }
+    }
+    #container {
+        margin-top: 25px;
+        .heading {
+            background-image: none;
+            margin-top: 0;
+            h2 {
+                display: none;
+            }
+        }
+        .channel {
+            top: -8px;
+        }
+        .resize {
+            margin-top: 0;
+        }
+    }
+    .playArea {
+        height: 748px;
+        width: 1130px;
+    }
+    .videoList {
+        height: 748px;
+    }
+    .playList {
+        height: 684px;
+    }
+    .videoRelated {
+        margin: 0 auto;
+        width: 1048px;
+    }
+}
