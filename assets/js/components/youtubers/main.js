@@ -41,6 +41,9 @@ requirejs([
     'components/youtubers/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
+    'less!css/less/footer',
+    'less!css/less/outcontainer',
+    'less!css/less/main',
     'text!common/templates/footer.html',
     'less!css/less/footer'
 ], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl) {
