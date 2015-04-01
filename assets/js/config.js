@@ -1,7 +1,5 @@
-var server = 'http://dev.gamers.tm:3000/';
-var origin = 'http://dev.gamers.tm:8000/';
-// var server = 'http://api.gamers.tm/';
-// var origin = 'http://www.gamers.tm/';
+var server = 'http://api.gamers.tm/';
+var origin = 'http://www.gamers.tm/';
 var socket_server = 'http://api.gamers.tm:3001/';
 var attachments_server = 'http://community.gamers.tm/zh/';
 var community = 'http://community.gamers.tm/zh/';
