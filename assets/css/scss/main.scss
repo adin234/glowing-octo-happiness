@@ -682,10 +682,31 @@ textarea{
         font-weight: bold;
     }
 }
+.nav-container {
+	min-height: 120px;
+	background: #000;
+	header {
+		.nav-wrapper {
+			h1 {
+				a {
+					overflow: hidden;
+				    text-indent: 100%;
+				    white-space: nowrap;
+				}
+			}
+		}
+	}
+}
+#indexSliderContainer {
+	min-height: 549px;
+	.bx-wrapper {
 
+	}
+}
 #content {
     margin: 0 49px 0 50px;
     padding-bottom: 50px;
+    background: #C8C8C8;
     [id^="tab-"] {
         margin: 32px 0 30px;
     }

@@ -46,7 +46,7 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile', 'sass'], function() {
+gulp.task('dev', ['template-compile', 'sass', 'less'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
@@ -57,8 +57,12 @@ gulp.task('less', function () {
         .pipe(less({
             errLogToConsole: true
         }))
+        .on('error', function(err) {
+            console.log(err);
+            this.emit('end');
+        })
         .pipe(minifyCSS())
-        .pipe(gulp.dest('assets/css/less/css/'));
+        .pipe(gulp.dest('assets/css/css-backup/less/'));
 });
 
 gulp.task('compile-js', function() {
