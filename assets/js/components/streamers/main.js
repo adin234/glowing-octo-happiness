@@ -40,18 +40,19 @@ requirejs([
     'text!common/templates/tab-nav.html',
     'common/Global_Filter',
     'text!common/templates/sub-nav.html',
+    'text!common/templates/sub-nav-no-filters.html',
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Tabs, tab_nav_tpl, Global_Filter, SubNavTpl, FooterTpl) {
+], function(Tabs, tab_nav_tpl, Global_Filter, SubNavTpl, SubNavNoFilters, FooterTpl) {
 
     // streamers page
     var main_tab = new Tabs({
         template: tab_nav_tpl 
     });
 
-    var global_filter = new Global_filter();
+    var global_filter = new Global_Filter();
 
     main_tab
         .init()
@@ -65,5 +66,6 @@ requirejs([
         .mount($('#global-filter'))
 
     $('#footer-container').html(FooterTpl);
+    $('#sub-nav').html(SubNavTpl);
 
 });
