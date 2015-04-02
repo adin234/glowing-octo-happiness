@@ -44,10 +44,10 @@ requirejs([
     'common/Global_Filter',
     'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/footer',
     'less!css/less/outcontainer',
+    'less!css/less/footer',
     'less!css/less/main'
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, Global_Filter, SubNavTpl, FooterTpl) {
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl, SubNavTpl) {
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
