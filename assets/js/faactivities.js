@@ -1,5 +1,5 @@
 'use strict';
-/*global $,server,console*/
+/*global $,server,console,events_all*/
 
 $.get(server + 'freedom_events', function(data) {
     filter_display_events(data);
@@ -16,7 +16,6 @@ $.ajax({
 var show_html = function(data) {
 
     var html = [];
-
     $.ajax({
             dataType: 'jsonp',
             url: server + 'logged_user',
@@ -65,6 +64,7 @@ var get_date_diff = function(sched, time) {
 var show_events = function(data) {
 
     var html = [];
+
 
     data.forEach(function(item) {
 
@@ -152,7 +152,52 @@ var add_event = function() {
                     'e_description': $('#event_desc')
                         .val()
                 }
+
+            }).success(function() {
+                append_data();
+                delete_form_content();
             });
+
+
+
+        },
+        append_data = function() {
+            var html = [];
+
+            var event_name = $('#event_name').val(),
+                event_start_date = $('#event_start_date').val(),
+                event_end_date = $('#event_end_date').val(),
+                event_start_time = $('#event_start_time').val(),
+                event_end_time = $('#event_end_time').val();
+
+            html.push('<div class="activity">');
+            html.push('<div class="left">');
+            html.push('<div id="startEventDate">' + event_start_date + '</div>' +
+                '<p> - </p>' +
+                '<div id="endEventDate">' + event_end_date + '</div>');
+            html.push('<div id="startEventTime">' + event_start_time + '</div>' +
+                '<p> - </p>' +
+                '<div id="endEventTime">' + event_end_time + '</div>');
+            html.push('</div>');
+            html.push('<div class="center">');
+            html.push('<div id="eventHeader">' + event_name + '</div>');
+            html.push('</div>');
+            html.push('<div class="right">');
+            html.push('<div id="eventStatus">' + get_date_diff(event_end_date, event_end_time) +
+                '</div>');
+            html.push('</div>');
+            html.push('</div>');
+
+
+            $('#all_schedule').append(html);
+        },
+        delete_form_content = function() {
+            $('#event_name').val('');
+            $('#event_start_date').val('');
+            $('#event_end_date').val('');
+            $('#event_start_time').val('');
+            $('#event_end_time').val('');
+            $('#event_desc').val('');
         };
 
     start();
