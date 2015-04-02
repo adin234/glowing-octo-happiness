@@ -57,7 +57,19 @@ requirejs([
     'components/index/viewer',
     'components/index/streamers'
 
-], function(Tabs, Footer, FooterTpl, scroller, Main_Slider, Videos_Slider, Global_Filter, SubNavTpl) {
+], function(
+    Tabs,
+    Footer,
+    List_Slider,
+    video_slide_tpl,
+    game_slide_tpl,
+    FooterTpl,
+    scroller,
+    Main_Slider,
+    Videos_Slider,
+    Global_Filter,
+    SubNavTpl
+) {
 
     var main_slider     = new Main_Slider(),
         main_tab        = new Tabs({hash_change: false}),
@@ -95,7 +107,7 @@ requirejs([
             per_slider: 12,
             item_template: game_slide_tpl,
             $list_container: $('<ul class="game clearFix"/>')
-        })
+        }),
 
         page_footer     = new Footer(),
         global_filter   = new Global_Filter();
@@ -150,7 +162,7 @@ requirejs([
 
     global_filter
         .init()
-        .mount($('#global-filter'))
+        .mount($('#global-filter'));
 
 
     $('#footer-container').html(FooterTpl);
