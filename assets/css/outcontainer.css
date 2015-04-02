@@ -415,6 +415,8 @@
     position: fixed;
     top: 0;
     z-index: 9999; }
+    #outContainer .fixedMenu .nav-container {
+      background: #B70000; }
     #outContainer .fixedMenu.switchMenu.switchMenu .species li.current a {
       font-weight: bold;
       color: #fff;

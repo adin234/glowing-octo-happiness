@@ -845,6 +845,8 @@ footer {
     position: fixed;
     top: 0;
     z-index: 9999; }
+    #outContainer .fixedMenu .nav-container {
+      background: #B70000; }
     #outContainer .fixedMenu.switchMenu.switchMenu .species li.current a {
       font-weight: bold;
       color: #fff;
@@ -3020,6 +3022,11 @@ textarea#event_desc {
   border: 1px solid #7b7b7b;
   color: #7b7b7b; }
 
+#wrapper {
+  background: url("/assets/images/newgamersbg.jpg") no-repeat fixed center top;
+  background-size: 100% auto;
+  min-width: 1148px; }
+
 .clearFix {
   zoom: 1; }
   .clearFix:after {
@@ -3055,15 +3062,24 @@ textarea#event_desc {
     *display: inline;
     font-weight: bold; }
 
+#outContainer .nav-container {
+  min-height: 120px; }
+#outContainer .fixedMenu {
+  position: fixed;
+  top: 0;
+  z-index: 9999; }
+  #outContainer .fixedMenu.nav-container {
+    background: #B70000;
+    min-height: 42px !important; }
+
 .nav-container {
-  min-height: 120px;
   background: #000; }
   .nav-container header .nav-wrapper h1 a {
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap; }
 
-#indexSliderContainer {
+#outContainer #indexSliderContainer {
   min-height: 549px; }
 
 #content {
