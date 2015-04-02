@@ -133,32 +133,48 @@ var add_event = function() {
                 return true;
             }
         },
+        validate_time = function() {
 
+            var sta1 = $('#event_start_time').val().split(":");
+            var x = new Date(0, 0, 0, sta1[0], sta1[1]);
+            var sta2 = $('#event_end_time').val().split(":");
+            var y = new Date(0, 0, 0, sta2[0], sta2[1]);
+            return [x, y];
+
+        },
+        validate_date = function() {
+
+            console.log($('#event_start_date').val());
+            console.log($('#event_end_date').val());
+
+            var x = new Date($('#event_start_date').val());
+            var y = new Date($('#event_end_date').val());
+
+            return [x.getMonth(), y.getMonth()];
+
+        },
         post_event = function() {
-            $.ajax({
-                url: server + 'freedom_events/add',
-                type: 'post',
-                data: {
-                    'event_title': $('#event_name')
-                        .val(),
-                    'start_date': $('#event_start_date')
-                        .val(),
-                    'end_date': $('#event_end_date')
-                        .val(),
-                    'start_time': $('#event_start_time')
-                        .val(),
-                    'end_time': $('#event_end_time')
-                        .val(),
-                    'e_description': $('#event_desc')
-                        .val()
+
+            if (!isNaN(validate_date()[0]) && !isNaN(validate_date()[1])) {
+                if (!isNaN(Date.parse(validate_time()[0])) && !isNaN(Date.parse(validate_time()[1]))) {
+                    $.ajax({
+                        url: server + 'freedom_events/add',
+                        type: 'post',
+                        data: {
+                            'event_title': $('#event_name').val(),
+                            'start_date': $('#event_start_date').val(),
+                            'end_date': $('#event_end_date').val(),
+                            'start_time': $('#event_start_time').val(),
+                            'end_time': $('#event_end_time').val(),
+                            'e_description': $('#event_desc').val()
+                        }
+
+                    }).success(function() {
+                        append_data();
+                        delete_form_content();
+                    });
                 }
-
-            }).success(function() {
-                append_data();
-                delete_form_content();
-            });
-
-
+            }
 
         },
         append_data = function() {
@@ -210,4 +226,14 @@ $('body').on('click', '#add_event_button', function() {
 
 $('body').on('submit', '#event_form', function(event) {
     event.preventDefault();
+});
+
+
+$(document).ready(function() {
+    $('#event_start_date').bind("cut copy paste", function(e) {
+        e.preventDefault();
+    });
+    $('#event_end_date').bind("cut copy paste", function(e) {
+        e.preventDefault();
+    });
 });
