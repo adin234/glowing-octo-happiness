@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require("gulp"),
     fs = require('fs'),
     imagemin = require('gulp-imagemin'),
@@ -10,7 +8,8 @@ var gulp = require("gulp"),
     sass = require('gulp-sass'),
     watchLess = require('gulp-watch-less'),
     less = require('gulp-less'),
-    minifyCSS = require('gulp-minify-css');
+    minifyCSS = require('gulp-minify-css'),
+    amdOptimize = require('amd-optimize');
 
 gulp.task('image-compressed', function () {
     return gulp.src('assets/images/**/*.*')
@@ -64,4 +63,70 @@ gulp.task('less', function () {
         })
         .pipe(minifyCSS())
         .pipe(gulp.dest('assets/css/css-backup/less/'));
+});
+
+gulp.task('compile-js', function() {
+    var requirejs = require('requirejs');
+
+    var config = {
+
+        baseUrl: 'assets/js',
+        name: 'components/index/main',
+        out: 'assets/dist/main-built.js',
+        paths: {
+            'jquery': 'libs/jquery.min',
+            'text': 'libs/text',
+            'css': '../css',
+            'common': 'components/common',
+            'less-builder': 'libs/require-less/less-builder',
+            'normalize': 'libs/require-less/normalize',
+            'less': 'libs/require-less/less'
+        }
+
+
+        /*MODULE CONFIG*/
+        // baseUrl: 'assets/js',
+        // dir: 'assets/js/dist',
+        // map: {
+        //     '*': {
+        //         'less': 'libs/require-less/less'
+        //     }
+        // },
+        // paths: {
+        //     'jquery': 'libs/jquery.min',
+        //     'text': 'libs/text',
+        //     'css': '../css',
+        //     'common': 'components/common'
+        // },
+        // shim: {
+        //     'util'                                      : ['jquery'],
+        //     'function'                                  : ['jquery'],
+        //     'libs/jquery.gritter.min'                   : ['jquery'],
+        //     'libs/hoverIntent'                          : ['jquery'],
+        //     'libs/superfish'                            : ['jquery'],
+        //     'libs/jquery.fixed.menu'                    : ['jquery'],
+        //     'libs/jquery.autocomplete.min'              : ['jquery'],
+        //     'libs/jquery.bxslider.min'                  : ['jquery'],
+        //     'libs/jquery.mCustomScrollbar.concat.min'   : ['jquery'],
+        //     'libs/jquery.tabslet.min'                   : ['jquery'],
+        //     'libs/jquery.tooltipster.min'               : ['jquery'],
+        //     'libs/socketio'                             : ['jquery']
+        // },
+        // modules: [
+        //     {
+        //         name: 'components/index/main',
+        //         exclude: ['libs/require-less/normalize']
+        //     }
+        // ]
+    };
+
+    return requirejs.optimize(config, function (buildResponse) {
+        //buildResponse is just a text output of the modules
+        //included. Load the built file for the contents.
+        //Use config.out to get the optimized file contents.
+        var contents = fs.readFileSync(config.out, 'utf8');
+    }, function(err) {
+        //optimization err callback
+        console.log(err);
+    });
 });
