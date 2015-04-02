@@ -3,6 +3,9 @@
     position: relative;
     padding-top: 80px;
     width: 1148px;
+    .nav-container {
+    	min-height: 120px;
+    }
     #container {
         background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
@@ -587,7 +590,6 @@
                     }
                     a {
                         color: black;
-                        padding-left: 9px;
                         position: relative;
                         &:before {
                             content: "\00A0";

@@ -433,8 +433,6 @@ footer {
   position: relative;
   padding-top: 80px;
   width: 1148px; }
-  #outContainer .nav-container {
-    min-height: 120px; }
   #outContainer #container {
     background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
@@ -801,6 +799,7 @@ footer {
           white-space: nowrap; }
         #outContainer header .site > ul ul a {
           color: black;
+          padding-left: 9px;
           position: relative; }
           #outContainer header .site > ul ul a:before {
             content: "\00A0";
@@ -3055,21 +3054,9 @@ textarea#event_desc {
     *display: inline;
     font-weight: bold; }
 
-.nav-container {
-  min-height: 120px;
-  background: #000; }
-  .nav-container header .nav-wrapper h1 a {
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap; }
-
-#indexSliderContainer {
-  min-height: 549px; }
-
 #content {
   margin: 0 49px 0 50px;
-  padding-bottom: 50px;
-  background: #C8C8C8; }
+  padding-bottom: 50px; }
   #content [id^="tab-"] {
     margin: 32px 0 30px; }
   #content h2 {

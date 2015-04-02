@@ -51,7 +51,6 @@ requirejs([
     'common/Global_Filter',
     'text!common/templates/sub-nav.html',
 
-    'less!css/less/footer',
     'less!css/less/main',
     'components/index/viewer',
     'components/index/streamers'

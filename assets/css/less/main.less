@@ -2,6 +2,7 @@
 @import "language";
 @import "outcontainer";
 @import "header";
+@import "maincontainer";
 /*@import "footer";
 @import "scheduler_days";
 @import "video_games";
@@ -50,5 +51,10 @@ body {
     background: url("@{wrapperBG}") no-repeat fixed center top;
     background-size: 100% auto;
     min-width: 1148px;
+}
+a {
+	&:hover, &:active, &:focus {
+		cursor: pointer;
+	}
 }
 
