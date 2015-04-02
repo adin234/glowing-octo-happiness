@@ -24,7 +24,7 @@ var show_html = function(data) {
         })
         .done(function(session) {
             if (session.message === 'Not logged in.') {
-                document.getElementById('all_events_form').innerHTML = '';
+                document.getElementById('add_events_form').innerHTML = '';
             } else {
                 $.get(server + 'user/' + session.user_id, function(user) {
                     if (user.is_admin === 1) {
