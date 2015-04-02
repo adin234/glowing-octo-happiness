@@ -47,7 +47,6 @@ requirejs([
     'less!css/less/outcontainer',
     'less!css/less/main'
 ], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, SubNavTpl, FooterTpl) {
-
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
