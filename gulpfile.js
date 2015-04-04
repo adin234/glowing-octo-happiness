@@ -9,7 +9,7 @@ var gulp = require("gulp"),
     watchLess = require('gulp-watch-less'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
-    amdOptimize = require('amd-optimize'),
+    amdOptimize = require('gulp-amd-optimizer'),
     requirejs = require('requirejs');
 
 gulp.task('image-compressed', function () {
@@ -47,10 +47,11 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile', 'sass', 'less'], function() {
+gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
+    gulp.watch('assets/js/**/*', ['dev-js']);
 });
 
 gulp.task('less', function () {
@@ -66,8 +67,14 @@ gulp.task('less', function () {
         .pipe(gulp.dest('assets/css/css-backup/less/'));
 });
 
-gulp.task('dist-js', function() {
+gulp.task('dev-js', function() {
+    return gulp.src('assets/js/pages/**/*.js', {base: 'assets/js/pages'})
+        .pipe(amdOptimize({baseUrl: 'assets/js/pages'}))
+        .pipe(concat('index.js'))
+        .pipe(gulp.dest("assets/js/dist"));
+});
 
+gulp.task('dist-js', function() {
     var config = {
         appDir: 'assets/js/pages',
         baseUrl: './',
@@ -76,11 +83,10 @@ gulp.task('dist-js', function() {
         modules: [
             {
                 name: 'index',
-                out: 'index/main.min.js'
+                out: 'index/index.js'
             }
         ]
     };
-
     return requirejs.optimize(config, function (buildResponse) {
         //buildResponse is just a text output of the modules
         //included. Load the built file for the contents.
