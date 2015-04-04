@@ -19,7 +19,7 @@ define(function(require) {
         Main_Slider = require('components/Main_Slider'),
         Global_Filter = require('components/Global_Filter'),
         video_tpl   = require('text!components/templates/video-slide.html'),
-        game_tpl    = require('text!components/templates/game-slide.html'),
+        game_tpl    = require('text!components/templates/game-tpl.html'),
         footer_tpl  = require('text!components/templates/footer.html'),
         sub_nav_tpl = require('text!components/templates/sub-nav.html'),
         main_slider = new Main_Slider(),
@@ -38,6 +38,28 @@ define(function(require) {
                 item.link = '/youtuber/?user=' + item.user_id + '#!/video/' + item.snippet.resourceId.videoId;
                 return item;
             });
+        },
+        get_per_category = function(games) {
+            var categories = {},
+                filteredGames = [],
+                category;
+            games.forEach(function(game) {
+                if (typeof game.consoles === 'undefined') {
+                    return;
+                }
+                category = game.consoles[1];
+                categories[category] = categories[category] || [];
+                if (categories[category].length < 6 && !~filteredGames.indexOf(game)) {
+                    categories[category].push(game);
+                    filteredGames.push(game);
+                }
+            });
+            return filteredGames;
+        },
+        shuffle = function (o) {
+            o = o.slice(0);
+            for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
+            return o;
         },
         featured_videos_slider = new List_Slider({
             per_slider: 9,
@@ -59,12 +81,14 @@ define(function(require) {
             item_template: game_tpl,
             $list_container: $('<ul class="game clearFix"/>')
         }),
+        latest_game_slider = new List_Slider({
+            per_slider: 12,
+            item_template: game_tpl,
+            $list_container: $('<ul class="game clearFix"/>')
+        }),
 
         page_footer     = new Footer(),
         global_filter   = new Global_Filter();
-        // featured_games  = new Videos_Slider(),
-        // latest_games    = new Videos_Slider();
-
 
     main_slider
         .init( index_data.slider )
@@ -108,8 +132,12 @@ define(function(require) {
         .mount( $('#mostViewed') );
 
     featured_game_slider
-        .init(transform_videos(shuffle(index_data.most_viewed)))
-        .mount( $('#mostViewed') );
+        .init(get_per_category(shuffle(index_data.games)))
+        .mount( $('#featuredGames') );
+
+    latest_game_slider
+        .init(get_per_category(index_data.games))
+        .mount( $('#latestGames') );
 
     global_filter
         .init()
