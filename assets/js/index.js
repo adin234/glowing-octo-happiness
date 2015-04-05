@@ -453,7 +453,7 @@ var index_data,
 
         // $('#news_shows_playlists').html(html.join(''));
 
-        $('.sf-menu').superfish();
+        // $('.sf-menu').superfish();
     },
 
     start = function() {

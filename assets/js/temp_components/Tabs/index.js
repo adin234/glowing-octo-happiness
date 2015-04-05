@@ -53,15 +53,13 @@ define(function(require) {
                     this.init();
                 }
 
-                this.$el.append($nav_el);
+                this.$el.html($nav_el);
 
                 for (var i in contents) {
                     this.$el.append(contents[i]);
                 }
 
                 this.$el.tabslet({animation: true});
-
-                // $nav_el.find('a').first().trigger('click');
                 
                 if (hashLocation !== '') {
                     $nav_el.find('a[href="' + hashLocation + '"]').trigger('click');

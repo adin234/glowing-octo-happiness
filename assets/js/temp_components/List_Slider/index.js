@@ -4,7 +4,7 @@
 
 'use strict';
 
-define([], function() {
+define(function() {
 
     return function List_Slider(opts) {
 
@@ -65,13 +65,15 @@ define([], function() {
 
                 this.$el = $old_cont;
 
-                // this.$el.find('li > img').tooltipster({contentAsHTML: true});
-
                 this.$el.reloadSlider({
                     startSlide: 0,
                     infiniteLoop: false,
                     hideControlOnEnd: true
                 });
+
+                options.after_mount();
+
+                return this;
             },
 
             mount: function($container) {
@@ -80,13 +82,13 @@ define([], function() {
 
                 this.$el = $container;
 
-                // this.$el.find('li > img').tooltipster({contentAsHTML: true});
-
                 this.$el.bxSlider({
                     startSlide: 0,
                     infiniteLoop: false,
                     hideControlOnEnd: true
                 });
+
+                options.after_mount();
 
                 return this;
             }
