@@ -738,6 +738,10 @@ $(document).on('load-page', function () {
                 type: 'get'
             })
             .always(function (result) {
+                if (result.message) {
+                    result = [];
+                }
+
                 page_data.favorites = result;
                 $(window).trigger('hashchange');
             });
