@@ -1,6 +1,8 @@
 /*global
-    index_data,
-    attachments_server
+    attachments_server,
+    server,
+    showSocialButtons,
+    index_data: true
 */
 
 'use strict';
@@ -8,16 +10,12 @@
 
 define(function(require) {
 
-    require('components/Featured_Users/index');
-    require('components/Streamers_List/index');
-    require('components/Scroller/index');
-    require('components/Footer/index');
-
     var Tabs        = require('components/Tabs/index'),
         List_Slider = require('components/List_Slider/index'),
         Main_Slider = require('components/Main_Slider/index'),
         Thread_List = require('components/Thread_List/index'),
         Global_Filter = require('components/Global_Filter/index'),
+        Featured_Users = require('components/Featured_Users/index'),
         video_tpl   = require('text!./templates/video-slide.html'),
         game_tpl    = require('text!./templates/game-tpl.html'),
         main_slider = new Main_Slider(),
@@ -58,7 +56,30 @@ define(function(require) {
         }),
         latest_threads = new Thread_List(),
         top_threads = new Thread_List(),
-        global_filter   = new Global_Filter(),
+        has_init = false,
+        global_filter   = new Global_Filter({
+            onChange: function(filter) {
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    dataType: 'json',
+                    url: server + 'index?console=' + filter.id
+                }).done(function (data) {
+                    index_data = data;
+
+                    if (!has_init) {
+                        init();
+                        has_init = true;
+                    } else {
+                        featured_videos_slider.reload(transform_videos(index_data.featured_videos));
+                        latest_videos_slider.reload(transform_videos(index_data.latest_videos));
+                        most_viewed_slider.reload(transform_videos(index_data.most_viewed));
+                        featured_game_slider.reload(index_data.games);
+                        latest_game_slider.reload(index_data.games);
+                    }
+                });
+            }
+        }),
         transform_videos = function(data) {
             return data.map(function(item) {
                 item.provider = attachments_server;
@@ -93,13 +114,49 @@ define(function(require) {
             o = o.slice(0);
             for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
             return o;
+        },
+        init = function() {
+
+            main_slider
+                .init( index_data.slider )
+                .mount( $('#imageSlider') );
+
+            latest_threads
+                .init(index_data.recent_threads)
+                .mount($('<div id="forumSection">'));
+
+            top_threads
+                .init(index_data.threads)
+                .mount($('<div id="hotForumSection">'));
+
+            threads_tabs
+                .init()
+                .addTab('tab-3-1', '最新討論', 'tab-3-2', latest_threads.$el)
+                .addTab('tab-3-2', '熱門論壇', 'tab-3-2', top_threads.$el)
+                .mount($('#threads_tabs'));
+
+            featured_videos_slider
+                .init(transform_videos(shuffle(index_data.featured_videos)))
+                .mount( $('#featuredVideos') );
+
+            latest_videos_slider
+                .init(transform_videos(shuffle(index_data.latest_videos)))
+                .mount( $('#latestVideos') );
+
+            most_viewed_slider
+                .init(transform_videos(shuffle(index_data.most_viewed)))
+                .mount( $('#mostViewed') );
+
+            featured_game_slider
+                .init(get_per_category(shuffle(index_data.games)))
+                .mount( $('#featuredGames') );
+
+            latest_game_slider
+                .init(get_per_category(index_data.games))
+                .mount( $('#latestGames') );
+
+            new Featured_Users(index_data);
         };
-
-    require('components/Sub_Nav/index');
-
-    main_slider
-        .init( index_data.slider )
-        .mount( $('#imageSlider') );
 
     main_tab
         .init()
@@ -122,41 +179,14 @@ define(function(require) {
         .addTab('tab-shows-playlist-3', 'Freedom!教學', 'tab-news-playlist-3', $('<ul/>'))
         .mount($('#news_shows_playlists_block'));
 
-    latest_threads
-        .init(index_data.recent_threads)
-        .mount($('<div id="forumSection">'));
-
-    top_threads
-        .init(index_data.threads)
-        .mount($('<div id="hotForumSection">'));
-
-    threads_tabs
-        .init()
-        .addTab('tab-3-1', '最新討論', 'tab-3-2', latest_threads.$el)
-        .addTab('tab-3-2', '熱門論壇', 'tab-3-2', top_threads.$el)
-        .mount($('#threads_tabs'));
-
-    featured_videos_slider
-        .init(transform_videos(shuffle(index_data.featured_videos)))
-        .mount( $('#featuredVideos') );
-
-    latest_videos_slider
-        .init(transform_videos(shuffle(index_data.latest_videos)))
-        .mount( $('#latestVideos') );
-
-    most_viewed_slider
-        .init(transform_videos(shuffle(index_data.most_viewed)))
-        .mount( $('#mostViewed') );
-
-    featured_game_slider
-        .init(get_per_category(shuffle(index_data.games)))
-        .mount( $('#featuredGames') );
-
-    latest_game_slider
-        .init(get_per_category(index_data.games))
-        .mount( $('#latestGames') );
-
     global_filter
         .init()
         .mount($('#global-filter'));
+
+    showSocialButtons();
+
+    require('components/Streamers_List/index');
+    require('components/Scroller/index');
+    require('components/Footer/index');
+    require('components/Sub_Nav/index');
 });

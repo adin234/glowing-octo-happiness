@@ -85,8 +85,6 @@ define(function() {
 
                 this.$el.append($list_container);
 
-                $list_container.find('li').first().addClass('current');
-
                 this.refresh_active();
                 
                 this.init_listeners();
@@ -112,6 +110,9 @@ define(function() {
                     $list_container.find('li').removeClass('current');
                     $active.parent().addClass('current');
                     options.onChange(items[$active.first().data('index')]);
+                } else {
+                    $list_container.find('li').first().addClass('current');
+                    options.onChange(items[0]);
                 }
             }
         };

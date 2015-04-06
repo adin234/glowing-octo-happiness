@@ -473,4 +473,4 @@ var index_data,
         // });
     };
 
-    start();
+    // start();
