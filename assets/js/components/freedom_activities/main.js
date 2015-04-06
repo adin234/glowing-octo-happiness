@@ -38,6 +38,7 @@ requirejs.config({
 requirejs([
     'common/Global_Filter',
     'text!common/templates/sub-nav.html',
+    'text!common/templates/sub-nav-no-filters.html',
     'common/Tabs',
     'text!common/templates/freedom-tab-nav.html',
     'text!components/freedom_activities/templates/tab1.html',
@@ -47,18 +48,12 @@ requirejs([
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main',
-], function(Global_Filter, SubNavTpl, Tabs, tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, FooterTpl) {
+], function(Global_Filter, SubNavTpl, SubNavTplNoFilters, Tabs, tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, FooterTpl) {
 
     var main_tab = new Tabs({
         className: 'lanparty_type1 adjust_line_green',
         template: tab_nav_tpl 
     });
-
-    var global_filter   = new Global_Filter();
-
-    global_filter
-        .init()
-        .mount($('#global-filter'))
         
     // freedom activity page
     main_tab
@@ -67,6 +62,10 @@ requirejs([
         .addTab('tab-4-2', '最新發文', 'FreedomEvents', tab2_tpl)
         .addTab('tab-4-3', 'Freedom!活動紀錄', 'FreedomArchive', tab3_tpl)
         .mount($('#freedom-tabs'));
+
+    global_filter
+        .init()
+        .mount($('#global-filter'));
 
     $('#footer-container').html(FooterTpl);
     $('#sub-nav').html(SubNavTpl);

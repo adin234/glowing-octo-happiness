@@ -41,13 +41,12 @@ requirejs([
     'common/List_Slider',
     'text!components/youtubers/templates/game-tpl.html',
     'text!components/youtubers/templates/video-tpl.html',
-    'common/Global_Filter',
     'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
-    'less!css/less/outcontainer',
     'less!css/less/footer',
+    'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, FooterTpl, SubNavTpl) {
+], function(Global_Filter, Tabs, List_Slider, game_tpl, video_tpl, SubNavTpl, FooterTpl) {
     var games_tab               = new Tabs({hash_change: false}),
         videos_tab              = new Tabs({hash_change: false}),
         latest_games_slider     = new List_Slider({
@@ -162,10 +161,6 @@ requirejs([
     all_members_slider
         .init(all_members)
         .mount($('#container-all-member'));
-
-    global_filter
-        .init()
-        .mount($('#global-filter'))
 
     $('#footer-container').html(FooterTpl);
     $('#sub-nav').html(SubNavTpl);
