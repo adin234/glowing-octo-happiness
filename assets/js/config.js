@@ -29,17 +29,17 @@
      *     python AdinHTTPServer.py 8888
      */
     var env = {
-            'dev.gamers.tm:8000': {
-                server: 'http://dev.gamers.tm:3000/',
-                origin: 'http://dev.gamers.tm:8000/',
+            'beta.gamers.tm': {
+                server: 'http://api.gamers.tm/',
+                origin: 'http://beta.gamers.tm/',
                 socket_server: 'http://api.gamers.tm:3001/',
                 attachments_server: 'http://community.gamers.tm/zh/',
                 community: 'http://community.gamers.tm/zh/',
                 page_maintenance: '/maintenance.html'
             },
-            'localhost:8000': {
+            'www.gamers.tm': {
                 server: 'http://api.gamers.tm/',
-                origin: 'http://beta.gamers.tm/',
+                origin: 'http://www.gamers.tm/',
                 socket_server: 'http://api.gamers.tm:3001/',
                 attachments_server: 'http://community.gamers.tm/zh/',
                 community: 'http://community.gamers.tm/zh/',
@@ -47,7 +47,7 @@
             },
             'default': {
                 server: 'http://api.gamers.tm/',
-                origin: 'http://beta.gamers.tm/',
+                origin: window.location.origin,
                 socket_server: 'http://api.gamers.tm:3001/',
                 attachments_server: 'http://community.gamers.tm/zh/',
                 community: 'http://community.gamers.tm/zh/',

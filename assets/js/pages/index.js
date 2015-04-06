@@ -74,8 +74,8 @@ define(function(require) {
                         featured_videos_slider.reload(transform_videos(index_data.featured_videos));
                         latest_videos_slider.reload(transform_videos(index_data.latest_videos));
                         most_viewed_slider.reload(transform_videos(index_data.most_viewed));
-                        featured_game_slider.reload(index_data.games);
-                        latest_game_slider.reload(index_data.games);
+                        featured_game_slider.reload(shuffle(limit_category(filter.id, index_data.games)));
+                        latest_game_slider.reload(shuffle(limit_latest(index_data.games)));
                     }
                 });
             }
@@ -109,6 +109,15 @@ define(function(require) {
                 }
             });
             return filteredGames;
+        },
+        limit_latest = function (games) {
+            return games.slice(0, 30);
+        },
+        limit_category = function (category, data) {
+            var collection = data.filter(function(item) {
+                return item.consoles && ~item.consoles.indexOf(category);
+            });
+            return collection.slice(0, 6);
         },
         shuffle = function (o) {
             o = o.slice(0);
@@ -152,7 +161,7 @@ define(function(require) {
                 .mount( $('#featuredGames') );
 
             latest_game_slider
-                .init(get_per_category(index_data.games))
+                .init(shuffle(limit_latest(index_data.games)))
                 .mount( $('#latestGames') );
 
             new Featured_Users(index_data);
