@@ -21,11 +21,6 @@ var index_data,
     shuffledGames = [],
     shuffledLatest = [],
 
-    shuffle = function (o) {
-        for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
-        return o;
-    },
-
     renderFeaturedGames = function (string, trigger) {
         // if (string === 'all') {
         //     $.ajax({
@@ -458,7 +453,7 @@ var index_data,
 
         // $('#news_shows_playlists').html(html.join(''));
 
-        $('.sf-menu').superfish();
+        // $('.sf-menu').superfish();
     },
 
     start = function() {
@@ -478,4 +473,4 @@ var index_data,
         // });
     };
 
-    start();
+    // start();

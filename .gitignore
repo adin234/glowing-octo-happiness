@@ -2,3 +2,4 @@
 config.yml
 history.lock
 node_modules
+assets/js/dist
