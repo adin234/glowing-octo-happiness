@@ -7,7 +7,6 @@
 
 'use strict';
 
-
 define(function(require) {
 
     var Tabs        = require('components/Tabs/index'),
@@ -164,7 +163,10 @@ define(function(require) {
                 .init(shuffle(limit_latest(index_data.games)))
                 .mount( $('#latestGames') );
 
-            new Featured_Users(index_data);
+            new Featured_Users(index_data); 
+
+            // featured game changer if url has set hash
+            featured_game_slider.reload(shuffle(limit_category(window.location.href.replace(origin+"/#!/console/", ""), index_data.games)));
         };
 
     main_tab

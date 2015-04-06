@@ -39,13 +39,11 @@ requirejs([
     'common/Tabs',
     'text!common/templates/tab-nav.html',
     'common/Global_Filter',
-    'text!common/templates/sub-nav.html',
-    'text!common/templates/sub-nav-no-filters.html',
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Tabs, tab_nav_tpl, Global_Filter, SubNavTpl, SubNavNoFilters, FooterTpl) {
+], function(Tabs, tab_nav_tpl, Global_Filter, FooterTpl) {
 
     // streamers page
     var main_tab = new Tabs({
@@ -61,11 +59,10 @@ requirejs([
         .addTab('tab-2-3', '活動內容', 'game-title')
         .mount($('#video-stream-tabs'))
 
-    global_filter
-        .init()
-        .mount($('#global-filter'))
-
     $('#footer-container').html(FooterTpl);
-    $('#sub-nav').html(SubNavTpl);
+
+    $(function() {
+        $('.sf-menu').superfish();
+    });
 
 });

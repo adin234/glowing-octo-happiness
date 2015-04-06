@@ -38,8 +38,6 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'common/Global_Filter',
-    'text!common/templates/sub-nav.html',
-    'text!common/templates/sub-nav-no-filters.html',
     'text!common/templates/footer.html',
     'text!common/templates/lanparty-tab-nav.html',
     'text!common/templates/lanparty-sidetab-nav.html',
@@ -50,7 +48,7 @@ requirejs([
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Tabs, Global_Filter, SubNavTpl, SubNavNoFilters, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
+], function(Tabs, Global_Filter, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
 
     var global_filter = new Global_Filter();
 
@@ -79,11 +77,10 @@ requirejs([
         .addTab('tab-4-4', 'Lan Party活動紀錄', 'Lan Party活動紀錄', tab3_tpl)
         .mount($('#container_lanparty'))
 
-    global_filter
-        .init()
-        .mount($('#global-filter'))
-
     $('#footer-container').html(FooterTpl);
-    $('#sub-nav').html(SubNavTpl);
+
+    $(function() {
+        $('.sf-menu').superfish();
+    });
 
 });

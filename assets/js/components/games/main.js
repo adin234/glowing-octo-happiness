@@ -37,7 +37,6 @@ requirejs.config({
 requirejs([
     'common/Tabs',
     'common/Global_Filter',
-    'text!common/templates/sub-nav.html',
     'text!common/templates/footer.html',
     'components/index/scroller',
     'components/index/Main_Slider',
@@ -46,7 +45,7 @@ requirejs([
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Tabs, Global_Filter, SubNavTpl, FooterTpl, scroller, Main_Slider, Videos_Slider) {
+], function(Tabs, Global_Filter, FooterTpl, scroller, Main_Slider, Videos_Slider) {
 
     var main_slider = new Main_Slider(),
         main_tab = new Tabs(),
@@ -79,11 +78,11 @@ requirejs([
         // .init(shuffle(index_data.most_viewed))
         .mount( $('#mostViewed') );
 
-    global_filter
-        .init()
-        .mount($('#global-filter'))
 
     $('#footer-container').html(FooterTpl);
-    $('#sub-nav').html(SubNavTpl);
+
+    $(function() {
+        $('.sf-menu').superfish();
+    });
     
 });

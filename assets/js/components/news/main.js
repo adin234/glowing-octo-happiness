@@ -40,13 +40,11 @@ requirejs([
     'text!common/templates/playlist-tab-nav.html',
     'text!common/templates/tab-nav.html',
     'common/Global_Filter',
-    'text!common/templates/sub-nav.html',
-    'text!common/templates/sub-nav-no-filters',
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Tabs, tab_nav_tpl, tab_nav_tpl_2, Global_Filter, SubNavTpl, SubNavNoFiltersTpl, FooterTpl) {
+], function(Tabs, tab_nav_tpl, tab_nav_tpl_2, Global_Filter, FooterTpl) {
 
     // shows page
     var main_tab_1 = new Tabs({
@@ -72,11 +70,10 @@ requirejs([
         .addTab('#tab-2', '評論')
         .mount($('#video-related-tabs'))
 
-    global_filter
-        .init()
-        .mount($('#global-filter'))
-
     $('#footer-container').html(FooterTpl);
-    $('#sub-nav').html(SubNavTpl);
+
+    $(function() {
+        $('.sf-menu').superfish();
+    });
 
 });
