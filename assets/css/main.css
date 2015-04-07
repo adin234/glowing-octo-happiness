@@ -3901,7 +3901,7 @@ div.streamer {
 
 .switch-menu #outContainer header .species ul li a {
   visibility: hidden; }
-.switch-menu #outContainer header .fixedMenu .species ul li a {
+.switch-menu #outContainer header .species ul li a {
   visibility: visible; }
 
 .mCSB_inside > .mCSB_container {

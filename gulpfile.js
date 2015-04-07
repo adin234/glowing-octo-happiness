@@ -47,11 +47,11 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile', 'sass', 'less', 'dist-js'], function() {
+gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
-    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dist-js']);
+    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js']);
 });
 
 gulp.task('less', function () {
