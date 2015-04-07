@@ -42,7 +42,9 @@ requirejs([
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
-    'less!css/less/main'
+    'less!css/less/main',
+    'less!css/less/about'
+
 ], function(Global_Filter, SubNavTpl, SubNavNoFilters, FooterTpl) {
 
     var global_filter   = new Global_Filter();

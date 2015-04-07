@@ -105,8 +105,8 @@
     font-size: 0.85714em; }
   .lang_zh_tw .about p, .lang_zh_tw .lang_zh_tw .about ol, .lang_zh_tw .lang_zh_tw .about h3 {
     font-size: 1.07143em; }
-    .lang_zh_tw .about p ul p, .lang_zh_tw .lang_zh_tw .about ol ul p, .lang_zh_tw .lang_zh_tw .about h3 ul p {
-      font-size: 0.85714em; }
+  .lang_zh_tw .about ul p {
+    font-size: 0.85714em; }
   .lang_zh_tw .channel {
     font-size: 0.92857em; }
   .lang_zh_tw .resize li:first-child {
@@ -2641,7 +2641,7 @@ mark {
 a {
   outline: none;
   text-decoration: none; }
-  a .link-white {
+  a.link-white {
     color: #fff;
     text-decoration: none; }
   a:hover, a:focus, a:active {
@@ -3072,12 +3072,10 @@ textarea#event_desc {
     background: #B70000;
     min-height: 42px !important; }
 
-.nav-container {
-  background: #000; }
-  .nav-container header .nav-wrapper h1 a {
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap; }
+.nav-container header .nav-wrapper h1 a {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap; }
 
 #outContainer #indexSliderContainer {
   min-height: 549px; }
