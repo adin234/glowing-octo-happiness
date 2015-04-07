@@ -1,3 +1,4 @@
+});
 /*global
     requirejs,
     index_data,
@@ -37,21 +38,16 @@ requirejs.config({
 
 requirejs([
     'common/Global_Filter',
-    'text!common/templates/sub-nav.html',
-    'text!common/templates/sub-nav-no-filters.html',
     'text!common/templates/footer.html',
     'less!css/less/footer',
     'less!css/less/outcontainer',
     'less!css/less/main'
-], function(Global_Filter, SubNavTpl, SubNavNoFilters, FooterTpl) {
-
-    var global_filter   = new Global_Filter();
-
-    global_filter
-        .init()
-        .mount($('#global-filter'));
+], function(Global_Filter, FooterTpl) {
 
     $('#footer-container').html(FooterTpl);
-    $('#sub-nav').html(SubNavTpl);
+
+    $(function() {
+        $('.sf-menu').superfish();
+    });
 
 });
