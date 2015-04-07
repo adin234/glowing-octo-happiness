@@ -173,7 +173,7 @@ mark {
 a {
     outline: none;
     text-decoration: none;
-    .link-white {
+    &.link-white {
         color: #fff;
         text-decoration: none;
     }
@@ -705,7 +705,6 @@ textarea{
 }
 
 .nav-container {
- 	background: #000;
 	header {
 		.nav-wrapper {
 			h1 {

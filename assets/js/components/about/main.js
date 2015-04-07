@@ -42,7 +42,7 @@ requirejs([
     'less!css/less/outcontainer',
     'less!css/less/main'
 ], function(Global_Filter, FooterTpl) {
-
+    
     $('#footer-container').html(FooterTpl);
 
     $(function() {

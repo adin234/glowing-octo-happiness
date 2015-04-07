@@ -47,15 +47,8 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js'], function() {
-    gulp.watch('assets/templates/**/*', ['template-compile']);
-    gulp.watch('assets/css/scss/**/*', ['sass']);
-    gulp.watch('assets/css/less/**/*', ['less']);
-    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js']);
-});
-
 gulp.task('less', function () {
-    return gulp.src('assets/css/less/*.less')
+    return gulp.src('assets/css/less/**/*.less')
         .pipe(less({
             errLogToConsole: true
         }))
@@ -63,8 +56,14 @@ gulp.task('less', function () {
             console.log(err);
             this.emit('end');
         })
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('assets/css/css-backup/less/'));
+        .pipe(gulp.dest('assets/css/css-backup/less'));
+});
+
+gulp.task('dev', ['template-compile', 'sass', 'less'], function() {
+    gulp.watch('assets/templates/**/*', ['template-compile']);
+    gulp.watch('assets/css/scss/**/*', ['sass']);
+    gulp.watch('assets/css/less/**/*', ['less']);
+    // gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js']);
 });
 
 gulp.task('dev-js', ['compile-components'], function() {

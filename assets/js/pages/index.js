@@ -197,6 +197,7 @@ define('index', function(require) {
         .mount($('#global-filter'));
 
     showSocialButtons();
+    searchBoxInit();
 
     require('Streamers_List/index');
     require('Scroller/index');

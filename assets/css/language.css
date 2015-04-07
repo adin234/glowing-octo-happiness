@@ -105,8 +105,8 @@
     font-size: 0.85714em; }
   .lang_zh_tw .about p, .lang_zh_tw .lang_zh_tw .about ol, .lang_zh_tw .lang_zh_tw .about h3 {
     font-size: 1.07143em; }
-    .lang_zh_tw .about p ul p, .lang_zh_tw .lang_zh_tw .about ol ul p, .lang_zh_tw .lang_zh_tw .about h3 ul p {
-      font-size: 0.85714em; }
+  .lang_zh_tw .about ul p {
+    font-size: 0.85714em; }
   .lang_zh_tw .channel {
     font-size: 0.92857em; }
   .lang_zh_tw .resize li:first-child {
