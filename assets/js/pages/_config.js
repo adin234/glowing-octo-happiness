@@ -8,6 +8,7 @@ requirejs.config({
     paths: {
         'jquery'        : '../libs/jquery.min',
         'components'    : '../temp_components',
+        'Featured_Users': './components/Featured_Users',
         'text'          : '../libs/text',
         'css'           : '../../css',
         'less'          : '../libs/require-less/less',

@@ -1,21 +1,20 @@
 /*global
     attachments_server,
     server,
-    showSocialButtons,
-    index_data: true
+    showSocialButtons
 */
 
 'use strict';
 
 
-define(function(require) {
-
-    var Tabs        = require('components/Tabs/index'),
-        List_Slider = require('components/List_Slider/index'),
-        Main_Slider = require('components/Main_Slider/index'),
-        Thread_List = require('components/Thread_List/index'),
-        Global_Filter = require('components/Global_Filter/index'),
-        Featured_Users = require('components/Featured_Users/index'),
+define('index', function(require) {
+    var index_data = {},
+        Tabs        = require('Tabs/index'),
+        List_Slider = require('List_Slider/index'),
+        Main_Slider = require('Main_Slider/index'),
+        Thread_List = require('Thread_List/index'),
+        Global_Filter = require('Global_Filter/index'),
+        Featured_Users = require('Featured_Users/index'),
         video_tpl   = require('text!./templates/video-slide.html'),
         game_tpl    = require('text!./templates/game-tpl.html'),
         main_slider = new Main_Slider(),
@@ -194,8 +193,11 @@ define(function(require) {
 
     showSocialButtons();
 
-    require('components/Streamers_List/index');
-    require('components/Scroller/index');
-    require('components/Footer/index');
-    require('components/Sub_Nav/index');
+    require('Streamers_List/index');
+    require('Scroller/index');
+    require('Footer/index');
+    require('Sub_Nav/index');
 });
+
+
+require(['index']);
