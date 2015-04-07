@@ -1,5 +1,6 @@
 'use strict';
-/*global $,server,console,events_all*/
+
+/* global $,server,console,alert*/
 
 $.get(server + 'freedom_events', function(data) {
     filter_display_events(data);
@@ -67,8 +68,6 @@ var show_events = function(data) {
 
 
     data.forEach(function(item) {
-
-
         html.push('<div class="activity">');
         html.push('<div class="left">');
         html.push('<div id="startEventDate">' + item.start_date + '</div>' +
@@ -116,94 +115,33 @@ var filter_display_events = function(all_events) {
 var add_event = function() {
 
     var start = function() {
-            $.ajax({
-                dataType: 'jsonp',
-                url: server + 'freedom_events/validate',
-                type: 'get'
-            }).success(function(csrf_token) {
-                if (validate(csrf_token) === true) {
-                    post_event();
-                }
-            }).fail(function() {});
-        },
-
-        validate = function(csrf_token) {
-            var csrf_in_form = $('#csrftoken').val();
-            if (csrf_token === csrf_in_form) {
-                return true;
-            }
+            post_event();
         },
         validate_time = function() {
 
-            var sta1 = $('#event_start_time').val().split(":");
+            var sta1 = $('#event_start_time').val().split(':');
             var x = new Date(0, 0, 0, sta1[0], sta1[1]);
-            var sta2 = $('#event_end_time').val().split(":");
+            var sta2 = $('#event_end_time').val().split(':');
             var y = new Date(0, 0, 0, sta2[0], sta2[1]);
             return [x, y];
 
         },
         validate_date = function() {
-
-            console.log($('#event_start_date').val());
-            console.log($('#event_end_date').val());
-
             var x = new Date($('#event_start_date').val());
             var y = new Date($('#event_end_date').val());
 
             return [x.getMonth(), y.getMonth()];
 
         },
-        post_event = function() {
 
-            if (!isNaN(validate_date()[0]) && !isNaN(validate_date()[1])) {
-                if (!isNaN(Date.parse(validate_time()[0])) && !isNaN(Date.parse(validate_time()[1]))) {
-                    $.ajax({
-                        url: server + 'freedom_events/add',
-                        type: 'post',
-                        data: {
-                            'event_title': $('#event_name').val(),
-                            'start_date': $('#event_start_date').val(),
-                            'end_date': $('#event_end_date').val(),
-                            'start_time': $('#event_start_time').val(),
-                            'end_time': $('#event_end_time').val(),
-                            'e_description': $('#event_desc').val()
-                        }
-
-                    }).success(function() {
-                        append_data();
-                        delete_form_content();
-                    });
-                }
-            }
-
-        },
-        append_data = function() {
+        append_data = function(event_data) {
             var html = [];
 
-            var event_name = $('#event_name').val(),
-                event_start_date = $('#event_start_date').val(),
-                event_end_date = $('#event_end_date').val(),
-                event_start_time = $('#event_start_time').val(),
-                event_end_time = $('#event_end_time').val();
-
-            html.push('<div class="activity">');
-            html.push('<div class="left">');
-            html.push('<div id="startEventDate">' + event_start_date + '</div>' +
-                '<p> - </p>' +
-                '<div id="endEventDate">' + event_end_date + '</div>');
-            html.push('<div id="startEventTime">' + event_start_time + '</div>' +
-                '<p> - </p>' +
-                '<div id="endEventTime">' + event_end_time + '</div>');
-            html.push('</div>');
-            html.push('<div class="center">');
-            html.push('<div id="eventHeader">' + event_name + '</div>');
-            html.push('</div>');
-            html.push('<div class="right">');
-            html.push('<div id="eventStatus">' + get_date_diff(event_end_date, event_end_time) +
-                '</div>');
-            html.push('</div>');
-            html.push('</div>');
-
+            html.push('<div class="activity"><div class="left"><div id="startEventDate">' + event_data.start_date + '</div><p> - </p>' +
+                '<div id="endEventDate">' + event_data.end_date + '</div> <div id="startEventTime">' + event_data.start_time + '</div>' +
+                '<p> - </p> <div id="endEventTime">' + event_data.end_time + '</div></div><div class="center">' +
+                '<div id="eventHeader">' + event_data.event_title + '</div></div><div class="right"><div id="eventStatus">' + get_date_diff(event_data.end_date, event_data.end_time) +
+                '</div></div></div>');
 
             $('#all_schedule').append(html);
         },
@@ -214,6 +152,38 @@ var add_event = function() {
             $('#event_start_time').val('');
             $('#event_end_time').val('');
             $('#event_desc').val('');
+        },
+        post_event = function() {
+
+
+            if (!isNaN(validate_date()[0]) && !isNaN(validate_date()[1])) {
+                if (!isNaN(Date.parse(validate_time()[0])) && !isNaN(Date.parse(validate_time()[1]))) {
+
+                    $.ajax({
+                        url: server + 'freedom_events/validation',
+                        type: 'get',
+                        dataType: 'jsonp',
+                        data: {
+                            'event_title': $('#event_name').val(),
+                            'start_date': $('#event_start_date').val(),
+                            'end_date': $('#event_end_date').val(),
+                            'start_time': $('#event_start_time').val(),
+                            'end_time': $('#event_end_time').val(),
+                            'e_description': $('#event_desc').val(),
+                            'csrf_token': $('#csrftoken').val()
+                        }
+
+                    }).success(function(data) {
+                        append_data(data);
+                        delete_form_content();
+                    }).fail(function() {});
+
+                } else {
+                    alert('Invalid Input');
+                    delete_form_content();
+                }
+
+            }
         };
 
     start();
@@ -226,14 +196,4 @@ $('body').on('click', '#add_event_button', function() {
 
 $('body').on('submit', '#event_form', function(event) {
     event.preventDefault();
-});
-
-
-$(document).ready(function() {
-    $('#event_start_date').bind("cut copy paste", function(e) {
-        e.preventDefault();
-    });
-    $('#event_end_date').bind("cut copy paste", function(e) {
-        e.preventDefault();
-    });
 });
