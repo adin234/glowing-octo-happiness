@@ -349,17 +349,19 @@ var searchId = false,
 
 
     searchGamesBoxInit = function () {
-        if (!gamesAutocompleteArray.length) {
-            return;
-        }
-        optionGames = {
-            lookup: gamesAutocompleteArray,
-            onSelect: function (suggestion) {
-                filter_game(this);
-            }
-        };
-        $('#txtbox-search-games')
-            .autocomplete(optionGames);
+        // if (!gamesAutocompleteArray.length) {
+        //     return;
+        // }
+        // optionGames = {
+        //     lookup: gamesAutocompleteArray,
+        //     onSelect: function (suggestion) {
+        //         // filter_game(this);
+        //         console.log('trigger', this);
+        //         $(this).trigger('item-selected');
+        //     }
+        // };
+        // $('#txtbox-search-games')
+        //     .autocomplete(optionGames);
     },
 
     youtuberSearch = function () {
@@ -389,27 +391,27 @@ var searchId = false,
     },
 
     youtuberUserSearch = function () {
-        options = {
-            serviceUrl: server + 'youtubers/search_youtubers',
-            zIndex: 9999,
-            onSelect: function (value) {
-                var searchDom = $('#txtbox-search-videos');
-                searchDom.val(value.value);
-                filter_videos(searchDom);
-            }
-        };
+        // options = {
+        //     serviceUrl: server + 'youtubers/search_youtubers',
+        //     zIndex: 9999,
+        //     onSelect: function (value) {
+        //         var searchDom = $('#txtbox-search-videos');
+        //         searchDom.val(value.value);
+        //         filter_videos(searchDom);
+        //     }
+        // };
 
-        var searchDom = $('#txtbox-search-videos');
-        if (searchDom.length) {
-            searchBox = searchDom.autocomplete(options);
-            searchDom.on('keypress', function (e) {
-                if (e.which === 13) {
-                    searchDom = $('#txtbox-search-videos');
-                    searchDom.val(value.data.user_id);
-                    filter_videos(searchDom);
-                }
-            });
-        }
+        // var searchDom = $('#txtbox-search-videos');
+        // if (searchDom.length) {
+        //     searchBox = searchDom.autocomplete(options);
+        //     searchDom.on('keypress', function (e) {
+        //         if (e.which === 13) {
+        //             searchDom = $('#txtbox-search-videos');
+        //             searchDom.val(value.data.user_id);
+        //             filter_videos(searchDom);
+        //         }
+        //     });
+        // }
     },
 
     streamersSearch = function () {

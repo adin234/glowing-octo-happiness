@@ -59,14 +59,14 @@ gulp.task('less', function () {
         .pipe(gulp.dest('assets/css/css-backup/less'));
 });
 
-gulp.task('dev', ['template-compile', 'sass', 'less'], function() {
+gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js', 'compile-components'], function() {
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
-    // gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js']);
+    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js', 'compile-components']);
 });
 
-gulp.task('dev-js', ['compile-components'], function() {
+gulp.task('dev-js', function() {
     return gulp.src('assets/js/pages/**')
         .pipe(gulp.dest("assets/js/dist/"));
 });

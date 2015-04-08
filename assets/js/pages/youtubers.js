@@ -1,6 +1,7 @@
 /*global
     attachments_server,
-    page_data,
+    page_data:true,
+    gamesAutocompleteArray,
     server
 */
 
@@ -11,6 +12,8 @@ define('youtubers', function(require) {
     var Tabs = require('Tabs/index'),
         List_Slider = require('List_Slider/index'),
         Global_Filter = require('Global_Filter/index'),
+        Search_Box = require('Search_Box/index'),
+        Item_Selector = require('Item_Selector/index'),
         game_tpl = require('text!./templates/youtubers-game.html'),
         video_tpl = require('text!./templates/youtubers-video.html'),
         games_tab = new Tabs({hash_change: false}),
@@ -18,12 +21,18 @@ define('youtubers', function(require) {
         latest_games_slider = new List_Slider({
             per_slider: 12,
             item_template: game_tpl,
-            $list_container: $('<ul class="game clearFix"/>')
+            $list_container: $('<ul class="game clearFix"/>'),
+            after_mount: function() {
+                latest_games_slider.$el.find('.tooltip').tooltipster({contentAsHTML: true});
+            }
         }),
         featured_games_slider   = new List_Slider({
             per_slider: 12,
             item_template: game_tpl,
-            $list_container: $('<ul class="game clearFix"/>')
+            $list_container: $('<ul class="game clearFix"/>'),
+            after_mount: function() {
+                featured_games_slider.$el.find('.tooltip').tooltipster({contentAsHTML: true});
+            }
         }),
         popular_members_slider  = new List_Slider({
             per_slider: 16,
@@ -46,24 +55,98 @@ define('youtubers', function(require) {
                     console: filter.id,
                     game: 'all'
                 }), function(result) {
+                    page_data.games = result.games;
+                    page_data.featured_games = result.featured_games;
                     latest_games_slider.reload(transform_games(result.games));
                     featured_games_slider.reload(transform_games(result.featured_games));
-                    // popular_members_slider.reload(transform_youtubers(result.popular_youtubers));
-                    // new_members_slider.reload(transform_youtubers(result.new_youtubers));
-                    // all_members_slider.reload(transform_youtubers(result.youtubers));
+                    game_selector.refresh_active();
                 });
             }
         }),
+        games_search = new Search_Box({
+            onSelect: function(item) {
+                latest_games_slider.reload(
+                    transform_games(
+                        filter_games(page_data.games, item.value)
+                    )
+                );
+                featured_games_slider.reload(
+                    transform_games(
+                        filter_games(page_data.featured_games, item.value)
+                    )
+                );
+                game_selector.refresh_active();
+            }
+        }),
+        videos_search = new Search_Box({
+            serviceUrl: server + 'youtubers/search_youtubers',
+            onSelect: function(item) {
+                popular_members_slider.reload(
+                    transform_youtubers(
+                        filter_youtubers(page_data.popular_youtubers, item.value)
+                    )
+                );
+
+                new_members_slider.reload(
+                    transform_youtubers(
+                        filter_youtubers(page_data.new_youtubers, item.value)
+                    )
+                );
+
+                all_members_slider.reload(
+                    transform_youtubers(
+                        filter_youtubers(page_data.youtubers, item.value)
+                    )
+                );
+            }
+        }),
+        game_selector = new Item_Selector({
+            onSelect: function(game) {
+                $.getJSON(server + 'youtubers?' + $.param({
+                    game: game
+                }), function(result) {
+                    page_data.popular_youtubers = result.popular_youtubers;
+                    page_data.new_youtubers = result.new_youtubers;
+                    page_data.youtubers = result.youtubers;
+                    popular_members_slider.reload(transform_youtubers(page_data.popular_youtubers));
+                    new_members_slider.reload(transform_youtubers(page_data.new_youtubers));
+                    all_members_slider.reload(transform_youtubers(page_data.youtubers));
+                });
+            }
+        }),
+        filter_games = function(games, filter) {
+            return games.filter(function(game) {
+                return game.name.search(filter) !== -1 || game.chinese.search(filter) !== -1;
+            });
+        },
+        filter_youtubers = function(youtubers, filter) {
+            return youtubers.filter(function(youtuber) {
+                return typeof youtuber.video !== 'undefined' &&
+                    (
+                        youtuber.video.snippet.title.search(filter) !== -1 ||
+                        youtuber.video.snippet.channelTitle.search(filter) !== -1
+                    );
+            });
+        },
         transform_games = function(data) {
             return data.map(function(item) {
                 item.game = item.name;
                 item.id = item.id.trim();
+                item.link = (
+                    ~window.location.hash.indexOf('console') ?
+                    window.location.hash.split('/')
+                        .slice(0, 3)
+                        .concat(['game', item.id])
+                        .join('/') :
+                    '#!/game/' + item.id
+                );
                 return item;
             });
         },
         transform_youtubers = function(data) {
             return data.map(function(item) {
                 item.user_id    = item.userId;
+                item.username    = item.video.username;
                 item.title      = item.video.snippet.title;
                 item.thumb      = item.video.snippet.thumbnails.medium.url;
                 item.view       = item.video.snippet.meta.statistics.viewCount;
@@ -80,6 +163,14 @@ define('youtubers', function(require) {
         global_filter
             .init()
             .mount($('#global-filter'));
+
+        games_search
+            .init(gamesAutocompleteArray)
+            .applyTo($('#txtbox-search-games'));
+
+        videos_search
+            .init()
+            .applyTo($('#txtbox-search-videos'));
 
         games_tab
             .init()
@@ -113,6 +204,9 @@ define('youtubers', function(require) {
         all_members_slider
             .init(transform_youtubers(page_data.youtubers))
             .mount($('#container-all-member'));
+
+        game_selector
+            .applyTo($('#featuredGames, #latestGames'));
 
     require('Footer/index');
 });

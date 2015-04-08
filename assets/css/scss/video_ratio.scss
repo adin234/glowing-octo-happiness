@@ -41,6 +41,7 @@
     padding: 0 5px 12px;
     color: #fff;
     overflow: hidden;
+    cursor: pointer;
     div {
         padding: 2px 5px;
         white-space: nowrap;
@@ -50,8 +51,7 @@
         font-weight: normal;
         color: #e00;
     }
-    &:hover, .selected {
-        background: rgba(255, 255, 255, .9);
+    .autocomplete-selected {
         color: #e00;
     }
 }

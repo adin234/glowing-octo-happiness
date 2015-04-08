@@ -1,10 +1,12 @@
-<li class="pointer {{LIVE}}" onClick="window.location.href = '/youtuber/?user={{USER_ID}}';">
-  <a href="javascript:;" title="{{TITLE}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot">
+<li class="pointer {{LIVE}}">
+  <a href="/youtuber/?user={{USER_ID}}" title="{{TITLE}}"><img src="{{THUMB}}" width="100%" height="100%" alt="screenshot">
   </a>
   <h3>
-    <a href="javascript:void(0);" title="{{TITLE}}">
+    <a href="/youtuber/?user={{USER_ID}}" title="{{TITLE}}">
       {{TITLE}}
     </a>
   </h3>
-  <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}" onError="fixErrorImg(this);"></a>
+  <a href="/youtuber/?user={{USER_ID}}" title="{{TITLE}}">
+	  <img src="{{PROVIDER}}avatar.php?userid={{USER_ID}}.jpg" width="68" height="67" alt="Uploaded by" class="uploader photo-{{CHANNELID}}" title="{{USERNAME}}" onError="fixErrorImg(this);">
+  </a>
 </li>

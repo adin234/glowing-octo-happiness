@@ -2,14 +2,6 @@
   margin-top: 15px;
   position: relative; }
 
-.video:before {
-  content: "\00a0";
-  position: absolute;
-  height: 33px;
-  width: 93px;
-  right: 5px;
-  top: -4px;
-  z-index: 50; }
 .video .bx-pager-link {
   display: none; }
 .video .bx-prev {

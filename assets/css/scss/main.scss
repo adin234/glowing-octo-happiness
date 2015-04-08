@@ -739,11 +739,11 @@ textarea{
 .search {
     position: relative;
     -ms-input-placeholder-color: #9c9c9c;
-    div:empty:not(.bx-pager):not(.bx-loading) {
+    .search-icon {
         background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
         height: 16px;
         width: 16px;
-        right: 135px;
+        right: 187px;
         position: absolute;
         top: 14px;
         opacity: 0.65;
