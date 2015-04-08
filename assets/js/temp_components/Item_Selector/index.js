@@ -13,6 +13,7 @@ define(function() {
             $el: null,
 
             applyTo: function($el) {
+                console.log($el);
                 this.$el = $el;
 
                 $(window).on('hashchange', this.refresh_active.bind(this));

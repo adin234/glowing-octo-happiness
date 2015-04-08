@@ -19,14 +19,14 @@
       遊戲分類 | 實況咖
     </title>
     <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
-    <link href="/assets/css/style.css?v=1" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-    <script type="text/javascript" src="/assets/js/config.js?ver=22"></script>
-    <script type="text/javascript" src="/assets/js/get.games.data.js?ver=22"></script>
+    <script type="text/javascript" src="/assets/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/config.js"></script>
+    <script type="text/javascript" src="/assets/js/get.games.data.js"></script>
   </head>
   <body class="lang_zh_tw stream-gritter" id="games">
     <div id="wrapper">
@@ -39,7 +39,7 @@
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
         <nav class="species">
           <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
+            <li><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
             <li><a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
             <li><a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
             <li><a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
@@ -90,10 +90,10 @@
           <div id="content" class="clearFix">
             <div class="silderList clearFix">
               <div method="post" class="search">
-                <div>
+                <div class="search-icon">
                 </div>
                 <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
-                <div class="games tabs">
+                <div class="games tabs" id="games-tabs">
                   <ul class="tab clearFix">
                     <li>
                       <h2>
@@ -125,10 +125,10 @@
                 </div>
               </div>
               <div method="post" class="search">
-                <div>
+                <div class="search-icon">
                 </div>
                 <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-                <div class="video tabs">
+                <div class="video tabs" id="video-tabs">
                   <ul class="tab clearFix">
                     <li>
                       <h2>
@@ -154,25 +154,23 @@
         </div>
       </div>
     </div>
-    <script src="/assets/js/libs/jquery.min.js"></script>
+    <script src="/assets/js/libs/jquery.gritter.min.js"></script>
+    <script src="/assets/js/util.js"></script>
     <script src="/assets/js/libs/hoverIntent.js"></script>
     <script src="/assets/js/libs/superfish.js"></script>
+    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
     <script src="/assets/js/function.js"></script>
     <script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
-    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
-    <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/assets/js/libs/jquery.bxslider.min.js"></script>
+    <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/assets/js/libs/jquery.tabslet.min.js"></script>
     <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
-    <script src="/assets/js/libs/autolinker.js"></script>
-    <script src="/assets/js/libs/jquery.gritter.min.js"></script>
-    <script src="/assets/templates/games/templates.js?ver=22"></script>
-    <script src="/assets/js/util.js"></script>
-    <script type="text/javascript" src="/assets/js/games.js"></script>
-    <script type="text/javascript" src="/assets/js/components/games/slider.js"></script>
-    <script type="text/javascript" src="/assets/js/components/games/textbox.js"></script>
-    <script type="text/javascript" src="/assets/js/components/games/init_games_page_data.js"></script>
-    <script data-main="/assets/js/components/games/main" src="/assets/js/libs/require.js"></script>
-    <script type="text/javascript" src="/assets/js/components/games/hashchange.js"></script>
+    <script src="/assets/js/libs/socketio.js"></script>
+    <script src="/assets/templates/youtubers/templates.js"></script>
+    <script src="/assets/js/youtubers.init_page_data.js"></script>
+    <script src="/assets/js/libs/require.js"></script>
+    <script src="/assets/js/dist/components/all.js"></script>
+    <script src="/assets/js/dist/_config.js"></script>
+    <script src="/assets/js/dist/games.js"></script>
   </body>
 </html>
