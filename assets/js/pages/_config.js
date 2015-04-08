@@ -1,13 +1,14 @@
 requirejs.config({
-    baseUrl: 'assets/js/pages',
+    baseUrl: '/assets/js/pages',
     map: {
         '*': {
-            'less': 'libs/require-less/less'
+            'less': '/libs/require-less/less'
         }
     },
     paths: {
         'jquery'        : '../libs/jquery.min',
         'components'    : '../temp_components',
+        'Featured_Users': './components/Featured_Users',
         'text'          : '../libs/text',
         'css'           : '../../css',
         'less'          : '../libs/require-less/less',

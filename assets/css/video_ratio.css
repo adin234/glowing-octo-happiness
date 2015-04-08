@@ -30,7 +30,8 @@
   border: 1px solid #434343;
   padding: 0 5px 12px;
   color: #fff;
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: pointer; }
   .autocomplete-suggestions div {
     padding: 2px 5px;
     white-space: nowrap;
@@ -38,8 +39,7 @@
   .autocomplete-suggestions strong {
     font-weight: normal;
     color: #e00; }
-  .autocomplete-suggestions:hover, .autocomplete-suggestions .selected {
-    background: rgba(255, 255, 255, 0.9);
+  .autocomplete-suggestions .autocomplete-selected {
     color: #e00; }
 
 #youtubers .list.clearFix, #youtubers #games .list.clearFix {

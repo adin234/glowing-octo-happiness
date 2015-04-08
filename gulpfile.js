@@ -47,15 +47,8 @@ gulp.task('template-compile', function() {
     });
 });
 
-gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js'], function() {
-    gulp.watch('assets/templates/**/*', ['template-compile']);
-    gulp.watch('assets/css/scss/**/*', ['sass']);
-    gulp.watch('assets/css/less/**/*', ['less']);
-    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js']);
-});
-
 gulp.task('less', function () {
-    return gulp.src('assets/css/less/*.less')
+    return gulp.src('assets/css/less/**/*.less')
         .pipe(less({
             errLogToConsole: true
         }))
@@ -63,37 +56,61 @@ gulp.task('less', function () {
             console.log(err);
             this.emit('end');
         })
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('assets/css/css-backup/less/'));
+        .pipe(gulp.dest('assets/css/css-backup/less'));
+});
+
+gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js', 'compile-components'], function() {
+    gulp.watch('assets/templates/**/*', ['template-compile']);
+    gulp.watch('assets/css/scss/**/*', ['sass']);
+    gulp.watch('assets/css/less/**/*', ['less']);
+    gulp.watch(['assets/js/**/*', '!assets/js/dist/**'], ['dev-js', 'compile-components']);
 });
 
 gulp.task('dev-js', function() {
-    return gulp.src('assets/js/pages/**/*.js', {base: 'assets/js/pages'})
-        .pipe(amdOptimize({baseUrl: 'assets/js/pages'}))
-        .pipe(concat('index.js'))
-        .pipe(gulp.dest("assets/js/dist"));
+    return gulp.src('assets/js/pages/**')
+        .pipe(gulp.dest("assets/js/dist/"));
 });
 
-gulp.task('dist-js', function() {
-    var config = {
-        appDir: 'assets/js/pages',
-        baseUrl: './',
-        dir: 'assets/js/dist',
-        mainConfigFile: 'assets/js/pages/_config.js',
-        modules: [
-            {
-                name: 'index',
-                out: 'index/index.js'
-            }
-        ]
-    };
-    return requirejs.optimize(config, function (buildResponse) {
+gulp.task('compile-components', function() {
+    var baseUrl = 'assets/js/temp_components',
+        targetDir = 'assets/js/dist/compiled',
+        config = {
+            baseUrl: baseUrl,
+            dir: targetDir,
+            findNestedDependencies: true,
+            removeCombined: true,
+            paths: {
+                'text' : '../libs/text'
+            },
+            modules: []
+        },
+        components = getDirectories(baseUrl);
+
+    components.forEach(function(item) {
+        config.modules.push({
+            name: item + '/index',
+            exclude: ['text']
+        });
+    });
+
+    requirejs.optimize(config, function (buildResponse) {
         //buildResponse is just a text output of the modules
         //included. Load the built file for the contents.
         //Use config.out to get the optimized file contents.
         // var contents = fs.readFileSync(config.out, 'utf8');
+        console.log(buildResponse);
     }, function(err) {
         //optimization err callback
         console.log(err);
     });
+
+    return gulp.src([targetDir + '/**/*.js', '!'+targetDir + '/**/text.js',])
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('assets/js/dist/components'));
 });
+
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath).filter(function(file) {
+    return fs.statSync(srcpath + '/' + file).isDirectory();
+  });
+}

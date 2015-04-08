@@ -481,17 +481,20 @@
 }
 
 .game-item {
-    height: 98px;
-    width: 163px;
+    // height: 98px;
+    // width: 163px;
     background-color: #000;
     & > img {
         height: 100%;
         width: 100%;
     }
-    &.active {
+    &.active img {
         border: 2px solid #e00;
         height: 94px;
         width: 159px;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
     }
 
 }

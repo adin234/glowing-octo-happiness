@@ -105,8 +105,8 @@
     font-size: 0.85714em; }
   .lang_zh_tw .about p, .lang_zh_tw .lang_zh_tw .about ol, .lang_zh_tw .lang_zh_tw .about h3 {
     font-size: 1.07143em; }
-    .lang_zh_tw .about p ul p, .lang_zh_tw .lang_zh_tw .about ol ul p, .lang_zh_tw .lang_zh_tw .about h3 ul p {
-      font-size: 0.85714em; }
+  .lang_zh_tw .about ul p {
+    font-size: 0.85714em; }
   .lang_zh_tw .channel {
     font-size: 0.92857em; }
   .lang_zh_tw .resize li:first-child {
@@ -874,14 +874,6 @@ footer {
   margin-top: 15px;
   position: relative; }
 
-.video:before {
-  content: "\00a0";
-  position: absolute;
-  height: 33px;
-  width: 93px;
-  right: 5px;
-  top: -4px;
-  z-index: 50; }
 .video .bx-pager-link {
   display: none; }
 .video .bx-prev {
@@ -1457,16 +1449,17 @@ footer {
     width: 258px; }
 
 .game-item {
-  height: 98px;
-  width: 163px;
   background-color: #000; }
   .game-item > img {
     height: 100%;
     width: 100%; }
-  .game-item.active {
+  .game-item.active img {
     border: 2px solid #e00;
     height: 94px;
-    width: 159px; }
+    width: 159px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
 
 /*lan party*/
 #container_lanparty {
@@ -2448,7 +2441,8 @@ body #navigation {
   border: 1px solid #434343;
   padding: 0 5px 12px;
   color: #fff;
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: pointer; }
   .autocomplete-suggestions div {
     padding: 2px 5px;
     white-space: nowrap;
@@ -2456,8 +2450,7 @@ body #navigation {
   .autocomplete-suggestions strong {
     font-weight: normal;
     color: #e00; }
-  .autocomplete-suggestions:hover, .autocomplete-suggestions .selected {
-    background: rgba(255, 255, 255, 0.9);
+  .autocomplete-suggestions .autocomplete-selected {
     color: #e00; }
 
 #youtubers .list.clearFix, #youtubers #games .list.clearFix {
@@ -2641,7 +2634,7 @@ mark {
 a {
   outline: none;
   text-decoration: none; }
-  a .link-white {
+  a.link-white {
     color: #fff;
     text-decoration: none; }
   a:hover, a:focus, a:active {
@@ -3072,12 +3065,10 @@ textarea#event_desc {
     background: #B70000;
     min-height: 42px !important; }
 
-.nav-container {
-  background: #000; }
-  .nav-container header .nav-wrapper h1 a {
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap; }
+.nav-container header .nav-wrapper h1 a {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap; }
 
 #outContainer #indexSliderContainer {
   min-height: 549px; }
@@ -3096,11 +3087,11 @@ textarea#event_desc {
 .search {
   position: relative;
   -ms-input-placeholder-color: #9c9c9c; }
-  .search div:empty:not(.bx-pager):not(.bx-loading) {
+  .search .search-icon {
     background: url("/assets/images/sprite.png") no-repeat 0 -1649px;
     height: 16px;
     width: 16px;
-    right: 135px;
+    right: 187px;
     position: absolute;
     top: 14px;
     opacity: 0.65;
@@ -3901,7 +3892,7 @@ div.streamer {
 
 .switch-menu #outContainer header .species ul li a {
   visibility: hidden; }
-.switch-menu #outContainer header .fixedMenu .species ul li a {
+.switch-menu #outContainer header .species ul li a {
   visibility: visible; }
 
 .mCSB_inside > .mCSB_container {

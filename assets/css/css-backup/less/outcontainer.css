@@ -1,1 +1,133 @@
-.centerDiv{margin:0 auto}.clearfix{zoom:1}.all-zeroes{border:0;margin:0;padding:0}.no-rep{background:no-repeat}.block{display:block}.transparent{background-color:transparent}.text-hide{overflow:hidden;text-indent:100%;white-space:nowrap}#outContainer{margin:0 auto;position:relative;padding-top:80px;width:1148px}#outContainer #container{background:url(/assets/images/wrapper_bg.jpg)#c8c8c8;box-shadow:0 0 3px rgba(0,0,0,.75);margin-top:56px;padding-top:20px}#outContainer #container.lanparty .listSwitch li.current{background:#00b8e6}#outContainer #container.lanparty .listSwitch li.current a{color:#fff}#outContainer #container.lanparty .videoList{border:1px solid #4d4d4d}#outContainer #container.lanparty .playList{background:#000;border-top:1px solid #30534f}#outContainer #container.lanparty .playList li.current,#outContainer #container.lanparty .playList li:hover{background:#00b8e6}#outContainer #container.lanparty .playList li+li a{border-top:1px solid #30534f}#outContainer #container.lanparty .playList li a{color:#00b8e6}#outContainer #container.lanparty .playList a{color:#fff}#outContainer #container.lanparty .zoom a{display:block;height:27px;background:url(/assets/images/player_ui_dark.png)0 1px no-repeat}#outContainer #container.lanparty .resize li:first-child{background:#000;border:1px solid #fff;box-sizing:border-box;color:#fff}#outContainer #container.lanparty .zoomOut a{background:url(/assets/images/player_ui_dark.png)0 -54px no-repeat}#outContainer #container.lanparty .playFunctionBtn li{background:url(/assets/images/player_ui_dark.png)no-repeat}#outContainer #container.lanparty .playFunctionBtn li:nth-child(1) a{background-position:10px -100px}#outContainer #container.lanparty .playFunctionBtn li:nth-child(2) a{background-position:10px -180px}#outContainer #container.lanparty .playFunctionBtn li:nth-child(3) a{background-position:10px -222px}#outContainer #container.lanparty .playFunctionBtn li:nth-child(4) a{background-position:10px -264px;float:right}#outContainer nav>ul>li{float:left}#outContainer .fixedMenu{position:fixed;top:0;z-index:9999}#outContainer .fixedMenu.switchMenu.switchMenu .species li.current a{font-weight:700;color:#fff;text-shadow:0 -1px 4px rgba(0,0,0,.75)}#outContainer .fixedMenu.switchMenu header .species ul{padding-left:172px!important}#outContainer .fixedMenuLogo.en{background:url(/assets/images/logo_en.png)0 -99px no-repeat;height:36px;top:3px;width:162px}#outContainer .fixedMenuLogo.zh_tw{background:url(/assets/images/logo_tw.png)0 -108px no-repeat;height:42px;top:0;width:153px}#outContainer #container.lanparty{background:#000}#outContainer #container.lanparty a{color:#999}
+/*Image URLS*/
+/*Containers*/
+.centerDiv {
+  margin: 0 auto;
+}
+/*Common*/
+.clearfix {
+  zoom: 1;
+}
+.all-zeroes {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.no-rep {
+  background: no-repeat;
+}
+.block {
+  display: block;
+}
+.transparent {
+  background-color: transparent;
+}
+.text-hide {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+#outContainer {
+  margin: 0 auto;
+  position: relative;
+  padding-top: 80px;
+  width: 1148px;
+}
+#outContainer #container {
+  background: #c8c8c8 url("/assets/images/wrapper_bg.jpg");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  padding-top: 20px;
+}
+#outContainer #container.lanparty .listSwitch li.current {
+  background: #00b8e6;
+}
+#outContainer #container.lanparty .listSwitch li.current a {
+  color: #fff;
+}
+#outContainer #container.lanparty .videoList {
+  border: 1px solid #4d4d4d;
+}
+#outContainer #container.lanparty .playList {
+  background: #000;
+  border-top: 1px solid #30534f;
+}
+#outContainer #container.lanparty .playList li.current,
+#outContainer #container.lanparty .playList li:hover {
+  background: #00b8e6;
+}
+#outContainer #container.lanparty .playList li + li a {
+  border-top: 1px solid #30534f;
+}
+#outContainer #container.lanparty .playList li a {
+  color: #00b8e6;
+}
+#outContainer #container.lanparty .playList a {
+  color: #fff;
+}
+#outContainer #container.lanparty .zoom a {
+  display: block;
+  height: 27px;
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 1px;
+}
+#outContainer #container.lanparty .resize li:first-child {
+  background: #000;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  color: #fff;
+}
+#outContainer #container.lanparty .zoomOut a {
+  background: url("/assets/images/player_ui_dark.png") no-repeat 0 -54px;
+}
+#outContainer #container.lanparty .playFunctionBtn li {
+  background: url("/assets/images/player_ui_dark.png");
+  background-repeat: no-repeat;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(1) a {
+  background-position: 10px -100px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(2) a {
+  background-position: 10px -180px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(3) a {
+  background-position: 10px -222px;
+}
+#outContainer #container.lanparty .playFunctionBtn li:nth-child(4) a {
+  background-position: 10px -264px;
+  float: right;
+}
+#outContainer nav > ul > li {
+  float: left;
+}
+#outContainer .fixedMenu {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+#outContainer .fixedMenu.switchMenu.switchMenu .species li.current a {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0px -1px 4px rgba(0, 0, 0, 0.75);
+}
+#outContainer .fixedMenu.switchMenu header .species ul {
+  padding-left: 172px !important;
+}
+#outContainer .fixedMenuLogo.en {
+  background: url("/assets/images/logo_en.png") no-repeat 0 -99px;
+  height: 36px;
+  top: 3px;
+  width: 162px;
+}
+#outContainer .fixedMenuLogo.zh_tw {
+  background: url("/assets/images/logo_tw.png") no-repeat 0 -108px;
+  height: 31px;
+  width: 88px;
+  height: 42px;
+  top: 0;
+  width: 153px;
+}
+#outContainer #container.lanparty {
+  background: #000;
+}
+#outContainer #container.lanparty a {
+  color: #999;
+}

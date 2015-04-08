@@ -1,1 +1,287 @@
-.lang_zh_tw #streamView h1,.lang_zh_tw #streamView header h1,.lang_zh_tw #streamView header>a,.text-hide{text-indent:100%;white-space:nowrap}.centerDiv{margin:0 auto}.clearfix{zoom:1}.all-zeroes{border:0;margin:0;padding:0}.no-rep{background:no-repeat}.block{display:block}.transparent{background-color:transparent}.text-hide{overflow:hidden}.lang_en{font:.8125em/1.5 Arial,Helvetica,Verdana,sans-serif}.lang_en .login{padding-left:25px;font-family:"Myriad Pro","Lucida Sans",Arial,Helvetica,sans-serif}.lang_en .site{font-size:1.23077em;padding-left:235px}.lang_en .site ul ul{margin-left:-25%}.lang_en .member{font-size:1.15385em}.lang_en input[type=text]{font:.8125em Arial,Helvetica,Verdana,sans-serif}.lang_en textarea{line-height:1.5;font:.8125em Arial,Helvetica,Verdana,sans-serif}.lang_en .main .bx-caption,.lang_en .watchList h2{font-family:"Myriad Pro","Lucida Sans",Arial,Helvetica,sans-serif}.lang_en .main .bx-caption{font-size:1.07692em;line-height:1.25}.lang_en .main:first-line{font-size:1.53846em}.lang_en .search input[type=text]{font-size:1em}.lang_en .live:before{background:url(/assets/images/icon-live.png)no-repeat}.lang_en .video .list li{font-size:1.07692em}.lang_en .viewer .list{font-size:1.46154em}.lang_en .channel{font-size:1em}.lang_en footer small,.lang_en footer span{font-size:.92308em}.lang_en .resize:first-child{font-size:1.26923em}.lang_en .listSwitch,.lang_en .playList h3{font-size:1.15385em}.lang_en .playList p{font-size:.92308em}.lang_en .videoHeading h3{font-size:1.76923em}.lang_en .discussions,.lang_en .type{font-size:1em}.lang_en .yourDiscussion textarea{font-size:1.23077em}.lang_en .recommend h3{font-size:1.15385em}.lang_en .recommend .list li{font-size:.92308em}.lang_en .watchNow{font-size:1.15385em;font-weight:700;top:-58px}.lang_en .profile cite{font-size:1.84615em}.lang_en #streamView header,.lang_en #streamView select{border-bottom:4px solid #a40000}.lang_en #streamView header{font-size:.92308em}.lang_en #streamView header h1{background:url(/assets/images/logo_en.png)0 -50px no-repeat;background-size:98px auto}.lang_en #streamView header>a:before{background:url(/assets/images/sprite.png)27px -905px no-repeat}.lang_en .watchList h2{font-size:1.38462em}.lang_en .watchList li{font-size:.76923em}.lang_en .information h2{font-size:1.61538em}.lang_zh_tw{font:.875em/1.75 Arial,Helvetica,Verdana,"Heiti TC","Microsoft JhengHei",sans-serif}.lang_zh_tw .site,.lang_zh_tw .species{font-size:1.14286em}.lang_zh_tw .site{line-height:1.5;padding-left:225px}.lang_zh_tw .member{font-size:1.07143em}.lang_zh_tw .login{padding-left:0}.lang_zh_tw input[type=text],.lang_zh_tw textarea{font:.875em Arial,Helvetica,Verdana,"Heiti TC","Microsoft JhengHei",sans-serif}.lang_zh_tw textarea{line-height:1.75}.lang_zh_tw .main .bx-caption{font-size:1em;line-height:1.35}.lang_zh_tw .main .bx-caption:first-line{font-size:1.42857em}.lang_zh_tw #content h2{font-size:1.5em}.lang_zh_tw .search input[type=text]{font-size:1em}.lang_zh_tw .live:before{background:url(/assets/images/icon-live.png)no-repeat}.lang_zh_tw footer small,.lang_zh_tw footer span{font-size:.85714em}.lang_zh_tw .about p,.lang_zh_tw .lang_zh_tw .about h3,.lang_zh_tw .lang_zh_tw .about ol{font-size:1.07143em}.lang_zh_tw .about p ul p,.lang_zh_tw .lang_zh_tw .about h3 ul p,.lang_zh_tw .lang_zh_tw .about ol ul p{font-size:.85714em}.lang_zh_tw .channel{font-size:.92857em}.lang_zh_tw .resize li:first-child{font-size:1.17857em;cursor:pointer}.lang_zh_tw .listSwitch{font-size:1.07143em}.lang_zh_tw .playList h3{font-size:1.07143em;overflow:hidden;text-overflow:ellipsis}.lang_zh_tw .playList p{font-size:.92857em;overflow:hidden;text-decoration:none;text-overflow:ellipsis;line-height:1.3;height:31px;-webkit-line-clamp:2;-moz-line-clamp:2;line-clamp:2;text-align:center;-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical}.lang_zh_tw .videoHeading h3{font-size:1.64286em}.lang_zh_tw .yourDiscussion textarea{font-size:1.14286em;line-height:1.4}.lang_zh_tw .discussions,.lang_zh_tw .type{font-size:.92857em}.lang_zh_tw .recommend h3{font-size:1.07143em}.lang_zh_tw .recommend .list li{font-size:.85714em}.lang_zh_tw .watchNow{font-size:1em;top:-64px}.lang_zh_tw .profile cite{font-size:1.71429em}.lang_zh_tw #streamView header,.lang_zh_tw #streamView select{font-size:1em}.lang_zh_tw #streamView header h1{overflow:hidden;background:url(/assets/images/logo_tw.png)7px -232px no-repeat}.lang_zh_tw #streamView header>a{overflow:hidden}.lang_zh_tw #streamView header>a:before{background:url(/assets/images/sprite.png)27px -949px no-repeat}.lang_zh_tw #streamView h1{overflow:hidden}.lang_zh_tw #streamView select{margin-left:8px}.lang_zh_tw .watchList h2{font-size:1.28571em;font-family:"Myriad Pro","Lucida Sans",Arial,Helvetica,sans-serif}.lang_zh_tw .watchList li{font-size:.71429em}.lang_zh_tw .watchList .bx-next,.lang_zh_tw .watchList .bx-prev{overflow:hidden;text-indent:100%;white-space:nowrap}.lang_zh_tw .information h2{font-size:1.5em}
+/*Image URLS*/
+/*Containers*/
+.centerDiv {
+  margin: 0 auto;
+}
+/*Common*/
+.clearfix {
+  zoom: 1;
+}
+.all-zeroes {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.no-rep {
+  background: no-repeat;
+}
+.block {
+  display: block;
+}
+.transparent {
+  background-color: transparent;
+}
+.text-hide {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.lang_en {
+  font: 0.8125em/1.5 Arial, Helvetica, Verdana, sans-serif;
+}
+.lang_en .login {
+  padding-left: 25px;
+  font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+}
+.lang_en .site {
+  font-size: 1.23077em;
+  padding-left: 235px;
+}
+.lang_en .site ul ul {
+  margin-left: -25%;
+}
+.lang_en .member {
+  font-size: 1.15385em;
+}
+.lang_en input[type="text"] {
+  font: 0.8125em Arial, Helvetica, Verdana, sans-serif;
+}
+.lang_en textarea {
+  line-height: 1.5;
+  font: 0.8125em Arial, Helvetica, Verdana, sans-serif;
+}
+.lang_en .main .bx-caption {
+  font-size: 1.07692em;
+  line-height: 1.25;
+  font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+}
+.lang_en .main:first-line {
+  font-size: 1.53846em;
+}
+.lang_en .search input[type="text"] {
+  font-size: 1em;
+}
+.lang_en .live:before {
+  background: url("/assets/images/icon-live.png") no-repeat 0 0;
+}
+.lang_en .video .list li {
+  font-size: 1.07692em;
+}
+.lang_en .viewer .list {
+  font-size: 1.46154em;
+}
+.lang_en .channel {
+  font-size: 1em;
+}
+.lang_en footer small,
+.lang_en footer span {
+  font-size: 0.92308em;
+}
+.lang_en .resize:first-child {
+  font-size: 1.26923em;
+}
+.lang_en .listSwitch {
+  font-size: 1.15385em;
+}
+.lang_en .playList h3 {
+  font-size: 1.15385em;
+}
+.lang_en .playList p {
+  font-size: 0.92308em;
+}
+.lang_en .videoHeading h3 {
+  font-size: 1.76923em;
+}
+.lang_en .type,
+.lang_en .discussions {
+  font-size: 1em;
+}
+.lang_en .yourDiscussion textarea {
+  font-size: 1.23077em;
+}
+.lang_en .recommend h3 {
+  font-size: 1.15385em;
+}
+.lang_en .recommend .list li {
+  font-size: 0.92308em;
+}
+.lang_en .watchNow {
+  font-size: 1.15385em;
+  font-weight: bold;
+  top: -58px;
+}
+.lang_en .profile cite {
+  font-size: 1.84615em;
+}
+.lang_en #streamView header,
+.lang_en #streamView select {
+  border-bottom: 4px solid #a40000;
+}
+.lang_en #streamView header {
+  font-size: 0.92308em;
+}
+.lang_en #streamView header h1 {
+  background: url("/assets/images/logo_en.png") no-repeat 0 -50px;
+  background-size: 98px auto;
+}
+.lang_en #streamView header > a:before {
+  background: url("/assets/images/sprite.png") no-repeat 27px -905px;
+}
+.lang_en .watchList h2 {
+  font-size: 1.38462em;
+  font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+}
+.lang_en .watchList li {
+  font-size: 0.76923em;
+}
+.lang_en .information h2 {
+  font-size: 1.61538em;
+}
+.lang_zh_tw {
+  font: 0.875em/1.75 Arial, Helvetica, Verdana, "Heiti TC", "Microsoft JhengHei", sans-serif;
+}
+.lang_zh_tw .species {
+  font-size: 1.14286em;
+}
+.lang_zh_tw .site {
+  font-size: 1.14286em;
+  line-height: 1.5;
+  padding-left: 225px;
+}
+.lang_zh_tw .member {
+  font-size: 1.07143em;
+}
+.lang_zh_tw .login {
+  padding-left: 0;
+}
+.lang_zh_tw input[type="text"],
+.lang_zh_tw textarea {
+  font: 0.875em Arial, Helvetica, Verdana, "Heiti TC", "Microsoft JhengHei", sans-serif;
+}
+.lang_zh_tw textarea {
+  line-height: 1.75;
+}
+.lang_zh_tw .main .bx-caption {
+  font-size: 1em;
+  line-height: 1.35;
+}
+.lang_zh_tw .main .bx-caption:first-line {
+  font-size: 1.42857em;
+}
+.lang_zh_tw #content h2 {
+  font-size: 1.5em;
+}
+.lang_zh_tw .search input[type="text"] {
+  font-size: 1em;
+}
+.lang_zh_tw .live:before {
+  background: url("/assets/images/icon-live.png") no-repeat;
+}
+.lang_zh_tw footer small,
+.lang_zh_tw footer span {
+  font-size: 0.85714em;
+}
+.lang_zh_tw .about p,
+.lang_zh_tw .lang_zh_tw .about ol,
+.lang_zh_tw .lang_zh_tw .about h3 {
+  font-size: 1.07143em;
+}
+.lang_zh_tw .about ul p {
+  font-size: 0.85714em;
+}
+.lang_zh_tw .channel {
+  font-size: 0.92857em;
+}
+.lang_zh_tw .resize li:first-child {
+  font-size: 1.17857em;
+  cursor: pointer;
+}
+.lang_zh_tw .listSwitch {
+  font-size: 1.07143em;
+}
+.lang_zh_tw .playList h3 {
+  font-size: 1.07143em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lang_zh_tw .playList p {
+  font-size: 0.92857em;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  height: 31px;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  line-clamp: 2;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+.lang_zh_tw .videoHeading h3 {
+  font-size: 1.64286em;
+}
+.lang_zh_tw .yourDiscussion textarea {
+  font-size: 1.14286em;
+  line-height: 1.4;
+}
+.lang_zh_tw .type,
+.lang_zh_tw .discussions {
+  font-size: 0.92857em;
+}
+.lang_zh_tw .recommend h3 {
+  font-size: 1.07143em;
+}
+.lang_zh_tw .recommend .list li {
+  font-size: 0.85714em;
+}
+.lang_zh_tw .watchNow {
+  font-size: 1em;
+  top: -64px;
+}
+.lang_zh_tw .profile cite {
+  font-size: 1.71429em;
+}
+.lang_zh_tw #streamView header,
+.lang_zh_tw #streamView select {
+  font-size: 1em;
+}
+.lang_zh_tw #streamView header h1 {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: url("/assets/images/logo_tw.png") no-repeat 7px -232px;
+}
+.lang_zh_tw #streamView header > a {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.lang_zh_tw #streamView header > a:before {
+  background: url("/assets/images/sprite.png") no-repeat 27px -949px;
+}
+.lang_zh_tw #streamView h1 {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.lang_zh_tw #streamView select {
+  margin-left: 8px;
+}
+.lang_zh_tw .watchList h2 {
+  font-size: 1.28571em;
+  font-family: "Myriad Pro", "Lucida Sans", Arial, Helvetica, sans-serif;
+}
+.lang_zh_tw .watchList li {
+  font-size: 0.71429em;
+}
+.lang_zh_tw .watchList .bx-prev,
+.lang_zh_tw .watchList .bx-next {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.lang_zh_tw .information h2 {
+  font-size: 1.5em;
+}

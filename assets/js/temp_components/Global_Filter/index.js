@@ -83,7 +83,7 @@ define(function() {
 
                 this.$el = $container;
 
-                this.$el.append($list_container);
+                this.$el.html($list_container);
 
                 this.refresh_active();
                 
@@ -104,16 +104,21 @@ define(function() {
             },
 
             refresh_active: function() {
-                var $active = $list_container.find('a[href="'+window.location.hash+'"]');
+                var active_hash = window.location.hash
+                            .split('/')
+                            .slice(0, 3)
+                            .join('/'),
+                    $active =$list_container.find('a[href="'+active_hash+'"]');
 
-                if ($active.length) {
-                    $list_container.find('li').removeClass('current');
-                    $active.parent().addClass('current');
-                    options.onChange(items[$active.first().data('index')]);
-                } else {
-                    $list_container.find('li').first().addClass('current');
-                    options.onChange(items[0]);
+                $active = $active.length ? $active : $list_container.find('li > a').first();
+
+                if ($active.parent().hasClass('current')) {
+                    return;
                 }
+
+                $list_container.find('li').removeClass('current');
+                $active.parent().addClass('current');
+                options.onChange(items[$active.data('index')]);
             }
         };
 

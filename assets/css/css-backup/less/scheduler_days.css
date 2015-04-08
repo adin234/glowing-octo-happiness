@@ -1,1 +1,150 @@
-#Monday1,#Monday2,#Tuesday1{text-align:left}#Monday1,#Monday2,#Tuesday1,#Wednesday1{line-height:1.2}.Friday,.Monday,.Saturday,.Sunday,.Thursday,.Tuesday,.Wednesday{vertical-align:top;display:inline-block}#Monday1,#Monday2,#Saturday1,#Sunday1,#Thursday1,#Tuesday1,#Wednesday1{padding-left:10px;border-left:#fffd21 solid;background-color:#00c7f9}.Monday{width:116px;padding-top:28px}#Monday1,#Monday2{width:102px;padding-top:10px}#Monday1{height:119px;z-index:1;color:#fff;font-size:large}#Monday1>p,#Monday2>p{color:#13a1c4;font-size:smaller}#Monday2,#Tuesday1{color:#fff;font-size:large}#Monday2{height:373px;z-index:1;margin-top:79px}.Tuesday{width:118px;padding-top:375px}#Tuesday1{width:106px;height:373px;z-index:1;padding-top:10px}#Tuesday1>p{color:#13a1c4;font-size:smaller}.Wednesday{width:118px;padding-top:164px}#Wednesday1{width:103px;height:125px;color:#fff;font-size:large;padding-top:10px}#Wednesday1>p{font-size:smaller;color:#13a1c4}.Thursday{width:118px;padding-top:400px}#Thursday1{color:#fff;font-size:large;padding-top:10px;height:235px;width:102px}#Thursday1>p{font-size:smaller;color:#13a1c4}.Friday{width:118px}.Saturday{width:118px;padding-top:95px}#Saturday1{color:#fff;font-size:large;padding-top:10px;width:102px}#Saturday1>p{font-size:smaller;color:#13a1c4}.Sunday{width:118px;padding-top:128px}#Sunday1{padding-top:10px;color:#fff;font-size:large;width:102px;height:370px}#Sunday1>p{font-size:smaller;color:#13a1c4}
+/*scheduler*/
+.Monday {
+  width: 116px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 28px;
+}
+#Monday1 {
+  background-color: #00c7f9;
+  width: 102px;
+  height: 119px;
+  z-index: 1;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.20;
+  padding-top: 10px;
+}
+#Monday1 > p {
+  color: #13a1c4;
+  font-size: smaller;
+}
+#Monday2 {
+  background-color: #00c7f9;
+  width: 102px;
+  height: 373px;
+  z-index: 1;
+  margin-top: 79px;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.20;
+  padding-top: 10px;
+}
+#Monday2 > p {
+  color: #13a1c4;
+  font-size: smaller;
+}
+.Tuesday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 375px;
+}
+#Tuesday1 {
+  background-color: #00c7f9;
+  width: 106px;
+  height: 373px;
+  z-index: 1;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  text-align: left;
+  line-height: 1.20;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+#Tuesday1 > p {
+  color: #13a1c4;
+  font-size: smaller;
+}
+.Wednesday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 164px;
+}
+#Wednesday1 {
+  background-color: #00c7f9;
+  width: 103px;
+  height: 125px;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 1.20;
+}
+#Wednesday1 > p {
+  font-size: smaller;
+  color: #13a1c4;
+}
+.Thursday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 400px;
+}
+#Thursday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  color: white;
+  font-size: large;
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 235px;
+  width: 102px;
+}
+#Thursday1 > p {
+  font-size: smaller;
+  color: #13a1c4;
+}
+.Friday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+}
+.Saturday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 95px;
+}
+#Saturday1 {
+  background-color: #00c7f9;
+  color: white;
+  font-size: large;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-left: #fffd21 solid;
+  width: 102px;
+}
+#Saturday1 > p {
+  font-size: smaller;
+  color: #13a1c4;
+}
+.Sunday {
+  display: inline-block;
+  width: 118px;
+  vertical-align: top;
+  padding-top: 128px;
+}
+#Sunday1 {
+  background-color: #00c7f9;
+  border-left: #fffd21 solid;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: white;
+  font-size: large;
+  width: 102px;
+  height: 370px;
+}
+#Sunday1 > p {
+  font-size: smaller;
+  color: #13a1c4;
+}

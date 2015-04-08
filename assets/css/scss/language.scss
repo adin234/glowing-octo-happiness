@@ -169,11 +169,16 @@
         font-size: 0.85714em;
     }
     .about p, .lang_zh_tw .about ol, .lang_zh_tw .about h3 {
-        font-size: 1.07143em;
-        ul p {
-            font-size: 0.85714em;
+        font-size: 1.07143em;        
+    }
+    .about {
+        ul {
+             p {
+                font-size: 0.85714em;
+            }
         }
     }
+    
     .channel {
         font-size: 0.92857em;
     }
