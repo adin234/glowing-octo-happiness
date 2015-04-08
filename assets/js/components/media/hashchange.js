@@ -10,6 +10,7 @@
 
 $(document).on('load-page', function(){
     $(window).on('hashchange', function () {
+
         hash = window.location.hash.replace('#!/', '');
 
         if (!hash && page_data.playlists.length) {

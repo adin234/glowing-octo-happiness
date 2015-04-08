@@ -682,4 +682,3 @@ $(document).on('load-page', function () {
     $(window).trigger('hashchange');
 });
 
-
