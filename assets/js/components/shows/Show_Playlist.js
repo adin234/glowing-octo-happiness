@@ -1,24 +1,17 @@
-define (
-    [
-        'components/shows/Filter_Action',
-        'components/shows/Get_Playlist',
-        'components/shows/Update_Videos',
-        'components/shows/Get_Playlist_Next'
-    ],
-	function (
-        Filter_Action,
-        Get_Playlist,
-        Update_Videos,
-        Get_Playlist_Next
-    ) {
-		return function Show_Playlist () {
-            return {
-                init: function(playlistId, next) {
+/*global
+    activeVideos: true
+*/
 
-                    var filterAction = new Filter_Action(),
-                        getPlaylist = new Get_Playlist(),
-                        update_videos = new Update_Videos(),
-                        getPlaylistNext = new Get_Playlist_Next();
+'use strict';
+
+define (function (require) {
+
+		return function Show_Playlist () {
+
+            var getPlaylist = require('components/shows/Get_Playlist');
+
+            return {
+                execute: function(playlistId, next) {
 
                     activeVideos = [];
                     $('.playlistItem').removeClass('current');

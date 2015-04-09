@@ -1,38 +1,35 @@
-define (
-	[
-		'components/shows/Filter_Action',
-	],
-	function (
-		Filter_Action
-	) {
-		return function Show_Playlist () {
-            return {
-                init: function(playlistId) {
+/*global
+	active_playlist: true,
+	server
+*/
 
-                	var data_cache = {
-						    playlist: {},
-						    video: {}
-						};
-			        active_playlist = playlistId;
+'use strict';
 
-			        if (!data_cache.playlist[playlistId]) {
-			            $.ajax({
-			                url: server + 'news',
-			                dataType: 'json',
-			                async: false,
-			                data: {
-			                    playlist: playlistId
-			                },
-			                success: function (e) {
-			                    data_cache.playlist[playlistId] = e;
-			                }
-			            });
-			        }
+define(function() {
 
-			        return data_cache.playlist[playlistId];
+    var data_cache = {
+        playlist: {},
+        video: {}
+    };
 
+    return function Get_Playlist(playlistId) {
+
+        active_playlist = playlistId;
+
+        if (!data_cache.playlist[playlistId]) {
+            $.ajax({
+                url: server + 'news',
+                dataType: 'json',
+                async: false,
+                data: {
+                    playlist: playlistId
+                },
+                success: function(e) {
+                    data_cache.playlist[playlistId] = e;
                 }
-            };
-		};
-	}
-);
+            });
+        }
+
+        return data_cache.playlist[playlistId];
+    };
+});

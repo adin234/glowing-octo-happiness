@@ -1,7 +1,5 @@
 /*global
-    requirejs,
-    index_data,
-    shuffle
+    requirejs  
 */
 
 'use strict';
@@ -42,20 +40,31 @@ requirejs([
     'common/Global_Filter',
     'text!common/templates/footer.html',
 
-    'components/shows/First_Load',
-    'components/shows/Hash_Change',
-    'components/shows/Update_Playlists',
-    'components/shows/Show_Playlist',
-    'components/shows/On_Player_State_Change',
-    'components/shows/Load_Initial',
-    'components/shows/Filter',
-    'components/shows/Filter_Vlogs',
-    'components/shows/Filter_Game',
-    'components/shows/Delete_Comment',
 
-    'less!css/less/footer',
-    'less!css/less/outcontainer',
-    'less!css/less/main'
+    'components/shows/Cache_Video',
+    'components/shows/Delete_Comment',
+    'components/shows/Filter',
+    'components/shows/Filter_Action',
+    'components/shows/Filter_Game',
+    'components/shows/Filter_Vlogs',
+    'components/shows/First_Load',
+    'components/shows/Format_Date',
+    'components/shows/Get_Comments',
+    'components/shows/Get_Photo',
+    'components/shows/Get_Playlist',
+    'components/shows/Get_Playlist_Index',
+    'components/shows/Get_Playlist_Next',
+    'components/shows/Get_Video',
+    'components/shows/Get_Video_Data',
+    'components/shows/Hash_Change',
+    'components/shows/Load_Initial',
+    'components/shows/On_Player_State_Change',
+    'components/shows/Show_Playlist',
+    'components/shows/Update_Playlists',
+    'components/shows/Update_Prev_Next',
+    'components/shows/Update_Suggestions',
+    'components/shows/Update_Videos',
+    'components/shows/Will_Play'
 ], function(
         Tabs,
         tab_nav_tpl,
@@ -63,16 +72,30 @@ requirejs([
         Global_Filter,
         FooterTpl,
         
-        First_Load,
-        Hash_Change,
-        Update_Playlists,
-        Show_Playlist,
-        On_Player_State_Change,
-        Load_Initial,
+        Cache_Video,
+        Delete_Comment,
         Filter,
-        Filter_Vlogs,
+        Filter_Action,
         Filter_Game,
-        Delete_Comment
+        Filter_Vlogs,
+        First_Load,
+        Format_Date,
+        Get_Comments,
+        Get_Photo,
+        Get_Playlist,
+        Get_Playlist_Index,
+        Get_Playlist_Next,
+        Get_Video,
+        Get_Video_Data,
+        Hash_Change,
+        Load_Initial,
+        On_Player_State_Change,
+        Show_Playlist,
+        Update_Playlists,
+        Update_Prev_Next,
+        Update_Suggestions,
+        Update_Videos,
+        Will_Play
 
     ) {
 
@@ -99,48 +122,55 @@ requirejs([
 
     var global_filter                   = new Global_Filter(),
         first_load                      = new First_Load(),
-        hash_change                     = new Hash_Change(),
-        update_playlists                = new Update_Playlists(),
+        hash_change                     = new Hash_Change({
+            onChange: function(type, id) {
+                filter_action.execute(type, id);
+            }
+        }),
         show_playlist                   = new Show_Playlist(),
-        on_player_state_change          = new On_Player_State_Change(),
-        load_initial                    = new Load_Initial(),
-        filter                          = new Filter(),
-        filter_vlogs                    = new Filter_Vlogs(),
-        filter_game                     = new Filter_Game(),
-        delete_comment                  = new Delete_Comment();
+        filter_action                   = new Filter_Action({
+            show_playlist: show_playlist
+        }),
+        Update_Playlists                 = new Update_Playlists();
+        // on_player_state_change          = new On_Player_State_Change(),
+        // load_initial                    = new Load_Initial(),
+        // filter                          = new Filter(),
+        // filter_vlogs                    = new Filter_Vlogs(),
+        // filter_game                     = new Filter_Game(),
+        // delete_comment                  = new Delete_Comment();
 
 
-    first_load
-        .init(page_data);
+    // first_load
+    //     .init(page_data);
 
     hash_change
         .init(page_data);
 
-    update_playlists
-        .init(page_data);
+    // update_playlists
+    //     .init(page_data);
 
-    show_playlist
-        .init();
+    // show_playlist
+    //     .init();
 
-    on_player_state_change
-        .init();
+    // on_player_state_change
+    //     .init();
 
-    load_initial
-        .init(page_data);
+    // load_initial
+    //     .init(page_data);
 
-    // di ko alam san nanggaling yung 'value'
-    filter
-        .init(value, page_data);
+    // // di ko alam san nanggaling yung 'value'
+    // filter
+    //     .init(value, page_data);
 
-    filter_vlogs
-        .init(page_data);
+    // filter_vlogs
+    //     .init(page_data);
 
-    // di ko alam san nanggaling yung 'filterString'
-    filter_game
-        .init(filterString, page_data);
+    // // di ko alam san nanggaling yung 'filterString'
+    // filter_game
+    //     .init(filterString, page_data);
 
-    delete_comment
-        .init(data, context);
+    // delete_comment
+    //     .init(data, context);
 
 
     main_tab_2

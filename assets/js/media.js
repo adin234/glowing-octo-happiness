@@ -41,644 +41,644 @@ var html = [],
     tempdata,
     showVideo,
     showPlaylist,
-    show,
+    show;
 
-    cachePlaylist = function (playlistId) {
+//     cachePlaylist = function (playlistId) {
 
-    },
+//     },
 
-    cacheVideo = function (videoId) {
+//     cacheVideo = function (videoId) {
 
-    },
+//     },
 
-    onPlayerStateChange = function () {
-        if (event.data === YT.PlayerState.UNSTARTED) {
-            var videoId = event.target.getVideoData().video_id,
-                index = event.target.getPlaylistIndex(),
-                context = $('img[data-index=' + index + ']');
-        }
-    },
+//     onPlayerStateChange = function () {
+//         if (event.data === YT.PlayerState.UNSTARTED) {
+//             var videoId = event.target.getVideoData().video_id,
+//                 index = event.target.getPlaylistIndex(),
+//                 context = $('img[data-index=' + index + ']');
+//         }
+//     },
 
-    getVideo = function (videoId, list) {
-        var i = 0;
-        if (!list) {
-            list = page_data.videos;
-        }
+//     getVideo = function (videoId, list) {
+//         var i = 0;
+//         if (!list) {
+//             list = page_data.videos;
+//         }
 
-        for (i = 0; i < list.length; i++) {
-            if (list[i].snippet.resourceId.videoId === videoId) {
-                return list[i];
-            }
-        }
+//         for (i = 0; i < list.length; i++) {
+//             if (list[i].snippet.resourceId.videoId === videoId) {
+//                 return list[i];
+//             }
+//         }
 
-        list = data_cache.playlist;
-        indices = Object.keys(list);
-        for (i = 0; i < indices.length; i++) {
-            list = data_cache.playlist[indices[i]].items;
-            for (var ii = 0; ii < list.length; ii++) {
-                if (list[ii].snippet.resourceId.videoId === videoId) {
-                    return list[ii];
-                }
-            }
-        }
+//         list = data_cache.playlist;
+//         indices = Object.keys(list);
+//         for (i = 0; i < indices.length; i++) {
+//             list = data_cache.playlist[indices[i]].items;
+//             for (var ii = 0; ii < list.length; ii++) {
+//                 if (list[ii].snippet.resourceId.videoId === videoId) {
+//                     return list[ii];
+//                 }
+//             }
+//         }
 
-        return cacheVideo(videoId);
-    },
+//         return cacheVideo(videoId);
+//     },
 
-    update_videos = function (videos, append, initial) {
-        var link = '#!/',
-            cons = '',
-            start = $('li.ytVideo.videoItem').length;
+//     update_videos = function (videos, append, initial) {
+//         var link = '#!/',
+//             cons = '',
+//             start = $('li.ytVideo.videoItem').length;
 
-        html = [];
-        playlistIds = [];
+//         html = [];
+//         playlistIds = [];
 
-        if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
-            cons = 'console/' + filterConsole + '/';
-        }
+//         if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
+//             cons = 'console/' + filterConsole + '/';
+//         }
 
-        if (!append || typeof append === 'undefined') {
-            if (!initial) {
-                activeVideos = [];
-            }
-            start = 0;
-            videoIds = [];
-        }
+//         if (!append || typeof append === 'undefined') {
+//             if (!initial) {
+//                 activeVideos = [];
+//             }
+//             start = 0;
+//             videoIds = [];
+//         }
 
-        for (var k = start; k < start + 20; k++) {
-            var item = videos[k];
+//         for (var k = start; k < start + 20; k++) {
+//             var item = videos[k];
 
-            if (!item) {
-                continue;
-            }
+//             if (!item) {
+//                 continue;
+//             }
 
-            if (!~videoIds.indexOf(item.snippet.resourceId.videoId)) {
-                videoIds.push(item.snippet.resourceId.videoId);
-            }
-            else {
-                continue;
-            }
-            if (filterTags && (typeof item.snippet.meta === 'undefined' ||
-                typeof item.snippet.meta.tags === 'undefined' ||
-                utilArray.intersect(filterTags, item.snippet.meta.tags).length === 0)) {
-                return;
-            }
+//             if (!~videoIds.indexOf(item.snippet.resourceId.videoId)) {
+//                 videoIds.push(item.snippet.resourceId.videoId);
+//             }
+//             else {
+//                 continue;
+//             }
+//             if (filterTags && (typeof item.snippet.meta === 'undefined' ||
+//                 typeof item.snippet.meta.tags === 'undefined' ||
+//                 utilArray.intersect(filterTags, item.snippet.meta.tags).length === 0)) {
+//                 return;
+//             }
 
-            playlistIds.push(item.snippet.playlistId);
+//             playlistIds.push(item.snippet.playlistId);
 
-            if (item.snippet.thumbnails) {
-                item = getVideo(item.snippet.resourceId.videoId) || item;
-                if (typeof item.snippet.thumbnails !== 'undefined') {
-                    tempdata = {
-                        id: 'video-' + item.snippet.resourceId.videoId,
-                        link: link + cons + 'video/' + item.snippet.resourceId.videoId,
-                        link_user: '/youtuber/?user=' + item.user_id +
-                            '/#!/video/' + item.snippet.resourceId.videoId || '',
-                        user: item.username || '',
-                        title: item.snippet.title,
-                        thumb: item.snippet.thumbnails.default.url,
-                        desc: item.snippet.description
-                    };
+//             if (item.snippet.thumbnails) {
+//                 item = getVideo(item.snippet.resourceId.videoId) || item;
+//                 if (typeof item.snippet.thumbnails !== 'undefined') {
+//                     tempdata = {
+//                         id: 'video-' + item.snippet.resourceId.videoId,
+//                         link: link + cons + 'video/' + item.snippet.resourceId.videoId,
+//                         link_user: '/youtuber/?user=' + item.user_id +
+//                             '/#!/video/' + item.snippet.resourceId.videoId || '',
+//                         user: item.username || '',
+//                         title: item.snippet.title,
+//                         thumb: item.snippet.thumbnails.default.url,
+//                         desc: item.snippet.description
+//                     };
 
-                    html.push(
-                        template(
-                            JST['videosTpl.html'](),
-                            tempdata
-                        )
-                    );
-                }
-            }
-        }
+//                     html.push(
+//                         template(
+//                             JST['videosTpl.html'](),
+//                             tempdata
+//                         )
+//                     );
+//                 }
+//             }
+//         }
 
-        if (!html.length && !append) {
-            html.push('目前沒有影片');
-        }
+//         if (!html.length && !append) {
+//             html.push('目前沒有影片');
+//         }
 
-        if (append) {
-            $('#videos .mCSB_container').append(html.join(''));
-        }
-        else {
-            $('#videos .mCSB_container').html(html.join(''));
-        }
-    },
+//         if (append) {
+//             $('#videos .mCSB_container').append(html.join(''));
+//         }
+//         else {
+//             $('#videos .mCSB_container').html(html.join(''));
+//         }
+//     },
 
-    willPlay = function () {
-        return ~window.location.hash.indexOf('video/');
-    },
+//     willPlay = function () {
+//         return ~window.location.hash.indexOf('video/');
+//     },
 
-    formatDate = function (date) {
-        var now = new Date(date),
-            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            formattedDate = now.getDate() + '-' +
-                months[now.getMonth()] + '-' +
-                now.getFullYear() + ' ' + now.getHours() +
-                ':' + now.getMinutes();
-            return formattedDate;
-    },
+//     formatDate = function (date) {
+//         var now = new Date(date),
+//             months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//             formattedDate = now.getDate() + '-' +
+//                 months[now.getMonth()] + '-' +
+//                 now.getFullYear() + ' ' + now.getHours() +
+//                 ':' + now.getMinutes();
+//             return formattedDate;
+//     },
 
-    getComments = function (videoId, sort) {
-        sort = sort || 'latest';
-        $.getJSON(server + 'youtubers/videos/' + videoId + '/comment', function (e) {
-            if (sort === 'last') {
-                e = e.sort(function (a, b) {
-                    return a.date - b.date;
-                });
-            }
+//     getComments = function (videoId, sort) {
+//         sort = sort || 'latest';
+//         $.getJSON(server + 'youtubers/videos/' + videoId + '/comment', function (e) {
+//             if (sort === 'last') {
+//                 e = e.sort(function (a, b) {
+//                     return a.date - b.date;
+//                 });
+//             }
 
-            var comments = e.map(function (item) {
-                var that_class = '',
-                    currUrl = window.location.href,
-                    hashes = window.location.hash.replace('#!', '').split('/');
+//             var comments = e.map(function (item) {
+//                 var that_class = '',
+//                     currUrl = window.location.href,
+//                     hashes = window.location.hash.replace('#!', '').split('/');
 
-                if (hashes.indexOf('comment') !== -1) {
-                    hashes[hashes.indexOf('comment') + 1] = item.comment_id;
-                }
-                else {
-                    hashes = ['', 'comment', item.comment_id].concat(hashes.splice(1));
-                }
+//                 if (hashes.indexOf('comment') !== -1) {
+//                     hashes[hashes.indexOf('comment') + 1] = item.comment_id;
+//                 }
+//                 else {
+//                     hashes = ['', 'comment', item.comment_id].concat(hashes.splice(1));
+//                 }
 
-                if (utilUser.get() && +utilUser.get().user_id === +item.user_id) {
-                    that_class = 'deleteComment';
-                }
-                else {
-                    that_class = 'hide';
-                }
-                return {
-                    userimage: attachments_server + 'avatar.php?userid=' +
-                        item.user_id + '.jpg',
-                    userprofile: community + 'index.php?members/' +
-                        item.username + '.' + item.user_id +'/',
-                    username: item.username,
-                    comment: item.message,
-                    share_link: encodeURIComponent(
-                        window.location.href.replace(
-                            window.location.hash,
-                            ''
-                        ) +
-                        '#!' + hashes.join('/')
-                    ),
-                    date: formatDate(item.date * 1000),
-                    comment_id: item.comment_id,
-                    user_access_class: that_class,
-                    image_link: encodeURIComponent(
-                        'https://i.ytimg.com/vi/' +
-                        videoId + '/mqdefault.jpg'
-                    ),
-                    current_url: encodeURIComponent(currUrl)
-                };
-            });
+//                 if (utilUser.get() && +utilUser.get().user_id === +item.user_id) {
+//                     that_class = 'deleteComment';
+//                 }
+//                 else {
+//                     that_class = 'hide';
+//                 }
+//                 return {
+//                     userimage: attachments_server + 'avatar.php?userid=' +
+//                         item.user_id + '.jpg',
+//                     userprofile: community + 'index.php?members/' +
+//                         item.username + '.' + item.user_id +'/',
+//                     username: item.username,
+//                     comment: item.message,
+//                     share_link: encodeURIComponent(
+//                         window.location.href.replace(
+//                             window.location.hash,
+//                             ''
+//                         ) +
+//                         '#!' + hashes.join('/')
+//                     ),
+//                     date: formatDate(item.date * 1000),
+//                     comment_id: item.comment_id,
+//                     user_access_class: that_class,
+//                     image_link: encodeURIComponent(
+//                         'https://i.ytimg.com/vi/' +
+//                         videoId + '/mqdefault.jpg'
+//                     ),
+//                     current_url: encodeURIComponent(currUrl)
+//                 };
+//             });
 
-            var commentsHTML = comments.map(function (item) {
-                return template(
-                    JST['commentItemTpl.html'](),
-                    item
-                );
-            }).join('');
+//             var commentsHTML = comments.map(function (item) {
+//                 return template(
+//                     JST['commentItemTpl.html'](),
+//                     item
+//                 );
+//             }).join('');
 
-            page_data.commentsLength = comments.length;
-            $('#tab-2 .mCSB_container')
-                .html(
-                    template(
-                        JST['commentsTpl.html'](),
-                        {
-                            count: e.length,
-                            video: videoId,
-                            comments: commentsHTML,
-                            sortlatest: sort === 'latest' ? 'current' : '',
-                            sortlast: sort === 'last' ? 'current' : ''
-                        }
-                    )
-                )
-                .promise()
-                .done(function () {
-                    if (utilUser.get()) {
-                        $('img.userImg').attr('src', utilUser.get().links.avatar);
-                    }
+//             page_data.commentsLength = comments.length;
+//             $('#tab-2 .mCSB_container')
+//                 .html(
+//                     template(
+//                         JST['commentsTpl.html'](),
+//                         {
+//                             count: e.length,
+//                             video: videoId,
+//                             comments: commentsHTML,
+//                             sortlatest: sort === 'latest' ? 'current' : '',
+//                             sortlast: sort === 'last' ? 'current' : ''
+//                         }
+//                     )
+//                 )
+//                 .promise()
+//                 .done(function () {
+//                     if (utilUser.get()) {
+//                         $('img.userImg').attr('src', utilUser.get().links.avatar);
+//                     }
 
-                    if (showComment) {
-                        showComment = document.getElementById(showComment);
-                        if (showComment) {
-                            document.getElementById(showComment).scrollIntoView();    
-                        }
-                    }
-                });
-        });
-    },
+//                     if (showComment) {
+//                         showComment = document.getElementById(showComment);
+//                         if (showComment) {
+//                             document.getElementById(showComment).scrollIntoView();    
+//                         }
+//                     }
+//                 });
+//         });
+//     },
 
-    getPhoto = function (id, context) {
-        $.getJSON('http://gdata.youtube.com/feeds/api/users/' + id.substr(2) +
-            '?fields=yt:username,media:thumbnail,title&alt=json', {},
-            function (e) {
-                $(context).attr('src', e['entry.media$thumbnail.url']);
-            }
-        );
-    },
+//     getPhoto = function (id, context) {
+//         $.getJSON('http://gdata.youtube.com/feeds/api/users/' + id.substr(2) +
+//             '?fields=yt:username,media:thumbnail,title&alt=json', {},
+//             function (e) {
+//                 $(context).attr('src', e['entry.media$thumbnail.url']);
+//             }
+//         );
+//     },
 
-    filterAction = function (action) {
-        switch (action) {
-        case 'playlist':
-            showPlaylist(hash.shift(), hash.shift());
-            $('#videosToggle a').trigger('click');
-            break;
-        case 'video':
-            isPlaying = true;
-            showVideo(hash.shift());
-            break;
-        case 'comments':
-            $('a[href="#tab-2"]').click();
-            active_comments = true;
-            filterAction(hash.shift());
-            break;
-        case 'comment':
-            $('a[href="#tab-2"]').click();
-            active_comments = true;
-            showComment = 'comment' + hash.shift();
-            filterAction(hash.shift());
-            break;
-        case 'console':
-            filter_category(hash.shift());
-            filterAction(hash.shift());
-            break;
-        }
-    },
+//     filterAction = function (action) {
+//         switch (action) {
+//         case 'playlist':
+//             showPlaylist(hash.shift(), hash.shift());
+//             $('#videosToggle a').trigger('click');
+//             break;
+//         case 'video':
+//             isPlaying = true;
+//             showVideo(hash.shift());
+//             break;
+//         case 'comments':
+//             $('a[href="#tab-2"]').click();
+//             active_comments = true;
+//             filterAction(hash.shift());
+//             break;
+//         case 'comment':
+//             $('a[href="#tab-2"]').click();
+//             active_comments = true;
+//             showComment = 'comment' + hash.shift();
+//             filterAction(hash.shift());
+//             break;
+//         case 'console':
+//             filter_category(hash.shift());
+//             filterAction(hash.shift());
+//             break;
+//         }
+//     },
 
-    updatePrevNext = function () {
-        var current = $('.videoItem.current'),
-            prevLink = current.prev().children('a').first().attr('href'),
-            nextLink = current.next().children('a').first().attr('href');
+//     updatePrevNext = function () {
+//         var current = $('.videoItem.current'),
+//             prevLink = current.prev().children('a').first().attr('href'),
+//             nextLink = current.next().children('a').first().attr('href');
 
-        $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
-        $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
-    },
+//         $('#btn-prev').attr('href', prevLink ? prevLink : 'javascript:;');
+//         $('#btn-next').attr('href', nextLink ? nextLink : 'javascript:;');
+//     },
 
-    updateSuggestions = function (suggestions) {
-        html = [];
-        suggestions.forEach(function (item, i) {
-            if (filterTags && (typeof item.snippet.meta === 'undefined' ||
-                typeof item.snippet.meta.tags ==='undefined' ||
-                utilArray.intersect(filterTags, item.snippet.meta.tags).length === 0)) {
-                return;
-            }
+//     updateSuggestions = function (suggestions) {
+//         html = [];
+//         suggestions.forEach(function (item, i) {
+//             if (filterTags && (typeof item.snippet.meta === 'undefined' ||
+//                 typeof item.snippet.meta.tags ==='undefined' ||
+//                 utilArray.intersect(filterTags, item.snippet.meta.tags).length === 0)) {
+//                 return;
+//             }
 
-            if (item.snippet.thumbnails) {
-                tempdata = {
-                    id: 'video-' + item.snippet.resourceId.videoId,
-                    link: '/youtuber/?user=' + item.user_id +
-                        '#!/video/' + item.snippet.resourceId.videoId,
-                    title: item.snippet.title,
-                    thumb: item.snippet.thumbnails.default.url,
-                    desc: item.snippet.description,
-                    username: item.username,
-                    views: item.snippet.meta.statistics.viewCount
-                };
-                html.push(
-                    template(
-                        JST['recommendedTpl.html'](),
-                        tempdata
-                    )
-                );
-            }
-        });
-        $('aside.recommend > ul .mCSB_container').html(html.join(''));
-    },
+//             if (item.snippet.thumbnails) {
+//                 tempdata = {
+//                     id: 'video-' + item.snippet.resourceId.videoId,
+//                     link: '/youtuber/?user=' + item.user_id +
+//                         '#!/video/' + item.snippet.resourceId.videoId,
+//                     title: item.snippet.title,
+//                     thumb: item.snippet.thumbnails.default.url,
+//                     desc: item.snippet.description,
+//                     username: item.username,
+//                     views: item.snippet.meta.statistics.viewCount
+//                 };
+//                 html.push(
+//                     template(
+//                         JST['recommendedTpl.html'](),
+//                         tempdata
+//                     )
+//                 );
+//             }
+//         });
+//         $('aside.recommend > ul .mCSB_container').html(html.join(''));
+//     },
 
-    showVideo = function (videoId) {
-        var video = getVideo(videoId);
-        if (video) {
-            var likeButton = '',
-                text = '加入至我的最愛',
-                active = '';
+//     showVideo = function (videoId) {
+//         var video = getVideo(videoId);
+//         if (video) {
+//             var likeButton = '',
+//                 text = '加入至我的最愛',
+//                 active = '';
 
-            if (typeof page_data.favorites === 'undefined') {
-                page_data.favorites = [];
-            }
+//             if (typeof page_data.favorites === 'undefined') {
+//                 page_data.favorites = [];
+//             }
 
-            if (typeof page_data.favorites !== 'undefined') {
+//             if (typeof page_data.favorites !== 'undefined') {
 
-                if (~page_data.favorites.indexOf(videoId)) {
-                    text = '從我的最愛移除';
-                    active = 'active';
-                }
+//                 if (~page_data.favorites.indexOf(videoId)) {
+//                     text = '從我的最愛移除';
+//                     active = 'active';
+//                 }
 
-                likeButton = '<button id="like" class="like ' + active +
-                    '" alt="like" data-id="' + videoId +
-                    '">' + text + '</button>';
-            }
-            $('.videoHeading h3').html(video.snippet.title + likeButton);
-            $('#tab-1 .mCSB_container').html(
-                Autolinker.link(
-                    video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
-                )
-            );
-            $('.videoItem').removeClass('current');
-            $('#video-' + videoId).addClass('current');
-            $('#ytplayer').attr('src', 'https://www.youtube.com/embed/' +
-                videoId + (active_playlist ? '/?list=' + active_playlist +
-                '&' : '?') + 'autoplay=true&enablejsapi=1&origin=' + origin
-            );
+//                 likeButton = '<button id="like" class="like ' + active +
+//                     '" alt="like" data-id="' + videoId +
+//                     '">' + text + '</button>';
+//             }
+//             $('.videoHeading h3').html(video.snippet.title + likeButton);
+//             $('#tab-1 .mCSB_container').html(
+//                 Autolinker.link(
+//                     video.snippet.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
+//                 )
+//             );
+//             $('.videoItem').removeClass('current');
+//             $('#video-' + videoId).addClass('current');
+//             $('#ytplayer').attr('src', 'https://www.youtube.com/embed/' +
+//                 videoId + (active_playlist ? '/?list=' + active_playlist +
+//                 '&' : '?') + 'autoplay=true&enablejsapi=1&origin=' + origin
+//             );
 
-            $.get(server + 'vid_suggestions', {
-                    search: video.engtitle || video.snippet.title
-                },
-                updateSuggestions);
+//             $.get(server + 'vid_suggestions', {
+//                     search: video.engtitle || video.snippet.title
+//                 },
+//                 updateSuggestions);
 
-            if (!page_data.config || !page_data.config.channel) {
-                getPhoto(video.snippet.channelId, $('.videoHeading > img'));
-            }
+//             if (!page_data.config || !page_data.config.channel) {
+//                 getPhoto(video.snippet.channelId, $('.videoHeading > img'));
+//             }
 
-            page_data.videoId = videoId;
+//             page_data.videoId = videoId;
 
-            getComments(videoId);
-            showSocialButtons(
-                'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
-                encodeURIComponent(video.snippet.description),
-                encodeURIComponent(video.snippet.title));
-            updatePrevNext();
+//             getComments(videoId);
+//             showSocialButtons(
+//                 'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
+//                 encodeURIComponent(video.snippet.description),
+//                 encodeURIComponent(video.snippet.title));
+//             updatePrevNext();
 
-            filterAction(hash.shift());
-        }
-    },
+//             filterAction(hash.shift());
+//         }
+//     },
 
-    getPlaylist = function (playlistId) {
-        active_playlist = playlistId;
+//     getPlaylist = function (playlistId) {
+//         active_playlist = playlistId;
 
-        if (!data_cache.playlist[playlistId]) {
-            $.ajax({
-                url: server + 'news',
-                dataType: 'json',
-                async: false,
-                data: {
-                    playlist: playlistId
-                },
-                success: function (e) {
-                    data_cache.playlist[playlistId] = e;
-                }
-            });
-        }
+//         if (!data_cache.playlist[playlistId]) {
+//             $.ajax({
+//                 url: server + 'news',
+//                 dataType: 'json',
+//                 async: false,
+//                 data: {
+//                     playlist: playlistId
+//                 },
+//                 success: function (e) {
+//                     data_cache.playlist[playlistId] = e;
+//                 }
+//             });
+//         }
 
-        return data_cache.playlist[playlistId];
-    },
+//         return data_cache.playlist[playlistId];
+//     },
 
-    getPlaylistNext = function (playlist) {
-        $.getJSON(server + 'news', {
-                playlist: active_playlist,
-                pageToken: playlist.nextPageToken
-            },
-            function (e) {
-                if (e.items[0].snippet.playlistId === active_playlist) {
-                    playlist.nextPageToken = e.nextPageToken;
-                    activeVideos = activeVideos.concat(e.items);
-                    if (e.nextPageToken) {
-                        getPlaylistNext(e);
-                    }
-                }
-            });
-    },
+//     getPlaylistNext = function (playlist) {
+//         $.getJSON(server + 'news', {
+//                 playlist: active_playlist,
+//                 pageToken: playlist.nextPageToken
+//             },
+//             function (e) {
+//                 if (e.items[0].snippet.playlistId === active_playlist) {
+//                     playlist.nextPageToken = e.nextPageToken;
+//                     activeVideos = activeVideos.concat(e.items);
+//                     if (e.nextPageToken) {
+//                         getPlaylistNext(e);
+//                     }
+//                 }
+//             });
+//     },
 
-    showPlaylist = function (playlistId, next) {
-        activeVideos = [];
-        $('.playlistItem').removeClass('current');
-        $('#playlist-' + playlistId).addClass('current');
-        var playlist = getPlaylist(playlistId);
-        $('li.ytVideo.videoItem').remove();
+//     showPlaylist = function (playlistId, next) {
+//         activeVideos = [];
+//         $('.playlistItem').removeClass('current');
+//         $('#playlist-' + playlistId).addClass('current');
+//         var playlist = getPlaylist(playlistId);
+//         $('li.ytVideo.videoItem').remove();
 
-        if (next !== 'continue') {
-            update_videos(playlist.items);
-        }
+//         if (next !== 'continue') {
+//             update_videos(playlist.items);
+//         }
 
-        if (playlist.nextPageToken) {
-            activeVideos = activeVideos.concat(playlist.items);
-            getPlaylistNext(playlist);
-        }
-        if (!next) {
-            if ((typeof playlist.items[0].status !== 'undefined') && (playlist.items[0].status === 'public')) {
-                return show;
-            }
-            else {
-                return showVideo(playlist.items[1].snippet.resourceId.videoId);
-            }
-        }
+//         if (playlist.nextPageToken) {
+//             activeVideos = activeVideos.concat(playlist.items);
+//             getPlaylistNext(playlist);
+//         }
+//         if (!next) {
+//             if ((typeof playlist.items[0].status !== 'undefined') && (playlist.items[0].status === 'public')) {
+//                 return show;
+//             }
+//             else {
+//                 return showVideo(playlist.items[1].snippet.resourceId.videoId);
+//             }
+//         }
 
-        filterAction(next);
-    },
+//         filterAction(next);
+//     },
 
-    update_playlists = function (playlists) {
-        var ids = [],
-            cons = '',
-            source = JST['playlistTpl.html']();
+//     update_playlists = function (playlists) {
+//         var ids = [],
+//             cons = '',
+//             source = JST['playlistTpl.html']();
         
-        html = [];
+//         html = [];
 
-        if ($('body').hasClass('news') || $('body').hasClass('shows')) {
-            source = JST['categoriesTpl.html']();
-        }
+//         if ($('body').hasClass('news') || $('body').hasClass('shows')) {
+//             source = JST['categoriesTpl.html']();
+//         }
 
-        var visible_playlists = (typeof page_data.visible_playlists !== 'undefined') ?
-            page_data.visible_playlists.split(',') :
-            [];
+//         var visible_playlists = (typeof page_data.visible_playlists !== 'undefined') ?
+//             page_data.visible_playlists.split(',') :
+//             [];
 
-        if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
-            cons = 'console/' + filterConsole + '/';
-        }
+//         if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
+//             cons = 'console/' + filterConsole + '/';
+//         }
 
-        playlists.forEach(function (item, i) {
-            if (~ids.indexOf(item.id)) {
-                return;
-            }
+//         playlists.forEach(function (item, i) {
+//             if (~ids.indexOf(item.id)) {
+//                 return;
+//             }
 
-            if ($('body').hasClass('news') || $('body').hasClass('shows')) {
-                if (visible_playlists.indexOf(item.id) === -1) {
-                    return;
-                }
-            }
+//             if ($('body').hasClass('news') || $('body').hasClass('shows')) {
+//                 if (visible_playlists.indexOf(item.id) === -1) {
+//                     return;
+//                 }
+//             }
 
-            ids.push(item.id);
-            if (!item.snippet.thumbnails) {
-                return;
-            }
+//             ids.push(item.id);
+//             if (!item.snippet.thumbnails) {
+//                 return;
+//             }
 
-            tempdata = {
-                id: 'playlist-' + item.id,
-                link: '#!/' + cons + 'playlist/' + item.id,
-                title: item.snippet.title,
-                thumb: item.snippet.thumbnails.default.url,
-                desc: item.snippet.description
-            };
+//             tempdata = {
+//                 id: 'playlist-' + item.id,
+//                 link: '#!/' + cons + 'playlist/' + item.id,
+//                 title: item.snippet.title,
+//                 thumb: item.snippet.thumbnails.default.url,
+//                 desc: item.snippet.description
+//             };
 
 
-            html.push(template(source, tempdata));
-        });
+//             html.push(template(source, tempdata));
+//         });
 
-        if (!html.length) {
-            html.push('請將影片加至您的"我的最愛"播放清單!');
-            $('.listSwitch').addClass('no-playlist');
-            $('#videosToggle').trigger('click');
-            if ($('#videos li.videoItem > a').length) {
-                var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
-                if (!isPlaying && !willPlay()) {
-                    window.location.hash = link;
-                }
-            }
-            else {
-                $('.game_page .listSwitch').removeClass('no-playlist');
-            }
+//         if (!html.length) {
+//             html.push('請將影片加至您的"我的最愛"播放清單!');
+//             $('.listSwitch').addClass('no-playlist');
+//             $('#videosToggle').trigger('click');
+//             if ($('#videos li.videoItem > a').length) {
+//                 var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
+//                 if (!isPlaying && !willPlay()) {
+//                     window.location.hash = link;
+//                 }
+//             }
+//             else {
+//                 $('.game_page .listSwitch').removeClass('no-playlist');
+//             }
 
-            if ($('body').hasClass('news') || $('body').hasClass('shows')) {
-                $('.listSwitch').addClass('no-playlist');
-                $('#videosToggle').trigger('click');
-                $('#categories').html(html.join(''));
-            }
-            $('#playlists .mCSB_container').html(html.join(''));
-        }
-    },
+//             if ($('body').hasClass('news') || $('body').hasClass('shows')) {
+//                 $('.listSwitch').addClass('no-playlist');
+//                 $('#videosToggle').trigger('click');
+//                 $('#categories').html(html.join(''));
+//             }
+//             $('#playlists .mCSB_container').html(html.join(''));
+//         }
+//     },
 
-    loadInitial = function () {
-        activeVideos = page_data.videos;
-        update_videos(page_data.videos, null, 1);
-    },
+//     loadInitial = function () {
+//         activeVideos = page_data.videos;
+//         update_videos(page_data.videos, null, 1);
+//     },
 
-    filter = function (value) {
-        var filterObj = page_data.categories.filter(function (item) {
-            return item.id === value;
-        });
-        if (typeof filterObj[0] !== 'undefined') {
-            filterTags = $.map(filterObj[0].tags.split(','), $.trim);
-        }
-        $('li.ytVideo.videoItem').remove();
-        update_videos(page_data.videos);
-    },
+//     filter = function (value) {
+//         var filterObj = page_data.categories.filter(function (item) {
+//             return item.id === value;
+//         });
+//         if (typeof filterObj[0] !== 'undefined') {
+//             filterTags = $.map(filterObj[0].tags.split(','), $.trim);
+//         }
+//         $('li.ytVideo.videoItem').remove();
+//         update_videos(page_data.videos);
+//     },
 
-    filter_vlogs = function () {
-        var videos = page_data.videos.filter(function (e) {
-            return !!~e.snippet.meta.tags.indexOf('anytv_console_vlogs');
-        });
-        $('li.ytVideo.videoItem').remove();
-        update_videos(videos);
-    },
+//     filter_vlogs = function () {
+//         var videos = page_data.videos.filter(function (e) {
+//             return !!~e.snippet.meta.tags.indexOf('anytv_console_vlogs');
+//         });
+//         $('li.ytVideo.videoItem').remove();
+//         update_videos(videos);
+//     },
 
-    filterGame = function (filterString) {
-        $('.game-item').each(function (i, item) {
-            $(item).removeClass('active');
-        });
-        $('[data-id=' + filterString + ']').parent().addClass('active');
+//     filterGame = function (filterString) {
+//         $('.game-item').each(function (i, item) {
+//             $(item).removeClass('active');
+//         });
+//         $('[data-id=' + filterString + ']').parent().addClass('active');
 
-        var videos = [];
-        page_data.playlists.forEach(function (item) {
-            if (typeof item.snippet.meta !== 'undefined' &&
-                (~item.snippet.meta.tags.indexOf('anytv_' + filterString) ||
-                ~item.snippet.meta.tags.indexOf(filterString))) {
-                videos.push(item);
-            }
-        });
-        update_playlists(videos);
+//         var videos = [];
+//         page_data.playlists.forEach(function (item) {
+//             if (typeof item.snippet.meta !== 'undefined' &&
+//                 (~item.snippet.meta.tags.indexOf('anytv_' + filterString) ||
+//                 ~item.snippet.meta.tags.indexOf(filterString))) {
+//                 videos.push(item);
+//             }
+//         });
+//         update_playlists(videos);
 
-        videos = [];
-        page_data.videos.forEach(function (item) {
-            if (typeof item.snippet.meta !== 'undefined' &&
-                (~item.snippet.meta.tags.indexOf('anytv_' + filterString) ||
-                    ~item.snippet.meta.tags.indexOf(filterString))) {
-                videos.push(item);
-            }
-        });
-        $('li.ytVideo.videoItem').remove();
-        update_videos(videos);
-    },
+//         videos = [];
+//         page_data.videos.forEach(function (item) {
+//             if (typeof item.snippet.meta !== 'undefined' &&
+//                 (~item.snippet.meta.tags.indexOf('anytv_' + filterString) ||
+//                     ~item.snippet.meta.tags.indexOf(filterString))) {
+//                 videos.push(item);
+//             }
+//         });
+//         $('li.ytVideo.videoItem').remove();
+//         update_videos(videos);
+//     },
 
-    deleteComment = function (data, context) {
-        var videoId = $('#postComment').attr('data-video'),
-            url = server + 'youtubers/videos/' + videoId + '/comment/' + data + '/delete',
-            user_id = utilUser.get().user_id;
+//     deleteComment = function (data, context) {
+//         var videoId = $('#postComment').attr('data-video'),
+//             url = server + 'youtubers/videos/' + videoId + '/comment/' + data + '/delete',
+//             user_id = utilUser.get().user_id;
 
-        $(context).parent().parent().addClass('deletecommentbox');
+//         $(context).parent().parent().addClass('deletecommentbox');
 
-        if (confirm('Do you want to permanently delete this comment?') === true) {
-            $.ajax({
-                dataType: 'jsonp',
-                url: url,
-                crossDomain: true,
-                type: 'get'
-            });
-            $(context).parent().parent().remove();
-        }
-        else {
-            $('.deletecommentbox').removeClass('deletecommentbox');
-        }
-    };
+//         if (confirm('Do you want to permanently delete this comment?') === true) {
+//             $.ajax({
+//                 dataType: 'jsonp',
+//                 url: url,
+//                 crossDomain: true,
+//                 type: 'get'
+//             });
+//             $(context).parent().parent().remove();
+//         }
+//         else {
+//             $('.deletecommentbox').removeClass('deletecommentbox');
+//         }
+//     };
 
-if (typeof page_data === 'string') {
-    page_data = $.parseJSON(page_data);
-}
+// if (typeof page_data === 'string') {
+//     page_data = $.parseJSON(page_data);
+// }
 
-data_cache = {
-    playlist: {},
-    video: {}
-};
+// data_cache = {
+//     playlist: {},
+//     video: {}
+// };
 
-tag.src = 'https://www.youtube.com/iframe_api';
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// tag.src = 'https://www.youtube.com/iframe_api';
+// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-$(document).on('load-page', function () {
+// $(document).on('load-page', function () {
 
-    if ($('body').hasClass('game_page')) {
-        var name = page_data.game_name.name ? page_data.game_name.name : '';
-        $('.profile .info h1').html(name);
-    }
+//     if ($('body').hasClass('game_page')) {
+//         var name = page_data.game_name.name ? page_data.game_name.name : '';
+//         $('.profile .info h1').html(name);
+//     }
 
-    if (page_data.config && page_data.config.channel && typeof page_data.config.channel === 'string') {
-        getPhoto(page_data.config.channel, $('.videoHeading > img'));
-    }
+//     if (page_data.config && page_data.config.channel && typeof page_data.config.channel === 'string') {
+//         getPhoto(page_data.config.channel, $('.videoHeading > img'));
+//     }
 
-    page_data.categories.forEach(function (item, i) {
-        html.push(
-            template(
-                JST['categoriesTpl.html'](),
-                item
-            )
-        );
-    });
-    if (!html.length) {
-        html.push('No Category Available');
-    }
-    $('#categories').html('');
+//     page_data.categories.forEach(function (item, i) {
+//         html.push(
+//             template(
+//                 JST['categoriesTpl.html'](),
+//                 item
+//             )
+//         );
+//     });
+//     if (!html.length) {
+//         html.push('No Category Available');
+//     }
+//     $('#categories').html('');
 
-    $('li.ytVideo.videoItem').remove();
-    activeVideos = page_data.videos;
-    update_videos(page_data.videos, null, 1);
+//     $('li.ytVideo.videoItem').remove();
+//     activeVideos = page_data.videos;
+//     update_videos(page_data.videos, null, 1);
 
-    var thumbs = typeof page_data.videos[0] !== 'undefined' ? page_data.videos[0].snippet.thumbnails : typeof page_data
-        .playlists[0] !== 'undefined' ? page_data.playlists[0].snippet.thumbnails : '';
+//     var thumbs = typeof page_data.videos[0] !== 'undefined' ? page_data.videos[0].snippet.thumbnails : typeof page_data
+//         .playlists[0] !== 'undefined' ? page_data.playlists[0].snippet.thumbnails : '';
 
-    if (false && page_data.playlists.length) {
-        page_data.playlists.splice(0, 0, {
-            id: 'UU' + page_data.config.channel.slice(2),
-            snippet: {
-                title: '最新影片',
-                channelId: page_data.config.channel,
-                description: '會員上傳',
-                thumbnails: thumbs
-            }
-        });
-    }
+//     if (false && page_data.playlists.length) {
+//         page_data.playlists.splice(0, 0, {
+//             id: 'UU' + page_data.config.channel.slice(2),
+//             snippet: {
+//                 title: '最新影片',
+//                 channelId: page_data.config.channel,
+//                 description: '會員上傳',
+//                 thumbnails: thumbs
+//             }
+//         });
+//     }
 
-    update_playlists(page_data.playlists);
-
-    
-    if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {
-        $.ajax({
-                dataType: 'jsonp',
-                url: server + 'favorite-ids',
-                crossDomain: true,
-                type: 'get'
-            })
-            .always(function (result) {
-                page_data.favorites = result;
-                $(window).trigger('hashchange');
-            });
-
-        return;
-    }
+//     update_playlists(page_data.playlists);
 
     
-    $(window).trigger('hashchange');
-});
+//     if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {
+//         $.ajax({
+//                 dataType: 'jsonp',
+//                 url: server + 'favorite-ids',
+//                 crossDomain: true,
+//                 type: 'get'
+//             })
+//             .always(function (result) {
+//                 page_data.favorites = result;
+//                 $(window).trigger('hashchange');
+//             });
+
+//         return;
+//     }
+
+    
+//     $(window).trigger('hashchange');
+// });
 

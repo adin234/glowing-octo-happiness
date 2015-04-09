@@ -1,5 +1,16 @@
-define (
-	function () {
+/*global
+	html: true,
+	playlistIds: true,
+	filterConsole: true,
+	activeVideos: true,
+	videoIds: true,
+	filterTags: true,
+	utilArray: true
+*/
+
+'use strict';
+
+define(function () {
 		return function Update_Videos () {
             return {
                 init: function(videos, append, initial) {
@@ -10,8 +21,7 @@ define (
 			            start = $('li.ytVideo.videoItem').length;
 
 			        html = [];
-			        playlistIds = [],
-			        filterConsole;
+			        playlistIds = [];
 
 			        if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
 			            cons = 'console/' + filterConsole + '/';
