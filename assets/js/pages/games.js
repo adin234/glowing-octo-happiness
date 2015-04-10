@@ -40,7 +40,11 @@ define('youtubers', function(require) {
             $list_container: $('<ul class="list clearFix"/>'),
             onSlideNext: function($slideElement, oldIndex, newIndex) {
                 if (newIndex%2) {
+<<<<<<< HEAD
                     $.getJSON(server + ['games', game_selector.get_active() || 'all', 'videos' ].join('/') + '?' +
+=======
+                    $.getJSON(server + ['games', game_selector.get_active(), 'videos' ].join('/') + '?' +
+>>>>>>> cb2bec781b148aa97b06e09b12872cab06f9546d
                         $.param({
                             limit: 32,
                             console: global_filter.get_active().id,
