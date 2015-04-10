@@ -14,9 +14,11 @@ define(function() {
                 $list_container: $('<ul />'),
 
                 // callbacks
-                after_mount: function() {}
+                after_mount: function() {},
+                onSlideNext: function() {}
             },
             options = $.extend({}, defaults, opts),
+            slider = null,
             array_chunk = function(array, size) {
                 var result = [];
                 while(array.length) {
@@ -68,12 +70,25 @@ define(function() {
                 this.$el.reloadSlider({
                     startSlide: 0,
                     infiniteLoop: false,
-                    hideControlOnEnd: true
+                    hideControlOnEnd: true,
+                    onSlideNext: options.onSlideNext
                 });
 
                 options.after_mount();
 
                 return this;
+            },
+
+            push: function(data) {
+
+                this.init(data);
+
+                this.$el.reloadSlider({
+                    startSlide: this.get_current_slide(),
+                    infiniteLoop: false,
+                    hideControlOnEnd: true,
+                    onSlideNext: options.onSlideNext
+                });
             },
 
             mount: function($container) {
@@ -82,15 +97,24 @@ define(function() {
 
                 this.$el = $container;
 
-                this.$el.bxSlider({
+                slider = this.$el.bxSlider({
                     startSlide: 0,
                     infiniteLoop: false,
-                    hideControlOnEnd: true
+                    hideControlOnEnd: true,
+                    onSlideNext: options.onSlideNext
                 });
 
                 options.after_mount();
 
                 return this;
+            },
+
+            get_slide_count: function() {
+                return slider.getSlideCount();
+            },
+
+            get_current_slide: function() {
+                return slider.getCurrentSlide();
             }
         };
     };

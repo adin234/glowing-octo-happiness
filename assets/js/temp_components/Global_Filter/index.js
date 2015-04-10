@@ -54,7 +54,8 @@ define(function() {
                 }
             ],
             options = $.extend({}, defaults, opts),
-            $list_container = $('<ul class="clearFix"/>');
+            $list_container = $('<ul class="clearFix"/>'),
+            active_item = null;
 
         return {
 
@@ -118,7 +119,12 @@ define(function() {
 
                 $list_container.find('li').removeClass('current');
                 $active.parent().addClass('current');
-                options.onChange(items[$active.data('index')]);
+                active_item = items[$active.data('index')];
+                options.onChange(active_item);
+            },
+
+            get_active: function() {
+                return active_item;
             }
         };
 

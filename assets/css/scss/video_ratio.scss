@@ -56,8 +56,8 @@
     }
 }
 
-#youtubers {
-    .list.clearFix, #games .list.clearFix {
+#youtubers, #games {
+    .list.clearFix{
         padding-left: 50px;
         box-sizing: border-box;
     }

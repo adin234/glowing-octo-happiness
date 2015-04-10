@@ -42,10 +42,10 @@
   .autocomplete-suggestions .autocomplete-selected {
     color: #e00; }
 
-#youtubers .list.clearFix, #youtubers #games .list.clearFix {
+#youtubers .list.clearFix, #games .list.clearFix {
   padding-left: 50px;
   box-sizing: border-box; }
-#youtubers #tab-2-2 .list .uploader {
+#youtubers #tab-2-2 .list .uploader, #games #tab-2-2 .list .uploader {
   top: 25px; }
 
 #streamers .video .list h3 {

@@ -6,7 +6,8 @@ define(function() {
         var defaults = {
             onSelect: function() {}
         },
-        options = $.extend({}, defaults, opts);
+        options = $.extend({}, defaults, opts),
+        active;
 
         return {
 
@@ -30,8 +31,13 @@ define(function() {
                 if ($active_el.length) {
                     this.$el.find('li').removeClass('active');
                     $active_el.closest('li').addClass('active');
-                    options.onSelect($active_el.data('id'));
+                    active = $active_el.data('id');
+                    options.onSelect(active);
                 }                
+            },
+
+            get_active: function() {
+                return active;
             }
         };
     };

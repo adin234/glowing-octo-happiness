@@ -1,3 +1,7 @@
+/*global
+    hash: true
+*/
+
 'use strict';
 
 define (function () {
@@ -10,25 +14,19 @@ define (function () {
             return {
                 init: function(page_data) {
 
-                    hash = window.location.hash.replace('#!', '').split('/');
 
                     if (!$('body').hasClass('favorites')) {
 
-    			        hash = window.location.hash.replace('#!/', '').split('/');
-
                         $(window).on('hashchange', function () {
-
-
-        			        // if (!hash && page_data.playlists.length) {
-        			        //     window.location.hash = '#!/playlist/' + page_data.config.playlist;
-        			        // }
-        			        // hash = hash.split('/');
-
-                            options.onChange(hash.shift(), hash.shift());
-        			        // filterAction.init(hash.shift(), hash);
+                            hash = window.location.hash.replace('#!/', '');
+                            if (!hash && page_data.playlists.length) {
+                                window.location.hash = '#!/playlist/' + page_data.config.playlist;
+                            }
+                            hash = hash.split('/');
+                            options.onChange(hash.shift());
         			    });
 
-                        options.onChange(hash.shift());
+                        $(window).trigger('hashchange');
                     }
                 }
             };
