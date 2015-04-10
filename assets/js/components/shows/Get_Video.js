@@ -1,54 +1,42 @@
-define (
-	[
-		'components/shows/Cache_Video'
-	],
-	function (
-		Cache_Video
-	) {
-		return function Get_Video () {
-            return {
-                init: function(videoId, list) {
+/*global
+	server,
+	data_cache,
+	indices:true
+*/
 
-                	var cacheVideo = new Cache_Video(),
-                	data_cache = {
-					    playlist: {},
-					    video: {}
-					};
+'use strict';
 
-			        var i = 0;
+define(function() {
 
-			        if (!list) {
-						$.ajax({
-					        async: false,
-					        type: 'GET',
-					        dataType: 'json',
-					        url: server + 'shows'
-					    }).done(function (data) {
-					        list = data.videos;
-					    });
-			        }
+    return function Get_Video(videoId, list) {
+        var i = 0;
 
-			        for (i = 0; i < list.length; i++) {
-			            if (list[i].snippet.resourceId.videoId === videoId) {
-			                return list[i];
-			            }
-			        }
+        if (!list) {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                dataType: 'json',
+                url: server + 'shows'
+            }).done(function(data) {
+                list = data.videos;
+            });
+        }
 
-			        list = data_cache.playlist;
-			        indices = Object.keys(list);
-			        for (i = 0; i < indices.length; i++) {
-			            list = data_cache.playlist[indices[i]].items;
-			            for (var ii = 0; ii < list.length; ii++) {
-			                if (list[ii].snippet.resourceId.videoId === videoId) {
-			                    return list[ii];
-			                }
-			            }
-			        }
+        for (i = 0; i < list.length; i++) {
+            if (list[i].snippet.resourceId.videoId === videoId) {
+                return list[i];
+            }
+        }
 
-			        return cacheVideo.init(videoId);
-
+        list = data_cache.playlist;
+        indices = Object.keys(list);
+        for (i = 0; i < indices.length; i++) {
+            list = data_cache.playlist[indices[i]].items;
+            for (var ii = 0; ii < list.length; ii++) {
+                if (list[ii].snippet.resourceId.videoId === videoId) {
+                    return list[ii];
                 }
-            };
-		};
-	}
-);
+            }
+        }
+    };
+});

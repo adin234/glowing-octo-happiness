@@ -37,7 +37,10 @@ var html = [],
     firstScriptTag = document.getElementsByTagName('script')[0],
     showComment = false,
     indices,
-    data_cache,
+    data_cache = {
+        playlist: {},
+        video: {}
+    },
     tempdata,
     showVideo,
     showPlaylist,

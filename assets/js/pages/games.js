@@ -37,7 +37,23 @@ define('youtubers', function(require) {
         youtubers_slider = new List_Slider({
             per_slider: 16,
             item_template: video_tpl,
-            $list_container: $('<ul class="list clearFix"/>')
+            $list_container: $('<ul class="list clearFix"/>'),
+            onSlideNext: function($slideElement, oldIndex, newIndex) {
+                if (newIndex%2) {
+                    $.getJSON(server + ['games', game_selector.get_active() || 'all', 'videos' ].join('/') + '?' +
+                        $.param({
+                            limit: 32,
+                            console: global_filter.get_active().id,
+                            page: (youtubers_slider.get_slide_count() / 2) + 1,
+                            search: ''
+                        }),
+                        function(result) {
+                            page_data.videos.concat(result);
+                            youtubers_slider.push(transform_youtubers(result));
+                        }
+                    );
+                }
+            }
         }),
         global_filter = new Global_Filter({
             onChange: function(filter) {
@@ -47,8 +63,10 @@ define('youtubers', function(require) {
                 }), function(result) {
                     page_data.games = result.games;
                     page_data.featured_games = result.featured_games;
-                    latest_games_slider.reload(transform_games(result.games));
-                    featured_games_slider.reload(transform_games(result.featured_games));
+                    page_data.videos = result.videos;
+                    latest_games_slider.reload(transform_games(page_data.games));
+                    featured_games_slider.reload(transform_games(page_data.featured_games));
+                    youtubers_slider.reload(transform_youtubers(page_data.videos));
                     game_selector.refresh_active();
                 });
             }
@@ -68,26 +86,40 @@ define('youtubers', function(require) {
                 game_selector.refresh_active();
             }
         }),
-        videos_search = new Search_Box({
+        youtubers_search = new Search_Box({
             serviceUrl: server + 'youtubers/search_youtubers',
             onSelect: function(item) {
+                var con = global_filter.get_active().id;
+                $.getJSON(server + ['games', con, 'videos' ].join('/') + '?' +
+                    $.param({
+                        console: con,
+                        search: item.value
+                    }),
+                    function(result) {
+                        page_data.videos = result;
+                        youtubers_slider.reload(transform_youtubers(result));
+                    }
+                );
+
                 youtubers_slider.reload(
                     transform_youtubers(
-                        filter_youtubers(page_data.popular_youtubers, item.value)
+                        filter_youtubers(page_data.videos, item.value)
                     )
                 );
             }
         }),
         game_selector = new Item_Selector({
             onSelect: function(game) {
-                $.getJSON(server + 'youtubers?' + $.param({
-                    game: game
-                }), function(result) {
-                    page_data.popular_youtubers = result.popular_youtubers;
-                    page_data.new_youtubers = result.new_youtubers;
-                    page_data.youtubers = result.youtubers;
-                    youtubers_slider.reload(transform_youtubers(page_data.popular_youtubers));
-                });
+                $.getJSON(server + ['games', game, 'videos'].join('/') + '?' +
+                    $.param({
+                        limit: 32,
+                        game: game
+                    }),
+                    function(result) {
+                        page_data.videos = result;
+                        youtubers_slider.reload(transform_youtubers(page_data.videos));
+                    }
+                );
             }
         }),
         filter_games = function(games, filter) {
@@ -121,17 +153,18 @@ define('youtubers', function(require) {
         },
         transform_youtubers = function(data) {
             return data.map(function(item) {
-                item.user_id    = item.userId;
-                item.username    = item.video.username;
-                item.title      = item.video.snippet.title;
-                item.thumb      = item.video.snippet.thumbnails.medium.url;
-                item.view       = item.video.snippet.meta.statistics.viewCount;
-                item.comment    = item.video.snippet.meta.statistics.commentCount;
+                item.user_id    = item.user_id;
+                item.username    = item.username;
+                item.title      = item.snippet.title;
+                item.thumb      = item.snippet.thumbnails.medium.url;
+                item.views       = item.snippet.meta.statistics.viewCount;
+                item.comment    = item.snippet.meta.statistics.commentCount;
                 item.channelid  = item.youtube_id;
                 item.live       = '';
                 item.provider   = attachments_server;
-                item.videoid    = item.video.snippet.resourceId.videoId;
+                item.videoid    = item.snippet.resourceId.videoId;
                 item.bust       = 1;
+                item.anytv_comments = item.anytv_comment || 0;
                 return item;
             });
         };
@@ -144,7 +177,7 @@ define('youtubers', function(require) {
             .init(gamesAutocompleteArray)
             .applyTo($('#txtbox-search-games'));
 
-        videos_search
+        youtubers_search
             .init()
             .applyTo($('#txtbox-search-videos'));
 
@@ -156,7 +189,7 @@ define('youtubers', function(require) {
 
         videos_tab
             .init()
-            .addTab('tab-2-1', '熱門YouTuber', '熱門YouTuber', $('<div id="youtubers_slider"/>'))
+            .addTab('tab-2-1', '遊戲分類', 'tab-2-1', $('<div id="youtubers_slider"/>'))
             .mount($('#video-tabs'));
 
         latest_games_slider
@@ -168,7 +201,7 @@ define('youtubers', function(require) {
             .mount($('#featuredGames'));
 
         youtubers_slider
-            .init(transform_youtubers(page_data.popular_youtubers))
+            .init(transform_youtubers(page_data.videos))
             .mount($('#youtubers_slider'));
 
         game_selector

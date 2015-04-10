@@ -1,5 +1,6 @@
 /*global
-    requirejs  
+    page_data: true,
+    server
 */
 
 'use strict';
@@ -60,6 +61,7 @@ requirejs([
     'components/shows/Load_Initial',
     'components/shows/On_Player_State_Change',
     'components/shows/Show_Playlist',
+    'components/shows/Show_Video',
     'components/shows/Update_Playlists',
     'components/shows/Update_Prev_Next',
     'components/shows/Update_Suggestions',
@@ -91,6 +93,7 @@ requirejs([
         Load_Initial,
         On_Player_State_Change,
         Show_Playlist,
+        Show_Video,
         Update_Playlists,
         Update_Prev_Next,
         Update_Suggestions,
@@ -99,7 +102,6 @@ requirejs([
 
     ) {
 
-    var page_data;
     $.ajax({
         async: false,
         type: 'GET',
@@ -108,7 +110,6 @@ requirejs([
     }).done(function (data) {
         page_data = data;
     });
-    console.log('all data', page_data);
 
     // shows page
     var main_tab_1 = new Tabs({
@@ -123,61 +124,27 @@ requirejs([
     var global_filter                   = new Global_Filter(),
         first_load                      = new First_Load(),
         hash_change                     = new Hash_Change({
-            onChange: function(type, id) {
-                filter_action.execute(type, id);
+            onChange: function(type) {
+                filter_action.execute(type);
             }
         }),
         show_playlist                   = new Show_Playlist(),
+        show_video                      = new Show_Video(),
         filter_action                   = new Filter_Action({
-            show_playlist: show_playlist
-        }),
-        Update_Playlists                 = new Update_Playlists();
-        // on_player_state_change          = new On_Player_State_Change(),
-        // load_initial                    = new Load_Initial(),
-        // filter                          = new Filter(),
-        // filter_vlogs                    = new Filter_Vlogs(),
-        // filter_game                     = new Filter_Game(),
-        // delete_comment                  = new Delete_Comment();
-
-
-    // first_load
-    //     .init(page_data);
+            show_playlist: show_playlist,
+            show_video: show_video
+        });
 
     hash_change
         .init(page_data);
-
-    // update_playlists
-    //     .init(page_data);
-
-    // show_playlist
-    //     .init();
-
-    // on_player_state_change
-    //     .init();
-
-    // load_initial
-    //     .init(page_data);
-
-    // // di ko alam san nanggaling yung 'value'
-    // filter
-    //     .init(value, page_data);
-
-    // filter_vlogs
-    //     .init(page_data);
-
-    // // di ko alam san nanggaling yung 'filterString'
-    // filter_game
-    //     .init(filterString, page_data);
-
-    // delete_comment
-    //     .init(data, context);
-
 
     main_tab_2
         .init()
         .addTab('#tab-1', '現在播放')
         .addTab('#tab-2', '評論')
-        .mount($('#video-related-tabs'))
+        .mount($('#video-related-tabs'));
+
+    first_load.init();
 
     $('#footer-container').html(FooterTpl);
 

@@ -1,7 +1,8 @@
 /*global
 	active_comments: true,
 	showComment: true,
-	isPlaying: true
+	isPlaying: true,
+	hash
 */
 
 'use strict';
@@ -17,11 +18,11 @@ define (function () {
 			options = $.extend({}, defaults, opts);
 
             return {
-                execute: function(action, hash) {
+                execute: function(action) {
 
 				    switch (action) {
 				        case 'playlist':
-				        	options.show_playlist(action, hash);
+				        	options.show_playlist.execute(hash.shift(), hash.shift(), this.execute);
 				            $('#videosToggle a').trigger('click');
 				            break;
 				        case 'video':
