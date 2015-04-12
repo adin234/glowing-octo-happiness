@@ -719,6 +719,7 @@ $(function() {
 ga('create', 'UA-46773919-11', 'auto');
 ga('send', 'pageview');
 
+var global_streamer_list = {};
 
 $.getScript("/assets/js/socketio.js", function() {
     var socket = io.connect(socket_server);
@@ -728,5 +729,42 @@ $.getScript("/assets/js/socketio.js", function() {
         if (streamerCount) {
             streamerCount.html(count);
         }
+
+        e.new_streamers && e.new_streamers.forEach(function(streamer) {
+            var item = streamer.substr(0,2),
+                term = streamer.slice(2);
+
+            switch (item) {
+                case 'TW' :
+                     e.streamers.twitch.forEach(function(_streamer) {
+                        if(_streamer.twitch.channel.name == term) {
+                            notify_stream({
+                                streamer: term,
+                                link: origin + 'gamer_stream/?user=' + _streamer.user_id + '#!/' + 'TW' + term
+                            })
+                        }
+                     });
+                     break;
+                case 'HB' :
+                    e.streamers.hitbox.forEach(function(_streamer) {
+                        if(_streamer.hitbox.livestream[0].media_name == term) {
+                            notify_stream({
+                                streamer: term,
+                                link: origin + 'gamer_stream/?user=' + _streamer.user.user_id + '#!/' + 'HB' + term
+                            });
+                        }
+                    });
+                    break;
+                case 'YT' :
+                    e.streamers.youtube.forEach(function(_streamer) {
+                        if(_streamer.username == term) {
+                            notify_stream({
+                                streamer: term,
+                                link: origin + 'gamer_stream/?user=' + _streamer.user_id + '#!/' + 'HB' + term
+                            })
+                        }
+                    });
+            }
+        })
     })
 });
