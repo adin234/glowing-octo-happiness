@@ -80,7 +80,7 @@ requirejs([
         Filter_Action,
         Filter_Game,
         Filter_Vlogs,
-        First_Load,
+        first_load,
         Format_Date,
         Get_Comments,
         Get_Photo,
@@ -112,28 +112,22 @@ requirejs([
     });
 
     // shows page
-    var main_tab_1 = new Tabs({
-        className: 'listSwitch clearFix',
-        template: tab_nav_tpl
-    });
-
     var main_tab_2 = new Tabs({
         template: tab_nav_tpl_2
+    }),
+    global_filter                   = new Global_Filter(),
+    hash_change                     = new Hash_Change({
+        onChange: function(type) {
+            console.log('changed');
+            filter_action.execute(type);
+        }
+    }),
+    show_playlist                   = new Show_Playlist(),
+    show_video                      = new Show_Video(),
+    filter_action                   = new Filter_Action({
+        show_playlist: show_playlist,
+        show_video: show_video
     });
-
-    var global_filter                   = new Global_Filter(),
-        first_load                      = new First_Load(),
-        hash_change                     = new Hash_Change({
-            onChange: function(type) {
-                filter_action.execute(type);
-            }
-        }),
-        show_playlist                   = new Show_Playlist(),
-        show_video                      = new Show_Video(),
-        filter_action                   = new Filter_Action({
-            show_playlist: show_playlist,
-            show_video: show_video
-        });
 
     hash_change
         .init(page_data);
@@ -144,7 +138,7 @@ requirejs([
         .addTab('#tab-2', '評論')
         .mount($('#video-related-tabs'));
 
-    first_load.init();
+    first_load(page_data);
 
     $('#footer-container').html(FooterTpl);
 

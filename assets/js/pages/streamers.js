@@ -14,12 +14,22 @@ define('streamers', function(require) {
     var Tabs = require('Tabs/index'),
         List_Slider = require('List_Slider/index'),
         socket = io.connect(socket_server),
-        main_tab = new Tabs({
-            hash_change: false
-        }),
+        item_tmpl = require('text!./templates/streamers-video.html'),
+        live_mounted = true,
+        main_tab = new Tabs({ hash_change: false}),
         live_slider = new List_Slider({
             per_slider: 12,
-            item_template: require('text!./templates/streamers-video.html'),
+            item_template: item_tmpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        lanparty_slider = new List_Slider({
+            per_slider: 12,
+            item_template: item_tmpl,
+            $list_container: $('<ul class="list clearFix"/>')
+        }),
+        multiview_slider = new List_Slider({
+            per_slider: 12,
+            item_template: item_tmpl,
             $list_container: $('<ul class="list clearFix"/>')
         }),
         transform_streamers = function(streamers) {
@@ -82,15 +92,17 @@ define('streamers', function(require) {
                 item.provider = attachments_server;
                 return item;
             });
-        },
-        render = function(streamers) {
-            live_slider
-                .init(transform_streamers(streamers))
-                .mount($('#container-videos'));
         };
 
+       
     socket.on('message', function(e) {
-        render(e.streamers);
+        if (live_mounted) {
+            live_slider.init(transform_streamers(e.streamers))
+                .mount($('#container-videos'));
+            live_mounted = true;
+        } else {
+            live_slider.reload(transform_streamers(e.streamers));
+        }
     });
 
     main_tab

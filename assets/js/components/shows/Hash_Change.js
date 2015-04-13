@@ -26,7 +26,7 @@ define (function () {
                             options.onChange(hash.shift());
         			    });
 
-                        $(window).trigger('hashchange');
+                        // $(window).trigger('hashchange');
                     }
                 }
             };

@@ -45,7 +45,7 @@ define (function (require) {
                         }
                     }
 
-                    filterAction.init(next);
+                    filterAction.execute(next);
 
                 }
             };
