@@ -17,6 +17,7 @@ define (function (require) {
 
 			var getPhoto = require('components/shows/Get_Photo'),
 				update_videos = require('components/shows/Update_Videos'),
+				update_playlists = require('components/shows/Update_Playlists'),
 				tag = document.createElement('script'),
 				firstScriptTag = document.getElementsByTagName('script')[0];
 
@@ -67,7 +68,7 @@ define (function (require) {
 		        });
 		    }
 
-		    // update_playlists(page_data.playlists);
+		    update_playlists(page_data);
 
 		    
 		    if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {

@@ -2498,6 +2498,8 @@ body #navigation {
       padding: 0 16px 13px 0; }
     .zoom2x #outContainer .gamesList img {
       display: block; }
+  .zoom2x #outContainer #content {
+    margin: 0 25px; }
 .zoom2x #container {
   margin-top: 25px; }
   .zoom2x #container .heading {

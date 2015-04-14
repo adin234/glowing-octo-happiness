@@ -87,7 +87,6 @@ requirejs([
         Get_Playlist,
         Get_Playlist_Index,
         Get_Playlist_Next,
-        Get_Video,
         Get_Video_Data,
         Hash_Change,
         Load_Initial,
@@ -122,11 +121,9 @@ requirejs([
             filter_action.execute(type);
         }
     }),
-    show_playlist                   = new Show_Playlist(),
-    show_video                      = new Show_Video(),
     filter_action                   = new Filter_Action({
-        show_playlist: show_playlist,
-        show_video: show_video
+        show_playlist: Show_Playlist,
+        show_video: Show_Video
     });
 
     hash_change
