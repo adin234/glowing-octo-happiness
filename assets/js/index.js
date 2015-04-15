@@ -919,7 +919,7 @@ var showAdvertisement = function() {
                     height: $(window).height() - 30,
                 }).promise().done(function() {
                     $('.modal-full').css({
-                        'margin-left': (($(window).width() - $('.modal-full img').width()) / 2)
+                        'margin-left': (($(window).width() - $('.modal-full').width()) / 2)
                     });
                 });
             }

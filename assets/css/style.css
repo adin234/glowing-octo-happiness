@@ -81,7 +81,7 @@ footer > ul li a,
 
 #outContainer header .species > ul li a {
     /*color: #969BA5;*/
-    
+
     padding: 0 4px;
 }
 
@@ -578,7 +578,7 @@ a:active {
 
 #wrapper {
     /*background: url("/assets/images/background.jpg") no-repeat fixed center top;*/
-    
+
     background: url("/assets/images/newgamers2.jpg") no-repeat fixed center top;
     background-size: 100% auto;
     min-width: 1148px;
@@ -945,7 +945,7 @@ body#games #outContainer .fixedMenu header .species ul {
     border-bottom: 1px solid #a6b3bc;
     border-left: 1px solid #a6b3bc;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -993,7 +993,7 @@ body#games #outContainer .fixedMenu header .species ul {
     content: "\00A0";
     border: 1px solid #a6a6a6;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1097,7 +1097,7 @@ body#games #outContainer .fixedMenu header .species ul {
     padding-left: 0 !important;
     /* width: 45%; */
     /* display: inline-block; */
-    
+
     text-decoration: none;
     /* overflow: hidden; */
 }
@@ -1286,7 +1286,7 @@ footer span a {
 footer .selectLanguage {
     background-color: black;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -1458,7 +1458,7 @@ header .site input[type="text"]:focus,
 .video .list .uploader {
     border: 6px solid rgba(166, 142, 142, 0.5);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1551,7 +1551,7 @@ header .site input[type="text"]:focus,
     background-color: #e5e5e5;
     border: 1px solid #bbbbbb;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
@@ -1614,7 +1614,7 @@ header .site input[type="text"]:focus,
     background-color: #d8232a;
     border: 2px solid white;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1628,7 +1628,7 @@ header .site input[type="text"]:focus,
 
 .member .memberPhoto img {
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1713,7 +1713,7 @@ header .site input[type="text"]:focus,
 .main #indexSliderContainer .bx-viewport {
     border: 1px solid black;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -1763,7 +1763,7 @@ header .site input[type="text"]:focus,
 
 .main #indexSliderContainer .bx-controls-direction a {
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1789,7 +1789,7 @@ header .site input[type="text"]:focus,
 .main #indexSliderContainer .bx-pager-link {
     background-color: white;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -1833,7 +1833,7 @@ header .site input[type="text"]:focus,
 .main .video [id^="tab-"] {
     /*height: 640px;*/
     /*overflow: hidden;*/
-    
+
     padding: 0 2px 0 5px;
 }
 
@@ -1984,7 +1984,7 @@ header .site input[type="text"]:focus,
 
 .main .viewer .list {
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -2016,7 +2016,7 @@ header .site input[type="text"]:focus,
 .main .viewer .list .listBg {
     background: url("/assets/images/youtuber_bg.jpg") no-repeat 0 0;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -2357,7 +2357,7 @@ header .site input[type="text"]:focus,
 
 .playFunctionBtn li:last-child a {
     /*background: url("/assets/images/player_ui.png") no-repeat 10px -264px;*/
-    
+
     float: right;
 }
 
@@ -2978,7 +2978,7 @@ header .site input[type="text"]:focus,
 .profile,
 .profile > div {
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
@@ -3025,7 +3025,7 @@ header .site input[type="text"]:focus,
 
 .profile img {
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
@@ -3049,7 +3049,7 @@ header .site input[type="text"]:focus,
     background-color: gainsboro;
     border: 3px solid rgba(0, 0, 0, 0.15);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     border-radius: 15px;
@@ -3091,7 +3091,7 @@ header .site input[type="text"]:focus,
     background: #fcfcfc url("/assets/images/sprite.png") no-repeat 10px -2664px;
     border: 1px solid rgba(0, 0, 0, 0.35);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -3147,7 +3147,7 @@ header .site input[type="text"]:focus,
 .stream [id^="tab-"]:nth-of-type(2) .list > li .addTo:after {
     background: white url("/assets/images/sprite.png") no-repeat 3px -2706px;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -3201,7 +3201,7 @@ header .site input[type="text"]:focus,
     background-color: black;
     border: 3px solid #f32a2a;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 14px;
     -webkit-border-radius: 14px;
     border-radius: 14px;
@@ -3227,7 +3227,7 @@ header .site input[type="text"]:focus,
     background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
     border: 2px solid white;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -3313,7 +3313,7 @@ header .site input[type="text"]:focus,
     color: white;
     height: 42px;
     /*position: absolute;*/
-    
+
     right: 12px;
     top: 12px;
 }
@@ -3333,7 +3333,7 @@ header .site input[type="text"]:focus,
 
 #streamView header h1 {
     /* margin: 0 10px 0 8px; */
-    
+
     width: 69px;
 }
 
@@ -3349,7 +3349,7 @@ header .site input[type="text"]:focus,
 #streamView header select {
     background: #ececec;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -3416,7 +3416,7 @@ header .site input[type="text"]:focus,
     background-image: -webkit-linear-gradient(top, #3e3e3e 37px, #2f2f2f);
     background-image: linear-gradient(to bottom, #3e3e3e 37px, #2f2f2f);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -3474,7 +3474,7 @@ header .site input[type="text"]:focus,
     background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
     background-image: linear-gradient(to bottom, #787676, #3f3f3f);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -3488,7 +3488,7 @@ header .site input[type="text"]:focus,
     background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
     background-image: linear-gradient(to bottom, #3f3f3f, #787676);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -3628,7 +3628,7 @@ header .site input[type="text"]:focus,
 #streamView .information [id^="tab-"] ul h3 {
     border: 3px dotted #898989;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -3984,7 +3984,7 @@ li.thread .stats > dl > dt {
 .game-item {
     height: 98px;
     /* height: 94px;*/
-    
+
     width: 163px;
     /*width: 160px;*/
 }
@@ -4003,7 +4003,7 @@ li.thread .stats > dl > dt {
 
 body.streams {
     /*background: url("/assets/images/background.jpg") no-repeat fixed center top;*/
-    
+
     background: url("/assets/images/gamers-newbg.jpg") no-repeat fixed center top;
     background-size: cover;
 }
@@ -4060,7 +4060,7 @@ body:nth-child(3) {
     position: relative;
     padding-bottom: 56.25%;
     /* 16:9 */
-    
+
     padding-top: 25px;
     height: 0;
 }
@@ -4072,7 +4072,7 @@ body:nth-child(3) {
     left: 0;
     /*width: 100%;*/
     /*height: 100%;*/
-    
+
     bottom: 0;
     right: 0;
 }
@@ -4158,7 +4158,7 @@ body:nth-child(3) {
 #main-container header select {
     background: #ececec;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -4213,7 +4213,7 @@ body:nth-child(3) {
     background-image: -webkit-linear-gradient(top, #3e3e3e 37px, #2f2f2f);
     background-image: linear-gradient(to bottom, #3e3e3e 37px, #2f2f2f);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -4236,7 +4236,7 @@ body:nth-child(3) {
     /*background-image: -moz-linear-gradient(left, transparent, #2a7998, transparent);*/
     /*background-image: -webkit-linear-gradient(left, transparent, #2a7998 50%, transparent);*/
     /*background-image: linear-gradient(to right, transparent, #2a7998, transparent);*/
-    
+
     content: "\00A0";
     display: block;
     position: absolute;
@@ -4274,7 +4274,7 @@ body:nth-child(3) {
     background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
     background-image: linear-gradient(to bottom, #787676, #3f3f3f);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -4288,7 +4288,7 @@ body:nth-child(3) {
     background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
     background-image: linear-gradient(to bottom, #3f3f3f, #787676);
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -4432,7 +4432,7 @@ body:nth-child(3) {
 #main-container .information [id^="tab-"] ul h3 {
     border: 3px dotted #898989;
     /*@extend %IEPie */
-    
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -4543,7 +4543,7 @@ div[id^=tab-chat-] iframe {
   right: 0;
   bottom: 0;
   top: 27px;*/
-    
+
     height: 100%;
 }
 
@@ -4616,7 +4616,7 @@ div[id^=tab-chat-] iframe {
     position: fixed;
     right: 20px;
     /* padding: 10px; */
-    
+
     border: 5px solid rgba(255, 255, 255, 0);
     bottom: 20px;
     background-repeat: no-repeat!important;
@@ -4706,7 +4706,7 @@ span.views {
     color: #868686;
     text-decoration: none;
     /*outline: 1px solid red;*/
-    
+
     padding: 15px 10px;
     position: relative;
     top: -1px;
@@ -4762,7 +4762,7 @@ span.views {
     color: #868686;
     text-decoration: none;
     /*outline: 1px solid red;*/
-    
+
     padding: 15px 10px;
     position: relative;
     top: -1px;
@@ -4780,7 +4780,7 @@ span.views {
 
 #outContainer #container.lanparty {
     /*background: #000 url('../images/lanparty_bg.png') no-repeat;*/
-    
+
     background: #000;
 }
 
@@ -6399,7 +6399,6 @@ div#news_shows_playlists_block {
 .modal-full {
     position: fixed;
     top: 10px;
-    bottom: 10px;
     z-index: 9999;
 }
 
@@ -6407,9 +6406,11 @@ div#news_shows_playlists_block {
     margin-top: 5px;
 }
 
-.modal-full .modal-content img {
+.modal-full .modal-content {
     border: 5px solid #ffffff;
     border-radius: 10px;
+    background: #000000;
+    padding-right: 5px;
 }
 /*datepicker*/
 
