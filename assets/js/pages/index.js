@@ -1,8 +1,7 @@
 /*global
     attachments_server,
     server,
-    showSocialButtons,
-    origin
+    showSocialButtons
 */
 
 'use strict';
@@ -166,7 +165,8 @@ define('index', function(require) {
             new Featured_Users(index_data); 
 
             // featured game changer if url has set hash
-            // featured_game_slider.reload(shuffle(limit_category(window.location.href.replace(origin+"/#!/console/", ""), index_data.games)));
+            // featured_game_slider.reload(
+            //      shuffle(limit_category(window.location.href.replace(origin+"/#!/console/", ""), index_data.games)));
         };
 
     main_tab
@@ -195,7 +195,6 @@ define('index', function(require) {
         .mount($('#global-filter'));
 
     showSocialButtons();
-    searchBoxInit();
 
     require('Streamers_List/index');
     require('Scroller/index');

@@ -7,7 +7,7 @@
 
 'use strict';
 
-define('youtubers', function(require) {
+define('games', function(require) {
 
     var Tabs = require('Tabs/index'),
         List_Slider = require('List_Slider/index'),
@@ -208,6 +208,7 @@ define('youtubers', function(require) {
             .applyTo($('#featuredGames, #latestGames'));
 
     require('Footer/index');
+    require('Sub_Nav/index');
 });
 
-require(['youtubers']);
+require(['games']);

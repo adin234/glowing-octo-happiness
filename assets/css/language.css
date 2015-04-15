@@ -24,7 +24,14 @@
   .lang_en .search input[type="text"] {
     font-size: 1em; }
   .lang_en .live:before {
-    background: url("/assets/images/icon-live.png") no-repeat 0 0; }
+    background: url("/assets/images/icon-live.png") no-repeat 0 0;
+    content: "\00a0";
+    position: absolute;
+    height: 33px;
+    width: 93px;
+    right: 5px;
+    top: -4px;
+    z-index: 50; }
   .lang_en .video .list li {
     font-size: 1.07692em; }
   .lang_en .viewer .list {
@@ -100,7 +107,14 @@
   .lang_zh_tw .search input[type="text"] {
     font-size: 1em; }
   .lang_zh_tw .live:before {
-    background: url("/assets/images/icon-live.png") no-repeat; }
+    background: url("/assets/images/icon-live.png") no-repeat;
+    content: "\00a0";
+    position: absolute;
+    height: 33px;
+    width: 93px;
+    right: 5px;
+    top: -4px;
+    z-index: 50; }
   .lang_zh_tw footer small, .lang_zh_tw footer span {
     font-size: 0.85714em; }
   .lang_zh_tw .about p, .lang_zh_tw .lang_zh_tw .about ol, .lang_zh_tw .lang_zh_tw .about h3 {

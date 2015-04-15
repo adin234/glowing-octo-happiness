@@ -221,6 +221,14 @@ define(function(require) {
                 utilLogin.show();
             }
         });
+
+        $('.yourDiscussion textarea').focus(function () {
+            $('.angle').css('background-position', '0 -358px');
+        });
+        
+        $('.yourDiscussion textarea').blur(function () {
+            $('.angle').css('background-position', '0 -315px');
+        });
         
 
         $(window).trigger('hashchange');

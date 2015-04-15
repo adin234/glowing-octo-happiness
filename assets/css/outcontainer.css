@@ -141,7 +141,8 @@
       #outContainer header .member > .login .user-links a:nth-child(1) {
         display: block; }
     #outContainer header .species {
-      color: #ebd7d7; }
+      color: #ebd7d7;
+      min-height: 42px; }
       #outContainer header .species > ul {
         padding-left: 330px; }
         #outContainer header .species > ul li {
@@ -150,7 +151,7 @@
           padding: 0 1px;
           margin: 0 2px; }
           #outContainer header .species > ul li a {
-            color: #969BA5;
+            color: #EF9A9A;
             display: inline-block;
             padding: 0 4px;
             background-color: transparent; }

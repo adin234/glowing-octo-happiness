@@ -575,7 +575,7 @@ var searchId = false,
             .always(function () {
                 get_youtube_streamers(first);
             });
-    };
+    },
 
     get_hitbox_streamers = function (first) {
         $.get(server + 'streamers/hitbox', function (result) {
@@ -631,12 +631,10 @@ var searchId = false,
                 streaming = streamingNew;
                 get_streamers();
             });
+    },
+    socketConnect = function() {
+        return window.socket || (window.socket = io.connect(socket_server));
     };
-
-$(function () {
-    searchBoxInit();
-    searchGamesBoxInit();
-});
 
 $.extend($.gritter.options, {
     position: 'bottom-right',
@@ -708,6 +706,10 @@ $(function () {
 ga('create', 'UA-46773919-11', 'auto');
 ga('send', 'pageview');
 /* jshint ignore:end */
+
+
+
+
 
 // $.getScript('/assets/js/libs/socketio.js', function(){
 //     var socket = io.connect(socket_server);

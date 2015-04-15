@@ -41,6 +41,13 @@
     .live{
         &:before {
             background: url("/assets/images/icon-live.png") no-repeat 0 0;
+            content: "\00a0";
+            position: absolute;
+            height: 33px;
+            width: 93px;
+            right: 5px;
+            top: -4px;
+            z-index: 50;
         }
     }
     .video {
@@ -162,8 +169,17 @@
     .search input[type="text"] {
         font-size: 1em;
     }
-    .live:before {
-        background: url("/assets/images/icon-live.png") no-repeat;
+    .live {
+        &:before {
+            background: url("/assets/images/icon-live.png") no-repeat;
+            content: "\00a0";
+            position: absolute;
+            height: 33px;
+            width: 93px;
+            right: 5px;
+            top: -4px;
+            z-index: 50;
+        }
     }
     footer small, footer span {
         font-size: 0.85714em;

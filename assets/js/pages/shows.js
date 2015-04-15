@@ -64,11 +64,7 @@ define('shows', function(require) {
     first_load(page_data);
 
     require('Footer/index');
-
-    $(function() {
-        $('.sf-menu').superfish();
-    });
-
+    require('Sub_Nav/index');
 });
 
 require(['shows']);

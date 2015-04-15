@@ -149,8 +149,8 @@ define('youtubers', function(require) {
                 item.username    = item.video.username;
                 item.title      = item.video.snippet.title;
                 item.thumb      = item.video.snippet.thumbnails.medium.url;
-                item.view       = item.video.snippet.meta.statistics.viewCount;
-                item.comment    = item.video.snippet.meta.statistics.commentCount;
+                item.views       = item.video.snippet.meta.statistics.viewCount;
+                item.anytv_comments    = item.video.snippet.meta.statistics.commentCount;
                 item.channelid  = item.youtube_id;
                 item.live       = '';
                 item.provider   = attachments_server;
@@ -209,6 +209,7 @@ define('youtubers', function(require) {
             .applyTo($('#featuredGames, #latestGames'));
 
     require('Footer/index');
+    require('Sub_Nav/index');
 });
 
 require(['youtubers']);

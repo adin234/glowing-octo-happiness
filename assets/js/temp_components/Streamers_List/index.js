@@ -1,17 +1,15 @@
 /*global 
-    io,
-    socket_server,
     attachments_server,
     origin,
     template,
-    JST
+    socketConnect
 */
 
 'use strict';
 
 define(function(require) {
 
-    var socket = io.connect(socket_server),
+    var socket = socketConnect(),
         online_streamers = [],
         streamers_tpl = require('text!./streamers-tpl.html');
 

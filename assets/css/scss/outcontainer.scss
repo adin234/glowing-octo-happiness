@@ -216,6 +216,7 @@
         }
         .species {
             color: #ebd7d7;
+            min-height: 42px;
             & > ul {
                 padding-left: 330px;
                  li {
@@ -224,7 +225,7 @@
                     padding: 0 1px;
                     margin: 0 2px;
                     a {
-                        color: #969BA5;
+                        color: #EF9A9A;
                         display: inline-block;
                         padding: 0 4px;
                         background-color: transparent;

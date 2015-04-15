@@ -21,6 +21,7 @@ define(function() {
             slider = null,
             array_chunk = function(array, size) {
                 var result = [];
+                    array = array.slice();
                 while(array.length) {
                     result.push(array.splice(0, size));
                 }

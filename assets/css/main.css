@@ -24,7 +24,14 @@
   .lang_en .search input[type="text"] {
     font-size: 1em; }
   .lang_en .live:before {
-    background: url("/assets/images/icon-live.png") no-repeat 0 0; }
+    background: url("/assets/images/icon-live.png") no-repeat 0 0;
+    content: "\00a0";
+    position: absolute;
+    height: 33px;
+    width: 93px;
+    right: 5px;
+    top: -4px;
+    z-index: 50; }
   .lang_en .video .list li {
     font-size: 1.07692em; }
   .lang_en .viewer .list {
@@ -100,7 +107,14 @@
   .lang_zh_tw .search input[type="text"] {
     font-size: 1em; }
   .lang_zh_tw .live:before {
-    background: url("/assets/images/icon-live.png") no-repeat; }
+    background: url("/assets/images/icon-live.png") no-repeat;
+    content: "\00a0";
+    position: absolute;
+    height: 33px;
+    width: 93px;
+    right: 5px;
+    top: -4px;
+    z-index: 50; }
   .lang_zh_tw footer small, .lang_zh_tw footer span {
     font-size: 0.85714em; }
   .lang_zh_tw .about p, .lang_zh_tw .lang_zh_tw .about ol, .lang_zh_tw .lang_zh_tw .about h3 {
@@ -571,7 +585,8 @@ footer {
       #outContainer header .member > .login .user-links a:nth-child(1) {
         display: block; }
     #outContainer header .species {
-      color: #ebd7d7; }
+      color: #ebd7d7;
+      min-height: 42px; }
       #outContainer header .species > ul {
         padding-left: 330px; }
         #outContainer header .species > ul li {
@@ -580,7 +595,7 @@ footer {
           padding: 0 1px;
           margin: 0 2px; }
           #outContainer header .species > ul li a {
-            color: #969BA5;
+            color: #EF9A9A;
             display: inline-block;
             padding: 0 4px;
             background-color: transparent; }
@@ -3735,8 +3750,7 @@ textarea#event_desc {
   right: -5px;
   top: -14px;
   width: 26px;
-  z-index: 5000;
-  margin-right: 10%; }
+  z-index: 5000; }
   .bx-wrapper .close:hover, .bx-wrapper .close:active, .bx-wrapper .close:focus {
     box-shadow: none;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.65);
