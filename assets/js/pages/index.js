@@ -55,25 +55,55 @@ define('index', function(require) {
         latest_threads = new Thread_List(),
         top_threads = new Thread_List(),
         has_init = false,
-        global_filter   = new Global_Filter({
+        global_filter = new Global_Filter({
             onChange: function(filter) {
+
                 $.ajax({
                     async: false,
                     type: 'GET',
                     dataType: 'json',
                     url: server + 'index?console=' + filter.id
                 }).done(function (data) {
+
                     index_data = data;
 
                     if (!has_init) {
                         init();
                         has_init = true;
                     } else {
-                        featured_videos_slider.reload(transform_videos(index_data.featured_videos));
-                        latest_videos_slider.reload(transform_videos(index_data.latest_videos));
-                        most_viewed_slider.reload(transform_videos(index_data.most_viewed));
-                        featured_game_slider.reload(shuffle(limit_category(filter.id, index_data.games)));
-                        latest_game_slider.reload(shuffle(limit_latest(index_data.games)));
+
+                        featured_videos_slider.reload(
+                            transform_videos(
+                                shuffle(
+                                    index_data.featured_videos
+                                )
+                            )
+                        );
+
+                        latest_videos_slider.reload(
+                            transform_videos(
+                                shuffle(index_data.latest_videos)
+                            )
+                        );
+
+                        most_viewed_slider.reload(
+                            transform_videos(
+                                shuffle(index_data.most_viewed)
+                            )
+                        );
+
+                        featured_game_slider.reload(
+                            shuffle(
+                                limit_category(filter.id, index_data.games)
+                            )
+                        );
+
+                        latest_game_slider.reload(
+                            shuffle(
+                                limit_latest(index_data.games)
+                            )
+                        );
+
                     }
                 });
             }
@@ -162,11 +192,9 @@ define('index', function(require) {
                 .init(shuffle(limit_latest(index_data.games)))
                 .mount( $('#latestGames') );
 
-            new Featured_Users(index_data); 
+            new Featured_Users(index_data);
 
-            // featured game changer if url has set hash
-            // featured_game_slider.reload(
-            //      shuffle(limit_category(window.location.href.replace(origin+"/#!/console/", ""), index_data.games)));
+            require('Index_News_Shows/index')(index_data);
         };
 
     main_tab
@@ -185,9 +213,9 @@ define('index', function(require) {
     news_shows_tabs
         .init()
         .addTab('tab-news-playlist-1', '實況咖NEWS', 'tab-news-playlist-1', $('<ul class="list clearFix"/>'))
-        .addTab('tab-news-playlist-2', 'Freedom!NEWS', 'tab-news-playlist-2', $('<ul/>'))
-        .addTab('tab-shows-playlist-0', 'YouTube教學', 'tab-news-playlist-0', $('<ul/>'))
-        .addTab('tab-shows-playlist-3', 'Freedom!教學', 'tab-news-playlist-3', $('<ul/>'))
+        .addTab('tab-news-playlist-2', 'Freedom!NEWS', 'tab-news-playlist-2', $('<ul class="list clearFix"/>'))
+        .addTab('tab-shows-playlist-0', 'YouTube教學', 'tab-news-playlist-0', $('<ul class="list clearFix"/>'))
+        .addTab('tab-shows-playlist-3', 'Freedom!教學', 'tab-news-playlist-3', $('<ul class="list clearFix"/>'))
         .mount($('#news_shows_playlists_block'));
 
     global_filter

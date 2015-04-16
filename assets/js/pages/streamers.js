@@ -1,6 +1,6 @@
 /*global
-    io,
-    socket_server,
+    origin,
+    socketConnect,
     attachments_server,
     page_data: true
 */
@@ -10,14 +10,16 @@
 define('streamers', function(require) {
 
     page_data = $.parseJSON(page_data);
+    page_data._live = [];
+    page_data._lanparty = [];
+    page_data._multiview = [];
 
     var Tabs = require('Tabs/index'),
         List_Slider = require('List_Slider/index'),
-        socket = io.connect(socket_server),
+        socket = socketConnect(),
         video_tmpl = require('text!./templates/streamers-video.html'),
         multiview_video_tmpl = require('text!./templates/streamers-video-multiview.html'),
         live_mounted = false,
-        multi_view_items = [],
         main_tab = new Tabs({hash_change: false}),
         live_slider = new List_Slider({
             per_slider: 12,
@@ -34,11 +36,11 @@ define('streamers', function(require) {
 
                     $this.parent().hide();
 
-                    multi_view_items.push(
-                        page_data.streamers[stream_type][key]
+                    page_data._multiview.push(
+                        page_data[stream_type][key]
                     );
 
-                    multiview_slider.reload(multi_view_items);
+                    multiview_slider.reload(page_data._multiview);
                 });
 
             }
@@ -54,7 +56,7 @@ define('streamers', function(require) {
             $list_container: $('<ul class="list clearFix"/>'),
             after_mount: function() {
 
-                $('#container-multiview').on('click', '.remove-multiview', function (e) {
+                $('#container-multiview .remove-multiview').on('click', function (e) {
                     e.preventDefault();
 
                     var $this = $(this),
@@ -62,11 +64,13 @@ define('streamers', function(require) {
 
                     $this.parent().hide();
 
-                    multi_view_items = multi_view_items.filter(function(item) {
+                    page_data._multiview = page_data._multiview.filter(function(item) {
                         return item.id !== stream_id;
                     });
 
-                    multiview_slider.reload(multi_view_items);
+                    multiview_slider.reload(page_data._multiview);
+
+                    $('#container-videos a[data-streamid="'+stream_id+'"]').parent().show();
                 });
 
             }
@@ -81,12 +85,9 @@ define('streamers', function(require) {
                 item.key = i;
                 item.stream_type = 'youtube';
                 item.id = 'YT' + item.username;
-                item.idraw = item.youtube.id;
+                item.idraw = item.username;
                 item.live = 'live';
-                // item.link = origin +
-                //     (lanparty && typeof lanparty !== 'undefined' ?
-                //         'lanparty_stream_multi/#/' + item.id :
-                //         'gamer_stream/?user=' + item.user_id + '/#!/' + item.id);
+                item.link = origin + '/gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
                 item.title = item.youtube.snippet.title;
@@ -104,10 +105,7 @@ define('streamers', function(require) {
                 item.id = 'TW' + item.twitchid;
                 item.idraw = item.twitchid;
                 item.live = 'live';
-                // item.link       = origin +
-                //     (lanparty && typeof lanparty !== 'undefined' ?
-                //     'lanparty_stream_multi/#/' + item.id :
-                //     'gamer_stream/?user=' + item.user_id + '/#!/' + item.id);
+                item.link = origin + '/gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.twitch.preview.large;
                 item.title = item.twitch.channel.status;
@@ -127,7 +125,7 @@ define('streamers', function(require) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
-                // item.link = origin + 'gamer_stream/?user=' + item.user.user_id + '/#!/' + item.id;
+                item.link = origin + '/gamer_stream/?user=' + item.user.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.livestream[0].media_thumbnail_large;
                 item.title = item.hitbox.livestream[0].media_status;
@@ -137,19 +135,39 @@ define('streamers', function(require) {
                 item.provider = attachments_server;
                 return item;
             });
+        },
+        filter_lanparty = function(collection) {
+            var new_collection = [];
+            collection.forEach(function(streamer, i) {
+                if (~streamer.title.search(/lanparty/i)) {
+                    new_collection.push(streamer);
+                    delete collection[i];
+                }
+            });
+            return new_collection;
+        },
+        separate_lan_party_streams = function (streamers) {
+            page_data.youtube = streamers.youtube;
+            page_data.hitbox = streamers.hitbox;
+            page_data.twitch = streamers.twitch;
+            page_data._live = transform_streamers(streamers);
+            page_data._lanparty = filter_lanparty(page_data._live);
         };
 
        
     socket.on('message', function(e) {
+
+        separate_lan_party_streams(e.streamers);
+
         if (!live_mounted) {
-            live_slider.init(transform_streamers(e.streamers))
+            live_slider.init(page_data._live)
                 .mount($('#container-videos'));
             live_mounted = true;
         } else {
-            live_slider.reload(transform_streamers(e.streamers));
+            live_slider.reload(page_data._live);
         }
 
-        page_data = e;
+        lanparty_slider.reload(page_data._lanparty);
     });
 
     main_tab
@@ -160,8 +178,12 @@ define('streamers', function(require) {
         .mount($('#video-stream-tabs'));
 
     multiview_slider
-        .init(multi_view_items)
+        .init(page_data._multiview)
         .mount($('#container-multiview'));
+
+    lanparty_slider
+        .init(page_data._lanparty)
+        .mount($('#container-lanparty'));
 
     require('Footer/index');
     require('Sub_Nav/index');
