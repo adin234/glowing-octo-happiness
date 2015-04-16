@@ -1387,16 +1387,7 @@ footer {
     transform: translateY(-50%);
     width: 100%;
     text-align: center; }
-    #loginMenu .login-container .username-field {
-      display: inline-block;
-      border-radius: 5px;
-      width: 200px;
-      height: 20px;
-      padding: 5px !important;
-      border: 0;
-      margin: 10px !important;
-      resize: none; }
-    #loginMenu .login-container #loginMenu .login-container .password-field {
+    #loginMenu .login-container .username-field, #loginMenu .login-container .password-field {
       display: inline-block;
       border-radius: 5px;
       width: 200px;
@@ -1899,7 +1890,7 @@ body #navigation {
       height: 29px;
       width: 35px; }
     .playFunctionBtn li:nth-child(1), .playFunctionBtn li:nth-child(2), .playFunctionBtn li:nth-child(3), .playFunctionBtn li:nth-child(4) {
-      float: left; }
+      float: left !important; }
     .playFunctionBtn li:nth-child(1) {
       background: url("/assets/images/player_ui.png") no-repeat 10px -100px; }
     .playFunctionBtn li:nth-child(2) {

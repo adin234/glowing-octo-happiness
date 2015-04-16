@@ -148,7 +148,7 @@
             width: 35px;
         }
         &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
-            float: left;
+            float: left !important;
         }
         &:nth-child(1) {
             background: url("/assets/images/player_ui.png") no-repeat 10px -100px;
@@ -158,9 +158,6 @@
         }
         &:nth-child(3) {
             background: url("/assets/images/player_ui.png") no-repeat 10px -180px;
-        }
-        &:nth-child(4) {
-
         }
         &:last-child {
             float: right;

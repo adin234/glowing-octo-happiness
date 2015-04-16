@@ -26,6 +26,10 @@ define(function(require) {
                 text = '加入至我的最愛',
                 active = '';
 
+            if (typeof page_data.favorites === 'undefined') {
+                page_data.favorites = [];
+            }
+
             if (typeof page_data.favorites !== 'undefined') {
 
                 if (~page_data.favorites.indexOf(videoId)) {
@@ -37,6 +41,7 @@ define(function(require) {
                     '" alt="like" data-id="' + videoId +
                     '">' + text + '</button>';
             }
+
             $('.videoHeading h3').html(video.snippet.title + likeButton);
             $('#tab-1 .mCSB_container').html(
                 Autolinker.link(
