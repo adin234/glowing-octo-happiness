@@ -73,6 +73,18 @@ define('streamers', function(require) {
                     $('#container-videos a[data-streamid="'+stream_id+'"]').parent().show();
                 });
 
+                $('#multiview-count').html(page_data._multiview.length);
+
+                if (page_data._multiview.length) {
+                    $('#watch-now-link').attr(
+                        'href',
+                        '/gamer_stream_multi/#!/' + page_data._multiview.map(function(item) {
+                            return item.id;
+                        }).join('/')
+                    );
+                } else {
+                     $('#watch-now-link').attr('href', '#');
+                }
             }
         }),
         transform_streamers = function(streamers) {
@@ -140,6 +152,7 @@ define('streamers', function(require) {
             var new_collection = [];
             collection.forEach(function(streamer, i) {
                 if (~streamer.title.search(/lanparty/i)) {
+                    streamer.link = origin + 'lanparty_stream_multi/#/' + streamer.id;
                     new_collection.push(streamer);
                     delete collection[i];
                 }
@@ -174,8 +187,18 @@ define('streamers', function(require) {
         .init()
         .addTab('tab-2-1', '直播', 'tab-2-1', $('<div id="container-videos"/>'))
         .addTab('tab-2-2', 'Lan Party', 'tab-2-2', $('<div id="container-lanparty"/>'))
-        .addTab('tab-2-3', '活動內容', 'tab-2-3', $('<div id="container-multiview"/>'))
+        .addTab(
+            'tab-2-3',
+            'Multiview <small id="multiview-count">0</small>',
+            'tab-2-3',
+            $('<div id="container-multiview"/>'
+        ))
         .mount($('#video-stream-tabs'));
+
+    //append the watchnow link
+    $('#tab-2-3').append(
+        '<a href="#" id="watch-now-link" title="Watch Now" class="watchNow disabled">觀看直播</a>'
+    );
 
     multiview_slider
         .init(page_data._multiview)
