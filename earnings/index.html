@@ -19,12 +19,12 @@
       遊戲分類 | 實況咖
     </title>
     <link href="/assets/css/html5-doctor-reset-stylesheet.min.css" rel="stylesheet">
-    <link href="/assets/css/style.css?v=1" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
     <script src="/assets/js/config.js?ver=22"></script>
     <script src="/assets/js/get.games.data.js?ver=22"></script>
   </head>
@@ -37,48 +37,37 @@
       <div class="nav-wrapper">
 
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
-        <nav class="species">
-          <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-            <li><a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-            <li><a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-            <li><a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">PC</a></li>
-
-            <li><a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-            <li><a href="javascript:void(0)" data-console='vlogs' onClick="add_filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-          </ul>
-        </nav>
+        <nav class="species" id="global-filter"></nav>
     </div>
     
       <nav class="site sf-menu">
-          <ul class="clearFix">
-            <li class="current"><a href="/" title="首頁">首頁</a></li>
-            <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
-              <ul>
-                <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
-                <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
-              </ul>
-            </li>
-            <li><a href="/news" title="新聞">新聞</a></li>
-            <li><a href="/shows" title="Shows">Shows</a></li>
-            <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
-            <li><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
-            <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
-            <li><a href="#" title="搞活動" id="sf-with-ul">搞活動</a>
-              <ul>
-                <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
-                <li><a href="/lanparty" title="最新發文">Lan party</a></li>
-              </ul>
-            </li>
-            <li>
-              <div>
-                <input type="text" placeholder="搜尋" id="query">
-              </div>
-            </li>
-          </ul>
-        </nav>
+        <ul class="clearFix">
+          <li class="current"><a href="/" title="首頁">首頁</a></li>
+          <li><a href="http://community.gamers.tm" title="論壇">論壇</a>
+            <ul style="display:none">
+              <li><a href="http://community.gamers.tm/zh/index.php?find-new/posts" title="最新發文">最新發文</a></li>
+              <li><a href="http://community.gamers.tm/zh/index.php?search/&type=post" title="搜尋論壇">搜尋論壇</a></li>
+            </ul>
+          </li>
+          <li><a href="/news" title="新聞">新聞</a></li>
+          <li><a href="/shows" title="Shows">Shows</a></li>
+          <li><a href="/games" title="遊戲分類">遊戲分類</a></li>
+          <li><a href="/youtubers" title="實況主" alt="實況主">YouTubers</a></li>
+          <li><a href="/streamers" title="直播">直播</a><sup id="number-of-streamers"></sup></li>
+          <li><a href="#" title="搞活動" id="sf-with-ul">搞活動</a>
+            <ul style="display:none">
+              <li><a href="/freedom" title="Freedom! 活動時間">Freedom!活動</a></li>
+              <li><a href="/lanparty" title="最新發文">Lan party</a></li>
+            </ul>
+          </li>
+          <li>
+            <div>
+              <input type="text" placeholder="搜尋" id="query">
+            </div>
+          </li>
+        </ul>
+      </nav>
+            
         <ul class="member">
           <li><a href="http://freedom.tm/zh" title="加入我們" class="zh_tw">加入我們</a></li>
           <li class="login"><a href="http://community.gamers.tm/zh/index.php?login&front=1" title="登入">登入</a>/<a href="http://community.gamers.tm/zh/index.php?register&front=1" title="註冊">註冊</a></li>
@@ -121,19 +110,22 @@
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js"></script>
     <script src="/assets/js/libs/superfish.js"></script>
-    <script src="/assets/js/function.js"></script>
     <script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
-    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
     <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/assets/js/libs/jquery.bxslider.min.js"></script>
+    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
     <script src="/assets/js/libs/jquery.tabslet.min.js"></script>
     <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
-    <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
     <script src="/assets/js/libs/autolinker.js"></script>
+    <script src="/assets/js/libs/socketio.js"></script>
     <script src="/assets/js/libs/jquery.gritter.min.js"></script>
+    <script src="/assets/templates/streamers/templates.js"></script>
+    <script src="/assets/js/libs/socketio.js"></script>
     <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/earnings.js"></script>
-    <script data-main="/assets/js/components/earnings/main" src="/assets/js/libs/require.js"></script>
+    <script src="/assets/js/libs/require.js"></script>
+    <script src="/assets/js/dist/components/all.js"></script>
+    <script src="/assets/js/dist/_config.js"></script>
+    <script src="/assets/js/dist/earnings.js"></script>
   </body>
 
 </html>
