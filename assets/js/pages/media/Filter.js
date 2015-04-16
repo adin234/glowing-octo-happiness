@@ -15,6 +15,6 @@ define(function(require) {
             filterTags = $.map(filterObj[0].tags.split(','), $.trim);
         }
         $('li.ytVideo.videoItem').remove();
-        update_videos.init(page_data.videos);
+        update_videos(page_data.videos);
     };
 });

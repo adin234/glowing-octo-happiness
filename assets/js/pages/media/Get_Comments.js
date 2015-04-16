@@ -56,7 +56,7 @@ define(function(require) {
                         ) +
                         '#!' + hashes.join('/')
                     ),
-                    date: formatDate.init(item.date * 1000),
+                    date: formatDate(item.date * 1000),
                     comment_id: item.comment_id,
                     user_access_class: that_class,
                     image_link: encodeURIComponent(

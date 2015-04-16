@@ -19,7 +19,7 @@ define(function(require) {
                 videos.push(item);
             }
         });
-        update_playlists.init(videos);
+        update_playlists(videos);
 
         videos = [];
         page_data.videos.forEach(function(item) {
@@ -30,6 +30,6 @@ define(function(require) {
             }
         });
         $('li.ytVideo.videoItem').remove();
-        update_videos.init(videos);
+        update_videos(videos);
     };
 });
