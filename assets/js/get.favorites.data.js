@@ -2,18 +2,9 @@
 
 'use strict';
 
-var page_data;
+var page_data,
+    xhReq = new XMLHttpRequest();
 
-$.ajax({
-    dataType:'jsonp',
-    url: server + 'favorites',
-    crossDomain: true,
-    type: 'get',
-    async: false
-})
-.done(function(result) {
-	page_data = result;
-	$(function() {
-		$(document).trigger('load-page');
-	});
-});
+xhReq.open('GET', server + 'favorites', false);
+xhReq.send(null);
+page_data = xhReq.responseText;
