@@ -34,7 +34,7 @@
                 display: block;
                 line-height: 3em;
                 position: relative;
-                :before {
+                &:before {
                     background: url("/assets/images/symbol.png") no-repeat center 0;
                     content: "\00A0";
                     display: block;
@@ -44,7 +44,7 @@
             }
             &:nth-child(1) {
                 h3:before {
-                    background-position: center -22px;
+                    background-position: center 22px;
                 }
             }
             &:nth-child(2) {

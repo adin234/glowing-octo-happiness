@@ -23,7 +23,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.gritter.css" />
     <link href="/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-    <link href="/assets/css/main.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/assets/js/libs/jquery.min.js">
     </script>
@@ -38,19 +37,7 @@
       <div class="nav-wrapper">
 
         <h1><a href="/" title="Home" class="zh_tw">Gamers</a></h1>
-        <nav class="species">
-          <ul class="clearFix">
-            <li class="current"><a href="javascript:void(0);" data-console='all' onClick="javascript:add_filter_category('all', this); return false;" title="All">All</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox360' onClick="add_filter_category('xbox360', this); return false;" title="Xbox 360">Xbox 360</a></li>
-            <li><a href="javascript:void(0)" data-console='xbox1' onClick="add_filter_category('xbox1', this); return false;" title="Xbox One">Xbox One</a></li>
-            <li><a href="javascript:void(0)" data-console='ps3' onClick="add_filter_category('ps3', this); return false;" title="PS3">PS3</a></li>
-            <li><a href="javascript:void(0)" data-console='ps4' onClick="add_filter_category('ps4', this); return false;" title="PS4">PS4</a></li>
-            <li><a href="javascript:void(0)" data-console='pc' onClick="add_filter_category('pc', this); return false;" title="PC">PC</a></li>
-
-            <li><a href="javascript:void(0)" data-console='mobile_app' onClick="add_filter_category('mobile_app', this); return false;" title="Mobile Game">Mobile Game</a></li>
-            <li><a href="javascript:void(0)" data-console='vlogs' onClick="add_filter_category('vlogs', this); return false;" title="Vlogs">Vlogs</a></li>
-          </ul>
-        </nav>
+        <nav class="species" id="global-filter"></nav>
     </div>
     
       <nav class="site sf-menu">
@@ -236,24 +223,23 @@
         </div>
       </div>
     </div>
-    <script src="/assets/js/libs/jquery.gritter.min.js?ver=22"></script>
-    <script src="/assets/js/util.js?ver=22"></script>
-    <script src="/assets/js/libs/hoverIntent.js?ver=22"></script>
-    <script src="/assets/js/libs/superfish.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.fixed.menu.js?ver=22"></script>
-<<<<<<< HEAD
+    
+
+    <script src="/assets/js/libs/jquery.gritter.min.js"></script>
+    <script src="/assets/js/libs/socketio.js"></script>
     <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/config.js"></script>
-=======
-    <script src="/assets/js/function.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.autocomplete.min.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.bxslider.min.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.tabslet.min.js?ver=22"></script>
-    <script src="/assets/js/libs/jquery.tooltipster.min.js?ver=22"></script>
-    <script src="/assets/js/libs/socketio.js?ver=22"></script>
-    <script src="/assets/templates/index/templates.js?ver=22"></script>
->>>>>>> fe8d37399e9d62107e435cac5eae7a564cd4bf36
-    <script data-main="/assets/js/components/about/main" src="/assets/js/libs/require.js"></script>
+    <script src="/assets/js/libs/hoverIntent.js"></script>
+    <script src="/assets/js/libs/superfish.js"></script>
+    <script src="/assets/js/libs/jquery.fixed.menu.js"></script>
+    <script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
+    <script src="/assets/js/libs/jquery.bxslider.min.js"></script>
+    <script src="/assets/js/libs/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/assets/js/libs/jquery.tabslet.min.js"></script>
+    <script src="/assets/js/libs/jquery.tooltipster.min.js"></script>
+    <script src="/assets/js/libs/require.js"></script>
+    <script src="/assets/js/dist/components/all.js"></script>
+    <script src="/assets/js/dist/_config.js"></script>
+    <script src="/assets/js/dist/about.js"></script>
+
   </body>
 </html>

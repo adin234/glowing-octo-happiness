@@ -1712,14 +1712,14 @@ footer {
         display: block;
         line-height: 3em;
         position: relative; }
-        .about ul li h3 :before {
+        .about ul li h3:before {
           background: url("/assets/images/symbol.png") no-repeat center 0;
           content: "\00A0";
           display: block;
           height: 77px;
           width: 100%; }
       .about ul li:nth-child(1) h3:before {
-        background-position: center -22px; }
+        background-position: center 22px; }
       .about ul li:nth-child(2) h3:before {
         background-position: center -69px; }
       .about ul li:nth-child(3) h3:before {
