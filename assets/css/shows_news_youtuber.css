@@ -119,10 +119,6 @@
       width: 35px; }
     .playFunctionBtn li:nth-child(1), .playFunctionBtn li:nth-child(2), .playFunctionBtn li:nth-child(3), .playFunctionBtn li:nth-child(4) {
       float: left !important; }
-    .playFunctionBtn li:nth-child(1) {
-      background: url("/assets/images/player_ui.png") no-repeat 10px -100px; }
-    .playFunctionBtn li:nth-child(2) {
-      background: url("/assets/images/player_ui.png") no-repeat 10px -139px; }
     .playFunctionBtn li:nth-child(3) {
       background: url("/assets/images/player_ui.png") no-repeat 10px -180px; }
     .playFunctionBtn li:last-child {

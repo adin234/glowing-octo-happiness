@@ -38,11 +38,9 @@
                         }
                     }
                     a {
-                        color: #00b8e6;
+                        color: #fff;
+                        // color: #00b8e6;
                     }
-                }
-                a {
-                    color: #fff;
                 }
             }
             .zoom {
@@ -67,13 +65,15 @@
             }
             .playFunctionBtn {
                 li {
-                    background: url("/assets/images/player_ui_dark.png"); 
-                    background-repeat: no-repeat;
+                    a {
+                        background: url("/assets/images/player_ui_dark.png"); 
+                        background-repeat: no-repeat;
+                    }
                     &:nth-child(1) a {
                         background-position: 10px -100px;
                     }
                     &:nth-child(2) a {
-                        background-position: 10px -180px;
+                        background-position: 10px -139px;
                     }
                     &:nth-child(3) a {
                         background-position: 10px -222px;
@@ -699,6 +699,19 @@
     }
     #container.lanparty {
         background: #000;
+        #content {
+            background: #000;
+        }
+        .listSwitch li {
+            background: #000;
+            border: 1px solid #00b8e6;
+            a {
+                color: #00b8e6;
+            }
+        }
+        .videoRelated .recommend h3 {
+            color: #FFF;
+        }
         a {
             color: #999;
         }
