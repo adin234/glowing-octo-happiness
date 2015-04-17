@@ -16,7 +16,10 @@ define(function(require) {
         defaults = {
             className: 'tab clearFix',
             template: tab_nav_tpl,
-            hash_change: true
+            hash_change: true,
+
+            //callbacks
+            after_mount: function() {}
         },
         options = $.extend({}, defaults, opts),
         hashLocation = utilHash.getHash();
@@ -66,6 +69,8 @@ define(function(require) {
                 }
 
                 this.add_listeners();
+
+                options.after_mount();
 
                 return this;
             },

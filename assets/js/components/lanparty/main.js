@@ -44,10 +44,7 @@ requirejs([
     'text!components/lanparty/templates/tab1.html',
     'text!components/lanparty/templates/tab2.html',
     'text!components/lanparty/templates/tab3.html',
-    'text!components/lanparty/templates/tab4.html',
-    'less!css/less/footer',
-    'less!css/less/outcontainer',
-    'less!css/less/main'
+    'text!components/lanparty/templates/tab4.html'
 ], function(Tabs, Global_Filter, FooterTpl, tab_nav_tpl, side_tab_nav_tpl, tab1_tpl, tab2_tpl, tab3_tpl, tab4_tpl) {
 
     var global_filter = new Global_Filter();
