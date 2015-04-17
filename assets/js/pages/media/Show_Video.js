@@ -19,7 +19,6 @@ define(function(require) {
 
     return function Show_Video(videoId, list) {
 
-
         var video = getVideo(videoId, list);
         if (video) {
             var likeButton = '',

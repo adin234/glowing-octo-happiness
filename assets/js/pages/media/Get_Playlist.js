@@ -1,16 +1,12 @@
 /*global
 	active_playlist: true,
-	server
+    data_cache: true,
+    server
 */
 
 'use strict';
 
 define(function() {
-
-    var data_cache = {
-        playlist: {},
-        video: {}
-    };
 
     return function Get_Playlist(playlistId) {
 

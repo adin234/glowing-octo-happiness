@@ -1565,6 +1565,14 @@ footer {
     color: #00b8e6;
     border-top: 2px solid #00b8e6; }
 
+#container.lanparty .videoRelated {
+  background: none;
+  border-top: 1px solid #4d4d4d; }
+#container.lanparty .videoRelated [id^="tab-"] {
+  border-bottom: none; }
+#container.lanparty .videoRelated .tabs + * {
+  background: none;
+  border-left: 1px solid #4d4d4d; }
 #container .lanparty-nav {
   margin: -34px -50px 25px;
   padding: 20px 50px; }

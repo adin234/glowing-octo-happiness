@@ -126,6 +126,17 @@
 }
 
 #container {
+    &.lanparty .videoRelated {
+        background: none;
+        border-top: 1px solid #4d4d4d;
+    }
+    &.lanparty .videoRelated [id^="tab-"] {
+        border-bottom: none;
+    }
+    &.lanparty .videoRelated .tabs + * {
+        background: none;
+        border-left: 1px solid #4d4d4d;
+    }
     .lanparty-nav {
         margin: -34px -50px 25px;
         padding: 20px 50px;

@@ -21,7 +21,6 @@ define(function() {
             }
         }
 
-
         list = data_cache.playlist;
         indices = Object.keys(list);
         for (i = 0; i < indices.length; i++) {

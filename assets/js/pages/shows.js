@@ -29,6 +29,10 @@ define('shows', function(require) {
     window.showVideo = null;
     window.showPlaylist = null;
     window.show = null;
+    window.data_cache = {
+        playlist: {},
+        video: {}
+    };
 
     var Tabs = require('Tabs/index'),
         Hash_Change = require('./media/Hash_Change'),
