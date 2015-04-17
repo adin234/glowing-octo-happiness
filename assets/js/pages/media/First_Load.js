@@ -38,6 +38,14 @@ define(function(require) {
             $('.profile .info h1').html(name);
         }
 
+        if ($('#youtuberPage').length) {
+            $('#banner .info > cite').html(page_data.user.username);
+            $('#banner .info > a').attr('href', community + 'index.php?members/' +
+                page_data.user.username + '.' + page_data.user.user_id);
+            $('#banner .info > img').attr('src', attachments_server + 'avatar.php?userid=' +
+                page_data.user.user_id + '.jpg');
+        }
+
         if (page_data.config && page_data.config.channel && typeof page_data.config.channel === 'string') {
             getPhoto(page_data.config.channel, $('.videoHeading > img'));
         }
@@ -158,10 +166,6 @@ define(function(require) {
             });
         });
 
-        update_playlists(page_data);
-
-        update_videos(page_data.videos, null, 1);
-
         $(document).on('click', '.sort-comments', function () {
             var el = $(this);
             var sort = el.hasClass('last') ? 'last' : 'latest';
@@ -269,6 +273,10 @@ define(function(require) {
         });
         
 
+        update_videos(page_data.videos, null, 1);
+
         $(window).trigger('hashchange');
+
+        update_playlists(page_data);
     };
 });
