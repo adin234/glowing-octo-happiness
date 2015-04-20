@@ -41,6 +41,11 @@ define('streamers', function(require) {
                     );
 
                     multiview_slider.reload(page_data._multiview);
+
+                    //open the multiview tab when all videos is added
+                    if (page_data._live.length === page_data._multiview.length) {
+                        $('#video-stream-tabs').find('a[href="#tab-2-3"]').trigger('click');
+                    }
                 });
 
             }
