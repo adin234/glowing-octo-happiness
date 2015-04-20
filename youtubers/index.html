@@ -96,14 +96,73 @@
                 </div>
                 <input type="text" placeholder="搜尋遊戲" id="txtbox-search-games">
 
-                <div class="games tabs" id="games-tabs"></div>
+                <div class="games tabs" id="games-tabs">
+                  <ul class="tab clearFix">
+                    <li class="active">
+                      <h2>
+                        <a href="#tab-2-1">
+                          最新遊戲
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-2-2">
+                          精選遊戲
+                        </a>
+                      </h2>
+                    </li>
+                  </ul>
+                  <div id="tab-1-1">
+                    <div class="collection">
+                      <div class="bxslider games" id="container-latest-games">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-1-2">
+                    <div class="collection">
+                      <div class="bxslider games" id="container-featured-games">
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
               </div>
               <div method="post" class="search">
                 <div class="search-icon">
                 </div>
                 <input type="text" placeholder="搜尋 YouTuber" id="txtbox-search-videos">
-                <div id="video-tabs" class="video tabs"></div>
+                <div id="video-tabs" class="video tabs">
+                  <ul class="tab clearFix">
+                    <li class="active">
+                      <h2>
+                        <a href="#tab-2-1">
+                          熱門YouTuber
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-2-2">
+                          新實況咖成員
+                        </a>
+                      </h2>
+                    </li>
+                    <li>
+                      <h2>
+                        <a href="#tab-2-3">
+                          All
+                        </a>
+                      </h2>
+                    </li>
+                  </ul>
+                  <div id="tab-2-1">
+                    <div class="collection">
+                      <div class="bxslider videos" id="container-videos">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -119,6 +119,11 @@ define('games', function(require) {
                     function(result) {
                         page_data.videos = result;
                         youtubers_slider.reload(transform_youtubers(page_data.videos));
+
+                        //change game title
+                        $('#video-tabs').find('a[href="#tab-2-1"]').html(
+                            $('.game-item.active img').data('chi')
+                        );
                     }
                 );
             }
