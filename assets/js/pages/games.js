@@ -59,7 +59,8 @@ define('games', function(require) {
             onChange: function(filter) {
                 $.getJSON(server + 'gamesdata?' + $.param({
                     console: filter.id,
-                    game: 'all'
+                    game: 'all',
+                    limit: 32
                 }), function(result) {
                     page_data.games = result.games;
                     page_data.featured_games = result.featured_games;

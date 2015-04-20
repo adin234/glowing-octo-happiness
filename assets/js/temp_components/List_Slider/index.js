@@ -90,6 +90,10 @@ define(function() {
                     hideControlOnEnd: true,
                     onSlideNext: options.onSlideNext
                 });
+
+                options.after_mount();
+
+                return this;
             },
 
             mount: function($container) {
