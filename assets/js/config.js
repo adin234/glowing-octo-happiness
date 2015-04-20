@@ -29,6 +29,14 @@
      *     python AdinHTTPServer.py 8888
      */
     var env = {
+            'refactor.gamers.tm': {
+                server: 'http://api.gamers.tm/',
+                origin: window.location.origin + '/',
+                socket_server: 'http://api.gamers.tm:3001/',
+                attachments_server: 'http://community.gamers.tm/zh/',
+                community: 'http://community.gamers.tm/zh/',
+                page_maintenance: '/maintenance.html'
+            },
             'beta.gamers.tm': {
                 server: 'http://api.gamers.tm/',
                 origin: 'http://beta.gamers.tm/',
@@ -47,7 +55,7 @@
             },
             'default': {
                 server: 'http://api.gamers.tm/',
-                origin: window.location.origin,
+                origin: window.location.origin + '/',
                 socket_server: 'http://api.gamers.tm:3001/',
                 attachments_server: 'http://community.gamers.tm/zh/',
                 community: 'http://community.gamers.tm/zh/',
@@ -62,9 +70,9 @@
                 use_env(env['default']);
             }
         },
-        use_env = function (env) {
-            for (var variable in env) {
-                window[variable] = env[variable];
+        use_env = function (envs) {
+            for (var variable in envs) {
+                window[variable] = envs[variable];
             }
         };
 

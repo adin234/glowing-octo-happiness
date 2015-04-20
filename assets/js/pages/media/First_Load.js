@@ -277,6 +277,8 @@ define(function(require) {
 
         $(window).trigger('hashchange');
 
+        $(document).trigger('data-loaded');
+
         update_playlists(page_data);
     };
 });

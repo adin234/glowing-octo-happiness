@@ -29,10 +29,50 @@
     <script type="text/javascript" src="/assets/js/get.youtuber.data.js"></script>
   </head>
   <body class="lang_zh_tw stream-gritter" id="youtuberPage">
-    <g:plus action="share">
-    </g:plus>
-    <div id="fb-root">
-    </div>
+
+    <div id="fb-root"></div>
+
+        <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '305385862975541',
+                status: true,
+                xfbml: true,
+                version: 'v2.2',
+                cookie: true
+            });
+        };
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        window.___gcfg = {
+            lang: 'en-US',
+            parsetags: 'onload'
+        };
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+        </script>
+
+
       <div id="wrapper">
         <div id="outContainer">
           
@@ -101,6 +141,7 @@
               <div id="top-controls">
                 <div id="subscribe-follow-like">
                   <div id="youtube-subscribe">
+                    <div id="g-ytsubscribe" class="g-ytsubscribe"></div>
                   </div>
                   <div id="twitter-follow">
                   </div>
@@ -216,7 +257,8 @@
           </div>
         </div>
       </div>
-      <script src="/assets/js/libs/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/hoverIntent.js"></script>
     <script src="/assets/js/libs/superfish.js"></script>
     <script src="/assets/js/libs/jquery.autocomplete.min.js"></script>
@@ -232,5 +274,6 @@
     <script src="/assets/js/dist/components/all.js"></script>
     <script src="/assets/js/dist/_config.js"></script>
     <script src="/assets/js/dist/media.js"></script>
+    <script src="/assets/js/dist/youtuber.js"></script>
   </body>  
 </html>
