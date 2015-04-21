@@ -34,6 +34,10 @@ define('shows', function(require) {
         video: {}
     };
 
+    if (typeof page_data === 'string') {
+        page_data = $.parseJSON(page_data);
+    }
+
     var Tabs = require('Tabs/index'),
         Hash_Change = require('./media/Hash_Change'),
         Filter_Action = require('./media/Filter_Action'),
