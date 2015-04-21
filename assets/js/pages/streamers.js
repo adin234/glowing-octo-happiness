@@ -104,7 +104,7 @@ define('streamers', function(require) {
                 item.id = 'YT' + item.username;
                 item.idraw = item.username;
                 item.live = 'live';
-                item.link = origin + '/gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
+                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
                 item.title = item.youtube.snippet.title;
@@ -122,7 +122,7 @@ define('streamers', function(require) {
                 item.id = 'TW' + item.twitchid;
                 item.idraw = item.twitchid;
                 item.live = 'live';
-                item.link = origin + '/gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
+                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.twitch.preview.large;
                 item.title = item.twitch.channel.status;
@@ -142,7 +142,7 @@ define('streamers', function(require) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
-                item.link = origin + '/gamer_stream/?user=' + item.user.user_id + '/#!/' + item.id;
+                item.link = origin + 'gamer_stream/?user=' + item.user.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.livestream[0].media_thumbnail_large;
                 item.title = item.hitbox.livestream[0].media_status;
