@@ -48,6 +48,8 @@ define(function(require) {
                     captions: true,
                     auto: true
                 });
+
+                $container.find('.tooltip').tooltipster({contentAsHTML: true});
             }
         };
     };
