@@ -3,7 +3,8 @@
     filterConsole,
     tempdata: true,
     template,
-    isPlaying
+    isPlaying,
+    page_data
 */
 
 'use strict';
@@ -14,7 +15,7 @@ define(function(require) {
         playlist_item_tpl = require('text!./../templates/media-playlist-item.html'),
         categories_tpl = require('text!./../templates/media-categories.html');
 
-    return function Update_Playlists(p_data) {
+    return function Update_Playlists(playlist) {
 
         html = [];
 
@@ -27,14 +28,14 @@ define(function(require) {
             source = categories_tpl;
         }
 
-        var visible_playlists = (typeof p_data.visible_playlists !== 'undefined') ?
-            p_data.visible_playlists.split(',') : [];
+        var visible_playlists = (typeof page_data.visible_playlists !== 'undefined') ?
+            page_data.visible_playlists.split(',') : [];
 
         if (typeof filterConsole !== 'undefined' && filterConsole.trim().length) {
             cons = 'console/' + filterConsole + '/';
         }
 
-        p_data.playlists.forEach(function(item) {
+        playlist.forEach(function(item) {
             if (~ids.indexOf(item.id)) {
                 return;
             }

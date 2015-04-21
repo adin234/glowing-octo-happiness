@@ -1,10 +1,14 @@
+/*global
+    page_data
+*/
+
 'use strict';
 
 define(function(require) {
     var update_videos = require('./Update_Videos'),
         update_playlists = require('./Update_Playlists');
 
-    return function Filter_Game(filterString, page_data) {
+    return function Filter_Game(filterString) {
 
         $('.game-item').each(function(i, item) {
             $(item).removeClass('active');
@@ -19,6 +23,7 @@ define(function(require) {
                 videos.push(item);
             }
         });
+
         update_playlists(videos);
 
         videos = [];
@@ -30,6 +35,7 @@ define(function(require) {
             }
         });
         $('li.ytVideo.videoItem').remove();
+        console.log(videos);
         update_videos(videos);
     };
 });

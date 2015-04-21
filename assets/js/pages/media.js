@@ -41,8 +41,6 @@ define('shows', function(require) {
         show_video = require('./media/Show_Video'),
         first_load = require('./media/First_Load');
 
-    page_data = JSON.parse(page_data);
-
     // shows page
     var main_tab_2 = new Tabs(),
         hash_change = new Hash_Change({

@@ -279,6 +279,6 @@ define(function(require) {
 
         $(document).trigger('data-loaded');
 
-        update_playlists(page_data);
+        update_playlists(page_data.playlists);
     };
 });

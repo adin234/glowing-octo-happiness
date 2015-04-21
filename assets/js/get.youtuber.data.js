@@ -32,4 +32,4 @@ user = params.user.replace('/', '');
 
 xhReq.open('GET', server + 'user/personal/'+user, false);
 xhReq.send(null);
-page_data = xhReq.responseText;
+page_data = JSON.parse(xhReq.responseText);
