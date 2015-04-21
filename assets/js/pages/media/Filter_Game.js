@@ -35,7 +35,6 @@ define(function(require) {
             }
         });
         $('li.ytVideo.videoItem').remove();
-        console.log(videos);
         update_videos(videos);
     };
 });

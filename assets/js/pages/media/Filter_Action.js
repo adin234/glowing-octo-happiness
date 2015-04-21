@@ -2,7 +2,8 @@
 	active_comments: true,
 	showComment: true,
 	isPlaying: true,
-	hash
+	hash,
+	filter_category
 */
 
 'use strict';
@@ -13,7 +14,8 @@ define (function () {
 
 			var defaults = {
 				show_playlist: function() {},
-				show_video: function() {}
+				show_video: function() {},
+				filter_category: function() {}
 			},
 			options = $.extend({}, defaults, opts);
 
@@ -40,7 +42,7 @@ define (function () {
 				            this.execute(hash.shift());
 				            break;
 				        case 'console':
-				            // filter_category.execute(hash.shift());
+				            options.filter_category(hash.shift());
 				            this.execute(hash.shift());
 				            break;
 				    }

@@ -39,7 +39,8 @@ define('shows', function(require) {
         Filter_Action = require('./media/Filter_Action'),
         show_playlist = require('./media/Show_Playlist'),
         show_video = require('./media/Show_Video'),
-        first_load = require('./media/First_Load');
+        first_load = require('./media/First_Load'),
+        filter_category = require('./media/Filter_Category');
 
     // shows page
     var main_tab_2 = new Tabs(),
@@ -51,7 +52,8 @@ define('shows', function(require) {
         }),
         filter_action = new Filter_Action({
             show_playlist: show_playlist,
-            show_video: show_video
+            show_video: show_video,
+            filter_category: filter_category
         });
 
     hash_change
