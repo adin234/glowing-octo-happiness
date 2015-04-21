@@ -26,6 +26,32 @@ define(function(require) {
 
     return function First_Load(page_data) {
 
+        $('#tab-1').mCustomScrollbar({
+            theme: 'inset-2'
+        });
+
+        $('#tab-2').mCustomScrollbar({
+            theme: 'inset-2'
+        });
+
+
+        $('.playList').mCustomScrollbar({
+            theme: 'inset-2',
+            callbacks: {
+                onScroll: function() {
+                    if (this.mcs.topPct >= 75) {
+                        update_videos(activeVideos, true);
+                    }
+                }
+            }
+        });
+
+        $('aside.recommend > ul').mCustomScrollbar({
+            theme: 'inset-2'
+        });
+
+        
+
     	/* YOUTUBE SHIZZ */
         var tag = document.createElement('script'),
             firstScriptTag = document.getElementsByTagName('script')[0];
@@ -83,22 +109,6 @@ define(function(require) {
             });
         }
 
-
-        if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {
-            $.ajax({
-                    dataType: 'jsonp',
-                    url: server + 'favorite-ids',
-                    crossDomain: true,
-                    type: 'get'
-                })
-                .always(function(result) {
-                    page_data.favorites = result;
-                    $(window).trigger('hashchange');
-                });
-
-            return;
-        }
-
         $('.tabs').tabslet({
             animation: true,
             active: 1
@@ -107,30 +117,6 @@ define(function(require) {
                 $('#tab-2').click();
             }
         });
-
-        $('#tab-1').mCustomScrollbar({
-            theme: 'inset-2'
-        });
-
-        $('#tab-2').mCustomScrollbar({
-            theme: 'inset-2'
-        });
-
-
-        $('.playList').mCustomScrollbar({
-            theme: 'inset-2',
-            callbacks: {
-                onScroll: function() {
-                    if (this.mcs.topPct >= 75) {
-                        update_videos(activeVideos, true);
-                    }
-                }
-            }
-        });
-
-        $('aside.recommend > ul').mCustomScrollbar({
-		    theme: 'inset-2'
-		});
 
         $('ul.resize').click(function() {
             var $body = $('body'),
@@ -275,10 +261,25 @@ define(function(require) {
 
         update_videos(page_data.videos, null, 1);
 
-        $(window).trigger('hashchange');
+        update_playlists(page_data.playlists);
 
         $(document).trigger('data-loaded');
 
-        update_playlists(page_data.playlists);
+        if (utilUser.get('user') && typeof utilUser.get('user') !== 'undefined') {
+            $.ajax({
+                    dataType: 'jsonp',
+                    url: server + 'favorite-ids',
+                    crossDomain: true,
+                    type: 'get'
+                })
+                .always(function(result) {
+                    page_data.favorites = result;
+                    $(window).trigger('hashchange');
+                });
+
+            return;
+        }
+
+        $(window).trigger('hashchange');
     };
 });

@@ -90,6 +90,5 @@ define(function(require) {
         } else {
             $('#videos .mCSB_container').html(html.join(''));
         }
-
     };
 });

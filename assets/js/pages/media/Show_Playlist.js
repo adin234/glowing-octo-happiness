@@ -1,7 +1,5 @@
 /*global
-    activeVideos: true,
-    show,
-    hash
+    activeVideos: true
 */
 
 'use strict';
@@ -29,18 +27,20 @@ define(function(require) {
             activeVideos = activeVideos.concat(playlist.items);
             getPlaylistNext(playlist);
         }
+        console.log('next', next);
         if (!next) {
             if (
                 (typeof playlist.items[0].status !== 'undefined') &&
                 (playlist.items[0].status === 'public')
             ) {
-                return show;
+                return showVideo(playlist.items[0].snippet.resourceId.videoId);
             } else {
                 showVideo(playlist.items[1].snippet.resourceId.videoId, playlist.items);
-                filterAction(hash.shift());
+                // filterAction(hash.shift());
                 return;
             }
         }
+
 
         filterAction(next);
 

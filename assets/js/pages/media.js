@@ -50,7 +50,7 @@ define('shows', function(require) {
     var main_tab_2 = new Tabs(),
         hash_change = new Hash_Change({
             onChange: function(type) {
-                console.log('changed');
+                console.log('changed', type);
                 filter_action.execute(type);
             }
         }),
@@ -63,13 +63,13 @@ define('shows', function(require) {
     hash_change
         .init(page_data);
 
+    first_load(page_data);
+
     main_tab_2
         .init()
         .addTab('#tab-1', '現在播放')
         .addTab('#tab-2', '評論')
         .mount($('#video-related-tabs'));
-
-    first_load(page_data);
 
     require('Footer/index');
     require('Sub_Nav/index');
