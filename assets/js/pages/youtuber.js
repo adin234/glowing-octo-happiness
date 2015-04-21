@@ -42,7 +42,6 @@ define('youtuber', function(require) {
             onChange: function(filter) {
                 window.filterConsole = filter.id;
                 renderGame();
-                console.log('games rendered');
             }
         });
 
