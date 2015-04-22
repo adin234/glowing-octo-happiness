@@ -7,7 +7,7 @@ requirejs.config({
     },
     paths: {
         'jquery'        : '../libs/jquery.min',
-        'components'    : '../temp_components',
+        'components'    : '../components',
         'Featured_Users': './components/Featured_Users',
         'text'          : '../libs/text',
         'css'           : '../../css',

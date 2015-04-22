@@ -66,7 +66,7 @@ gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js', 'dev-components'
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
     gulp.watch('assets/js/pages/**/**', ['dev-js']);
-    gulp.watch('assets/js/temp_components/**/**', ['dev-components']);
+    gulp.watch('assets/js/components/**/**', ['dev-components']);
 });
 
 
@@ -74,7 +74,7 @@ gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js', 'dev-components'
  * REQUIREJS dirs reference
  * @type {String} 
  */
-var components = getDirectories('assets/js/temp_components'),
+var components = getDirectories('assets/js/components'),
     pages = getFiles('assets/js/pages');
 
 gulp.task('dev-js', ['compile-pages'], function() {
@@ -120,7 +120,7 @@ gulp.task('dev-components', ['compile-components'], function() {
 
 gulp.task('compile-components', function() {
     var config = {
-        baseUrl: 'assets/js/temp_components',
+        baseUrl: 'assets/js/components',
         dir: 'assets/js/dist/compiled',
         findNestedDependencies: true,
         paths: {
