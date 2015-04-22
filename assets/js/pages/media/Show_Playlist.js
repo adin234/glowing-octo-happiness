@@ -35,7 +35,7 @@ define(function(require) {
             ) {
                 return showVideo(playlist.items[0].snippet.resourceId.videoId);
             } else {
-                showVideo(playlist.items[1].snippet.resourceId.videoId, playlist.items);
+                showVideo(playlist.items[1].snippet.resourceId.videoId);
                 // filterAction(hash.shift());
                 return;
             }

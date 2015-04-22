@@ -2,8 +2,7 @@
 	active_comments: true,
 	showComment: true,
 	isPlaying: true,
-	hash,
-	filter_category
+	hash
 */
 
 'use strict';
@@ -21,6 +20,7 @@ define (function () {
 
             return {
                 execute: function(action) {
+                	console.log(action);
 				    switch (action) {
 				        case 'playlist':
 				        	options.show_playlist(hash.shift(), hash.shift(), this.execute);
@@ -29,6 +29,7 @@ define (function () {
 				        case 'video':
 				            isPlaying = true;
 				            options.show_video(hash.shift());
+				            this.execute(hash.shift());
 				            break;
 				        case 'comments':
 				            $('a[href="#tab-2"]').click();
