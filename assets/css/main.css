@@ -2075,20 +2075,20 @@ body #navigation {
         background: url('http://cache.addthiscdn.com/icons/v1/thumbs/32x32/facebook.png');
         background-size: 16px;
         position: absolute;
-        z-index: 999999;
+        z-index: 9999;
         height: 16px;
         width: 16px; }
       .videoRelated .discussions article .commentShare a.gpbutton {
         background-size: 16px;
         position: absolute;
-        z-index: 999999;
+        z-index: 9999;
         left: 20px;
         height: 16px;
         width: 16px; }
       .videoRelated .discussions article .commentShare a.twbutton {
         background-size: 16px;
         position: absolute;
-        z-index: 999999;
+        z-index: 9999;
         left: 40px;
         height: 16px;
         width: 16px; }
@@ -2105,14 +2105,11 @@ body #navigation {
     font-weight: bold;
     padding-left: 17px; }
   .videoRelated .discussions .replyContent {
-    padding-right: 49px;
+    margin-left: 72px;
     padding-right: 166px; }
   .videoRelated .discussions .more {
     display: block;
     margin-top: 1em;
-    margin-left: 72px;
-    padding-right: 166px; }
-  .videoRelated .discussions article {
     margin-left: 72px;
     padding-right: 166px; }
   .videoRelated .discussions .allReplies {
@@ -2133,9 +2130,6 @@ body #navigation {
       width: 0; }
     .videoRelated .discussions .allReplies:hover:after, .videoRelated .discussions .allReplies:active:after, .videoRelated .discussions .allReplies:focus:after {
       border-color: #4d4d4d transparent transparent transparent; }
-.videoRelated > article > .replyContent {
-  margin-left: 72px;
-  padding-right: 166px; }
 .videoRelated .recommend {
   padding-left: 15px; }
   .videoRelated .recommend > ul {
@@ -3522,7 +3516,8 @@ textarea#event_desc {
 #index-page .video .bx-next {
   right: -12px !important; }
 #index-page .games .game {
-  width: 1069px !important; }
+  width: 1069px !important;
+  padding-left: 15px; }
   #index-page .games .game.tabs .bx-viewport {
     width: 1041px !important;
     height: 214px !important; }
@@ -4268,7 +4263,8 @@ div#archive_schedule {
 
 /*Freedom News*/
 #news_shows_playlists_block ul.list.clearFix {
-  width: 1048px !important; }
+  width: 1048px !important;
+  padding-left: 40px; }
 
 .multistreamList {
   width: inherit !important;

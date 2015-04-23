@@ -111,7 +111,7 @@ var searchId = false,
                             },
                             access_code: _e.access_code
                         };
-                        utilCookie.set('user', JSON.stringify(user), 1 / 24);
+                        utilCookie.set('user', JSON.stringify(user), 0.5);
                         $('img.userImg')
                             .attr('src', utilUser.get()
                                 .links.avatar);

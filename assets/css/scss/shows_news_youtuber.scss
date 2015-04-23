@@ -370,14 +370,14 @@
                         background: url('http://cache.addthiscdn.com/icons/v1/thumbs/32x32/facebook.png');
                         background-size: 16px;
                         position: absolute;
-                        z-index: 999999;
+                        z-index: 9999;
                         height: 16px;
                         width: 16px;
                     }
                     &.gpbutton {
                         background-size: 16px;
                         position: absolute;
-                        z-index: 999999;
+                        z-index: 9999;
                         left: 20px;
                         height: 16px;
                         width: 16px;
@@ -385,7 +385,7 @@
                     &.twbutton {
                         background-size: 16px;
                         position: absolute;
-                        z-index: 999999;
+                        z-index: 9999;
                         left: 40px;
                         height: 16px;
                         width: 16px;
@@ -410,7 +410,7 @@
             padding-left: 17px;
         }
         .replyContent {
-            padding-right: 49px;
+            margin-left: 72px;
             padding-right: 166px;
         }
         .more {
@@ -420,8 +420,8 @@
             padding-right: 166px;
         }
         article {
-            margin-left: 72px;
-            padding-right: 166px;
+            // margin-left: 72px;
+            // padding-right: 166px;
         }
         .allReplies {
             margin-left: 72px;
@@ -445,12 +445,6 @@
                     border-color: #4d4d4d transparent transparent transparent;
                 }
             }
-        }
-    }
-    & > article {
-        & > .replyContent {
-            margin-left: 72px;
-            padding-right: 166px;
         }
     }
     .recommend {
