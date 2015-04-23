@@ -2137,10 +2137,9 @@ body #navigation {
     overflow: hidden; }
   .videoRelated .recommend .list {
     width: 268px;
-    padding-bottom: 8px; }
-  .videoRelated .recommend + .list {
-    border-top: 1px solid #9c9c9c;
-    padding-top: 12px; }
+    padding-bottom: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #9c9c9c; }
   .videoRelated .recommend a {
     color: inherit;
     display: block; }

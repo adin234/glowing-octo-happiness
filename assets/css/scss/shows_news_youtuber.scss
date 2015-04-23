@@ -456,10 +456,8 @@
         .list {
             width: 268px;
             padding-bottom: 8px;
-        }
-        & + .list {
-            border-top: 1px solid #9c9c9c;
             padding-top: 12px;
+            border-top: 1px solid #9c9c9c;
         }
         a {
             color: inherit;
