@@ -11,7 +11,6 @@ var gulp = require("gulp"),
     watchLess = require('gulp-watch-less'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
-    amdOptimize = require('gulp-amd-optimizer'),
     requirejs = require('requirejs');
 
 gulp.task('image-compressed', function () {
@@ -27,7 +26,7 @@ gulp.task('image-compressed', function () {
 });
 
 gulp.task('sass', function () {
-    return gulp.src('assets/css/scss/**/*.scss')
+    return gulp.src('assets/css/scss/main.scss')
         .pipe(sass({
             errLogToConsole: true
         }))
