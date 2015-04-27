@@ -2,8 +2,8 @@
 
 define('about', function(require) {
 
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
     
 });
 

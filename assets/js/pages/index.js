@@ -8,14 +8,14 @@
 
 define('index', function(require) {
     var index_data = {},
-        Tabs        = require('Tabs/index'),
-        List_Slider = require('List_Slider/index'),
-        Main_Slider = require('Main_Slider/index'),
-        Thread_List = require('Thread_List/index'),
-        Global_Filter = require('Global_Filter/index'),
-        Featured_Users = require('Featured_Users/index'),
-        video_tpl   = require('text!./templates/video-slide.html'),
-        game_tpl    = require('text!./templates/game-tpl.html'),
+        Tabs        = require('../components/Tabs/index'),
+        List_Slider = require('../components/List_Slider/index'),
+        Main_Slider = require('../components/Main_Slider/index'),
+        Thread_List = require('../components/Thread_List/index'),
+        Global_Filter = require('../components/Global_Filter/index'),
+        Featured_Users = require('../components/Featured_Users/index'),
+        video_tpl   = require('./templates/video-slide.html'),
+        game_tpl    = require('./templates/game-tpl.html'),
         main_slider = new Main_Slider(),
         main_tab    = new Tabs({hash_change: false}),
         games_tab   = new Tabs({hash_change: false}),
@@ -194,7 +194,7 @@ define('index', function(require) {
 
             new Featured_Users(index_data);
 
-            require('Index_News_Shows/index')(index_data);
+            require('../components/Index_News_Shows/index')(index_data);
         };
 
     main_tab
@@ -224,10 +224,10 @@ define('index', function(require) {
 
     showSocialButtons();
 
-    require('Streamers_List/index');
-    require('Scroller/index');
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Streamers_List/index');
+    require('../components/Scroller/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 

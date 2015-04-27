@@ -9,13 +9,13 @@
 
 define('youtubers', function(require) {
 
-    var Tabs = require('Tabs/index'),
-        List_Slider = require('List_Slider/index'),
-        Global_Filter = require('Global_Filter/index'),
-        Search_Box = require('Search_Box/index'),
-        Item_Selector = require('Item_Selector/index'),
-        game_tpl = require('text!./templates/youtubers-game.html'),
-        video_tpl = require('text!./templates/youtubers-video.html'),
+    var Tabs = require('../components/Tabs/index'),
+        List_Slider = require('../components/List_Slider/index'),
+        Global_Filter = require('../components/Global_Filter/index'),
+        Search_Box = require('../components/Search_Box/index'),
+        Item_Selector = require('../components/Item_Selector/index'),
+        game_tpl = require('./templates/youtubers-game.html'),
+        video_tpl = require('./templates/youtubers-video.html'),
         games_tab = new Tabs({hash_change: false}),
         videos_tab = new Tabs({hash_change: false}),
         latest_games_slider = new List_Slider({
@@ -208,8 +208,8 @@ define('youtubers', function(require) {
         game_selector
             .applyTo($('#featuredGames, #latestGames'));
 
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 require(['youtubers']);

@@ -2,13 +2,13 @@
 
 define('lanparty', function(require) {
 
-    var Tabs = require('Tabs/index'),
-        lanparty_tab_item = require('text!./templates/lanparty-tab-item.html'),
-        lanparty_tab1 = require('text!./templates/lanparty-tab1.html'),
-        lanparty_tab2 = require('text!./templates/lanparty-tab2.html'),
-        lanparty_tab3 = require('text!./templates/lanparty-tab3.html'),
-        lanparty_tab4 = require('text!./templates/lanparty-tab4.html'),
-        lanparty_right_tabs = require('text!./templates/lanparty-right-tabs.html');
+    var Tabs = require('../components/Tabs/index'),
+        lanparty_tab_item = require('./templates/lanparty-tab-item.html'),
+        lanparty_tab1 = require('./templates/lanparty-tab1.html'),
+        lanparty_tab2 = require('./templates/lanparty-tab2.html'),
+        lanparty_tab3 = require('./templates/lanparty-tab3.html'),
+        lanparty_tab4 = require('./templates/lanparty-tab4.html'),
+        lanparty_right_tabs = require('./templates/lanparty-right-tabs.html');
 
     // lanparty page
     var main_tab = new Tabs({
@@ -38,8 +38,8 @@ define('lanparty', function(require) {
         .addTab('tab-4-4', 'Lan Party活動紀錄', 'Lan Party活動紀錄', lanparty_tab4)
         .mount($('#container_lanparty'));
 
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 require(['lanparty']);

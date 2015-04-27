@@ -2473,14 +2473,14 @@ body #navigation {
 #youtubers #tab-2-2 .list .uploader, #games #tab-2-2 .list .uploader {
   top: 25px; }
 
-#streamers .video .list h3 {
+#streamers-page .video .list h3 {
   background-color: rgba(131, 7, 7, 0.75);
   bottom: 0;
   color: white;
   font-size: 1.61538em;
   line-height: 1.1;
   width: 100%; }
-#streamers .video .list > li {
+#streamers-page .video .list > li {
   float: left;
   height: 246px;
   width: 334px;
@@ -4217,7 +4217,8 @@ small.date {
   margin-left: 5px; }
 
 #twitter-follow {
-  float: right; }
+  float: right;
+  margin-left: 5px; }
 
 #facebook-like {
   float: right; }

@@ -14,7 +14,7 @@ define('youtuber', function(require) {
     window.filterConsole = 'all';
 
     var renderGame = require('./media/Render_Game'),
-        Global_Filter = require('Global_Filter/index'),
+        Global_Filter = require('../components/Global_Filter/index'),
         global_filter = new Global_Filter({
             onChange: function(filter) {
                 window.filterConsole = filter.id;

@@ -9,7 +9,7 @@ define(function(require) {
 
     return function Index_News_Shows(index_data) {
 
-        var newsShowsTpl = require('text!./news-shows.html'),
+        var newsShowsTpl = require('./news-shows.html'),
             html = [],
             blocks = '',
             max_items = 4,

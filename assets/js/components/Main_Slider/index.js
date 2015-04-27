@@ -8,7 +8,7 @@
 
 define(function(require) {
 
-    var slider_tpl = require('text!./slider-tpl.html'),
+    var slider_tpl = require('./slider-tpl.html'),
         items = [],
         options = {},
         date;

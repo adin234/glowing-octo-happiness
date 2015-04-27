@@ -15,7 +15,7 @@
 define(function(require) {
 
 	var getVideo = require('./Get_Video'),
-        video_item_tpl = require('text!./../templates/media-video-item.html');
+        video_item_tpl = require('./../templates/media-video-item.html');
 
     return function Update_Videos(videos, append, initial) {
 

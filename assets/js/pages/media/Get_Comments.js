@@ -13,8 +13,8 @@
 define(function(require) {
 
     var formatDate = require('./Format_Date'),
-        comments_tpl = require('text!./../templates/media-comments.html'),
-        comment_item_tpl = require('text!./../templates/media-comment-item.html');
+        comments_tpl = require('./../templates/media-comments.html'),
+        comment_item_tpl = require('./../templates/media-comment-item.html');
 
     return function Get_Comments(videoId, sort) {
 

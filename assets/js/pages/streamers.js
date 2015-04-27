@@ -14,11 +14,11 @@ define('streamers', function(require) {
     page_data._lanparty = [];
     page_data._multiview = [];
 
-    var Tabs = require('Tabs/index'),
-        List_Slider = require('List_Slider/index'),
+    var Tabs = require('../components/Tabs/index'),
+        List_Slider = require('../components/List_Slider/index'),
         socket = socketConnect(),
-        video_tmpl = require('text!./templates/streamers-video.html'),
-        multiview_video_tmpl = require('text!./templates/streamers-video-multiview.html'),
+        video_tmpl = require('./templates/streamers-video.html'),
+        multiview_video_tmpl = require('./templates/streamers-video-multiview.html'),
         live_mounted = false,
         main_tab = new Tabs({hash_change: false}),
         live_slider = new List_Slider({
@@ -213,8 +213,8 @@ define('streamers', function(require) {
         .init(page_data._lanparty)
         .mount($('#container-lanparty'));
 
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 

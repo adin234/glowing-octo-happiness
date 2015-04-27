@@ -38,7 +38,7 @@ define('shows', function(require) {
         page_data = $.parseJSON(page_data);
     }
 
-    var Tabs = require('Tabs/index'),
+    var Tabs = require('../components/Tabs/index'),
         Hash_Change = require('./media/Hash_Change'),
         Filter_Action = require('./media/Filter_Action'),
         show_playlist = require('./media/Show_Playlist'),
@@ -71,8 +71,8 @@ define('shows', function(require) {
         .addTab('#tab-2', '評論')
         .mount($('#video-related-tabs'));
 
-    require('Footer/index');
-    require('Sub_Nav/index');
+    require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 require(['shows']);

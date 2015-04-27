@@ -7,7 +7,7 @@
 
 define(function(require) {
 
-    var tab_nav_tpl = require('text!./tab-tpl.html');
+    var tab_nav_tpl = require('./tab-tpl.html');
 
     return function Tabs(opts) {
         

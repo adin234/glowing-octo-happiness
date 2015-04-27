@@ -1,0 +1,275 @@
+/*lan party*/
+/*Image URLS*/
+/*Containers*/
+.centerDiv {
+  margin: 0 auto;
+}
+/*Common*/
+.clearfix {
+  zoom: 1;
+}
+.all-zeroes {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.no-rep {
+  background: no-repeat;
+}
+.block {
+  display: block;
+}
+.transparent {
+  background-color: transparent;
+}
+.text-hide {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+#container_lanparty {
+  background: url("../images/lanpartybg.jpg");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  min-height: 900px;
+  padding: 40px 40px 80px 40px;
+}
+#container_lanparty .lanparty_title {
+  font-weight: bold;
+  display: inline-block;
+  margin: 100px 80px 0px;
+}
+#container_lanparty .lanparty_content {
+  color: #00b8e6;
+  width: 85%;
+  position: relative;
+  margin: 80px auto;
+}
+#container_lanparty .lanparty_content p {
+  margin: 20px 0px;
+  line-height: 1.75;
+}
+#container_lanparty .lanparty_timetable {
+  color: #00b8e6;
+  width: 85%;
+  position: relative;
+  margin: 51px auto 80px;
+  min-width: 1047px;
+  min-height: 829px;
+  border-top: #00c7f9 solid 1px;
+}
+#container_lanparty .hour_time {
+  display: inline-block;
+  width: 105px;
+  color: #FFFFFF;
+  font-size: large;
+  margin: 0px 5px 0px 40px;
+  height: 36px;
+}
+#container_lanparty .hour_time li {
+  margin: 0px 5px 0px 40px;
+  height: 36px;
+}
+#container_lanparty .hour_time li:last-child {
+  margin-bottom: 20px;
+}
+.lanparty_content {
+  display: none;
+}
+.lanparty .tabs {
+  color: #fff;
+}
+.lanparty .recommend > h2 {
+  color: #999;
+}
+.lanparty .videoHeading h3 {
+  color: #fff;
+}
+.lanparty-nav .lanparty_type1 {
+  float: left;
+}
+.lanparty-nav .lanparty_type1 li.active > a,
+.lanparty-nav .lanparty_type1 li:hover > a {
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+.lanparty-nav .lanparty_type2 {
+  float: right;
+}
+.lanparty-nav .lanparty_type2 > li > a:hover {
+  color: #eee;
+  text-decoration: none;
+}
+.lanparty-nav .lanparty_type2 > li:nth-child(1) {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
+}
+.lanparty-nav .lanparty_type2 > li:nth-child(2) {
+  margin-left: 20px;
+  background: url("../images/icon_fire_grey.png") no-repeat;
+  position: relative;
+  top: 1px;
+  vertical-align: middle;
+}
+.lanparty-nav .lanparty_menu {
+  border-top: 1px solid #434343;
+  padding: 10px;
+}
+.lanparty-nav > hr.line {
+  height: 1px;
+  border-top: 1px solid #434343;
+  margin-bottom: 9px;
+}
+.lanparty-nav > ul li:not(:last-child) {
+  border-right: 1px solid #434343;
+}
+.lanparty-nav li {
+  display: inline-block;
+  padding: 0px 20px;
+  vertical-align: middle;
+}
+.lanparty-nav li > a {
+  color: #868686;
+  text-decoration: none;
+  padding: 15px 10px;
+  position: relative;
+  top: -1px;
+}
+.lanparty-nav li.current > a {
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+#container .lanparty-nav {
+  margin: -34px -50px 25px;
+  padding: 20px 50px;
+}
+#container .lanparty-nav-green {
+  margin: -34px -50px 25px;
+  padding: 20px 50px;
+}
+#container.lanparty-nav .videoRelated {
+  background: none;
+  border-top: 1px solid #4d4d4d;
+}
+#container.lanparty-nav .videoRelated [id^="tab-"] {
+  border-bottom: none;
+}
+#container.lanparty-nav .videoRelated .recommend h3 {
+  color: #fff;
+}
+#container.lanparty-nav .main .video + * {
+  background: none;
+  border-left: 1px solid #4d4d4d;
+}
+#container.lanparty-nav .tabs + * {
+  background: none;
+  border-left: 1px solid #4d4d4d;
+}
+#container.lanparty-nav .tabs .tab {
+  margin-top: -2px;
+}
+#container.lanparty-nav .listSwitch li {
+  background: #000;
+  border: 1px solid #00b8e6;
+}
+.lanparty-nav-green .lanparty_type1 li.active > a,
+.lanparty-nav-green .lanparty_type1 li:hover > a {
+  color: #00ff54;
+  border-top: 2px solid #00ff54;
+}
+.lanparty-nav-green .lanparty_type2 {
+  float: right;
+}
+.lanparty-nav-green .lanparty_type2 > li > a:hover {
+  color: #eee;
+  text-decoration: none;
+}
+.lanparty-nav-green .lanparty_type2 > li:nth-child(1) {
+  background: url("/assets/images/sprite.png") no-repeat 0 -1279px;
+}
+.lanparty-nav-green .lanparty_type2 > li:nth-child(2) {
+  margin-left: 20px;
+  background: url("../images/icon_fire_grey.png") no-repeat;
+  position: relative;
+  top: 1px;
+  vertical-align: middle;
+}
+.lanparty-nav-green .lanparty_menu {
+  border-top: 1px solid #434343;
+  padding: 10px;
+}
+.lanparty-nav-green li {
+  display: inline-block;
+  padding: 0px 20px;
+  vertical-align: middle;
+}
+.lanparty-nav-green li > a {
+  color: #868686;
+  text-decoration: none;
+  padding: 15px 10px;
+  position: relative;
+  top: -1px;
+}
+.lanparty-nav-green li.current > a {
+  color: #00b8e6;
+  border-top: 2px solid #00b8e6;
+}
+.lanparty-nav-green > ul li:not(:last-child) {
+  border-right: 1px solid #434343;
+}
+.scheduler {
+  background: url("../images/bg_grid.jpg") repeat-x;
+  width: 941px;
+  height: 863px;
+  display: inline-block;
+  vertical-align: top;
+}
+#container_lanparty_green {
+  background: url("../images/lanparty_bg_3.png");
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+  margin-top: 56px;
+  min-height: 900px;
+  padding: 40px 40px 80px 40px;
+}
+#container_lanparty_green .lanparty_title {
+  display: inline-block;
+  margin: 100px 80px 0px;
+}
+#container_lanparty_green .lanparty_content {
+  color: #acacac;
+  width: 100%;
+  position: relative;
+  height: 900px;
+  margin-right: 50px;
+}
+#container_lanparty_green .lanparty_timetable {
+  color: #acacac;
+  width: 85%;
+  position: relative;
+  margin: 51px auto 80px;
+  background: url("../images/lanparty_grid_bg.png");
+  min-width: 940px;
+  min-height: 829px;
+  padding-top: 40px;
+}
+#container_lanparty_green .hour_time {
+  display: inline-block;
+  width: 155px;
+  color: #00ff54;
+  padding-top: 60px;
+}
+#container_lanparty_green .hour_time li {
+  border-top: 1px dotted #00ff54;
+  margin: 0px 5px 0px 40px;
+  height: 36px;
+}
+#container_lanparty_green .hour_time li:last-child {
+  border-bottom: 1px dotted #00ff54;
+  margin-bottom: 20px;
+}
+.lanparty_type2 sup {
+  color: red;
+  left: 1px;
+  position: relative;
+  top: -5px;
+  width: 1em;
+}

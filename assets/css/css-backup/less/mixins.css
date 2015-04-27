@@ -1,0 +1,28 @@
+/*Image URLS*/
+/*Containers*/
+.centerDiv {
+  margin: 0 auto;
+}
+/*Common*/
+.clearfix {
+  zoom: 1;
+}
+.all-zeroes {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.no-rep {
+  background: no-repeat;
+}
+.block {
+  display: block;
+}
+.transparent {
+  background-color: transparent;
+}
+.text-hide {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}

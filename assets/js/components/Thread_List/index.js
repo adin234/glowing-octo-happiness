@@ -7,7 +7,7 @@
 'use strict';
 
 define(function(require) {
-    var thread_item_tpl = require('text!./thread-item.html');
+    var thread_item_tpl = require('./thread-item.html');
 
     return function Thread_List() {
         var $thread_container = $('<ul class="thread-list"/>');

@@ -2,11 +2,11 @@
 
 define('freedom', function(require) {
 
-	var Tabs = require('Tabs/index'),
-		tab_nav_tpl = require('text!./templates/freedom-tab-nav.html'),
-		tab1_tpl = require('text!./templates/freedom-tab1.html'),
-		tab2_tpl = require('text!./templates/freedom-tab2.html'),
-		tab3_tpl = require('text!./templates/freedom-tab3.html'),
+	var Tabs = require('../components/Tabs/index'),
+		tab_nav_tpl = require('./templates/freedom-tab-nav.html'),
+		tab1_tpl = require('./templates/freedom-tab1.html'),
+		tab2_tpl = require('./templates/freedom-tab2.html'),
+		tab3_tpl = require('./templates/freedom-tab3.html'),
 		main_tab = new Tabs({
 			className: 'lanparty_type1 adjust_line_green',
 			template: tab_nav_tpl
@@ -21,8 +21,8 @@ define('freedom', function(require) {
 
     $('#container_lanparty_green').prepend('<hr class="line"/>');
 
-	require('Footer/index');
-    require('Sub_Nav/index');
+	require('../components/Footer/index');
+    require('../components/Sub_Nav/index');
 });
 
 require(['freedom']);

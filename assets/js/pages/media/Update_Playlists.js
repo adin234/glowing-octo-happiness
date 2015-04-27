@@ -12,8 +12,8 @@
 define(function(require) {
 
     var willPlay = require('./Will_Play'),
-        playlist_item_tpl = require('text!./../templates/media-playlist-item.html'),
-        categories_tpl = require('text!./../templates/media-categories.html');
+        playlist_item_tpl = require('./../templates/media-playlist-item.html'),
+        categories_tpl = require('./../templates/media-categories.html');
 
     return function Update_Playlists(playlist) {
 

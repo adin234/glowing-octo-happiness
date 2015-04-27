@@ -10,7 +10,7 @@
 
 define(function(require) {
 
-    var recommended_tpl = require('text!./../templates/media-recommended-item.html');
+    var recommended_tpl = require('./../templates/media-recommended-item.html');
 
     return function Update_Suggestions(suggestions) {
 

@@ -11,7 +11,7 @@ define(function(require) {
 
     var socket = socketConnect(),
         online_streamers = [],
-        streamers_tpl = require('text!./streamers-tpl.html');
+        streamers_tpl = require('./streamers-tpl.html');
 
     socket.on('message', function (e) {
         online_streamers = [];

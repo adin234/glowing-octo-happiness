@@ -8,7 +8,7 @@
 define(function(require) {
 
     return function Featured_Users(data) {
-        var viewer_tpl = require('text!./item-tpl.html'),
+        var viewer_tpl = require('./item-tpl.html'),
             html = [];
 
         if (data.feature_list.feature_list_active === '1') {

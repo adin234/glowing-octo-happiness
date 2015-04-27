@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "image-compressed": "gulp image-compressed"
+    "image-compressed": "gulp image-compressed",
+    "dev": "webpack --config webpack.config.js --progress --profile --colors"
   },
   "repository": {
     "type": "git",
@@ -38,8 +39,10 @@
     "gulp-uglifyjs": "^0.5.0",
     "gulp-util": "^3.0.1",
     "gulp-watch-less": "^1.0.1",
+    "html-loader": "^0.2.3",
     "imagemin-pngquant": "^4.0.0",
     "less": "^1.7.5",
-    "requirejs": "^2.1.17"
+    "requirejs": "^2.1.17",
+    "webpack": "^1.8.10"
   }
 }
