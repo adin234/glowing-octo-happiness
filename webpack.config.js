@@ -51,6 +51,7 @@ module.exports = {
         // this chunks the commonly used modules.
         new webpack.optimize.CommonsChunkPlugin({
             name: 'components'
-        })
+        }),
+        new webpack.OldWatchingPlugin()
     ]
 };
