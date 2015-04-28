@@ -13,7 +13,7 @@ Asset structure
 ├── images
 ├── js
 │	├── components						//contains basic components organized by folder
-│	├── dist							//compiled components and pages minified for production
+│	├── bundle							//compiled components and pages minified for production
 │	├── libs							//plugins and libs
 │	├── pages							//page specific js codes
 │	├── config.js						//contains environment configuration and defines global variables like serve paths, etc.
@@ -30,7 +30,8 @@ A page includes the following scripts/styles.
 	assets/css/{additional css for plugins}.css
 	assets/js/config.js
 	assets/js/util.js
-	assets/js/dist/{page specific js}.js
+	assets/js/bundle/components.dist.js 				//contains common components used for most pages
+	assets/js/bundle/{page specific js}.dist.js
 ```
 
 
@@ -49,4 +50,7 @@ A page includes the following scripts/styles.
 ```gulp template-compile```
 
 ###Development MODE
-```gulp dev```
+```npm run dev```
+
+###Production
+```npm run dist```
