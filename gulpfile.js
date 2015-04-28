@@ -10,8 +10,7 @@ var gulp = require("gulp"),
     sass = require('gulp-sass'),
     watchLess = require('gulp-watch-less'),
     less = require('gulp-less'),
-    minifyCSS = require('gulp-minify-css'),
-    requirejs = require('requirejs');
+    minifyCSS = require('gulp-minify-css');
 
 gulp.task('image-compressed', function () {
     return gulp.src('assets/images/**/*.*')
@@ -64,94 +63,4 @@ gulp.task('dev', ['template-compile', 'sass', 'less', 'dev-js', 'dev-components'
     gulp.watch('assets/templates/**/*', ['template-compile']);
     gulp.watch('assets/css/scss/**/*', ['sass']);
     gulp.watch('assets/css/less/**/*', ['less']);
-    gulp.watch('assets/js/pages/**/**', ['dev-js']);
-    gulp.watch('assets/js/components/**/**', ['dev-components']);
 });
-
-
-/**
- * REQUIREJS dirs reference
- * @type {String} 
- */
-var components = getDirectories('assets/js/components'),
-    pages = getFiles('assets/js/pages');
-
-gulp.task('dev-js', ['compile-pages'], function() {
-    return gulp.src(['assets/js/dist/media', 'assets/js/dist/templates'])
-        .pipe(clean());
-});
-
-gulp.task('compile-pages', function() {
-    var config = {
-            baseUrl: 'assets/js/pages',
-            dir: 'assets/js/dist',
-            findNestedDependencies: true,
-            keepBuildDir: true,
-            paths: {
-                'text' : '../libs/text'
-            },
-            modules: []
-        },
-        comps = components.slice().map(function(component) {
-            return component + '/index';
-        });
-
-
-    comps.forEach(function(comp) {
-        config.paths[comp] = 'empty:';
-    });
-
-    pages.forEach(function(page) {
-        config.modules.push({
-            name: page.slice(0, -3),
-            exclude: comps
-        });
-    });
-
-    return optimizeRequriejs(config);
-});
-
-gulp.task('dev-components', ['compile-components'], function() {
-    return gulp.src(['assets/js/dist/compiled/**/*.js', '!assets/js/dist/compiled/text.js',])
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('assets/js/dist/components'));
-});
-
-gulp.task('compile-components', function() {
-    var config = {
-        baseUrl: 'assets/js/components',
-        dir: 'assets/js/dist/compiled',
-        findNestedDependencies: true,
-        paths: {
-            'text' : '../libs/text'
-        },
-        modules: []
-    };
-    components.forEach(function(item) {
-        config.modules.push({
-            name: item + '/index',
-            exclude: ['text']
-        });
-    });
-    return optimizeRequriejs(config);
-});
-
-function optimizeRequriejs(opts) {
-    return requirejs.optimize(opts, function (buildResponse) {
-        console.log(buildResponse);
-    }, function(err) {
-        console.log(err);
-    });
-}
-
-function getDirectories(srcpath) {
-  return fs.readdirSync(srcpath).filter(function(file) {
-    return fs.statSync(srcpath + '/' + file).isDirectory();
-  });
-}
-
-function getFiles (srcpath) {
-    return fs.readdirSync(srcpath).filter(function(file) {
-        return fs.statSync(srcpath + '/' + file).isFile();
-    });
-}
