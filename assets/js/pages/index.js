@@ -155,7 +155,7 @@ define('index', function(require) {
         init = function() {
 
             main_slider
-                .init( index_data.slider )
+                .init(index_data.slider)
                 .mount( $('#imageSlider') );
 
             latest_threads
