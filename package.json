@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "image-compressed": "gulp image-compressed",
-    "dev": "webpack --config webpack.config.js --progress --profile --colors --watch",
-    "dist": "webpack --config webpack.config.js --progress --profile --colors"
+    "dev": "webpack --config webpack-dev.config.js --progress --profile --colors --watch",
+    "dist": "webpack --config webpack-prod.config.js --progress --profile --colors"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
     "url": "https://github.com/adin234/glowing-octo-happiness/issues"
   },
   "homepage": "",
-  "dependencies": {},
+  "dependencies": {
+    "extend": "^2.0.1"
+  },
   "devDependencies": {
     "amd-optimize": "^0.4.3",
     "gulp": "^3.8.7",
