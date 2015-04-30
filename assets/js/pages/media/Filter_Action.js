@@ -16,39 +16,38 @@ define (function () {
 				show_video: function() {},
 				filter_category: function() {}
 			},
-			options = $.extend({}, defaults, opts);
+			options = $.extend({}, defaults, opts),
+			execute = function(action) {
+			    switch (action) {
+			        case 'playlist':
+			        	options.show_playlist(hash.shift(), hash.shift(), this.execute);
+			            $('#videosToggle a').trigger('click');
+			            break;
+			        case 'video':
+			            isPlaying = true;
+			            options.show_video(hash.shift());
+			            execute(hash.shift());
+			            break;
+			        case 'comments':
+			            $('a[href="#tab-2"]').click();
+			            active_comments = true;
+			            execute(hash.shift());
+			            break;
+			        case 'comment':
+			            $('a[href="#tab-2"]').click();
+			            active_comments = true;
+			            showComment = 'comment' + hash.shift();
+			            execute(hash.shift());
+			            break;
+			        case 'console':
+			            options.filter_category(hash.shift());
+			            execute(hash.shift());
+			            break;
+			    }
+            };
 
             return {
-                execute: function(action) {
-                	console.log(action);
-				    switch (action) {
-				        case 'playlist':
-				        	options.show_playlist(hash.shift(), hash.shift(), this.execute);
-				            $('#videosToggle a').trigger('click');
-				            break;
-				        case 'video':
-				            isPlaying = true;
-				            options.show_video(hash.shift());
-				            this.execute(hash.shift());
-				            break;
-				        case 'comments':
-				            $('a[href="#tab-2"]').click();
-				            active_comments = true;
-				            this.execute(hash.shift());
-				            break;
-				        case 'comment':
-				            $('a[href="#tab-2"]').click();
-				            active_comments = true;
-				            showComment = 'comment' + hash.shift();
-				            this.execute(hash.shift());
-				            break;
-				        case 'console':
-				            options.filter_category(hash.shift());
-				            this.execute(hash.shift());
-				            break;
-				    }
-
-                }
+                execute: execute
             };
 		};
 	}
