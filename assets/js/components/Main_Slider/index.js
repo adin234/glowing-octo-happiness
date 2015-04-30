@@ -9,6 +9,7 @@
 define(function(require) {
 
     var slider_tpl = require('./slider-tpl.html'),
+        player_tpl = require('./player-tpl.html'),
         items = [],
         options = {},
         date;
@@ -50,6 +51,27 @@ define(function(require) {
                 });
 
                 $container.find('.tooltip').tooltipster({contentAsHTML: true});
+
+                $(document).on('click', '.slider-item .play', function() {
+                    var vid = $(this).attr('data-vid');
+                    if (vid.trim().length) {
+                        vid = vid.split('?')[1].split('=');
+                        vid = vid[vid.indexOf('v') + 1].split('#')[0];
+                        var html = template(player_tpl, {
+                            video: '//www.youtube.com/embed/' + vid + '?autoplay=1'
+                        });
+                        $('#container .bx-wrapper:first').prepend(html).promise().done(function() {
+                            $('.bx-wrapper .video-player iframe').css('margin-top', ($(window).height() - $(
+                                '.bx-wrapper iframe').height()) / 2);
+                            $('.bx-wrapper .video-player .close').css('margin-top', ($(window).height() - $(
+                                '.bx-wrapper iframe').height()) / 2);
+                        });
+                    }
+                });
+
+                $(document).on('click', '.bx-wrapper .close', function() {
+                    $('#container .bx-wrapper .video-player').remove();
+                });
             }
         };
     };

@@ -3528,6 +3528,8 @@ textarea#event_desc {
 #index-page .main .video .list > li {
   margin-left: 9px;
   margin-right: 9px; }
+#index-page .bx-wrapper .close {
+  margin-right: 10%; }
 
 .silderList .video [id^="tab-"] {
   position: relative; }
