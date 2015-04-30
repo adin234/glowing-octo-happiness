@@ -461,6 +461,9 @@ var searchId = false,
                 data: sdata
             });
         }
+
+        // console.log(streamers);
+
         options = {
             lookup: streamers,
             onSelect: function (value) {

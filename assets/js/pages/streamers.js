@@ -213,9 +213,34 @@ define('streamers', function(require) {
         .init(page_data._lanparty)
         .mount($('#container-lanparty'));
 
+    
+    $('#txtbox-search-videos').autocomplete({
+        lookup: function(query, done) {
+            var result = page_data._live.filter(function(item) {
+                return (typeof item.title !== 'undefined' &&
+                    ~item.title.indexOf(query));
+            }).map(function(item) {
+                return {
+                    value: item.title,
+                    data: item
+                };
+            });
+
+            done({
+                suggestions: result
+            });
+        },
+        onSelect: function (item) {
+            $('#txtbox-search-videos').val(item.value);
+            // console.log('selected', item.value);
+            // filter_videos(item.value);
+        }
+    });
+
     require('../components/Footer/index');
     require('../components/Sub_Nav/index');
-});
 
+    
+});
 
 require(['streamers']);
