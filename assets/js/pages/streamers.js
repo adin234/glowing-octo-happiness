@@ -101,8 +101,8 @@ define('streamers', function(require) {
             return data.map(function(item, i) {
                 item.key = i;
                 item.stream_type = 'youtube';
-                item.id = 'YT' + item.username;
-                item.idraw = item.username;
+                item.id = 'YT' + item.youtube.id;
+                item.idraw = item.youtube.id;
                 item.live = 'live';
                 item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
