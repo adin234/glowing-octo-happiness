@@ -186,7 +186,7 @@ define('streamers', function(require) {
                 if (~streamer.title.search(/lan/i)) {
                     streamer.link = origin + 'lanparty_stream_multi/#/' + streamer.id;
                     new_collection.push(streamer);
-                    delete collection[i];
+                    collection.splice(i, 1);
                 }
             });
             return new_collection;
@@ -201,9 +201,7 @@ define('streamers', function(require) {
 
        
     socket.on('message', function(e) {
-console.log(e.streamers);
         separate_lan_party_streams(e.streamers);
-
         if (!live_mounted) {
             live_slider.init(page_data._live)
                 .mount($('#container-videos'));
