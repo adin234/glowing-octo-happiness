@@ -43,7 +43,7 @@ define('streamers', function(require) {
                     multiview_slider.reload(page_data._multiview);
 
                     //open the multiview tab when all videos is added
-                    if (page_data._live.length === page_data._multiview.length) {
+                    if (page_data._live.length === $('#container-videos > ul > li:hidden').length) {
                         $('#video-stream-tabs').find('a[href="#tab-2-3"]').trigger('click');
                     }
                 });
@@ -72,7 +72,7 @@ define('streamers', function(require) {
                     multiview_slider.reload(page_data._multiview);
 
                     //open the multiview tab when all videos is added
-                    if (page_data._lanparty.length === page_data._multiview.length) {
+                    if (page_data._lanparty.length === $('#container-lanparty > ul > li:hidden').length) {
                         $('#video-stream-tabs').find('a[href="#tab-2-3"]').trigger('click');
                     }
                 });
