@@ -2,7 +2,7 @@
 /* global
     io,
     page_data,
-    msgbox: true
+    JST
 */
 
 'use strict';
@@ -27,6 +27,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
         gchatdiv,
         ud,
         notify = '',
+        msgbox,
         x;
 
     dt = new Date();
@@ -40,20 +41,19 @@ $.fn.initChatBox = function (chl, usr, sender) {
         chid = chl.id;
         chname = chl.title;
     }
-
     if (typeof (sender) === 'undefined') {
         console.log('I\'m at option 1');
-        console.log($('#chatui').html());
-        chatUI = $('#chatui').html().replace(/{cid}/ig, chid);
+        // console.log(JST['chatui.html']());
+        chatUI = JST['chatui.html']().replace(/{cid}/ig, chid);
     }
     else {
         console.log('I\'m at option 2');
-        chatUI = $('#chatui').html().replace(/{cid}/ig, chid).replace(/{ADVERT}/ig, page_data.custom_fields &&
+        chatUI = JST['chatui.html']().replace(/{cid}/ig, chid).replace(/{ADVERT}/ig, page_data.custom_fields &&
             page_data.custom_fields.advertisement);
     }
 
-    msgNotify = $('#gchatnotify').html().replace(/{cid}/ig, chid);
-    msgChat = $('#chatms').html().replace(/{cid}/ig, chid);
+    msgNotify = JST['gchatnotify.html']().replace(/{cid}/ig, chid);
+    msgChat = JST['chatms.html']().replace(/{cid}/ig, chid);
 
     if (!jQuery.isEmptyObject(usr) && typeof (usr) !== 'undefined') {
         if (usr.user_id && usr.access_code) {
@@ -164,7 +164,6 @@ $.fn.initChatBox = function (chl, usr, sender) {
     });
 
     socket.on('update-ui', function (sd) {
-
         var today = new Date(),
             tinmins,
             timesent,
@@ -192,6 +191,7 @@ $.fn.initChatBox = function (chl, usr, sender) {
                     else {
                         timesent = today.getHours() + ':' + tinmins + 'AM';
                     }
+
 
                     $(msgbox).append(msgChat.replace(/{message}/ig, sd.msg).replace(/{username}/ig, sd.user)
                         .replace(/{avatar}/ig, sd.uavatar).replace(/{timesent}/ig, 'Sent on ' +
