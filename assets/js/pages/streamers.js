@@ -27,7 +27,7 @@ define('streamers', function(require) {
             $list_container: $('<ul class="list clearFix"/>'),
             after_mount: function() {
 
-                $('a.addToMultiview').on('click', function(e) {
+                $('#container-videos a.addToMultiview').on('click', function(e) {
                     e.preventDefault();
 
                     var $this = $(this),
@@ -53,7 +53,31 @@ define('streamers', function(require) {
         lanparty_slider = new List_Slider({
             per_slider: 12,
             item_template: video_tmpl,
-            $list_container: $('<ul class="list clearFix"/>')
+            $list_container: $('<ul class="list clearFix"/>'),
+            after_mount: function() {
+
+                $('#container-lanparty a.addToMultiview').on('click', function(e) {
+                    e.preventDefault();
+
+                    var $this = $(this),
+                        stream_type = $this.data('stream-type'),
+                        key = $this.data('key');
+
+                    $this.parent().hide();
+
+                    page_data._multiview.push(
+                        page_data[stream_type][key]
+                    );
+
+                    multiview_slider.reload(page_data._multiview);
+
+                    //open the multiview tab when all videos is added
+                    if (page_data._lanparty.length === page_data._multiview.length) {
+                        $('#video-stream-tabs').find('a[href="#tab-2-3"]').trigger('click');
+                    }
+                });
+
+            }
         }),
         multiview_slider = new List_Slider({
             per_slider: 12,
@@ -75,7 +99,10 @@ define('streamers', function(require) {
 
                     multiview_slider.reload(page_data._multiview);
 
-                    $('#container-videos a[data-streamid="'+stream_id+'"]').parent().show();
+                    $('#container-videos, #container-lanparty')
+                        .find('a[data-streamid="'+stream_id+'"]')
+                        .parent()
+                        .show();
                 });
 
                 $('#multiview-count').html(page_data._multiview.length);
@@ -156,7 +183,7 @@ define('streamers', function(require) {
         filter_lanparty = function(collection) {
             var new_collection = [];
             collection.forEach(function(streamer, i) {
-                if (~streamer.title.search(/lanparty/i)) {
+                if (~streamer.title.search(/lan/i)) {
                     streamer.link = origin + 'lanparty_stream_multi/#/' + streamer.id;
                     new_collection.push(streamer);
                     delete collection[i];
@@ -174,7 +201,7 @@ define('streamers', function(require) {
 
        
     socket.on('message', function(e) {
-
+console.log(e.streamers);
         separate_lan_party_streams(e.streamers);
 
         if (!live_mounted) {
