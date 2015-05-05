@@ -13,106 +13,7 @@ define('streamers', function(require) {
     page_data._live = [];
     page_data._lanparty = [];
     page_data._multiview = [];
-    // 
-    // page_data = {
-    //     "streamers":[
-    //         {
-    //             "user_id":1757,
-    //             "field_id":"twitchStreams",
-    //             "field_value":[  
-    //                 "sing_sing"
-    //             ],
-    //             "username":"barney",
-    //             "email":"barneyeureka@mailtothis.com",
-    //             "gender":"male",
-    //             "custom_title":"",
-    //             "language_id":1,
-    //             "style_id":0,
-    //             "timezone":"Asia/Hong_Kong",
-    //             "visible":1,
-    //             "user_group_id":2,
-    //             "secondary_group_ids":"",
-    //             "display_style_group_id":2,
-    //             "permission_combination_id":2,
-    //             "message_count":2,
-    //             "conversations_unread":0,
-    //             "register_date":1418626633,
-    //             "last_activity":1421399731,
-    //             "trophy_points":1,
-    //             "alerts_unread":1,
-    //             "avatar_date":1418626633,
-    //             "avatar_width":200,
-    //             "avatar_height":125,
-    //             "gravatar":"",
-    //             "user_state":"valid",
-    //             "is_moderator":0,
-    //             "is_admin":0,
-    //             "is_banned":0,
-    //             "like_count":0,
-    //             "warning_points":0,
-    //             "is_staff":0,
-    //             "activity_visible":0,
-    //             "twitch":{  
-    //                 "_id":14290360528,
-    //                 "game":"Dota 2",
-    //                 "viewers":13701,
-    //                 "created_at":"2015-05-05T01:21:28Z",
-    //                 "video_height":1080,
-    //                 "average_fps":59.9835240275,
-    //                 "_links":{  
-    //                     "self":"https://api.twitch.tv/kraken/streams/sing_sing"
-    //                 },
-    //                 "preview":{  
-    //                     "small":"http://static-cdn.jtvnw.net/previews-ttv/live_user_sing_sing-80x45.jpg",
-    //                     "medium":"http://static-cdn.jtvnw.net/previews-ttv/live_user_sing_sing-320x180.jpg",
-    //                     "large":"http://static-cdn.jtvnw.net/previews-ttv/live_user_sing_sing-640x360.jpg",
-    //                     "template":"http://static-cdn.jtvnw.net/previews-ttv/live_user_sing_sing-{width}x{height}.jpg"
-    //                 },
-    //                 "channel":{  
-    //                     "_links":{  
-    //                         "self":"http://api.twitch.tv/kraken/channels/sing_sing",
-    //                         "follows":"http://api.twitch.tv/kraken/channels/sing_sing/follows",
-    //                         "commercial":"http://api.twitch.tv/kraken/channels/sing_sing/commercial",
-    //                         "stream_key":"http://api.twitch.tv/kraken/channels/sing_sing/stream_key",
-    //                         "chat":"http://api.twitch.tv/kraken/chat/sing_sing",
-    //                         "features":"http://api.twitch.tv/kraken/channels/sing_sing/features",
-    //                         "subscriptions":"http://api.twitch.tv/kraken/channels/sing_sing/subscriptions",
-    //                         "editors":"http://api.twitch.tv/kraken/channels/sing_sing/editors",
-    //                         "videos":"http://api.twitch.tv/kraken/channels/sing_sing/videos",
-    //                         "teams":"http://api.twitch.tv/kraken/channels/sing_sing/teams"
-    //                     },
-    //                     "background":null,
-    //                     "banner":"http://static-cdn.jtvnw.net/jtv_user_pictures/sing_sing-channel_header_image-b59c20a951432198-640x125.png",
-    //                     "broadcaster_language":"ru",
-    //                     "display_name":"Sing_sing",
-    //                     "game":"Dota 2",
-    //                     "logo":"http://static-cdn.jtvnw.net/jtv_user_pictures/sing_sing-profile_image-260bffe71ab9475b-300x300.jpeg",
-    //                     "mature":true,
-    //                     "status":"newbioe strem",
-    //                     "partner":true,
-    //                     "url":"http://www.twitch.tv/sing_sing",
-    //                     "video_banner":null,
-    //                     "_id":21390470,
-    //                     "name":"sing_sing",
-    //                     "created_at":"2011-03-28T14:51:57Z",
-    //                     "updated_at":"2015-05-05T03:15:35Z",
-    //                     "delay":0,
-    //                     "followers":201750,
-    //                     "profile_banner":null,
-    //                     "profile_banner_background_color":null,
-    //                     "views":33651832,
-    //                     "language":"en"
-    //                 }
-    //             }
-    //         }
-    //     ],
-    //     "_live":[],
-    //     "_lanparty":[],
-    //     "_multiview":[],
-    //     "youtube":[],
-    //     "hitbox":[],
-    //     "twitch":[]
-    // };
+
 
     var Tabs = require('../components/Tabs/index'),
         List_Slider = require('../components/List_Slider/index'),
@@ -129,16 +30,13 @@ define('streamers', function(require) {
                 $('#container-videos a.addToMultiview').on('click', function(e) {
                     e.preventDefault();
 
-                    var $this = $(this),
-                        stream_type = $this.data('stream-type'),
-                        key = $this.data('key');
-
-                    $this.parent().hide();
+                    var index = $('#container-videos > ul > li').index( $(this).parent() );
 
                     page_data._multiview.push(
-                        page_data[stream_type][key]
+                        page_data._live.splice(index, 1)[0]
                     );
 
+                    live_slider.reload(page_data._live);
                     multiview_slider.reload(page_data._multiview);
 
                     //open the multiview tab when all videos is added
@@ -158,16 +56,13 @@ define('streamers', function(require) {
                 $('#container-lanparty a.addToMultiview').on('click', function(e) {
                     e.preventDefault();
 
-                    var $this = $(this),
-                        stream_type = $this.data('stream-type'),
-                        key = $this.data('key');
-
-                    $this.parent().hide();
+                    var index = $('#container-lanparty > ul > li').index( $(this).parent() );
 
                     page_data._multiview.push(
-                        page_data[stream_type][key]
+                        page_data._lanparty.splice(index, 1)[0]
                     );
 
+                    lanparty_slider.reload(page_data._lanparty);
                     multiview_slider.reload(page_data._multiview);
 
                     //open the multiview tab when all videos is added
@@ -188,20 +83,27 @@ define('streamers', function(require) {
                     e.preventDefault();
 
                     var $this = $(this),
-                        stream_id = $this.parent().data('streamid');
+                        data = null,
+                        collection = $this.parent().data('collection'),
+                        slider = collection === 'lanparty' ? lanparty_slider : live_slider,
+                        stream_id = $this.parent().data('streamid'),
+                        key = $this.parent().data('key'); //this is the reference key from either lanparty or live
 
                     $this.parent().hide();
 
                     page_data._multiview = page_data._multiview.filter(function(item) {
+                        if (item.id === stream_id) {
+                            data = item;
+                        }
                         return item.id !== stream_id;
                     });
 
                     multiview_slider.reload(page_data._multiview);
 
-                    $('#container-videos, #container-lanparty')
-                        .find('a[data-streamid="'+stream_id+'"]')
-                        .parent()
-                        .show();
+                    //restore the data back to the collection
+                    page_data['_'+collection].splice(key, 0, data);
+                    
+                    slider.reload(page_data['_' + collection]);
                 });
 
                 $('#multiview-count').html(page_data._multiview.length);
@@ -224,12 +126,12 @@ define('streamers', function(require) {
                 .concat(transform_hitbox_streamers(streamers.hitbox || []));
         },
         transform_youtube_streamers = function(data) {
-            return data.map(function(item, i) {
-                item.key = i;
+            return data.map(function(item) {
                 item.stream_type = 'youtube';
                 item.id = 'YT' + item.youtube.id;
                 item.idraw = item.youtube.id;
                 item.live = 'live';
+                item.collection = 'live';
                 item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
@@ -241,13 +143,13 @@ define('streamers', function(require) {
             });
         },
         transform_twitch_streamers = function(data) {
-            return data.map(function(item, i) {
-                item.key = i;
+            return data.map(function(item) {
                 item.stream_type = 'twitch';
                 item.twitchid = item.field_value[item.field_value.length - 1];
                 item.id = 'TW' + item.twitchid;
                 item.idraw = item.twitchid;
                 item.live = 'live';
+                item.collection = 'live';
                 item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = item.twitch.preview.large;
@@ -259,8 +161,7 @@ define('streamers', function(require) {
             });
         },
         transform_hitbox_streamers = function(data) {
-            return data.map(function(item, i) {
-                item.key = i;
+            return data.map(function(item) {
                 item.stream_type = 'hitbox';
                 item.hitboxid = item.hitbox.livestream[0].media_name;
                 item.id = 'HB' + item.hitboxid;
@@ -268,6 +169,7 @@ define('streamers', function(require) {
                 item.user_id = item.user.user_id;
                 item.idraw = item.hitboxid;
                 item.live = 'live';
+                item.collection = 'live';
                 item.link = origin + 'gamer_stream/?user=' + item.user.user_id + '/#!/' + item.id;
                 item.provider = attachments_server;
                 item.thumb = 'http://edge.sf.hitbox.tv/' + item.hitbox.livestream[0].media_thumbnail_large;
@@ -284,6 +186,8 @@ define('streamers', function(require) {
             collection.forEach(function(streamer, i) {
                 if (~streamer.title.search(/lan/i)) {
                     streamer.link = origin + 'lanparty_stream_multi/#/' + streamer.id;
+                    streamer.collection = 'lanparty';
+                    streamer.key = i;
                     new_collection.push(streamer);
                     collection.splice(i, 1);
                 }
@@ -326,7 +230,12 @@ define('streamers', function(require) {
         page_data.youtube = e.streamers.youtube;
         page_data.hitbox = e.streamers.hitbox;
         page_data.twitch = e.streamers.twitch;
-        page_data._live = transform_streamers(e.streamers);
+
+        //generate the key to be used in restoring state later
+        page_data._live = transform_streamers(e.streamers).map(function(item, i) {
+            item.key = i;
+            return item;
+        });
         page_data._lanparty = filter_lanparty(page_data._live);
 
         live_slider.reload(page_data._live);
