@@ -122,7 +122,7 @@ define('streamers', function(require) {
         live_mounted = false,
         main_tab = new Tabs({hash_change: false}),
         live_slider = new List_Slider({
-            per_slider: 12,
+            per_slider: 9,
             item_template: video_tmpl,
             $list_container: $('<ul class="list clearFix"/>'),
             after_mount: function() {
@@ -151,7 +151,7 @@ define('streamers', function(require) {
             }
         }),
         lanparty_slider = new List_Slider({
-            per_slider: 12,
+            per_slider: 9,
             item_template: video_tmpl,
             $list_container: $('<ul class="list clearFix"/>'),
             after_mount: function() {
@@ -180,7 +180,7 @@ define('streamers', function(require) {
             }
         }),
         multiview_slider = new List_Slider({
-            per_slider: 12,
+            per_slider: 9,
             item_template: multiview_video_tmpl,
             $list_container: $('<ul class="list clearFix"/>'),
             after_mount: function() {
@@ -290,17 +290,7 @@ define('streamers', function(require) {
                 }
             });
             return new_collection;
-        },
-        separate_lan_party_streams = function (streamers) {
-            page_data.youtube = streamers.youtube;
-            page_data.hitbox = streamers.hitbox;
-            page_data.twitch = streamers.twitch;
-            page_data._live = transform_streamers(streamers);
-            page_data._lanparty = filter_lanparty(page_data._live);
         };
-
-       
-
 
     main_tab
         .init()
@@ -327,12 +317,18 @@ define('streamers', function(require) {
         .init([])
         .mount($('#container-lanparty'));
 
-    live_slider.init([])
+    live_slider
+        .init([])
         .mount($('#container-videos'));
 
 
     socket.on('message', function(e) {
-        separate_lan_party_streams(e.streamers);
+        //separate lan party streams
+        page_data.youtube = e.streamers.youtube;
+        page_data.hitbox = e.streamers.hitbox;
+        page_data.twitch = e.streamers.twitch;
+        page_data._live = transform_streamers(e.streamers);
+        page_data._lanparty = filter_lanparty(page_data._live);
 
         live_slider.reload(page_data._live);
         lanparty_slider.reload(page_data._lanparty);
