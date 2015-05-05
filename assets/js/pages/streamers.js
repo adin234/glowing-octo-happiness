@@ -119,7 +119,6 @@ define('streamers', function(require) {
         socket = socketConnect(),
         video_tmpl = require('./templates/streamers-video.html'),
         multiview_video_tmpl = require('./templates/streamers-video-multiview.html'),
-        live_mounted = false,
         main_tab = new Tabs({hash_change: false}),
         live_slider = new List_Slider({
             per_slider: 9,
