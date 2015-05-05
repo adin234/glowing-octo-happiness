@@ -231,10 +231,16 @@ define('streamers', function(require) {
         page_data.hitbox = e.streamers.hitbox;
         page_data.twitch = e.streamers.twitch;
 
+        var multiview_ids = page_data._multiview.map(function(item) {
+            return item.idraw;
+        });
+
         //generate the key to be used in restoring state later
         page_data._live = transform_streamers(e.streamers).map(function(item, i) {
             item.key = i;
             return item;
+        }).filter(function(item) {
+            return !~multiview_ids.indexOf(item.idraw);
         });
         page_data._lanparty = filter_lanparty(page_data._live);
 
