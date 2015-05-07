@@ -54,12 +54,12 @@ define('index', function(require) {
         }),
         latest_threads = new Thread_List(),
         top_threads = new Thread_List(),
-        has_init = false,
+        page_intialized = false,
+        games_initialized = false,
         global_filter = new Global_Filter({
             onChange: function(filter) {
 
                 $.ajax({
-                    async: false,
                     type: 'GET',
                     dataType: 'json',
                     url: server + 'index?console=' + filter.id
@@ -67,9 +67,9 @@ define('index', function(require) {
 
                     index_data = data;
 
-                    if (!has_init) {
-                        init();
-                        has_init = true;
+                    if (!page_intialized) {
+                        init_page();
+                        page_intialized = true;
                     } else {
 
                         featured_videos_slider.reload(
@@ -91,7 +91,21 @@ define('index', function(require) {
                                 shuffle(index_data.most_viewed)
                             )
                         );
+                    }
+                });
 
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: server + 'gamesdata?console=' + filter.id
+                }).done(function(data) {
+
+                    index_data.games = data.games;
+
+                    if (!games_initialized) {
+                        init_games();
+                        games_initialized = true;
+                    } else {
                         featured_game_slider.reload(
                             shuffle(
                                 limit_category(filter.id, index_data.games)
@@ -103,7 +117,6 @@ define('index', function(require) {
                                 limit_latest(index_data.games)
                             )
                         );
-
                     }
                 });
             }
@@ -152,7 +165,7 @@ define('index', function(require) {
             for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
             return o;
         },
-        init = function() {
+        init_page = function() {
 
             main_slider
                 .init(index_data.slider)
@@ -184,6 +197,14 @@ define('index', function(require) {
                 .init(transform_videos(shuffle(index_data.most_viewed)))
                 .mount( $('#mostViewed') );
 
+
+
+            new Featured_Users(index_data);
+
+            require('../components/Index_News_Shows/index')(index_data);
+        },
+        init_games = function() {
+
             featured_game_slider
                 .init(get_per_category(shuffle(index_data.games)))
                 .mount( $('#featuredGames') );
@@ -191,10 +212,6 @@ define('index', function(require) {
             latest_game_slider
                 .init(shuffle(limit_latest(index_data.games)))
                 .mount( $('#latestGames') );
-
-            new Featured_Users(index_data);
-
-            require('../components/Index_News_Shows/index')(index_data);
         };
 
     main_tab
