@@ -76,6 +76,19 @@ define('youtubers', function(require) {
                     )
                 );
                 game_selector.refresh_active();
+            },
+            onResetInput: function() {
+                latest_games_slider.reload(
+                    transform_games(
+                        page_data.games
+                    )
+                );
+                featured_games_slider.reload(
+                    transform_games(
+                        page_data.featured_games
+                    )
+                );
+                game_selector.refresh_active();
             }
         }),
         videos_search = new Search_Box({
@@ -96,6 +109,25 @@ define('youtubers', function(require) {
                 all_members_slider.reload(
                     transform_youtubers(
                         filter_youtubers(page_data.youtubers, item.value)
+                    )
+                );
+            },
+            onResetInput: function() {
+                popular_members_slider.reload(
+                    transform_youtubers(
+                        page_data.popular_youtubers
+                    )
+                );
+
+                new_members_slider.reload(
+                    transform_youtubers(
+                        page_data.new_youtubers
+                    )
+                );
+
+                all_members_slider.reload(
+                    transform_youtubers(
+                        page_data.youtubers
                     )
                 );
             }

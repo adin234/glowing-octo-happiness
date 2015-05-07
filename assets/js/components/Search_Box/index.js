@@ -5,7 +5,8 @@ define(function() {
     return function Search_Box(opts) {
 
         var defaults = {
-                onSelect: function() {}
+                onSelect: function() {},
+                onResetInput: function() {}
             },
             options = $.extend({}, defaults, opts);
 
@@ -23,11 +24,12 @@ define(function() {
 
                 this.$el
                     .autocomplete(options);
-                // this.$el.on('keypress', function (e) {
-                //     if (e.which === 13) {
-                //         this.$el.val(value.data.user_id);
-                //     }
-                // });
+
+                this.$el.on('keyup', function () {
+                    if ($(this).val() === '') {
+                        options.onResetInput();
+                    }
+                });
 
                 return this;
             }

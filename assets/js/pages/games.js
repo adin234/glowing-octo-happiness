@@ -85,6 +85,19 @@ define('games', function(require) {
                     )
                 );
                 game_selector.refresh_active();
+            },
+            onResetInput: function() {
+                latest_games_slider.reload(
+                    transform_games(
+                        page_data.games
+                    )
+                );
+                featured_games_slider.reload(
+                    transform_games(
+                        page_data.featured_games
+                    )
+                );
+                game_selector.refresh_active();
             }
         }),
         youtubers_search = new Search_Box({
@@ -102,10 +115,23 @@ define('games', function(require) {
                     }
                 );
 
-                youtubers_slider.reload(
-                    transform_youtubers(
-                        filter_youtubers(page_data.videos, item.value)
-                    )
+                // youtubers_slider.reload(
+                //     transform_youtubers(
+                //         filter_youtubers(page_data.videos, item.value)
+                //     )
+                // );
+            },
+            onResetInput: function() {
+                var con = global_filter.get_active().id;
+                $.getJSON(server + ['games', con, 'videos' ].join('/') + '?' +
+                    $.param({
+                        console: con,
+                        search: ''
+                    }),
+                    function(result) {
+                        page_data.videos = result;
+                        youtubers_slider.reload(transform_youtubers(result));
+                    }
                 );
             }
         }),
@@ -133,15 +159,15 @@ define('games', function(require) {
                 return game.name.search(filter) !== -1 || game.chinese.search(filter) !== -1;
             });
         },
-        filter_youtubers = function(youtubers, filter) {
-            return youtubers.filter(function(youtuber) {
-                return typeof youtuber.video !== 'undefined' &&
-                    (
-                        youtuber.video.snippet.title.search(filter) !== -1 ||
-                        youtuber.video.snippet.channelTitle.search(filter) !== -1
-                    );
-            });
-        },
+        // filter_youtubers = function(youtubers, filter) {
+        //     return youtubers.filter(function(youtuber) {
+        //         return typeof youtuber.video !== 'undefined' &&
+        //             (
+        //                 youtuber.video.snippet.title.search(filter) !== -1 ||
+        //                 youtuber.video.snippet.channelTitle.search(filter) !== -1
+        //             );
+        //     });
+        // },
         transform_games = function(data) {
             return data.map(function(item) {
                 item.game = item.name;
