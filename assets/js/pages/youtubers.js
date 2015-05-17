@@ -156,7 +156,8 @@ define('youtubers', function(require) {
                 return typeof youtuber.video !== 'undefined' &&
                     (
                         youtuber.video.snippet.title.search(filter) !== -1 ||
-                        youtuber.video.snippet.channelTitle.search(filter) !== -1
+                          youtuber.video.snippet.channelTitle.search(filter) !== -1 ||
+                          youtuber.video.username.search(filter) !== -1
                     );
             });
         },
