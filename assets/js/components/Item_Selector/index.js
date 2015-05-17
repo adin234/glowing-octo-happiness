@@ -26,6 +26,7 @@ define(function() {
                                     .split('/')
                                     .pop(),
                     $active_el = this.$el.find('img[data-id="'+active_hash+'"]');
+                    active = '';
                     
                 if ($active_el.length) {
                     this.$el.find('li').removeClass('active');

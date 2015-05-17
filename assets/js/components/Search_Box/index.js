@@ -2,38 +2,57 @@
 
 define(function() {
 
-    return function Search_Box(opts) {
+  return function Search_Box(opts) {
 
-        var defaults = {
-                onSelect: function() {},
-                onResetInput: function() {}
-            },
-            options = $.extend({}, defaults, opts);
+    var defaults = {
+      onSelect: function() {},
+      onResetInput: function() {}
+    },
+    selected = '',
+    onSelectHook = function(item) {
+      selected = item.value;
+      optsOnSelect(item);
+    },
+    options = $.extend({}, defaults, opts),
+    optsOnSelect = function() {};
 
-        return {
-            $el: null,
+    return {
+      $el: null,
 
-            init: function(items) {
-                options.lookup = items;
+      init: function(items) {
+        options.lookup = items;
 
-                return this;
-            },
+        return this;
+      },
 
-            applyTo: function($el) {
-                this.$el = $el;
+      get_active: function() {
+        return selected; 
+      },
 
-                this.$el
-                    .autocomplete(options);
+      reset: function() {
+        this.$el.val('');
+        selected = '';
+      },
 
-                this.$el.on('keyup', function () {
-                    if ($(this).val() === '') {
-                        options.onResetInput();
-                    }
-                });
+      applyTo: function($el) {
+        this.$el = $el;
+        //hook into the select cb to we can set selected item
+        optsOnSelect = options.onSelect;
+        options.onSelect = onSelectHook;
 
-                return this;
-            }
-        };
+        this.$el
+        .autocomplete(options);
+
+        this.$el.on('keyup', function () {
+          if ($(this).val() === '') {
+            options.onResetInput();
+            selected = '';
+          }
+        });
+
+        return this;
+      }
     };
+  };
 
 });

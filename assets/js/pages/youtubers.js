@@ -89,7 +89,7 @@ define('youtubers', function(require) {
                     )
                 );
                 game_selector.refresh_active();
-            }
+            },
         }),
         videos_search = new Search_Box({
             serviceUrl: server + 'youtubers/search_youtubers',
@@ -140,9 +140,21 @@ define('youtubers', function(require) {
                     page_data.popular_youtubers = result.popular_youtubers;
                     page_data.new_youtubers = result.new_youtubers;
                     page_data.youtubers = result.youtubers;
-                    popular_members_slider.reload(transform_youtubers(page_data.popular_youtubers));
-                    new_members_slider.reload(transform_youtubers(page_data.new_youtubers));
-                    all_members_slider.reload(transform_youtubers(page_data.youtubers));
+                    popular_members_slider.reload(
+                      filter_youtubers(
+                        transform_youtubers(page_data.popular_youtubers), videos_search.getSelected()
+                      )
+                    );
+                    new_members_slider.reload(
+                      filter_youtubers(
+                        transform_youtubers(page_data.new_youtubers), videos_search.getSelected()
+                      )
+                    );
+                    all_members_slider.reload(
+                      filter_youtubers(
+                        transform_youtubers(page_data.youtubers), videos_search.getSelected()
+                      )
+                    );
                 });
             }
         }),
