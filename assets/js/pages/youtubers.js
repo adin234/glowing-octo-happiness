@@ -52,14 +52,33 @@ define('youtubers', function(require) {
         global_filter = new Global_Filter({
             onChange: function(filter) {
                 $.getJSON(server + 'youtubers?' + $.param({
-                    console: filter.id,
-                    game: 'all'
+                    console: filter.id
                 }), function(result) {
-                    page_data.games = result.games;
-                    page_data.featured_games = result.featured_games;
+                    page_data = result;
                     latest_games_slider.reload(transform_games(result.games));
                     featured_games_slider.reload(transform_games(result.featured_games));
                     game_selector.refresh_active();
+                    games_search.reset();
+                    videos_search.reset();
+
+                    popular_members_slider.reload(
+                      transform_youtubers(
+                        page_data.popular_youtubers
+                      )
+                    );
+
+                    new_members_slider.reload(
+                      transform_youtubers(
+                        page_data.new_youtubers
+                      )
+                    );
+
+                    all_members_slider.reload(
+                      transform_youtubers(
+                        page_data.youtubers
+                      )
+                    );
+
                 });
             }
         }),
@@ -142,17 +161,17 @@ define('youtubers', function(require) {
                     page_data.youtubers = result.youtubers;
                     popular_members_slider.reload(
                       filter_youtubers(
-                        transform_youtubers(page_data.popular_youtubers), videos_search.getSelected()
+                        transform_youtubers(page_data.popular_youtubers), videos_search.get_active()
                       )
                     );
                     new_members_slider.reload(
                       filter_youtubers(
-                        transform_youtubers(page_data.new_youtubers), videos_search.getSelected()
+                        transform_youtubers(page_data.new_youtubers), videos_search.get_active()
                       )
                     );
                     all_members_slider.reload(
                       filter_youtubers(
-                        transform_youtubers(page_data.youtubers), videos_search.getSelected()
+                        transform_youtubers(page_data.youtubers), videos_search.get_active()
                       )
                     );
                 });
