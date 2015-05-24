@@ -110,7 +110,7 @@
                 padding: 6px 9px;
                 text-decoration: none;
             }
-            &.current, &:hover {
+            &.current, a.current, &:hover {
                 background-image: -moz-linear-gradient(top, #787676, #3f3f3f);
                 background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
                 background-image: linear-gradient(to bottom, #787676, #3f3f3f);
@@ -119,7 +119,7 @@
                 border-radius: 5px;
                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) inset;
             }
-            &.current {
+            &.current, a.current {
                 &:hover, &:active, &:focus {
                     background-image: -moz-linear-gradient(top, #3f3f3f, #787676);
                     background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
@@ -155,15 +155,17 @@
             }
         }
         .bx-wrapper {
-        max-width: inherit !important;
-        padding: 0 65px 0 30px;
-        position: relative;
+            max-width: inherit !important;
+            padding: 0 65px 0 30px;
+            position: relative;
+
         }
         .bx-pager-item {
             display: none;
         }
         .bx-prev, .bx-next {
             background: url("/assets/images/stream_control.png") no-repeat 0 0;
+            background-color: #323232;
             position: absolute;
             top: 0;
             width: 37px;

@@ -2268,7 +2268,7 @@ body #navigation {
         margin: 16.5px 15.75px 0;
         padding: 6px 9px;
         text-decoration: none; }
-      #main-container .watchList li.current, #main-container .watchList li:hover {
+      #main-container .watchList li.current, #main-container .watchList li a.current, #main-container .watchList li:hover {
         background-image: -moz-linear-gradient(top, #787676, #3f3f3f);
         background-image: -webkit-linear-gradient(top, #787676, #3f3f3f);
         background-image: linear-gradient(to bottom, #787676, #3f3f3f);
@@ -2276,7 +2276,7 @@ body #navigation {
         -webkit-border-radius: 5px;
         border-radius: 5px;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) inset; }
-      #main-container .watchList li.current:hover, #main-container .watchList li.current:active, #main-container .watchList li.current:focus {
+      #main-container .watchList li.current:hover, #main-container .watchList li.current:active, #main-container .watchList li.current:focus, #main-container .watchList li a.current:hover, #main-container .watchList li a.current:active, #main-container .watchList li a.current:focus {
         background-image: -moz-linear-gradient(top, #3f3f3f, #787676);
         background-image: -webkit-linear-gradient(top, #3f3f3f, #787676);
         background-image: linear-gradient(to bottom, #3f3f3f, #787676);
@@ -2311,6 +2311,7 @@ body #navigation {
       display: none; }
     #main-container .watchList .bx-prev, #main-container .watchList .bx-next {
       background: url("/assets/images/stream_control.png") no-repeat 0 0;
+      background-color: #323232;
       position: absolute;
       top: 0;
       width: 37px;
@@ -2659,10 +2660,6 @@ a {
 div {
   /*get_schedules*/
   /*date*/ }
-  div[id^=tab-chat-] {
-    height: 95%; }
-    div[id^=tab-chat-] iframe {
-      height: 95%; }
   div#event_bubble {
     display: inline-block;
     width: 75px;

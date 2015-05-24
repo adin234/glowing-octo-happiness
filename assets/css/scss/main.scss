@@ -183,12 +183,6 @@ a {
 }
 
 div{
-    &[id^=tab-chat-] {
-        height: 95%;
-        iframe {
-            height: 95%;
-        }
-    }
     &#event_bubble {
         display: inline-block;
         width: 75px;

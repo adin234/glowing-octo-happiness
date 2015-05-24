@@ -224,6 +224,8 @@ $.fn.initChatBox = function (chl, usr, sender) {
     });
 
     this.append(chatUI);
+
+
     return false;
 };
 

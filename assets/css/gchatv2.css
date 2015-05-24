@@ -21,7 +21,7 @@ div.chcontainer{
     padding-left: 1px;
     background-color: #F0F0F0;
     color:black;
-    position: absolute;
+    /*position: absolute;*/
     top: 66px;
     bottom: 66px;
 }
@@ -172,7 +172,7 @@ div.chatinputs{
 div.chatinputs_single{
     left: 0;
     right: 0;
-    bottom: 261px;
+    bottom: 28px;
     position: absolute;
     height: 60px;
     border: 0px solid gray;
