@@ -22,7 +22,8 @@ define(function(require) {
     getComments = require('./Get_Comments'),
     formatDate = require('./Format_Date'),
     categories_tpl = require('./../templates/media-categories.html'),
-    comment_item_tpl = require('./../templates/media-comment-item.html');
+    comment_item_tpl = require('./../templates/media-comment-item.html'),
+    deleteComment = require('./Delete_Comment');
 
   return function First_Load(page_data) {
 
@@ -212,6 +213,10 @@ define(function(require) {
         utilLogin.show('An error occured, please login to continue');
         utilCookie.set('user', '', 0);
       });
+    });
+
+    $('body').on('click', '.deleteComment > button', function() {
+      deleteComment($(this).data('comment-id'), this);
     });
 
     $('body').on('focus', '#commentArea', function() {

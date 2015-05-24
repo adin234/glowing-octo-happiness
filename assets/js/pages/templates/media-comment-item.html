@@ -2,7 +2,7 @@
   <cite>{{USERNAME}}</cite><span>．
   <date datetime="{{DATE}}">{{DATE}}</date>-</span>
   <div class="{{USER_ACCESS_CLASS}}">
-    <button onClick='deleteComment({{COMMENT_ID}},this);'>x</button>
+    <button data-comment-id="{{COMMENT_ID}}">x</button>
   </div>
   <div class="replyContent">
     <p>
@@ -10,12 +10,13 @@
     </p>
     <div class='commentShare'>
       <a href="https://www.facebook.com/dialog/feed?app_id=305385862975541&display=page&description={{COMMENT}}&link={{SHARE_LINK}}&redirect_uri=http://www.facebook.com/&name={{USERNAME}} shared a comment!&picture={{IMAGE_LINK}}" class='fbbutton' target="_blank">
-      <a href="https://plus.google.com/share?url={{SHARE_LINK}}#comment{{COMMENT_ID}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class='gpbutton'>
+      </a>
+      <!-- <a href="https://plus.google.com/share?url={{SHARE_LINK}}#comment{{COMMENT_ID}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class='gpbutton'>
         <img src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+" />
       </a>
       <a href="http://twitter.com/share?url={{SHARE_LINK}}" target="_blank" class='twbutton'>
         <img src="/assets/images/social/twitter.png" />
-      </a>
+      </a> -->
       <p class="commentShare">Share this comment.</p>
     </div>
   </div>
