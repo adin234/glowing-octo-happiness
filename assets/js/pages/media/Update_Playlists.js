@@ -66,14 +66,12 @@ define(function(require) {
             html.push('請將影片加至您的"我的最愛"播放清單!');
             $('.listSwitch').addClass('no-playlist');
             $('#videosToggle').trigger('click');
-            console.log($('#videos li.videoItem'));
+
             if ($('#videos li.videoItem > a').length) {
                 var link = $('#videos li.videoItem > a').first().attr('href').replace('#', '');
                 if (!isPlaying && !willPlay()) {
                     window.location.hash = link;
                 }
-            } else {
-
             }
         } else {
             $('.game_page .listSwitch').removeClass('no-playlist');

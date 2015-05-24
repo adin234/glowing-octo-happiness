@@ -15,7 +15,7 @@ define (function () {
                 init: function(page_data) {
 
 
-                    if (!$('body').hasClass('favorites')) {
+                    // if (!$('body').hasClass('favorites')) {
 
                         $(window).on('hashchange', function () {
                             hash = window.location.hash.replace('#!/', '');
@@ -27,7 +27,7 @@ define (function () {
         			    });
 
                         // $(window).trigger('hashchange');
-                    }
+                    // }
                 }
             };
 		};

@@ -84,8 +84,6 @@ define(function(require) {
       utilLogin.show();
     }
 
-    console.log(page_data);
-
     page_data.categories.forEach(function(item) {
       html.push(
         template(

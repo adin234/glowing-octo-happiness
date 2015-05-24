@@ -63,7 +63,13 @@ define('shows', function(require) {
     hash_change
         .init(page_data);
 
-    first_load(page_data);
+    if ($('body').hasClass('favorites')) {
+        $(document).on('load-page', function() {
+            first_load(page_data);
+        });
+    } else {
+        first_load(page_data);
+    }
 
     main_tab_2
         .init()
