@@ -151,12 +151,11 @@ define('index', function(require) {
         if (typeof game.consoles === 'undefined') {
           return;
         }
-        category = game.consoles[1];
+        category = game.consoles[1] || game.consoles[0];
         categories[category] = categories[category] || [];
-        if (!!~$.inArray(category, valid_categories) &&
-          categories[category].length < 6 &&
-          !~filteredGames.indexOf(game)
-        ) {
+        if (~$.inArray(category, valid_categories) &&
+          categories[category].length < 6)
+        {
           categories[category].push(game);
           filteredGames.push(game);
         }
