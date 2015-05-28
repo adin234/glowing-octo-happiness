@@ -148,18 +148,38 @@ define('index', function(require) {
         category,
         valid_categories = ['mobile_app', 'pc', 'ps3', 'ps4', 'xbox1', 'xbox360'];
       games.forEach(function(game) {
-        if (typeof game.consoles === 'undefined') {
+        if (typeof game.consoles !== 'object' || !game.consoles.length) {
           return;
         }
-        category = game.consoles[1] || game.consoles[0];
-        categories[category] = categories[category] || [];
-        if (~$.inArray(category, valid_categories) &&
-          categories[category].length < 6)
-        {
-          categories[category].push(game);
-          filteredGames.push(game);
-        }
+        game.consoles.forEach(function(category) {
+          if (category === 'all') {
+            return;
+          }
+          categories[category] = categories[category] || [];
+
+          if (~filteredGames.indexOf(game) && (category === 'xbox1' || category === 'xbox360')) {
+            //remove item from other categories
+            valid_categories.forEach(function(cat) {
+              if (categories[cat] && ~categories[cat].indexOf(game)) {
+                categories[cat].splice(categories[cat].indexOf(game), 1);
+                filteredGames.splice(filteredGames.indexOf(game), 1);
+              }
+            });
+          }
+          
+          if (~$.inArray(category, valid_categories) &&
+            categories[category].length < 6 &&
+            !~filteredGames.indexOf(game)
+          )
+          {
+            categories[category].push(game);
+            filteredGames.push(game);
+          }
+        });
       });
+
+      console.log(categories);
+
       return filteredGames;
     },
 
