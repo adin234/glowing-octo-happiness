@@ -1,6 +1,18 @@
 (function() {
 window["JST"] = window["JST"] || {};
 
+window["JST"]["ads.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = '';
+with (obj) {
+__p += '<div class="advert" id="advertisement-container" data-size="minified" data-status="full" style="background-color: black;">\n  <div id="close-advert">\n    <a id="close-advert-link" onclick="javascript: closeAdvert();">X</a>\n  </div>\n    {ADVERT}\n  <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>\n</div>\n';
+
+}
+return __p
+}})();
+(function() {
+window["JST"] = window["JST"] || {};
+
 window["JST"]["chatms.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
@@ -17,7 +29,7 @@ window["JST"]["chatui.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<div id="chid-{cid}" class="chid">\n  {cid}\n</div>\n<div id="chcontainer-{cid}" class="chcontainer_single">\n  <table id="tblchatmsgs-{cid}" class="tblchatmsgs">\n  </table>\n</div>\n<div id="chatinputs-{cid}" class="chatinputs_single">\n  <input type="text" id="msgs-{cid}" class="msgs">\n  <button id="btn-{cid}" class="btnSend">\n    SEND\n  </button>\n</div>\n<div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">\n  <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>\n</div>\n<div class="advert" id="advertisement-container-yt" data-size="minified" data-status="full" style="background-color: black;">\n  <div id="close-advert">\n    <a id="close-advert-link" onclick="javascript: closeAdvert();">X</a>\n  </div>\n    {ADVERT}\n  <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>\n</div>\n';
+__p += '<div id="chid-{cid}" class="chid">\n  {cid}\n</div>\n<div id="chcontainer-{cid}" class="chcontainer_single">\n  <table id="tblchatmsgs-{cid}" class="tblchatmsgs">\n  </table>\n</div>\n<div id="chatinputs-{cid}" class="chatinputs_single">\n  <input type="text" id="msgs-{cid}" class="msgs">\n  <button id="btn-{cid}" class="btnSend">\n    SEND\n  </button>\n</div>\n<div id="notifylogin-{cid}" class="chatinputs_single" style="display:none;">\n  <span class="spandex"><a href="javascript:utilLogin.show();" style="text-decoration: none; color:#3366FF;" >登入開始聊天</a>. </span>\n</div>\n';
 
 }
 return __p

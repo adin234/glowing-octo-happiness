@@ -29,7 +29,7 @@ window["JST"]["gchat-tab-tpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<li class="chat-{{CHANNELID}} {{CLASSNAME}}">\n  <a href="#gchat-{{CHANNELID}}">\n    {{CHANNELID}}\n  </a>\n</li>\n';
+__p += '<li class="chat-{{CHANNELID}}">\n  <a href="#gchat-{{CHANNELID}}">\n    {{CHANNELID}}\n  </a>\n</li>\n';
 
 }
 return __p

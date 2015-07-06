@@ -9,6 +9,7 @@
 
 $.fn.initChatBox = function (chl, usr, sender) {
     var chatUI,
+        adsUI = '',
         msgNotify,
         msgChat,
         socket,
@@ -28,7 +29,8 @@ $.fn.initChatBox = function (chl, usr, sender) {
         ud,
         notify = '',
         msgbox,
-        x;
+        x,
+        container = $('<div id="twitch-container">');
 
     dt = new Date();
     socket = io.connect('http://52.74.64.71:3000');
@@ -42,13 +44,13 @@ $.fn.initChatBox = function (chl, usr, sender) {
         chname = chl.title;
     }
     if (typeof (sender) === 'undefined') {
-        console.log('I\'m at option 1');
-        // console.log(JST['chatui.html']());
+        // console.log('I\'m at option 1');
         chatUI = JST['chatui.html']().replace(/{cid}/ig, chid);
     }
     else {
-        console.log('I\'m at option 2');
-        chatUI = JST['chatui.html']().replace(/{cid}/ig, chid).replace(/{ADVERT}/ig, page_data.custom_fields &&
+        // console.log('I\'m at option 2');
+        chatUI = JST['chatui.html']().replace(/{cid}/ig, chid);
+        adsUI = JST['ads.html']().replace(/{ADVERT}/ig, page_data.custom_fields &&
             page_data.custom_fields.advertisement);
     }
 
@@ -223,8 +225,14 @@ $.fn.initChatBox = function (chl, usr, sender) {
         });
     });
 
-    this.append(chatUI);
+    container.append(chatUI);
+    this.append(container);
+    this.append(adsUI);
 
+    toggleChat();
+
+    this.find('#chcontainer-'+chid).css('height', $('#twitch-container').height() - $('#notifylogin-'+chid).height() - 47);
+    // this.find('#chatinputs-'+chid).css('height', $('#twitch-container').height() - 60);
 
     return false;
 };

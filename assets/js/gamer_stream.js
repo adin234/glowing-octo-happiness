@@ -1,7 +1,6 @@
 /* jshint unused: false */
 /* global
     server,
-    streamerId: true,
     template,
     twitch,
     page_data: true,
@@ -16,7 +15,8 @@
 
 'use strict';
 
-var check_if_online = function (userId) {
+var streamerId,
+  check_if_online = function (userId) {
         var found = false;
         $.getJSON(server + 'streamers/youtube/?user=' + userId, function(e) {
             e.streamers.forEach(function(item) {
@@ -112,7 +112,7 @@ var check_if_online = function (userId) {
                             '<img class="offline-placeholder" ' +
                             'src="/assets/images/streamer-offline.png"/>' +
                             '</div>').fadeTo('slow');
-                    } 
+                    }
                 } else {
                     if ($('div .videoWrapper').length === 0) {
                         $('#twitchStream').replaceWith(
@@ -123,6 +123,6 @@ var check_if_online = function (userId) {
                         ).fadeIn('slow');
                     }
                 }
-            });        
+            });
         }
     }, 5000);
