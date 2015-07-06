@@ -23,19 +23,13 @@ define(function(require) {
 
             init: function(data) {
                 data.forEach(function (item) {
-                    item.onclick = 
-                        item.header_location ?
-                            'window.location=\'' +
-                                item.header_location + '\'' :
-                            '';
+                    item.onclick = item.header_location ? 'window.location=' + item.header_location : '';
                     item.provider = attachments_server;
                     item.style = item.youtube_link ? '' : 'display:none';
                     item.youtube_link = item.youtube_link ? item.youtube_link : '';
-                    item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace(
-                        'https://www.youtube.com/watch?v=', '') + '/default.jpg';
+                    item.thumb = 'https://i.ytimg.com/vi/' + item.youtube_link.replace('https://www.youtube.com/watch?v=', '') + '/default.jpg';
                     date = new Date(item.upload_date * 1000);
-                    item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1))
-                        .slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
+                    item.link = 'http://cdn.gamers.tm/' + date.getFullYear() + '/' + ('00' + (date.getMonth() + 1)).slice(-2) + '/' + item.data_id + '_' + item.file_hash + '.jpg';
                     item.cursorvalue = item.header_location ? 'cursor: pointer;' : 'cursor: default;';
                     //push the item to render later
                     items.push(template(slider_tpl, item));

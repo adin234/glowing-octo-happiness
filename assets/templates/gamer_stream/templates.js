@@ -5,7 +5,7 @@ window["JST"]["ads.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<div class="advert" id="advertisement-container" data-size="minified" data-status="full" style="background-color: black;">\n  <div id="close-advert">\n    <a id="close-advert-link" onclick="javascript: closeAdvert();">X</a>\n  </div>\n    {ADVERT}\n  <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>\n</div>\n';
+__p += '<div class="advert" id="advertisement-container" data-size="minified" data-status="full" style="background-color: black;">\n    {ADVERT}\n  <a href="javascript:void(0)" onClick="toggleChat();" class="minify-advert" style="font-size: medium; font-family: Calibri; color:#6666CC;">MINIFY</a>\n</div>\n';
 
 }
 return __p
