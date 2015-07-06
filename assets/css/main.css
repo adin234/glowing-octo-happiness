@@ -3712,7 +3712,7 @@ textarea#event_desc {
     background-color: black;
     border-color: white;
     color: #f32a2a; }
-.stream .close, .stream .bx-wrapper .close {
+.stream .close, .stream .bx-wrapper .close, .stream .close-btn-custom {
   background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
   border: 2px solid white;
   -moz-border-radius: 50%;
@@ -4108,6 +4108,21 @@ img.offline-placeholder {
   width: 26px;
   font-size: 0; }
 
+.close-btn-custom {
+  background: #010202 url(/assets/images/sprite.png) no-repeat 6px -2744px;
+  border: 2px solid white;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.35);
+  display: block;
+  height: 26px;
+  position: absolute;
+  right: -5px;
+  top: -14px;
+  width: 26px;
+  z-index: 5000; }
+
 .nav-wrapper {
   max-width: 1148px;
   margin: auto;
@@ -4291,3 +4306,17 @@ div#archive_schedule {
   color: #fff;
   font-weight: bold;
   margin-left: 75px; }
+
+.modal-full {
+  position: absolute;
+  top: 10px;
+  z-index: 9999;
+  left: 50%;
+  transform: translate(-50%, 0); }
+  .modal-full .modal-content {
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+    background: #000000;
+    padding-right: 5px; }
+  .modal-full .close {
+    margin-top: 5px; }

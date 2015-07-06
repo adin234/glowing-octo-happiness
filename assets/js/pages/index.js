@@ -16,6 +16,7 @@ define('index', function(require) {
     Featured_Users = require('../components/Featured_Users/index'),
     video_tpl = require('./templates/video-slide.html'),
     game_tpl = require('./templates/game-tpl.html'),
+    ads_tpl = require('./templates/modal-advertisement.html'),
     main_slider = new Main_Slider(),
     main_tab = new Tabs({
       hash_change: false
@@ -166,7 +167,7 @@ define('index', function(require) {
               }
             });
           }
-          
+
           if (~$.inArray(category, valid_categories) &&
             categories[category].length < 6 &&
             !~filteredGames.indexOf(game)
@@ -177,8 +178,6 @@ define('index', function(require) {
           }
         });
       });
-
-      console.log(categories);
 
       return filteredGames;
     },
@@ -277,6 +276,32 @@ define('index', function(require) {
     .mount($('#global-filter'));
 
   showSocialButtons();
+
+  var showAdvertisement = function() {
+      $('body').append(template(ads_tpl, {})).promise().done(function() {
+          var img = new Image();
+          img.onload = function() {
+              $('.modal-full img').css({
+                  height: $(window).height() - 30,
+              });
+          };
+
+          img.src = 'https://s3-ap-southeast-1.amazonaws.com/cdn.gamers.tm/gamers_assets/10days.png?asdf';
+          utilCookie.set('advertisementShown', '1', 0.5);
+          $('.modal-full img').replaceWith(img);
+      });
+  },
+  hideAdvertisement = function() {
+      $('.modal-full').remove();
+  };
+
+  if (!utilCookie.get('advertisementShown')) {
+      showAdvertisement();
+  }
+
+  $('body').on('click', '.modal-full .close', function() {
+    hideAdvertisement();
+  });
 
   require('../components/Streamers_List/index');
   require('../components/Scroller/index');

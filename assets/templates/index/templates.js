@@ -1,6 +1,18 @@
 (function() {
 window["JST"] = window["JST"] || {};
 
+window["JST"]["advertisementTpl.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = '';
+with (obj) {
+__p += '';
+
+}
+return __p
+}})();
+(function() {
+window["JST"] = window["JST"] || {};
+
 window["JST"]["featureTpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';

@@ -373,7 +373,7 @@ ul {
                 color: #666666;
                 font-size: smaller;
             }
-        }        
+        }
     }
     &.user-links {
         &:before {
@@ -1091,7 +1091,7 @@ textarea{
             background-position: 0 -2572px;
         }
     }
-} 
+}
 
 /*index */
 .main {
@@ -1170,7 +1170,7 @@ textarea{
                 top: 256px;
                 background-size: 120%;
                 &:hover, &:active, &:focus {
-                    opacity: 1;                    
+                    opacity: 1;
                 }
             }
         }
@@ -1259,7 +1259,7 @@ textarea{
         ul {
             height: 100%;
             li {
-                
+
                 padding-left: 34px;
                 position: relative;
                 padding-bottom: 6px;
@@ -1320,7 +1320,7 @@ textarea{
                 }
                 &:nth-child(15):before {
                     background-position: 10px -1002px;
-                }                
+                }
             }
         }
         .list {
@@ -1489,7 +1489,7 @@ textarea{
         text-indent: 100%;
         white-space: nowrap;
     }
-}  
+}
 
 .videoRelated {
     .tabs {
@@ -1790,7 +1790,7 @@ textarea{
             color: #f32a2a;
         }
     }
-    .close, .bx-wrapper .close {
+    .close, .bx-wrapper .close, .close-btn-custom {
         background: #010202 url("@{sprite}") no-repeat 6px -2744px;
         border: 2px solid white;
         -moz-border-radius: 50%;
@@ -1833,15 +1833,32 @@ textarea{
         top: -14px;
         width: 26px;
         z-index: 5000;
-        margin-right: 10%;  
+        margin-right: 10%;
         &:hover,&:active,&:focus {
             box-shadow: none;
             box-shadow: 0 0 6px rgba(255, 255, 255, 0.65);
             -webkit-transition: all 0.5s ease;
             transition: all 0.5s ease;
-        }           
+        }
     }
 }
+
+.close-btn-custom {
+    background: #010202 url("@{sprite}") no-repeat 6px -2744px;
+    border: 2px solid white;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.35);
+    display: block;
+    height: 26px;
+    position: absolute;
+    right: -5px;
+    top: -14px;
+    width: 26px;
+    z-index: 5000;
+}
+
 
 /*Profile */
 .userAction {
