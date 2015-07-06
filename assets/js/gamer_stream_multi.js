@@ -52,8 +52,8 @@ var streamers_list = {
       item.bust = 1;
       item.views = hitboxData.media_views;
     } else {
-      item.id = 'YT' + item.youtube.id;
-      item.idraw = item.youtube.id;
+      item.id = 'YT' + item.username;
+      item.idraw = item.username;
       item.live = 'live';
       item.link = '/gamer_stream/' + item.user_id + '/' + item.id;
       item.provider = attachments_server;
@@ -121,7 +121,13 @@ var streamers_list = {
     var streamType = item.substr(0, 2),
       streamId = item.substr(2),
       tabOffsetTop = $('#twitch-chat-tab-container').offset().top + $('#twitch-chat-tab-container').height(),
-      chatbodyHeight = $(window).height() - tabOffsetTop;
+      chatbodyHeight = $(window).height() - tabOffsetTop,
+      userinfo = '',
+      gchatContainer = '',
+      channelinfo = {
+        'id': streamId,
+        'title': streamId
+      };
 
     active_streams.push(item);
     if (streamType === 'TW') {
@@ -146,7 +152,7 @@ var streamers_list = {
           }
         )
       );
-      
+
     }
 
     if (streamType === 'HB') {
@@ -176,43 +182,50 @@ var streamers_list = {
     }
 
     if (streamType === 'YT') {
-      $('#twitchStreamContainer').append(
-        template(
-          JST['youtube-stream-tpl.html'](), {
-            youtubeid: streamId
-          }
-        )
-      );
-      $('#twitch-chat-frame-container').append(
-        template(
-          JST['gchat-tpl.html'](), {
-            ChannelId: streamId
-          }
-        )
-      );
+
       $('#twitch-chat-tab-container').append(
         template(
           JST['gchat-tab-tpl.html'](), {
-            ChannelId: streamId
+            channelid: streamId
           }
         )
       );
 
-      var userinfo = '',
-        gchatContainer = $('#gchat-' + streamId),
-        channelinfo = {
-          'id': streamId,
-          'title': streamId
-        };
+      $('#twitch-chat-frame-container').append(
+        template(
+          JST['gchat-tpl.html'](), {
+            channelid: streamId
+          }
+        )
+      );
 
-      if (utilCookie.get('user').length > 0) {
-        userinfo = $.parseJSON(utilCookie.get('user'));
-        gchatContainer.initChatBox(channelinfo, userinfo);
-      } else {
-        gchatContainer.initChatBox(channelinfo, userinfo);
-      }
+      $.getJSON(server + 'streamers/youtube/?username=' + streamId, function(e) {
+        if (!e.streamers || !e.streamers.length) {
+          return;
+        }
+        $('#twitchStreamContainer').append(
+          template(
+            JST['youtube-stream-tpl.html'](), {
+              youtubeid: e.streamers[0].youtube.id,
+              username: e.streamers[0].username
+            }
+          )
+        );
 
-      $('#gchat-' + streamId).find('.chcontainer').css('height', chatbodyHeight - 110);
+        channelinfo.id = e.streamers[0].youtube.id;
+        channelinfo.title = e.streamers[0].username;
+
+        gchatContainer = $('#gchat-' + streamId);
+
+        if (utilCookie.get('user').length > 0) {
+          userinfo = $.parseJSON(utilCookie.get('user'));
+          gchatContainer.initChatBox(channelinfo, userinfo);
+        } else {
+          gchatContainer.initChatBox(channelinfo, userinfo);
+        }
+
+        $('#gchat-' + streamId).find('.chcontainer').css('height', chatbodyHeight - 110);
+      });
     }
 
     $('.tabs').tabslet({

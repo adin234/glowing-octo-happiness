@@ -52,7 +52,7 @@ var streamType = '',
 
 $.ajax(server + 'streamers', function(data) {
     }).fail(function() {
-      window.location.assign(page_maintenance);  
+      window.location.assign(page_maintenance);
 });
 
 page_data = JSON.parse(page_data);
@@ -267,7 +267,7 @@ $('#youtuber-link').attr('href', '/youtuber/?user=' + page_data.user_id);
         theme:'inset-2',
 });
 
-if (typeof page_data.custom_fields !== 'undefined' && 
+if (typeof page_data.custom_fields !== 'undefined' &&
     typeof page_data.custom_fields.streamingImage !== 'undefined' &&
     page_data.custom_fields.streamingImage !== '') {
     $('meta[property=\'og\\:image\']')

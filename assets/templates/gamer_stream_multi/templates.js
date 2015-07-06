@@ -29,7 +29,7 @@ window["JST"]["gchat-tab-tpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<li class="chat-{{ChannelId}}">\n  <a href="#gchat-{{ChannelId}}">\n    {{ChannelId}}\n  </a>\n</li>\n';
+__p += '<li class="chat-{{CHANNELID}} {{CLASSNAME}}">\n  <a href="#gchat-{{CHANNELID}}">\n    {{CHANNELID}}\n  </a>\n</li>\n';
 
 }
 return __p
@@ -41,7 +41,7 @@ window["JST"]["gchat-tpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<div id="gchat-{{ChannelId}}" style="display:block; height:100%;"></div>\n';
+__p += '<div id="gchat-{{CHANNELID}}" style="display:block; height:100%;"></div>\n';
 
 }
 return __p
@@ -149,7 +149,7 @@ window["JST"]["youtube-stream-tpl.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = '';
 with (obj) {
-__p += '<div id="twitchStream" class="stream-item">\n  <div class="videoWrapper">\n    <object height="100%" width="100%" id="live_embed_player_flash">\n      <param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param>\n      <param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>\n      <embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>\n    </object>\n    <a href="javascript:;" class="close remove-stream" data-id="YT{{YOUTUBEID}}" title="Close">Close</a>\n  </div>\n</div>\n';
+__p += '<div id="twitchStream" class="stream-item">\n  <div class="videoWrapper">\n    <object height="100%" width="100%" id="live_embed_player_flash">\n      <param name="movie" value="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3"></param>\n      <param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>\n      <embed src="//www.youtube.com/v/{{YOUTUBEID}}?hl=en_US&amp;version=3&autoplay=1" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true"></embed>\n    </object>\n    <a href="javascript:;" class="close remove-stream" data-id="YT{{USERNAME}}" title="Close">Close</a>\n  </div>\n</div>\n';
 
 }
 return __p

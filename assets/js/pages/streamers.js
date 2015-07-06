@@ -102,7 +102,7 @@ define('streamers', function(require) {
 
                     //restore the data back to the collection
                     page_data['_'+collection].splice(key, 0, data);
-                    
+
                     slider.reload(page_data['_' + collection]);
                 });
 
@@ -128,11 +128,11 @@ define('streamers', function(require) {
         transform_youtube_streamers = function(data) {
             return data.map(function(item) {
                 item.stream_type = 'youtube';
-                item.id = 'YT' + item.youtube.id;
-                item.idraw = item.youtube.id;
+                item.id = 'YT' + item.username;
+                item.idraw = item.username;
                 item.live = 'live';
                 item.collection = 'live';
-                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/' + item.id;
+                item.link = origin + 'gamer_stream/?user=' + item.user_id + '/#!/YT' + item.username;
                 item.provider = attachments_server;
                 item.thumb = item.youtube.snippet.thumbnails.high.url;
                 item.title = item.youtube.snippet.title;
@@ -275,7 +275,7 @@ define('streamers', function(require) {
     require('../components/Footer/index');
     require('../components/Sub_Nav/index');
 
-    
+
 });
 
 require(['streamers']);

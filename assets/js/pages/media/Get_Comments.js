@@ -18,6 +18,12 @@ define(function(require) {
 
     return function Get_Comments(videoId, sort) {
 
+      if ($('body').hasClass('shows') || $('body').hasClass('news')) {
+        $('.tabs > ul > li:last').hide();
+        $('#tab-2').hide();
+        return;
+      }
+
         sort = sort || 'latest';
         $.getJSON(server + 'youtubers/videos/' + videoId + '/comment', function(e) {
             if (sort === 'last') {
