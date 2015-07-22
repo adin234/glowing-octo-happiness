@@ -1506,7 +1506,7 @@ footer {
     width: 105px;
     color: #FFFFFF;
     font-size: large;
-    margin: 0px 5px 0px 40px;
+    margin: 0px 5px 0px 0px;
     height: 36px; }
     #container_lanparty .hour_time li {
       margin: 0px 5px 0px 40px;
@@ -1672,7 +1672,7 @@ footer {
     padding-top: 60px; }
     #container_lanparty_green .hour_time li {
       border-top: 1px dotted #00ff54;
-      margin: 0px 5px 0px 40px;
+      margin: 0px 5px 0px 0px;
       height: 36px; }
       #container_lanparty_green .hour_time li:last-child {
         border-bottom: 1px dotted #00ff54;

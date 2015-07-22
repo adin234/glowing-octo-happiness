@@ -8,7 +8,7 @@
     .lanparty_title {
         font-weight: bold;
         display: inline-block;
-        margin: 100px 80px 0px; 
+        margin: 100px 80px 0px;
     }
     .lanparty_content {
         color: #00b8e6;
@@ -34,7 +34,7 @@
         width: 105px;
         color: #FFFFFF;
         font-size: large;
-        margin: 0px 5px 0px 40px;
+        margin: 0px 5px 0px 0px;
         height: 36px;
         li {
             margin: 0px 5px 0px 40px;
@@ -70,8 +70,8 @@
          li.active, li:hover {
             & > a{
                color: #00b8e6;
-                border-top: 2px solid #00b8e6; 
-            }            
+                border-top: 2px solid #00b8e6;
+            }
         }
     }
     .lanparty_type2 {
@@ -173,7 +173,7 @@
             background: #000;
             border: 1px solid #00b8e6;
         }
-    }    
+    }
 }
 
 .lanparty-nav-green {
@@ -182,7 +182,7 @@
             & > a{
                 color: #00ff54;
                 border-top: 2px solid #00ff54;
-            }            
+            }
         }
     }
     .lanparty_type2 {
@@ -216,7 +216,7 @@
             color: #868686;
             text-decoration: none;
             /*outline: 1px solid red;*/
-            
+
             padding: 15px 10px;
             position: relative;
             top: -1px;
@@ -273,7 +273,7 @@
         padding-top: 60px;
         li {
             border-top: 1px dotted #00ff54;
-            margin: 0px 5px 0px 40px;
+            margin: 0px 5px 0px 0px;
             height: 36px;
             &:last-child {
                 border-bottom: 1px dotted #00ff54;
