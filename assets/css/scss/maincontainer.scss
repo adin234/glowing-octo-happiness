@@ -249,7 +249,8 @@
                     color: inherit;
                 }
             }
-            [id^="tab-"] {
+        }
+	[id^="tab"] {
                 ul {
                     li + li {
                         margin-top: 12px;
@@ -310,7 +311,6 @@
                         font-weight: bold;
                     }
                 }
-            }
-        }
+	}
     }
 }

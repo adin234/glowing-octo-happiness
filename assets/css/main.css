@@ -2376,53 +2376,53 @@ body #navigation {
         color: #8f8f8f; }
       #main-container .information .tab li.active a {
         color: inherit; }
-      #main-container .information .tab [id^="tab-"] ul li + li {
-        margin-top: 12px; }
-      #main-container .information .tab [id^="tab-"] ul h3 {
-        border: 3px dotted #898989;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
-        border-radius: 50%;
-        box-sizing: border-box;
-        color: #b4b4b4;
+    #main-container .information [id^="tab"] ul li + li {
+      margin-top: 12px; }
+    #main-container .information [id^="tab"] ul h3 {
+      border: 3px dotted #898989;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      box-sizing: border-box;
+      color: #b4b4b4;
+      float: left;
+      height: 50px;
+      line-height: 44px;
+      text-align: center;
+      width: 50px; }
+    #main-container .information [id^="tab"] ul ul {
+      position: relative;
+      padding: 9px 0 0 64px; }
+      #main-container .information [id^="tab"] ul ul li {
+        background-color: #464646;
+        border: 1px solid #898989;
         float: left;
-        height: 50px;
-        line-height: 44px;
-        text-align: center;
-        width: 50px; }
-      #main-container .information .tab [id^="tab-"] ul ul {
+        line-height: 30px;
+        padding: 0 14px;
         position: relative;
-        padding: 9px 0 0 64px; }
-        #main-container .information .tab [id^="tab-"] ul ul li {
-          background-color: #464646;
-          border: 1px solid #898989;
-          float: left;
-          line-height: 30px;
-          padding: 0 14px;
-          position: relative;
-          text-transform: uppercase;
-          width: 100%;
-          box-sizing: border-box;
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box; }
-          #main-container .information .tab [id^="tab-"] ul ul li:before {
-            background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
-            content: "\00A0";
-            left: -7px;
-            position: absolute;
-            top: 11px;
-            height: 8px;
-            width: 7px; }
-          #main-container .information .tab [id^="tab-"] ul ul li + li {
-            clear: left;
-            margin-top: 0; }
-      #main-container .information .tab [id^="tab-"] ul p {
-        float: left; }
-        #main-container .information .tab [id^="tab-"] ul p + p:before {
-          content: "\007C";
-          padding: 0 8px; }
-      #main-container .information .tab [id^="tab-"] ul em {
-        font-weight: bold; }
+        text-transform: uppercase;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box; }
+        #main-container .information [id^="tab"] ul ul li:before {
+          background: url("/assets/images/sprite.png") no-repeat 0 -2866px;
+          content: "\00A0";
+          left: -7px;
+          position: absolute;
+          top: 11px;
+          height: 8px;
+          width: 7px; }
+        #main-container .information [id^="tab"] ul ul li + li {
+          clear: left;
+          margin-top: 0; }
+    #main-container .information [id^="tab"] ul p {
+      float: left; }
+      #main-container .information [id^="tab"] ul p + p:before {
+        content: "\007C";
+        padding: 0 8px; }
+    #main-container .information [id^="tab"] ul em {
+      font-weight: bold; }
 
 /* Video Ratio */
 .videoWrapper {

@@ -19,7 +19,8 @@ var streamType = '',
     streamId = '',
     first = true,
     found = false,
-    isOnline = false;
+    isOnline = false,
+    countEmpty = 0;
 
 page_data = JSON.parse(page_data);
 streamType = twitch.substr(0,2);
@@ -27,7 +28,6 @@ streamId = twitch.substr(2);
 
 $(function() {
 
-    var countEmpty = 0;
 
     //check if we are on maintenance
     $.ajax(server + 'streamers', function() {
@@ -215,7 +215,5 @@ $(function() {
         }
 
         isOnline = found;
-
-        console.log('found?', found);
     });
 });
