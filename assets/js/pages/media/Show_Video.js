@@ -18,8 +18,8 @@ define(function(require) {
         updateSuggestions = require('./Update_Suggestions');
 
     return function Show_Video(videoId, list) {
-
         var video = getVideo(videoId, list);
+
         if (video) {
             var likeButton = '',
                 text = '加入至我的最愛',
@@ -54,10 +54,11 @@ define(function(require) {
                     '&' : '?') + 'autoplay=true&enablejsapi=1&origin=' + origin
             );
 
-            $.get(server + 'vid_suggestions', {
-                    search: video.engtitle || video.snippet.title
-                },
-                updateSuggestions);
+            $.get(
+                server + 'vid_suggestions',
+                { search: video.engtitle || video.snippet.title },
+                updateSuggestions
+            );
 
             if (!page_data.config || !page_data.config.channel) {
                 getPhoto(video.snippet.channelId, $('.videoHeading > img'));
@@ -66,10 +67,13 @@ define(function(require) {
             page_data.videoId = videoId;
 
             getComments(videoId);
+            
             showSocialButtons(
                 'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
                 encodeURIComponent(video.snippet.description),
-                encodeURIComponent(video.snippet.title));
+                encodeURIComponent(video.snippet.title)
+            );
+
             updatePrevNext();
         }
 
