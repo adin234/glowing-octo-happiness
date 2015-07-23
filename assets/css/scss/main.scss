@@ -49,7 +49,8 @@ ul {
     &.date_schedule {
         color: #fffd21;
         font-size: large;
-        & > li:nth-child(1) {} ul.date_schedule > li:nth-child(2) {
+        & > li:nth-child(1) {}
+	& > li:nth-child(2) {
             padding-left: 48px;
         }
         & > li:nth-child(3) {
@@ -98,7 +99,7 @@ ul {
             &:nth-child(3), &:nth-child(7), &:nth-child(11), &:nth-child(15), &:nth-child(19), &:nth-child(23){
                 color: #00c7f9;
             }
-            &:nth-child(2), &:nth-child(4), &:nth-child(6), &:nth-child(8), &:nth-child(12), &:nth-child(14), &:nth-child(16), &:nth-child(20), &:nth-child(22), &:nth-child(24) {
+            &:nth-child(2), &:nth-child(4), &:nth-child(6), &:nth-child(8), &:nth-child(10), &:nth-child(12), &:nth-child(14), &:nth-child(16), &:nth-child(18), &:nth-child(20), &:nth-child(22), &:nth-child(24) {
                 color: #666666;
                 font-size: smaller;
             }
@@ -1841,7 +1842,7 @@ div.streamer {
 .dates_title {
     width: 823px;
     position: relative;
-    margin-left: 100px;
+    margin-left: 130px;
     margin-top: 75px;
 }
 
@@ -1976,7 +1977,7 @@ button#like.like {
 }
 
 .specific_dates {
-    margin-left: 100px;
+    margin-left: 130px;
     margin-top: -15px;
 }
 
