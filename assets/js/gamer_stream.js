@@ -203,6 +203,10 @@ var streamerId,
     },
 
     sched_template = function(string) {
+        if (!string) {
+            return
+        }
+
         var list = string.split(/<br ?\/?>/).filter(function(e) {
             return e.trim().length;
         }).map(function(e) {
