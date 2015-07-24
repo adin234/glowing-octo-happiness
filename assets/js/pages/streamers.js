@@ -184,7 +184,7 @@ define('streamers', function(require) {
         filter_lanparty = function(collection) {
             var new_collection = [];
             collection.forEach(function(streamer, i) {
-                if (~streamer.title.search(/lan/i)) {
+                if (streamer.title && ~streamer.title.search(/lan/i)) {
                     streamer.link = origin + 'lanparty_stream_multi/#/' + streamer.id;
                     streamer.collection = 'lanparty';
                     streamer.key = i;
