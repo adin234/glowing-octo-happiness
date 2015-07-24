@@ -5,7 +5,8 @@
     page_data: true,
     JST,
     Masonry,
-    params
+    params,
+    utilCookie
 */
 
 'use strict';
@@ -250,40 +251,40 @@ var streamerId,
         }
 
         advertisementContainer.show();
-    },
+    };
 
-    checker = setInterval(function() {
-        var found = false;
-        if (twitch.substr(0,2) === 'YT') {
-            $.getJSON(server + 'streamers/youtube/?user=' + page_data.user_id, function(e) {
-                e.streamers.forEach(function(item) {
-                        found = true;
-                        streamerId = item.youtube.id;
-                        $('.streamer #about-streamer').html(
-                            item.youtube.snippet.description.
-                                replace(/(?:\r\n|\r|\n)/g, '<br />')
-                        );
-                        $('embed').height($('#streamView').height());
-                });
-
-                if (!found) {
-                    if ($('div .videoWrapper').length > 0) {
-                        $('#twitchStream').replaceWith(
-                            '<div id="twitchStream">' +
-                            '<img class="offline-placeholder" ' +
-                            'src="/assets/images/streamer-offline.png"/>' +
-                            '</div>').fadeTo('slow');
-                    }
-                } else {
-                    if ($('div .videoWrapper').length === 0) {
-                        $('#twitchStream').replaceWith(
-                            template(
-                                JST['youtube-stream-tpl.html'](),
-                                    {youtubeid: streamerId}
-                            )
-                        ).fadeIn('slow');
-                    }
-                }
-            });
-        }
-    }, 5000);
+    // checker = setInterval(function() {
+    //     var found = false;
+    //     if (twitch.substr(0,2) === 'YT') {
+    //         $.getJSON(server + 'streamers/youtube/?user=' + page_data.user_id, function(e) {
+    //             e.streamers.forEach(function(item) {
+    //                     found = true;
+    //                     streamerId = item.youtube.id;
+    //                     $('.streamer #about-streamer').html(
+    //                         item.youtube.snippet.description.
+    //                             replace(/(?:\r\n|\r|\n)/g, '<br />')
+    //                     );
+    //                     $('embed').height($('#streamView').height());
+    //             });
+    //
+    //             if (!found) {
+    //                 if ($('div .videoWrapper').length > 0) {
+    //                     $('#twitchStream').replaceWith(
+    //                         '<div id="twitchStream">' +
+    //                         '<img class="offline-placeholder" ' +
+    //                         'src="/assets/images/streamer-offline.png"/>' +
+    //                         '</div>').fadeTo('slow');
+    //                 }
+    //             } else {
+    //                 if ($('div .videoWrapper').length === 0) {
+    //                     $('#twitchStream').replaceWith(
+    //                         template(
+    //                             JST['youtube-stream-tpl.html'](),
+    //                                 {youtubeid: streamerId}
+    //                         )
+    //                     ).fadeIn('slow');
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }, 5000);
