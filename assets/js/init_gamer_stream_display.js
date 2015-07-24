@@ -203,7 +203,7 @@ $(function() {
                     break;
 
                 case 'TW' :
-                    if (stream.twitch.channel.display_name.toLowerCase() === streamId) {
+                    if (stream.twitch.channel.display_name.toLowerCase().trim() === streamId) {
                         found = 1;
                     }
             }
