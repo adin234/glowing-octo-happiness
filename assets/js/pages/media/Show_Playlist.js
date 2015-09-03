@@ -31,7 +31,7 @@ define(function(require) {
         if (!next) {
             if (
                 (typeof playlist.items[0].status !== 'undefined') &&
-                (playlist.items[0].status === 'public')
+                (playlist.items[0].status.privacyStatus === 'public')
             ) {
                 return showVideo(playlist.items[0].snippet.resourceId.videoId);
             } else {
